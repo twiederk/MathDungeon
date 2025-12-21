@@ -16,9 +16,12 @@ fun main() = runBlocking {
     var playerY = 1
     val running = AtomicBoolean(true)
 
+    val dungeonHeight = map.size + 1 // +1 für die Infozeile
+
     fun render() {
-        // ANSI: Cursor home + clear screen (funktioniert in modernen Konsolen)
-        print("\u001b[H\u001b[2J")
+        // Cursor um dungeonHeight Zeilen nach oben bewegen
+        print("\u001b[${dungeonHeight}A")
+
         val sb = StringBuilder()
         for (y in map.indices) {
             for (x in map[y].indices) {
@@ -30,7 +33,9 @@ fun main() = runBlocking {
         print(sb.toString())
     }
 
+
     fun tryMove(dx: Int, dy: Int) {
+        println("Versuche zu bewegen um dx=$dx, dy=$dy")
         val nx = playerX + dx
         val ny = playerY + dy
         if (ny in map.indices && nx in map[ny].indices && map[ny][nx] != '#') {
