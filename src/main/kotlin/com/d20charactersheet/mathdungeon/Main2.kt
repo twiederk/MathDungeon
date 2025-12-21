@@ -18,31 +18,35 @@ fun main() = runBlocking {
     var playerY = 1
     val running = AtomicBoolean(true)
 
-    val dungeonHeight = map.size + 1
-
-    // --- Terminal Setup (JLine) ---
+    // --- Terminal Setup ---
     val terminal = TerminalBuilder.builder()
         .system(true)
         .jna(true)
         .build()
 
     terminal.enterRawMode()
+    print("\u001b[?25l") // Cursor verstecken
     val reader = terminal.reader()
 
-    fun render() {
-        // Cursor nach oben bewegen
-        print("\u001b[${dungeonHeight}A")
+    // --- Double Buffer ---
+    var lastFrame = ""
 
+    fun buildFrame(): String {
         val sb = StringBuilder()
+
+        sb.append("\u001b[H")       // Cursor Home
+        sb.append("\u001b[2J")      // Clear Screen
+
         for (y in map.indices) {
             for (x in map[y].indices) {
-                if (x == playerX && y == playerY) sb.append('@') else sb.append(map[y][x])
+                if (x == playerX && y == playerY) sb.append('@')
+                else sb.append(map[y][x])
             }
             sb.append('\n')
         }
         sb.append("Bewege mit W/A/S/D oder Pfeiltasten. Q beendet.\n")
-        print(sb.toString())
-        System.out.flush()
+
+        return sb.toString()
     }
 
     fun tryMove(dx: Int, dy: Int) {
@@ -56,11 +60,16 @@ fun main() = runBlocking {
 
     // --- Render Loop ---
     val renderJob = launch(Dispatchers.Default) {
-        // Erstmal initial zeichnen
-        repeat(dungeonHeight) { println() }
         while (running.get()) {
-            render()
-            delay(50)
+            val frame = buildFrame()
+
+            if (frame != lastFrame) {
+                print(frame)
+                System.out.flush()
+                lastFrame = frame
+            }
+
+            delay(16) // ~60 FPS, aber nur bei Änderungen wird gezeichnet
         }
     }
 
@@ -76,15 +85,15 @@ fun main() = runBlocking {
                 'a'.code, 'A'.code -> tryMove(-1, 0)
                 'd'.code, 'D'.code -> tryMove(1, 0)
 
-                // Pfeiltasten (ANSI Escape Sequence)
-                27 -> { // ESC
+                // Pfeiltasten
+                27 -> {
                     val next1 = reader.read()
-                    if (next1 == 91) { // '['
+                    if (next1 == 91) {
                         when (reader.read()) {
-                            65 -> tryMove(0, -1) // Up
-                            66 -> tryMove(0, 1)  // Down
-                            67 -> tryMove(1, 0)  // Right
-                            68 -> tryMove(-1, 0) // Left
+                            65 -> tryMove(0, -1)
+                            66 -> tryMove(0, 1)
+                            67 -> tryMove(1, 0)
+                            68 -> tryMove(-1, 0)
                         }
                     }
                 }
@@ -99,6 +108,7 @@ fun main() = runBlocking {
     running.set(false)
     renderJob.cancelAndJoin()
 
+    print("\u001b[?25h") // Cursor wieder einblenden
     terminal.close()
     println("Programm beendet.")
 }
