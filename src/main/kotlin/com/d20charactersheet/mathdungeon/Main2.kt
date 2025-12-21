@@ -1,10 +1,12 @@
 package com.d20charactersheet.mathdungeon
 
 import kotlinx.coroutines.*
+import org.jline.terminal.TerminalBuilder
 import java.util.concurrent.atomic.AtomicBoolean
 
 fun main() = runBlocking {
-    // Rechteckige Karte (Wände '#', Boden '.')
+
+    // --- Dungeon Map ---
     val raw = listOf(
         "###########",
         "#.........#",
@@ -16,10 +18,19 @@ fun main() = runBlocking {
     var playerY = 1
     val running = AtomicBoolean(true)
 
-    val dungeonHeight = map.size + 1 // +1 für die Infozeile
+    val dungeonHeight = map.size + 1
+
+    // --- Terminal Setup (JLine) ---
+    val terminal = TerminalBuilder.builder()
+        .system(true)
+        .jna(true)
+        .build()
+
+    terminal.enterRawMode()
+    val reader = terminal.reader()
 
     fun render() {
-        // Cursor um dungeonHeight Zeilen nach oben bewegen
+        // Cursor nach oben bewegen
         print("\u001b[${dungeonHeight}A")
 
         val sb = StringBuilder()
@@ -29,13 +40,12 @@ fun main() = runBlocking {
             }
             sb.append('\n')
         }
-        sb.append("Bewege mit W/A/S/D. Drücke Q zum Beenden.\n")
+        sb.append("Bewege mit W/A/S/D oder Pfeiltasten. Q beendet.\n")
         print(sb.toString())
+        System.out.flush()
     }
 
-
     fun tryMove(dx: Int, dy: Int) {
-        println("Versuche zu bewegen um dx=$dx, dy=$dy")
         val nx = playerX + dx
         val ny = playerY + dy
         if (ny in map.indices && nx in map[ny].indices && map[ny][nx] != '#') {
@@ -44,36 +54,51 @@ fun main() = runBlocking {
         }
     }
 
-    // Renderer-Job
+    // --- Render Loop ---
     val renderJob = launch(Dispatchers.Default) {
+        // Erstmal initial zeichnen
+        repeat(dungeonHeight) { println() }
         while (running.get()) {
             render()
-            delay(100) // Frame-Takt
+            delay(50)
         }
     }
 
-    // Input-Job (blockierend auf System.`in`, deshalb auf IO-Dispatcher)
+    // --- Input Loop ---
     val inputJob = launch(Dispatchers.IO) {
-        val inStream = System.`in`
         while (running.get()) {
-            val b = inStream.read()
-            if (b == -1) break
-            // Ignoriere Zeilenumbruch-Bytes
-            if (b == 10 || b == 13) continue
-            when (b.toChar().lowercaseChar()) {
-                'w' -> tryMove(0, -1)
-                's' -> tryMove(0, 1)
-                'a' -> tryMove(-1, 0)
-                'd' -> tryMove(1, 0)
-                'q' -> running.set(false)
+            val ch = reader.read()
+
+            when (ch) {
+                // WASD
+                'w'.code, 'W'.code -> tryMove(0, -1)
+                's'.code, 'S'.code -> tryMove(0, 1)
+                'a'.code, 'A'.code -> tryMove(-1, 0)
+                'd'.code, 'D'.code -> tryMove(1, 0)
+
+                // Pfeiltasten (ANSI Escape Sequence)
+                27 -> { // ESC
+                    val next1 = reader.read()
+                    if (next1 == 91) { // '['
+                        when (reader.read()) {
+                            65 -> tryMove(0, -1) // Up
+                            66 -> tryMove(0, 1)  // Down
+                            67 -> tryMove(1, 0)  // Right
+                            68 -> tryMove(-1, 0) // Left
+                        }
+                    }
+                }
+
+                // Quit
+                'q'.code, 'Q'.code -> running.set(false)
             }
         }
     }
 
-    // Warte bis beendet
     inputJob.join()
     running.set(false)
     renderJob.cancelAndJoin()
 
+    terminal.close()
     println("Programm beendet.")
 }
