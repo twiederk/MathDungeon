@@ -177,6 +177,12 @@ fun main() = runBlocking {
     world.renderables[player] = Renderable('@')
     world.velocities[player] = Velocity(0, 0)
 
+    // --- Monster Entity ---
+    val monster = world.createEntity()
+    world.positions[monster] = Position(4, 1)
+    world.renderables[monster] = Renderable('M')
+
+
     // --- Terminal Setup ---
     val terminal = TerminalBuilder.builder()
         .system(true)
