@@ -6,7 +6,8 @@ class World {
 
     private var nextEntityId = 0
 
-    var quizRequested: Boolean = false
+    var ratQuiz: Boolean = false
+    var goblinQuiz: Boolean = false
 
     // Component-Storage
     val positions = mutableMapOf<Entity, Position>()
@@ -29,6 +30,10 @@ data class Renderable(val char: Char, val layer: Int = 0) // layer falls du mal 
 
 val rawMap = listOf(
     "###########",
+    "#.........#",
+    "#########.#",
+    "#.........#",
+    "#.#########",
     "#.........#",
     "###########"
 )

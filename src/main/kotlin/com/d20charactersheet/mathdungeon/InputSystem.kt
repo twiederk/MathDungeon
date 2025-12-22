@@ -16,12 +16,12 @@ class InputSystem(
         val vel = world.velocities[player]
             ?: Velocity(0, 0).also { world.velocities[player] = it }
 
-        while (running.get() && !world.quizRequested) {
+        while (running.get() && !world.ratQuiz) {
 
             val ch = reader.read()
 
             // Falls während des Lesens ein Quiz ausgelöst wurde → sofort abbrechen
-            if (world.quizRequested || !running.get()) {
+            if (world.ratQuiz || !running.get()) {
                 return@withContext
             }
 

@@ -18,9 +18,13 @@ fun main() = runBlocking {
     world.velocities[player] = Velocity(0, 0)
 
     // --- Monster ---
-    val monster = world.createEntity()
-    world.positions[monster] = Position(4, 1)
-    world.renderables[monster] = Renderable('M')
+    val rat = world.createEntity()
+    world.positions[rat] = Position(4, 1)
+    world.renderables[rat] = Renderable('R')
+
+    val goblin = world.createEntity()
+    world.positions[goblin] = Position(4, 3)
+    world.renderables[goblin] = Renderable('G')
 
     // --- Terminal Setup ---
     val terminal = TerminalBuilder.builder()
@@ -66,17 +70,17 @@ fun main() = runBlocking {
     // --- Systeme ---
     val renderSystem = RenderSystem(world, dungeon)
     val movementSystem = MovementSystem(world, dungeon)
-    val collisionSystem = CollisionSystem(world, player, monster)
+    val collisionSystem = CollisionSystem(world, player, rat, goblin)
     val inputSystem = InputSystem(world, player, reader, running)
 
     while (true) {
 
         // Reset Quiz-Flag
-        world.quizRequested = false
+        world.ratQuiz = false
 
         // --- Render Loop ---
         val renderJob = launch(Dispatchers.Default) {
-            while (running.get() && !world.quizRequested) {
+            while (running.get() && !world.ratQuiz) {
                 movementSystem.update()
                 collisionSystem.update()
                 renderSystem.render()
@@ -90,7 +94,7 @@ fun main() = runBlocking {
         }
 
         // --- Warten bis entweder Quit oder Quiz ---
-        while (running.get() && !world.quizRequested) {
+        while (running.get() && !world.ratQuiz) {
             delay(20)
         }
 
@@ -102,7 +106,7 @@ fun main() = runBlocking {
         }
 
         // --- Fall 2: Quiz ausgelöst ---
-        if (world.quizRequested) {
+        if (world.ratQuiz || world.goblinQuiz) {
 
             // Loops stoppen
             renderJob.cancelAndJoin()
@@ -118,6 +122,11 @@ fun main() = runBlocking {
 
             var ok = false
             while (!ok) {
+                if (world.ratQuiz) {
+                    println("Was ist 1 + 1?")
+                } else if (world.goblinQuiz) {
+                    println("Was ist 2 * 3?")
+                }
                 print("Was ist 1 + 1? ")
                 var answer = readLine()
 
@@ -133,13 +142,22 @@ fun main() = runBlocking {
                     continue
                 }
 
-                if (answer == "2") {
+                if (world.ratQuiz && answer == "2") {
                     println("Richtig! Du darfst weitergehen.")
                     ok = true
                     // Monster als besiegt markieren und aus der Anzeige entfernen
-                    world.defeated.add(monster)
-                    world.renderables.remove(monster)
-                    world.positions.remove(monster) // optional
+                    world.defeated.add(rat)
+                    world.renderables.remove(rat)
+                    world.positions.remove(rat)
+                    world.ratQuiz = false
+                } else if (world.goblinQuiz && answer == "6") {
+                    println("Richtig! Du darfst weitergehen.")
+                    ok = true
+                    // Monster als besiegt markieren und aus der Anzeige entfernen
+                    world.defeated.add(goblin)
+                    world.renderables.remove(goblin)
+                    world.positions.remove(goblin)
+                    world.goblinQuiz = false
                 } else {
                     println("Leider falsch, versuch es nochmal. $answer ist nicht korrekt.")
                 }
