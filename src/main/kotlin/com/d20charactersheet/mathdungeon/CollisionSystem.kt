@@ -10,7 +10,7 @@ class CollisionSystem(
         val playerPos = world.positions[player] ?: return
         val ratPos = world.positions[rat] ?: return
         val goblinPosition = world.positions[goblin] ?: return
-        println("Player Position: (${playerPos.x}, ${playerPos.y}), Rat Position: (${ratPos.x}, ${ratPos.y}), Goblin Position: (${goblinPosition.x}, ${goblinPosition.y})")
+//        println("Player Position: (${playerPos.x}, ${playerPos.y}), Rat Position: (${ratPos.x}, ${ratPos.y}), Goblin Position: (${goblinPosition.x}, ${goblinPosition.y})")
 
         if (playerPos.x == ratPos.x && playerPos.y == ratPos.y && !world.ratQuiz && rat !in world.defeated) {
             world.ratQuiz = true
