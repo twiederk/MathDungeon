@@ -124,6 +124,9 @@ fun main() = runBlocking {
                 print("Was ist 1 + 1? ")
                 val answer = readLine()
 
+                if (answer?.isEmpty() == true) {
+                    continue
+                }
                 if (answer == "2") {
                     println("Richtig! Du darfst weitergehen.")
                     ok = true
