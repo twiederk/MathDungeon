@@ -49,6 +49,8 @@ class RenderSystem(
     private val world: World,
     private val dungeon: List<CharArray>
 ) {
+    private var lastFrame = ""
+
     fun render() {
         val sb = StringBuilder()
 
@@ -65,7 +67,7 @@ class RenderSystem(
             }
         }
 
-        // Entities einzeichnen (z. B. Spieler)
+        // Entities einzeichnen
         for ((entity, pos) in world.positions) {
             val renderable = world.renderables[entity] ?: continue
             if (pos.y in 0 until height && pos.x in 0 until width) {
@@ -73,6 +75,7 @@ class RenderSystem(
             }
         }
 
+        // Frame zusammenbauen
         for (y in 0 until height) {
             for (x in 0 until width) {
                 sb.append(charBuffer[y][x])
@@ -82,8 +85,14 @@ class RenderSystem(
 
         sb.append("Bewege mit W/A/S/D oder Pfeiltasten. Q beendet.\n")
 
-        print(sb.toString())
-        System.out.flush()
+        val frame = sb.toString()
+
+        // ✅ Double Buffering: Nur zeichnen, wenn sich etwas geändert hat
+        if (frame != lastFrame) {
+            print(frame)
+            System.out.flush()
+            lastFrame = frame
+        }
     }
 }
 
