@@ -21,7 +21,7 @@ class InputSystem(
             val ch = reader.read()
 
             // Falls während des Lesens ein Quiz ausgelöst wurde → sofort abbrechen
-            if (world.ratQuiz || !running.get()) {
+            if (world.ratQuiz || world.goblinQuiz || !running.get()) {
                 return@withContext
             }
 

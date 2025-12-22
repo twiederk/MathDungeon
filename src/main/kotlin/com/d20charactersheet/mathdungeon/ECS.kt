@@ -23,7 +23,7 @@ fun main() = runBlocking {
     world.renderables[rat] = Renderable('R')
 
     val goblin = world.createEntity()
-    world.positions[goblin] = Position(4, 3)
+    world.positions[goblin] = Position(7, 1)
     world.renderables[goblin] = Renderable('G')
 
     // --- Terminal Setup ---
@@ -77,10 +77,11 @@ fun main() = runBlocking {
 
         // Reset Quiz-Flag
         world.ratQuiz = false
+        world.goblinQuiz = false
 
         // --- Render Loop ---
         val renderJob = launch(Dispatchers.Default) {
-            while (running.get() && !world.ratQuiz) {
+            while (running.get() && !world.ratQuiz && !world.goblinQuiz) {
                 movementSystem.update()
                 collisionSystem.update()
                 renderSystem.render()
@@ -94,7 +95,7 @@ fun main() = runBlocking {
         }
 
         // --- Warten bis entweder Quit oder Quiz ---
-        while (running.get() && !world.ratQuiz) {
+        while (running.get() && !world.ratQuiz && !world.goblinQuiz) {
             delay(20)
         }
 
