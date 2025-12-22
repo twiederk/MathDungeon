@@ -95,7 +95,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.d20charactersheet.mathdungeon.Main2Kt</mainClass>
+                            <mainClass>com.d20charactersheet.mathdungeon.ECSKt</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
