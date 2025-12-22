@@ -165,6 +165,35 @@ class InputSystem(
     }
 }
 
+class CollisionSystem(
+    private val world: World,
+    private val player: Entity,
+    private val monster: Entity
+) {
+    fun update() {
+        val pPos = world.positions[player] ?: return
+        val mPos = world.positions[monster] ?: return
+
+        if (pPos.x == mPos.x && pPos.y == mPos.y) {
+            println("\nDu bist mit dem Monster kollidiert!")
+            println("Beantworte die Aufgabe, um weiterzugehen:")
+
+            while (true) {
+                print("Was ist 1 + 1? ")
+                val answer = readLine()
+
+                if (answer == "2") {
+                    println("Richtig! Du darfst weitergehen.")
+                    break
+                } else {
+                    println("Leider falsch. Versuch es nochmal.")
+                }
+            }
+        }
+    }
+}
+
+
 fun main() = runBlocking {
 
     val running = AtomicBoolean(true)
@@ -183,6 +212,7 @@ fun main() = runBlocking {
     world.renderables[monster] = Renderable('M')
 
 
+
     // --- Terminal Setup ---
     val terminal = TerminalBuilder.builder()
         .system(true)
@@ -197,15 +227,20 @@ fun main() = runBlocking {
     val renderSystem = RenderSystem(world, dungeon)
     val movementSystem = MovementSystem(world, dungeon)
     val inputSystem = InputSystem(world, player, reader, running)
+    val collisionSystem = CollisionSystem(world, player, monster)
 
     // --- Render Loop ---
     val renderJob = launch(Dispatchers.Default) {
         while (running.get()) {
+
             movementSystem.update()
+            collisionSystem.update()   // ✅ Hier prüfen wir die Kollision
             renderSystem.render()
+
             delay(50)
         }
     }
+
 
     // --- Input Loop ---
     val inputJob = launch {
