@@ -13,6 +13,8 @@ class World {
     val renderables = mutableMapOf<Entity, Renderable>()
     val blockers = mutableSetOf<Entity>()
     val velocities = mutableMapOf<Entity, Velocity>()
+    val defeated = mutableSetOf<Entity>()
+
 
     fun createEntity(): Entity = nextEntityId++
 }

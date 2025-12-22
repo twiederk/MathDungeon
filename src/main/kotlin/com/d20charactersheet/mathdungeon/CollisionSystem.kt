@@ -9,7 +9,7 @@ class CollisionSystem(
         val p = world.positions[player] ?: return
         val m = world.positions[monster] ?: return
 
-        if (p.x == m.x && p.y == m.y && !world.quizRequested) {
+        if (p.x == m.x && p.y == m.y && !world.quizRequested && monster !in world.defeated) {
             world.quizRequested = true
         }
     }

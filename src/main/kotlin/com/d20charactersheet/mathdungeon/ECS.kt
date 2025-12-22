@@ -1,5 +1,6 @@
 package com.d20charactersheet.mathdungeon
 
+import org.jline.terminal.Attributes
 import kotlinx.coroutines.*
 import org.jline.terminal.TerminalBuilder
 import java.util.concurrent.atomic.AtomicBoolean
@@ -27,18 +28,37 @@ fun main() = runBlocking {
         .jna(true)
         .build()
 
+// direkt nach Terminal-Erzeugung
+    var savedAttributes: Attributes? = null
+
     fun enterRaw() {
-        terminal.enterRawMode()
+        // enterRawMode() gibt die vorherigen Attribute zurück
+        savedAttributes = terminal.enterRawMode()
+        // sicherstellen, dass Echo im Spiel ausgeschaltet ist
+        try {
+            terminal.echo(false)
+        } catch (_: Throwable) { /* falls nicht unterstützt, ignorieren */ }
         print("\u001b[?25l") // Cursor ausblenden
         System.out.flush()
     }
 
     fun exitRaw() {
+        // alte Attribute wiederherstellen (inkl. Echo)
+        savedAttributes?.let {
+            try {
+                terminal.setAttributes(it)
+            } catch (_: Throwable) { /* falls nicht unterstützt, ignorieren */ }
+            savedAttributes = null
+        } ?: run {
+            // Fallback: Echo wieder einschalten, falls setAttributes nicht verfügbar war
+            try {
+                terminal.echo(true)
+            } catch (_: Throwable) { /* ignorieren */ }
+        }
         print("\u001b[?25h") // Cursor einblenden
         System.out.flush()
-        // JLine verlässt Raw-Mode automatisch beim Schließen,
-        // aber für das Quiz nutzen wir einfach stdin.
     }
+
 
     enterRaw()
     val reader = terminal.reader()
@@ -107,6 +127,10 @@ fun main() = runBlocking {
                 if (answer == "2") {
                     println("Richtig! Du darfst weitergehen.")
                     ok = true
+                    // Monster als besiegt markieren und aus der Anzeige entfernen
+                    world.defeated.add(monster)
+                    world.renderables.remove(monster)
+                    world.positions.remove(monster) // optional
                 } else {
                     println("Leider falsch, versuch es nochmal.")
                 }
