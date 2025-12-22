@@ -119,11 +119,20 @@ fun main() = runBlocking {
             var ok = false
             while (!ok) {
                 print("Was ist 1 + 1? ")
-                val answer = readLine()
+                var answer = readLine()
+
+//                println("Du hast eingegeben: [${answer}]")
+//                println("ASCII Codes: " + answer?.map { it.code })
+
+                // Eingabe bereinigen (Pfeiltasten etc. entfernen)
+                if (answer?.get(0)?.code == 91) {
+                    answer = answer.substring(2)
+                }
 
                 if (answer?.trim()?.isEmpty() == true) {
                     continue
                 }
+
                 if (answer == "2") {
                     println("Richtig! Du darfst weitergehen.")
                     ok = true
@@ -132,7 +141,7 @@ fun main() = runBlocking {
                     world.renderables.remove(monster)
                     world.positions.remove(monster) // optional
                 } else {
-                    println("Leider falsch, versuch es nochmal. [${answer}] ist nicht korrekt.")
+                    println("Leider falsch, versuch es nochmal. $answer ist nicht korrekt.")
                 }
             }
 
