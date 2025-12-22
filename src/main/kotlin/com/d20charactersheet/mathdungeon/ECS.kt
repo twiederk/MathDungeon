@@ -69,9 +69,7 @@ fun main() = runBlocking {
     val collisionSystem = CollisionSystem(world, player, monster)
     val inputSystem = InputSystem(world, player, reader, running)
 
-    var gameRunning = true
-
-    while (gameRunning) {
+    while (true) {
 
         // Reset Quiz-Flag
         world.quizRequested = false
@@ -100,7 +98,6 @@ fun main() = runBlocking {
         if (!running.get()) {
             renderJob.cancelAndJoin()
             inputJob.cancelAndJoin()
-            gameRunning = false
             break
         }
 
@@ -124,7 +121,7 @@ fun main() = runBlocking {
                 print("Was ist 1 + 1? ")
                 val answer = readLine()
 
-                if (answer?.isEmpty() == true) {
+                if (answer?.trim()?.isEmpty() == true) {
                     continue
                 }
                 if (answer == "2") {
@@ -135,7 +132,7 @@ fun main() = runBlocking {
                     world.renderables.remove(monster)
                     world.positions.remove(monster) // optional
                 } else {
-                    println("Leider falsch, versuch es nochmal.")
+                    println("Leider falsch, versuch es nochmal. [${answer}] ist nicht korrekt.")
                 }
             }
 
