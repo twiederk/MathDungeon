@@ -6,6 +6,8 @@ class World {
 
     private var nextEntityId = 0
 
+    var quizRequested: Boolean = false
+
     // Component-Storage
     val positions = mutableMapOf<Entity, Position>()
     val renderables = mutableMapOf<Entity, Renderable>()
