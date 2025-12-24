@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://nfte8cjrylof" path="res://zombie.tscn" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://b5fwm3c5mv241" path="res://quiz_dialog.gd" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz_dialog.tscn" id="4_1bvp3"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1bvp3")
@@ -20,30 +20,4 @@ position = Vector2(733, 309)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="QuizDialog" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("3_h2yge")
-
-[node name="Panel" type="Panel" parent="UI/QuizDialog"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="UI/QuizDialog/Panel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Was ist 1 + 1?"
-
-[node name="LineEdit" type="LineEdit" parent="UI/QuizDialog/Panel"]
-layout_mode = 0
-offset_right = 68.5625
-offset_bottom = 31.0
-
-[node name="Button" type="Button" parent="UI/QuizDialog/Panel"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="QuizDialog" parent="UI" instance=ExtResource("4_1bvp3")]

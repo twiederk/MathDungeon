@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctlnlkhh85kv5"]
+
+[ext_resource type="Script" uid="uid://b5fwm3c5mv241" path="res://quiz_dialog.gd" id="1_pp5ga"]
+
+[node name="QuizDialog" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_pp5ga")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Was ist 1 + 1?"
+
+[node name="LineEdit" type="LineEdit" parent="Panel"]
+layout_mode = 0
+offset_right = 68.5625
+offset_bottom = 31.0
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
