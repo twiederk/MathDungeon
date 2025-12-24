@@ -31,3 +31,6 @@ replay_pid*
 
 # maven
 target/
+
+# Godot
+godot/.godot
