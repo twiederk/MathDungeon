@@ -1,21 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://b53sfmxk4rjq2"]
+[gd_scene load_steps=3 format=3 uid="uid://b53sfmxk4rjq2"]
 
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://nfte8cjrylof" path="res://zombie.tscn" id="2_0xm2m"]
 
 [node name="Main" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(269, 305)
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Enemy1" type="Area2D" parent="Enemies"]
-collision_layer = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemies/Enemy1"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Enemy1"]
+[node name="Zombie" parent="Enemies" instance=ExtResource("2_0xm2m")]
+position = Vector2(733, 309)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
