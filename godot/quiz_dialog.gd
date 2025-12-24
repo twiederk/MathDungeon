@@ -1,5 +1,4 @@
-
-# QuizDialog.gd (Godot 4)
+class_name QuizDialog
 extends Control
 
 @onready var label: Label = $Panel/Label
