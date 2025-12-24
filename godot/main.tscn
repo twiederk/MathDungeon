@@ -15,8 +15,14 @@ position = Vector2(269, 305)
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Zombie" parent="Enemies" instance=ExtResource("2_0xm2m")]
+[node name="Zombie1" parent="Enemies" instance=ExtResource("2_0xm2m")]
 position = Vector2(733, 309)
+
+[node name="Zombie2" parent="Enemies" instance=ExtResource("2_0xm2m")]
+position = Vector2(868, 99)
+
+[node name="Zombie3" parent="Enemies" instance=ExtResource("2_0xm2m")]
+position = Vector2(932, 379)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
