@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://txgje162j88t"]
+
+[ext_resource type="Script" uid="uid://b7x46e8sw1gka" path="res://enemy.gd" id="1_61e4x"]
+[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://creatures.png" id="2_xyqsm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(26, 30)
+
+[node name="Creeper" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_61e4x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xyqsm")
+hframes = 9
+vframes = 9
+frame = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_h2yge")
