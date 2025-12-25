@@ -1,4 +1,4 @@
-class_name Zombie
+class_name Enemie
 extends Area2D
 
 signal encountered(enemy: Area2D)
