@@ -43,8 +43,7 @@ func _check_answer() -> void:
 	var user_answer: int = _norm(input.text).to_int()
 
 	if user_answer == exercise.result:
-		if is_instance_valid(current_enemy):
-			current_enemy.queue_free()
+		current_enemy.queue_free()
 		_close_dialog()
 	else:
 		label.text = "Nicht ganz. Versuch es nochmal:\n" + _question()
@@ -63,5 +62,4 @@ func _norm(s: String) -> String:
 	
 	
 func _question() -> String:
-	# var message = "Name: %s %s" % [first_name, last_name]
 	return "Was ist das Ergebnis von: %s %s %s?" % [str(exercise.argument1), exercise.operator, str(exercise.argument2)]
