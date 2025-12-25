@@ -8,9 +8,9 @@ const QUESTIONS: Array[Dictionary] = [
 	{"id": "math_4", "question": "Was ist 3 × 6?", "answers": ["18"]}
 ]
 
-@onready var label: Label = $Panel/Label
-@onready var input: LineEdit = $Panel/LineEdit
-@onready var button: Button = $Panel/Button
+@onready var label: Label = $CenterContainer/VBoxContainer/Label
+@onready var input: LineEdit = $CenterContainer/VBoxContainer/LineEdit
+@onready var button: Button = $CenterContainer/VBoxContainer/Button
 
 var current_enemy: Node = null
 var current_question: Dictionary = {}
@@ -21,8 +21,6 @@ func _ready() -> void:
 	# Der Dialog soll Eingaben verarbeiten, auch wenn das Spiel pausiert ist
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	visible = false
-	# (Optional) Panel schluckt Maus-Ereignisse komplett
-	$Panel.mouse_filter = Control.MOUSE_FILTER_STOP
 
 	button.pressed.connect(_on_submit)
 	input.text_submitted.connect(_on_text_submitted)

@@ -5,35 +5,30 @@
 [node name="QuizDialog" type="Control"]
 process_mode = 2
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_right = 40.0
 offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_pp5ga")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 640.0
+offset_bottom = 320.0
 
-[node name="Label" type="Label" parent="Panel"]
-layout_mode = 0
-offset_left = 532.0
-offset_top = 125.0
-offset_right = 635.0
-offset_bottom = 148.0
-text = "Was ist 1 + 1?"
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="Panel"]
-layout_mode = 0
-offset_left = 551.0
-offset_top = 163.0
-offset_right = 619.5625
-offset_bottom = 194.0
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Frage"
 
-[node name="Button" type="Button" parent="Panel"]
-layout_mode = 0
-offset_left = 552.0
-offset_top = 216.0
-offset_right = 624.0
-offset_bottom = 247.0
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
 text = "Antwort"
