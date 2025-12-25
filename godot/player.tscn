@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://creatures.png" id="2_i3pqv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
-size = Vector2(123, 141)
+size = Vector2(24, 28)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 2
@@ -16,7 +16,7 @@ hframes = 9
 vframes = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(7.5, 7.5)
+position = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="Camera2D" type="Camera2D" parent="."]

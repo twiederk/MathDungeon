@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://creatures.png" id="1_uiaus"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
-size = Vector2(124, 143)
+size = Vector2(26, 30)
 
 [node name="Zombie" type="Area2D"]
 collision_layer = 2
@@ -17,5 +17,4 @@ vframes = 9
 frame = 18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 1.5)
 shape = SubResource("RectangleShape2D_h2yge")
