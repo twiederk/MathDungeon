@@ -48,8 +48,7 @@ func _check_answer() -> void:
 		_close_dialog()
 	else:
 		label.text = "Nicht ganz. Versuch es nochmal:\n" + _question()
-		input.select_all()
-		input.grab_focus()
+		input.text = ""
 
 
 func _close_dialog() -> void:
@@ -65,4 +64,4 @@ func _norm(s: String) -> String:
 	
 func _question() -> String:
 	# var message = "Name: %s %s" % [first_name, last_name]
-	return "Was ist das Ergebnis von: " + str(exercise.argument1) + " " + exercise.operator + " " + str(exercise.argument2)
+	return "Was ist das Ergebnis von: %s %s %s?" % [str(exercise.argument1), exercise.operator, str(exercise.argument2)]
