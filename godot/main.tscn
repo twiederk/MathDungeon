@@ -11,18 +11,18 @@ script = ExtResource("1_1bvp3")
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(269, 305)
+position = Vector2(86, 155)
 
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Zombie1" parent="Enemies" instance=ExtResource("2_0xm2m")]
-position = Vector2(733, 309)
+position = Vector2(330, 126)
 
 [node name="Zombie2" parent="Enemies" instance=ExtResource("2_0xm2m")]
-position = Vector2(868, 99)
+position = Vector2(508, 81)
 
 [node name="Zombie3" parent="Enemies" instance=ExtResource("2_0xm2m")]
-position = Vector2(932, 379)
+position = Vector2(497, 255)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
