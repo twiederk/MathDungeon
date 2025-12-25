@@ -17,6 +17,10 @@ var current_question: Dictionary = {}
 var question_pool: Array[Dictionary] = []
 var rng := RandomNumberGenerator.new()
 
+var addition_exercise_generator := AdditionExerciseGenerator.new(100)
+var exercise: Exercise
+
+
 func _ready() -> void:
 	# Der Dialog soll Eingaben verarbeiten, auch wenn das Spiel pausiert ist
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
@@ -34,9 +38,10 @@ func open_for(enemy: Node) -> void:
 	_pick_next_question()
 
 	# UI setzen
-	label.text = current_question.get("question", "Frage fehlt")
+	exercise = addition_exercise_generator.create_exercise()
+	# var message = "Name: %s %s" % [first_name, last_name]
+	label.text = "Was ist das Ergebnis von: " + str(exercise.argument1) + " " + exercise.operator + " " + str(exercise.argument2)
 	input.text = ""
-	input.placeholder_text = "Antwort eingeben…"
 	visible = true
 
 	# Alles pausieren
@@ -51,13 +56,13 @@ func _on_text_submitted(_text: String) -> void:
 	_check_answer()
 
 func _check_answer() -> void:
-	var user_answer := _norm(input.text)
+	var user_answer: int = _norm(input.text).to_int()
 	var accepted: Array = []
 	if current_question.has("answers"):
 		for a in current_question["answers"]:
 			accepted.append(_norm(String(a)))
 
-	if accepted.has(user_answer):
+	if user_answer == exercise.result:
 		# Richtige Antwort → Gegner entfernen, Dialog schließen
 		if is_instance_valid(current_enemy):
 			current_enemy.queue_free()
