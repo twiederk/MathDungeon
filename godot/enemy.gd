@@ -1,4 +1,4 @@
-class_name Enemie
+class_name Enemy
 extends Area2D
 
 signal encountered(enemy: Area2D)

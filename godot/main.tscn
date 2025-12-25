@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://b53sfmxk4rjq2"]
+[gd_scene load_steps=7 format=4 uid="uid://b53sfmxk4rjq2"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://nfte8cjrylof" path="res://zombie.tscn" id="2_0xm2m"]
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://world_tiles.tres" id="2_lquwl"]
 [ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz_dialog.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://6wusnt285r11" path="res://piglin.tscn" id="5_7mycd"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1bvp3")
@@ -21,8 +22,8 @@ position = Vector2(320, 180)
 [node name="Zombie1" parent="Enemies" instance=ExtResource("2_0xm2m")]
 position = Vector2(330, 126)
 
-[node name="Zombie2" parent="Enemies" instance=ExtResource("2_0xm2m")]
-position = Vector2(508, 81)
+[node name="Piglin1" parent="Enemies" instance=ExtResource("5_7mycd")]
+position = Vector2(461, 155)
 
 [node name="Zombie3" parent="Enemies" instance=ExtResource("2_0xm2m")]
 position = Vector2(497, 255)
