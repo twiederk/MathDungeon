@@ -28,18 +28,18 @@ position = Vector2(80, 541)
 [node name="Zombie_Piglin1" parent="Enemies" instance=ExtResource("5_7mycd")]
 position = Vector2(337, 113)
 
-[node name="Enderman" parent="Enemies" instance=ExtResource("6_kek77")]
+[node name="Enderman1" parent="Enemies" instance=ExtResource("6_kek77")]
 position = Vector2(176, 101)
 
-[node name="Spider" parent="Enemies" instance=ExtResource("7_4c57u")]
+[node name="Spider1" parent="Enemies" instance=ExtResource("7_4c57u")]
 position = Vector2(562, 343)
 
-[node name="Drown" parent="Enemies" instance=ExtResource("8_efxa6")]
+[node name="Drown1" parent="Enemies" instance=ExtResource("8_efxa6")]
 position = Vector2(99, 322)
+
+[node name="Drown2" parent="Enemies" instance=ExtResource("8_efxa6")]
+position = Vector2(351, 284)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="QuizDialog" parent="UI" instance=ExtResource("4_1bvp3")]
-
-[node name="Drown" parent="." instance=ExtResource("8_efxa6")]
-position = Vector2(351, 284)
