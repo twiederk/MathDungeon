@@ -15,3 +15,7 @@ func _ready() -> void:
 func _on_body_entered(body: Node) -> void:
 	if body.name == "Player":
 		encountered.emit(self)
+		
+		
+func has_time_limit() -> bool:
+	return stats.time_limit != -1
