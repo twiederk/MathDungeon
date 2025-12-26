@@ -3,7 +3,6 @@ extends Control
 
 @onready var label: Label = $CenterContainer/VBoxContainer/Label
 @onready var input: LineEdit = $CenterContainer/VBoxContainer/LineEdit
-@onready var button: Button = $CenterContainer/VBoxContainer/Button
 
 var current_enemy: Node = null
 var addition_exercise_generator := AdditionExerciseGenerator.new(100)
@@ -11,10 +10,8 @@ var exercise: Exercise
 
 
 func _ready() -> void:
-	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	visible = false
 
-	button.pressed.connect(_on_submit)
 	input.text_submitted.connect(_on_text_submitted)
 
 
@@ -29,10 +26,6 @@ func open_for(enemy: Node) -> void:
 	get_tree().paused = true
 
 	input.grab_focus()
-
-
-func _on_submit() -> void:
-	_check_answer()
 
 
 func _on_text_submitted(_text: String) -> void:
