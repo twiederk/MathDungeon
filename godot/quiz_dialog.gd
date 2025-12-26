@@ -5,21 +5,31 @@ extends Control
 @onready var input: LineEdit = $CenterContainer/VBoxContainer/LineEdit
 
 var enemy: Enemy = null
-var addition_exercise_generator: AdditionExerciseGenerator = AdditionExerciseGenerator.new(100)
 var exercise: Exercise
 
 
 func open_for(my_enemy: Enemy) -> void:
 	enemy = my_enemy
 
-	exercise = addition_exercise_generator.create_exercise()
+	exercise = _create_exercise()
 	label.text = _question()
 	input.text = ""
 	visible = true
 
 	input.grab_focus()
-
 	get_tree().paused = true
+
+
+func _create_exercise() -> Exercise:
+	var arithmetic = enemy.stats.arithmetic.pick_random()
+	match arithmetic:
+		EnemyStats.ArithmeticType.ADDITION:
+			return AdditionExerciseGenerator.new(enemy.stats.max_number).create_exercise()
+		EnemyStats.ArithmeticType.SUBSTRACTION:
+			return SubtractionExerciseGenerator.new(enemy.stats.max_number).create_exercise()
+		EnemyStats.ArithmeticType.MULTIPLICATION:
+			return MultiplicationExerciseGenerator.new().create_exercise()
+	return AdditionExerciseGenerator.new(enemy.stats.max_number).create_exercise()
 
 
 func _on_text_submitted(_text: String) -> void:
@@ -31,7 +41,7 @@ func _check_answer(answer: int) -> void:
 	if answer == exercise.result:
 		enemy.hit_points -= 1
 		if enemy.hit_points > 0:
-			exercise = addition_exercise_generator.create_exercise()
+			exercise = _create_exercise()
 			label.text = "Richtig!!!\n" + _question()
 			input.text = ""
 		else:
