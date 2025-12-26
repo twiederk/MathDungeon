@@ -38,3 +38,5 @@ text = "Frage"
 
 [node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+
+[connection signal="text_submitted" from="CenterContainer/VBoxContainer/LineEdit" to="." method="_on_text_submitted"]

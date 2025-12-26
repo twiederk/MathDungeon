@@ -9,10 +9,6 @@ var addition_exercise_generator: AdditionExerciseGenerator = AdditionExerciseGen
 var exercise: Exercise
 
 
-func _ready() -> void:
-	input.text_submitted.connect(_on_text_submitted)
-
-
 func open_for(enemy: Enemy) -> void:
 	current_enemy = enemy
 
