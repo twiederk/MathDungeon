@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://8xckg1kvi70g"]
+
+[ext_resource type="Script" uid="uid://b7x46e8sw1gka" path="res://enemies/enemy.gd" id="1_vo6yh"]
+[ext_resource type="Resource" uid="uid://xk8ept65fhe2" path="res://enemies/drown_stats.tres" id="2_vgcwh"]
+[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://creatures.png" id="3_mal2x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(26, 30)
+
+[node name="Drown" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_vo6yh")
+stats = ExtResource("2_vgcwh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_mal2x")
+hframes = 9
+vframes = 9
+frame = 62
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_h2yge")

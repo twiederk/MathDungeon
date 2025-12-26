@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6luw4aoh1qpi"]
+
+[ext_resource type="Script" uid="uid://b7x46e8sw1gka" path="res://enemies/enemy.gd" id="1_fkenh"]
+[ext_resource type="Resource" uid="uid://cvsd805s7lle2" path="res://enemies/enderman_stats.tres" id="2_fkenh"]
+[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://creatures.png" id="3_alpet"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(26, 30)
+
+[node name="Enderman" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_fkenh")
+stats = ExtResource("2_fkenh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_alpet")
+hframes = 9
+vframes = 9
+frame = 77
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_h2yge")
