@@ -3,9 +3,12 @@ extends Control
 
 @onready var label: Label = $CenterContainer/VBoxContainer/Label
 @onready var input: LineEdit = $CenterContainer/VBoxContainer/LineEdit
+@onready var progress_bar: ProgressBar = $CenterContainer/VBoxContainer/ProgressBar
+@onready var answer_timer = $AnswerTimer
 
 var enemy: Enemy = null
 var exercise: Exercise
+var time_remaining: float
 
 
 func open_for(my_enemy: Enemy) -> void:
@@ -16,8 +19,26 @@ func open_for(my_enemy: Enemy) -> void:
 	input.text = ""
 	visible = true
 
+	_setup_progress_bar()
+
 	input.grab_focus()
 	get_tree().paused = true
+
+
+func _setup_progress_bar() -> void:
+	if enemy.stats.time_limit == -1:
+		progress_bar.visible = false
+	else:
+		time_remaining = enemy.stats.time_limit
+		progress_bar.visible = true
+		progress_bar.value = 0
+		progress_bar.max_value = enemy.stats.time_limit
+		answer_timer.start()
+
+
+func _on_AnswerTimer_timeout() -> void:
+	progress_bar.value = time_remaining
+	_answer_incorrect()
 
 
 func _create_exercise() -> Exercise:

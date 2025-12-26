@@ -43,5 +43,12 @@ layout_mode = 2
 layout_mode = 2
 text = "Antwort"
 
+[node name="ProgressBar" type="ProgressBar" parent="CenterContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="AnswerTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="text_submitted" from="CenterContainer/VBoxContainer/LineEdit" to="." method="_on_text_submitted"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
