@@ -32,6 +32,9 @@ replay_pid*
 # maven
 target/
 
+# VSCode
+.vscode/
+
 # Godot
 godot/.godot
 releases/
