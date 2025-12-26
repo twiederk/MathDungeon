@@ -1,7 +1,7 @@
 class_name Enemy
 extends Area2D
 
-@export var monster_stats: MonsterStats
+@export var enemy_stats: EnemyStats
 
 signal encountered(enemy: Area2D)
 

@@ -1,4 +1,4 @@
-class_name MonsterStats
+class_name EnemyStats
 extends Resource
 
 enum ArithmeticType {
@@ -8,7 +8,7 @@ enum ArithmeticType {
 	DIVISION
 }
 
-@export var name: String = "Monster"
+@export var name: String = "Enemie"
 @export var max_hit_points: int = 1
 @export var damage: int = 1
 @export var armor: int = 0
