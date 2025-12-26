@@ -4,13 +4,13 @@ extends Control
 @onready var label: Label = $CenterContainer/VBoxContainer/Label
 @onready var input: LineEdit = $CenterContainer/VBoxContainer/LineEdit
 
-var current_enemy: Enemy = null
+var enemy: Enemy = null
 var addition_exercise_generator: AdditionExerciseGenerator = AdditionExerciseGenerator.new(100)
 var exercise: Exercise
 
 
-func open_for(enemy: Enemy) -> void:
-	current_enemy = enemy
+func open_for(my_enemy: Enemy) -> void:
+	enemy = my_enemy
 
 	exercise = addition_exercise_generator.create_exercise()
 	label.text = _question()
@@ -29,8 +29,14 @@ func _on_text_submitted(_text: String) -> void:
 
 func _check_answer(answer: int) -> void:
 	if answer == exercise.result:
-		current_enemy.queue_free()
-		_close_dialog()
+		enemy.hit_points -= 1
+		if enemy.hit_points > 0:
+			exercise = addition_exercise_generator.create_exercise()
+			label.text = "Richtig!!!\n" + _question()
+			input.text = ""
+		else:
+			enemy.queue_free()
+			_close_dialog()
 	else:
 		label.text = "Nicht ganz. Versuch es nochmal:\n" + _question()
 		input.text = ""
@@ -39,7 +45,7 @@ func _check_answer(answer: int) -> void:
 func _close_dialog() -> void:
 	visible = false
 	get_tree().paused = false
-	current_enemy = null
+	enemy = null
 	exercise = null
 
 
