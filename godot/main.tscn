@@ -32,5 +32,3 @@ position = Vector2(536, 191)
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="QuizDialog" parent="UI" instance=ExtResource("4_1bvp3")]
-process_mode = 0
-visible = true
