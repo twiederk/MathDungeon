@@ -61,8 +61,13 @@ func _answer_correct() -> void:
 
 
 func _answer_incorrect() -> void:
-	label.text = "Nicht ganz. Versuch es nochmal:\n" + _question()
-	input.text = ""
+	PlayerStats.hit_points -= enemy.stats.damage
+	if PlayerStats.hit_points > 0:
+		label.text = "Nicht ganz. Versuch es nochmal:\n" + _question()
+		input.text = ""
+	else:
+		label.text = "Du hast alle Lebenspunkte verloren.\nDu hast verloren."
+		input.text = ""
 
 
 func _close_dialog() -> void:
