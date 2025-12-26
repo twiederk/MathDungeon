@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://nfte8cjrylof"]
+[gd_scene load_steps=5 format=3 uid="uid://nfte8cjrylof"]
 
 [ext_resource type="Script" uid="uid://b7x46e8sw1gka" path="res://enemy.gd" id="1_roy8y"]
 [ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://creatures.png" id="1_uiaus"]
+[ext_resource type="Resource" uid="uid://dn8b07p0dusc" path="res://zombie_stats.tres" id="2_jmu02"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(26, 30)
@@ -9,6 +10,7 @@ size = Vector2(26, 30)
 [node name="Zombie" type="Area2D"]
 collision_layer = 2
 script = ExtResource("1_roy8y")
+monster_stats = ExtResource("2_jmu02")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_uiaus")
