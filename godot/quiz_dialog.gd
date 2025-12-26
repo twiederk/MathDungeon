@@ -23,13 +23,12 @@ func open_for(enemy: Enemy) -> void:
 
 
 func _on_text_submitted(_text: String) -> void:
-	_check_answer()
+	var answer: int = input.text.strip_edges().to_int()
+	_check_answer(answer)
 
 
-func _check_answer() -> void:
-	var user_answer: int = input.text.strip_edges().to_int()
-
-	if user_answer == exercise.result:
+func _check_answer(answer: int) -> void:
+	if answer == exercise.result:
 		current_enemy.queue_free()
 		_close_dialog()
 	else:
