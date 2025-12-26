@@ -32,7 +32,12 @@ func _create_exercise() -> Exercise:
 	return AdditionExerciseGenerator.new(enemy.stats.max_number).create_exercise()
 
 
-func _on_text_submitted(_text: String) -> void:
+func _on_text_submitted(text: String) -> void:
+	var answer: int = text.strip_edges().to_int()
+	_check_answer(answer)
+
+
+func _on_button_pressed() -> void:
 	var answer: int = input.text.strip_edges().to_int()
 	_check_answer(answer)
 

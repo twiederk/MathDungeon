@@ -44,3 +44,4 @@ layout_mode = 2
 text = "Antwort"
 
 [connection signal="text_submitted" from="CenterContainer/VBoxContainer/LineEdit" to="." method="_on_text_submitted"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
