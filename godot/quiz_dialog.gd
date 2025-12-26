@@ -44,7 +44,7 @@ func _on_button_pressed() -> void:
 
 func _check_answer(answer: int) -> void:
 	if answer == exercise.result:
-		enemy.hit_points -= 1
+		enemy.hit_points -= PlayerStats.damage
 		if enemy.hit_points > 0:
 			exercise = _create_exercise()
 			label.text = "Richtig!!!\n" + _question()

@@ -11,3 +11,7 @@ func _ready() -> void:
 func _on_body_entered(body: Node) -> void:
 	if body.name == "Player":
 		item_picked_up.emit(self)
+
+
+func execute() -> void:
+	PlayerStats.damage = 2

@@ -28,4 +28,5 @@ func _on_enemy_encountered(enemy: Area2D) -> void:
 
 
 func _on_item_picked_up(item: Item) -> void:
+	item.execute()
 	item.queue_free()
