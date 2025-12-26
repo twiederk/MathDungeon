@@ -4,18 +4,16 @@ extends Control
 @onready var label: Label = $CenterContainer/VBoxContainer/Label
 @onready var input: LineEdit = $CenterContainer/VBoxContainer/LineEdit
 
-var current_enemy: Node = null
-var addition_exercise_generator := AdditionExerciseGenerator.new(100)
+var current_enemy: Enemy = null
+var addition_exercise_generator: AdditionExerciseGenerator = AdditionExerciseGenerator.new(100)
 var exercise: Exercise
 
 
 func _ready() -> void:
-	visible = false
-
 	input.text_submitted.connect(_on_text_submitted)
 
 
-func open_for(enemy: Node) -> void:
+func open_for(enemy: Enemy) -> void:
 	current_enemy = enemy
 
 	exercise = addition_exercise_generator.create_exercise()
@@ -23,9 +21,9 @@ func open_for(enemy: Node) -> void:
 	input.text = ""
 	visible = true
 
-	get_tree().paused = true
-
 	input.grab_focus()
+
+	get_tree().paused = true
 
 
 func _on_text_submitted(_text: String) -> void:
@@ -33,7 +31,7 @@ func _on_text_submitted(_text: String) -> void:
 
 
 func _check_answer() -> void:
-	var user_answer: int = _norm(input.text).to_int()
+	var user_answer: int = input.text.strip_edges().to_int()
 
 	if user_answer == exercise.result:
 		current_enemy.queue_free()
@@ -50,9 +48,5 @@ func _close_dialog() -> void:
 	exercise = null
 
 
-func _norm(s: String) -> String:
-	return s.strip_edges().to_lower()
-	
-	
 func _question() -> String:
 	return "Was ist das Ergebnis von: %s %s %s?" % [str(exercise.argument1), exercise.operator, str(exercise.argument2)]
