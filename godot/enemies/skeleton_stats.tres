@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://cjvr1oocuggtm"]
+
+[ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_638kb"]
+
+[resource]
+script = ExtResource("1_638kb")
+name = "Skeleton"
+max_hit_points = 3
+arithmetic = Array[int]([0, 1])
+metadata/_custom_type_script = "uid://b0c3oqfgm2626"

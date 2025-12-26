@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://b53sfmxk4rjq2"]
+[gd_scene load_steps=12 format=4 uid="uid://b53sfmxk4rjq2"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="1_ig7tw"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://t4t4xwnjo6vs" path="res://enemies/spider.tscn" id="7_4c57u"]
 [ext_resource type="PackedScene" uid="uid://8xckg1kvi70g" path="res://enemies/drown.tscn" id="8_efxa6"]
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://sword.tscn" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://do1ilgr01pqpc" path="res://enemies/skeleton.tscn" id="10_efxa6"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1bvp3")
@@ -38,13 +39,16 @@ position = Vector2(337, 113)
 position = Vector2(176, 101)
 
 [node name="Spider1" parent="Enemies" instance=ExtResource("7_4c57u")]
-position = Vector2(562, 343)
+position = Vector2(562, 370)
 
 [node name="Drown1" parent="Enemies" instance=ExtResource("8_efxa6")]
 position = Vector2(99, 322)
 
 [node name="Drown2" parent="Enemies" instance=ExtResource("8_efxa6")]
 position = Vector2(351, 284)
+
+[node name="Skeleton" parent="Enemies" instance=ExtResource("10_efxa6")]
+position = Vector2(561, 338)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
