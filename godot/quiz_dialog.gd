@@ -44,17 +44,25 @@ func _on_button_pressed() -> void:
 
 func _check_answer(answer: int) -> void:
 	if answer == exercise.result:
-		enemy.hit_points -= PlayerStats.damage
-		if enemy.hit_points > 0:
-			exercise = _create_exercise()
-			label.text = "Richtig!!!\n" + _question()
-			input.text = ""
-		else:
-			enemy.queue_free()
-			_close_dialog()
+		_answer_correct()
 	else:
-		label.text = "Nicht ganz. Versuch es nochmal:\n" + _question()
+		_answer_incorrect()
+
+
+func _answer_correct() -> void:
+	enemy.hit_points -= PlayerStats.damage
+	if enemy.hit_points > 0:
+		exercise = _create_exercise()
+		label.text = "Richtig!!!\n" + _question()
 		input.text = ""
+	else:
+		enemy.queue_free()
+		_close_dialog()
+
+
+func _answer_incorrect() -> void:
+	label.text = "Nicht ganz. Versuch es nochmal:\n" + _question()
+	input.text = ""
 
 
 func _close_dialog() -> void:
