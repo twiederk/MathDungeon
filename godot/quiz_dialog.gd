@@ -110,7 +110,7 @@ func _close_dialog() -> void:
 
 
 func _question() -> String:
-	return "Was ist das Ergebnis von: %s %s %s?" % [str(exercise.argument1), exercise.operator, str(exercise.argument2)]
+	return "Was ist das Ergebnis von %s %s %s?" % [str(exercise.argument1), exercise.operator, str(exercise.argument2)]
 
 
 func _on_answer_timer_timeout() -> void:
