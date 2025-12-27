@@ -51,6 +51,8 @@ func _create_exercise() -> Exercise:
 			return SubtractionExerciseGenerator.new(enemy.stats.max_number).create_exercise()
 		EnemyStats.ArithmeticType.MULTIPLICATION:
 			return MultiplicationExerciseGenerator.new().create_exercise()
+		EnemyStats.ArithmeticType.DIVISION:
+			return DivisionExerciseGenerator.new(enemy.stats.max_number).create_exercise()
 	return AdditionExerciseGenerator.new(enemy.stats.max_number).create_exercise()
 
 
