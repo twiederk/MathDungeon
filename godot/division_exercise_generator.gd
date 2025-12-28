@@ -11,7 +11,7 @@ func _init(_max_number: int = 100):
 		for quotient in range(1, 11):
 			var dividend = divisor * quotient
 			var question = "Was ist das Ergebnis von %s : %s?" % [str(dividend), str(divisor)]
-			exercises.append(Exercise.new(dividend, divisor, ":", str(quotient), question))
+			exercises.append(Exercise.new(str(quotient), question))
 
 func create_exercise() -> Exercise:
 	var idx = randi() % exercises.size()
