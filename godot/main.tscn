@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://b53sfmxk4rjq2"]
+[gd_scene load_steps=14 format=4 uid="uid://b53sfmxk4rjq2"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="1_ig7tw"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://8xckg1kvi70g" path="res://enemies/drown.tscn" id="8_efxa6"]
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://sword.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://do1ilgr01pqpc" path="res://enemies/skeleton.tscn" id="10_efxa6"]
+[ext_resource type="PackedScene" uid="uid://drpmo3xnxwl3i" path="res://enemies/zombie_baby.tscn" id="12_ycdy4"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1bvp3")
@@ -60,9 +61,6 @@ position = Vector2(101, 731)
 [node name="Zombie" parent="Enemies" instance=ExtResource("2_0xm2m")]
 position = Vector2(296, 987)
 
-[node name="Zombie2" parent="Enemies" instance=ExtResource("2_0xm2m")]
-position = Vector2(272, 1177)
-
 [node name="Drown" parent="Enemies" instance=ExtResource("8_efxa6")]
 position = Vector2(386, 1174)
 
@@ -80,6 +78,12 @@ position = Vector2(561, 1040)
 
 [node name="Skeleton3" parent="Enemies" instance=ExtResource("10_efxa6")]
 position = Vector2(718, 1022)
+
+[node name="ZombieBaby" parent="Enemies" instance=ExtResource("12_ycdy4")]
+position = Vector2(274, 1165)
+
+[node name="ZombieBaby2" parent="Enemies" instance=ExtResource("12_ycdy4")]
+position = Vector2(210, 447)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
