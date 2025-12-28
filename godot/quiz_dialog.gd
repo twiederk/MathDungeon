@@ -53,6 +53,8 @@ func _create_exercise() -> Exercise:
 			return MultiplicationExerciseGenerator.new().create_exercise()
 		EnemyStats.ArithmeticType.DIVISION:
 			return DivisionExerciseGenerator.new(enemy.stats.max_number).create_exercise()
+		EnemyStats.ArithmeticType.TIMES_TABLE:
+			return TimesTableExerciseGenerator.new().create_exercise()
 	return AdditionExerciseGenerator.new(enemy.stats.max_number).create_exercise()
 
 
