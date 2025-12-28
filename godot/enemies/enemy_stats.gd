@@ -5,7 +5,8 @@ enum ArithmeticType {
 	ADDITION,
 	SUBSTRACTION,
 	MULTIPLICATION,
-	DIVISION
+	DIVISION,
+	TIMES_TABLE
 }
 
 @export var name: String = "Enemie"

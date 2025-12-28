@@ -16,7 +16,7 @@ func open_for(my_enemy: Enemy) -> void:
 	enemy = my_enemy
 
 	exercise = _create_exercise()
-	label.text = _question()
+	label.text = exercise.question
 	input.text = ""
 	visible = true
 
@@ -51,20 +51,24 @@ func _create_exercise() -> Exercise:
 			return SubtractionExerciseGenerator.new(enemy.stats.max_number).create_exercise()
 		EnemyStats.ArithmeticType.MULTIPLICATION:
 			return MultiplicationExerciseGenerator.new().create_exercise()
+		EnemyStats.ArithmeticType.DIVISION:
+			return DivisionExerciseGenerator.new(enemy.stats.max_number).create_exercise()
+		EnemyStats.ArithmeticType.TIMES_TABLE:
+			return TimesTableExerciseGenerator.new().create_exercise()
 	return AdditionExerciseGenerator.new(enemy.stats.max_number).create_exercise()
 
 
 func _on_text_submitted(text: String) -> void:
-	var answer: int = text.strip_edges().to_int()
+	var answer: String = text.strip_edges()
 	_check_answer(answer)
 
 
 func _on_button_pressed() -> void:
-	var answer: int = input.text.strip_edges().to_int()
+	var answer: String = input.text.strip_edges()
 	_check_answer(answer)
 
 
-func _check_answer(answer: int) -> void:
+func _check_answer(answer: String) -> void:
 	if answer == exercise.result:
 		_answer_correct()
 	else:
@@ -75,7 +79,7 @@ func _answer_correct() -> void:
 	enemy.hit_points -= PlayerStats.damage
 	if enemy.hit_points > 0:
 		exercise = _create_exercise()
-		label.text = "Richtig!!!\n" + _question()
+		label.text = "Richtig!!!\n" + exercise.question
 		input.text = ""
 		if enemy.has_time_limit():
 			_start_timers()
@@ -90,7 +94,7 @@ func _answer_correct() -> void:
 func _answer_incorrect() -> void:
 	PlayerStats.hit_points -= enemy.stats.damage
 	if PlayerStats.hit_points > 0:
-		label.text = "Nicht ganz. Versuch es nochmal:\n" + _question()
+		label.text = "Nicht ganz. Versuch es nochmal:\n" + exercise.question
 		input.text = ""
 	else:
 		label.text = "Du hast alle Lebenspunkte verloren.\nDu hast verloren."
@@ -105,10 +109,6 @@ func _close_dialog() -> void:
 	get_tree().paused = false
 	enemy = null
 	exercise = null
-
-
-func _question() -> String:
-	return "Was ist das Ergebnis von: %s %s %s?" % [str(exercise.argument1), exercise.operator, str(exercise.argument2)]
 
 
 func _on_answer_timer_timeout() -> void:
@@ -126,7 +126,7 @@ func _answer_timeout() -> void:
 	PlayerStats.hit_points -= enemy.stats.damage
 	if PlayerStats.hit_points > 0:
 		exercise = _create_exercise()
-		label.text = "*** Zeitlimit überschritten ***\n" + _question()
+		label.text = "*** Zeitlimit überschritten ***\n" + exercise.question
 		input.text = ""
 		_start_timers()
 	else:

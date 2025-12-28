@@ -9,5 +9,6 @@ func create_exercise() -> Exercise:
 	var minuend = (randi() + 1) % max_number
 	var subtrahend = randi() % minuend
 	var result = minuend - subtrahend
-	return Exercise.new(minuend, subtrahend, "-", result)
+	var question = "Was ist das Ergebnis von %s - %s?" % [str(minuend), str(subtrahend)]
+	return Exercise.new(question, str(result))
 	
