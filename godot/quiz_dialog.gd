@@ -3,7 +3,6 @@ extends Control
 
 @onready var label: Label = $CenterContainer/VBoxContainer/Label
 @onready var input: LineEdit = $CenterContainer/VBoxContainer/LineEdit
-@onready var button = $CenterContainer/VBoxContainer/Button
 @onready var progress_bar: ProgressBar = $CenterContainer/VBoxContainer/ProgressBar
 @onready var answer_timer = $AnswerTimer
 @onready var progress_timer = $ProgressTimer
@@ -60,11 +59,6 @@ func _create_exercise() -> Exercise:
 
 func _on_text_submitted(text: String) -> void:
 	var answer: String = text.strip_edges()
-	_check_answer(answer)
-
-
-func _on_button_pressed() -> void:
-	var answer: String = input.text.strip_edges()
 	_check_answer(answer)
 
 
@@ -132,5 +126,3 @@ func _answer_timeout() -> void:
 	else:
 		label.text = "GAME OVER\nDu hast verloren."
 		input.visible = false
-		button.visible = false
-		

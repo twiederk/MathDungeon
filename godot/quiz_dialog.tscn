@@ -39,10 +39,6 @@ text = "Frage"
 [node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Antwort"
-
 [node name="ProgressBar" type="ProgressBar" parent="CenterContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
@@ -55,6 +51,5 @@ one_shot = true
 wait_time = 0.5
 
 [connection signal="text_submitted" from="CenterContainer/VBoxContainer/LineEdit" to="." method="_on_text_submitted"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="AnswerTimer" to="." method="_on_answer_timer_timeout"]
 [connection signal="timeout" from="ProgressTimer" to="." method="_on_progress_timer_timeout"]
