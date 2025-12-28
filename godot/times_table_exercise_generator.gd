@@ -22,4 +22,4 @@ func create_exercise() -> Exercise:
 	var result = times_tables[table_index]
 	var multiplier = table_index + 1
 	var question = "Wie lautet die %ser Reihe des kleinen Einmaleins?" % str(multiplier)
-	return Exercise.new(result, question)
+	return Exercise.new(question, result)
