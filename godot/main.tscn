@@ -29,7 +29,7 @@ position = Vector2(-110, 465)
 position = Vector2(593, 305)
 
 [node name="HealingPotion" parent="Items" instance=ExtResource("5_dg77c")]
-position = Vector2(141, 730)
+position = Vector2(140, 729)
 
 [node name="Enemies" type="Node2D" parent="."]
 
