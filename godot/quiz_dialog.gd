@@ -57,16 +57,16 @@ func _create_exercise() -> Exercise:
 
 
 func _on_text_submitted(text: String) -> void:
-	var answer: int = text.strip_edges().to_int()
+	var answer: String = text.strip_edges()
 	_check_answer(answer)
 
 
 func _on_button_pressed() -> void:
-	var answer: int = input.text.strip_edges().to_int()
+	var answer: String = input.text.strip_edges()
 	_check_answer(answer)
 
 
-func _check_answer(answer: int) -> void:
+func _check_answer(answer: String) -> void:
 	if answer == exercise.result:
 		_answer_correct()
 	else:

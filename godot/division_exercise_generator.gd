@@ -10,7 +10,7 @@ func _init(_max_number: int = 100):
 	for divisor in range(1, 11):
 		for quotient in range(1, 11):
 			var dividend = divisor * quotient
-			exercises.append(Exercise.new(dividend, divisor, ":", quotient))
+			exercises.append(Exercise.new(dividend, divisor, ":", str(quotient)))
 
 func create_exercise() -> Exercise:
 	var idx = randi() % exercises.size()

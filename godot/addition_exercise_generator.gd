@@ -9,5 +9,5 @@ func create_exercise() -> Exercise:
 	var summand_a = randi() % max_number
 	var summand_b = randi() % (max_number - summand_a)
 	var result = summand_a + summand_b
-	return Exercise.new(summand_a, summand_b, "+", result)
+	return Exercise.new(summand_a, summand_b, "+", str(result))
 	
