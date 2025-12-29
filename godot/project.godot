@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="MathDungeon"
-config/version="0.5.0"
-run/main_scene="uid://b53sfmxk4rjq2"
+config/version="0.6.0"
+run/main_scene="uid://bskj0cyrtgd55"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 PlayerStats="*res://player_stats.gd"
 Sound="*res://sound.tscn"
+SaveManager="*res://save_manager.gd"
 
 [display]
 
