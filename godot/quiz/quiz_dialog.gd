@@ -1,9 +1,9 @@
 class_name QuizDialog
 extends Control
 
-@onready var label: Label = $CenterContainer/VBoxContainer/Label
-@onready var input: LineEdit = $CenterContainer/VBoxContainer/LineEdit
-@onready var progress_bar: ProgressBar = $CenterContainer/VBoxContainer/ProgressBar
+@onready var question_label: Label = $CenterContainer/VBoxContainer/QuestionLabel
+@onready var input: LineEdit = $CenterContainer/VBoxContainer/AnswerLineEdit
+@onready var progress_bar: ProgressBar = $CenterContainer/VBoxContainer/TimelimitProgressBar
 @onready var answer_timer = $AnswerTimer
 @onready var progress_timer = $ProgressTimer
 
@@ -15,7 +15,7 @@ func open_for(my_enemy: Enemy) -> void:
 	enemy = my_enemy
 
 	exercise = _create_exercise()
-	label.text = exercise.question
+	question_label.text = exercise.question
 	input.text = ""
 	visible = true
 
@@ -77,7 +77,7 @@ func _answer_correct() -> void:
 	enemy.hit_points -= PlayerStats.damage
 	if enemy.hit_points > 0:
 		exercise = _create_exercise()
-		label.text = "Richtig!!!\n" + exercise.question
+		question_label.text = "Richtig!!!\n" + exercise.question
 		input.text = ""
 		if enemy.has_time_limit():
 			_start_timers()
@@ -92,10 +92,10 @@ func _answer_correct() -> void:
 func _answer_incorrect() -> void:
 	PlayerStats.hit_points -= enemy.stats.damage
 	if PlayerStats.hit_points > 0:
-		label.text = "Nicht ganz. Versuch es nochmal:\n" + exercise.question
+		question_label.text = "Nicht ganz. Versuch es nochmal:\n" + exercise.question
 		input.text = ""
 	else:
-		label.text = "Du hast alle Lebenspunkte verloren.\nDu hast verloren."
+		question_label.text = "Du hast alle Lebenspunkte verloren.\nDu hast verloren."
 		input.text = ""
 		if enemy.has_time_limit():
 			answer_timer.stop()
@@ -124,9 +124,9 @@ func _answer_timeout() -> void:
 	PlayerStats.hit_points -= enemy.stats.damage
 	if PlayerStats.hit_points > 0:
 		exercise = _create_exercise()
-		label.text = "*** Zeitlimit überschritten ***\n" + exercise.question
+		question_label.text = "*** Zeitlimit überschritten ***\n" + exercise.question
 		input.text = ""
 		_start_timers()
 	else:
-		label.text = "GAME OVER\nDu hast verloren."
+		question_label.text = "GAME OVER\nDu hast verloren."
 		input.visible = false
