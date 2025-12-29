@@ -12,3 +12,8 @@ var hit_points: int = 5:
 		hit_points = value
 		if hit_points > 0:
 			SaveManager.save_game()
+
+
+func reset() -> void:
+	hit_points = 5
+	damage = 1

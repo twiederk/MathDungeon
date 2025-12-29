@@ -28,7 +28,7 @@ text = "Mathe Dungeon"
 
 [node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "Spiel starten"
+text = "Neues Spiel starten"
 
 [node name="LoadButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
