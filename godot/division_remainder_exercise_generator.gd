@@ -10,6 +10,7 @@ func _init(_max_number: int = 100):
 	for divisor in range(1, 11):
 		var max_dividend = divisor * 10
 		for dividend in range(1, max_dividend + 1):
+			@warning_ignore("integer_division")
 			var quotient = int(dividend / divisor)
 			var remainder = dividend % divisor
 			var question = "Was ist das Ergebnis von %s : %s?" % [str(dividend), str(divisor)]

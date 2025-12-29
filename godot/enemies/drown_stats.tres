@@ -6,4 +6,5 @@
 script = ExtResource("1_ltatt")
 name = "Drown"
 max_hit_points = 3
+arithmetic = Array[int]([4])
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

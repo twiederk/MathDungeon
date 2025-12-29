@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 PlayerStats="*res://player_stats.gd"
+Sound="*res://sound.tscn"
 
 [display]
 
