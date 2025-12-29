@@ -12,6 +12,7 @@ func _ready():
 
 
 func _on_start_game_button_pressed():
+	PlayerStats.reset()
 	get_tree().change_scene_to_file("res://main.tscn")
 
 

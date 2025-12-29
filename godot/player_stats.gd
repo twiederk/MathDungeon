@@ -1,6 +1,9 @@
 extends Node
 
 
+signal health_changed
+
+
 var damage: int = 1:
 	set(value):
 		damage = value
@@ -10,4 +13,14 @@ var damage: int = 1:
 var hit_points: int = 5:
 	set(value):
 		hit_points = value
-		SaveManager.save_game()
+		if hit_points > 0:
+			SaveManager.save_game()
+		health_changed.emit()
+
+
+var max_hit_points: int = 5
+
+
+func reset() -> void:
+	hit_points = 5
+	damage = 1
