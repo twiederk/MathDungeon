@@ -14,7 +14,4 @@ func _on_body_entered(body: Node) -> void:
 
 
 func execute() -> void:
-	if name == "Sword":
-		PlayerStats.damage = 2
-	if name == "HealingPotion":
-		PlayerStats.hit_points = 5
+	pass
