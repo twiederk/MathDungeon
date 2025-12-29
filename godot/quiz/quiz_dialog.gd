@@ -65,6 +65,8 @@ func _on_text_submitted(text: String) -> void:
 
 
 func _check_answer(answer: String) -> void:
+	if answer.is_empty():
+		return
 	if answer == exercise.result:
 		_answer_correct()
 	else:
