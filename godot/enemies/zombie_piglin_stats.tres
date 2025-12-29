@@ -6,5 +6,5 @@
 script = ExtResource("1_ehx5p")
 name = "Zombie Piglin"
 max_hit_points = 7
-arithmetic = Array[int]([4])
+arithmetic = Array[int]([5])
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"
