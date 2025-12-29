@@ -60,7 +60,7 @@ func _create_exercise() -> Exercise:
 
 
 func _on_text_submitted(text: String) -> void:
-	var answer: String = text.strip_edges()
+	var answer: String = text.strip_edges().to_upper()
 	_check_answer(answer)
 
 
