@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bskj0cyrtgd55"]
+[gd_scene load_steps=3 format=3 uid="uid://bskj0cyrtgd55"]
 
 [ext_resource type="PackedScene" uid="uid://dft8xs3neo5gg" path="res://gui/start_menu.tscn" id="1_6wt33"]
+[ext_resource type="PackedScene" uid="uid://bpkpuwnv5gy7d" path="res://gui/version_widget.tscn" id="2_g8wtb"]
 
 [node name="StartGUI" type="CanvasLayer"]
+
+[node name="VersionWidget" parent="." instance=ExtResource("2_g8wtb")]
 
 [node name="StartMenu" parent="." instance=ExtResource("1_6wt33")]
