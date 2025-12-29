@@ -3,7 +3,7 @@ extends Control
 
 @onready var question_label: Label = $CenterContainer/VBoxContainer/QuestionLabel
 @onready var answer_line_edit: LineEdit = $CenterContainer/VBoxContainer/AnswerLineEdit
-@onready var progress_bar: ProgressBar = $CenterContainer/VBoxContainer/TimelimitProgressBar
+@onready var timelimit_progress_bar: ProgressBar = $CenterContainer/VBoxContainer/TimelimitProgressBar
 @onready var answer_timer = $AnswerTimer
 @onready var progress_timer = $ProgressTimer
 
@@ -27,15 +27,15 @@ func open_for(my_enemy: Enemy) -> void:
 
 func _setup_progress_bar() -> void:
 	if enemy.has_time_limit():
-		progress_bar.visible = true
+		timelimit_progress_bar.visible = true
 		_start_timers()
 	else:
-		progress_bar.visible = false
+		timelimit_progress_bar.visible = false
 
 
 func _start_timers() -> void:
-	progress_bar.value = 0
-	progress_bar.max_value = enemy.stats.time_limit
+	timelimit_progress_bar.value = 0
+	timelimit_progress_bar.max_value = enemy.stats.time_limit
 	answer_timer.wait_time = enemy.stats.time_limit
 	answer_timer.start()
 	progress_timer.start()
@@ -110,14 +110,14 @@ func _close_dialog() -> void:
 
 
 func _on_answer_timer_timeout() -> void:
-	progress_bar.value = enemy.stats.time_limit
+	timelimit_progress_bar.value = enemy.stats.time_limit
 	progress_timer.stop()
 	_answer_timeout()
 
 
 func _on_progress_timer_timeout() -> void:
 	var elapsed_time = answer_timer.wait_time - answer_timer.time_left
-	progress_bar.value = elapsed_time
+	timelimit_progress_bar.value = elapsed_time
 
 
 func _answer_timeout() -> void:
