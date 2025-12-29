@@ -3,7 +3,7 @@ extends Control
 
 @onready var question_label: Label = $CenterContainer/VBoxContainer/QuestionLabel
 @onready var answer_line_edit: LineEdit = $CenterContainer/VBoxContainer/AnswerLineEdit
-@onready var main_menu_button: Button = $CenterContainer/VBoxContainer/MainMenuButton
+@onready var start_gui_button: Button = $CenterContainer/VBoxContainer/StartGuiButton
 @onready var timelimit_progress_bar: ProgressBar = $CenterContainer/VBoxContainer/TimelimitProgressBar
 @onready var answer_timer = $AnswerTimer
 @onready var progress_timer = $ProgressTimer
@@ -104,8 +104,8 @@ func _game_over() -> void:
 	question_label.text = "Du hast alle Lebenspunkte verloren.\nDu hast verloren."
 	answer_line_edit.text = ""
 	answer_line_edit.visible = false
-	main_menu_button.visible = true
-	main_menu_button.grab_focus()
+	start_gui_button.visible = true
+	start_gui_button.grab_focus()
 	if enemy.has_time_limit():
 		answer_timer.stop()
 		progress_timer.stop()

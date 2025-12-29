@@ -39,7 +39,7 @@ text = "Frage"
 [node name="AnswerLineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="MainMenuButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="StartGuiButton" type="Button" parent="CenterContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 text = "Hauptmenü"
@@ -56,6 +56,6 @@ one_shot = true
 wait_time = 0.5
 
 [connection signal="text_submitted" from="CenterContainer/VBoxContainer/AnswerLineEdit" to="." method="_on_text_submitted"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartGuiButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="timeout" from="AnswerTimer" to="." method="_on_answer_timer_timeout"]
 [connection signal="timeout" from="ProgressTimer" to="." method="_on_progress_timer_timeout"]
