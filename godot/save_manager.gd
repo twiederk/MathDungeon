@@ -25,16 +25,7 @@ func is_save_game_available():
 
 func load_game():
 	var load_file = FileAccess.open(save_path, FileAccess.READ)
-	if not load_file is FileAccess:
-		PlayerStats.refill()
-		return null
-	
 	var data =  JSON.parse_string(load_file.get_line())
-	#WorldStash.data = data
-	
-	#var file_path = WorldStash.retrieve("level", "file_path")
-	#MainInstances.world.load_level(file_path)
-	
-	#MainInstances.retrieve_stats()
-	PlayerStats.retrieve_stats()
+	PlayerStats.damage = data["player"]["damage"]
+	PlayerStats.hit_points = data["player"]["hit_points"]
 	load_file.close()
