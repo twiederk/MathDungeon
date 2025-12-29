@@ -7,12 +7,15 @@ var save_path: String = PROD_PATH
 
 
 func save_game():
-	#MainInstances.stash_stats()
-	PlayerStats.stash_stats()
-	
+	var data = {
+		"player" = {
+			"damage": PlayerStats.damage,
+			"hit_points": PlayerStats.hit_points
+		}
+	}	
 	var save_file = FileAccess.open(save_path, FileAccess.WRITE)
-	#var data_string = JSON.stringify(WorldStash.data)
-	#save_file.store_string(data_string)
+	var data_string = JSON.stringify(data)
+	save_file.store_string(data_string)
 	save_file.close()
 
 
