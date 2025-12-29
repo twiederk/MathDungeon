@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://b53sfmxk4rjq2"]
+[gd_scene load_steps=15 format=4 uid="uid://b53sfmxk4rjq2"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="1_ig7tw"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://do1ilgr01pqpc" path="res://enemies/skeleton.tscn" id="10_efxa6"]
 [ext_resource type="PackedScene" uid="uid://drpmo3xnxwl3i" path="res://enemies/zombie_baby.tscn" id="12_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://txgje162j88t" path="res://enemies/creeper.tscn" id="13_w48qg"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1bvp3")
@@ -84,6 +85,12 @@ position = Vector2(274, 1165)
 
 [node name="ZombieBaby2" parent="Enemies" instance=ExtResource("12_ycdy4")]
 position = Vector2(210, 447)
+
+[node name="Creeper" parent="Enemies" instance=ExtResource("13_w48qg")]
+position = Vector2(668, 542)
+
+[node name="Creeper2" parent="Enemies" instance=ExtResource("13_w48qg")]
+position = Vector2(176, 1176)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
