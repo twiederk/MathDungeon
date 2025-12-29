@@ -2,7 +2,7 @@ class_name QuizDialog
 extends Control
 
 @onready var question_label: Label = $CenterContainer/VBoxContainer/QuestionLabel
-@onready var input: LineEdit = $CenterContainer/VBoxContainer/AnswerLineEdit
+@onready var answer_line_edit: LineEdit = $CenterContainer/VBoxContainer/AnswerLineEdit
 @onready var progress_bar: ProgressBar = $CenterContainer/VBoxContainer/TimelimitProgressBar
 @onready var answer_timer = $AnswerTimer
 @onready var progress_timer = $ProgressTimer
@@ -16,12 +16,12 @@ func open_for(my_enemy: Enemy) -> void:
 
 	exercise = _create_exercise()
 	question_label.text = exercise.question
-	input.text = ""
+	answer_line_edit.text = ""
 	visible = true
 
 	_setup_progress_bar()
 
-	input.grab_focus()
+	answer_line_edit.grab_focus()
 	get_tree().paused = true
 
 
@@ -78,7 +78,7 @@ func _answer_correct() -> void:
 	if enemy.hit_points > 0:
 		exercise = _create_exercise()
 		question_label.text = "Richtig!!!\n" + exercise.question
-		input.text = ""
+		answer_line_edit.text = ""
 		if enemy.has_time_limit():
 			_start_timers()
 	else:
@@ -93,10 +93,10 @@ func _answer_incorrect() -> void:
 	PlayerStats.hit_points -= enemy.stats.damage
 	if PlayerStats.hit_points > 0:
 		question_label.text = "Nicht ganz. Versuch es nochmal:\n" + exercise.question
-		input.text = ""
+		answer_line_edit.text = ""
 	else:
 		question_label.text = "Du hast alle Lebenspunkte verloren.\nDu hast verloren."
-		input.text = ""
+		answer_line_edit.text = ""
 		if enemy.has_time_limit():
 			answer_timer.stop()
 			progress_timer.stop()
@@ -125,8 +125,8 @@ func _answer_timeout() -> void:
 	if PlayerStats.hit_points > 0:
 		exercise = _create_exercise()
 		question_label.text = "*** Zeitlimit überschritten ***\n" + exercise.question
-		input.text = ""
+		answer_line_edit.text = ""
 		_start_timers()
 	else:
 		question_label.text = "GAME OVER\nDu hast verloren."
-		input.visible = false
+		answer_line_edit.visible = false

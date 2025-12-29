@@ -39,13 +39,13 @@ text = "Frage"
 [node name="AnswerLineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="MainMenuButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="TimelimitProgressBar" type="ProgressBar" parent="CenterContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 show_percentage = false
-
-[node name="MainMenuButton" type="Button" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
 
 [node name="AnswerTimer" type="Timer" parent="."]
 one_shot = true
