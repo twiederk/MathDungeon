@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b7x46e8sw1gka" path="res://enemies/enemy.gd" id="1_inj8k"]
 [ext_resource type="Resource" uid="uid://crpyvnewu5sv3" path="res://enemies/zombie_baby_stats.tres" id="2_inj8k"]
-[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://creatures.png" id="3_jelrq"]
+[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="3_jelrq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(26, 30)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://camg1re80chgu"]
 
 [ext_resource type="Script" uid="uid://cedsdssd23q37" path="res://sound.gd" id="1_7ywqe"]
-[ext_resource type="AudioStream" uid="uid://b7gl80xgk3jb" path="res://PotionPickUp.ogg" id="2_tdv2v"]
+[ext_resource type="AudioStream" uid="uid://b7gl80xgk3jb" path="res://items/PotionPickUp.ogg" id="2_tdv2v"]
 
 [node name="Sound" type="Node"]
 script = ExtResource("1_7ywqe")

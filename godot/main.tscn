@@ -6,11 +6,11 @@
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://world_tiles.tres" id="2_lquwl"]
 [ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz/quiz_dialog.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://6wusnt285r11" path="res://enemies/zombie_piglin.tscn" id="5_7mycd"]
-[ext_resource type="PackedScene" uid="uid://cinn45uh8snch" path="res://healing_potion.tscn" id="5_dg77c"]
+[ext_resource type="PackedScene" uid="uid://cinn45uh8snch" path="res://items/healing_potion.tscn" id="5_dg77c"]
 [ext_resource type="PackedScene" uid="uid://c6luw4aoh1qpi" path="res://enemies/enderman.tscn" id="6_kek77"]
 [ext_resource type="PackedScene" uid="uid://t4t4xwnjo6vs" path="res://enemies/spider.tscn" id="7_4c57u"]
 [ext_resource type="PackedScene" uid="uid://8xckg1kvi70g" path="res://enemies/drown.tscn" id="8_efxa6"]
-[ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://sword.tscn" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://do1ilgr01pqpc" path="res://enemies/skeleton.tscn" id="10_efxa6"]
 [ext_resource type="PackedScene" uid="uid://drpmo3xnxwl3i" path="res://enemies/zombie_baby.tscn" id="12_ycdy4"]
 
