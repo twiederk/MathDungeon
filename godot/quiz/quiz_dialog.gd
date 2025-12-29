@@ -3,9 +3,11 @@ extends Control
 
 @onready var question_label: Label = $CenterContainer/VBoxContainer/QuestionLabel
 @onready var answer_line_edit: LineEdit = $CenterContainer/VBoxContainer/AnswerLineEdit
+@onready var main_menu_button: Button = $CenterContainer/VBoxContainer/MainMenuButton
 @onready var timelimit_progress_bar: ProgressBar = $CenterContainer/VBoxContainer/TimelimitProgressBar
 @onready var answer_timer = $AnswerTimer
 @onready var progress_timer = $ProgressTimer
+
 
 var enemy: Enemy = null
 var exercise: Exercise
@@ -95,11 +97,19 @@ func _answer_incorrect() -> void:
 		question_label.text = "Nicht ganz. Versuch es nochmal:\n" + exercise.question
 		answer_line_edit.text = ""
 	else:
-		question_label.text = "Du hast alle Lebenspunkte verloren.\nDu hast verloren."
-		answer_line_edit.text = ""
-		if enemy.has_time_limit():
-			answer_timer.stop()
-			progress_timer.stop()
+		_game_over()
+
+
+func _game_over() -> void:
+	question_label.text = "Du hast alle Lebenspunkte verloren.\nDu hast verloren."
+	answer_line_edit.text = ""
+	answer_line_edit.visible = false
+	main_menu_button.visible = true
+	main_menu_button.grab_focus()
+	if enemy.has_time_limit():
+		answer_timer.stop()
+		progress_timer.stop()
+
 
 
 func _close_dialog() -> void:
@@ -130,3 +140,8 @@ func _answer_timeout() -> void:
 	else:
 		question_label.text = "GAME OVER\nDu hast verloren."
 		answer_line_edit.visible = false
+
+
+func _on_main_menu_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://gui/start_gui.tscn")
