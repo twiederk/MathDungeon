@@ -102,8 +102,8 @@ func _answer_correct() -> void:
 
 
 func _answer_incorrect() -> void:
-	PlayerStats.hit_points -= enemy.stats.damage
-	if PlayerStats.hit_points > 0:
+	var player_hit_points = PlayerStats.hurt(enemy.stats.damage)
+	if player_hit_points > 0:
 		question_label.text = "Nicht ganz. Versuch es nochmal:\n" + exercise.question
 		answer_line_edit.text = ""
 	else:

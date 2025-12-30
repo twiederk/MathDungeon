@@ -19,8 +19,16 @@ var hit_points: int = 5:
 
 
 var max_hit_points: int = 5
+var armor: int = 0
 
 
 func reset() -> void:
 	hit_points = 5
 	damage = 1
+	armor = 0
+
+
+func hurt(damage: int) -> int:
+	hit_points -= min(1, damage - armor)
+	return hit_points
+	

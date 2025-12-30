@@ -10,7 +10,8 @@ func save_game():
 	var data = {
 		"player" = {
 			"damage": PlayerStats.damage,
-			"hit_points": PlayerStats.hit_points
+			"hit_points": PlayerStats.hit_points,
+			"armor": PlayerStats.armor,
 		}
 	}	
 	var save_file = FileAccess.open(save_path, FileAccess.WRITE)
@@ -28,4 +29,5 @@ func load_game():
 	var data =  JSON.parse_string(load_file.get_line())
 	PlayerStats.damage = data["player"]["damage"]
 	PlayerStats.hit_points = data["player"]["hit_points"]
+	PlayerStats.armor = data["player"]["armor"]
 	load_file.close()
