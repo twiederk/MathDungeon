@@ -1,8 +1,7 @@
 class_name QuizDialog
 extends Control
 
-
-@onready var enemy_health_meter_widget: EnemyHealthMeterWidget = $EnemyHealthMeterWidget
+@onready var health_meter_widget: HealthMeterWidget = $HealthMeterWidget
 @onready var question_label: Label = $CenterContainer/VBoxContainer/QuestionLabel
 @onready var answer_line_edit: LineEdit = $CenterContainer/VBoxContainer/AnswerLineEdit
 @onready var start_gui_button: Button = $CenterContainer/VBoxContainer/StartGuiButton
@@ -41,8 +40,8 @@ func _setup_time_limit_progress_bar() -> void:
 
 func _setup_enemy_health_meter_widget() -> void:
 	enemy.health_changed.connect(_on_enemy_health_changed)
-	enemy_health_meter_widget.update_health_ui(enemy.hit_points)
-	enemy_health_meter_widget.update_max_health_ui(enemy.hit_points)
+	health_meter_widget.update_health_ui(enemy.hit_points)
+	health_meter_widget.update_max_health_ui(enemy.hit_points)
 
 
 
@@ -159,4 +158,4 @@ func _on_main_menu_button_pressed() -> void:
 
 
 func _on_enemy_health_changed() -> void:
-	enemy_health_meter_widget.update_health_ui(enemy.hit_points)
+	health_meter_widget.update_health_ui(enemy.hit_points)
