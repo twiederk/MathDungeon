@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://b53sfmxk4rjq2"]
+[gd_scene load_steps=17 format=4 uid="uid://b53sfmxk4rjq2"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="1_ig7tw"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz/quiz_dialog.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://6wusnt285r11" path="res://enemies/zombie_piglin.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://cinn45uh8snch" path="res://items/healing_potion.tscn" id="5_dg77c"]
+[ext_resource type="PackedScene" uid="uid://cecyxjivevnmn" path="res://items/helmet_iron.tscn" id="6_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://c6luw4aoh1qpi" path="res://enemies/enderman.tscn" id="6_kek77"]
 [ext_resource type="PackedScene" uid="uid://t4t4xwnjo6vs" path="res://enemies/spider.tscn" id="7_4c57u"]
 [ext_resource type="PackedScene" uid="uid://8xckg1kvi70g" path="res://enemies/drown.tscn" id="8_efxa6"]
@@ -33,6 +34,9 @@ position = Vector2(593, 305)
 
 [node name="HealingPotion" parent="Items" instance=ExtResource("5_dg77c")]
 position = Vector2(140, 729)
+
+[node name="Helmet" parent="Items" instance=ExtResource("6_2cqfq")]
+position = Vector2(144, 98)
 
 [node name="Enemies" type="Node2D" parent="."]
 
