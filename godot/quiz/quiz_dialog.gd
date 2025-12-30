@@ -1,6 +1,8 @@
 class_name QuizDialog
 extends Control
 
+
+@onready var enemy_health_meter_widget: EnemyHealthMeterWidget = $EnemyHealthMeterWidget
 @onready var question_label: Label = $CenterContainer/VBoxContainer/QuestionLabel
 @onready var answer_line_edit: LineEdit = $CenterContainer/VBoxContainer/AnswerLineEdit
 @onready var start_gui_button: Button = $CenterContainer/VBoxContainer/StartGuiButton
@@ -22,6 +24,7 @@ func open_for(my_enemy: Enemy) -> void:
 	answer_line_edit.grab_focus()
 	get_tree().paused = true
 
+
 func _setup_exercise() -> void:
 	exercise = _create_exercise()
 	question_label.text = exercise.question
@@ -37,7 +40,10 @@ func _setup_time_limit_progress_bar() -> void:
 
 
 func _setup_enemy_health_meter_widget() -> void:
-	pass
+	enemy.health_changed.connect(_on_enemy_health_changed)
+	enemy_health_meter_widget.update_health_ui(enemy.hit_points)
+	enemy_health_meter_widget.update_max_health_ui(enemy.hit_points)
+
 
 
 func _start_timers() -> void:
@@ -150,3 +156,7 @@ func _answer_timeout() -> void:
 func _on_main_menu_button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://gui/start_gui.tscn")
+
+
+func _on_enemy_health_changed() -> void:
+	enemy_health_meter_widget.update_health_ui(enemy.hit_points)

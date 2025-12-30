@@ -25,7 +25,7 @@ offset_right = 640.0
 offset_bottom = 360.0
 texture = SubResource("CanvasTexture_jj3p0")
 
-[node name="HealthMeterWidget" parent="." instance=ExtResource("3_7p4hy")]
+[node name="EnemyHealthMeterWidget" parent="." instance=ExtResource("3_7p4hy")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

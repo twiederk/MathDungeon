@@ -1,6 +1,7 @@
 class_name EnemyStats
 extends Resource
 
+
 enum ArithmeticType {
 	ADDITION,
 	SUBSTRACTION,
