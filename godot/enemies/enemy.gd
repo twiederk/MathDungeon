@@ -24,3 +24,8 @@ func _on_body_entered(body: Node) -> void:
 		
 func has_time_limit() -> bool:
 	return stats.time_limit != -1
+
+
+func hurt(damage: int) -> int:
+	hit_points -= min(1, damage - stats.armor)
+	return hit_points

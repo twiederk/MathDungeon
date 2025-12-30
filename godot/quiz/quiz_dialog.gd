@@ -86,8 +86,8 @@ func _check_answer(answer: String) -> void:
 
 
 func _answer_correct() -> void:
-	enemy.hit_points -= PlayerStats.weapon_damage
-	if enemy.hit_points > 0:
+	var enemy_hit_points = enemy.hurt(PlayerStats.weapon_damage)
+	if enemy_hit_points > 0:
 		exercise = _create_exercise()
 		question_label.text = "Richtig!!!\n" + exercise.question
 		answer_line_edit.text = ""
