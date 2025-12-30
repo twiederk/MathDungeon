@@ -1,8 +1,8 @@
-class_name Sword
+class_name Wolf
 extends Item
 
 @export var damage: int
 
 
 func execute() -> void:
-	PlayerStats.weapon_damage = damage
+	PlayerStats.weapon_damage += 1

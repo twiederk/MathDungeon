@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://5nfmr5l4hlxx" path="res://items/sword.gd" id="1_e4ynd"]
 [ext_resource type="Texture2D" uid="uid://c31gniut2rq2q" path="res://items/items.png" id="2_e4ynd"]
 
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e4ynd"]
 size = Vector2(32, 32)
 
-[node name="Sword" type="Area2D"]
+[node name="IronSword" type="Area2D"]
 collision_layer = 2
 script = ExtResource("1_e4ynd")
+damage = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_e4ynd")

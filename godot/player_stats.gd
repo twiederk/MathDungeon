@@ -4,10 +4,7 @@ extends Node
 signal health_changed
 
 
-var damage: int = 1:
-	set(value):
-		damage = value
-		SaveManager.save_game()
+var max_hit_points: int = 5
 
 
 var hit_points: int = 5:
@@ -18,9 +15,24 @@ var hit_points: int = 5:
 		health_changed.emit()
 
 
-var max_hit_points: int = 5
+var weapon_damage: int = 1:
+	set(value):
+		weapon_damage = value
+		SaveManager.save_game()
+
+
+var armor: int = 0:
+	set(value):
+		armor = value
+		SaveManager.save_game()
 
 
 func reset() -> void:
 	hit_points = 5
-	damage = 1
+	weapon_damage = 1
+	armor = 0
+
+
+func hurt(damage: int) -> int:
+	hit_points -= max(1, damage - armor)
+	return hit_points

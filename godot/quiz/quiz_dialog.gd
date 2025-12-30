@@ -1,10 +1,11 @@
 class_name QuizDialog
 extends Control
 
+@onready var health_meter_widget: HealthMeterWidget = $HealthMeterWidget
 @onready var question_label: Label = $CenterContainer/VBoxContainer/QuestionLabel
 @onready var answer_line_edit: LineEdit = $CenterContainer/VBoxContainer/AnswerLineEdit
 @onready var start_gui_button: Button = $CenterContainer/VBoxContainer/StartGuiButton
-@onready var timelimit_progress_bar: ProgressBar = $CenterContainer/VBoxContainer/TimelimitProgressBar
+@onready var time_limit_progress_bar: ProgressBar = $CenterContainer/VBoxContainer/TimelimitProgressBar
 @onready var answer_timer = $AnswerTimer
 @onready var progress_timer = $ProgressTimer
 
@@ -15,29 +16,38 @@ var exercise: Exercise
 
 func open_for(my_enemy: Enemy) -> void:
 	enemy = my_enemy
-
-	exercise = _create_exercise()
-	question_label.text = exercise.question
-	answer_line_edit.text = ""
+	_setup_exercise()
+	_setup_time_limit_progress_bar()
+	_setup_enemy_health_meter_widget()
 	visible = true
-
-	_setup_progress_bar()
-
 	answer_line_edit.grab_focus()
 	get_tree().paused = true
 
 
-func _setup_progress_bar() -> void:
+func _setup_exercise() -> void:
+	exercise = _create_exercise()
+	question_label.text = exercise.question
+	answer_line_edit.text = ""
+
+
+func _setup_time_limit_progress_bar() -> void:
 	if enemy.has_time_limit():
-		timelimit_progress_bar.visible = true
+		time_limit_progress_bar.visible = true
 		_start_timers()
 	else:
-		timelimit_progress_bar.visible = false
+		time_limit_progress_bar.visible = false
+
+
+func _setup_enemy_health_meter_widget() -> void:
+	enemy.health_changed.connect(_on_enemy_health_changed)
+	health_meter_widget.update_health_ui(enemy.hit_points)
+	health_meter_widget.update_max_health_ui(enemy.hit_points)
+
 
 
 func _start_timers() -> void:
-	timelimit_progress_bar.value = 0
-	timelimit_progress_bar.max_value = enemy.stats.time_limit
+	time_limit_progress_bar.value = 0
+	time_limit_progress_bar.max_value = enemy.stats.time_limit
 	answer_timer.wait_time = enemy.stats.time_limit
 	answer_timer.start()
 	progress_timer.start()
@@ -76,8 +86,8 @@ func _check_answer(answer: String) -> void:
 
 
 func _answer_correct() -> void:
-	enemy.hit_points -= PlayerStats.damage
-	if enemy.hit_points > 0:
+	var enemy_hit_points = enemy.hurt(PlayerStats.weapon_damage)
+	if enemy_hit_points > 0:
 		exercise = _create_exercise()
 		question_label.text = "Richtig!!!\n" + exercise.question
 		answer_line_edit.text = ""
@@ -92,8 +102,8 @@ func _answer_correct() -> void:
 
 
 func _answer_incorrect() -> void:
-	PlayerStats.hit_points -= enemy.stats.damage
-	if PlayerStats.hit_points > 0:
+	var player_hit_points = PlayerStats.hurt(enemy.stats.damage)
+	if player_hit_points > 0:
 		question_label.text = "Nicht ganz. Versuch es nochmal:\n" + exercise.question
 		answer_line_edit.text = ""
 	else:
@@ -120,19 +130,19 @@ func _close_dialog() -> void:
 
 
 func _on_answer_timer_timeout() -> void:
-	timelimit_progress_bar.value = enemy.stats.time_limit
+	time_limit_progress_bar.value = enemy.stats.time_limit
 	progress_timer.stop()
 	_answer_timeout()
 
 
 func _on_progress_timer_timeout() -> void:
 	var elapsed_time = answer_timer.wait_time - answer_timer.time_left
-	timelimit_progress_bar.value = elapsed_time
+	time_limit_progress_bar.value = elapsed_time
 
 
 func _answer_timeout() -> void:
-	PlayerStats.hit_points -= enemy.stats.damage
-	if PlayerStats.hit_points > 0:
+	var player_hit_points = PlayerStats.hurt(enemy.stats.damage)
+	if player_hit_points > 0:
 		exercise = _create_exercise()
 		question_label.text = "*** Zeitlimit überschritten ***\n" + exercise.question
 		answer_line_edit.text = ""
@@ -145,3 +155,7 @@ func _answer_timeout() -> void:
 func _on_main_menu_button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://gui/start_gui.tscn")
+
+
+func _on_enemy_health_changed() -> void:
+	health_meter_widget.update_health_ui(enemy.hit_points)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctlnlkhh85kv5"]
+[gd_scene load_steps=5 format=3 uid="uid://ctlnlkhh85kv5"]
 
 [ext_resource type="Theme" uid="uid://laictl43pv1e" path="res://quiz/quiz_dialog_theme.tres" id="1_jj3p0"]
 [ext_resource type="Script" uid="uid://b5fwm3c5mv241" path="res://quiz/quiz_dialog.gd" id="1_pp5ga"]
+[ext_resource type="PackedScene" uid="uid://c8mct8qyopwdd" path="res://gui/health_meter_widget.tscn" id="4_2nosh"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_jj3p0"]
 
@@ -23,6 +24,16 @@ layout_mode = 0
 offset_right = 640.0
 offset_bottom = 360.0
 texture = SubResource("CanvasTexture_jj3p0")
+
+[node name="HealthMeterWidget" parent="." instance=ExtResource("4_2nosh")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_top = 3.0
+offset_bottom = 3.0
+grow_vertical = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
