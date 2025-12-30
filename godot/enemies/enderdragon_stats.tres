@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://c5erghmh2xj58"]
+
+[ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_yey48"]
+
+[resource]
+script = ExtResource("1_yey48")
+max_hit_points = 20
+damage = 3
+arithmetic = Array[int]([0, 1, 2, 3, 4, 5])
+time_limit = 10
+metadata/_custom_type_script = "uid://b0c3oqfgm2626"
