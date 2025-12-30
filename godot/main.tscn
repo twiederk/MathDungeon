@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://b53sfmxk4rjq2"]
+[gd_scene load_steps=18 format=4 uid="uid://b53sfmxk4rjq2"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="1_ig7tw"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://drpmo3xnxwl3i" path="res://enemies/zombie_baby.tscn" id="12_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://txgje162j88t" path="res://enemies/creeper.tscn" id="13_w48qg"]
 [ext_resource type="PackedScene" uid="uid://c8mct8qyopwdd" path="res://gui/health_meter_widget.tscn" id="15_vivmo"]
+[ext_resource type="PackedScene" uid="uid://wjx4klpp85sw" path="res://items/sword_stone.tscn" id="16_2cqfq"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1bvp3")
@@ -29,14 +30,17 @@ position = Vector2(-110, 465)
 
 [node name="Items" type="Node2D" parent="."]
 
-[node name="Sword" parent="Items" instance=ExtResource("10_4c57u")]
-position = Vector2(593, 305)
-
 [node name="HealingPotion" parent="Items" instance=ExtResource("5_dg77c")]
 position = Vector2(140, 729)
 
 [node name="Helmet" parent="Items" instance=ExtResource("6_2cqfq")]
 position = Vector2(144, 98)
+
+[node name="StoneSword" parent="Items" instance=ExtResource("16_2cqfq")]
+position = Vector2(591, 305)
+
+[node name="IronSword" parent="Items" instance=ExtResource("10_4c57u")]
+position = Vector2(752, 1023)
 
 [node name="Enemies" type="Node2D" parent="."]
 

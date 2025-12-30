@@ -34,5 +34,5 @@ func reset() -> void:
 
 
 func hurt(damage: int) -> int:
-	hit_points -= min(1, damage - armor)
+	hit_points -= max(1, damage - armor)
 	return hit_points

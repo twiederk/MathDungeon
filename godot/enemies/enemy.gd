@@ -27,5 +27,5 @@ func has_time_limit() -> bool:
 
 
 func hurt(damage: int) -> int:
-	hit_points -= min(1, damage - stats.armor)
+	hit_points -= max(1, damage - stats.armor)
 	return hit_points
