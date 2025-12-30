@@ -4,7 +4,7 @@ extends Control
 @onready var question_label: Label = $CenterContainer/VBoxContainer/QuestionLabel
 @onready var answer_line_edit: LineEdit = $CenterContainer/VBoxContainer/AnswerLineEdit
 @onready var start_gui_button: Button = $CenterContainer/VBoxContainer/StartGuiButton
-@onready var timelimit_progress_bar: ProgressBar = $CenterContainer/VBoxContainer/TimelimitProgressBar
+@onready var time_limit_progress_bar: ProgressBar = $CenterContainer/VBoxContainer/TimelimitProgressBar
 @onready var answer_timer = $AnswerTimer
 @onready var progress_timer = $ProgressTimer
 
@@ -15,29 +15,34 @@ var exercise: Exercise
 
 func open_for(my_enemy: Enemy) -> void:
 	enemy = my_enemy
-
-	exercise = _create_exercise()
-	question_label.text = exercise.question
-	answer_line_edit.text = ""
+	_setup_exercise()
+	_setup_time_limit_progress_bar()
+	_setup_enemy_health_meter_widget()
 	visible = true
-
-	_setup_progress_bar()
-
 	answer_line_edit.grab_focus()
 	get_tree().paused = true
 
+func _setup_exercise() -> void:
+	exercise = _create_exercise()
+	question_label.text = exercise.question
+	answer_line_edit.text = ""
 
-func _setup_progress_bar() -> void:
+
+func _setup_time_limit_progress_bar() -> void:
 	if enemy.has_time_limit():
-		timelimit_progress_bar.visible = true
+		time_limit_progress_bar.visible = true
 		_start_timers()
 	else:
-		timelimit_progress_bar.visible = false
+		time_limit_progress_bar.visible = false
+
+
+func _setup_enemy_health_meter_widget() -> void:
+	pass
 
 
 func _start_timers() -> void:
-	timelimit_progress_bar.value = 0
-	timelimit_progress_bar.max_value = enemy.stats.time_limit
+	time_limit_progress_bar.value = 0
+	time_limit_progress_bar.max_value = enemy.stats.time_limit
 	answer_timer.wait_time = enemy.stats.time_limit
 	answer_timer.start()
 	progress_timer.start()
@@ -120,14 +125,14 @@ func _close_dialog() -> void:
 
 
 func _on_answer_timer_timeout() -> void:
-	timelimit_progress_bar.value = enemy.stats.time_limit
+	time_limit_progress_bar.value = enemy.stats.time_limit
 	progress_timer.stop()
 	_answer_timeout()
 
 
 func _on_progress_timer_timeout() -> void:
 	var elapsed_time = answer_timer.wait_time - answer_timer.time_left
-	timelimit_progress_bar.value = elapsed_time
+	time_limit_progress_bar.value = elapsed_time
 
 
 func _answer_timeout() -> void:
