@@ -86,7 +86,7 @@ func _check_answer(answer: String) -> void:
 
 
 func _answer_correct() -> void:
-	enemy.hit_points -= PlayerStats.damage
+	enemy.hit_points -= PlayerStats.weapon_damage
 	if enemy.hit_points > 0:
 		exercise = _create_exercise()
 		question_label.text = "Richtig!!!\n" + exercise.question
@@ -141,8 +141,8 @@ func _on_progress_timer_timeout() -> void:
 
 
 func _answer_timeout() -> void:
-	PlayerStats.hit_points -= enemy.stats.damage
-	if PlayerStats.hit_points > 0:
+	var player_hit_points = PlayerStats.hurt(enemy.stats.damage)
+	if player_hit_points > 0:
 		exercise = _create_exercise()
 		question_label.text = "*** Zeitlimit überschritten ***\n" + exercise.question
 		answer_line_edit.text = ""

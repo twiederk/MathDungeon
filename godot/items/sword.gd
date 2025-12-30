@@ -3,4 +3,4 @@ extends Item
 
 
 func execute() -> void:
-	PlayerStats.damage = 2
+	PlayerStats.weapon_damage = 2

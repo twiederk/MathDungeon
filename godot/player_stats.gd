@@ -4,9 +4,9 @@ extends Node
 signal health_changed
 
 
-var damage: int = 1:
+var weapon_damage: int = 1:
 	set(value):
-		damage = value
+		weapon_damage = value
 		SaveManager.save_game()
 
 
@@ -24,7 +24,7 @@ var armor: int = 0
 
 func reset() -> void:
 	hit_points = 5
-	damage = 1
+	weapon_damage = 1
 	armor = 0
 
 
