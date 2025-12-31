@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dft8xs3neo5gg"]
+[gd_scene load_steps=3 format=3 uid="uid://dft8xs3neo5gg"]
 
 [ext_resource type="Script" uid="uid://by1hpt8eola6g" path="res://gui/start_menu.gd" id="1_jwbto"]
+[ext_resource type="Texture2D" uid="uid://dw55tpmimogdu" path="res://title_image.png" id="2_t8pa5"]
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
@@ -10,6 +11,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jwbto")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1.0
+offset_bottom = 1.0
+texture = ExtResource("2_t8pa5")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -25,6 +32,7 @@ layout_mode = 2
 [node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Mathe Dungeon"
+horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2

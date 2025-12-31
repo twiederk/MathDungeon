@@ -92,7 +92,7 @@ position = Vector2(322, 887)
 position = Vector2(536, 972)
 
 [node name="Drown3" parent="Enemies" instance=ExtResource("8_efxa6")]
-position = Vector2(561, 1040)
+position = Vector2(566, 1171)
 
 [node name="Skeleton3" parent="Enemies" instance=ExtResource("10_efxa6")]
 position = Vector2(717, 1158)
