@@ -7,6 +7,6 @@ script = ExtResource("1_3jesd")
 name = "Enderman"
 max_hit_points = 10
 damage = 2
-arithmetic = Array[int]([0, 1, 2, 3, 4])
+arithmetic = Array[int]([0, 1, 2, 3])
 time_limit = 15
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"
