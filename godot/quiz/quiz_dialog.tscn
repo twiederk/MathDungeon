@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://laictl43pv1e" path="res://quiz/quiz_dialog_theme.tres" id="1_jj3p0"]
 [ext_resource type="Script" uid="uid://b5fwm3c5mv241" path="res://quiz/quiz_dialog.gd" id="1_pp5ga"]
-[ext_resource type="PackedScene" uid="uid://c8mct8qyopwdd" path="res://gui/health_meter_widget.tscn" id="4_2nosh"]
+[ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="4_2nosh"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_jj3p0"]
 
@@ -25,7 +25,7 @@ offset_right = 640.0
 offset_bottom = 360.0
 texture = SubResource("CanvasTexture_jj3p0")
 
-[node name="HealthMeterWidget" parent="." instance=ExtResource("4_2nosh")]
+[node name="EnemyStatsSheet" parent="." instance=ExtResource("4_2nosh")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

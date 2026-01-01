@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://do1ilgr01pqpc" path="res://enemies/skeleton.tscn" id="10_efxa6"]
 [ext_resource type="PackedScene" uid="uid://drpmo3xnxwl3i" path="res://enemies/zombie_baby.tscn" id="12_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://txgje162j88t" path="res://enemies/creeper.tscn" id="13_w48qg"]
-[ext_resource type="PackedScene" uid="uid://c8mct8qyopwdd" path="res://gui/health_meter_widget.tscn" id="15_vivmo"]
+[ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="15_vivmo"]
 [ext_resource type="PackedScene" uid="uid://wjx4klpp85sw" path="res://items/sword_stone.tscn" id="16_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://d0we0mbuvkkcc" path="res://enemies/enderdragon.tscn" id="16_074og"]
 
@@ -140,7 +140,7 @@ position = Vector2(1070, 446)
 
 [node name="QuizDialog" parent="UI" instance=ExtResource("4_1bvp3")]
 
-[node name="HealthMeterWidget" parent="UI" instance=ExtResource("15_vivmo")]
+[node name="PlayerStatsSheet" parent="UI" instance=ExtResource("15_vivmo")]
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0

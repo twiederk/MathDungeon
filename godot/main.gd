@@ -4,7 +4,7 @@ extends Node2D
 @onready var enemies_root: Node = $Enemies
 @onready var items_root: Node = $Items
 @onready var quiz: Control = $UI/QuizDialog
-@onready var health_meter_widget: HealthMeterWidget = $UI/HealthMeterWidget
+@onready var player_stats_sheet: StatsSheet = $UI/PlayerStatsSheet
 
 
 func _init() ->  void:
@@ -20,9 +20,10 @@ func _ready() -> void:
 		if child.has_signal("item_picked_up"):
 			child.item_picked_up.connect(_on_item_picked_up)
 			
-	PlayerStats.health_changed.connect(_on_player_health_changed)
-	health_meter_widget.update_health_ui(PlayerStats.hit_points)
-	health_meter_widget.update_max_health_ui(PlayerStats.hit_points)
+	PlayerStats.health_changed.connect(_on_player_stats_changed)
+	PlayerStats.weapon_damage_changed.connect(_on_player_stats_changed)
+	PlayerStats.armor_changed.connect(_on_player_stats_changed)
+	player_stats_sheet.update_player_stats()
 
 
 func _on_enemy_encountered(enemy: Area2D) -> void:
@@ -34,5 +35,5 @@ func _on_item_picked_up(item: Item) -> void:
 	item.queue_free()
 
 
-func _on_player_health_changed() -> void:
-	health_meter_widget.update_health_ui(PlayerStats.hit_points)
+func _on_player_stats_changed() -> void:
+	player_stats_sheet.update_player_stats()
