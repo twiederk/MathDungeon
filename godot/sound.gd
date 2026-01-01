@@ -1,6 +1,7 @@
 extends Node
 
 @export var pickup_potion : AudioStream
+@export var dog_bark: AudioStream
 
 @onready var audio_stream_player = $AudioStreamPlayer
 
