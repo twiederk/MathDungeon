@@ -12,6 +12,7 @@ script = ExtResource("1_stats")
 layout_mode = 1
 
 [node name="HealthMeterWidget" parent="VBoxContainer" instance=ExtResource("2_health")]
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 
 [node name="DamageLabel" type="Label" parent="VBoxContainer"]
