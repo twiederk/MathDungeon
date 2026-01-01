@@ -1,8 +1,6 @@
 class_name QuizDialog
 extends Control
 
-const StatsSheet = preload("res://gui/stats_sheet.gd")
-
 @onready var enemy_stats_sheet: StatsSheet = $EnemyStatsSheet
 @onready var question_label: Label = $CenterContainer/VBoxContainer/QuestionLabel
 @onready var answer_line_edit: LineEdit = $CenterContainer/VBoxContainer/AnswerLineEdit
