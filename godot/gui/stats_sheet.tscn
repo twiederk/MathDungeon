@@ -25,10 +25,8 @@ layout_mode = 2
 
 [node name="DamageLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Damage: 1"
-horizontal_alignment = 1
+text = "Schaden: 1"
 
 [node name="ArmorLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Armor: 0"
-horizontal_alignment = 1
+text = "Rüstung: 0"
