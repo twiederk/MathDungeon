@@ -4,6 +4,7 @@ extends Node2D
 @onready var enemies_root: Node = $Enemies
 @onready var items_root: Node = $Items
 @onready var companions_root = $Companions
+@onready var player: Player = $Player
 
 @onready var quiz: Control = $UI/QuizDialog
 @onready var player_stats_sheet: StatsSheet = $UI/PlayerStatsSheet
@@ -43,7 +44,8 @@ func _on_item_picked_up(item: Item) -> void:
 
 func _on_companion_picked_up(companion: Companion) -> void:
 	companion.execute()
-	companion.queue_free()
+	if player:
+		companion.start_following(player)
 
 
 func _on_player_stats_changed() -> void:
