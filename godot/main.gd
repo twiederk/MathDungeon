@@ -33,7 +33,7 @@ func _ready() -> void:
 	player_stats_sheet.update_stats(PlayerStats.hit_points, PlayerStats.max_hit_points, PlayerStats.weapon_damage, PlayerStats.armor)
 
 
-func _on_enemy_encountered(enemy: Area2D) -> void:
+func _on_enemy_encountered(enemy: StaticBody2D) -> void:
 	quiz.open_for(enemy)
 
 
