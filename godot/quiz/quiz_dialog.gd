@@ -40,7 +40,7 @@ func _setup_time_limit_progress_bar() -> void:
 
 func _setup_enemy_stats_sheet() -> void:
 	enemy.health_changed.connect(_on_enemy_health_changed)
-	enemy_stats_sheet.update_stats(enemy.hit_points, enemy.stats.damage, enemy.stats.armor)
+	enemy_stats_sheet.update_stats(enemy.hit_points, enemy.stats.max_hit_points, enemy.stats.damage, enemy.stats.armor)
 
 
 

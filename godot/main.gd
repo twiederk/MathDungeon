@@ -23,7 +23,7 @@ func _ready() -> void:
 	PlayerStats.health_changed.connect(_on_player_stats_changed)
 	PlayerStats.weapon_damage_changed.connect(_on_player_stats_changed)
 	PlayerStats.armor_changed.connect(_on_player_stats_changed)
-	player_stats_sheet.update_stats(PlayerStats.hit_points, PlayerStats.weapon_damage, PlayerStats.armor)
+	player_stats_sheet.update_stats(PlayerStats.hit_points, PlayerStats.max_hit_points, PlayerStats.weapon_damage, PlayerStats.armor)
 
 
 func _on_enemy_encountered(enemy: Area2D) -> void:
@@ -36,4 +36,4 @@ func _on_item_picked_up(item: Item) -> void:
 
 
 func _on_player_stats_changed() -> void:
-	player_stats_sheet.update_stats(PlayerStats.hit_points, PlayerStats.weapon_damage, PlayerStats.armor)
+	player_stats_sheet.update_stats(PlayerStats.hit_points, PlayerStats.max_hit_points, PlayerStats.weapon_damage, PlayerStats.armor)
