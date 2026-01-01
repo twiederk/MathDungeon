@@ -10,13 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://cecyxjivevnmn" path="res://items/helmet_iron.tscn" id="6_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://c6luw4aoh1qpi" path="res://enemies/enderman.tscn" id="6_kek77"]
 [ext_resource type="PackedScene" uid="uid://t4t4xwnjo6vs" path="res://enemies/spider.tscn" id="7_4c57u"]
-[ext_resource type="PackedScene" uid="uid://b008xnsl4xtfq" path="res://items/wolf.tscn" id="8_cegan"]
+[ext_resource type="PackedScene" uid="uid://b008xnsl4xtfq" path="res://companions/wolf.tscn" id="8_cegan"]
 [ext_resource type="PackedScene" uid="uid://8xckg1kvi70g" path="res://enemies/drown.tscn" id="8_efxa6"]
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://do1ilgr01pqpc" path="res://enemies/skeleton.tscn" id="10_efxa6"]
 [ext_resource type="PackedScene" uid="uid://drpmo3xnxwl3i" path="res://enemies/zombie_baby.tscn" id="12_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://txgje162j88t" path="res://enemies/creeper.tscn" id="13_w48qg"]
-[ext_resource type="PackedScene" uid="uid://c8mct8qyopwdd" path="res://gui/health_meter_widget.tscn" id="15_vivmo"]
+[ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="15_vivmo"]
 [ext_resource type="PackedScene" uid="uid://wjx4klpp85sw" path="res://items/sword_stone.tscn" id="16_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://d0we0mbuvkkcc" path="res://enemies/enderdragon.tscn" id="16_074og"]
 
@@ -44,10 +44,12 @@ position = Vector2(591, 305)
 [node name="IronSword" parent="Items" instance=ExtResource("10_4c57u")]
 position = Vector2(751, 1159)
 
-[node name="Wolf" parent="Items" instance=ExtResource("8_cegan")]
+[node name="Companions" type="Node2D" parent="."]
+
+[node name="Wolf" parent="Companions" instance=ExtResource("8_cegan")]
 position = Vector2(371, 1133)
 
-[node name="Wolf2" parent="Items" instance=ExtResource("8_cegan")]
+[node name="Wolf2" parent="Companions" instance=ExtResource("8_cegan")]
 position = Vector2(177, 1335)
 
 [node name="Enemies" type="Node2D" parent="."]
@@ -140,13 +142,8 @@ position = Vector2(1070, 446)
 
 [node name="QuizDialog" parent="UI" instance=ExtResource("4_1bvp3")]
 
-[node name="HealthMeterWidget" parent="UI" instance=ExtResource("15_vivmo")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="PlayerStatsSheet" parent="UI" instance=ExtResource("15_vivmo")]
 offset_left = 3.0
 offset_top = 3.0
 offset_right = 3.0
 offset_bottom = 3.0
-grow_horizontal = 1
-grow_vertical = 1

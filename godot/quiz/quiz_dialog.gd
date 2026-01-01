@@ -1,7 +1,7 @@
 class_name QuizDialog
 extends Control
 
-@onready var health_meter_widget: HealthMeterWidget = $HealthMeterWidget
+@onready var enemy_stats_sheet: StatsSheet = $EnemyStatsSheet
 @onready var question_label: Label = $CenterContainer/VBoxContainer/QuestionLabel
 @onready var answer_line_edit: LineEdit = $CenterContainer/VBoxContainer/AnswerLineEdit
 @onready var start_gui_button: Button = $CenterContainer/VBoxContainer/StartGuiButton
@@ -18,7 +18,7 @@ func open_for(my_enemy: Enemy) -> void:
 	enemy = my_enemy
 	_setup_exercise()
 	_setup_time_limit_progress_bar()
-	_setup_enemy_health_meter_widget()
+	_setup_enemy_stats_sheet()
 	visible = true
 	answer_line_edit.grab_focus()
 	get_tree().paused = true
@@ -38,10 +38,9 @@ func _setup_time_limit_progress_bar() -> void:
 		time_limit_progress_bar.visible = false
 
 
-func _setup_enemy_health_meter_widget() -> void:
+func _setup_enemy_stats_sheet() -> void:
 	enemy.health_changed.connect(_on_enemy_health_changed)
-	health_meter_widget.update_health_ui(enemy.hit_points)
-	health_meter_widget.update_max_health_ui(enemy.hit_points)
+	enemy_stats_sheet.update_stats(enemy.hit_points, enemy.stats.max_hit_points, enemy.stats.damage, enemy.stats.armor)
 
 
 
@@ -158,4 +157,4 @@ func _on_main_menu_button_pressed() -> void:
 
 
 func _on_enemy_health_changed() -> void:
-	health_meter_widget.update_health_ui(enemy.hit_points)
+	enemy_stats_sheet.update_health_only(enemy.hit_points)
