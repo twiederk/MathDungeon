@@ -3,7 +3,6 @@ extends Area2D
 
 signal companion_picked_up(companion: Companion)
 
-# Following behavior properties
 @export var follow_speed: float = 150.0
 @export var follow_distance: float = 80.0
 @export var min_follow_distance: float = 40.0
@@ -28,10 +27,6 @@ func execute() -> void:
 func start_following(player: Player) -> void:
 	is_following = true
 	player_reference = player
-	# Disable collision detection while following
-	monitoring = false
-	# Optional: Change collision layer to avoid conflicts
-	collision_layer = 0
 
 
 func _follow_player(delta: float) -> void:
