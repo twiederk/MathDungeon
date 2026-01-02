@@ -47,7 +47,7 @@ text = "Spiel fortsetzen"
 
 [node name="StartGuiButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "Zum Hauptmenü"
+text = "Hauptmenü"
 
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
