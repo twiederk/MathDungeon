@@ -6,3 +6,4 @@ extends Item
 
 func execute() -> void:
 	PlayerStats.weapon_damage = damage
+	Sound.play(Sound.pickup_sword)
