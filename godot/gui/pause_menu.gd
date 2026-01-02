@@ -1,44 +1,23 @@
 class_name PauseMenu
 extends Control
 
-@onready var resume_button = $CenterContainer/VBoxContainer/ResumeButton
-@onready var quiz: Control = get_node("../QuizDialog")
+signal menu_closed()
 
-var is_paused = false
+@onready var resume_button = $CenterContainer/VBoxContainer/ResumeButton
+@onready var quiz: Control = get_node("/root/Main/QuizDialog")
 
 
 func _ready():
+	pass
+
+
+func show_menu():
+	show()
 	resume_button.grab_focus()
 
 
-func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		toggle_pause_menu()
-
-
-func toggle_pause_menu():
-	if quiz.visible:
-		return
-		
-	is_paused = !is_paused
-	if is_paused:
-		show_pause_menu()
-	else:
-		hide_pause_menu()
-
-
-func show_pause_menu():
-	visible = true
-	get_tree().paused = true
-
-
-func hide_pause_menu():
-	visible = false
-	get_tree().paused = false
-
-
 func _on_resume_button_pressed():
-	toggle_pause_menu()
+	menu_closed.emit()
 
 
 func _on_start_gui_button_pressed():

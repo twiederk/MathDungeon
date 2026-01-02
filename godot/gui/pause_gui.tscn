@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://blvui88dhp2s6"]
+
+[ext_resource type="PackedScene" uid="uid://bpw8xs4neo6hh" path="res://gui/pause_menu.tscn" id="1_anksb"]
+[ext_resource type="Script" uid="uid://c6iej6nrokhch" path="res://gui/pause_gui.gd" id="1_pc3t6"]
+
+[node name="PauseGui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pc3t6")
+
+[node name="PauseMenu" parent="." instance=ExtResource("1_anksb")]
+layout_mode = 1
+
+[connection signal="menu_closed" from="PauseMenu" to="." method="_on_menu_closed"]
