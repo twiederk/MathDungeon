@@ -7,6 +7,7 @@ signal armor_changed
 
 
 var max_hit_points: int = 5
+var companion_damages: Array[int] = []
 
 
 var hit_points: int = 5:
@@ -35,6 +36,19 @@ func reset() -> void:
 	hit_points = 5
 	weapon_damage = 1
 	armor = 0
+	companion_damages.clear()
+
+
+func add_companion_damage(damage: int) -> void:
+	companion_damages.append(damage)
+	weapon_damage_changed.emit()
+
+
+func get_total_damage() -> int:
+	var total = weapon_damage
+	for companion_damage in companion_damages:
+		total += companion_damage
+	return total
 
 
 func hurt(damage: int) -> int:

@@ -1,12 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://camg1re80chgu"]
+[gd_scene load_steps=7 format=3 uid="uid://camg1re80chgu"]
 
 [ext_resource type="Script" uid="uid://cedsdssd23q37" path="res://sound.gd" id="1_7ywqe"]
 [ext_resource type="AudioStream" uid="uid://b7gl80xgk3jb" path="res://items/PotionPickUp.ogg" id="2_tdv2v"]
+[ext_resource type="AudioStream" uid="uid://bx0kvguph45ea" path="res://items/SwordPickUp.ogg" id="3_njgaf"]
 [ext_resource type="AudioStream" uid="uid://ctmyjwpkfckh4" path="res://companions/WolfPickUp.mp3" id="3_tdv2v"]
+[ext_resource type="AudioStream" uid="uid://vknem54cidfh" path="res://items/HelmetPickUp.ogg" id="4_glhti"]
+[ext_resource type="AudioStream" uid="uid://tlwviidcb8v0" path="res://enemies/victory.mp3" id="4_victory"]
 
 [node name="Sound" type="Node"]
 script = ExtResource("1_7ywqe")
 pickup_potion = ExtResource("2_tdv2v")
+pickup_sword = ExtResource("3_njgaf")
+pickup_helmet = ExtResource("4_glhti")
 dog_bark = ExtResource("3_tdv2v")
+victory = ExtResource("4_victory")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

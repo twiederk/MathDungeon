@@ -1,6 +1,10 @@
 class_name Helmet
 extends Item
 
+@export var armor: int
+
 
 func execute() -> void:
-	PlayerStats.armor = 1
+	if armor > PlayerStats.armor:
+		PlayerStats.armor = armor	
+	Sound.play(Sound.pickup_helmet)

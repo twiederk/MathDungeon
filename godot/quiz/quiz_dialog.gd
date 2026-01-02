@@ -85,7 +85,7 @@ func _check_answer(answer: String) -> void:
 
 
 func _answer_correct() -> void:
-	var enemy_hit_points = enemy.hurt(PlayerStats.weapon_damage)
+	var enemy_hit_points = enemy.hurt(PlayerStats.get_total_damage())
 	if enemy_hit_points > 0:
 		exercise = _create_exercise()
 		question_label.text = "Richtig!!!\n" + exercise.question
@@ -96,6 +96,8 @@ func _answer_correct() -> void:
 		if enemy.has_time_limit():
 			answer_timer.stop()
 			progress_timer.stop()
+		if enemy.stats.name == "Enderman":
+			Sound.play(Sound.victory)
 		enemy.queue_free()
 		_close_dialog()
 
