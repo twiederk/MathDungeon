@@ -9,5 +9,5 @@ var damage_applied: bool = false
 func execute() -> void:
 	if not damage_applied:
 		Sound.play(Sound.dog_bark)
-		PlayerStats.weapon_damage += damage
+		PlayerStats.add_companion_damage(damage)
 		damage_applied = true
