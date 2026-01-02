@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://b53sfmxk4rjq2"]
+[gd_scene load_steps=23 format=4 uid="uid://b53sfmxk4rjq2"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="1_ig7tw"]
@@ -10,8 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://cecyxjivevnmn" path="res://items/helmet_iron.tscn" id="6_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://c6luw4aoh1qpi" path="res://enemies/enderman.tscn" id="6_kek77"]
 [ext_resource type="PackedScene" uid="uid://t4t4xwnjo6vs" path="res://enemies/spider.tscn" id="7_4c57u"]
+[ext_resource type="PackedScene" uid="uid://byl4j4ap7dkhk" path="res://items/helmet_wood.tscn" id="7_ryguw"]
 [ext_resource type="PackedScene" uid="uid://b008xnsl4xtfq" path="res://companions/wolf.tscn" id="8_cegan"]
 [ext_resource type="PackedScene" uid="uid://8xckg1kvi70g" path="res://enemies/drown.tscn" id="8_efxa6"]
+[ext_resource type="PackedScene" uid="uid://dq5hvtr5p280m" path="res://items/helmet_stone.tscn" id="9_d13ii"]
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://do1ilgr01pqpc" path="res://enemies/skeleton.tscn" id="10_efxa6"]
 [ext_resource type="PackedScene" uid="uid://drpmo3xnxwl3i" path="res://enemies/zombie_baby.tscn" id="12_ycdy4"]
@@ -20,7 +22,6 @@
 [ext_resource type="PackedScene" uid="uid://wjx4klpp85sw" path="res://items/sword_stone.tscn" id="16_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://d0we0mbuvkkcc" path="res://enemies/enderdragon.tscn" id="16_074og"]
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="20_getpj"]
-[ext_resource type="Script" uid="uid://c6iej6nrokhch" path="res://gui/pause_gui.gd" id="21_ryguw"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1bvp3")
@@ -37,14 +38,20 @@ position = Vector2(-81, 685)
 [node name="HealingPotion" parent="Items" instance=ExtResource("5_dg77c")]
 position = Vector2(139, 865)
 
-[node name="Helmet" parent="Items" instance=ExtResource("6_2cqfq")]
-position = Vector2(144, 98)
-
 [node name="StoneSword" parent="Items" instance=ExtResource("16_2cqfq")]
 position = Vector2(591, 305)
 
 [node name="IronSword" parent="Items" instance=ExtResource("10_4c57u")]
 position = Vector2(782, 1198)
+
+[node name="WoodHelmet" parent="Items" instance=ExtResource("7_ryguw")]
+position = Vector2(146, 101)
+
+[node name="IronHelmet" parent="Items" instance=ExtResource("6_2cqfq")]
+position = Vector2(1120, 466)
+
+[node name="StoneHelmet" parent="Items" instance=ExtResource("9_d13ii")]
+position = Vector2(695, 1137)
 
 [node name="Companions" type="Node2D" parent="."]
 
@@ -129,7 +136,7 @@ position = Vector2(1439, 352)
 position = Vector2(1263, 355)
 
 [node name="Enderman" parent="Enemies" instance=ExtResource("6_kek77")]
-position = Vector2(1060, 341)
+position = Vector2(1170, 447)
 
 [node name="Zombie2" parent="Enemies" instance=ExtResource("2_0xm2m")]
 position = Vector2(989, 670)
@@ -138,7 +145,7 @@ position = Vector2(989, 670)
 position = Vector2(1489, 658)
 
 [node name="Enderdragon" parent="Enemies" instance=ExtResource("16_074og")]
-position = Vector2(1070, 446)
+position = Vector2(1161, 488)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -152,4 +159,3 @@ offset_bottom = 3.0
 
 [node name="PauseGui" parent="UI" instance=ExtResource("20_getpj")]
 process_mode = 3
-script = ExtResource("21_ryguw")

@@ -6,9 +6,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e4ynd"]
 size = Vector2(20, 18)
 
-[node name="Helmet" type="Area2D"]
+[node name="IronHelmet" type="Area2D"]
 collision_layer = 2
 script = ExtResource("1_rq4g6")
+armor = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_g31u4")
