@@ -4,7 +4,6 @@ extends Control
 signal menu_closed()
 
 @onready var resume_button = $CenterContainer/VBoxContainer/ResumeButton
-@onready var quiz: Control = get_node("/root/Main/QuizDialog")
 
 
 func _ready():
