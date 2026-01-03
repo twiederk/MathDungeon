@@ -20,6 +20,7 @@ func _ready() -> void:
 	_setup_signals()
 	_setup_limits_and_borders()
 	_setup_character_stats()
+	_setup_companions()	
 
 
 func _setup_signals() -> void:
@@ -72,3 +73,21 @@ func _on_companion_picked_up(companion: Companion) -> void:
 
 func _on_player_stats_changed() -> void:
 	player_stats_sheet.update_stats(PlayerStats.hit_points, PlayerStats.max_hit_points, PlayerStats.get_total_damage(), PlayerStats.armor)
+
+
+func _setup_companions() -> void:
+	for i in range(PlayerStats.active_companion_paths.size()):
+		var companion_path = PlayerStats.active_companion_paths[i]
+		var companion = get_node_or_null(companion_path)
+		
+		if companion and companion.has_method("start_following"):
+			# Position companion next to player
+			var offset = Vector2(60.0 + (i * 40.0), 0.0)  # Spread companions horizontally
+			companion.global_position = player.global_position + offset
+			
+			# Make companion follow player
+			companion.start_following(player)
+			
+			# Mark as already applied damage to prevent double application
+			if companion.has_method("set_damage_applied"):
+				companion.set_damage_applied()
