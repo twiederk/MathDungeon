@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://b53sfmxk4rjq2"]
+[gd_scene load_steps=24 format=4 uid="uid://b53sfmxk4rjq2"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="1_ig7tw"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="15_vivmo"]
 [ext_resource type="PackedScene" uid="uid://wjx4klpp85sw" path="res://items/sword_stone.tscn" id="16_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://d0we0mbuvkkcc" path="res://enemies/enderdragon.tscn" id="16_074og"]
+[ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://map_borders.tscn" id="20_d13ii"]
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="20_getpj"]
 
 [node name="Main" type="Node2D"]
@@ -176,6 +177,8 @@ position = Vector2(1723, 1003)
 
 [node name="ZombieBaby4" parent="Enemies" instance=ExtResource("12_ycdy4")]
 position = Vector2(1377, 1069)
+
+[node name="MapBorders" parent="." instance=ExtResource("20_d13ii")]
 
 [node name="UI" type="CanvasLayer" parent="."]
 

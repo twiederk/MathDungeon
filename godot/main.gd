@@ -5,6 +5,7 @@ extends Node2D
 @onready var items_root: Node = $Items
 @onready var companions_root = $Companions
 @onready var player: Player = $Player
+@onready var map_borders = $MapBorders
 
 @onready var quiz: Control = $UI/QuizDialog
 @onready var player_stats_sheet: StatsSheet = $UI/PlayerStatsSheet
@@ -26,6 +27,8 @@ func _ready() -> void:
 	for child in companions_root.get_children():
 		if child.has_signal("companion_picked_up"):
 			child.companion_picked_up.connect(_on_companion_picked_up)
+			
+	map_borders.configure_borders()
 
 	PlayerStats.health_changed.connect(_on_player_stats_changed)
 	PlayerStats.weapon_damage_changed.connect(_on_player_stats_changed)
