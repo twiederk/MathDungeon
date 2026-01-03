@@ -14,8 +14,7 @@ func save_game():
 			"armor": PlayerStats.armor,
 		},
 		"companions" = {
-			"paths": PlayerStats.active_companion_paths,
-			"damages": PlayerStats.companion_damages
+			"paths": PlayerStats.active_companion_paths
 		}
 	}	
 	var save_file = FileAccess.open(save_path, FileAccess.WRITE)
@@ -35,10 +34,8 @@ func load_game():
 	PlayerStats.hit_points = data["player"]["hit_points"]
 	PlayerStats.armor = data["player"]["armor"]
 	PlayerStats.active_companion_paths.clear()
-	PlayerStats.companion_damages.clear()	
-	for path in data["companions"]["paths"]:
-		PlayerStats.active_companion_paths.append(path)
-	for damage in data["companions"]["damages"]:
-		PlayerStats.companion_damages.append(int(damage))
+	if data.has("companions") and data["companions"].has("paths"):
+		for path in data["companions"]["paths"]:
+			PlayerStats.active_companion_paths.append(path)
 	
 	load_file.close()

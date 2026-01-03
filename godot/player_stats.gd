@@ -7,7 +7,6 @@ signal armor_changed
 
 
 var max_hit_points: int = 5
-var companion_damages: Array[int] = []
 var active_companion_paths: Array[String] = []
 
 
@@ -37,22 +36,22 @@ func reset() -> void:
 	hit_points = 5
 	weapon_damage = 1
 	armor = 0
-	companion_damages.clear()
 	active_companion_paths.clear()
 
 
-func add_companion(companion_path: String, damage: int) -> void:
+func add_companion(companion_path: String) -> void:
 	if companion_path not in active_companion_paths:
 		active_companion_paths.append(companion_path)
-		companion_damages.append(damage)
 		weapon_damage_changed.emit()
 		SaveManager.save_game()
 
 
 func get_total_damage() -> int:
 	var total = weapon_damage
-	for companion_damage in companion_damages:
-		total += companion_damage
+	for companion_path in active_companion_paths:
+		var companion = get_node_or_null(companion_path)
+		if companion and "damage" in companion:
+			total += companion.damage
 	return total
 
 
