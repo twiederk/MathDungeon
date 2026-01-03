@@ -37,6 +37,7 @@ func _ready() -> void:
 	var east_limit = (tile_map_used_rect.position.x + tile_map_used_rect.size.x) * tile_size.x
 	
 	map_borders.configure_borders(north_limit, south_limit, west_limit, east_limit)
+	player.set_camera_limits(north_limit, south_limit, west_limit, east_limit)
 
 	PlayerStats.health_changed.connect(_on_player_stats_changed)
 	PlayerStats.weapon_damage_changed.connect(_on_player_stats_changed)
