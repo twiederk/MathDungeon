@@ -33,9 +33,9 @@ func load_game():
 	PlayerStats.weapon_damage = data["player"]["weapon_damage"]
 	PlayerStats.hit_points = data["player"]["hit_points"]
 	PlayerStats.armor = data["player"]["armor"]
-	PlayerStats.active_companion_paths.clear()
+	PlayerStats.companion_paths.clear()
 	if data.has("companions") and data["companions"].has("paths"):
 		for path in data["companions"]["paths"]:
-			PlayerStats.active_companion_paths.append(path)
+			PlayerStats.companion_paths.append(path)
 	
 	load_file.close()
