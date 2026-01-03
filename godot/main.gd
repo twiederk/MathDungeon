@@ -76,8 +76,8 @@ func _on_player_stats_changed() -> void:
 
 
 func _setup_companions() -> void:
-	for i in range(PlayerStats.active_companion_paths.size()):
-		var companion_path = PlayerStats.active_companion_paths[i]
+	for i in range(PlayerStats.companion_paths.size()):
+		var companion_path = PlayerStats.companion_paths[i]
 		var companion = get_node_or_null(companion_path)
 		
 		if companion and companion.has_method("start_following"):

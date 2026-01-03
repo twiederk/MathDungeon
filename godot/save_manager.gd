@@ -14,7 +14,7 @@ func save_game():
 			"armor": PlayerStats.armor,
 		},
 		"companions" = {
-			"paths": PlayerStats.active_companion_paths
+			"paths": PlayerStats.companion_paths
 		}
 	}	
 	var save_file = FileAccess.open(save_path, FileAccess.WRITE)
