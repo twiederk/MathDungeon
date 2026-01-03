@@ -17,18 +17,8 @@ func _init() ->  void:
 
 
 func _ready() -> void:
-	for child in enemies_root.get_children():
-		if child.has_signal("encountered"):
-			child.encountered.connect(_on_enemy_encountered)
-
-	for child in items_root.get_children():
-		if child.has_signal("item_picked_up"):
-			child.item_picked_up.connect(_on_item_picked_up)
-
-	for child in companions_root.get_children():
-		if child.has_signal("companion_picked_up"):
-			child.companion_picked_up.connect(_on_companion_picked_up)
-			
+	_setup_signals()
+		
 	var tile_map_used_rect = tile_map_layer.get_used_rect()
 	var tile_size = tile_map_layer.tile_set.tile_size
 	var north_limit = tile_map_used_rect.position.y * tile_size.y
@@ -45,6 +35,18 @@ func _ready() -> void:
 	player_stats_sheet.update_stats(PlayerStats.hit_points, PlayerStats.max_hit_points, PlayerStats.get_total_damage(), PlayerStats.armor)
 
 
+func _setup_signals() -> void:
+	for child in enemies_root.get_children():
+		if child.has_signal("encountered"):
+			child.encountered.connect(_on_enemy_encountered)
+
+	for child in items_root.get_children():
+		if child.has_signal("item_picked_up"):
+			child.item_picked_up.connect(_on_item_picked_up)
+
+	for child in companions_root.get_children():
+		if child.has_signal("companion_picked_up"):
+			child.companion_picked_up.connect(_on_companion_picked_up)
 func _on_enemy_encountered(enemy: StaticBody2D) -> void:
 	quiz.open_for(enemy)
 
