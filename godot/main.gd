@@ -81,13 +81,8 @@ func _setup_companions() -> void:
 		var companion = get_node_or_null(companion_path)
 		
 		if companion and companion.has_method("start_following"):
-			# Position companion next to player
-			var offset = Vector2(60.0 + (i * 40.0), 0.0)  # Spread companions horizontally
+			var offset = Vector2(60.0 + (i * 40.0), 0.0)
 			companion.global_position = player.global_position + offset
-			
-			# Make companion follow player
 			companion.start_following(player)
-			
-			# Mark as already applied damage to prevent double application
 			if companion.has_method("set_damage_applied"):
 				companion.set_damage_applied()
