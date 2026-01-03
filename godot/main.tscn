@@ -41,17 +41,20 @@ position = Vector2(139, 865)
 [node name="StoneSword" parent="Items" instance=ExtResource("16_2cqfq")]
 position = Vector2(591, 305)
 
-[node name="IronSword" parent="Items" instance=ExtResource("10_4c57u")]
-position = Vector2(782, 1198)
-
 [node name="WoodHelmet" parent="Items" instance=ExtResource("7_ryguw")]
 position = Vector2(50, 144)
 
 [node name="IronHelmet" parent="Items" instance=ExtResource("6_2cqfq")]
-position = Vector2(1120, 466)
+position = Vector2(1120, 448)
 
 [node name="StoneHelmet" parent="Items" instance=ExtResource("9_d13ii")]
 position = Vector2(1137, 881)
+
+[node name="StoneSword2" parent="Items" instance=ExtResource("16_2cqfq")]
+position = Vector2(782, 1198)
+
+[node name="IronSword" parent="Items" instance=ExtResource("10_4c57u")]
+position = Vector2(1116, 479)
 
 [node name="Companions" type="Node2D" parent="."]
 
@@ -151,7 +154,7 @@ position = Vector2(989, 670)
 position = Vector2(1489, 658)
 
 [node name="Enderdragon" parent="Enemies" instance=ExtResource("16_074og")]
-position = Vector2(1161, 488)
+position = Vector2(1165, 484)
 
 [node name="Enderman3" parent="Enemies" instance=ExtResource("6_kek77")]
 position = Vector2(1137, 912)
