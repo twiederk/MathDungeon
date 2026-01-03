@@ -44,7 +44,7 @@ func _setup_limits_and_borders() -> void:
 	var west_limit = tile_map_used_rect.position.x * tile_size.x
 	var east_limit = (tile_map_used_rect.position.x + tile_map_used_rect.size.x) * tile_size.x
 	
-	map_borders.configure_borders(north_limit, south_limit, west_limit, east_limit)
+	map_borders.set_borders(north_limit, south_limit, west_limit, east_limit)
 	player.set_camera_limits(north_limit, south_limit, west_limit, east_limit)
 
 

@@ -7,7 +7,7 @@ extends Node2D
 @onready var east_border = $EastBorder
 
 
-func configure_borders(north_limit: float, south_limit: float, west_limit: float, east_limit: float) -> void:
+func set_borders(north_limit: float, south_limit: float, west_limit: float, east_limit: float) -> void:
 	north_border.position = Vector2(0, north_limit)
 	west_border.position = Vector2(west_limit, 0)
 	south_border.position = Vector2(0, south_limit)
