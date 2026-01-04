@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=4 uid="uid://cgr3ur2xra4jo"]
+[gd_scene load_steps=12 format=4 uid="uid://cgr3ur2xra4jo"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_gwimr"]
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://world_tiles.tres" id="2_friib"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="3_ylnya"]
 [ext_resource type="PackedScene" uid="uid://8cptf68b7254" path="res://enemies/piglin.tscn" id="5_lci3x"]
 [ext_resource type="PackedScene" uid="uid://b5pvf74jx7ptx" path="res://enemies/piglin_boss.tscn" id="6_xedoa"]
+[ext_resource type="PackedScene" uid="uid://cgmfm657i4r84" path="res://enemies/ghast.tscn" id="7_bkwn1"]
 [ext_resource type="PackedScene" uid="uid://b008xnsl4xtfq" path="res://companions/wolf.tscn" id="10_0p2k4"]
 [ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://map_borders.tscn" id="20_rmetm"]
 [ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz/quiz_dialog.tscn" id="21_pigpc"]
@@ -34,7 +35,25 @@ position = Vector2(81, -58)
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Piglin" parent="Enemies" instance=ExtResource("5_lci3x")]
-position = Vector2(963, 637)
+position = Vector2(964, 640)
+
+[node name="Piglin7" parent="Enemies" instance=ExtResource("5_lci3x")]
+position = Vector2(936, 900)
+
+[node name="Piglin8" parent="Enemies" instance=ExtResource("5_lci3x")]
+position = Vector2(1110, 658)
+
+[node name="Piglin9" parent="Enemies" instance=ExtResource("5_lci3x")]
+position = Vector2(564, 874)
+
+[node name="Piglin10" parent="Enemies" instance=ExtResource("5_lci3x")]
+position = Vector2(651, 821)
+
+[node name="Piglin11" parent="Enemies" instance=ExtResource("5_lci3x")]
+position = Vector2(1005, 837)
+
+[node name="Piglin12" parent="Enemies" instance=ExtResource("5_lci3x")]
+position = Vector2(918, 821)
 
 [node name="Piglin2" parent="Enemies" instance=ExtResource("5_lci3x")]
 position = Vector2(1102, 358)
@@ -53,6 +72,15 @@ position = Vector2(941, 567)
 
 [node name="PiglinBoss" parent="Enemies" instance=ExtResource("6_xedoa")]
 position = Vector2(1190, 681)
+
+[node name="Ghast" parent="Enemies" instance=ExtResource("7_bkwn1")]
+position = Vector2(707, 656)
+
+[node name="Ghast2" parent="Enemies" instance=ExtResource("7_bkwn1")]
+position = Vector2(646, 670)
+
+[node name="Ghast3" parent="Enemies" instance=ExtResource("7_bkwn1")]
+position = Vector2(615, 563)
 
 [node name="MapBorders" parent="." instance=ExtResource("20_rmetm")]
 
