@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_u8ym2")
+name = "Piglin"
 max_hit_points = 8
 armor = 1
 arithmetic = Array[int]([5, 3])
