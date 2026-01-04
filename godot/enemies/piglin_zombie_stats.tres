@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://2s2kbxbq8fyl"]
 
-[ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_ehx5p"]
+[ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_3l6qx"]
 
 [resource]
-script = ExtResource("1_ehx5p")
-name = "Zombie Piglin"
+script = ExtResource("1_3l6qx")
+name = "Piglin Zombie"
 max_hit_points = 7
 arithmetic = Array[int]([5, 3])
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

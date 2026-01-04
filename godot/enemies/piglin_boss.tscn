@@ -1,25 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://6wusnt285r11"]
+[gd_scene load_steps=6 format=3 uid="uid://b5pvf74jx7ptx"]
 
-[ext_resource type="Script" uid="uid://b7x46e8sw1gka" path="res://enemies/enemy.gd" id="1_cly65"]
-[ext_resource type="Resource" uid="uid://2s2kbxbq8fyl" path="res://enemies/zombie_piglin_stats.tres" id="2_e7dri"]
-[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="2_n7tjy"]
+[ext_resource type="Script" uid="uid://b7x46e8sw1gka" path="res://enemies/enemy.gd" id="1_eulpc"]
+[ext_resource type="Resource" uid="uid://dlgmrp6uvxnmo" path="res://enemies/piglin_boss_stats.tres" id="2_eulpc"]
+[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="3_d2djy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m6w5y"]
+radius = 12.0
 height = 26.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(28, 30)
 
-[node name="ZombiePiglin" type="StaticBody2D"]
+[node name="PiglinBoss" type="StaticBody2D"]
 collision_layer = 2
-script = ExtResource("1_cly65")
-stats = ExtResource("2_e7dri")
+script = ExtResource("1_eulpc")
+stats = ExtResource("2_eulpc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_n7tjy")
+texture = ExtResource("3_d2djy")
 hframes = 9
 vframes = 9
-frame = 26
+frame = 25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 0)

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://dootbkhqjjjuj"]
+
+[ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_ro23o"]
+
+[resource]
+script = ExtResource("1_ro23o")
+name = "Ghast"
+max_hit_points = 12
+armor = 1
+arithmetic = Array[int]([0, 1, 2, 3])
+metadata/_custom_type_script = "uid://b0c3oqfgm2626"

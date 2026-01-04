@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgmfm657i4r84"]
+
+[ext_resource type="Script" uid="uid://b7x46e8sw1gka" path="res://enemies/enemy.gd" id="1_y8oc5"]
+[ext_resource type="Resource" uid="uid://dootbkhqjjjuj" path="res://enemies/ghast_stats.tres" id="2_y8oc5"]
+[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="3_ghpfe"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m6w5y"]
+radius = 12.0
+height = 26.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(28, 30)
+
+[node name="Ghast" type="StaticBody2D"]
+collision_layer = 2
+script = ExtResource("1_y8oc5")
+stats = ExtResource("2_y8oc5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_ghpfe")
+hframes = 9
+vframes = 9
+frame = 30
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_m6w5y")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("RectangleShape2D_h2yge")
