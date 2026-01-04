@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://8cptf68b7254"]
+
+[ext_resource type="Script" uid="uid://b7x46e8sw1gka" path="res://enemies/enemy.gd" id="1_e7dri"]
+[ext_resource type="Resource" uid="uid://2s2kbxbq8fyl" path="res://enemies/zombie_piglin_stats.tres" id="2_ouhwj"]
+[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="3_lfxqv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m6w5y"]
+radius = 12.0
+height = 26.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(28, 30)
+
+[node name="Piglin" type="StaticBody2D"]
+collision_layer = 2
+script = ExtResource("1_e7dri")
+stats = ExtResource("2_ouhwj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_lfxqv")
+hframes = 9
+vframes = 9
+frame = 24
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 0)
+shape = SubResource("CapsuleShape2D_m6w5y")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_h2yge")
