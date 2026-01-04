@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://nfte8cjrylof" path="res://enemies/zombie.tscn" id="2_0xm2m"]
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://world_tiles.tres" id="2_lquwl"]
 [ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz/quiz_dialog.tscn" id="4_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://6wusnt285r11" path="res://enemies/zombie_piglin.tscn" id="5_7mycd"]
+[ext_resource type="PackedScene" uid="uid://6wusnt285r11" path="res://enemies/piglin_zombie.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://cinn45uh8snch" path="res://items/healing_potion.tscn" id="5_dg77c"]
 [ext_resource type="PackedScene" uid="uid://cecyxjivevnmn" path="res://items/helmet_iron.tscn" id="6_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://c6luw4aoh1qpi" path="res://enemies/enderman.tscn" id="6_kek77"]

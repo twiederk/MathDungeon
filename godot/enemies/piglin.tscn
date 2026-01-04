@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://8cptf68b7254"]
 
 [ext_resource type="Script" uid="uid://b7x46e8sw1gka" path="res://enemies/enemy.gd" id="1_e7dri"]
-[ext_resource type="Resource" uid="uid://2s2kbxbq8fyl" path="res://enemies/zombie_piglin_stats.tres" id="2_ouhwj"]
+[ext_resource type="Resource" uid="uid://m2ge1bma5cqq" path="res://enemies/piglin_stats.tres" id="2_e7dri"]
 [ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="3_lfxqv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m6w5y"]
@@ -14,7 +14,7 @@ size = Vector2(28, 30)
 [node name="Piglin" type="StaticBody2D"]
 collision_layer = 2
 script = ExtResource("1_e7dri")
-stats = ExtResource("2_ouhwj")
+stats = ExtResource("2_e7dri")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_lfxqv")
