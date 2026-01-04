@@ -6,6 +6,7 @@
 script = ExtResource("1_u8ym2")
 name = "Piglin"
 max_hit_points = 8
+damage = 2
 armor = 1
 arithmetic = Array[int]([5, 3])
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

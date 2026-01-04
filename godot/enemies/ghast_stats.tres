@@ -6,6 +6,6 @@
 script = ExtResource("1_ro23o")
 name = "Ghast"
 max_hit_points = 12
-armor = 1
+damage = 2
 arithmetic = Array[int]([0, 1, 2, 3])
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

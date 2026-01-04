@@ -60,6 +60,7 @@ position = Vector2(1116, 479)
 
 [node name="NetherPortal" parent="Items" instance=ExtResource("10_1u8w0")]
 position = Vector2(928, 1360)
+dungeon_path = "res://nether.tscn"
 
 [node name="Companions" type="Node2D" parent="."]
 
