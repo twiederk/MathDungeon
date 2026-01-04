@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=4 uid="uid://cgr3ur2xra4jo"]
+[gd_scene load_steps=13 format=4 uid="uid://cgr3ur2xra4jo"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_gwimr"]
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://world_tiles.tres" id="2_friib"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="3_ylnya"]
+[ext_resource type="PackedScene" uid="uid://ch27vu5jqwd8g" path="res://items/nether_portal.tscn" id="4_orhj5"]
 [ext_resource type="PackedScene" uid="uid://8cptf68b7254" path="res://enemies/piglin.tscn" id="5_lci3x"]
 [ext_resource type="PackedScene" uid="uid://b5pvf74jx7ptx" path="res://enemies/piglin_boss.tscn" id="6_xedoa"]
 [ext_resource type="PackedScene" uid="uid://cgmfm657i4r84" path="res://enemies/ghast.tscn" id="7_bkwn1"]
@@ -23,6 +24,10 @@ tile_set = ExtResource("2_friib")
 position = Vector2(869, 708)
 
 [node name="Items" type="Node2D" parent="."]
+
+[node name="NetherPortal" parent="Items" instance=ExtResource("4_orhj5")]
+position = Vector2(416, 1136)
+dungeon_path = "res://main.tscn"
 
 [node name="Companions" type="Node2D" parent="."]
 
