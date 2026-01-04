@@ -12,10 +12,6 @@ extends Node2D
 @onready var player_stats_sheet: StatsSheet = $UI/PlayerStatsSheet
 
 
-func _init() ->  void:
-	randomize()
-
-
 func _ready() -> void:
 	_setup_signals()
 	_setup_limits_and_borders()
