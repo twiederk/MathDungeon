@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dx0vnlerloksx" path="res://items/nether_portal.png" id="2_q5ymn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e4ynd"]
-size = Vector2(127, 160)
+size = Vector2(63, 96)
 
 [node name="NetherPortal" type="Area2D"]
 collision_layer = 2
