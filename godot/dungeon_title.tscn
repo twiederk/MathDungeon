@@ -31,7 +31,8 @@ script = ExtResource("1_5v2gq")
 
 [node name="TitleDisplay" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="TitleDisplay"]
+[node name="TitleLabel" type="Label" parent="TitleDisplay"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -52,9 +53,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_qdyde")
 }
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="TriggerArea2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea2D"]
 shape = SubResource("RectangleShape2D_g8wve")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="TriggerArea2D" to="." method="_on_area_2d_body_entered"]

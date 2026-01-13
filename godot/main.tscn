@@ -200,7 +200,6 @@ position = Vector2(-81, 685)
 [node name="Titles" type="Node2D" parent="."]
 
 [node name="DungeonTitle" parent="Titles" instance=ExtResource("22_lswn8")]
-visible = false
 position = Vector2(-81, 589)
 title_text = "Die verlassene Burg"
 
