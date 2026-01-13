@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://b53sfmxk4rjq2"]
+[gd_scene load_steps=31 format=4 uid="uid://b53sfmxk4rjq2"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="1_ig7tw"]
@@ -32,6 +32,14 @@ resource_local_to_scene = true
 size = Vector2(41, 384)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6jrf"]
+resource_local_to_scene = true
+size = Vector2(31, 61)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xuqvo"]
+resource_local_to_scene = true
+size = Vector2(29, 61)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qsp4k"]
 resource_local_to_scene = true
 size = Vector2(31, 61)
 
@@ -217,11 +225,27 @@ shape = SubResource("RectangleShape2D_lswn8")
 
 [node name="DungeonTitle2" parent="Titles" instance=ExtResource("22_lswn8")]
 position = Vector2(114, 1121)
-title_text = "Tierlabyrinth"
+title_text = "Das Tierlabyrinth"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle2/TriggerArea2D" index="0"]
 position = Vector2(-1.5, -1.5)
 shape = SubResource("RectangleShape2D_a6jrf")
+
+[node name="DungeonTitle3" parent="Titles" instance=ExtResource("22_lswn8")]
+position = Vector2(913, 670)
+title_text = "Die Drachenhöhle"
+
+[node name="CollisionShape2D" parent="Titles/DungeonTitle3/TriggerArea2D" index="0"]
+position = Vector2(-1.5, 1.5)
+shape = SubResource("RectangleShape2D_xuqvo")
+
+[node name="DungeonTitle4" parent="Titles" instance=ExtResource("22_lswn8")]
+position = Vector2(1041, 1122)
+title_text = "Die Villa"
+
+[node name="CollisionShape2D" parent="Titles/DungeonTitle4/TriggerArea2D" index="0"]
+position = Vector2(-1.5, -2.5)
+shape = SubResource("RectangleShape2D_qsp4k")
 
 [node name="MapBorders" parent="." instance=ExtResource("20_d13ii")]
 
@@ -240,3 +264,5 @@ process_mode = 3
 
 [editable path="Titles/DungeonTitle"]
 [editable path="Titles/DungeonTitle2"]
+[editable path="Titles/DungeonTitle3"]
+[editable path="Titles/DungeonTitle4"]
