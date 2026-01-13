@@ -22,5 +22,5 @@ func _on_area_2d_body_entered(body: Node) -> void:
 		trigger_area_2d.set_deferred("monitoring", false)
 
 
-func _on_animation_finished(anim_name) -> void:
+func _on_animation_finished(_anim_name) -> void:
 	queue_free()
