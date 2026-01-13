@@ -40,6 +40,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g8wve"]
+resource_local_to_scene = true
 size = Vector2(100, 100)
 
 [node name="DungeonTitle" type="Node2D"]

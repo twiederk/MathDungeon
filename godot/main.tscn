@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://b53sfmxk4rjq2"]
+[gd_scene load_steps=28 format=4 uid="uid://b53sfmxk4rjq2"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="1_ig7tw"]
@@ -26,6 +26,10 @@
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="20_getpj"]
 [ext_resource type="PackedScene" uid="uid://cbvdad0fnpie8" path="res://enemies/pig.tscn" id="21_0odxb"]
 [ext_resource type="PackedScene" uid="uid://cwox4f8n83s0j" path="res://dungeon_title.tscn" id="22_lswn8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lswn8"]
+resource_local_to_scene = true
+size = Vector2(41, 384)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1bvp3")
@@ -200,8 +204,12 @@ position = Vector2(-81, 685)
 [node name="Titles" type="Node2D" parent="."]
 
 [node name="DungeonTitle" parent="Titles" instance=ExtResource("22_lswn8")]
-position = Vector2(-81, 589)
+position = Vector2(1, 459)
 title_text = "Die verlassene Burg"
+
+[node name="CollisionShape2D" parent="Titles/DungeonTitle/TriggerArea2D" index="0"]
+position = Vector2(21.5, -76)
+shape = SubResource("RectangleShape2D_lswn8")
 
 [node name="MapBorders" parent="." instance=ExtResource("20_d13ii")]
 
@@ -217,3 +225,5 @@ offset_bottom = 3.0
 
 [node name="PauseGui" parent="UI" instance=ExtResource("20_getpj")]
 process_mode = 3
+
+[editable path="Titles/DungeonTitle"]
