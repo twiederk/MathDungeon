@@ -2,13 +2,13 @@
 Learning math while exploring a dungeon
 
 ## Main menu
-![Screenshot of world map](./screenshots/screenshot_main_menu.jpg)
+![Screenshot of world map](./resources/screenshots/screenshot-main_menu.jpg)
 
 ## Traveling through the world
-![Screenshot of world map](./screenshots/screenshot_game.jpg)
+![Screenshot of world map](./resources/screenshots/screenshot-game.jpg)
 
 ## Encounter enemies and battle them with math exercises
-![Screenshot of world map](./screenshots/screenshot_quiz.jpg)
+![Screenshot of world map](./resources/screenshots/screenshot-quiz.jpg)
 
 
 
