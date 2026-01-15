@@ -4,23 +4,13 @@ extends RigidBody2D
 signal encountered(enemy: StaticBody2D)
 
 @export var speed: float = 300.0
-@export var arrow_stats: EnemyStats = preload("res://enemies/arrow_stats.tres")
+@export var projectile_stats: EnemyStats
 
 var direction: Vector2
 var shooter: Enemy
 
 @onready var hit_area: Area2D = $HitArea
 @onready var visible_notifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
-
-class ProjectileEnemy extends Enemy:
-	
-	func _init(enemy_stats: EnemyStats):
-		stats = enemy_stats
-		hit_points = enemy_stats.max_hit_points
-	
-	func hurt(_damage: int) -> int:
-		hit_points = 0
-		return 0
 
 
 func _ready() -> void:
@@ -38,8 +28,10 @@ func initialize(start_position: Vector2, target_direction: Vector2, shooting_ene
 
 func _on_hit_area_body_entered(body: Node) -> void:
 	if body.name == "Player":
-		var arrow_enemy = ProjectileEnemy.new(arrow_stats)
-		encountered.emit(arrow_enemy)
+		var enemy = Enemy.new()
+		enemy.stats = projectile_stats
+		enemy.hit_points = projectile_stats.max_hit_points
+		encountered.emit(enemy)
 		queue_free()
 	else:
 		queue_free()

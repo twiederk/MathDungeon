@@ -2,7 +2,7 @@ class_name ShootingEnemy
 extends Enemy
 
 @export var fire_rate: float = 2.0
-@export var projectile_scene: PackedScene = preload("res://enemies/projectile.tscn")
+@export var projectile_scene: PackedScene
 
 @onready var fire_timer: Timer = $FireTimer
 @onready var shooting_area: Area2D = $ShootingArea
