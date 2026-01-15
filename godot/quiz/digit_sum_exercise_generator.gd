@@ -1,10 +1,10 @@
 class_name DigitSumExerciseGenerator
 
-var min_digits: int = 2
-var max_digits: int = 3
+var min_digits: int = 3
+var max_digits: int = 5
 
 
-func _init(_min_digits: int = 2, _max_digits: int = 3):
+func _init(_min_digits: int = 3, _max_digits: int = 5):
 	min_digits = _min_digits
 	max_digits = _max_digits
 

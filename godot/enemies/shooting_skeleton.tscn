@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://bbea4w5dl7mq5"]
+
+[ext_resource type="Script" uid="uid://d1tipsaj1l4x1" path="res://enemies/shooting_enemy.gd" id="1_s4k5m"]
+[ext_resource type="PackedScene" uid="uid://d4bxmbnfj62lw" path="res://enemies/arrow.tscn" id="2_8yiun"]
+[ext_resource type="Resource" uid="uid://diak2m6y8wxx6" path="res://enemies/shooting_skeleton_stats.tres" id="2_s4k5m"]
+[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="3_s4k5m"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s4k5m"]
+height = 26.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_detect"]
+size = Vector2(26, 30)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_73kb4"]
+radius = 267.1198
+
+[node name="ShootingSkeleton" type="StaticBody2D"]
+collision_layer = 2
+script = ExtResource("1_s4k5m")
+projectile_scene = ExtResource("2_8yiun")
+stats = ExtResource("2_s4k5m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_s4k5m")
+hframes = 9
+vframes = 9
+frame = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_s4k5m")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_detect")
+
+[node name="ShootingArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShootingArea"]
+shape = SubResource("CircleShape2D_73kb4")
+
+[node name="FireTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="body_entered" from="ShootingArea" to="." method="_on_shooting_area_body_entered"]
+[connection signal="body_exited" from="ShootingArea" to="." method="_on_shooting_area_body_exited"]
+[connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
