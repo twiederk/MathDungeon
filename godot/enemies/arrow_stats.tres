@@ -5,9 +5,5 @@
 [resource]
 script = ExtResource("1_arrow")
 name = "Arrow"
-max_hit_points = 1
 arithmetic = Array[int]([0, 1, 2])
-damage = 1
-armor = 0
-time_limit = -1
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"
