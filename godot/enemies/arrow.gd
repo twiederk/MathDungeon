@@ -12,6 +12,23 @@ var shooter: Enemy
 @onready var hit_area: Area2D = $HitArea
 @onready var visible_notifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 
+# Create a temporary enemy-like object for the quiz system
+class ArrowEnemy extends Enemy:
+	var original_arrow: Arrow
+	
+	func _init(arrow: Arrow, enemy_stats: EnemyStats):
+		stats = enemy_stats
+		original_arrow = arrow
+	
+	func hurt(_damage: int) -> int:
+		# Arrow is always defeated in one hit, regardless of damage
+		return 0  # Return 0 hit points to indicate defeat
+	
+	func _exit_tree():
+		# When this temporary object is freed, also free the original arrow
+		if original_arrow and is_instance_valid(original_arrow):
+			original_arrow.queue_free()
+
 
 func _ready() -> void:
 	# Set up physics
@@ -39,11 +56,13 @@ func initialize(start_position: Vector2, target_direction: Vector2, shooting_ene
 func _on_hit_area_body_entered(body: Node) -> void:
 	"""Handle collision with player"""
 	if body.name == "Player":
-		# Emit encountered signal using the shooter enemy reference
+		# Create a temporary enemy object for the quiz system
 		if shooter:
-			encountered.emit(shooter)
-		# Remove the arrow after hitting player
-		queue_free()
+			var arrow_enemy = ArrowEnemy.new(self, shooter.stats)
+			encountered.emit(arrow_enemy)
+		else:
+			# Fallback: just remove the arrow if no shooter reference
+			queue_free()
 
 
 func _on_screen_exited() -> void:
