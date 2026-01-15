@@ -23,11 +23,6 @@ class ArrowEnemy extends Enemy:
 	func hurt(_damage: int) -> int:
 		# Arrow is always defeated in one hit, regardless of damage
 		return 0  # Return 0 hit points to indicate defeat
-	
-	func _exit_tree():
-		# When this temporary object is freed, also free the original arrow
-		if original_arrow and is_instance_valid(original_arrow):
-			original_arrow.queue_free()
 
 
 func _ready() -> void:
@@ -60,6 +55,8 @@ func _on_hit_area_body_entered(body: Node) -> void:
 		if shooter:
 			var arrow_enemy = ArrowEnemy.new(self, shooter.stats)
 			encountered.emit(arrow_enemy)
+			# Free the arrow immediately after hitting the player
+			queue_free()
 		else:
 			# Fallback: just remove the arrow if no shooter reference
 			queue_free()
