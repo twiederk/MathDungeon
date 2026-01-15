@@ -38,8 +38,8 @@ func _start_shooting() -> void:
 	"""Begin the shooting sequence"""
 	if not is_shooting:
 		is_shooting = true
-		# Shoot immediately when player enters range
-		_shoot_arrow()
+		# Defer the first shot to avoid physics query conflicts
+		call_deferred("_shoot_arrow")
 		# Then start the timer for subsequent shots
 		fire_timer.start()
 
