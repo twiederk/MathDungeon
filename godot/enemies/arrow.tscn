@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://72381y6phi57" path="res://enemies/projectile.gd" id="1_cctq0"]
 [ext_resource type="Resource" uid="uid://cm8oejds6632i" path="res://enemies/arrow_stats.tres" id="2_mu8vj"]
-[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="2_x8n4p"]
+[ext_resource type="Texture2D" uid="uid://bpl5ka5q8hjh" path="res://enemies/arrow.png" id="3_mu8vj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
-size = Vector2(16, 4)
+size = Vector2(22, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2"]
-size = Vector2(16, 4)
+size = Vector2(22, 8)
 
 [node name="Arrow" type="RigidBody2D"]
 collision_layer = 4
@@ -16,8 +16,7 @@ script = ExtResource("1_cctq0")
 projectile_stats = ExtResource("2_mu8vj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_x8n4p")
-region_enabled = true
+texture = ExtResource("3_mu8vj")
 region_rect = Rect2(192, 32, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
