@@ -3,7 +3,7 @@ extends Enemy
 
 @export var fire_rate: float = 2.0  # Seconds between shots
 @export var shooting_range: float = 200.0  # Maximum shooting distance
-@export var arrow_scene: PackedScene = preload("res://enemies/arrow.tscn")
+@export var projectile_scene: PackedScene = preload("res://enemies/projectile.tscn")
 
 @onready var fire_timer: Timer = $FireTimer
 @onready var shooting_area: Area2D = $ShootingArea
@@ -54,24 +54,24 @@ func _on_fire_timer_timeout() -> void:
 		_shoot_arrow()
 
 func _shoot_arrow() -> void:
-	"""Create and launch an arrow towards the player"""
-	if not arrow_scene or not player_target:
+	"""Create and launch a projectile towards the player"""
+	if not projectile_scene or not player_target:
 		return
 	
-	# Create arrow instance
-	var arrow = arrow_scene.instantiate()
+	# Create projectile instance
+	var projectile = projectile_scene.instantiate()
 	
 	# Calculate direction to player
 	var direction = (player_target.global_position - global_position).normalized()
 	
-	# Add arrow to the scene (as sibling of this enemy)
-	get_parent().add_child(arrow)
+	# Add projectile to the scene (as sibling of this enemy)
+	get_parent().add_child(projectile)
 	
-	# Initialize arrow with position, direction, and shooter reference
-	arrow.initialize(global_position, direction, self)
+	# Initialize projectile with position, direction, and shooter reference
+	projectile.initialize(global_position, direction, self)
 	
-	# Connect arrow's encountered signal to main scene's handler
-	# Find the main scene and connect the arrow's signal
+	# Connect projectile's encountered signal to main scene's handler
+	# Find the main scene and connect the projectile's signal
 	var main_scene = get_tree().current_scene
 	if main_scene and main_scene.has_method("_on_enemy_encountered"):
-		arrow.encountered.connect(main_scene._on_enemy_encountered)
+		projectile.encountered.connect(main_scene._on_enemy_encountered)

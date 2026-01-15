@@ -1,4 +1,4 @@
-class_name Arrow
+class_name Projectile
 extends RigidBody2D
 
 signal encountered(enemy: StaticBody2D)
@@ -15,11 +15,11 @@ var shooter: Enemy
 
 # Create a temporary enemy-like object for the quiz system
 class ArrowEnemy extends Enemy:
-	var original_arrow: Arrow
+	var original_projectile: Projectile
 	
-	func _init(arrow: Arrow, enemy_stats: EnemyStats):
+	func _init(projectile: Projectile, enemy_stats: EnemyStats):
 		stats = enemy_stats
-		original_arrow = arrow
+		original_projectile = projectile
 		# Set arrow to have 1 hit point initially
 		hit_points = 1
 	

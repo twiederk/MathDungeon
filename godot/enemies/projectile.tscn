@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cdfg8h6y7wxx4"]
 
-[ext_resource type="Script" path="res://enemies/arrow.gd" id="1_b4k5m"]
+[ext_resource type="Script" path="res://enemies/projectile.gd" id="1_b4k5m"]
 [ext_resource type="Texture2D" path="res://enemies/creatures.png" id="2_x8n4p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
@@ -9,7 +9,7 @@ size = Vector2(16, 4)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2"]
 size = Vector2(16, 4)
 
-[node name="Arrow" type="RigidBody2D"]
+[node name="Projectile" type="RigidBody2D"]
 collision_layer = 4
 collision_mask = 1
 script = ExtResource("1_b4k5m")
