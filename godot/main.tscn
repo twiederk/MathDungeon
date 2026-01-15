@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="20_getpj"]
 [ext_resource type="PackedScene" uid="uid://cbvdad0fnpie8" path="res://enemies/pig.tscn" id="21_0odxb"]
 [ext_resource type="PackedScene" uid="uid://cwox4f8n83s0j" path="res://dungeon_title.tscn" id="22_lswn8"]
-[ext_resource type="PackedScene" path="res://enemies/shooting_skeleton.tscn" id="27_a6jrf"]
+[ext_resource type="PackedScene" uid="uid://bbea4w5dl7mq5" path="res://enemies/shooting_skeleton.tscn" id="27_a6jrf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lswn8"]
 resource_local_to_scene = true
@@ -211,6 +211,9 @@ position = Vector2(725, 776)
 [node name="Pig4" parent="Enemies" instance=ExtResource("21_0odxb")]
 position = Vector2(751, 828)
 
+[node name="ShootingSkeleton" parent="Enemies" instance=ExtResource("27_a6jrf")]
+position = Vector2(341, 1182)
+
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(-81, 685)
 
@@ -262,9 +265,6 @@ offset_bottom = 3.0
 
 [node name="PauseGui" parent="UI" instance=ExtResource("20_getpj")]
 process_mode = 3
-
-[node name="ShootingSkeleton" parent="." instance=ExtResource("27_a6jrf")]
-position = Vector2(341, 1182)
 
 [editable path="Titles/DungeonTitle"]
 [editable path="Titles/DungeonTitle2"]
