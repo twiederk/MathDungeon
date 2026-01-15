@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bbea4w5dl7mq5"]
 
-[ext_resource type="Script" path="res://enemies/shooting_enemy.gd" id="1_s4k5m"]
-[ext_resource type="Resource" path="res://enemies/shooting_skeleton_stats.tres" id="2_s4k5m"]
+[ext_resource type="Script" uid="uid://d1tipsaj1l4x1" path="res://enemies/shooting_enemy.gd" id="1_s4k5m"]
+[ext_resource type="Resource" uid="uid://diak2m6y8wxx6" path="res://enemies/shooting_skeleton_stats.tres" id="2_s4k5m"]
 [ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="3_s4k5m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s4k5m"]
@@ -42,3 +42,7 @@ shape = SubResource("CircleShape2D_73kb4")
 
 [node name="FireTimer" type="Timer" parent="."]
 wait_time = 2.0
+
+[connection signal="body_entered" from="ShootingArea" to="." method="_on_shooting_area_body_entered"]
+[connection signal="body_exited" from="ShootingArea" to="." method="_on_shooting_area_body_exited"]
+[connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
