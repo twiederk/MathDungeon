@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ch27vu5jqwd8g" path="res://items/nether_portal.tscn" id="4_orhj5"]
 [ext_resource type="PackedScene" uid="uid://8cptf68b7254" path="res://enemies/piglin.tscn" id="5_lci3x"]
 [ext_resource type="PackedScene" uid="uid://b5pvf74jx7ptx" path="res://enemies/piglin_boss.tscn" id="6_xedoa"]
-[ext_resource type="PackedScene" uid="uid://cgmfm657i4r84" path="res://enemies/ghast.tscn" id="7_bkwn1"]
+[ext_resource type="PackedScene" uid="uid://0pfsc41na6j6" path="res://enemies/shooting_ghast.tscn" id="8_orhj5"]
 [ext_resource type="PackedScene" uid="uid://b008xnsl4xtfq" path="res://companions/wolf.tscn" id="10_0p2k4"]
 [ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://map_borders.tscn" id="20_rmetm"]
 [ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz/quiz_dialog.tscn" id="21_pigpc"]
@@ -78,14 +78,14 @@ position = Vector2(941, 567)
 [node name="PiglinBoss" parent="Enemies" instance=ExtResource("6_xedoa")]
 position = Vector2(1190, 681)
 
-[node name="Ghast" parent="Enemies" instance=ExtResource("7_bkwn1")]
-position = Vector2(707, 656)
+[node name="ShootingGhast" parent="Enemies" instance=ExtResource("8_orhj5")]
+position = Vector2(528, 512)
 
-[node name="Ghast2" parent="Enemies" instance=ExtResource("7_bkwn1")]
-position = Vector2(646, 670)
+[node name="ShootingGhast2" parent="Enemies" instance=ExtResource("8_orhj5")]
+position = Vector2(465, 443)
 
-[node name="Ghast3" parent="Enemies" instance=ExtResource("7_bkwn1")]
-position = Vector2(615, 563)
+[node name="ShootingGhast3" parent="Enemies" instance=ExtResource("8_orhj5")]
+position = Vector2(484, 511)
 
 [node name="MapBorders" parent="." instance=ExtResource("20_rmetm")]
 
