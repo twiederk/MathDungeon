@@ -27,6 +27,7 @@ func initialize(start_position: Vector2, target_direction: Vector2, shooting_ene
 
 
 func _on_hit_area_body_entered(body: Node) -> void:
+	print("_on_hit_area_body_entered")
 	if body.name == "Player":
 		var enemy = Enemy.new()
 		enemy.stats = projectile_stats
