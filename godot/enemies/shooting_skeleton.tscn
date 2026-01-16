@@ -12,6 +12,7 @@ height = 26.0
 size = Vector2(26, 30)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_73kb4"]
+resource_local_to_scene = true
 radius = 267.1198
 
 [node name="ShootingSkeleton" type="StaticBody2D"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://b53sfmxk4rjq2"]
+[gd_scene load_steps=37 format=4 uid="uid://b53sfmxk4rjq2"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="1_ig7tw"]
@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://dq5hvtr5p280m" path="res://items/helmet_stone.tscn" id="9_d13ii"]
 [ext_resource type="PackedScene" uid="uid://ch27vu5jqwd8g" path="res://items/nether_portal.tscn" id="10_1u8w0"]
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="10_4c57u"]
-[ext_resource type="PackedScene" uid="uid://do1ilgr01pqpc" path="res://enemies/skeleton.tscn" id="10_efxa6"]
 [ext_resource type="PackedScene" uid="uid://drpmo3xnxwl3i" path="res://enemies/zombie_baby.tscn" id="12_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://txgje162j88t" path="res://enemies/creeper.tscn" id="13_w48qg"]
 [ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="15_vivmo"]
@@ -27,6 +26,24 @@
 [ext_resource type="PackedScene" uid="uid://cbvdad0fnpie8" path="res://enemies/pig.tscn" id="21_0odxb"]
 [ext_resource type="PackedScene" uid="uid://cwox4f8n83s0j" path="res://dungeon_title.tscn" id="22_lswn8"]
 [ext_resource type="PackedScene" uid="uid://bbea4w5dl7mq5" path="res://enemies/shooting_skeleton.tscn" id="27_a6jrf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kq58d"]
+size = Vector2(93, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_seu75"]
+size = Vector2(178, 190)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htxhm"]
+size = Vector2(195, 155)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jq2sk"]
+size = Vector2(120, 378)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4k2k6"]
+size = Vector2(31, 167)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rl1p"]
+size = Vector2(369, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lswn8"]
 resource_local_to_scene = true
@@ -104,16 +121,13 @@ position = Vector2(333, 128)
 position = Vector2(184, 132)
 
 [node name="Spider1" parent="Enemies" instance=ExtResource("7_4c57u")]
-position = Vector2(533, 441)
+position = Vector2(534, 429)
 
 [node name="Drown1" parent="Enemies" instance=ExtResource("8_efxa6")]
 position = Vector2(78, 452)
 
 [node name="Drown2" parent="Enemies" instance=ExtResource("8_efxa6")]
 position = Vector2(351, 284)
-
-[node name="Skeleton" parent="Enemies" instance=ExtResource("10_efxa6")]
-position = Vector2(532, 414)
 
 [node name="Enderman2" parent="Enemies" instance=ExtResource("6_kek77")]
 position = Vector2(100, 867)
@@ -132,9 +146,6 @@ position = Vector2(536, 972)
 
 [node name="Drown3" parent="Enemies" instance=ExtResource("8_efxa6")]
 position = Vector2(566, 1171)
-
-[node name="Skeleton3" parent="Enemies" instance=ExtResource("10_efxa6")]
-position = Vector2(661, 1136)
 
 [node name="ZombieBaby" parent="Enemies" instance=ExtResource("12_ycdy4")]
 position = Vector2(273, 1301)
@@ -157,12 +168,6 @@ position = Vector2(1378, 476)
 [node name="Drown5" parent="Enemies" instance=ExtResource("8_efxa6")]
 position = Vector2(1379, 532)
 
-[node name="Skeleton4" parent="Enemies" instance=ExtResource("10_efxa6")]
-position = Vector2(1439, 352)
-
-[node name="Skeleton5" parent="Enemies" instance=ExtResource("10_efxa6")]
-position = Vector2(1263, 355)
-
 [node name="Enderman" parent="Enemies" instance=ExtResource("6_kek77")]
 position = Vector2(1170, 447)
 
@@ -184,12 +189,6 @@ position = Vector2(1078, 1117)
 [node name="Drown6" parent="Enemies" instance=ExtResource("8_efxa6")]
 position = Vector2(1715, 933)
 
-[node name="Skeleton6" parent="Enemies" instance=ExtResource("10_efxa6")]
-position = Vector2(1549, 957)
-
-[node name="Skeleton7" parent="Enemies" instance=ExtResource("10_efxa6")]
-position = Vector2(1091, 1200)
-
 [node name="Spider2" parent="Enemies" instance=ExtResource("7_4c57u")]
 position = Vector2(1723, 1003)
 
@@ -210,6 +209,48 @@ position = Vector2(751, 828)
 
 [node name="ShootingSkeleton" parent="Enemies" instance=ExtResource("27_a6jrf")]
 position = Vector2(341, 1182)
+
+[node name="ShootingSkeleton2" parent="Enemies" instance=ExtResource("27_a6jrf")]
+position = Vector2(553, 307)
+
+[node name="CollisionShape2D" parent="Enemies/ShootingSkeleton2/ShootingArea" index="0"]
+position = Vector2(6.5, 80)
+shape = SubResource("RectangleShape2D_kq58d")
+
+[node name="ShootingSkeleton3" parent="Enemies" instance=ExtResource("27_a6jrf")]
+position = Vector2(781, 1143)
+
+[node name="CollisionShape2D" parent="Enemies/ShootingSkeleton3/ShootingArea" index="0"]
+position = Vector2(-79, -24)
+shape = SubResource("RectangleShape2D_seu75")
+
+[node name="ShootingSkeleton4" parent="Enemies" instance=ExtResource("27_a6jrf")]
+position = Vector2(1437, 355)
+
+[node name="CollisionShape2D" parent="Enemies/ShootingSkeleton4/ShootingArea" index="0"]
+position = Vector2(6.5, 12.5)
+shape = SubResource("RectangleShape2D_htxhm")
+
+[node name="ShootingSkeleton5" parent="Enemies" instance=ExtResource("27_a6jrf")]
+position = Vector2(1273, 355)
+
+[node name="CollisionShape2D" parent="Enemies/ShootingSkeleton5/ShootingArea" index="0"]
+position = Vector2(5, -130)
+shape = SubResource("RectangleShape2D_jq2sk")
+
+[node name="ShootingSkeleton6" parent="Enemies" instance=ExtResource("27_a6jrf")]
+position = Vector2(1549, 958)
+
+[node name="CollisionShape2D" parent="Enemies/ShootingSkeleton6/ShootingArea" index="0"]
+position = Vector2(1.5, 73.5)
+shape = SubResource("RectangleShape2D_4k2k6")
+
+[node name="ShootingSkeleton7" parent="Enemies" instance=ExtResource("27_a6jrf")]
+position = Vector2(1092, 1200)
+
+[node name="CollisionShape2D" parent="Enemies/ShootingSkeleton7/ShootingArea" index="0"]
+position = Vector2(-64.5, 1)
+shape = SubResource("RectangleShape2D_0rl1p")
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(-81, 685)
@@ -263,6 +304,12 @@ offset_bottom = 3.0
 [node name="PauseGui" parent="UI" instance=ExtResource("20_getpj")]
 process_mode = 3
 
+[editable path="Enemies/ShootingSkeleton2"]
+[editable path="Enemies/ShootingSkeleton3"]
+[editable path="Enemies/ShootingSkeleton4"]
+[editable path="Enemies/ShootingSkeleton5"]
+[editable path="Enemies/ShootingSkeleton6"]
+[editable path="Enemies/ShootingSkeleton7"]
 [editable path="Titles/DungeonTitle"]
 [editable path="Titles/DungeonTitle2"]
 [editable path="Titles/DungeonTitle3"]
