@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cdfg8h6y7wxx4"]
 
 [ext_resource type="Script" uid="uid://72381y6phi57" path="res://enemies/projectile.gd" id="1_b4k5m"]
-[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="2_x8n4p"]
+[ext_resource type="Texture2D" uid="uid://bpl5ka5q8hjh" path="res://enemies/arrow.png" id="2_1wnp2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(16, 4)
@@ -10,12 +10,12 @@ size = Vector2(16, 4)
 size = Vector2(16, 4)
 
 [node name="Projectile" type="RigidBody2D"]
-collision_layer = 4
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_b4k5m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_x8n4p")
-region_enabled = true
+texture = ExtResource("2_1wnp2")
 region_rect = Rect2(192, 32, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
