@@ -18,6 +18,7 @@ radius = 267.1198
 [node name="ShootingPilligar" type="StaticBody2D"]
 collision_layer = 2
 script = ExtResource("1_dfvkm")
+fire_rate = 1.5
 projectile_scene = ExtResource("2_bgqgd")
 stats = ExtResource("3_ld4km")
 
