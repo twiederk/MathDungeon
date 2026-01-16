@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://b53sfmxk4rjq2"]
+[gd_scene load_steps=38 format=4 uid="uid://b53sfmxk4rjq2"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="1_ig7tw"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://map_borders.tscn" id="20_d13ii"]
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="20_getpj"]
 [ext_resource type="PackedScene" uid="uid://cbvdad0fnpie8" path="res://enemies/pig.tscn" id="21_0odxb"]
+[ext_resource type="PackedScene" uid="uid://b3t6krerhsshv" path="res://enemies/shooting_pillager.tscn" id="21_a6jrf"]
 [ext_resource type="PackedScene" uid="uid://cwox4f8n83s0j" path="res://dungeon_title.tscn" id="22_lswn8"]
 [ext_resource type="PackedScene" uid="uid://bbea4w5dl7mq5" path="res://enemies/shooting_skeleton.tscn" id="27_a6jrf"]
 
@@ -251,6 +252,9 @@ position = Vector2(1092, 1200)
 [node name="CollisionShape2D" parent="Enemies/ShootingSkeleton7/ShootingArea" index="0"]
 position = Vector2(-64.5, 1)
 shape = SubResource("RectangleShape2D_0rl1p")
+
+[node name="ShootingPilligar" parent="Enemies" instance=ExtResource("21_a6jrf")]
+position = Vector2(249, 688)
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(-81, 685)
