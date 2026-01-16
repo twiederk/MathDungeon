@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3t6krerhsshv"]
+[gd_scene load_steps=8 format=3 uid="uid://0pfsc41na6j6"]
 
-[ext_resource type="Script" uid="uid://d1tipsaj1l4x1" path="res://enemies/shooting_enemy.gd" id="1_dfvkm"]
-[ext_resource type="PackedScene" uid="uid://d4bxmbnfj62lw" path="res://enemies/arrow.tscn" id="2_bgqgd"]
-[ext_resource type="Resource" uid="uid://babipeuagskms" path="res://enemies/pillager_stats.tres" id="3_dfvkm"]
-[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="4_xy4of"]
+[ext_resource type="Script" uid="uid://d1tipsaj1l4x1" path="res://enemies/shooting_enemy.gd" id="1_7luqr"]
+[ext_resource type="PackedScene" uid="uid://c38q1veaiusix" path="res://enemies/fireball.tscn" id="2_7luqr"]
+[ext_resource type="Resource" uid="uid://dootbkhqjjjuj" path="res://enemies/ghast_stats.tres" id="3_7luqr"]
+[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="4_rixyb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s4k5m"]
 height = 26.0
@@ -15,18 +15,17 @@ size = Vector2(26, 30)
 resource_local_to_scene = true
 radius = 267.1198
 
-[node name="ShootingPillager" type="StaticBody2D"]
+[node name="ShootingGhast" type="StaticBody2D"]
 collision_layer = 2
-script = ExtResource("1_dfvkm")
-fire_rate = 1.5
-projectile_scene = ExtResource("2_bgqgd")
-stats = ExtResource("3_dfvkm")
+script = ExtResource("1_7luqr")
+projectile_scene = ExtResource("2_7luqr")
+stats = ExtResource("3_7luqr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("4_xy4of")
+texture = ExtResource("4_rixyb")
 hframes = 9
 vframes = 9
-frame = 66
+frame = 30
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_s4k5m")
