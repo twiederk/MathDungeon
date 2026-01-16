@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d1tipsaj1l4x1" path="res://enemies/shooting_enemy.gd" id="1_s4k5m"]
 [ext_resource type="PackedScene" uid="uid://d4bxmbnfj62lw" path="res://enemies/arrow.tscn" id="2_8yiun"]
-[ext_resource type="Resource" uid="uid://diak2m6y8wxx6" path="res://enemies/shooting_skeleton_stats.tres" id="2_s4k5m"]
+[ext_resource type="Resource" uid="uid://cjvr1oocuggtm" path="res://enemies/skeleton_stats.tres" id="3_8yiun"]
 [ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="3_s4k5m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s4k5m"]
@@ -18,7 +18,7 @@ radius = 267.1198
 collision_layer = 2
 script = ExtResource("1_s4k5m")
 projectile_scene = ExtResource("2_8yiun")
-stats = ExtResource("2_s4k5m")
+stats = ExtResource("3_8yiun")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_s4k5m")
