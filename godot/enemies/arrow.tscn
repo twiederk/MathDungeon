@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4bxmbnfj62lw"]
+[gd_scene load_steps=7 format=3 uid="uid://d4bxmbnfj62lw"]
 
 [ext_resource type="Script" uid="uid://72381y6phi57" path="res://enemies/projectile.gd" id="1_cctq0"]
 [ext_resource type="Resource" uid="uid://cm8oejds6632i" path="res://enemies/arrow_stats.tres" id="2_mu8vj"]
 [ext_resource type="Texture2D" uid="uid://bpl5ka5q8hjh" path="res://enemies/arrow.png" id="3_mu8vj"]
+[ext_resource type="AudioStream" uid="uid://qnhhx7htjaw0" path="res://enemies/bow_shoot.ogg" id="3_q2k86"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(22, 8)
@@ -14,6 +15,7 @@ size = Vector2(22, 8)
 collision_layer = 4
 script = ExtResource("1_cctq0")
 projectile_stats = ExtResource("2_mu8vj")
+projectile_sound = ExtResource("3_q2k86")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_mu8vj")

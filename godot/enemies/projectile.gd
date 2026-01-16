@@ -5,6 +5,8 @@ signal encountered(enemy: StaticBody2D)
 
 @export var speed: float = 300.0
 @export var projectile_stats: EnemyStats
+@export var projectile_sound: AudioStream
+
 
 var direction: Vector2
 var shooter: Enemy
@@ -24,6 +26,8 @@ func initialize(start_position: Vector2, target_direction: Vector2, shooting_ene
 	shooter = shooting_enemy
 	rotation = direction.angle()
 	linear_velocity = direction * speed
+	Sound.play(projectile_sound)
+
 
 
 func _on_hit_area_body_entered(body: Node) -> void:
