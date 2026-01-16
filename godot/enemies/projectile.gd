@@ -33,11 +33,6 @@ func _on_hit_area_body_entered(body: Node) -> void:
 		enemy.hit_points = projectile_stats.max_hit_points
 		encountered.emit(enemy)
 		queue_free()
-	elif body is TileMapLayer:
-		# Projectile hit a wall/tile, destroy it
-		queue_free()
-	else:
-		queue_free()
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
