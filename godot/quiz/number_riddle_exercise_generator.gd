@@ -96,8 +96,15 @@ func _create_between_same_digits_riddle() -> Exercise:
 
 
 func _create_before_1000_riddle() -> Exercise:
-	var question = "Meine Zahl ist um 1 kleiner als 1000."
-	return Exercise.new(question, "999")
+	var targets = [
+		{"number": 10, "answer": "9"},
+		{"number": 100, "answer": "99"},
+		{"number": 1000, "answer": "999"}
+	]
+	
+	var selected_target = targets[randi() % targets.size()]
+	var question = "Meine Zahl ist um 1 kleiner als %d." % selected_target.number
+	return Exercise.new(question, selected_target.answer)
 
 
 func _create_tens_ones_hundreds_relation_riddle() -> Exercise:

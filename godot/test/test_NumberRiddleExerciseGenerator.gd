@@ -71,8 +71,8 @@ func test_before_1000_riddle():
 	
 	# assert
 	assert_not_null(exercise)
-	assert_eq(exercise.question, "Meine Zahl ist um 1 kleiner als 1000.")
-	assert_eq(exercise.result, "999")
+	assert_eq(exercise.question, "Meine Zahl ist um 1 kleiner als 10.")
+	assert_eq(exercise.result, "9")
 
 
 func test_tens_ones_hundreds_relation_riddle():
@@ -101,8 +101,8 @@ func test_between_same_digits_riddle():
 	
 	# assert
 	assert_not_null(exercise)
-	assert_eq(exercise.question, "Meine Zahl liegt zwischen 400 und 500. Sie hat drei gleiche Ziffern.")
-	assert_eq(exercise.result, "444")
+	assert_eq(exercise.question, "Meine Zahl liegt zwischen 600 und 700. Sie hat drei gleiche Ziffern.")
+	assert_eq(exercise.result, "666")
 
 
 func test_create_exercise_with_seed():
