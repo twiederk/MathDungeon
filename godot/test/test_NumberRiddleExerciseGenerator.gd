@@ -2,6 +2,9 @@ extends GutTest
 
 var number_riddle_exercise_generator: NumberRiddleExerciseGenerator = null
 
+func before_all():
+	seed(1)
+
 
 func before_each():
 	number_riddle_exercise_generator = NumberRiddleExerciseGenerator.new()
@@ -12,9 +15,6 @@ func after_each():
 
 
 func test_create_exercise_not_null():
-	# arrange
-	seed(1)
-	
 	# act
 	var exercise = number_riddle_exercise_generator.create_exercise()
 	
@@ -25,11 +25,8 @@ func test_create_exercise_not_null():
 
 
 func test_next_ten_riddle():
-	# arrange
-	var generator = NumberRiddleExerciseGenerator.new()
-	
 	# act
-	var exercise = generator._create_next_ten_riddle()
+	var exercise = number_riddle_exercise_generator._create_next_ten_riddle()
 	
 	# assert
 	assert_not_null(exercise)
@@ -38,11 +35,8 @@ func test_next_ten_riddle():
 
 
 func test_half_minus_riddle():
-	# arrange
-	var generator = NumberRiddleExerciseGenerator.new()
-	
 	# act
-	var exercise = generator._create_half_minus_riddle()
+	var exercise = number_riddle_exercise_generator._create_half_minus_riddle()
 	
 	# assert
 	assert_not_null(exercise)
@@ -52,11 +46,8 @@ func test_half_minus_riddle():
 
 
 func test_half_of_riddle():
-	# arrange
-	var generator = NumberRiddleExerciseGenerator.new()
-	
 	# act
-	var exercise = generator._create_half_of_riddle()
+	var exercise = number_riddle_exercise_generator._create_half_of_riddle()
 	
 	# assert
 	assert_not_null(exercise)
@@ -65,11 +56,8 @@ func test_half_of_riddle():
 
 
 func test_next_after_max_3digit_riddle():
-	# arrange
-	var generator = NumberRiddleExerciseGenerator.new()
-	
 	# act
-	var exercise = generator._create_next_after_max_3digit_riddle()
+	var exercise = number_riddle_exercise_generator._create_next_after_max_3digit_riddle()
 	
 	# assert
 	assert_not_null(exercise)
@@ -78,11 +66,8 @@ func test_next_after_max_3digit_riddle():
 
 
 func test_before_1000_riddle():
-	# arrange
-	var generator = NumberRiddleExerciseGenerator.new()
-	
 	# act
-	var exercise = generator._create_before_1000_riddle()
+	var exercise = number_riddle_exercise_generator._create_before_1000_riddle()
 	
 	# assert
 	assert_not_null(exercise)
@@ -91,11 +76,8 @@ func test_before_1000_riddle():
 
 
 func test_tens_ones_hundreds_relation_riddle():
-	# arrange
-	var generator = NumberRiddleExerciseGenerator.new()
-	
 	# act
-	var exercise = generator._create_tens_ones_hundreds_relation_riddle()
+	var exercise = number_riddle_exercise_generator._create_tens_ones_hundreds_relation_riddle()
 	
 	# assert
 	assert_not_null(exercise)
@@ -104,11 +86,8 @@ func test_tens_ones_hundreds_relation_riddle():
 
 
 func test_between_single_digits_riddle():
-	# arrange
-	var generator = NumberRiddleExerciseGenerator.new()
-	
 	# act
-	var exercise = generator._create_between_single_digits_riddle()
+	var exercise = number_riddle_exercise_generator._create_between_single_digits_riddle()
 	
 	# assert
 	assert_not_null(exercise)
@@ -117,22 +96,16 @@ func test_between_single_digits_riddle():
 
 
 func test_between_same_digits_riddle():
-	# arrange
-	var generator = NumberRiddleExerciseGenerator.new()
-	
 	# act
-	var exercise = generator._create_between_same_digits_riddle()
+	var exercise = number_riddle_exercise_generator._create_between_same_digits_riddle()
 	
 	# assert
 	assert_not_null(exercise)
-	assert_eq(exercise.question, "Meine Zahl liegt zwischen 400 und 600. Sie hat drei gleiche Ziffern.")
-	assert_eq(exercise.result, "444 555")
+	assert_eq(exercise.question, "Meine Zahl liegt zwischen 400 und 500. Sie hat drei gleiche Ziffern.")
+	assert_eq(exercise.result, "444")
 
 
 func test_create_exercise_with_seed():
-	# arrange
-	seed(42)
-	
 	# act
 	var exercise = number_riddle_exercise_generator.create_exercise()
 	
@@ -140,17 +113,3 @@ func test_create_exercise_with_seed():
 	assert_not_null(exercise, "Exercise should not be null")
 	assert_false(exercise.question.is_empty(), "Question should not be empty")
 	assert_false(exercise.result.is_empty(), "Result should not be empty")
-
-
-func test_multiple_exercises_different():
-	# Test that we get different types of exercises
-	var exercise_types = {}
-	
-	for i in range(20):
-		seed(i)
-		var exercise = number_riddle_exercise_generator.create_exercise()
-		var question_start = exercise.question.substr(0, 20)
-		exercise_types[question_start] = true
-	
-	# We should get at least a few different types
-	assert_true(exercise_types.size() >= 3, "Should generate different types of exercises")

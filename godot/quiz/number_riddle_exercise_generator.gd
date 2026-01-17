@@ -77,8 +77,22 @@ func _create_next_after_max_3digit_riddle() -> Exercise:
 
 
 func _create_between_same_digits_riddle() -> Exercise:
-	var question = "Meine Zahl liegt zwischen 400 und 600. Sie hat drei gleiche Ziffern."
-	return Exercise.new(question, "444 555")
+	# Define ranges where only one solution with three same digits exists
+	var ranges = [
+		{"min": 100, "max": 200, "answer": "111"},
+		{"min": 200, "max": 300, "answer": "222"},
+		{"min": 300, "max": 400, "answer": "333"},
+		{"min": 400, "max": 500, "answer": "444"},
+		{"min": 500, "max": 600, "answer": "555"},
+		{"min": 600, "max": 700, "answer": "666"},
+		{"min": 700, "max": 800, "answer": "777"},
+		{"min": 800, "max": 900, "answer": "888"},
+		{"min": 900, "max": 1000, "answer": "999"}
+	]
+	
+	var selected_range = ranges[randi() % ranges.size()]
+	var question = "Meine Zahl liegt zwischen %d und %d. Sie hat drei gleiche Ziffern." % [selected_range.min, selected_range.max]
+	return Exercise.new(question, selected_range.answer)
 
 
 func _create_before_1000_riddle() -> Exercise:
