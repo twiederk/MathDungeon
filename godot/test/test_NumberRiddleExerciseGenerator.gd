@@ -129,25 +129,6 @@ func test_between_same_digits_riddle():
 	assert_eq(exercise.result, "444 555")
 
 
-func test_digit_relation_3digit_riddle():
-	# arrange
-	var generator = NumberRiddleExerciseGenerator.new()
-	
-	# act
-	var exercise = generator._create_digit_relation_3digit_riddle()
-	
-	# assert
-	assert_not_null(exercise)
-	assert_eq(exercise.question, "Meine dreistellige Zahl ist kleiner als 400. Der Einer ist doppelt so groß wie der Zehner. Der Hunderter ist um 1 kleiner als der Zehner.")
-	# Result should contain valid 3-digit numbers
-	var results = exercise.result.split(" ")
-	for result in results:
-		assert_true(result.is_valid_int(), "Each result should be a valid integer")
-		var number = result.to_int()
-		assert_true(number < 400, "Number should be less than 400")
-		assert_true(number >= 100, "Number should be 3-digit")
-
-
 func test_create_exercise_with_seed():
 	# arrange
 	seed(42)

@@ -3,10 +3,8 @@ class_name NumberRiddleExerciseGenerator
 var riddle_types: Array[String] = [
 	"next_ten",
 	"half_minus",
-	"digit_relation_3digit",
 	"half_of",
 	"next_after_max_3digit",
-	"digit_relation_large",
 	"between_same_digits",
 	"before_1000",
 	"tens_ones_hundreds_relation",
@@ -22,14 +20,10 @@ func create_exercise() -> Exercise:
 			return _create_next_ten_riddle()
 		"half_minus":
 			return _create_half_minus_riddle()
-		"digit_relation_3digit":
-			return _create_digit_relation_3digit_riddle()
 		"half_of":
 			return _create_half_of_riddle()
 		"next_after_max_3digit":
 			return _create_next_after_max_3digit_riddle()
-		"digit_relation_large":
-			return _create_digit_relation_large_riddle()
 		"between_same_digits":
 			return _create_between_same_digits_riddle()
 		"before_1000":
@@ -59,21 +53,6 @@ func _create_half_minus_riddle() -> Exercise:
 	return Exercise.new(question, str(result))
 
 
-func _create_digit_relation_3digit_riddle() -> Exercise:
-	# Generate all valid numbers with pattern: ones = 2 * tens, hundreds = tens - 1
-	var results = []
-	for t in range(2, 5):  # tens from 2-4 to keep ones single digit
-		var h = t - 1
-		var o = t * 2
-		if h > 0 and o <= 9:
-			var number = h * 100 + t * 10 + o
-			if number < 400:
-				results.append(str(number))
-	
-	var question = "Meine dreistellige Zahl ist kleiner als 400. Der Einer ist doppelt so groß wie der Zehner. Der Hunderter ist um 1 kleiner als der Zehner."
-	return Exercise.new(question, " ".join(results))
-
-
 func _create_half_of_riddle() -> Exercise:
 	var base_number = randi_range(200, 500) * 2  # Ensure even number
 	@warning_ignore("integer_division")
@@ -83,23 +62,18 @@ func _create_half_of_riddle() -> Exercise:
 
 
 func _create_next_after_max_3digit_riddle() -> Exercise:
-	var question = "Meine Zahl ist um eins größer als die größte, dreistellige Zahl."
-	return Exercise.new(question, "1000")
-
-
-func _create_digit_relation_large_riddle() -> Exercise:
-	# Generate number > 700 where: ones = hundreds/2, tens = hundreds + 1
-	var hundreds = randi_range(8, 9)  # 8 or 9 to be > 700
-	var tens = hundreds + 1
-	@warning_ignore("integer_division")
-	var ones = hundreds / 2
+	var digit_type = randi_range(1, 3)  # Randomly choose 1, 2, or 3 digits
 	
-	if tens <= 9 and ones == int(ones):  # tens must be single digit, ones must be whole number
-		var number = hundreds * 100 + tens * 10 + int(ones)
-		var question = "Meine Zahl ist größer als 700. Der Einer ist nur halb so groß wie der Hunderter. Der Zehner ist um 1 größer als der Hunderter."
-		return Exercise.new(question, str(number))
-	else:
-		return _create_next_ten_riddle()  # Fallback
+	match digit_type:
+		1:
+			var question = "Meine Zahl ist um eins größer als die größte, einstellige Zahl."
+			return Exercise.new(question, "10")
+		2:
+			var question = "Meine Zahl ist um eins größer als die größte, zweistellige Zahl."
+			return Exercise.new(question, "100")
+		_:  # 3 digits (default)
+			var question = "Meine Zahl ist um eins größer als die größte, dreistellige Zahl."
+			return Exercise.new(question, "1000")
 
 
 func _create_between_same_digits_riddle() -> Exercise:
