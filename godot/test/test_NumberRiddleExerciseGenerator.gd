@@ -14,7 +14,7 @@ func after_each():
 	number_riddle_exercise_generator = null
 
 
-func test_create_exercise_not_null():
+func test_create_exercise():
 	# act
 	var exercise = number_riddle_exercise_generator.create_exercise()
 	
@@ -61,8 +61,8 @@ func test_next_after_max_3digit_riddle():
 	
 	# assert
 	assert_not_null(exercise)
-	assert_eq(exercise.question, "Meine Zahl ist um eins größer als die größte, dreistellige Zahl.")
-	assert_eq(exercise.result, "1000")
+	assert_eq(exercise.question, "Meine Zahl ist um eins größer als die größte, zweistellige Zahl.")
+	assert_eq(exercise.result, "100")
 
 
 func test_before_1000_riddle():
@@ -71,18 +71,22 @@ func test_before_1000_riddle():
 	
 	# assert
 	assert_not_null(exercise)
-	assert_eq(exercise.question, "Meine Zahl ist um 1 kleiner als 100.")
-	assert_eq(exercise.result, "99")
+	assert_eq(exercise.question, "Meine Zahl ist um 1 kleiner als 1000.")
+	assert_eq(exercise.result, "999")
 
 
 func test_between_single_digits_riddle():
+	# arrange
+	seed(42)  # Set deterministic seed
+	var generator = NumberRiddleExerciseGenerator.new()
+	
 	# act
-	var exercise = number_riddle_exercise_generator._create_between_single_digits_riddle()
+	var exercise = generator._create_between_single_digits_riddle()
 	
 	# assert
 	assert_not_null(exercise)
-	assert_eq(exercise.question, "Meine Zahl liegt zwischen 800 und 900. Sie hat nur einen Einer und einen Zehner.")
-	assert_eq(exercise.result, "811")
+	assert_eq(exercise.question, "Meine Zahl liegt zwischen 900 und 1000. Sie hat nur einen Einer und einen Zehner.")
+	assert_eq(exercise.result, "911")
 
 
 func test_between_same_digits_riddle():
@@ -91,8 +95,8 @@ func test_between_same_digits_riddle():
 	
 	# assert
 	assert_not_null(exercise)
-	assert_eq(exercise.question, "Meine Zahl liegt zwischen 600 und 700. Sie hat drei gleiche Ziffern.")
-	assert_eq(exercise.result, "666")
+	assert_eq(exercise.question, "Meine Zahl liegt zwischen 500 und 600. Sie hat drei gleiche Ziffern.")
+	assert_eq(exercise.result, "555")
 
 
 func test_create_exercise_with_seed():

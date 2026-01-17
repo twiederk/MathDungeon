@@ -74,7 +74,6 @@ func _create_next_after_max_3digit_riddle() -> Exercise:
 
 
 func _create_between_same_digits_riddle() -> Exercise:
-	# Define ranges where only one solution with three same digits exists
 	var ranges = [
 		{"min": 100, "max": 200, "answer": "111"},
 		{"min": 200, "max": 300, "answer": "222"},
@@ -105,6 +104,18 @@ func _create_before_1000_riddle() -> Exercise:
 
 
 func _create_between_single_digits_riddle() -> Exercise:
-	var number = 811  # Only valid answer between 800-900 with one ten and one one
-	var question = "Meine Zahl liegt zwischen 800 und 900. Sie hat nur einen Einer und einen Zehner."
-	return Exercise.new(question, str(number))
+	var ranges = [
+		{"min": 100, "max": 200, "answer": "111"},
+		{"min": 200, "max": 300, "answer": "211"},
+		{"min": 300, "max": 400, "answer": "311"},
+		{"min": 400, "max": 500, "answer": "411"},
+		{"min": 500, "max": 600, "answer": "511"},
+		{"min": 600, "max": 700, "answer": "611"},
+		{"min": 700, "max": 800, "answer": "711"},
+		{"min": 800, "max": 900, "answer": "811"},
+		{"min": 900, "max": 1000, "answer": "911"}
+	]
+	
+	var selected_range = ranges[randi() % ranges.size()]
+	var question = "Meine Zahl liegt zwischen %d und %d. Sie hat nur einen Einer und einen Zehner." % [selected_range.min, selected_range.max]
+	return Exercise.new(question, selected_range.answer)
