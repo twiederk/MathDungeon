@@ -9,7 +9,8 @@ enum ArithmeticType {
 	DIVISION,
 	DIVISION_REMAINDER,
 	TIMES_TABLE,
-	DIGIT_SUM
+	DIGIT_SUM,
+	NUMBER_RIDDLE
 }
 
 @export var name: String = "Enemie"
