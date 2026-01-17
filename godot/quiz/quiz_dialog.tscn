@@ -43,8 +43,10 @@ theme = ExtResource("1_jj3p0")
 layout_mode = 2
 
 [node name="QuestionLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(580, 0)
 layout_mode = 2
 text = "Frage"
+autowrap_mode = 3
 
 [node name="AnswerLineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
