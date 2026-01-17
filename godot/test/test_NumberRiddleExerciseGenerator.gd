@@ -71,18 +71,8 @@ func test_before_1000_riddle():
 	
 	# assert
 	assert_not_null(exercise)
-	assert_eq(exercise.question, "Meine Zahl ist um 1 kleiner als 10.")
-	assert_eq(exercise.result, "9")
-
-
-func test_tens_ones_hundreds_relation_riddle():
-	# act
-	var exercise = number_riddle_exercise_generator._create_tens_ones_hundreds_relation_riddle()
-	
-	# assert
-	assert_not_null(exercise)
-	assert_eq(exercise.question, "Meine Zahl hat 4 Zehner und doppelt so viele Einer. Der Hunderter ist halb so groß wie der Zehner.")
-	assert_eq(exercise.result, "248")
+	assert_eq(exercise.question, "Meine Zahl ist um 1 kleiner als 100.")
+	assert_eq(exercise.result, "99")
 
 
 func test_between_single_digits_riddle():

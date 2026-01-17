@@ -7,7 +7,6 @@ var riddle_types: Array[String] = [
 	"next_after_max_3digit",
 	"between_same_digits",
 	"before_1000",
-	"tens_ones_hundreds_relation",
 	"between_single_digits"
 ]
 
@@ -28,8 +27,6 @@ func create_exercise() -> Exercise:
 			return _create_between_same_digits_riddle()
 		"before_1000":
 			return _create_before_1000_riddle()
-		"tens_ones_hundreds_relation":
-			return _create_tens_ones_hundreds_relation_riddle()
 		"between_single_digits":
 			return _create_between_single_digits_riddle()
 		_:
@@ -105,16 +102,6 @@ func _create_before_1000_riddle() -> Exercise:
 	var selected_target = targets[randi() % targets.size()]
 	var question = "Meine Zahl ist um 1 kleiner als %d." % selected_target.number
 	return Exercise.new(question, selected_target.answer)
-
-
-func _create_tens_ones_hundreds_relation_riddle() -> Exercise:
-	var tens_digit = 4
-	var ones_digit = tens_digit * 2  # 8
-	@warning_ignore("integer_division")
-	var hundreds_digit = tens_digit / 2  # 2
-	var number = hundreds_digit * 100 + tens_digit * 10 + ones_digit
-	var question = "Meine Zahl hat 4 Zehner und doppelt so viele Einer. Der Hunderter ist halb so groß wie der Zehner."
-	return Exercise.new(question, str(number))
 
 
 func _create_between_single_digits_riddle() -> Exercise:
