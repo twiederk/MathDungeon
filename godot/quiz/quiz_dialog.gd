@@ -69,6 +69,8 @@ func _create_exercise() -> Exercise:
 			return TimesTableExerciseGenerator.new().create_exercise()
 		EnemyStats.ArithmeticType.DIGIT_SUM:
 			return DigitSumExerciseGenerator.new().create_exercise()
+		EnemyStats.ArithmeticType.NUMBER_RIDDLE:
+			return NumberRiddleExerciseGenerator.new().create_exercise()
 	return AdditionExerciseGenerator.new(enemy.stats.max_number).create_exercise()
 
 

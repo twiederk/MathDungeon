@@ -1,0 +1,175 @@
+extends GutTest
+
+var number_riddle_exercise_generator: NumberRiddleExerciseGenerator = null
+
+
+func before_each():
+	number_riddle_exercise_generator = NumberRiddleExerciseGenerator.new()
+
+
+func after_each():
+	number_riddle_exercise_generator = null
+
+
+func test_create_exercise_not_null():
+	# arrange
+	seed(1)
+	
+	# act
+	var exercise = number_riddle_exercise_generator.create_exercise()
+	
+	# assert
+	assert_not_null(exercise, "Exercise should not be null")
+	assert_not_null(exercise.question, "Question should not be null")
+	assert_not_null(exercise.result, "Result should not be null")
+
+
+func test_next_ten_riddle():
+	# arrange
+	var generator = NumberRiddleExerciseGenerator.new()
+	
+	# act
+	var exercise = generator._create_next_ten_riddle()
+	
+	# assert
+	assert_not_null(exercise)
+	assert_true(exercise.question.begins_with("Meine Zahl ist die nächste Zehnerzahl"))
+	assert_true(exercise.result.is_valid_int())
+
+
+func test_half_minus_riddle():
+	# arrange
+	var generator = NumberRiddleExerciseGenerator.new()
+	
+	# act
+	var exercise = generator._create_half_minus_riddle()
+	
+	# assert
+	assert_not_null(exercise)
+	assert_true(exercise.question.begins_with("Meine Zahl ist um"))
+	assert_true(exercise.question.contains("kleiner als die Hälfte von"))
+	assert_true(exercise.result.is_valid_int())
+
+
+func test_half_of_riddle():
+	# arrange
+	var generator = NumberRiddleExerciseGenerator.new()
+	
+	# act
+	var exercise = generator._create_half_of_riddle()
+	
+	# assert
+	assert_not_null(exercise)
+	assert_true(exercise.question.begins_with("Meine Zahl ist halb so groß wie"))
+	assert_true(exercise.result.is_valid_int())
+
+
+func test_next_after_max_3digit_riddle():
+	# arrange
+	var generator = NumberRiddleExerciseGenerator.new()
+	
+	# act
+	var exercise = generator._create_next_after_max_3digit_riddle()
+	
+	# assert
+	assert_not_null(exercise)
+	assert_eq(exercise.question, "Meine Zahl ist um eins größer als die größte, dreistellige Zahl.")
+	assert_eq(exercise.result, "1000")
+
+
+func test_before_1000_riddle():
+	# arrange
+	var generator = NumberRiddleExerciseGenerator.new()
+	
+	# act
+	var exercise = generator._create_before_1000_riddle()
+	
+	# assert
+	assert_not_null(exercise)
+	assert_eq(exercise.question, "Meine Zahl ist um 1 kleiner als 1000.")
+	assert_eq(exercise.result, "999")
+
+
+func test_tens_ones_hundreds_relation_riddle():
+	# arrange
+	var generator = NumberRiddleExerciseGenerator.new()
+	
+	# act
+	var exercise = generator._create_tens_ones_hundreds_relation_riddle()
+	
+	# assert
+	assert_not_null(exercise)
+	assert_eq(exercise.question, "Meine Zahl hat 4 Zehner und doppelt so viele Einer. Der Hunderter ist halb so groß wie der Zehner.")
+	assert_eq(exercise.result, "248")
+
+
+func test_between_single_digits_riddle():
+	# arrange
+	var generator = NumberRiddleExerciseGenerator.new()
+	
+	# act
+	var exercise = generator._create_between_single_digits_riddle()
+	
+	# assert
+	assert_not_null(exercise)
+	assert_eq(exercise.question, "Meine Zahl liegt zwischen 800 und 900. Sie hat nur einen Einer und einen Zehner.")
+	assert_eq(exercise.result, "811")
+
+
+func test_between_same_digits_riddle():
+	# arrange
+	var generator = NumberRiddleExerciseGenerator.new()
+	
+	# act
+	var exercise = generator._create_between_same_digits_riddle()
+	
+	# assert
+	assert_not_null(exercise)
+	assert_eq(exercise.question, "Meine Zahl liegt zwischen 400 und 600. Sie hat drei gleiche Ziffern.")
+	assert_eq(exercise.result, "444 555")
+
+
+func test_digit_relation_3digit_riddle():
+	# arrange
+	var generator = NumberRiddleExerciseGenerator.new()
+	
+	# act
+	var exercise = generator._create_digit_relation_3digit_riddle()
+	
+	# assert
+	assert_not_null(exercise)
+	assert_eq(exercise.question, "Meine dreistellige Zahl ist kleiner als 400. Der Einer ist doppelt so groß wie der Zehner. Der Hunderter ist um 1 kleiner als der Zehner.")
+	# Result should contain valid 3-digit numbers
+	var results = exercise.result.split(" ")
+	for result in results:
+		assert_true(result.is_valid_int(), "Each result should be a valid integer")
+		var number = result.to_int()
+		assert_true(number < 400, "Number should be less than 400")
+		assert_true(number >= 100, "Number should be 3-digit")
+
+
+func test_create_exercise_with_seed():
+	# arrange
+	seed(42)
+	
+	# act
+	var exercise = number_riddle_exercise_generator.create_exercise()
+	
+	# assert
+	assert_not_null(exercise, "Exercise should not be null")
+	assert_false(exercise.question.is_empty(), "Question should not be empty")
+	assert_false(exercise.result.is_empty(), "Result should not be empty")
+
+
+func test_multiple_exercises_different():
+	# Test that we get different types of exercises
+	var exercise_types = {}
+	
+	for i in range(20):
+		seed(i)
+		var exercise = number_riddle_exercise_generator.create_exercise()
+		var question_start = exercise.question.substr(0, 20)
+		exercise_types[question_start] = true
+	
+	# We should get at least a few different types
+	assert_true(exercise_types.size() >= 3, "Should generate different types of exercises")

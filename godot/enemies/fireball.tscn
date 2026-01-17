@@ -14,6 +14,7 @@ size = Vector2(22, 8)
 [node name="Fireball" type="RigidBody2D"]
 collision_layer = 4
 script = ExtResource("1_hbguw")
+speed = 200.0
 projectile_stats = ExtResource("2_hbguw")
 projectile_sound = ExtResource("3_hbguw")
 
