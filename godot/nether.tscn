@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz/quiz_dialog.tscn" id="21_pigpc"]
 [ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="22_og6u2"]
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="23_5xi5g"]
+[ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv6" path="res://gui/name_entry_dialog.tscn" id="24_entry"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_gwimr")
@@ -101,3 +102,5 @@ offset_bottom = 3.0
 
 [node name="PauseGui" parent="UI" instance=ExtResource("23_5xi5g")]
 process_mode = 3
+
+[node name="NameEntryDialog" parent="UI" instance=ExtResource("24_entry")]

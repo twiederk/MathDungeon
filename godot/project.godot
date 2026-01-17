@@ -21,6 +21,7 @@ config/windows_native_icon="res://icon.ico"
 PlayerStats="*res://player_stats.gd"
 Sound="*res://sound.tscn"
 SaveManager="*res://save_manager.gd"
+HighscoreManager="*res://highscore_manager.gd"
 
 [display]
 

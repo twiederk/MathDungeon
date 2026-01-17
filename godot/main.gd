@@ -10,19 +10,24 @@ extends Node2D
 
 @onready var quiz: Control = $UI/QuizDialog
 @onready var player_stats_sheet: StatsSheet = $UI/PlayerStatsSheet
+@onready var name_entry_dialog: Control = $UI/NameEntryDialog
 
 
 func _ready() -> void:
 	_setup_signals()
 	_setup_limits_and_borders()
 	_setup_character_stats()
-	_setup_companions()	
+	_setup_companions()
+	_setup_name_entry_dialog()	
 
 
 func _setup_signals() -> void:
 	for child in enemies_root.get_children():
 		if child.has_signal("encountered"):
 			child.encountered.connect(_on_enemy_encountered)
+		# Connect to enemy death signal if it exists
+		if child.has_signal("tree_exiting"):
+			child.tree_exiting.connect(_on_enemy_defeated)
 
 	for child in items_root.get_children():
 		if child.has_signal("item_picked_up"):
@@ -82,3 +87,47 @@ func _setup_companions() -> void:
 			companion.start_following(player)
 			if companion.has_method("set_damage_applied"):
 				companion.set_damage_applied()
+
+
+func _on_enemy_defeated() -> void:
+	# Check for nether completion after enemy is defeated
+	if _is_nether_scene():
+		call_deferred("_check_nether_completion")
+
+
+func _is_nether_scene() -> bool:
+	return get_tree().current_scene.scene_file_path == "res://nether.tscn"
+
+
+func _check_nether_completion() -> void:
+	if not _is_nether_scene():
+		return
+	
+	# Count remaining shooting ghasts
+	var remaining_ghasts = 0
+	for enemy in enemies_root.get_children():
+		if "ShootingGhast" in enemy.name:
+			remaining_ghasts += 1
+	
+	if remaining_ghasts == 0:
+		_trigger_game_completion()
+
+
+func _trigger_game_completion() -> void:
+	# Game completed! Show name entry for highscore
+	if name_entry_dialog:
+		name_entry_dialog.open_for_score(PlayerStats.current_score)
+	else:
+		# Fallback if name_entry_dialog is not available 
+		print("All ghasts defeated! Score: ", PlayerStats.current_score)
+		get_tree().change_scene_to_file("res://gui/start_gui.tscn")
+
+
+func _setup_name_entry_dialog() -> void:
+	if name_entry_dialog:
+		name_entry_dialog.name_submitted.connect(_on_name_submitted)
+
+
+func _on_name_submitted(player_name: String, score: int) -> void:
+	HighscoreManager.add_score(player_name, score)
+	get_tree().change_scene_to_file("res://gui/start_gui.tscn")

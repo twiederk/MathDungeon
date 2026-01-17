@@ -4,10 +4,15 @@ extends Node
 signal health_changed
 signal weapon_damage_changed
 signal armor_changed
+signal score_changed
 
 
 var max_hit_points: int = 5
 var companion_paths: Array[String] = []
+var current_score: int = 0:
+	set(value):
+		current_score = value
+		score_changed.emit()
 
 
 var hit_points: int = 5:
@@ -36,7 +41,12 @@ func reset() -> void:
 	hit_points = 5
 	weapon_damage = 1
 	armor = 0
+	current_score = 0
 	companion_paths.clear()
+
+
+func add_correct_answer() -> void:
+	current_score += 10  # Fixed points per correct answer
 
 
 func add_companion(companion_path: String) -> void:

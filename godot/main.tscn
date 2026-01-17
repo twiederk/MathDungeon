@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://d0we0mbuvkkcc" path="res://enemies/enderdragon.tscn" id="16_074og"]
 [ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://map_borders.tscn" id="20_d13ii"]
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="20_getpj"]
+[ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv6" path="res://gui/name_entry_dialog.tscn" id="21_entry"]
 [ext_resource type="PackedScene" uid="uid://cbvdad0fnpie8" path="res://enemies/pig.tscn" id="21_0odxb"]
 [ext_resource type="PackedScene" uid="uid://b3t6krerhsshv" path="res://enemies/shooting_pillager.tscn" id="21_a6jrf"]
 [ext_resource type="PackedScene" uid="uid://cwox4f8n83s0j" path="res://dungeon_title.tscn" id="22_lswn8"]
@@ -391,6 +392,8 @@ offset_bottom = 3.0
 
 [node name="PauseGui" parent="UI" instance=ExtResource("20_getpj")]
 process_mode = 3
+
+[node name="NameEntryDialog" parent="UI" instance=ExtResource("21_entry")]
 
 [editable path="Enemies/ShootingSkeleton2"]
 [editable path="Enemies/ShootingSkeleton3"]

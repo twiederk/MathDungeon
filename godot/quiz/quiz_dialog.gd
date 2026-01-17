@@ -89,6 +89,7 @@ func _check_answer(answer: String) -> void:
 
 
 func _answer_correct() -> void:
+	PlayerStats.add_correct_answer()  # Add score for correct answer
 	var enemy_hit_points = enemy.hurt(PlayerStats.get_total_damage())
 	if enemy_hit_points > 0:
 		exercise = _create_exercise()
