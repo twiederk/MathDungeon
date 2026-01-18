@@ -2,11 +2,9 @@ extends GutTest
 
 var number_riddle_exercise_generator: NumberRiddleExerciseGenerator = null
 
-func before_all():
-	seed(1)
-
 
 func before_each():
+	seed(1)
 	number_riddle_exercise_generator = NumberRiddleExerciseGenerator.new()
 
 
@@ -30,8 +28,8 @@ func test_next_ten_riddle():
 	
 	# assert
 	assert_not_null(exercise)
-	assert_eq(exercise.question, "Meine Zahl ist die nächste Zehnerzahl die größer ist als 239.")
-	assert_eq(exercise.result, "240")
+	assert_eq(exercise.question, "Meine Zahl ist die nächste Zehnerzahl die größer ist als 160.")
+	assert_eq(exercise.result, "170")
 
 
 func test_half_minus_riddle():
@@ -61,8 +59,8 @@ func test_next_after_max_3digit_riddle():
 	
 	# assert
 	assert_not_null(exercise)
-	assert_eq(exercise.question, "Meine Zahl ist um eins größer als die größte, zweistellige Zahl.")
-	assert_eq(exercise.result, "100")
+	assert_eq(exercise.question, "Meine Zahl ist um eins größer als die größte, einstellige Zahl.")
+	assert_eq(exercise.result, "10")
 
 
 func test_before_1000_riddle():
@@ -71,8 +69,8 @@ func test_before_1000_riddle():
 	
 	# assert
 	assert_not_null(exercise)
-	assert_eq(exercise.question, "Meine Zahl ist um 1 kleiner als 1000.")
-	assert_eq(exercise.result, "999")
+	assert_eq(exercise.question, "Meine Zahl ist um 1 kleiner als 10.")
+	assert_eq(exercise.result, "9")
 
 
 func test_between_single_digits_riddle():	
@@ -81,8 +79,8 @@ func test_between_single_digits_riddle():
 	
 	# assert
 	assert_not_null(exercise)
-	assert_eq(exercise.question, "Meine Zahl liegt zwischen 400 und 500. Sie hat nur einen Einer und einen Zehner.")
-	assert_eq(exercise.result, "411")
+	assert_eq(exercise.question, "Meine Zahl liegt zwischen 700 und 800. Sie hat nur einen Einer und einen Zehner.")
+	assert_eq(exercise.result, "711")
 
 
 func test_between_same_digits_riddle():
@@ -91,5 +89,5 @@ func test_between_same_digits_riddle():
 	
 	# assert
 	assert_not_null(exercise)
-	assert_eq(exercise.question, "Meine Zahl liegt zwischen 600 und 700. Sie hat drei gleiche Ziffern.")
-	assert_eq(exercise.result, "666")
+	assert_eq(exercise.question, "Meine Zahl liegt zwischen 700 und 800. Sie hat drei gleiche Ziffern.")
+	assert_eq(exercise.result, "777")
