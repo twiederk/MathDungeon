@@ -136,11 +136,6 @@ func _game_over() -> void:
 		progress_timer.stop()
 
 
-func _on_highscore_name_submitted(player_name: String, score: int) -> void:
-	HighscoreManager.add_score(player_name, score)
-
-
-
 func _close_dialog() -> void:
 	visible = false
 	get_tree().paused = false
@@ -171,14 +166,15 @@ func _answer_timeout() -> void:
 		answer_line_edit.visible = false
 
 
+func _on_enemy_health_changed() -> void:
+	enemy_stats_sheet.update_health_only(enemy.hit_points)
+
+
 func _on_main_menu_button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://gui/start_gui.tscn")
 
 
-func _on_enemy_health_changed() -> void:
-	enemy_stats_sheet.update_health_only(enemy.hit_points)
-
-
 func _on_name_entry_button_pressed():
+	get_tree().paused = false	
 	get_tree().change_scene_to_file("res://gui/name_entry_dialog.tscn")
