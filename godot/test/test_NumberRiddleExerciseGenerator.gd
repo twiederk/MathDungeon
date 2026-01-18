@@ -27,7 +27,7 @@ func test_next_ten_riddle():
 	var exercise = number_riddle_exercise_generator._create_next_ten_riddle()
 	
 	# assert
-	assert_not_null(exercise)
+	assert_not_null(exercise, "Exercise should not be null")
 	assert_eq(exercise.question, "Meine Zahl ist die nächste Zehnerzahl die größer ist als 160.")
 	assert_eq(exercise.result, "170")
 
@@ -37,10 +37,9 @@ func test_half_minus_riddle():
 	var exercise = number_riddle_exercise_generator._create_half_minus_riddle()
 	
 	# assert
-	assert_not_null(exercise)
-	assert_true(exercise.question.begins_with("Meine Zahl ist um"))
-	assert_true(exercise.question.contains("kleiner als die Hälfte von"))
-	assert_true(exercise.result.is_valid_int())
+	assert_not_null(exercise, "Exercise should not be null")
+	assert_eq(exercise.question, "Meine Zahl ist um 2 kleiner als die Hälfte von 248.")
+	assert_eq(exercise.result, "122")
 
 
 func test_half_of_riddle():
@@ -48,9 +47,9 @@ func test_half_of_riddle():
 	var exercise = number_riddle_exercise_generator._create_half_of_riddle()
 	
 	# assert
-	assert_not_null(exercise)
-	assert_true(exercise.question.begins_with("Meine Zahl ist halb so groß wie"))
-	assert_true(exercise.result.is_valid_int())
+	assert_not_null(exercise, "Exercise should not be null")
+	assert_eq(exercise.question, "Meine Zahl ist halb so groß wie 468.")
+	assert_eq(exercise.result, "234")
 
 
 func test_next_after_max_3digit_riddle():
