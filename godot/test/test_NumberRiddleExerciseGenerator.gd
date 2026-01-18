@@ -30,8 +30,8 @@ func test_next_ten_riddle():
 	
 	# assert
 	assert_not_null(exercise)
-	assert_true(exercise.question.begins_with("Meine Zahl ist die nächste Zehnerzahl"))
-	assert_true(exercise.result.is_valid_int())
+	assert_eq(exercise.question, "Meine Zahl ist die nächste Zehnerzahl die größer ist als 239.")
+	assert_eq(exercise.result, "240")
 
 
 func test_half_minus_riddle():
