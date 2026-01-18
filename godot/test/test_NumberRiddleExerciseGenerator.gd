@@ -20,8 +20,8 @@ func test_create_exercise_not_null():
 	
 	# assert
 	assert_not_null(exercise, "Exercise should not be null")
-	assert_not_null(exercise.question, "Question should not be null")
-	assert_not_null(exercise.result, "Result should not be null")
+	assert_eq(exercise.question, "Meine Zahl liegt zwischen 100 und 200. Sie hat nur einen Einer und einen Zehner.")
+	assert_eq(exercise.result, "111")
 
 
 func test_next_ten_riddle():
@@ -61,8 +61,8 @@ func test_next_after_max_3digit_riddle():
 	
 	# assert
 	assert_not_null(exercise)
-	assert_eq(exercise.question, "Meine Zahl ist um eins größer als die größte, dreistellige Zahl.")
-	assert_eq(exercise.result, "1000")
+	assert_eq(exercise.question, "Meine Zahl ist um eins größer als die größte, zweistellige Zahl.")
+	assert_eq(exercise.result, "100")
 
 
 func test_before_1000_riddle():
@@ -71,8 +71,8 @@ func test_before_1000_riddle():
 	
 	# assert
 	assert_not_null(exercise)
-	assert_eq(exercise.question, "Meine Zahl ist um 1 kleiner als 100.")
-	assert_eq(exercise.result, "99")
+	assert_eq(exercise.question, "Meine Zahl ist um 1 kleiner als 1000.")
+	assert_eq(exercise.result, "999")
 
 
 func test_between_single_digits_riddle():	
@@ -81,8 +81,8 @@ func test_between_single_digits_riddle():
 	
 	# assert
 	assert_not_null(exercise)
-	assert_eq(exercise.question, "Meine Zahl liegt zwischen 600 und 700. Sie hat nur einen Einer und einen Zehner.")
-	assert_eq(exercise.result, "611")
+	assert_eq(exercise.question, "Meine Zahl liegt zwischen 400 und 500. Sie hat nur einen Einer und einen Zehner.")
+	assert_eq(exercise.result, "411")
 
 
 func test_between_same_digits_riddle():
