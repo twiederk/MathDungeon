@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ctlnlkhh85kv6"]
 
 [ext_resource type="Theme" uid="uid://laictl43pv1e" path="res://quiz/quiz_dialog_theme.tres" id="1_xartf"]
-[ext_resource type="Script" uid="uid://dgdhtb4e05cdj" path="res://gui/name_entry_dialog.gd" id="2_xartf"]
+[ext_resource type="Script" uid="uid://bmejakvcdwy1p" path="res://gui/name_entry_dialog.gd" id="2_xartf"]
 
 [node name="NameEntryDialog" type="Control"]
 layout_mode = 3
@@ -36,11 +36,13 @@ layout_mode = 2
 [node name="ScoreLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(580, 0)
 layout_mode = 2
-text = "Glückwunsch! Du hast gewonnen!
+text = "Glückwunsch!
+
 Dein Punktestand: 0
+
 Gib deinen Namen ein:"
-autowrap_mode = 3
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="NameLineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2

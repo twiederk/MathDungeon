@@ -5,6 +5,7 @@ extends Control
 @onready var question_label: Label = $CenterContainer/VBoxContainer/QuestionLabel
 @onready var answer_line_edit: LineEdit = $CenterContainer/VBoxContainer/AnswerLineEdit
 @onready var start_gui_button: Button = $CenterContainer/VBoxContainer/StartGuiButton
+@onready var name_entry_button = $CenterContainer/VBoxContainer/NameEntryButton
 @onready var time_limit_progress_bar: ProgressBar = $CenterContainer/VBoxContainer/TimelimitProgressBar
 @onready var answer_timer = $AnswerTimer
 @onready var progress_timer = $ProgressTimer
@@ -117,14 +118,26 @@ func _answer_incorrect() -> void:
 
 
 func _game_over() -> void:
-	question_label.text = "Du hast alle Lebenspunkte verloren.\nDu hast verloren."
+	var button : Button
+	var message: String
+	if HighscoreManager.is_highscore(PlayerStats.current_score):
+		message = "Du hast alle Lebenspunkte verloren.\nDu hast einen neuen Bestenwert erspielt!!!"
+		button = name_entry_button
+	else: 
+		message = "Du hast alle Lebenspunkte verloren.\nDu hast verloren."
+		button = start_gui_button
+	button.visible = true
+	button.grab_focus()
+	question_label.text = message
 	answer_line_edit.text = ""
 	answer_line_edit.visible = false
-	start_gui_button.visible = true
-	start_gui_button.grab_focus()
 	if enemy.has_time_limit():
 		answer_timer.stop()
 		progress_timer.stop()
+
+
+func _on_highscore_name_submitted(player_name: String, score: int) -> void:
+	HighscoreManager.add_score(player_name, score)
 
 
 
@@ -165,3 +178,7 @@ func _on_main_menu_button_pressed() -> void:
 
 func _on_enemy_health_changed() -> void:
 	enemy_stats_sheet.update_health_only(enemy.hit_points)
+
+
+func _on_name_entry_button_pressed():
+	get_tree().change_scene_to_file("res://gui/name_entry_dialog.tscn")
