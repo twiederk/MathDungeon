@@ -50,12 +50,12 @@ func is_highscore(score: int) -> bool:
 
 
 func get_formatted_highscores() -> String:
-	var result = "Bestenliste:\n"
+	var result = ""
 	if highscores.is_empty():
 		result += "Noch keine Einträge"
 		return result
 	
-	for i in range(min(5, highscores.size())):  # Show top 5
+	for i in range(min(10, highscores.size())):
 		var entry = highscores[i]
 		result += "%d. %s - %d\n" % [i + 1, entry.name, entry.score]
 	

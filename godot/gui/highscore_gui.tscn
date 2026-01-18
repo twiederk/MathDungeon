@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bskj0cyrtgd56"]
+
+[ext_resource type="PackedScene" uid="uid://bkpkuwnv5g0ad" path="res://gui/highscore_menu.tscn" id="1_6wt33"]
+[ext_resource type="PackedScene" uid="uid://bpkpuwnv5gy7d" path="res://gui/version_widget.tscn" id="2_g8wtb"]
+
+[node name="HighscoreGUI" type="CanvasLayer"]
+
+[node name="HighscoreMenu" parent="." instance=ExtResource("1_6wt33")]
+
+[node name="VersionWidget" parent="." instance=ExtResource("2_g8wtb")]
