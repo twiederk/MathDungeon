@@ -93,5 +93,3 @@ func test_between_same_digits_riddle():
 	assert_not_null(exercise)
 	assert_eq(exercise.question, "Meine Zahl liegt zwischen 600 und 700. Sie hat drei gleiche Ziffern.")
 	assert_eq(exercise.result, "666")
-
-

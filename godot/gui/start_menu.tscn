@@ -42,10 +42,15 @@ text = "Neues Spiel starten"
 layout_mode = 2
 text = "Spiel laden"
 
+[node name="HighscoresButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Bestenliste"
+
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Beenden"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HighscoresButton" to="." method="_on_highscores_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

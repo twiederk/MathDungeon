@@ -21,5 +21,9 @@ func _on_load_button_pressed():
 	get_tree().change_scene_to_file("res://main.tscn")
 
 
+func _on_highscores_button_pressed():
+	get_tree().change_scene_to_file("res://gui/highscore_widget.tscn")
+
+
 func _on_quit_button_pressed():
 	get_tree().quit()
