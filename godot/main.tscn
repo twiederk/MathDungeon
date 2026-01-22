@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://b53sfmxk4rjq2"]
+[gd_scene load_steps=45 format=4 uid="uid://b53sfmxk4rjq2"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="1_ig7tw"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://b3t6krerhsshv" path="res://enemies/shooting_pillager.tscn" id="21_a6jrf"]
 [ext_resource type="PackedScene" uid="uid://cwox4f8n83s0j" path="res://dungeon_title.tscn" id="22_lswn8"]
 [ext_resource type="PackedScene" uid="uid://xbjs301e481p" path="res://enemies/villager.tscn" id="22_xuqvo"]
+[ext_resource type="PackedScene" uid="uid://bjuiaid8a3011" path="res://enemies/villager_baby.tscn" id="23_kq58d"]
 [ext_resource type="PackedScene" uid="uid://bbea4w5dl7mq5" path="res://enemies/shooting_skeleton.tscn" id="27_a6jrf"]
 [ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="29_qsp4k"]
 
@@ -341,6 +342,12 @@ position = Vector2(149, 1512)
 [node name="Villager6" parent="Enemies" instance=ExtResource("22_xuqvo")]
 position = Vector2(141, 1745)
 
+[node name="VillagerBaby" parent="Enemies" instance=ExtResource("23_kq58d")]
+position = Vector2(132, 1780)
+
+[node name="VillagerBaby2" parent="Enemies" instance=ExtResource("23_kq58d")]
+position = Vector2(147, 1934)
+
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(-81, 685)
 
@@ -412,10 +419,10 @@ process_mode = 3
 [node name="ScoreWidget" parent="UI" instance=ExtResource("29_qsp4k")]
 anchors_preset = 1
 anchor_left = 1.0
-anchor_right = 1.0
+anchor_bottom = 0.0
 offset_left = -40.0
-offset_right = 0.0
 grow_horizontal = 0
+grow_vertical = 1
 
 [editable path="Enemies/ShootingSkeleton2"]
 [editable path="Enemies/ShootingSkeleton3"]
