@@ -13,7 +13,17 @@ func _ready():
 
 
 func _update_highscore_display():
-	highscore_label.text = HighscoreManager.get_formatted_highscores()
+	if HighscoreManager.highscores.is_empty():
+		highscore_label.text = \"Bestenliste:\nNoch keine Einträge\"
+		return
+	
+	var text = \"Bestenliste:\n\"
+	for i in range(min(5, HighscoreManager.highscores.size())):
+		var entry = HighscoreManager.highscores[i]
+		# Use string formatting to ensure alignment
+		text += "%d. %-15s %d\n" % [i + 1, entry.name, entry.score]
+	
+	highscore_label.text = text
 "
 
 [node name="HighscoreWidget" type="Control"]

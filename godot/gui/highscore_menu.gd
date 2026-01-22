@@ -3,7 +3,7 @@ extends Control
 
 
 @onready var back_button = $BackButton
-@onready var highscore_display: Label = $CenterContainer/VBoxContainer/HighscoreDisplay
+@onready var highscore_container: VBoxContainer = $CenterContainer/VBoxContainer/HighscoreContainer
 
 
 func _ready():
@@ -13,7 +13,34 @@ func _ready():
 
 
 func _update_highscore_display():
-	highscore_display.text = HighscoreManager.get_formatted_highscores()
+	# Clear existing entries
+	for child in highscore_container.get_children():
+		child.queue_free()
+	
+	if HighscoreManager.highscores.is_empty():
+		var no_scores_label = Label.new()
+		no_scores_label.text = "Noch keine Einträge"
+		no_scores_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		highscore_container.add_child(no_scores_label)
+		return
+	
+	# Add each highscore entry
+	for i in range(HighscoreManager.highscores.size()):
+		var entry = HighscoreManager.highscores[i]
+		var hbox = HBoxContainer.new()
+		
+		var rank_name_label = Label.new()
+		rank_name_label.text = "%d. %s" % [i + 1, entry.name]
+		rank_name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		
+		var score_label = Label.new()
+		score_label.text = "%d" % entry.score
+		score_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		score_label.custom_minimum_size.x = 100
+		
+		hbox.add_child(rank_name_label)
+		hbox.add_child(score_label)
+		highscore_container.add_child(hbox)
 
 
 func _on_back_button_pressed():

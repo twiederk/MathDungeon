@@ -41,12 +41,9 @@ layout_mode = 2
 text = "Bestenliste"
 horizontal_alignment = 1
 
-[node name="HighscoreDisplay" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="HighscoreContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(640, 298)
 layout_mode = 2
-text = "Lade Bestenliste..."
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 1
