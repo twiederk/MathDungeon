@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://b53sfmxk4rjq2"]
+[gd_scene load_steps=44 format=4 uid="uid://b53sfmxk4rjq2"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="1_ig7tw"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://cwox4f8n83s0j" path="res://dungeon_title.tscn" id="22_lswn8"]
 [ext_resource type="PackedScene" uid="uid://xbjs301e481p" path="res://enemies/villager.tscn" id="22_xuqvo"]
 [ext_resource type="PackedScene" uid="uid://bbea4w5dl7mq5" path="res://enemies/shooting_skeleton.tscn" id="27_a6jrf"]
+[ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="29_qsp4k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kq58d"]
 size = Vector2(93, 180)
@@ -407,6 +408,14 @@ offset_bottom = 3.0
 
 [node name="PauseGui" parent="UI" instance=ExtResource("20_getpj")]
 process_mode = 3
+
+[node name="ScoreWidget" parent="UI" instance=ExtResource("29_qsp4k")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_right = 0.0
+grow_horizontal = 0
 
 [editable path="Enemies/ShootingSkeleton2"]
 [editable path="Enemies/ShootingSkeleton3"]
