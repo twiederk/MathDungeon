@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://camg1re80chgu"]
+[gd_scene load_steps=7 format=3 uid="uid://camg1re80chgu"]
 
 [ext_resource type="Script" uid="uid://cedsdssd23q37" path="res://sound.gd" id="1_7ywqe"]
 [ext_resource type="AudioStream" uid="uid://b7gl80xgk3jb" path="res://items/PotionPickUp.ogg" id="2_tdv2v"]
@@ -6,7 +6,6 @@
 [ext_resource type="AudioStream" uid="uid://ctmyjwpkfckh4" path="res://companions/WolfPickUp.mp3" id="3_tdv2v"]
 [ext_resource type="AudioStream" uid="uid://vknem54cidfh" path="res://items/HelmetPickUp.ogg" id="4_glhti"]
 [ext_resource type="AudioStream" uid="uid://tlwviidcb8v0" path="res://enemies/victory.mp3" id="4_victory"]
-[ext_resource type="AudioStream" uid="uid://qnhhx7htjaw0" path="res://enemies/bow_shoot.ogg" id="7_kycvu"]
 
 [node name="Sound" type="Node"]
 script = ExtResource("1_7ywqe")
@@ -15,6 +14,35 @@ pickup_sword = ExtResource("3_njgaf")
 pickup_helmet = ExtResource("4_glhti")
 dog_bark = ExtResource("3_tdv2v")
 victory = ExtResource("4_victory")
-bow_shoot = ExtResource("7_kycvu")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer1" type="AudioStreamPlayer" parent="."]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="."]
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="."]
+
+[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="."]
+
+[node name="AudioStreamPlayer7" type="AudioStreamPlayer" parent="."]
+
+[node name="AudioStreamPlayer8" type="AudioStreamPlayer" parent="."]
+
+[node name="AudioStreamPlayer9" type="AudioStreamPlayer" parent="."]
+
+[node name="AudioStreamPlayer10" type="AudioStreamPlayer" parent="."]
+
+[node name="AudioStreamPlayer11" type="AudioStreamPlayer" parent="."]
+
+[node name="AudioStreamPlayer12" type="AudioStreamPlayer" parent="."]
+
+[node name="AudioStreamPlayer13" type="AudioStreamPlayer" parent="."]
+
+[node name="AudioStreamPlayer14" type="AudioStreamPlayer" parent="."]
+
+[node name="AudioStreamPlayer15" type="AudioStreamPlayer" parent="."]
+
+[node name="AudioStreamPlayer16" type="AudioStreamPlayer" parent="."]
