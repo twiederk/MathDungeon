@@ -90,7 +90,6 @@ func _check_answer(answer: String) -> void:
 
 
 func _answer_correct() -> void:
-	PlayerStats.add_correct_answer()
 	var enemy_hit_points = enemy.hurt(PlayerStats.get_total_damage())
 	if enemy_hit_points > 0:
 		exercise = _create_exercise()
@@ -99,6 +98,7 @@ func _answer_correct() -> void:
 		if enemy.has_time_limit():
 			_start_timers()
 	else:
+		PlayerStats.add_score(enemy.stats.get_score())
 		if enemy.has_time_limit():
 			answer_timer.stop()
 			progress_timer.stop()
