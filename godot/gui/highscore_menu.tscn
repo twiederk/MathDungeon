@@ -42,7 +42,7 @@ text = "Bestenliste"
 horizontal_alignment = 1
 
 [node name="HighscoreContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(640, 298)
+custom_minimum_size = Vector2(180, 298)
 layout_mode = 2
 
 [node name="BackButton" type="Button" parent="."]
