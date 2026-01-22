@@ -1,7 +1,8 @@
 class_name HighscoreMenu
 extends Control
 
-@onready var back_button: Button = $BackButton
+
+@onready var back_button = $BackButton
 @onready var highscore_display: Label = $CenterContainer/VBoxContainer/HighscoreDisplay
 
 
