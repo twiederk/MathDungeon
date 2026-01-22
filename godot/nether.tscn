@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://cgr3ur2xra4jo"]
+[gd_scene load_steps=14 format=4 uid="uid://cgr3ur2xra4jo"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_gwimr"]
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://world_tiles.tres" id="2_friib"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b5pvf74jx7ptx" path="res://enemies/piglin_boss.tscn" id="6_xedoa"]
 [ext_resource type="PackedScene" uid="uid://0pfsc41na6j6" path="res://enemies/shooting_ghast.tscn" id="8_orhj5"]
 [ext_resource type="PackedScene" uid="uid://b008xnsl4xtfq" path="res://companions/wolf.tscn" id="10_0p2k4"]
+[ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="13_ua487"]
 [ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://map_borders.tscn" id="20_rmetm"]
 [ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz/quiz_dialog.tscn" id="21_pigpc"]
 [ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="22_og6u2"]
@@ -101,3 +102,11 @@ offset_bottom = 3.0
 
 [node name="PauseGui" parent="UI" instance=ExtResource("23_5xi5g")]
 process_mode = 3
+
+[node name="ScoreWidget" parent="UI" instance=ExtResource("13_ua487")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -40.0
+grow_horizontal = 0
+grow_vertical = 1

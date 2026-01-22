@@ -45,8 +45,8 @@ func reset() -> void:
 	companion_paths.clear()
 
 
-func add_correct_answer() -> void:
-	current_score += 10  # Fixed points per correct answer
+func add_score(score: int) -> void:
+	current_score += score
 
 
 func add_companion(companion_path: String) -> void:

@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctlnlkhh85kv6"]
+[gd_scene load_steps=5 format=3 uid="uid://ctlnlkhh85kv6"]
 
 [ext_resource type="Theme" uid="uid://laictl43pv1e" path="res://quiz/quiz_dialog_theme.tres" id="1_xartf"]
 [ext_resource type="Script" uid="uid://bmejakvcdwy1p" path="res://gui/name_entry_dialog.gd" id="2_xartf"]
+[ext_resource type="Texture2D" uid="uid://dw55tpmimogdu" path="res://title_image.png" id="3_0hamy"]
+[ext_resource type="PackedScene" uid="uid://bpkpuwnv5gy7d" path="res://gui/version_widget.tscn" id="4_r0hxo"]
 
 [node name="NameEntryDialog" type="Control"]
 layout_mode = 3
@@ -13,20 +15,18 @@ grow_vertical = 2
 theme = ExtResource("1_xartf")
 script = ExtResource("2_xartf")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.5)
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("3_0hamy")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 62.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -34,12 +34,10 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="ScoreLabel" type="Label" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(580, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "Glückwunsch!
-
 Dein Punktestand: 0
-
 Gib deinen Namen ein:"
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -47,10 +45,19 @@ autowrap_mode = 3
 [node name="NameLineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 placeholder_text = "Dein Name (max. 10 Zeichen)"
+max_length = 10
 
 [node name="SubmitButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Speichern"
+
+[node name="VersionWidget" parent="." instance=ExtResource("4_r0hxo")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+grow_horizontal = 1
+grow_vertical = 0
 
 [connection signal="text_submitted" from="CenterContainer/VBoxContainer/NameLineEdit" to="." method="_on_name_line_edit_text_submitted"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/SubmitButton" to="." method="_on_submit_button_pressed"]

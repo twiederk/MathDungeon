@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://d4nugi7fla2ef"]
+
+[ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_umowu"]
+
+[resource]
+script = ExtResource("1_umowu")
+name = "Villager Baby"
+arithmetic = Array[int]([7])
+metadata/_custom_type_script = "uid://b0c3oqfgm2626"

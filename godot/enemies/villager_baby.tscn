@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjuiaid8a3011"]
+
+[ext_resource type="Script" uid="uid://b7x46e8sw1gka" path="res://enemies/enemy.gd" id="1_46jx0"]
+[ext_resource type="Resource" uid="uid://d4nugi7fla2ef" path="res://enemies/villager_baby_stats.tres" id="2_46jx0"]
+[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="3_6oxx6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c8iql"]
+height = 28.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(26, 32)
+
+[node name="VillagerBaby" type="StaticBody2D"]
+collision_layer = 2
+script = ExtResource("1_46jx0")
+stats = ExtResource("2_46jx0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_6oxx6")
+hframes = 9
+vframes = 9
+frame = 76
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_c8iql")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("RectangleShape2D_h2yge")

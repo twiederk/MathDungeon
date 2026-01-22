@@ -16,17 +16,13 @@ func _ready():
 func add_score(player_name: String, score: int) -> bool:
 	var new_entry = {"name": player_name, "score": score}
 	
-	# Add the new score
 	highscores.append(new_entry)
 	
-	# Sort by score (highest first)
 	highscores.sort_custom(func(a, b): return a.score > b.score)
 	
-	# Keep only top 10
 	if highscores.size() > MAX_HIGHSCORES:
 		highscores = highscores.slice(0, MAX_HIGHSCORES)
 	
-	# Check if the score made it to the top 10
 	var made_highscore = false
 	for entry in highscores:
 		if entry.name == player_name and entry.score == score:
@@ -47,19 +43,6 @@ func is_highscore(score: int) -> bool:
 	if highscores.size() < MAX_HIGHSCORES:
 		return true
 	return score > highscores[MAX_HIGHSCORES - 1].score
-
-
-func get_formatted_highscores() -> String:
-	var result = ""
-	if highscores.is_empty():
-		result += "Noch keine Einträge"
-		return result
-	
-	for i in range(min(10, highscores.size())):
-		var entry = highscores[i]
-		result += "%d. %s - %d\n" % [i + 1, entry.name, entry.score]
-	
-	return result
 
 
 func _save_highscores():

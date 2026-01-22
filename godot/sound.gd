@@ -6,11 +6,15 @@ extends Node
 @export var dog_bark: AudioStream
 @export var victory: AudioStream
 
-@onready var audio_stream_player = $AudioStreamPlayer
+@onready var sound_players = get_children()
 
 
 func play(sound_stream: AudioStream, pitch_scale: float = 1.0, volume_db: float = 0.0):
-	audio_stream_player.pitch_scale = pitch_scale
-	audio_stream_player.volume_db = volume_db
-	audio_stream_player.stream = sound_stream
-	audio_stream_player.play()
+	for sound_player: AudioStreamPlayer in sound_players:
+		if not sound_player.playing:
+			sound_player.pitch_scale = pitch_scale
+			sound_player.volume_db = volume_db
+			sound_player.stream = sound_stream
+			sound_player.play()
+			return
+	print("Too many sounds playing at once")

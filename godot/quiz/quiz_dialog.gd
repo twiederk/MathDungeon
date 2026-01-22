@@ -90,7 +90,6 @@ func _check_answer(answer: String) -> void:
 
 
 func _answer_correct() -> void:
-	PlayerStats.add_correct_answer()  # Add score for correct answer
 	var enemy_hit_points = enemy.hurt(PlayerStats.get_total_damage())
 	if enemy_hit_points > 0:
 		exercise = _create_exercise()
@@ -99,10 +98,11 @@ func _answer_correct() -> void:
 		if enemy.has_time_limit():
 			_start_timers()
 	else:
+		PlayerStats.add_score(enemy.stats.get_score())
 		if enemy.has_time_limit():
 			answer_timer.stop()
 			progress_timer.stop()
-		if enemy.stats.name == "Enderman":
+		if enemy.stats.name.begins_with("Ender"):
 			Sound.play(Sound.victory)
 		enemy.queue_free()
 		_close_dialog()
