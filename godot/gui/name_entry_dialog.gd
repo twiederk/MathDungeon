@@ -7,7 +7,7 @@ extends Control
 
 
 func _ready():
-	score_label.text = "Glückwunsch!\nDein Punktestand: %d\nGib deinen Namen ein (max. 10 Zeichen):" % PlayerStats.current_score
+	score_label.text = "Glückwunsch!\nDein Punktestand: %d\nGib deinen Namen ein:" % PlayerStats.current_score
 	name_line_edit.text = ""
 	name_line_edit.grab_focus()
 
