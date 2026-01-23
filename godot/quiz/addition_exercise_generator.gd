@@ -1,11 +1,7 @@
 class_name AdditionExerciseGenerator
 
-var max_number: int = 100
 
-func _init(_max_number: int = 100):
-	max_number = _max_number
-
-func create_exercise() -> Exercise:
+func create_exercise(max_number: int = 100) -> Exercise:
 	var summand_a = randi_range(0, max_number)
 	var summand_b = randi_range(0, max_number - summand_a)
 	var result = summand_a + summand_b

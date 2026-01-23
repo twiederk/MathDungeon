@@ -1,6 +1,14 @@
 class_name QuizDialog
 extends Control
 
+
+var addition_exercise_generator = AdditionExerciseGenerator.new()
+
+
+var enemy: Enemy = null
+var exercise: Exercise
+
+
 @onready var enemy_stats_sheet: StatsSheet = $EnemyStatsSheet
 @onready var question_label: Label = $CenterContainer/VBoxContainer/QuestionLabel
 @onready var answer_line_edit: LineEdit = $CenterContainer/VBoxContainer/AnswerLineEdit
@@ -9,10 +17,6 @@ extends Control
 @onready var time_limit_progress_bar: ProgressBar = $CenterContainer/VBoxContainer/TimelimitProgressBar
 @onready var answer_timer = $AnswerTimer
 @onready var progress_timer = $ProgressTimer
-
-
-var enemy: Enemy = null
-var exercise: Exercise
 
 
 func open_for(my_enemy: Enemy) -> void:
@@ -57,7 +61,7 @@ func _create_exercise() -> Exercise:
 	var arithmetic = enemy.stats.arithmetic.pick_random()
 	match arithmetic:
 		EnemyStats.ArithmeticType.ADDITION:
-			return AdditionExerciseGenerator.new(enemy.stats.max_number).create_exercise()
+			return addition_exercise_generator.create_exercise(enemy.stats.max_number)
 		EnemyStats.ArithmeticType.SUBSTRACTION:
 			return SubtractionExerciseGenerator.new(enemy.stats.max_number).create_exercise()
 		EnemyStats.ArithmeticType.MULTIPLICATION:
@@ -74,7 +78,7 @@ func _create_exercise() -> Exercise:
 			return NumberRiddleExerciseGenerator.new().create_exercise()
 		EnemyStats.ArithmeticType.NEXT_NUMBER:
 			return NextNumberExerciseGenerator.new(enemy.stats.max_number).create_exercise()
-	return AdditionExerciseGenerator.new(enemy.stats.max_number).create_exercise()
+	return addition_exercise_generator.create_exercise(enemy.stats.max_number)
 
 
 func _on_text_submitted(text: String) -> void:
