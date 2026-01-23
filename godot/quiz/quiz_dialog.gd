@@ -3,10 +3,16 @@ extends Control
 
 
 var addition_exercise_generator = AdditionExerciseGenerator.new()
-
-
+var subtraction_exercise_generator = SubtractionExerciseGenerator.new()
+var multiplication_exercise_generator = MultiplicationExerciseGenerator.new()
+var division_exercise_generator = DivisionExerciseGenerator.new()
+var division_remainder_exercise_generator = DivisionRemainderExerciseGenerator.new()
+var times_table_exercise_generator = TimesTableExerciseGenerator.new()
+var digit_sum_exercise_generator = DigitSumExerciseGenerator.new()
+var number_riddle_exercise_generator = NumberRiddleExerciseGenerator.new()
+var next_number_exercise_generator = NextNumberExerciseGenerator.new()
 var enemy: Enemy = null
-var exercise: Exercise
+var exercise: Exercise = null
 
 
 @onready var enemy_stats_sheet: StatsSheet = $EnemyStatsSheet
@@ -63,21 +69,21 @@ func _create_exercise() -> Exercise:
 		EnemyStats.ArithmeticType.ADDITION:
 			return addition_exercise_generator.create_exercise(enemy.stats.max_number)
 		EnemyStats.ArithmeticType.SUBSTRACTION:
-			return SubtractionExerciseGenerator.new(enemy.stats.max_number).create_exercise()
+			return subtraction_exercise_generator.create_exercise(enemy.stats.max_number)
 		EnemyStats.ArithmeticType.MULTIPLICATION:
-			return MultiplicationExerciseGenerator.new().create_exercise()
+			return multiplication_exercise_generator.create_exercise(enemy.stats.max_number)
 		EnemyStats.ArithmeticType.DIVISION:
-			return DivisionExerciseGenerator.new(enemy.stats.max_number).create_exercise()
+			return division_exercise_generator.create_exercise()
 		EnemyStats.ArithmeticType.DIVISION_REMAINDER:
-			return DivisionRemainderExerciseGenerator.new(enemy.stats.max_number).create_exercise()
+			return division_remainder_exercise_generator.create_exercise()
 		EnemyStats.ArithmeticType.TIMES_TABLE:
-			return TimesTableExerciseGenerator.new().create_exercise()
+			return times_table_exercise_generator.create_exercise()
 		EnemyStats.ArithmeticType.DIGIT_SUM:
-			return DigitSumExerciseGenerator.new().create_exercise()
+			return digit_sum_exercise_generator.create_exercise(enemy.stats.max_number)
 		EnemyStats.ArithmeticType.NUMBER_RIDDLE:
-			return NumberRiddleExerciseGenerator.new().create_exercise()
+			return number_riddle_exercise_generator.create_exercise()
 		EnemyStats.ArithmeticType.NEXT_NUMBER:
-			return NextNumberExerciseGenerator.new(enemy.stats.max_number).create_exercise()
+			return next_number_exercise_generator.create_exercise(enemy.stats.max_number)
 	return addition_exercise_generator.create_exercise(enemy.stats.max_number)
 
 

@@ -1,11 +1,10 @@
 class_name DivisionRemainderExerciseGenerator
 
-var max_number: int = 100
+
 var exercises: Array = []
 
-func _init(_max_number: int = 100):
-	max_number = _max_number
 
+func _init():
 	exercises.clear()
 	for divisor in range(1, 11):
 		var max_dividend = divisor * 10
@@ -20,6 +19,7 @@ func _init(_max_number: int = 100):
 			else:
 				answer = "%s R%s" % [str(quotient), str(remainder)]
 			exercises.append(Exercise.new(question, answer))
+
 
 func create_exercise() -> Exercise:
 	var idx = randi() % exercises.size()
