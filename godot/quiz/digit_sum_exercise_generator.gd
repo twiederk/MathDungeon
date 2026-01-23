@@ -1,16 +1,8 @@
 class_name DigitSumExerciseGenerator
 
-var min_digits: int = 3
-var max_digits: int = 5
 
-
-func _init(_min_digits: int = 3, _max_digits: int = 5):
-	min_digits = _min_digits
-	max_digits = _max_digits
-
-
-func create_exercise() -> Exercise:
-	var number_of_digits = randi_range(min_digits, max_digits)
+func create_exercise(max_number: int = 5) -> Exercise:
+	var number_of_digits = randi_range(3, max_number)
 	var number = _generate_number_with_digits(number_of_digits)
 	var digit_sum = _calculate_digit_sum(number)
 	var question = "Was ist die Quersumme von %s?" % str(number)
@@ -29,5 +21,4 @@ func _calculate_digit_sum(number: int) -> int:
 		digit_sum += number % 10
 		@warning_ignore("integer_division")
 		number = number / 10
-
 	return digit_sum

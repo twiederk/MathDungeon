@@ -6,4 +6,5 @@
 script = ExtResource("1_xptjm")
 name = "Pig"
 arithmetic = Array[int]([6])
+max_number = 5
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

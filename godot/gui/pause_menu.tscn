@@ -47,11 +47,11 @@ text = "Spiel fortsetzen"
 
 [node name="StartGuiButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "Hauptmenü"
+text = "Spiel beenden"
 
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "Spiel beenden"
+text = "Programm verlassen"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/StartGuiButton" to="." method="_on_start_gui_button_pressed"]

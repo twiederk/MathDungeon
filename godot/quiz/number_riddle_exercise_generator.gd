@@ -1,5 +1,6 @@
 class_name NumberRiddleExerciseGenerator
 
+
 var riddle_types: Array[String] = [
 	"next_ten",
 	"half_minus",

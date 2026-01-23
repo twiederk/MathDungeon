@@ -212,16 +212,16 @@ position = Vector2(1723, 1003)
 position = Vector2(1377, 1069)
 
 [node name="Pig" parent="Enemies" instance=ExtResource("21_0odxb")]
-position = Vector2(64, 643)
+position = Vector2(-121, 1475)
 
 [node name="Pig2" parent="Enemies" instance=ExtResource("21_0odxb")]
-position = Vector2(127, 673)
+position = Vector2(-58, 1505)
 
 [node name="Pig3" parent="Enemies" instance=ExtResource("21_0odxb")]
-position = Vector2(725, 776)
+position = Vector2(-102, 1375)
 
 [node name="Pig4" parent="Enemies" instance=ExtResource("21_0odxb")]
-position = Vector2(751, 828)
+position = Vector2(-76, 1427)
 
 [node name="ShootingSkeleton" parent="Enemies" instance=ExtResource("27_a6jrf")]
 position = Vector2(341, 1182)
