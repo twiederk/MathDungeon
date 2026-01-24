@@ -20,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://txgje162j88t" path="res://enemies/creeper.tscn" id="13_w48qg"]
 [ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="15_vivmo"]
 [ext_resource type="PackedScene" uid="uid://wjx4klpp85sw" path="res://items/sword_stone.tscn" id="16_2cqfq"]
-[ext_resource type="PackedScene" uid="uid://d0we0mbuvkkcc" path="res://enemies/enderdragon.tscn" id="16_074og"]
 [ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://map_borders.tscn" id="20_d13ii"]
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="20_getpj"]
 [ext_resource type="PackedScene" uid="uid://cbvdad0fnpie8" path="res://enemies/pig.tscn" id="21_0odxb"]
@@ -30,6 +29,9 @@
 [ext_resource type="PackedScene" uid="uid://bjuiaid8a3011" path="res://enemies/villager_baby.tscn" id="23_kq58d"]
 [ext_resource type="PackedScene" uid="uid://bbea4w5dl7mq5" path="res://enemies/shooting_skeleton.tscn" id="27_a6jrf"]
 [ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="29_qsp4k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8e4i"]
+size = Vector2(380, 182)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kq58d"]
 size = Vector2(93, 180)
@@ -185,16 +187,13 @@ position = Vector2(1378, 476)
 position = Vector2(1379, 532)
 
 [node name="Enderman" parent="Enemies" instance=ExtResource("6_kek77")]
-position = Vector2(1170, 447)
+position = Vector2(1166, 466)
 
 [node name="Zombie2" parent="Enemies" instance=ExtResource("2_0xm2m")]
 position = Vector2(989, 670)
 
 [node name="ZombieBaby3" parent="Enemies" instance=ExtResource("12_ycdy4")]
 position = Vector2(1489, 658)
-
-[node name="Enderdragon" parent="Enemies" instance=ExtResource("16_074og")]
-position = Vector2(1165, 484)
 
 [node name="Enderman3" parent="Enemies" instance=ExtResource("6_kek77")]
 position = Vector2(1137, 912)
@@ -225,6 +224,10 @@ position = Vector2(-76, 1427)
 
 [node name="ShootingSkeleton" parent="Enemies" instance=ExtResource("27_a6jrf")]
 position = Vector2(341, 1182)
+
+[node name="CollisionShape2D" parent="Enemies/ShootingSkeleton/ShootingArea" index="0"]
+position = Vector2(-48, -58)
+shape = SubResource("RectangleShape2D_h8e4i")
 
 [node name="ShootingSkeleton2" parent="Enemies" instance=ExtResource("27_a6jrf")]
 position = Vector2(553, 307)
@@ -424,6 +427,7 @@ offset_left = -40.0
 grow_horizontal = 0
 grow_vertical = 1
 
+[editable path="Enemies/ShootingSkeleton"]
 [editable path="Enemies/ShootingSkeleton2"]
 [editable path="Enemies/ShootingSkeleton3"]
 [editable path="Enemies/ShootingSkeleton4"]
