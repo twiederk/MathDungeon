@@ -71,7 +71,7 @@ func _create_exercise() -> Exercise:
 		EnemyStats.ArithmeticType.SUBSTRACTION:
 			return subtraction_exercise_generator.create_exercise(enemy.stats.max_number)
 		EnemyStats.ArithmeticType.MULTIPLICATION:
-			return multiplication_exercise_generator.create_exercise(enemy.stats.max_number)
+			return multiplication_exercise_generator.create_exercise()
 		EnemyStats.ArithmeticType.DIVISION:
 			return division_exercise_generator.create_exercise()
 		EnemyStats.ArithmeticType.DIVISION_REMAINDER:
