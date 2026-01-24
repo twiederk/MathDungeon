@@ -1,12 +1,14 @@
-[gd_scene load_steps=14 format=4 uid="uid://cgr3ur2xra4jo"]
+[gd_scene load_steps=16 format=4 uid="uid://cgr3ur2xra4jo"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_gwimr"]
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://world_tiles.tres" id="2_friib"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="3_ylnya"]
+[ext_resource type="PackedScene" uid="uid://i8jullgo6a5f" path="res://items/eye_of_ender.tscn" id="4_8g3rk"]
 [ext_resource type="PackedScene" uid="uid://ch27vu5jqwd8g" path="res://locations/nether_portal.tscn" id="4_orhj5"]
 [ext_resource type="PackedScene" uid="uid://8cptf68b7254" path="res://enemies/piglin.tscn" id="5_lci3x"]
 [ext_resource type="PackedScene" uid="uid://b5pvf74jx7ptx" path="res://enemies/piglin_boss.tscn" id="6_xedoa"]
 [ext_resource type="PackedScene" uid="uid://0pfsc41na6j6" path="res://enemies/shooting_ghast.tscn" id="8_orhj5"]
+[ext_resource type="PackedScene" uid="uid://c6luw4aoh1qpi" path="res://enemies/enderman.tscn" id="9_muida"]
 [ext_resource type="PackedScene" uid="uid://b008xnsl4xtfq" path="res://companions/wolf.tscn" id="10_0p2k4"]
 [ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="13_ua487"]
 [ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://map_borders.tscn" id="20_rmetm"]
@@ -28,6 +30,18 @@ position = Vector2(416, 1136)
 dungeon_path = "res://main.tscn"
 
 [node name="Items" type="Node2D" parent="."]
+
+[node name="EyeOfEnder" parent="Items" instance=ExtResource("4_8g3rk")]
+position = Vector2(1065, 754)
+
+[node name="EyeOfEnder2" parent="Items" instance=ExtResource("4_8g3rk")]
+position = Vector2(399, 967)
+
+[node name="EyeOfEnder3" parent="Items" instance=ExtResource("4_8g3rk")]
+position = Vector2(1283, 1144)
+
+[node name="EyeOfEnder4" parent="Items" instance=ExtResource("4_8g3rk")]
+position = Vector2(1629, 612)
 
 [node name="Companions" type="Node2D" parent="."]
 
@@ -86,6 +100,18 @@ position = Vector2(465, 443)
 
 [node name="ShootingGhast3" parent="Enemies" instance=ExtResource("8_orhj5")]
 position = Vector2(484, 511)
+
+[node name="Enderman" parent="Enemies" instance=ExtResource("9_muida")]
+position = Vector2(1628, 612)
+
+[node name="Enderman2" parent="Enemies" instance=ExtResource("9_muida")]
+position = Vector2(1065, 756)
+
+[node name="Enderman3" parent="Enemies" instance=ExtResource("9_muida")]
+position = Vector2(400, 968)
+
+[node name="Enderman4" parent="Enemies" instance=ExtResource("9_muida")]
+position = Vector2(1283, 1144)
 
 [node name="Player" parent="." instance=ExtResource("3_ylnya")]
 position = Vector2(869, 708)
