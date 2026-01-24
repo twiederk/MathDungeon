@@ -1,10 +1,11 @@
-[gd_scene load_steps=46 format=4 uid="uid://b53sfmxk4rjq2"]
+[gd_scene load_steps=47 format=4 uid="uid://b53sfmxk4rjq2"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://nfte8cjrylof" path="res://enemies/zombie.tscn" id="2_0xm2m"]
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://world_tiles.tres" id="2_lquwl"]
 [ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz/quiz_dialog.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://i8jullgo6a5f" path="res://items/eye_of_ender.tscn" id="4_seu75"]
 [ext_resource type="PackedScene" uid="uid://6wusnt285r11" path="res://enemies/piglin_zombie.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://cinn45uh8snch" path="res://items/healing_potion.tscn" id="5_dg77c"]
 [ext_resource type="PackedScene" uid="uid://cecyxjivevnmn" path="res://items/helmet_iron.tscn" id="6_2cqfq"]
@@ -95,6 +96,9 @@ dungeon_path = "res://nether.tscn"
 
 [node name="Items" type="Node2D" parent="."]
 
+[node name="EyeOfEnder1" parent="Items" instance=ExtResource("4_seu75")]
+position = Vector2(184, 131)
+
 [node name="HealingPotion" parent="Items" instance=ExtResource("5_dg77c")]
 position = Vector2(139, 865)
 
@@ -118,6 +122,15 @@ position = Vector2(1116, 479)
 
 [node name="Lighter" parent="Items" instance=ExtResource("10_kq58d")]
 position = Vector2(1107, 110)
+
+[node name="EyeOfEnder2" parent="Items" instance=ExtResource("4_seu75")]
+position = Vector2(101, 865)
+
+[node name="EyeOfEnder3" parent="Items" instance=ExtResource("4_seu75")]
+position = Vector2(1137, 909)
+
+[node name="EyeOfEnder" parent="Items" instance=ExtResource("4_seu75")]
+position = Vector2(1166, 465)
 
 [node name="Companions" type="Node2D" parent="."]
 
@@ -192,7 +205,7 @@ position = Vector2(1378, 476)
 [node name="Drown5" parent="Enemies" instance=ExtResource("8_efxa6")]
 position = Vector2(1379, 532)
 
-[node name="Enderman" parent="Enemies" instance=ExtResource("6_kek77")]
+[node name="Enderman4" parent="Enemies" instance=ExtResource("6_kek77")]
 position = Vector2(1166, 466)
 
 [node name="Zombie2" parent="Enemies" instance=ExtResource("2_0xm2m")]

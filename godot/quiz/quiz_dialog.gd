@@ -114,8 +114,6 @@ func _answer_correct() -> void:
 		if enemy.has_time_limit():
 			answer_timer.stop()
 			progress_timer.stop()
-		if enemy.stats.name.begins_with("Ender"):
-			Sound.play(Sound.victory)
 		enemy.queue_free()
 		_close_dialog()
 
