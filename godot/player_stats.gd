@@ -9,6 +9,7 @@ signal score_changed
 
 var max_hit_points: int = 5
 var has_lighter: bool = false
+var eyes_of_ender: int = 0
 var companion_paths: Array[String] = []
 var current_score: int = 0:
 	set(value):
@@ -44,6 +45,7 @@ func reset() -> void:
 	armor = 0
 	current_score = 0
 	has_lighter = false
+	eyes_of_ender = 0
 	companion_paths.clear()
 
 
