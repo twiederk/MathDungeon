@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_yey48")
+name = "Enderdragon"
 max_hit_points = 20
 damage = 3
 arithmetic = Array[int]([0, 1, 2, 3])

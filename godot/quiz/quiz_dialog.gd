@@ -114,6 +114,8 @@ func _answer_correct() -> void:
 		if enemy.has_time_limit():
 			answer_timer.stop()
 			progress_timer.stop()
+		if enemy.stats.name == "Enderdragon":
+			get_tree().call_deferred("change_scene_to_file", "res://gui/name_entry_dialog.tscn")
 		enemy.queue_free()
 		_close_dialog()
 
@@ -186,5 +188,5 @@ func _on_main_menu_button_pressed() -> void:
 
 
 func _on_name_entry_button_pressed():
-	get_tree().paused = false	
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://gui/name_entry_dialog.tscn")
