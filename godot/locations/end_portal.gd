@@ -14,7 +14,7 @@ var active: bool = false
 func _on_outer_area_2d_body_entered(body: Node2D) -> void:
 	if body.name != "Player": return
 	
-	if PlayerStats.eyes_of_ender == 9:
+	if PlayerStats.eyes_of_ender >= 9:
 		active = true
 		inner_sprite_2d.visible = true
 

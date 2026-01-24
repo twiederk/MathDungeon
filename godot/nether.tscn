@@ -43,6 +43,9 @@ position = Vector2(1283, 1144)
 [node name="EyeOfEnder4" parent="Items" instance=ExtResource("4_8g3rk")]
 position = Vector2(1629, 612)
 
+[node name="EyeOfEnder5" parent="Items" instance=ExtResource("4_8g3rk")]
+position = Vector2(653, 107)
+
 [node name="Companions" type="Node2D" parent="."]
 
 [node name="Wolf" parent="Companions" instance=ExtResource("10_0p2k4")]
@@ -112,6 +115,9 @@ position = Vector2(400, 968)
 
 [node name="Enderman4" parent="Enemies" instance=ExtResource("9_muida")]
 position = Vector2(1283, 1144)
+
+[node name="Enderman5" parent="Enemies" instance=ExtResource("9_muida")]
+position = Vector2(654, 109)
 
 [node name="Player" parent="." instance=ExtResource("3_ylnya")]
 position = Vector2(869, 708)
