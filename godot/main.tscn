@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://b53sfmxk4rjq2"]
+[gd_scene load_steps=46 format=4 uid="uid://b53sfmxk4rjq2"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="1_ig7tw"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dq5hvtr5p280m" path="res://items/helmet_stone.tscn" id="9_d13ii"]
 [ext_resource type="PackedScene" uid="uid://ch27vu5jqwd8g" path="res://items/nether_portal.tscn" id="10_1u8w0"]
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://d4by6x3ww0foy" path="res://items/lighter.tscn" id="10_kq58d"]
 [ext_resource type="PackedScene" uid="uid://drpmo3xnxwl3i" path="res://enemies/zombie_baby.tscn" id="12_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://txgje162j88t" path="res://enemies/creeper.tscn" id="13_w48qg"]
 [ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="15_vivmo"]
@@ -112,6 +113,9 @@ position = Vector2(1116, 479)
 [node name="NetherPortal" parent="Items" instance=ExtResource("10_1u8w0")]
 position = Vector2(876, 2512)
 dungeon_path = "res://nether.tscn"
+
+[node name="Lighter" parent="Items" instance=ExtResource("10_kq58d")]
+position = Vector2(1107, 110)
 
 [node name="Companions" type="Node2D" parent="."]
 
