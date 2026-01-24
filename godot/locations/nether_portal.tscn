@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://ch27vu5jqwd8g"]
+
+[ext_resource type="Script" uid="uid://rcetip1cl7f8" path="res://locations/nether_portal.gd" id="1_q5ymn"]
+[ext_resource type="Texture2D" uid="uid://dx0vnlerloksx" path="res://locations/nether_portal.png" id="2_q5ymn"]
+[ext_resource type="Texture2D" uid="uid://cgicjchk1skms" path="res://locations/nether_portal_inner.png" id="3_nwatn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h7525"]
+size = Vector2(128, 160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4ynd"]
+size = Vector2(48, 80)
+
+[node name="NetherPortal" type="Node2D"]
+script = ExtResource("1_q5ymn")
+
+[node name="OuterSprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_q5ymn")
+
+[node name="InnerSprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_nwatn")
+
+[node name="OuterArea2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="OuterCollisionShape2D" type="CollisionShape2D" parent="OuterArea2D"]
+shape = SubResource("RectangleShape2D_h7525")
+
+[node name="InnerArea2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="InnerCollisionShape2D" type="CollisionShape2D" parent="InnerArea2D"]
+shape = SubResource("RectangleShape2D_e4ynd")
+
+[connection signal="body_entered" from="OuterArea2D" to="." method="_on_outer_area_2d_body_entered"]
+[connection signal="body_entered" from="InnerArea2D" to="." method="_on_inner_area_2d_body_entered"]

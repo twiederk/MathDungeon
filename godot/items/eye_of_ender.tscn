@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://i8jullgo6a5f"]
+
+[ext_resource type="Script" uid="uid://pglqka1gaor8" path="res://items/eye_of_ender.gd" id="1_wb1o8"]
+[ext_resource type="Texture2D" uid="uid://c31gniut2rq2q" path="res://items/items.png" id="2_qfwhk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wb1o8"]
+radius = 8.514693
+
+[node name="EyeOfEnder" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_wb1o8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_qfwhk")
+hframes = 16
+vframes = 16
+frame = 155
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+scale = Vector2(0.8, 0.8)
+shape = SubResource("CircleShape2D_wb1o8")

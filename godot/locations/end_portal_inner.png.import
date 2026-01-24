@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx0vnlerloksx"
-path="res://.godot/imported/nether_portal.png-569b67e3316613f6e72892b061e1d0e4.ctex"
+uid="uid://cj0t050esspsq"
+path="res://.godot/imported/end_portal_inner.png-ba3359a0bd39a4e44ac30da6e54349ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/nether_portal.png"
-dest_files=["res://.godot/imported/nether_portal.png-569b67e3316613f6e72892b061e1d0e4.ctex"]
+source_file="res://locations/end_portal_inner.png"
+dest_files=["res://.godot/imported/end_portal_inner.png-ba3359a0bd39a4e44ac30da6e54349ec.ctex"]
 
 [params]
 
