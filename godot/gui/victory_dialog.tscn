@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4g1yvn6mwrcy"]
+[gd_scene load_steps=5 format=3 uid="uid://cga8e1f426by3"]
 
 [ext_resource type="Theme" uid="uid://laictl43pv1e" path="res://quiz/quiz_dialog_theme.tres" id="1_fuj8y"]
-[ext_resource type="Script" uid="uid://b0qum1kw1m5ig" path="res://gui/victory_dialog.gd" id="2_sj55p"]
+[ext_resource type="Script" path="res://gui/victory_dialog.gd" id="2_fuj8y"]
 [ext_resource type="Texture2D" uid="uid://dwvvofefi4whr" path="res://victory_image.png" id="3_y2hjf"]
 [ext_resource type="PackedScene" uid="uid://bpkpuwnv5gy7d" path="res://gui/version_widget.tscn" id="4_bt8it"]
 
-[node name="WonDialog" type="Control"]
+[node name="VictoryDialog" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_fuj8y")
-script = ExtResource("2_sj55p")
+script = ExtResource("2_fuj8y")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
