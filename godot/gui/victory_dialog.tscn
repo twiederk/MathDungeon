@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://cga8e1f426by3"]
+
+[ext_resource type="Theme" uid="uid://laictl43pv1e" path="res://quiz/quiz_dialog_theme.tres" id="1_fuj8y"]
+[ext_resource type="Script" uid="uid://b0qum1kw1m5ig" path="res://gui/victory_dialog.gd" id="2_fuj8y"]
+[ext_resource type="Texture2D" uid="uid://dwvvofefi4whr" path="res://gui/victory_image.png" id="3_y2hjf"]
+[ext_resource type="PackedScene" uid="uid://bpkpuwnv5gy7d" path="res://gui/version_widget.tscn" id="4_bt8it"]
+
+[node name="VictoryDialog" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_fuj8y")
+script = ExtResource("2_fuj8y")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("3_y2hjf")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+text = "Glückwunsch!
+Dein Punktestand: 0
+Gib deinen Namen ein:"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="NameLineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Dein Name (max. 10 Zeichen)"
+max_length = 10
+
+[node name="SubmitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Speichern"
+
+[node name="VersionWidget" parent="." instance=ExtResource("4_bt8it")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+grow_horizontal = 1
+grow_vertical = 0
+
+[connection signal="text_submitted" from="CenterContainer/VBoxContainer/NameLineEdit" to="." method="_on_name_line_edit_text_submitted"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/SubmitButton" to="." method="_on_submit_button_pressed"]
