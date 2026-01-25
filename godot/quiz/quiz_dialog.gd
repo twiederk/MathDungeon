@@ -132,7 +132,7 @@ func _answer_incorrect() -> void:
 func _game_over() -> void:
 	var button : Button
 	var message: String
-	if HighscoreManager.is_highscore(PlayerStats.current_score):
+	if HighscoreManager.is_highscore(PlayerStats.score):
 		message = "Du hast alle Lebenspunkte verloren.\nDu hast einen neuen Bestenwert erspielt!!!"
 		button = name_entry_button
 	else: 

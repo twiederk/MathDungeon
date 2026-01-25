@@ -1,12 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqy23htwiovfo"]
+[gd_scene load_steps=6 format=3 uid="uid://bqy23htwiovfo"]
 
 [ext_resource type="Script" uid="uid://bpjhgny5xcnno" path="res://locations/end_portal.gd" id="1_tfjmg"]
 [ext_resource type="Texture2D" uid="uid://dkt35jhwsxxo0" path="res://locations/end_portal.png" id="2_0ms4m"]
 [ext_resource type="Texture2D" uid="uid://cj0t050esspsq" path="res://locations/end_portal_inner.png" id="3_u7ohx"]
 [ext_resource type="Texture2D" uid="uid://c31gniut2rq2q" path="res://items/items.png" id="4_0ms4m"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h7525"]
-size = Vector2(160, 160)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e4ynd"]
 size = Vector2(81, 80)
@@ -20,12 +17,6 @@ texture = ExtResource("2_0ms4m")
 [node name="InnerSprite2D" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("3_u7ohx")
-
-[node name="OuterArea2D" type="Area2D" parent="."]
-collision_layer = 0
-
-[node name="OuterCollisionShape2D" type="CollisionShape2D" parent="OuterArea2D"]
-shape = SubResource("RectangleShape2D_h7525")
 
 [node name="InnerArea2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -132,5 +123,4 @@ hframes = 16
 vframes = 16
 frame = 155
 
-[connection signal="body_entered" from="OuterArea2D" to="." method="_on_outer_area_2d_body_entered"]
 [connection signal="body_entered" from="InnerArea2D" to="." method="_on_inner_area_2d_body_entered"]

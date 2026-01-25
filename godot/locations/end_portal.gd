@@ -18,14 +18,6 @@ func _ready() -> void:
 	_on_eyes_of_ender_changed()
 
 
-func _on_outer_area_2d_body_entered(body: Node2D) -> void:
-	if body.name != "Player":
-		return
-	if PlayerStats.eyes_of_ender >= REQUIRED_EYES_OF_ENDER:
-		active = true
-		inner_sprite_2d.visible = true
-
-
 func _on_inner_area_2d_body_entered(body: Node2D) -> void:
 	if body.name != "Player":
 		return
@@ -33,10 +25,21 @@ func _on_inner_area_2d_body_entered(body: Node2D) -> void:
 		get_tree().call_deferred("change_scene_to_file", dungeon_path)
 
 
-func _on_eyes_of_ender_changed():
+func _on_eyes_of_ender_changed() -> void:
+	_display_eyes_of_ender()
+	_activate_portal()
+
+
+func _display_eyes_of_ender() -> void:
 	var eyes = eyes_root.get_children()
 	for index in range(eyes.size()):
 		if index < PlayerStats.eyes_of_ender:
 			eyes[index].visible = true
 		else:
 			eyes[index].visible = false
+
+
+func _activate_portal() -> void:
+	if PlayerStats.eyes_of_ender >= REQUIRED_EYES_OF_ENDER:
+		active = true
+		inner_sprite_2d.visible = true
