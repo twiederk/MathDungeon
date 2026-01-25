@@ -2,14 +2,15 @@
 
 [ext_resource type="Script" uid="uid://b7x46e8sw1gka" path="res://enemies/enemy.gd" id="1_n8ems"]
 [ext_resource type="Resource" uid="uid://c5erghmh2xj58" path="res://enemies/enderdragon_stats.tres" id="2_rseop"]
-[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="3_y6601"]
+[ext_resource type="Texture2D" uid="uid://b0mp8413m324m" path="res://enemies/enderdragon.png" id="3_rseop"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rseop"]
-radius = 13.0
-height = 26.0
+radius = 69.0
+height = 208.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
-size = Vector2(30, 30)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h0dpl"]
+radius = 87.0
+height = 290.0
 
 [node name="EnderDragon" type="StaticBody2D"]
 collision_layer = 2
@@ -17,18 +18,15 @@ script = ExtResource("1_n8ems")
 stats = ExtResource("2_rseop")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_y6601")
-hframes = 9
-vframes = 9
-frame = 80
+texture = ExtResource("3_rseop")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, -3)
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_rseop")
 
 [node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(-2, -3)
-shape = SubResource("RectangleShape2D_h2yge")
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_h0dpl")
