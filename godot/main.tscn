@@ -82,7 +82,7 @@ size = Vector2(29, 61)
 resource_local_to_scene = true
 size = Vector2(92, 88)
 
-[node name="MainLevel" type="Node2D"]
+[node name="Main" type="Node2D"]
 script = ExtResource("1_1bvp3")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
