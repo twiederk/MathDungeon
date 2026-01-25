@@ -18,4 +18,4 @@ func _on_score_changed() -> void:
 
 
 func update_score() -> void:
-	score_label.text = "Punkte: " + number_format.format(PlayerStats.current_score)
+	score_label.text = "Punkte: " + number_format.format(PlayerStats.score)

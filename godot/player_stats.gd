@@ -19,9 +19,9 @@ var eyes_of_ender: int = 0:
 		eyes_of_ender_changed.emit()
 
 
-var current_score: int = 0:
+var score: int = 0:
 	set(value):
-		current_score = value
+		score = value
 		score_changed.emit()
 
 
@@ -51,14 +51,14 @@ func reset() -> void:
 	hit_points = 5
 	weapon_damage = 1
 	armor = 0
-	current_score = 0
+	score = 0
 	has_lighter = false
 	eyes_of_ender = 0
 	companion_paths.clear()
 
 
-func add_score(score: int) -> void:
-	current_score += score
+func add_score(points: int) -> void:
+	score += points
 
 
 func add_companion(companion_path: String) -> void:

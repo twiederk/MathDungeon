@@ -10,7 +10,7 @@ var number_format = NumberFormat.new()
 
 
 func _ready():
-	score_label.text = "Glückwunsch!\nDein Punktestand: %s" % number_format.format(PlayerStats.current_score)
+	score_label.text = "Glückwunsch!\nDein Punktestand: %s" % number_format.format(PlayerStats.score)
 	name_line_edit.text = ""
 	name_line_edit.grab_focus()
 
@@ -27,5 +27,5 @@ func _submit_name() -> void:
 	var player_name = name_line_edit.text.strip_edges()
 	if player_name.is_empty():
 		player_name = "SPIELER"
-	HighscoreManager.add_score(player_name, PlayerStats.current_score)
+	HighscoreManager.add_score(player_name, PlayerStats.score)
 	get_tree().change_scene_to_file("res://gui/start_gui.tscn")

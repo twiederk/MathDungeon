@@ -37,7 +37,7 @@ func load_game():
 	if data.has("companions") and data["companions"].has("paths"):
 		for path in data["companions"]["paths"]:
 			PlayerStats.companion_paths.append(path)
-	PlayerStats.current_score = 0
+	PlayerStats.score = 0
 	PlayerStats.has_lighter = false
 	PlayerStats.eyes_of_ender = 0		
 	load_file.close()
