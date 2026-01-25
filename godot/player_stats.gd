@@ -5,12 +5,20 @@ signal health_changed
 signal weapon_damage_changed
 signal armor_changed
 signal score_changed
+signal eyes_of_ender_changed
 
 
 var max_hit_points: int = 5
 var has_lighter: bool = false
-var eyes_of_ender: int = 0
 var companion_paths: Array[String] = []
+
+
+var eyes_of_ender: int = 0:
+	set(value):
+		eyes_of_ender = value
+		eyes_of_ender_changed.emit()
+
+
 var current_score: int = 0:
 	set(value):
 		current_score = value
