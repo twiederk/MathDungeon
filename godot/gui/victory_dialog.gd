@@ -1,13 +1,17 @@
 class_name VictoryDialog
 extends Control
 
+
+var number_format = NumberFormat.new()
+
+
 @onready var score_label: Label = $CenterContainer/VBoxContainer/ScoreLabel
 @onready var name_line_edit: LineEdit = $CenterContainer/VBoxContainer/NameLineEdit
 @onready var submit_button: Button = $CenterContainer/VBoxContainer/SubmitButton
 
 
 func _ready():
-	score_label.text = "*** GEWONNEN ***\nDu hast den Enderdrachen besiegt!!!\nDein Punktestand: %d" % PlayerStats.current_score
+	score_label.text = "*** GEWONNEN ***\nDu hast den Enderdrachen besiegt!!!\nDein Punktestand: %s" %  number_format.format(PlayerStats.current_score)
 	name_line_edit.text = ""
 	name_line_edit.grab_focus()
 

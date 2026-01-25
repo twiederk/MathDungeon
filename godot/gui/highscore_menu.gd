@@ -2,6 +2,8 @@ class_name HighscoreMenu
 extends Control
 
 
+var number_format = NumberFormat.new()
+
 @onready var back_button = $BackButton
 @onready var highscore_container: VBoxContainer = $CenterContainer/VBoxContainer/HighscoreContainer
 
@@ -34,7 +36,7 @@ func _update_highscore_display():
 		rank_name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		
 		var score_label = Label.new()
-		score_label.text = "%d" % entry.score
+		score_label.text = "%s" % number_format.format(entry.score)
 		score_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		score_label.custom_minimum_size.x = 100
 		

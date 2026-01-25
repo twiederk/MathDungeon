@@ -1,6 +1,10 @@
 class_name ScoreWidget
 extends Control
 
+
+var number_format = NumberFormat.new()
+
+
 @onready var score_label = $ScoreLabel
 
 
@@ -14,4 +18,4 @@ func _on_score_changed() -> void:
 
 
 func update_score() -> void:
-	score_label.text = "Punkte: " + str(PlayerStats.current_score)
+	score_label.text = "Punkte: " + number_format.format(PlayerStats.current_score)
