@@ -40,8 +40,14 @@ func _update_highscore_display():
 		score_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		score_label.custom_minimum_size.x = 100
 		
+		var date_label = Label.new()
+		date_label.text = entry.get("date", "---")
+		date_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		date_label.custom_minimum_size.x = 100
+		
 		hbox.add_child(rank_name_label)
 		hbox.add_child(score_label)
+		hbox.add_child(date_label)
 		highscore_container.add_child(hbox)
 
 
