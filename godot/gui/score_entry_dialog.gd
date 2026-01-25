@@ -1,4 +1,4 @@
-class_name VictoryDialog
+class_name ScoreEntryDialog
 extends Control
 
 
@@ -11,7 +11,7 @@ var number_format = NumberFormat.new()
 
 
 func _ready():
-	score_label.text = "*** GEWONNEN ***\nDu hast den Enderdrachen besiegt!!!\nDein Punktestand: %s" %  number_format.format(PlayerStats.score)
+	score_label.text = "Dein Punktestand: %s" % number_format.format(PlayerStats.score)
 	name_line_edit.text = ""
 	name_line_edit.grab_focus()
 
@@ -29,4 +29,4 @@ func _submit_name() -> void:
 	if player_name.is_empty():
 		player_name = "SPIELER"
 	HighscoreManager.add_score(player_name, PlayerStats.score)
-	get_tree().change_scene_to_file("res://gui/start_gui.tscn")
+	get_tree().change_scene_to_file("res://gui/highscore_gui.tscn")
