@@ -115,7 +115,7 @@ func _answer_correct() -> void:
 			answer_timer.stop()
 			progress_timer.stop()
 		if enemy.stats.name == "Enderdragon":
-			get_tree().call_deferred("change_scene_to_file", "res://gui/name_entry_dialog.tscn")
+			get_tree().call_deferred("change_scene_to_file", "res://gui/won_dialog.tscn")
 		enemy.queue_free()
 		_close_dialog()
 
