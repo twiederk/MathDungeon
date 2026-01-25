@@ -1,4 +1,4 @@
-class_name WonDialog
+class_name VictoryDialog
 extends Control
 
 @onready var score_label: Label = $CenterContainer/VBoxContainer/ScoreLabel
