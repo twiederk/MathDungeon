@@ -59,6 +59,7 @@ func reset() -> void:
 
 func add_score(points: int) -> void:
 	score += points
+	AchievementManager.track_score(score)
 
 
 func add_companion(companion_path: String) -> void:
