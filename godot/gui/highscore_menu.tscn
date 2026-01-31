@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bkpkuwnv5g0ad"]
 
 [ext_resource type="Script" uid="uid://dhrydq41ll8uc" path="res://gui/highscore_menu.gd" id="1_jwbto"]
-[ext_resource type="Texture2D" uid="uid://dw55tpmimogdu" path="res://title_image.png" id="2_t8pa5"]
+[ext_resource type="Texture2D" uid="uid://dwvvofefi4whr" path="res://gui/victory_image.png" id="2_lafkx"]
 
 [node name="HighscoreMenu" type="Control"]
 layout_mode = 3
@@ -16,7 +16,7 @@ script = ExtResource("1_jwbto")
 layout_mode = 0
 offset_right = 1.0
 offset_bottom = 1.0
-texture = ExtResource("2_t8pa5")
+texture = ExtResource("2_lafkx")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
