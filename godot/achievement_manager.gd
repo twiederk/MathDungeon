@@ -159,9 +159,18 @@ func load_achievements() -> void:
 		
 		var data = JSON.parse_string(data_string)
 		if data:
-			unlocked_achievements = data.get("unlocked", [])
+			# Convert untyped arrays from JSON to typed Array[String]
+			var unlocked_data = data.get("unlocked", [])
+			unlocked_achievements.clear()
+			for achievement in unlocked_data:
+				unlocked_achievements.append(achievement)
+			
 			progress = data.get("progress", {"score": 0, "enderman": 0, "enderdragon": 0, "nether": 0})
-			recent_unlocks = data.get("recent", [])
+			
+			var recent_data = data.get("recent", [])
+			recent_unlocks.clear()
+			for achievement in recent_data:
+				recent_unlocks.append(achievement)
 
 
 ## Reset all achievements (for testing or new game)
