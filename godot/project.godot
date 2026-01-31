@@ -22,6 +22,7 @@ PlayerStats="*res://player_stats.gd"
 Sound="*res://sound.tscn"
 SaveManager="*res://save_manager.gd"
 HighscoreManager="*res://highscore_manager.gd"
+AchievementManager="*res://achievement_manager.gd"
 
 [display]
 

@@ -16,7 +16,11 @@ func _ready() -> void:
 	_setup_signals()
 	_setup_limits_and_borders()
 	_setup_character_stats()
-	_setup_companions()	
+	_setup_companions()
+	
+	# Track Nether visit for achievements
+	if get_tree().current_scene.scene_file_path == "res://nether.tscn":
+		AchievementManager.track_nether_visit()	
 
 
 func _setup_signals() -> void:

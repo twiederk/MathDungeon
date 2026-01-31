@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://b53sfmxk4rjq2"]
+[gd_scene load_steps=50 format=4 uid="uid://b53sfmxk4rjq2"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="1_ig7tw"]
@@ -32,6 +32,8 @@
 [ext_resource type="PackedScene" uid="uid://bjuiaid8a3011" path="res://enemies/villager_baby.tscn" id="23_kq58d"]
 [ext_resource type="PackedScene" uid="uid://bbea4w5dl7mq5" path="res://enemies/shooting_skeleton.tscn" id="27_a6jrf"]
 [ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="29_qsp4k"]
+[ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://gui/achievement_popup.tscn" id="30_achievement"]
+[ext_resource type="PackedScene" uid="uid://bwxq8ydpbf9k" path="res://gui/achievement_badges.tscn" id="31_badges"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8e4i"]
 size = Vector2(380, 182)
@@ -450,6 +452,14 @@ anchor_bottom = 0.0
 offset_left = -40.0
 grow_horizontal = 0
 grow_vertical = 1
+
+[node name="AchievementPopup" parent="UI" instance=ExtResource("30_achievement")]
+
+[node name="AchievementBadges" parent="UI" instance=ExtResource("31_badges")]
+offset_left = 465.0
+offset_top = 45.0
+offset_right = 635.0
+offset_bottom = 85.0
 
 [editable path="Enemies/ShootingSkeleton"]
 [editable path="Enemies/ShootingSkeleton2"]
