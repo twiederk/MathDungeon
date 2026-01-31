@@ -38,3 +38,6 @@ target/
 # Godot
 godot/.godot
 releases/
+
+# GitHub
+godot/.github
