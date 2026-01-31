@@ -23,7 +23,4 @@ func _on_inner_area_2d_body_entered(body: Node2D) -> void:
 	if body.name != "Player":
 		return
 	if active:
-		# Track Nether visit for achievements
-		if dungeon_path == "res://nether.tscn":
-			AchievementManager.track_nether_visit()
 		get_tree().call_deferred("change_scene_to_file", dungeon_path)
