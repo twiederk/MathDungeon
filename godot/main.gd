@@ -58,7 +58,6 @@ func _on_enemy_encountered(enemy: StaticBody2D) -> void:
 
 func _on_item_picked_up(item: Item) -> void:
 	item.execute()
-	item.queue_free()
 
 
 func _on_companion_picked_up(companion: Companion) -> void:
