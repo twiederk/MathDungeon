@@ -12,7 +12,7 @@ func after_each():
 	lighter = null
 
 
-func test_create_exercise():
+func test_execute():
 	# arrange
 	PlayerStats.has_lighter = false
 	
