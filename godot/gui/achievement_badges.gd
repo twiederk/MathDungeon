@@ -1,12 +1,13 @@
 class_name AchievementBadges
-extends HBoxContainer
+extends Control
 
-## Display recent achievement badges with icons and animations
+
+@onready var achievement_badges = $AchievementBadges
+
 
 const MAX_BADGES: int = 5
 const BADGE_SIZE: Vector2 = Vector2(32, 32)
 
-# Badge colors for different achievement types
 const BADGE_COLORS = {
 	"score": Color(1.0, 0.843, 0.0),       # Gold
 	"enderman": Color(0.502, 0.0, 0.502),  # Purple
@@ -18,10 +19,9 @@ var badge_nodes: Array[Panel] = []
 
 
 func _ready() -> void:
-	# Create badge slots
 	for i in range(MAX_BADGES):
 		var badge = _create_badge_slot()
-		add_child(badge)
+		achievement_badges.add_child(badge)
 		badge_nodes.append(badge)
 	
 	AchievementManager.achievement_unlocked.connect(_on_achievement_unlocked)
@@ -31,9 +31,10 @@ func _ready() -> void:
 func _create_badge_slot() -> Panel:
 	var panel = Panel.new()
 	panel.custom_minimum_size = BADGE_SIZE
-	panel.modulate = Color(1, 1, 1, 0.3)  # Semi-transparent when empty
+	panel.modulate = Color(1, 1, 1, 0.3)
 	
 	var label = Label.new()
+	label.custom_minimum_size = BADGE_SIZE
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	label.anchors_preset = Control.PRESET_FULL_RECT
@@ -86,7 +87,6 @@ func _animate_newest_badge() -> void:
 	
 	var badge = badge_nodes[0]
 	
-	# Create a quick glow/pulse animation
 	var tween = create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(badge, "scale", Vector2(1.3, 1.3), 0.2)
@@ -95,6 +95,5 @@ func _animate_newest_badge() -> void:
 	tween.tween_property(badge, "scale", Vector2(1.0, 1.0), 0.3)
 	tween.set_parallel(false)
 	
-	# Spin animation
 	tween.tween_property(badge, "rotation", TAU, 0.5)
 	tween.tween_property(badge, "rotation", 0, 0.0)

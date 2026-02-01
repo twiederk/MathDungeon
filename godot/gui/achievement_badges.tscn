@@ -1,10 +1,15 @@
 [gd_scene load_steps=2 format=3 uid="uid://bwxq8ydpbgak"]
 
-[ext_resource type="Script" path="res://gui/achievement_badges.gd" id="1_badges"]
+[ext_resource type="Script" uid="uid://dgraydpbf13p" path="res://gui/achievement_badges.gd" id="1_badges"]
 
-[node name="AchievementBadges" type="HBoxContainer"]
+[node name="Control" type="Control"]
+layout_mode = 3
 anchors_preset = 0
+offset_bottom = 40.0
+script = ExtResource("1_badges")
+
+[node name="AchievementBadges" type="HBoxContainer" parent="."]
+layout_mode = 0
 offset_right = 170.0
 offset_bottom = 40.0
 theme_override_constants/separation = 5
-script = ExtResource("1_badges")
