@@ -19,6 +19,7 @@ func _on_start_game_button_pressed():
 
 func _on_load_button_pressed():
 	SaveManager.load_game()
+	AchievementManager.reset()
 	get_tree().change_scene_to_file("res://main.tscn")
 
 
