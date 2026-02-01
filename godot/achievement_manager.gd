@@ -43,14 +43,8 @@ func _ready() -> void:
 
 
 func track_score(new_score: int) -> void:
-	var old_score = progress["score"]
 	progress["score"] = new_score
-	
-	for achievement_id in ACHIEVEMENTS:
-		var achievement = ACHIEVEMENTS[achievement_id]
-		if achievement["type"] == "score":
-			if new_score >= achievement["target"] and old_score < achievement["target"]:
-				_unlock_achievement(achievement_id)
+	_check_progress_achievements("score")
 
 
 func track_enemy_defeat(enemy_name: String) -> void:
