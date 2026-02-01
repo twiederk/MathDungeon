@@ -1,6 +1,8 @@
 class_name AchievementPopup
 extends Control
 
+const AUTO_HIDE_SECONDS: float = 4.0
+
 
 @onready var panel_container: PanelContainer = $PanelContainer
 @onready var title_label: Label = $PanelContainer/MarginContainer/VBoxContainer/TitleLabel
@@ -35,14 +37,15 @@ func _show_next() -> void:
 	
 	title_label.text = achievement["title"]
 	description_label.text = achievement["desc"]
-	
+
+	_animation()
+	_show_next()
+
+
+func _animation() -> void:
 	visible = true
 	animation_player.play("slide_in")
-	
-	# Auto-hide after 3 seconds
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(AUTO_HIDE_SECONDS).timeout
 	animation_player.play("slide_out")
 	await animation_player.animation_finished
 	visible = false
-	
-	_show_next()
