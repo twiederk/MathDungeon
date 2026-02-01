@@ -1,8 +1,6 @@
 class_name AchievementPopup
 extends Control
 
-## Achievement notification popup
-## Shows a banner with title and description when an achievement is unlocked
 
 @onready var panel_container: PanelContainer = $PanelContainer
 @onready var title_label: Label = $PanelContainer/MarginContainer/VBoxContainer/TitleLabel
@@ -14,14 +12,12 @@ var is_showing: bool = false
 
 
 func _ready() -> void:
-	visible = false
 	AchievementManager.achievement_unlocked.connect(_on_achievement_unlocked)
 
 
 func _on_achievement_unlocked(achievement_id: String, title: String, description: String) -> void:
 	queue.append({"id": achievement_id, "title": title, "desc": description})
 	
-	# Play victory sound for achievement unlock
 	if Sound.victory:
 		Sound.play(Sound.victory)
 	
@@ -49,5 +45,4 @@ func _show_next() -> void:
 	await animation_player.animation_finished
 	visible = false
 	
-	# Show next in queue
 	_show_next()
