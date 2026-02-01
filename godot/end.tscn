@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://ba6r3bpkv1mjw"]
+[gd_scene load_steps=13 format=4 uid="uid://ba6r3bpkv1mjw"]
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_ner4h"]
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://world_tiles.tres" id="2_206a3"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="13_31upl"]
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="14_okgvq"]
 [ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="15_1qndq"]
+[ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://gui/achievement_popup.tscn" id="16_achievement"]
+[ext_resource type="PackedScene" uid="uid://bwxq8ydpbf9k" path="res://gui/achievement_badges.tscn" id="17_badges"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ner4h")
@@ -60,3 +62,11 @@ anchor_bottom = 0.0
 offset_left = -40.0
 grow_horizontal = 0
 grow_vertical = 1
+
+[node name="AchievementPopup" parent="UI" instance=ExtResource("16_achievement")]
+
+[node name="AchievementBadges" parent="UI" instance=ExtResource("17_badges")]
+offset_left = 465.0
+offset_top = 45.0
+offset_right = 635.0
+offset_bottom = 85.0

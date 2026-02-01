@@ -5,12 +5,21 @@ const SPEED: float = 200.0
 const SPRINT_MULTIPLIER: float = 1.4
 
 @onready var camera_2d: Camera2D = $Camera2D
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
 
 func _physics_process(_delta: float) -> void:
 	var dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = dir * _speed()
 	move_and_slide()
+	_update_sprite_direction(dir.x)
+
+
+func _update_sprite_direction(horizontal_direction: float) -> void:
+	if horizontal_direction > 0:
+		sprite_2d.flip_h = true
+	elif horizontal_direction < 0:
+		sprite_2d.flip_h = false
 
 
 func _speed() -> float:

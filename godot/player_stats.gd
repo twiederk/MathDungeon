@@ -59,6 +59,7 @@ func reset() -> void:
 
 func add_score(points: int) -> void:
 	score += points
+	AchievementManager.track_score(score)
 
 
 func add_companion(companion_path: String) -> void:
@@ -80,3 +81,7 @@ func get_total_damage() -> int:
 func hurt(damage: int) -> int:
 	hit_points -= max(1, damage - armor)
 	return hit_points
+
+
+func needs_healing() -> bool:
+	return PlayerStats.hit_points < PlayerStats.max_hit_points

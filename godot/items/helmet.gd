@@ -8,3 +8,4 @@ func execute() -> void:
 	if armor > PlayerStats.armor:
 		PlayerStats.armor = armor	
 	Sound.play(Sound.pickup_helmet)
+	queue_free()

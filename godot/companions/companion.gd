@@ -8,6 +8,7 @@ signal companion_picked_up(companion: Companion)
 @export var min_follow_distance: float = 40.0
 
 @onready var pickup_area: Area2D = $PickupArea
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
 var is_following: bool = false
 var player_reference: Player = null
@@ -42,13 +43,20 @@ func _follow_player(_delta: float) -> void:
 		var direction = (player_reference.global_position - global_position).normalized()
 		velocity = direction * follow_speed
 	elif distance_to_player < min_follow_distance:
-		# Move away if too close
 		var direction = (global_position - player_reference.global_position).normalized()
 		velocity = direction * follow_speed * 0.5
 	else:
 		velocity = Vector2.ZERO
 	
 	move_and_slide()
+	_update_sprite_direction(velocity.x)
+
+
+func _update_sprite_direction(horizontal_direction: float) -> void:
+	if horizontal_direction > 0:
+		sprite_2d.flip_h = true
+	elif horizontal_direction < 0:
+		sprite_2d.flip_h = false
 
 
 func _on_body_entered(body: Node) -> void:
