@@ -464,9 +464,9 @@ grow_vertical = 1
 [node name="AchievementPopup" parent="UI" unique_id=372458887 instance=ExtResource("30_achievement")]
 
 [node name="AchievementBadges" parent="UI" unique_id=1350952673 instance=ExtResource("31_badges")]
-offset_left = 465.0
+offset_left = 455.0
 offset_top = 45.0
-offset_right = 635.0
+offset_right = 625.0
 offset_bottom = 85.0
 
 [editable path="Enemies/ShootingSkeleton"]
