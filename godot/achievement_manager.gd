@@ -38,9 +38,6 @@ var recent_unlocks: Array[String] = []
 const MAX_RECENT: int = 5
 
 
-func _ready() -> void:
-	load_achievements()
-
 
 func track_score(new_score: int) -> void:
 	progress["score"] = new_score
@@ -84,73 +81,13 @@ func _unlock_achievement(achievement_id: String) -> void:
 	
 	var achievement = ACHIEVEMENTS[achievement_id]
 	achievement_unlocked.emit(achievement_id, achievement["title"], achievement["desc"])
-	
-	save_achievements()
 
 
 func get_recent_unlocks() -> Array[String]:
 	return recent_unlocks
 
 
-func is_unlocked(achievement_id: String) -> bool:
-	return achievement_id in unlocked_achievements
-
-
-func get_all_achievements() -> Array:
-	var result = []
-	for achievement_id in ACHIEVEMENTS:
-		var achievement = ACHIEVEMENTS[achievement_id].duplicate()
-		achievement["id"] = achievement_id
-		achievement["unlocked"] = is_unlocked(achievement_id)
-		achievement["current"] = progress.get(achievement["type"], 0)
-		result.append(achievement)
-	return result
-
-
-## Save achievements to disk
-func save_achievements() -> void:
-	var data = {
-		"unlocked": unlocked_achievements,
-		"progress": progress,
-		"recent": recent_unlocks,
-	}
-	
-	var save_file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
-	if save_file:
-		var data_string = JSON.stringify(data)
-		save_file.store_string(data_string)
-		save_file.close()
-
-
-## Load achievements from disk
-func load_achievements() -> void:
-	if not FileAccess.file_exists(SAVE_PATH):
-		return
-	
-	var load_file = FileAccess.open(SAVE_PATH, FileAccess.READ)
-	if load_file:
-		var data_string = load_file.get_as_text()
-		load_file.close()
-		
-		var data = JSON.parse_string(data_string)
-		if data:
-			# Convert untyped arrays from JSON to typed Array[String]
-			var unlocked_data = data.get("unlocked", [])
-			unlocked_achievements.clear()
-			for achievement in unlocked_data:
-				unlocked_achievements.append(achievement)
-			
-			progress = data.get("progress", {"score": 0, "enderman": 0, "enderdragon": 0, "nether": 0})
-			
-			var recent_data = data.get("recent", [])
-			recent_unlocks.clear()
-			for achievement in recent_data:
-				recent_unlocks.append(achievement)
-
-
-## Reset all achievements (for testing or new game)
-func reset_achievements() -> void:
+func reset() -> void:
 	unlocked_achievements.clear()
 	progress = {"score": 0, "enderman": 0, "enderdragon": 0, "nether": 0}
 	recent_unlocks.clear()
-	save_achievements()
