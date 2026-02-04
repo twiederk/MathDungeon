@@ -7,6 +7,7 @@ extends Control
 
 const MAX_BADGES: int = 5
 const BADGE_SIZE: Vector2 = Vector2(32, 32)
+const BADGE_GRAPHICS_PATH: String = "res://gui/"
 
 
 
@@ -50,13 +51,23 @@ func _update_badges() -> void:
 		
 		if i < recent.size():
 			var achievement_id = recent[recent.size() - 1 - i]  # Reverse order (newest first)
-			var achievement = AchievementManager.ACHIEVEMENTS.get(achievement_id, {})
+			var badge_graphic = _get_badge_graphic(achievement_id)
 			
-			texture_rect.texture = load("res://gui/badget_1000.png")
+			texture_rect.texture = load(badge_graphic)
 			badge_nodes[i].modulate = Color.WHITE
 		else:
 			texture_rect.texture = null
 			badge_nodes[i].modulate = Color(1, 1, 1, 0.3)
+
+
+func _get_badge_graphic(achievement_id: String) -> String:
+	match achievement_id:
+		"score_1000":
+			return BADGE_GRAPHICS_PATH + "badget_1000.png"
+		"score_2000":
+			return BADGE_GRAPHICS_PATH + "badget_2000.png"
+		_:
+			return BADGE_GRAPHICS_PATH + "badget_1000.png"
 
 
 func _animate_newest_badge() -> void:
