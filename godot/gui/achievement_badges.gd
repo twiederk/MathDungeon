@@ -61,13 +61,11 @@ func _update_badges() -> void:
 
 
 func _get_badge_graphic(achievement_id: String) -> String:
-	match achievement_id:
-		"score_1000":
-			return BADGE_GRAPHICS_PATH + "badget_1000.png"
-		"score_2000":
-			return BADGE_GRAPHICS_PATH + "badget_2000.png"
-		_:
-			return BADGE_GRAPHICS_PATH + "badget_1000.png"
+	if achievement_id in AchievementManager.ACHIEVEMENTS:
+		var achievement = AchievementManager.ACHIEVEMENTS[achievement_id]
+		if "badge_graphic" in achievement:
+			return BADGE_GRAPHICS_PATH + achievement["badge_graphic"]
+	return BADGE_GRAPHICS_PATH + "badget_1000.png"
 
 
 func _animate_newest_badge() -> void:

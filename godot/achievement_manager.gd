@@ -7,8 +7,8 @@ signal achievement_progress(achievement_id: String, current: int, target: int)
 const SAVE_PATH: String = "user://achievements.save"
 
 const ACHIEVEMENTS = {
-	"score_1000": {"title": "Erste Tausend!", "desc": "Erreiche 1.000 Punkte", "target": 1000, "type": "score"},
-	"score_2000": {"title": "Zweitausend!", "desc": "Erreiche 2.000 Punkte", "target": 2000, "type": "score"},
+	"score_1000": {"title": "Erste Tausend!", "desc": "Erreiche 1.000 Punkte", "target": 1000, "type": "score", "badge_graphic": "badget_1000.png"},
+	"score_2000": {"title": "Zweitausend!", "desc": "Erreiche 2.000 Punkte", "target": 2000, "type": "score", "badge_graphic": "badget_2000.png"},
 	"score_3000": {"title": "Dreitausend!", "desc": "Erreiche 3.000 Punkte", "target": 3000, "type": "score"},
 	"score_5000": {"title": "Fünftausend!", "desc": "Erreiche 5.000 Punkte", "target": 5000, "type": "score"},
 	"score_10000": {"title": "Zehntausend!", "desc": "Erreiche 10.000 Punkte", "target": 10000, "type": "score"},
