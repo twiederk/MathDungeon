@@ -1,7 +1,7 @@
 extends Node
 
 
-signal achievement_unlocked(achievement_id: String, title: String, description: String)
+signal achievement_unlocked(achievement_id: String, achievement: Achievement)
 
 
 class Achievement:
@@ -93,7 +93,7 @@ func _unlock_achievement(achievement_id: String) -> void:
 		recent_unlocks.pop_front()
 	
 	var achievement = ACHIEVEMENTS[achievement_id]
-	achievement_unlocked.emit(achievement_id, achievement.title, achievement.desc)
+	achievement_unlocked.emit(achievement_id, achievement)
 
 
 func get_recent_unlocks() -> Array[String]:

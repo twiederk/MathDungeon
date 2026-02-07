@@ -38,7 +38,7 @@ func _create_badge_slot() -> Panel:
 	return panel
 
 
-func _on_achievement_unlocked(_achievement_id: String, _title: String, _description: String) -> void:
+func _on_achievement_unlocked(_achievement_id: String, _achievement: AchievementManager.Achievement) -> void:
 	_update_badges()
 	_animate_newest_badge()
 
