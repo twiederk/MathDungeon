@@ -2,9 +2,7 @@ extends Node
 
 
 signal achievement_unlocked(achievement_id: String, title: String, description: String)
-signal achievement_progress(achievement_id: String, current: int, target: int)
 
-const SAVE_PATH: String = "user://achievements.save"
 
 const ACHIEVEMENTS = {
 	"score_1000": {"title": "Erste Tausend!", "desc": "Erreiche 1.000 Punkte", "target": 1000, "type": "score", "badge_graphic": "badget_1000.png"},
@@ -66,8 +64,6 @@ func _check_progress_achievements(type: String) -> void:
 		if achievement["type"] == type:
 			if current >= achievement["target"] and achievement_id not in unlocked_achievements:
 				_unlock_achievement(achievement_id)
-			elif current < achievement["target"]:
-				achievement_progress.emit(achievement_id, current, achievement["target"])
 
 
 func _unlock_achievement(achievement_id: String) -> void:
