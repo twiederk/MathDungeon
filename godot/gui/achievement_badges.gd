@@ -63,8 +63,8 @@ func _update_badges() -> void:
 func _get_badge_graphic(achievement_id: String) -> String:
 	if achievement_id in AchievementManager.ACHIEVEMENTS:
 		var achievement = AchievementManager.ACHIEVEMENTS[achievement_id]
-		if "badge_graphic" in achievement:
-			return BADGE_GRAPHICS_PATH + achievement["badge_graphic"]
+		if achievement.badge_graphic != "":
+			return BADGE_GRAPHICS_PATH + achievement.badge_graphic
 	return BADGE_GRAPHICS_PATH + "badget_1000.png"
 
 

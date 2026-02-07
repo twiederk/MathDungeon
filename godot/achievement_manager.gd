@@ -4,24 +4,41 @@ extends Node
 signal achievement_unlocked(achievement_id: String, title: String, description: String)
 
 
-const ACHIEVEMENTS = {
-	"score_1000": {"title": "Erste Tausend!", "desc": "Erreiche 1.000 Punkte", "target": 1000, "type": "score", "badge_graphic": "badget_1000.png"},
-	"score_2000": {"title": "Zweitausend!", "desc": "Erreiche 2.000 Punkte", "target": 2000, "type": "score", "badge_graphic": "badget_2000.png"},
-	"score_3000": {"title": "Dreitausend!", "desc": "Erreiche 3.000 Punkte", "target": 3000, "type": "score"},
-	"score_5000": {"title": "Fünftausend!", "desc": "Erreiche 5.000 Punkte", "target": 5000, "type": "score"},
-	"score_10000": {"title": "Zehntausend!", "desc": "Erreiche 10.000 Punkte", "target": 10000, "type": "score"},
+class Achievement:
+	var title: String
+	var desc: String
+	var target: int
+	var type: String
+	var score: int
+	var badge_graphic: String
 	
-	"enderman_1": {"title": "Erster Enderman besiegt!", "desc": "Besiege deinen ersten Enderman", "target": 1, "type": "enderman"},
-	"enderman_5": {"title": "Enderman-Jäger", "desc": "Besiege 5 Endermen", "target": 5, "type": "enderman"},
-	"enderman_10": {"title": "Enderman-Meister", "desc": "Besiege 10 Endermen", "target": 10, "type": "enderman"},
+	func _init(p_title: String, p_desc: String, p_target: int, p_type: String, p_score: int = 0, p_badge_graphic: String = "") -> void:
+		title = p_title
+		desc = p_desc
+		target = p_target
+		type = p_type
+		score = p_score
+		badge_graphic = p_badge_graphic
+
+
+var ACHIEVEMENTS = {
+	"score_1000": Achievement.new("Erste Tausend!", "Erreiche 1.000 Punkte", 1000, "score", 0, "badget_1000.png"),
+	"score_2000": Achievement.new("Zweitausend!", "Erreiche 2.000 Punkte", 2000, "score", 0, "badget_2000.png"),
+	"score_3000": Achievement.new("Dreitausend!", "Erreiche 3.000 Punkte", 3000, "score"),
+	"score_5000": Achievement.new("Fünftausend!", "Erreiche 5.000 Punkte", 5000, "score"),
+	"score_10000": Achievement.new("Zehntausend!", "Erreiche 10.000 Punkte", 10000, "score"),
 	
-	"enderdragon_1": {"title": "Drachentöter!", "desc": "Besiege deinen ersten Enderdrachen", "target": 1, "type": "enderdragon"},
-	"enderdragon_3": {"title": "Drachenjäger", "desc": "Besiege 3 Enderdrachen", "target": 3, "type": "enderdragon"},
-	"enderdragon_5": {"title": "Drachenmeister", "desc": "Besiege 5 Enderdrachen", "target": 5, "type": "enderdragon"},
+	"enderman_1": Achievement.new("Erster Enderman besiegt!", "Besiege deinen ersten Enderman", 1, "enderman"),
+	"enderman_5": Achievement.new("Enderman-Jäger", "Besiege 5 Endermen", 5, "enderman"),
+	"enderman_10": Achievement.new("Enderman-Meister", "Besiege 10 Endermen", 10, "enderman"),
 	
-	"nether_1": {"title": "Ab in den Nether!", "desc": "Besuche den Nether zum ersten Mal", "target": 1, "type": "nether"},
-	"nether_5": {"title": "Nether-Erkunder", "desc": "Besuche den Nether 5 Mal", "target": 5, "type": "nether"},
-	"nether_10": {"title": "Nether-Meister", "desc": "Besuche den Nether 10 Mal", "target": 10, "type": "nether"},
+	"enderdragon_1": Achievement.new("Drachentöter!", "Besiege deinen ersten Enderdrachen", 1, "enderdragon"),
+	"enderdragon_3": Achievement.new("Drachenjäger", "Besiege 3 Enderdrachen", 3, "enderdragon"),
+	"enderdragon_5": Achievement.new("Drachenmeister", "Besiege 5 Enderdrachen", 5, "enderdragon"),
+	
+	"nether_1": Achievement.new("Ab in den Nether!", "Besuche den Nether zum ersten Mal", 1, "nether"),
+	"nether_5": Achievement.new("Nether-Erkunder", "Besuche den Nether 5 Mal", 5, "nether"),
+	"nether_10": Achievement.new("Nether-Meister", "Besuche den Nether 10 Mal", 10, "nether"),
 }
 
 var unlocked_achievements: Array[String] = []
@@ -61,8 +78,8 @@ func _check_progress_achievements(type: String) -> void:
 	
 	for achievement_id in ACHIEVEMENTS:
 		var achievement = ACHIEVEMENTS[achievement_id]
-		if achievement["type"] == type:
-			if current >= achievement["target"] and achievement_id not in unlocked_achievements:
+		if achievement.type == type:
+			if current >= achievement.target and achievement_id not in unlocked_achievements:
 				_unlock_achievement(achievement_id)
 
 
@@ -76,7 +93,7 @@ func _unlock_achievement(achievement_id: String) -> void:
 		recent_unlocks.pop_front()
 	
 	var achievement = ACHIEVEMENTS[achievement_id]
-	achievement_unlocked.emit(achievement_id, achievement["title"], achievement["desc"])
+	achievement_unlocked.emit(achievement_id, achievement.title, achievement.desc)
 
 
 func get_recent_unlocks() -> Array[String]:
