@@ -9,7 +9,7 @@ const AUTO_HIDE_SECONDS: float = 4.0
 @onready var description_label: Label = $PanelContainer/MarginContainer/VBoxContainer/DescriptionLabel
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-var queue: Array[Dictionary] = []
+var queue: Array[AchievementManager.Achievement] = []
 var is_showing: bool = false
 
 
@@ -18,7 +18,7 @@ func _ready() -> void:
 
 
 func _on_achievement_unlocked(achievement_id: String, achievement: AchievementManager.Achievement) -> void:
-	queue.append({"id": achievement_id, "title": achievement.title, "desc": achievement.desc})
+	queue.append(achievement)
 	
 	if Sound.victory:
 		Sound.play(Sound.victory)
@@ -35,8 +35,8 @@ func _show_next() -> void:
 	is_showing = true
 	var achievement = queue.pop_front()
 	
-	title_label.text = achievement["title"]
-	description_label.text = achievement["desc"]
+	title_label.text = achievement.title
+	description_label.text = achievement.desc
 
 	_animation()
 	_show_next()
