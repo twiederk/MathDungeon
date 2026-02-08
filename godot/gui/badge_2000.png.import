@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://beo6bvmscb8wn"
-path="res://.godot/imported/badget_1000.png-8d97127987b16184c99a64d5d683019a.ctex"
+uid="uid://dkgf81d0ebrkv"
+path="res://.godot/imported/badge_2000.png-5b7b6df17637d087c7a847d78778748c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/badget_1000.png"
-dest_files=["res://.godot/imported/badget_1000.png-8d97127987b16184c99a64d5d683019a.ctex"]
+source_file="res://gui/badge_2000.png"
+dest_files=["res://.godot/imported/badge_2000.png-5b7b6df17637d087c7a847d78778748c.ctex"]
 
 [params]
 

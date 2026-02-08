@@ -22,8 +22,8 @@ class Achievement:
 
 
 var ACHIEVEMENTS = {
-	"score_1000": Achievement.new("Erste Tausend!", "Erreiche 1.000 Punkte", 1000, "score", 0, "badget_1000.png"),
-	"score_2000": Achievement.new("Zweitausend!", "Erreiche 2.000 Punkte", 2000, "score", 0, "badget_2000.png"),
+	"score_1000": Achievement.new("Erste Tausend!", "Erreiche 1.000 Punkte", 1000, "score", 0, "badge_1000.png"),
+	"score_2000": Achievement.new("Zweitausend!", "Erreiche 2.000 Punkte", 2000, "score", 0, "badge_2000.png"),
 	"score_3000": Achievement.new("Dreitausend!", "Erreiche 3.000 Punkte", 3000, "score"),
 	"score_5000": Achievement.new("Fünftausend!", "Erreiche 5.000 Punkte", 5000, "score"),
 	"score_10000": Achievement.new("Zehntausend!", "Erreiche 10.000 Punkte", 10000, "score"),
