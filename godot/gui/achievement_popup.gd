@@ -17,7 +17,7 @@ func _ready() -> void:
 	AchievementManager.achievement_unlocked.connect(_on_achievement_unlocked)
 
 
-func _on_achievement_unlocked(achievement_id: String, achievement: AchievementManager.Achievement) -> void:
+func _on_achievement_unlocked(achievement: AchievementManager.Achievement) -> void:
 	queue.append(achievement)
 	
 	if Sound.achievement_unlock:
