@@ -12,7 +12,7 @@ class Achievement:
 	var score: int
 	var badge_graphic: String
 	
-	func _init(p_title: String, p_desc: String, p_target: int, p_type: String, p_score: int = 0, p_badge_graphic: String = "") -> void:
+	func _init(p_title: String, p_desc: String, p_target: int, p_type: String, p_badge_graphic: String = "", p_score: int = 0) -> void:
 		title = p_title
 		desc = p_desc
 		target = p_target
@@ -22,23 +22,23 @@ class Achievement:
 
 
 var ACHIEVEMENTS = {
-	"score_1000": Achievement.new("Erste Tausend!", "Erreiche 1.000 Punkte", 1000, "score", 0, "badge_1000.png"),
-	"score_2000": Achievement.new("Zweitausend!", "Erreiche 2.000 Punkte", 2000, "score", 0, "badge_2000.png"),
-	"score_3000": Achievement.new("Dreitausend!", "Erreiche 3.000 Punkte", 3000, "score"),
-	"score_5000": Achievement.new("Fünftausend!", "Erreiche 5.000 Punkte", 5000, "score"),
-	"score_10000": Achievement.new("Zehntausend!", "Erreiche 10.000 Punkte", 10000, "score"),
+	"score_1000": Achievement.new("Erste Tausend!", "Erreiche 1.000 Punkte", 1000, "score", "score_1000.png"),
+	"score_2000": Achievement.new("Zweitausend!", "Erreiche 2.000 Punkte", 2000, "score", "score_2000.png"),
+	"score_3000": Achievement.new("Dreitausend!", "Erreiche 3.000 Punkte", 3000, "score", "score_3000.png"),
+	"score_5000": Achievement.new("Fünftausend!", "Erreiche 5.000 Punkte", 5000, "score", "score_5000.png"),
+	"score_10000": Achievement.new("Zehntausend!", "Erreiche 10.000 Punkte", 10000, "score", "score_10000.png"),
 	
-	"enderman_1": Achievement.new("Erster Enderman besiegt!", "Besiege deinen ersten Enderman", 1, "enderman"),
-	"enderman_5": Achievement.new("Enderman-Jäger", "Besiege 5 Endermen", 5, "enderman"),
-	"enderman_10": Achievement.new("Enderman-Meister", "Besiege 10 Endermen", 10, "enderman"),
+	"enderman_1": Achievement.new("Erster Enderman besiegt!", "Besiege deinen ersten Enderman", 1, "enderman", "enderman_1.png"),
+	"enderman_5": Achievement.new("Enderman-Jäger", "Besiege 5 Endermen", 5, "enderman", "enderman_5.png"),
+	"enderman_10": Achievement.new("Enderman-Meister", "Besiege 10 Endermen", 10, "enderman", "enderman_10.png"),
 	
-	"enderdragon_1": Achievement.new("Drachentöter!", "Besiege deinen ersten Enderdrachen", 1, "enderdragon"),
-	"enderdragon_3": Achievement.new("Drachenjäger", "Besiege 3 Enderdrachen", 3, "enderdragon"),
-	"enderdragon_5": Achievement.new("Drachenmeister", "Besiege 5 Enderdrachen", 5, "enderdragon"),
+	"enderdragon_1": Achievement.new("Drachentöter!", "Besiege deinen ersten Enderdrachen", 1, "enderdragon", "enderdragon_1.png"),
+	"enderdragon_3": Achievement.new("Drachenjäger", "Besiege 3 Enderdrachen", 3, "enderdragon", "enderdragon_3.png"),
+	"enderdragon_5": Achievement.new("Drachenmeister", "Besiege 5 Enderdrachen", 5, "enderdragon", "enderdragon_5.png"),
 	
-	"nether_1": Achievement.new("Ab in den Nether!", "Besuche den Nether zum ersten Mal", 1, "nether"),
-	"nether_5": Achievement.new("Nether-Erkunder", "Besuche den Nether 5 Mal", 5, "nether"),
-	"nether_10": Achievement.new("Nether-Meister", "Besuche den Nether 10 Mal", 10, "nether"),
+	"nether_1": Achievement.new("Ab in den Nether!", "Besuche den Nether zum ersten Mal", 1, "nether", "nether_1.png"),
+	"nether_5": Achievement.new("Nether-Erkunder", "Besuche den Nether 5 Mal", 5, "nether", "nether_5.png"),
+	"nether_10": Achievement.new("Nether-Meister", "Besuche den Nether 10 Mal", 10, "nether", "nether_10.png"),
 }
 
 var unlocked_achievements: Array[String] = []

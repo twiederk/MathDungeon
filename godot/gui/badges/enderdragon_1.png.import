@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw0qua6ffgb4c"
-path="res://.godot/imported/badge_1000.png-9d4163e81f4aa5fc04de87ade2bebf84.ctex"
+uid="uid://cd6eqv8o4tyy3"
+path="res://.godot/imported/enderdragon_1.png-b9779b8e0c2775e6eac82aef74e898e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/badge_1000.png"
-dest_files=["res://.godot/imported/badge_1000.png-9d4163e81f4aa5fc04de87ade2bebf84.ctex"]
+source_file="res://gui/badges/enderdragon_1.png"
+dest_files=["res://.godot/imported/enderdragon_1.png-b9779b8e0c2775e6eac82aef74e898e7.ctex"]
 
 [params]
 

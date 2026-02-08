@@ -7,7 +7,7 @@ extends Control
 
 const MAX_BADGES: int = 5
 const BADGE_SIZE: Vector2 = Vector2(32, 32)
-const BADGE_GRAPHICS_PATH: String = "res://gui/"
+const BADGE_GRAPHICS_PATH: String = "res://gui/badges/"
 
 
 
