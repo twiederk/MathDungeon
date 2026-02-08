@@ -20,8 +20,8 @@ func _ready() -> void:
 func _on_achievement_unlocked(achievement_id: String, achievement: AchievementManager.Achievement) -> void:
 	queue.append(achievement)
 	
-	if Sound.victory:
-		Sound.play(Sound.victory)
+	if Sound.achievement_unlock:
+		Sound.play(Sound.achievement_unlock)
 	
 	if not is_showing:
 		_show_next()

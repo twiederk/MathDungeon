@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://camg1re80chgu"]
+[gd_scene load_steps=9 format=3 uid="uid://camg1re80chgu"]
 
 [ext_resource type="Script" uid="uid://cedsdssd23q37" path="res://sound.gd" id="1_7ywqe"]
 [ext_resource type="AudioStream" uid="uid://b7gl80xgk3jb" path="res://items/PotionPickUp.ogg" id="2_tdv2v"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://vknem54cidfh" path="res://items/HelmetPickUp.ogg" id="4_glhti"]
 [ext_resource type="AudioStream" uid="uid://tlwviidcb8v0" path="res://enemies/victory.mp3" id="4_victory"]
 [ext_resource type="AudioStream" uid="uid://doglmolxgtdl6" path="res://items/LighterPickUp.ogg" id="5_kycvu"]
+[ext_resource type="AudioStream" path="res://enemies/achievement.mp3" id="6_achievement"]
 
 [node name="Sound" type="Node"]
 script = ExtResource("1_7ywqe")
@@ -16,6 +17,7 @@ pickup_helmet = ExtResource("4_glhti")
 pickup_lighter = ExtResource("5_kycvu")
 dog_bark = ExtResource("3_tdv2v")
 victory = ExtResource("4_victory")
+achievement_unlock = ExtResource("6_achievement")
 
 [node name="AudioStreamPlayer1" type="AudioStreamPlayer" parent="."]
 
