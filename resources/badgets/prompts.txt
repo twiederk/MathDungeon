@@ -1,0 +1,15 @@
+low res, 32x32 pixel style, sprite, clean edges, flat colors, limited palette. Game asset icon, circular achievement badge, Aged bronze and rough stone frame, centered simple star, digital art, isolated on transparent background
+
+
+low res, 32x32 pixel style, sprite, clean edges, flat colors, limited palette. Game asset icon, circular achievement badge, Polished silver and blue steel, centered double stars, digital art, isolated on transparent background
+
+Game asset icon, circular achievement badge, Polished Shining gold, centered winged star, digital art, isolated on transparent background, low res, 32x32 pixel style, sprite, clean edges, flat colors, limited palette. 
+
+
+Game asset icon, circular achievement badge, Glowing crystalline diamond and platinum, centered large crown with glowing, digital art, isolated on transparent background, low res, 32x32 pixel style, sprite, clean edges, flat colors, limited palette. 
+
+Meilenstein	Material-Einsatz ([MATERIAL])	Symbol-Einsatz ([SYMBOL])
+1.000 Punkte	Aged bronze and rough stone	simple star
+2.000 Punkte	Polished silver and blue steel	double stars
+3.000 Punkte	Shining gold with ornamental engravings	winged star
+5.000 Punkte	Glowing crystalline diamond and platinum	large crown with glowing gems

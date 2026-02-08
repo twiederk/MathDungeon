@@ -7,13 +7,9 @@ extends Control
 
 const MAX_BADGES: int = 5
 const BADGE_SIZE: Vector2 = Vector2(32, 32)
+const BADGE_GRAPHICS_PATH: String = "res://gui/badges/"
 
-const BADGE_COLORS = {
-	"score": Color(1.0, 0.843, 0.0),       # Gold
-	"enderman": Color(0.502, 0.0, 0.502),  # Purple
-	"enderdragon": Color(0.502, 0.0, 1.0), # Bright purple
-	"nether": Color(1.0, 0.271, 0.0),      # Orange/Red
-}
+
 
 var badge_nodes: Array[Panel] = []
 
@@ -33,18 +29,16 @@ func _create_badge_slot() -> Panel:
 	panel.custom_minimum_size = BADGE_SIZE
 	panel.modulate = Color(1, 1, 1, 0.3)
 	
-	var label = Label.new()
-	label.custom_minimum_size = BADGE_SIZE
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	label.anchors_preset = Control.PRESET_FULL_RECT
-	label.text = "?"
-	panel.add_child(label)
+	var texture_rect = TextureRect.new()
+	texture_rect.custom_minimum_size = BADGE_SIZE
+	texture_rect.anchors_preset = Control.PRESET_FULL_RECT
+	texture_rect.stretch_mode = TextureRect.STRETCH_SCALE
+	panel.add_child(texture_rect)
 	
 	return panel
 
 
-func _on_achievement_unlocked(_achievement_id: String, _title: String, _description: String) -> void:
+func _on_achievement_unlocked(_achievement: AchievementManager.Achievement) -> void:
 	_update_badges()
 	_animate_newest_badge()
 
@@ -53,32 +47,25 @@ func _update_badges() -> void:
 	var recent = AchievementManager.get_recent_unlocks()
 	
 	for i in range(MAX_BADGES):
+		var texture_rect = badge_nodes[i].get_child(0) as TextureRect
+		
 		if i < recent.size():
 			var achievement_id = recent[recent.size() - 1 - i]  # Reverse order (newest first)
-			var achievement = AchievementManager.ACHIEVEMENTS.get(achievement_id, {})
-			var badge_type = achievement.get("type", "score")
+			var badge_graphic = _get_badge_graphic(achievement_id)
 			
-			badge_nodes[i].modulate = BADGE_COLORS.get(badge_type, Color.WHITE)
-			var label = badge_nodes[i].get_child(0) as Label
-			label.text = _get_badge_symbol(badge_type)
+			texture_rect.texture = load(badge_graphic)
+			badge_nodes[i].modulate = Color.WHITE
 		else:
+			texture_rect.texture = null
 			badge_nodes[i].modulate = Color(1, 1, 1, 0.3)
-			var label = badge_nodes[i].get_child(0) as Label
-			label.text = "?"
 
 
-func _get_badge_symbol(type: String) -> String:
-	match type:
-		"score":
-			return "★"
-		"enderman":
-			return "E"
-		"enderdragon":
-			return "D"
-		"nether":
-			return "N"
-		_:
-			return "?"
+func _get_badge_graphic(achievement_id: String) -> String:
+	if achievement_id in AchievementManager.ACHIEVEMENTS:
+		var achievement = AchievementManager.ACHIEVEMENTS[achievement_id]
+		if achievement.badge_graphic != "":
+			return BADGE_GRAPHICS_PATH + achievement.badge_graphic
+	return BADGE_GRAPHICS_PATH + "badge_1000.png"
 
 
 func _animate_newest_badge() -> void:

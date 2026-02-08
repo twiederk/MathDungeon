@@ -27,6 +27,6 @@ func _on_name_line_edit_text_submitted(_text: String) -> void:
 func _submit_name() -> void:
 	var player_name = name_line_edit.text.strip_edges()
 	if player_name.is_empty():
-		player_name = "SPIELER"
+		return
 	HighscoreManager.add_score(player_name, PlayerStats.score)
 	get_tree().change_scene_to_file("res://gui/highscore_gui.tscn")

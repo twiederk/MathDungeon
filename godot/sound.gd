@@ -6,6 +6,7 @@ extends Node
 @export var pickup_lighter : AudioStream
 @export var dog_bark: AudioStream
 @export var victory: AudioStream
+@export var achievement_unlock: AudioStream
 
 @onready var sound_players = get_children()
 
