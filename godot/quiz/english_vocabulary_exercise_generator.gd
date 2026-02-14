@@ -1,5 +1,9 @@
 class_name EnglishVocabularyExerciseGenerator
 
+
+const dictionary_file_path: String = "res://quiz/dictionary.txt"
+
+
 var vocabulary: Array = []
 
 
@@ -8,11 +12,10 @@ func _init() -> void:
 
 
 func _load_dictionary() -> void:
-	var file_path = "res://quiz/dictionary.txt"
-	var file = FileAccess.open(file_path, FileAccess.READ)
+	var file = FileAccess.open(dictionary_file_path, FileAccess.READ)
 	
 	if file == null:
-		push_error("Failed to load dictionary file at: %s" % file_path)
+		push_error("Failed to load dictionary file at: %s" % dictionary_file_path)
 		return
 	
 	while file.get_position() < file.get_length():
