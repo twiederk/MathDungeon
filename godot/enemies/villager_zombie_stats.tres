@@ -6,4 +6,5 @@
 script = ExtResource("1_gc00b")
 name = "Villager Zombie"
 max_hit_points = 2
+arithmetic = Array[int]([9])
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"
