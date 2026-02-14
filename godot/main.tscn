@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://cwox4f8n83s0j" path="res://dungeon_title.tscn" id="22_lswn8"]
 [ext_resource type="PackedScene" uid="uid://xbjs301e481p" path="res://enemies/villager.tscn" id="22_xuqvo"]
 [ext_resource type="PackedScene" uid="uid://bjuiaid8a3011" path="res://enemies/villager_baby.tscn" id="23_kq58d"]
+[ext_resource type="PackedScene" uid="uid://dudt4kmrappps" path="res://enemies/villager_zombie.tscn" id="26_0rl1p"]
 [ext_resource type="PackedScene" uid="uid://bbea4w5dl7mq5" path="res://enemies/shooting_skeleton.tscn" id="27_a6jrf"]
 [ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="29_qsp4k"]
 [ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://gui/achievement_popup.tscn" id="30_achievement"]
@@ -394,6 +395,9 @@ position = Vector2(132, 1780)
 
 [node name="VillagerBaby2" parent="Enemies" unique_id=620614687 instance=ExtResource("23_kq58d")]
 position = Vector2(147, 1934)
+
+[node name="VillagerZombie" parent="Enemies" unique_id=271206613 instance=ExtResource("26_0rl1p")]
+position = Vector2(1663, 1637)
 
 [node name="Player" parent="." unique_id=368569798 instance=ExtResource("1_ig7tw")]
 position = Vector2(-81, 685)

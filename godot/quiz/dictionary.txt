@@ -1,0 +1,9 @@
+Katze,cat
+Hund,dog
+Ratte,rat
+Maus,mouse
+Wellensittich,budgie
+Hamster,hamster
+Schildkröte,turtle
+Meerschweinchen,guinea pig
+Papagei,parrot
