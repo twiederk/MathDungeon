@@ -11,6 +11,7 @@ var times_table_exercise_generator = TimesTableExerciseGenerator.new()
 var digit_sum_exercise_generator = DigitSumExerciseGenerator.new()
 var number_riddle_exercise_generator = NumberRiddleExerciseGenerator.new()
 var next_number_exercise_generator = NextNumberExerciseGenerator.new()
+var english_vocabulary_exercise_generator = EnglishVocabularyExerciseGenerator.new()
 var enemy: Enemy = null
 var exercise: Exercise = null
 
@@ -84,11 +85,13 @@ func _create_exercise() -> Exercise:
 			return number_riddle_exercise_generator.create_exercise()
 		EnemyStats.ArithmeticType.NEXT_NUMBER:
 			return next_number_exercise_generator.create_exercise(enemy.stats.max_number)
+		EnemyStats.ArithmeticType.VOCABULARY:
+			return english_vocabulary_exercise_generator.create_exercise()
 	return addition_exercise_generator.create_exercise(enemy.stats.max_number)
 
 
 func _on_text_submitted(text: String) -> void:
-	var answer: String = text.strip_edges().to_upper()
+	var answer: String = text.strip_edges()
 	_check_answer(answer)
 
 

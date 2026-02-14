@@ -11,7 +11,8 @@ enum ArithmeticType {
 	TIMES_TABLE,
 	DIGIT_SUM,
 	NUMBER_RIDDLE,
-	NEXT_NUMBER
+	NEXT_NUMBER,
+	VOCABULARY
 }
 
 @export var name: String = "Enemie"
