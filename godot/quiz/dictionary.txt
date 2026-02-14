@@ -28,3 +28,23 @@ Hamster,hamster
 Schildkröte,turtle
 Meerschweinchen,guinea pig
 Papagei,parrot
+schlafen,sleep
+traurig,sad
+glücklich,happy
+wütend,angry
+Onkel,uncle
+Tante,aunt
+Schwester,sister
+Bruder,brother
+Schal,scarf
+Vater,father
+Mutter,mother
+Handschuhe,gloves
+Großmutter,grandmother
+Großvater,grandfather
+Jacke,jacket
+Pullover,pullover
+Stiefel,boots
+Hut,hat
+Hose,trousers
+Schuhe,shoes
