@@ -399,6 +399,45 @@ position = Vector2(147, 1934)
 [node name="VillagerZombie" parent="Enemies" unique_id=271206613 instance=ExtResource("26_0rl1p")]
 position = Vector2(1663, 1637)
 
+[node name="VillagerZombie2" parent="Enemies" unique_id=2117933631 instance=ExtResource("26_0rl1p")]
+position = Vector2(1417, 1548)
+
+[node name="VillagerZombie3" parent="Enemies" unique_id=1019807316 instance=ExtResource("26_0rl1p")]
+position = Vector2(1441, 1712)
+
+[node name="VillagerZombie4" parent="Enemies" unique_id=1257171565 instance=ExtResource("26_0rl1p")]
+position = Vector2(1723, 1698)
+
+[node name="VillagerZombie5" parent="Enemies" unique_id=800060098 instance=ExtResource("26_0rl1p")]
+position = Vector2(1515, 1732)
+
+[node name="VillagerZombie6" parent="Enemies" unique_id=964542833 instance=ExtResource("26_0rl1p")]
+position = Vector2(1521, 1913)
+
+[node name="VillagerZombie7" parent="Enemies" unique_id=218866577 instance=ExtResource("26_0rl1p")]
+position = Vector2(1637, 1976)
+
+[node name="VillagerZombie8" parent="Enemies" unique_id=667929940 instance=ExtResource("26_0rl1p")]
+position = Vector2(1422, 1982)
+
+[node name="VillagerZombie9" parent="Enemies" unique_id=1598070691 instance=ExtResource("26_0rl1p")]
+position = Vector2(1728, 1920)
+
+[node name="VillagerZombie10" parent="Enemies" unique_id=541038243 instance=ExtResource("26_0rl1p")]
+position = Vector2(1384, 1911)
+
+[node name="VillagerZombie11" parent="Enemies" unique_id=1599874534 instance=ExtResource("26_0rl1p")]
+position = Vector2(1557, 1973)
+
+[node name="VillagerZombie12" parent="Enemies" unique_id=649551851 instance=ExtResource("26_0rl1p")]
+position = Vector2(1609, 1919)
+
+[node name="VillagerZombie13" parent="Enemies" unique_id=704197009 instance=ExtResource("26_0rl1p")]
+position = Vector2(1488, 1975)
+
+[node name="VillagerZombie14" parent="Enemies" unique_id=1186367634 instance=ExtResource("26_0rl1p")]
+position = Vector2(1455, 1922)
+
 [node name="Player" parent="." unique_id=368569798 instance=ExtResource("1_ig7tw")]
 position = Vector2(-81, 685)
 
