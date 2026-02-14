@@ -35,7 +35,17 @@ func create_exercise() -> Exercise:
 	var random_index = randi() % vocabulary.size()
 	var word_pair = vocabulary[random_index]
 	
-	var question = "Wie lautet das englische Wort für: %s?" % word_pair["german"]
-	var result = word_pair["english"]
+	# 1 in 10 chance to ask for German word, 9 in 10 chance to ask for English word
+	var ask_for_german = (randi() % 10) == 0
+	
+	var question: String
+	var result: String
+	
+	if ask_for_german:
+		question = "Wie lautet das deutsche Wort für: %s?" % word_pair["english"]
+		result = word_pair["german"]
+	else:
+		question = "Wie lautet das englische Wort für: %s?" % word_pair["german"]
+		result = word_pair["english"]
 	
 	return Exercise.new(question, result)

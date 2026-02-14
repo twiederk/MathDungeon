@@ -19,5 +19,5 @@ func test_create_exercise():
 	var exercise = english_vocabulary_exercise_generator.create_exercise()
 	
 	# assert
-	assert_eq(exercise.question, "Wie lautet das englische Wort für: Schildkröte?")
-	assert_eq(exercise.result, "turtle")
+	assert_eq(exercise.question, "Wie lautet das englische Wort für: Hut?")
+	assert_eq(exercise.result, "hat")
