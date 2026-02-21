@@ -5,7 +5,6 @@ extends Control
 @onready var achievement_badges = $AchievementBadges
 
 
-const MAX_BADGES: int = 5
 const BADGE_GRAPHICS_PATH: String = "res://gui/badges/"
 
 
@@ -14,7 +13,7 @@ var badge_nodes: Array[Panel] = []
 
 func _ready() -> void:
 	# Get badge panels from scene
-	for i in range(MAX_BADGES):
+	for i in range(achievement_badges.get_child_count()):
 		var badge = achievement_badges.get_child(i) as Panel
 		badge_nodes.append(badge)
 	
@@ -30,7 +29,7 @@ func _on_achievement_unlocked(_achievement: AchievementManager.Achievement) -> v
 func _update_badges() -> void:
 	var recent = AchievementManager.get_recent_unlocks()
 	
-	for i in range(MAX_BADGES):
+	for i in range(badge_nodes.size()):
 		var texture_rect = badge_nodes[i].get_child(0) as TextureRect
 		
 		if i < recent.size():
