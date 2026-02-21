@@ -14,7 +14,7 @@ Gelb,yellow
 Grün,green
 Schwarz,black
 Weiß,white
-Grau,gray
+Grau,grey
 Braun,brown
 Orange,orange
 Lila,purple
