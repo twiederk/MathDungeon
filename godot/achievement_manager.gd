@@ -9,15 +9,13 @@ class Achievement:
 	var desc: String
 	var target: int
 	var type: String
-	var score: int
 	var badge_graphic: String
 	
-	func _init(p_title: String, p_desc: String, p_target: int, p_type: String, p_badge_graphic: String = "", p_score: int = 0) -> void:
+	func _init(p_title: String, p_desc: String, p_target: int, p_type: String, p_badge_graphic: String = "") -> void:
 		title = p_title
 		desc = p_desc
 		target = p_target
 		type = p_type
-		score = p_score
 		badge_graphic = p_badge_graphic
 
 
