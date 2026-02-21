@@ -1,17 +1,32 @@
 class_name EnglishVocabularyExerciseGenerator
 
 
-const dictionary_file_path: String = "res://quiz/dictionary.txt"
+enum DictionaryType {
+	ALL,
+	COLOR
+}
+
+
+var dictionary_type: DictionaryType
 
 
 var vocabulary: Array = []
 
 
-func _init() -> void:
+func _init(dict_type: DictionaryType = DictionaryType.ALL) -> void:
+	dictionary_type = dict_type
 	_load_dictionary()
 
 
 func _load_dictionary() -> void:
+	var dictionary_file_path: String
+	
+	match dictionary_type:
+		DictionaryType.ALL:
+			dictionary_file_path = "res://quiz/dictionary.txt"
+		DictionaryType.COLOR:
+			dictionary_file_path = "res://quiz/dictionary_colors.txt"
+	
 	var file = FileAccess.open(dictionary_file_path, FileAccess.READ)
 	
 	if file == null:

@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_qa4ru")
 name = "Villager Zombie Baby"
-arithmetic = Array[int]([9])
+arithmetic = Array[int]([10])
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"
