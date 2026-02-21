@@ -12,18 +12,20 @@ var badge_nodes: Array[Panel] = []
 
 
 func _ready() -> void:
-	# Get badge panels from scene
-	for i in range(achievement_badges.get_child_count()):
-		var badge = achievement_badges.get_child(i) as Panel
-		badge_nodes.append(badge)
-	
 	AchievementManager.achievement_unlocked.connect(_on_achievement_unlocked)
+	_setup_badge_nodes()
 	_update_badges()
 
 
 func _on_achievement_unlocked(_achievement: AchievementManager.Achievement) -> void:
 	_update_badges()
 	_animate_newest_badge()
+
+
+func _setup_badge_nodes() -> void:
+	for i in range(achievement_badges.get_child_count()):
+		var badge = achievement_badges.get_child(i) as Panel
+		badge_nodes.append(badge)
 
 
 func _update_badges() -> void:
