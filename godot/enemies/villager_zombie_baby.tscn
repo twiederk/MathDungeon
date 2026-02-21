@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://pg7u76p21jhj"]
+
+[ext_resource type="Script" uid="uid://b7x46e8sw1gka" path="res://enemies/enemy.gd" id="1_kl8tq"]
+[ext_resource type="Resource" uid="uid://clrjqi3jvjalq" path="res://enemies/villager_zombie_baby_stats.tres" id="2_kl8tq"]
+[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="3_2ddtl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c8iql"]
+radius = 8.0
+height = 18.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(19, 22)
+
+[node name="VillagerBabyZombie" type="StaticBody2D" unique_id=271206613]
+collision_layer = 2
+script = ExtResource("1_kl8tq")
+stats = ExtResource("2_kl8tq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2096191203]
+texture = ExtResource("3_2ddtl")
+hframes = 9
+vframes = 9
+frame = 55
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=910899693]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_c8iql")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=128689885]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=261701925]
+position = Vector2(-0.5, 3)
+shape = SubResource("RectangleShape2D_h2yge")
