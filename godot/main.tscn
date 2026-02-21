@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://bjuiaid8a3011" path="res://enemies/villager_baby.tscn" id="23_kq58d"]
 [ext_resource type="PackedScene" uid="uid://dudt4kmrappps" path="res://enemies/villager_zombie.tscn" id="26_0rl1p"]
 [ext_resource type="PackedScene" uid="uid://bbea4w5dl7mq5" path="res://enemies/shooting_skeleton.tscn" id="27_a6jrf"]
+[ext_resource type="PackedScene" uid="uid://pg7u76p21jhj" path="res://enemies/villager_zombie_baby.tscn" id="27_ok6jj"]
 [ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="29_qsp4k"]
 [ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://gui/achievement_popup.tscn" id="30_achievement"]
 [ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://gui/achievement_badges.tscn" id="31_badges"]
@@ -396,9 +397,6 @@ position = Vector2(132, 1780)
 [node name="VillagerBaby2" parent="Enemies" unique_id=620614687 instance=ExtResource("23_kq58d")]
 position = Vector2(147, 1934)
 
-[node name="VillagerZombie" parent="Enemies" unique_id=271206613 instance=ExtResource("26_0rl1p")]
-position = Vector2(1663, 1637)
-
 [node name="VillagerZombie2" parent="Enemies" unique_id=2117933631 instance=ExtResource("26_0rl1p")]
 position = Vector2(1417, 1548)
 
@@ -407,9 +405,6 @@ position = Vector2(1441, 1712)
 
 [node name="VillagerZombie4" parent="Enemies" unique_id=1257171565 instance=ExtResource("26_0rl1p")]
 position = Vector2(1723, 1698)
-
-[node name="VillagerZombie5" parent="Enemies" unique_id=800060098 instance=ExtResource("26_0rl1p")]
-position = Vector2(1515, 1732)
 
 [node name="VillagerZombie6" parent="Enemies" unique_id=964542833 instance=ExtResource("26_0rl1p")]
 position = Vector2(1521, 1913)
@@ -437,6 +432,12 @@ position = Vector2(1488, 1975)
 
 [node name="VillagerZombie14" parent="Enemies" unique_id=1186367634 instance=ExtResource("26_0rl1p")]
 position = Vector2(1455, 1922)
+
+[node name="VillagerBabyZombie" parent="Enemies" unique_id=1879623003 instance=ExtResource("27_ok6jj")]
+position = Vector2(1516, 1738)
+
+[node name="VillagerBabyZombie2" parent="Enemies" unique_id=271206613 instance=ExtResource("27_ok6jj")]
+position = Vector2(1670, 1631)
 
 [node name="Player" parent="." unique_id=368569798 instance=ExtResource("1_ig7tw")]
 position = Vector2(-81, 685)

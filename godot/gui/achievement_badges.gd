@@ -5,37 +5,16 @@ extends Control
 @onready var achievement_badges = $AchievementBadges
 
 
-const MAX_BADGES: int = 5
-const BADGE_SIZE: Vector2 = Vector2(32, 32)
 const BADGE_GRAPHICS_PATH: String = "res://gui/badges/"
-
 
 
 var badge_nodes: Array[Panel] = []
 
 
 func _ready() -> void:
-	for i in range(MAX_BADGES):
-		var badge = _create_badge_slot()
-		achievement_badges.add_child(badge)
-		badge_nodes.append(badge)
-	
 	AchievementManager.achievement_unlocked.connect(_on_achievement_unlocked)
+	_setup_badge_nodes()
 	_update_badges()
-
-
-func _create_badge_slot() -> Panel:
-	var panel = Panel.new()
-	panel.custom_minimum_size = BADGE_SIZE
-	panel.modulate = Color(1, 1, 1, 0.3)
-	
-	var texture_rect = TextureRect.new()
-	texture_rect.custom_minimum_size = BADGE_SIZE
-	texture_rect.anchors_preset = Control.PRESET_FULL_RECT
-	texture_rect.stretch_mode = TextureRect.STRETCH_SCALE
-	panel.add_child(texture_rect)
-	
-	return panel
 
 
 func _on_achievement_unlocked(_achievement: AchievementManager.Achievement) -> void:
@@ -43,10 +22,16 @@ func _on_achievement_unlocked(_achievement: AchievementManager.Achievement) -> v
 	_animate_newest_badge()
 
 
+func _setup_badge_nodes() -> void:
+	for i in range(achievement_badges.get_child_count()):
+		var badge = achievement_badges.get_child(i) as Panel
+		badge_nodes.append(badge)
+
+
 func _update_badges() -> void:
 	var recent = AchievementManager.get_recent_unlocks()
 	
-	for i in range(MAX_BADGES):
+	for i in range(badge_nodes.size()):
 		var texture_rect = badge_nodes[i].get_child(0) as TextureRect
 		
 		if i < recent.size():

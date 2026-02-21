@@ -1,17 +1,28 @@
 class_name EnglishVocabularyExerciseGenerator
 
 
-const dictionary_file_path: String = "res://quiz/dictionary.txt"
+const DICTIONARY_ALL_PATH: String = "res://quiz/dictionary.txt"
+const DICTIONARY_COLOR_PATH: String = "res://quiz/dictionary_colors.txt"
 
 
+enum DictionaryType {
+	ALL,
+	COLOR
+}
+
+
+var dictionary_type: DictionaryType
 var vocabulary: Array = []
 
 
-func _init() -> void:
+func _init(dict_type: DictionaryType = DictionaryType.ALL) -> void:
+	dictionary_type = dict_type
 	_load_dictionary()
 
 
 func _load_dictionary() -> void:
+	var dictionary_file_path = _get_dictionary_file_path()
+	
 	var file = FileAccess.open(dictionary_file_path, FileAccess.READ)
 	
 	if file == null:
@@ -26,6 +37,15 @@ func _load_dictionary() -> void:
 			var german_word = parts[0].strip_edges()
 			var english_word = parts[1].strip_edges()
 			vocabulary.append({"german": german_word, "english": english_word})
+
+
+func _get_dictionary_file_path() -> String:
+	match dictionary_type:
+		DictionaryType.ALL:
+			return DICTIONARY_ALL_PATH
+		DictionaryType.COLOR:
+			return DICTIONARY_COLOR_PATH
+	return DICTIONARY_ALL_PATH
 
 
 func create_exercise() -> Exercise:

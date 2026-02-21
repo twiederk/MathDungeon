@@ -1,0 +1,11 @@
+Rot,red
+Blau,blue
+Gelb,yellow
+Grün,green
+Schwarz,black
+Weiß,white
+Grau,grey
+Braun,brown
+Orange,orange
+Lila,purple
+Rosa,pink
