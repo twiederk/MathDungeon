@@ -15,27 +15,13 @@ var badge_nodes: Array[Panel] = []
 
 
 func _ready() -> void:
+	# Get badge panels from scene
 	for i in range(MAX_BADGES):
-		var badge = _create_badge_slot()
-		achievement_badges.add_child(badge)
+		var badge = achievement_badges.get_child(i) as Panel
 		badge_nodes.append(badge)
 	
 	AchievementManager.achievement_unlocked.connect(_on_achievement_unlocked)
 	_update_badges()
-
-
-func _create_badge_slot() -> Panel:
-	var panel = Panel.new()
-	panel.custom_minimum_size = BADGE_SIZE
-	panel.modulate = Color(1, 1, 1, 0.3)
-	
-	var texture_rect = TextureRect.new()
-	texture_rect.custom_minimum_size = BADGE_SIZE
-	texture_rect.anchors_preset = Control.PRESET_FULL_RECT
-	texture_rect.stretch_mode = TextureRect.STRETCH_SCALE
-	panel.add_child(texture_rect)
-	
-	return panel
 
 
 func _on_achievement_unlocked(_achievement: AchievementManager.Achievement) -> void:
