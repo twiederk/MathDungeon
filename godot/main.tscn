@@ -403,6 +403,12 @@ position = Vector2(1417, 1548)
 [node name="VillagerZombie3" parent="Enemies" unique_id=1019807316 instance=ExtResource("26_0rl1p")]
 position = Vector2(1441, 1712)
 
+[node name="VillagerZombie5" parent="Enemies" unique_id=271206613 instance=ExtResource("26_0rl1p")]
+position = Vector2(1524, 1750)
+
+[node name="VillagerZombie15" parent="Enemies" unique_id=199210023 instance=ExtResource("26_0rl1p")]
+position = Vector2(1656, 1632)
+
 [node name="VillagerZombie4" parent="Enemies" unique_id=1257171565 instance=ExtResource("26_0rl1p")]
 position = Vector2(1723, 1698)
 
@@ -434,10 +440,16 @@ position = Vector2(1488, 1975)
 position = Vector2(1455, 1922)
 
 [node name="VillagerBabyZombie" parent="Enemies" unique_id=1879623003 instance=ExtResource("27_ok6jj")]
-position = Vector2(1516, 1738)
+position = Vector2(1320, 1740)
 
-[node name="VillagerBabyZombie2" parent="Enemies" unique_id=271206613 instance=ExtResource("27_ok6jj")]
-position = Vector2(1670, 1631)
+[node name="Sprite2D" parent="Enemies/VillagerBabyZombie" index="0" unique_id=2096191203]
+flip_h = true
+
+[node name="VillagerBabyZombie2" parent="Enemies" unique_id=1539611890 instance=ExtResource("27_ok6jj")]
+position = Vector2(1358, 1734)
+
+[node name="VillagerBabyZombie3" parent="Enemies" unique_id=223156601 instance=ExtResource("27_ok6jj")]
+position = Vector2(1349, 1773)
 
 [node name="Player" parent="." unique_id=368569798 instance=ExtResource("1_ig7tw")]
 position = Vector2(-81, 685)
@@ -539,6 +551,7 @@ offset_bottom = 85.0
 [editable path="Enemies/ShootingPilligar6"]
 [editable path="Enemies/ShootingPilligar7"]
 [editable path="Enemies/ShootingPilligar8"]
+[editable path="Enemies/VillagerBabyZombie"]
 [editable path="Titles/DungeonTitle"]
 [editable path="Titles/DungeonTitle2"]
 [editable path="Titles/DungeonTitle3"]
