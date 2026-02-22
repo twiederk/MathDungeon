@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://bn6vw6a56paaa"]
+
+[ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_ewk1p"]
+
+[resource]
+script = ExtResource("1_ewk1p")
+name = "Iron Golem"
+max_hit_points = 12
+damage = 3
+armor = 2
+arithmetic = Array[int]([0, 1])
+max_number = 1000
+metadata/_custom_type_script = "uid://b0c3oqfgm2626"

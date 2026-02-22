@@ -151,6 +151,6 @@ grow_vertical = 1
 
 [node name="AchievementBadges" parent="UI" unique_id=1505777352 instance=ExtResource("25_badges")]
 offset_left = 455.0
-offset_top = 45.0
+offset_top = 25.0
 offset_right = 625.0
-offset_bottom = 85.0
+offset_bottom = 65.0

@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://b1giv0tpkj4hj"]
+
+[ext_resource type="Script" uid="uid://b7x46e8sw1gka" path="res://enemies/enemy.gd" id="1_n80cu"]
+[ext_resource type="Resource" uid="uid://bn6vw6a56paaa" path="res://enemies/iron_golem_stats.tres" id="2_n80cu"]
+[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="3_t575v"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c8iql"]
+height = 28.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(26, 32)
+
+[node name="IronGolem" type="StaticBody2D" unique_id=3751457]
+collision_layer = 2
+script = ExtResource("1_n80cu")
+stats = ExtResource("2_n80cu")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=565209750]
+texture = ExtResource("3_t575v")
+hframes = 9
+vframes = 9
+frame = 74
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=634160293]
+shape = SubResource("CapsuleShape2D_c8iql")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=660149821]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=670059398]
+shape = SubResource("RectangleShape2D_h2yge")

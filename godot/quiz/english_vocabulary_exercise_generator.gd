@@ -1,8 +1,8 @@
 class_name EnglishVocabularyExerciseGenerator
 
 
-const DICTIONARY_ALL_PATH: String = "res://quiz/dictionary.txt"
-const DICTIONARY_COLOR_PATH: String = "res://quiz/dictionary_colors.txt"
+const DICTIONARY_ALL_PATH: String = "res://quiz/dictionaries/dictionary.txt"
+const DICTIONARY_COLOR_PATH: String = "res://quiz/dictionaries/dictionary_colors.txt"
 
 
 enum DictionaryType {

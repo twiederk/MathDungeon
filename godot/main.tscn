@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://dudt4kmrappps" path="res://enemies/villager_zombie.tscn" id="26_0rl1p"]
 [ext_resource type="PackedScene" uid="uid://bbea4w5dl7mq5" path="res://enemies/shooting_skeleton.tscn" id="27_a6jrf"]
 [ext_resource type="PackedScene" uid="uid://pg7u76p21jhj" path="res://enemies/villager_zombie_baby.tscn" id="27_ok6jj"]
+[ext_resource type="PackedScene" uid="uid://b1giv0tpkj4hj" path="res://enemies/iron_golem.tscn" id="28_facbu"]
 [ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="29_qsp4k"]
 [ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://gui/achievement_popup.tscn" id="30_achievement"]
 [ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://gui/achievement_badges.tscn" id="31_badges"]
@@ -403,6 +404,12 @@ position = Vector2(1417, 1548)
 [node name="VillagerZombie3" parent="Enemies" unique_id=1019807316 instance=ExtResource("26_0rl1p")]
 position = Vector2(1441, 1712)
 
+[node name="VillagerZombie5" parent="Enemies" unique_id=271206613 instance=ExtResource("26_0rl1p")]
+position = Vector2(1524, 1750)
+
+[node name="VillagerZombie15" parent="Enemies" unique_id=199210023 instance=ExtResource("26_0rl1p")]
+position = Vector2(1656, 1632)
+
 [node name="VillagerZombie4" parent="Enemies" unique_id=1257171565 instance=ExtResource("26_0rl1p")]
 position = Vector2(1723, 1698)
 
@@ -434,10 +441,19 @@ position = Vector2(1488, 1975)
 position = Vector2(1455, 1922)
 
 [node name="VillagerBabyZombie" parent="Enemies" unique_id=1879623003 instance=ExtResource("27_ok6jj")]
-position = Vector2(1516, 1738)
+position = Vector2(1320, 1740)
 
-[node name="VillagerBabyZombie2" parent="Enemies" unique_id=271206613 instance=ExtResource("27_ok6jj")]
-position = Vector2(1670, 1631)
+[node name="Sprite2D" parent="Enemies/VillagerBabyZombie" index="0" unique_id=2096191203]
+flip_h = true
+
+[node name="VillagerBabyZombie2" parent="Enemies" unique_id=1539611890 instance=ExtResource("27_ok6jj")]
+position = Vector2(1358, 1734)
+
+[node name="VillagerBabyZombie3" parent="Enemies" unique_id=223156601 instance=ExtResource("27_ok6jj")]
+position = Vector2(1349, 1773)
+
+[node name="IronGolem" parent="Enemies" unique_id=3751457 instance=ExtResource("28_facbu")]
+position = Vector2(99, 1700)
 
 [node name="Player" parent="." unique_id=368569798 instance=ExtResource("1_ig7tw")]
 position = Vector2(-81, 685)
@@ -519,9 +535,9 @@ grow_vertical = 1
 
 [node name="AchievementBadges" parent="UI" unique_id=1350952673 instance=ExtResource("31_badges")]
 offset_left = 455.0
-offset_top = 45.0
+offset_top = 25.0
 offset_right = 625.0
-offset_bottom = 85.0
+offset_bottom = 65.0
 
 [editable path="Enemies/ShootingPillager"]
 [editable path="Enemies/ShootingSkeleton"]
@@ -539,6 +555,7 @@ offset_bottom = 85.0
 [editable path="Enemies/ShootingPilligar6"]
 [editable path="Enemies/ShootingPilligar7"]
 [editable path="Enemies/ShootingPilligar8"]
+[editable path="Enemies/VillagerBabyZombie"]
 [editable path="Titles/DungeonTitle"]
 [editable path="Titles/DungeonTitle2"]
 [editable path="Titles/DungeonTitle3"]
