@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://dudt4kmrappps" path="res://enemies/villager_zombie.tscn" id="26_0rl1p"]
 [ext_resource type="PackedScene" uid="uid://bbea4w5dl7mq5" path="res://enemies/shooting_skeleton.tscn" id="27_a6jrf"]
 [ext_resource type="PackedScene" uid="uid://pg7u76p21jhj" path="res://enemies/villager_zombie_baby.tscn" id="27_ok6jj"]
+[ext_resource type="PackedScene" uid="uid://b1giv0tpkj4hj" path="res://enemies/iron_golem.tscn" id="28_facbu"]
 [ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="29_qsp4k"]
 [ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://gui/achievement_popup.tscn" id="30_achievement"]
 [ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://gui/achievement_badges.tscn" id="31_badges"]
@@ -450,6 +451,9 @@ position = Vector2(1358, 1734)
 
 [node name="VillagerBabyZombie3" parent="Enemies" unique_id=223156601 instance=ExtResource("27_ok6jj")]
 position = Vector2(1349, 1773)
+
+[node name="IronGolem" parent="Enemies" unique_id=3751457 instance=ExtResource("28_facbu")]
+position = Vector2(99, 1700)
 
 [node name="Player" parent="." unique_id=368569798 instance=ExtResource("1_ig7tw")]
 position = Vector2(-81, 685)
