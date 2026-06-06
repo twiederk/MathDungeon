@@ -98,6 +98,10 @@ size = Vector2(92, 88)
 resource_local_to_scene = true
 size = Vector2(92, 88)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6a44"]
+resource_local_to_scene = true
+size = Vector2(124, 131)
+
 [node name="Main" type="Node2D" unique_id=1680778199]
 script = ExtResource("1_1bvp3")
 
@@ -218,7 +222,7 @@ position = Vector2(668, 542)
 position = Vector2(182, 1269)
 
 [node name="ZombiePiglin2" parent="Enemies" unique_id=1473421824 instance=ExtResource("5_7mycd")]
-position = Vector2(1257, 501)
+position = Vector2(1249, 482)
 
 [node name="Drown4" parent="Enemies" unique_id=53245081 instance=ExtResource("8_efxa6")]
 position = Vector2(1378, 476)
@@ -230,7 +234,7 @@ position = Vector2(1379, 532)
 position = Vector2(1166, 466)
 
 [node name="Zombie2" parent="Enemies" unique_id=1586649158 instance=ExtResource("2_0xm2m")]
-position = Vector2(989, 670)
+position = Vector2(942, 673)
 
 [node name="ZombieBaby3" parent="Enemies" unique_id=54280764 instance=ExtResource("12_ycdy4")]
 position = Vector2(1489, 658)
@@ -508,6 +512,14 @@ title_text = "Das Dorf"
 position = Vector2(14, -16)
 shape = SubResource("RectangleShape2D_wnkbs")
 
+[node name="DungeonTitle7" parent="Titles" unique_id=511827281 instance=ExtResource("22_lswn8")]
+position = Vector2(1537, 1468)
+title_text = "Das verlassene Dorf"
+
+[node name="CollisionShape2D" parent="Titles/DungeonTitle7/TriggerArea2D" index="0"]
+position = Vector2(12, 15.5)
+shape = SubResource("RectangleShape2D_f6a44")
+
 [node name="MapBorders" parent="." unique_id=1093876332 instance=ExtResource("20_d13ii")]
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=40578067]
@@ -562,3 +574,4 @@ offset_bottom = 65.0
 [editable path="Titles/DungeonTitle4"]
 [editable path="Titles/DungeonTitle5"]
 [editable path="Titles/DungeonTitle6"]
+[editable path="Titles/DungeonTitle7"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c38q1veaiusix"]
+[gd_scene format=3 uid="uid://c38q1veaiusix"]
 
 [ext_resource type="Script" uid="uid://72381y6phi57" path="res://enemies/projectile.gd" id="1_hbguw"]
 [ext_resource type="Resource" uid="uid://nu5k81xhmdx2" path="res://enemies/fireball_stats.tres" id="2_hbguw"]
@@ -11,28 +11,28 @@ size = Vector2(22, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2"]
 size = Vector2(22, 8)
 
-[node name="Fireball" type="RigidBody2D"]
+[node name="Fireball" type="RigidBody2D" unique_id=1358210386]
 collision_layer = 4
 script = ExtResource("1_hbguw")
-speed = 200.0
+speed = 150.0
 projectile_stats = ExtResource("2_hbguw")
 projectile_sound = ExtResource("3_hbguw")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2136251462]
 texture = ExtResource("4_hbguw")
 region_rect = Rect2(192, 32, 16, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=164563563]
 shape = SubResource("RectangleShape2D_1")
 
-[node name="HitArea" type="Area2D" parent="."]
+[node name="HitArea" type="Area2D" parent="." unique_id=1143129780]
 collision_layer = 0
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=2044673022]
 shape = SubResource("RectangleShape2D_2")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1130604817]
 
 [connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
