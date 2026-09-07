@@ -40,6 +40,8 @@
 [ext_resource type="PackedScene" uid="uid://dlocg2skf3j3j" path="res://animals/axolotl.tscn" id="38_b1qrp"]
 [ext_resource type="PackedScene" uid="uid://gqtn68ys1a2m" path="res://animals/frog.tscn" id="39_come4"]
 [ext_resource type="PackedScene" uid="uid://cg7niey7e55c0" path="res://animals/tadpole.tscn" id="40_h8e4i"]
+[ext_resource type="PackedScene" uid="uid://deiw20d4xtqpg" path="res://animals/allay.tscn" id="41_4lmeg"]
+[ext_resource type="PackedScene" uid="uid://dpltdrfxhhkxw" path="res://animals/salmon.tscn" id="42_0cp0l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4lmeg"]
 size = Vector2(476, 58)
@@ -77,21 +79,17 @@ size = Vector2(401, 322)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_come4"]
 size = Vector2(400, 334)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0cp0l"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2t1y"]
 resource_local_to_scene = true
 size = Vector2(41, 384)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2t1y"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gngh3"]
 resource_local_to_scene = true
 size = Vector2(31, 61)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gngh3"]
-resource_local_to_scene = true
-size = Vector2(59, 61)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0n3wm"]
 resource_local_to_scene = true
-size = Vector2(92, 88)
+size = Vector2(59, 61)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnost"]
 resource_local_to_scene = true
@@ -102,6 +100,10 @@ resource_local_to_scene = true
 size = Vector2(92, 88)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f6a44"]
+resource_local_to_scene = true
+size = Vector2(92, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0cbny"]
 resource_local_to_scene = true
 size = Vector2(124, 131)
 
@@ -476,7 +478,7 @@ title_text = "Die verlassene Burg"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle/TriggerArea2D" index="0"]
 position = Vector2(21.5, -76)
-shape = SubResource("RectangleShape2D_0cp0l")
+shape = SubResource("RectangleShape2D_d2t1y")
 
 [node name="DungeonTitle2" parent="Titles" unique_id=1265780115 instance=ExtResource("22_lswn8")]
 position = Vector2(114, 1121)
@@ -484,7 +486,7 @@ title_text = "Das Tierlabyrinth"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle2/TriggerArea2D" index="0"]
 position = Vector2(-1.5, -1.5)
-shape = SubResource("RectangleShape2D_d2t1y")
+shape = SubResource("RectangleShape2D_gngh3")
 
 [node name="DungeonTitle3" parent="Titles" unique_id=1065713930 instance=ExtResource("22_lswn8")]
 position = Vector2(913, 670)
@@ -492,7 +494,7 @@ title_text = "Der unterirdische Teich"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle3/TriggerArea2D" index="0"]
 position = Vector2(-16.5, 1.5)
-shape = SubResource("RectangleShape2D_gngh3")
+shape = SubResource("RectangleShape2D_0n3wm")
 
 [node name="DungeonTitle4" parent="Titles" unique_id=1103847014 instance=ExtResource("22_lswn8")]
 position = Vector2(1041, 1122)
@@ -500,7 +502,7 @@ title_text = "Die Villa"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle4/TriggerArea2D" index="0"]
 position = Vector2(-1.5, -2.5)
-shape = SubResource("RectangleShape2D_0n3wm")
+shape = SubResource("RectangleShape2D_qnost")
 
 [node name="DungeonTitle5" parent="Titles" unique_id=395435328 instance=ExtResource("22_lswn8")]
 position = Vector2(865, 1505)
@@ -508,7 +510,7 @@ title_text = "Das Waldanwesen "
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle5/TriggerArea2D" index="0"]
 position = Vector2(14, -16)
-shape = SubResource("RectangleShape2D_qnost")
+shape = SubResource("RectangleShape2D_wnkbs")
 
 [node name="DungeonTitle6" parent="Titles" unique_id=1333793762 instance=ExtResource("22_lswn8")]
 position = Vector2(31, 1560)
@@ -516,7 +518,7 @@ title_text = "Das Dorf"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle6/TriggerArea2D" index="0"]
 position = Vector2(14, -16)
-shape = SubResource("RectangleShape2D_wnkbs")
+shape = SubResource("RectangleShape2D_f6a44")
 
 [node name="DungeonTitle7" parent="Titles" unique_id=511827281 instance=ExtResource("22_lswn8")]
 position = Vector2(1537, 1468)
@@ -524,7 +526,7 @@ title_text = "Das verlassene Dorf"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle7/TriggerArea2D" index="0"]
 position = Vector2(12, 15.5)
-shape = SubResource("RectangleShape2D_f6a44")
+shape = SubResource("RectangleShape2D_0cbny")
 
 [node name="MapBorders" parent="." unique_id=1093876332 instance=ExtResource("20_d13ii")]
 
@@ -609,7 +611,7 @@ position = Vector2(215, 1130)
 position = Vector2(243, 1135)
 
 [node name="Tadpole5" parent="." unique_id=931247983 instance=ExtResource("40_h8e4i")]
-position = Vector2(586, 1143)
+position = Vector2(530, 1196)
 
 [node name="Frog6" parent="." unique_id=391963678 instance=ExtResource("39_come4")]
 position = Vector2(498, 1263)
@@ -619,6 +621,45 @@ position = Vector2(500, 1290)
 
 [node name="Tadpole6" parent="." unique_id=1820414087 instance=ExtResource("40_h8e4i")]
 position = Vector2(560, 1354)
+
+[node name="Allay" parent="." unique_id=1962077430 instance=ExtResource("41_4lmeg")]
+position = Vector2(1181, 2401)
+
+[node name="Allay2" parent="." unique_id=795289590 instance=ExtResource("41_4lmeg")]
+position = Vector2(1040, 2800)
+
+[node name="Salmon" parent="." unique_id=1612752367 instance=ExtResource("42_0cp0l")]
+position = Vector2(65, 2627)
+
+[node name="Salmon2" parent="." unique_id=1984602559 instance=ExtResource("42_0cp0l")]
+position = Vector2(-20, 2668)
+
+[node name="Salmon3" parent="." unique_id=1296282621 instance=ExtResource("42_0cp0l")]
+position = Vector2(133, 2660)
+
+[node name="Salmon4" parent="." unique_id=2006122564 instance=ExtResource("42_0cp0l")]
+position = Vector2(-51, 2526)
+
+[node name="Salmon5" parent="." unique_id=1820740939 instance=ExtResource("42_0cp0l")]
+position = Vector2(10, 2584)
+
+[node name="Salmon6" parent="." unique_id=937115835 instance=ExtResource("42_0cp0l")]
+position = Vector2(-54, 2627)
+
+[node name="Salmon7" parent="." unique_id=1624934480 instance=ExtResource("42_0cp0l")]
+position = Vector2(45, 2697)
+
+[node name="Salmon8" parent="." unique_id=1926558787 instance=ExtResource("42_0cp0l")]
+position = Vector2(680, 922)
+
+[node name="Salmon9" parent="." unique_id=2018112869 instance=ExtResource("42_0cp0l")]
+position = Vector2(689, 832)
+
+[node name="Salmon10" parent="." unique_id=195349515 instance=ExtResource("42_0cp0l")]
+position = Vector2(592, 789)
+
+[node name="Salmon11" parent="." unique_id=30791787 instance=ExtResource("42_0cp0l")]
+position = Vector2(660, 868)
 
 [editable path="Enemies/ShootingPillager"]
 [editable path="Enemies/ShootingSkeleton"]
