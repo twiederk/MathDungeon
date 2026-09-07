@@ -500,7 +500,7 @@ shape = SubResource("RectangleShape2D_0n3wm")
 
 [node name="DungeonTitle5" parent="Titles" unique_id=395435328 instance=ExtResource("22_lswn8")]
 position = Vector2(865, 1505)
-title_text = "Die Burg"
+title_text = "Das Waldanwesen"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle5/TriggerArea2D" index="0"]
 position = Vector2(14, -16)
