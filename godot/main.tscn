@@ -42,6 +42,10 @@
 [ext_resource type="PackedScene" uid="uid://cg7niey7e55c0" path="res://animals/tadpole.tscn" id="40_h8e4i"]
 [ext_resource type="PackedScene" uid="uid://deiw20d4xtqpg" path="res://animals/allay.tscn" id="41_4lmeg"]
 [ext_resource type="PackedScene" uid="uid://dpltdrfxhhkxw" path="res://animals/salmon.tscn" id="42_0cp0l"]
+[ext_resource type="PackedScene" uid="uid://b24x0f7up44p4" path="res://animals/dolphin.tscn" id="43_gngh3"]
+[ext_resource type="PackedScene" uid="uid://bqc3vkt0le88h" path="res://animals/turtle.tscn" id="44_0n3wm"]
+[ext_resource type="PackedScene" uid="uid://ctorh6hyh3je8" path="res://animals/pufferfish.tscn" id="45_qnost"]
+[ext_resource type="PackedScene" uid="uid://dwfrjnrqa34od" path="res://animals/octopus.tscn" id="46_wnkbs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4lmeg"]
 size = Vector2(476, 58)
@@ -79,31 +83,31 @@ size = Vector2(401, 322)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_come4"]
 size = Vector2(400, 334)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2t1y"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6a44"]
 resource_local_to_scene = true
 size = Vector2(41, 384)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gngh3"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0cbny"]
 resource_local_to_scene = true
 size = Vector2(31, 61)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0n3wm"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrvbo"]
 resource_local_to_scene = true
 size = Vector2(59, 61)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnost"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uypp3"]
 resource_local_to_scene = true
 size = Vector2(92, 88)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wnkbs"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_blkrb"]
 resource_local_to_scene = true
 size = Vector2(92, 88)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6a44"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abqjc"]
 resource_local_to_scene = true
 size = Vector2(92, 88)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0cbny"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6iyjs"]
 resource_local_to_scene = true
 size = Vector2(124, 131)
 
@@ -467,6 +471,200 @@ position = Vector2(99, 1700)
 [node name="IronGolem2" parent="Enemies" unique_id=621275917 instance=ExtResource("28_facbu")]
 position = Vector2(182, 1828)
 
+[node name="Animals" type="Node2D" parent="." unique_id=1647462520]
+position = Vector2(1170, 2401)
+
+[node name="Axolotl" parent="Animals" unique_id=201031099 instance=ExtResource("38_b1qrp")]
+position = Vector2(-524, -1583)
+
+[node name="Axolotl2" parent="Animals" unique_id=1703728594 instance=ExtResource("38_b1qrp")]
+position = Vector2(-404, -1582)
+
+[node name="Frog" parent="Animals" unique_id=1264381284 instance=ExtResource("39_come4")]
+position = Vector2(-484, -1622)
+
+[node name="Frog2" parent="Animals" unique_id=295248777 instance=ExtResource("39_come4")]
+position = Vector2(-659, -1581)
+
+[node name="IronGolem" parent="Animals" unique_id=1190687449 instance=ExtResource("28_facbu")]
+position = Vector2(500, 672)
+
+[node name="IronGolem2" parent="Animals" unique_id=1873438235 instance=ExtResource("28_facbu")]
+position = Vector2(15, 126)
+
+[node name="Tadpole" parent="Animals" unique_id=1495878777 instance=ExtResource("40_h8e4i")]
+position = Vector2(-464, -1524)
+
+[node name="Tadpole2" parent="Animals" unique_id=353135452 instance=ExtResource("40_h8e4i")]
+position = Vector2(-566, -1567)
+
+[node name="Tadpole3" parent="Animals" unique_id=898598788 instance=ExtResource("40_h8e4i")]
+position = Vector2(-541, -1515)
+
+[node name="Tadpole4" parent="Animals" unique_id=1582163061 instance=ExtResource("40_h8e4i")]
+position = Vector2(-575, -1485)
+
+[node name="Frog3" parent="Animals" unique_id=792908930 instance=ExtResource("39_come4")]
+position = Vector2(-79, -2053)
+
+[node name="Frog4" parent="Animals" unique_id=174244493 instance=ExtResource("39_come4")]
+position = Vector2(-143, -2030)
+
+[node name="Axolotl3" parent="Animals" unique_id=826341391 instance=ExtResource("38_b1qrp")]
+position = Vector2(-58, -1991)
+
+[node name="Axolotl4" parent="Animals" unique_id=1682262058 instance=ExtResource("38_b1qrp")]
+position = Vector2(-154, -1905)
+
+[node name="Axolotl5" parent="Animals" unique_id=1869726408 instance=ExtResource("38_b1qrp")]
+position = Vector2(-1131, 61)
+
+[node name="Axolotl6" parent="Animals" unique_id=724976218 instance=ExtResource("38_b1qrp")]
+position = Vector2(-955, -1271)
+
+[node name="Frog5" parent="Animals" unique_id=1885319922 instance=ExtResource("39_come4")]
+position = Vector2(-927, -1266)
+
+[node name="Tadpole5" parent="Animals" unique_id=931247983 instance=ExtResource("40_h8e4i")]
+position = Vector2(-640, -1205)
+
+[node name="Frog6" parent="Animals" unique_id=391963678 instance=ExtResource("39_come4")]
+position = Vector2(-672, -1138)
+
+[node name="Axolotl7" parent="Animals" unique_id=1573234829 instance=ExtResource("38_b1qrp")]
+position = Vector2(-670, -1111)
+
+[node name="Tadpole6" parent="Animals" unique_id=1820414087 instance=ExtResource("40_h8e4i")]
+position = Vector2(-610, -1047)
+
+[node name="Allay" parent="Animals" unique_id=1962077430 instance=ExtResource("41_4lmeg")]
+
+[node name="Allay2" parent="Animals" unique_id=795289590 instance=ExtResource("41_4lmeg")]
+position = Vector2(-130, 399)
+
+[node name="Salmon" parent="Animals" unique_id=1612752367 instance=ExtResource("42_0cp0l")]
+position = Vector2(-1105, 226)
+
+[node name="Salmon2" parent="Animals" unique_id=1984602559 instance=ExtResource("42_0cp0l")]
+position = Vector2(-1190, 267)
+
+[node name="Salmon3" parent="Animals" unique_id=1296282621 instance=ExtResource("42_0cp0l")]
+position = Vector2(-1037, 259)
+
+[node name="Salmon4" parent="Animals" unique_id=2006122564 instance=ExtResource("42_0cp0l")]
+position = Vector2(-1221, 125)
+
+[node name="Salmon5" parent="Animals" unique_id=1820740939 instance=ExtResource("42_0cp0l")]
+position = Vector2(-1160, 183)
+
+[node name="Salmon6" parent="Animals" unique_id=937115835 instance=ExtResource("42_0cp0l")]
+position = Vector2(-1224, 226)
+
+[node name="Salmon7" parent="Animals" unique_id=1624934480 instance=ExtResource("42_0cp0l")]
+position = Vector2(-1125, 296)
+
+[node name="Salmon8" parent="Animals" unique_id=1926558787 instance=ExtResource("42_0cp0l")]
+position = Vector2(-490, -1479)
+
+[node name="Salmon9" parent="Animals" unique_id=2018112869 instance=ExtResource("42_0cp0l")]
+position = Vector2(-481, -1569)
+
+[node name="Salmon10" parent="Animals" unique_id=195349515 instance=ExtResource("42_0cp0l")]
+position = Vector2(-578, -1612)
+
+[node name="Salmon11" parent="Animals" unique_id=30791787 instance=ExtResource("42_0cp0l")]
+position = Vector2(-510, -1533)
+
+[node name="Dolphin" parent="Animals" unique_id=6812439 instance=ExtResource("43_gngh3")]
+position = Vector2(-1083, 347)
+
+[node name="Dolphin2" parent="Animals" unique_id=1802407831 instance=ExtResource("43_gngh3")]
+position = Vector2(-1218, 365)
+
+[node name="Dolphin3" parent="Animals" unique_id=187680865 instance=ExtResource("43_gngh3")]
+position = Vector2(-1308, 394)
+
+[node name="Dolphin4" parent="Animals" unique_id=1861899042 instance=ExtResource("43_gngh3")]
+position = Vector2(-815, 406)
+
+[node name="Dolphin5" parent="Animals" unique_id=359164670 instance=ExtResource("43_gngh3")]
+position = Vector2(-943, 351)
+
+[node name="Dolphin6" parent="Animals" unique_id=1699223122 instance=ExtResource("43_gngh3")]
+position = Vector2(-995, 399)
+
+[node name="Dolphin7" parent="Animals" unique_id=961688651 instance=ExtResource("43_gngh3")]
+position = Vector2(-1291, 250)
+
+[node name="Dolphin8" parent="Animals" unique_id=1562428995 instance=ExtResource("43_gngh3")]
+position = Vector2(-599, 399)
+
+[node name="Turtle" parent="Animals" unique_id=550413535 instance=ExtResource("44_0n3wm")]
+position = Vector2(-937, 105)
+
+[node name="Turtle2" parent="Animals" unique_id=1917802889 instance=ExtResource("44_0n3wm")]
+position = Vector2(-998, 153)
+
+[node name="Turtle3" parent="Animals" unique_id=1058261656 instance=ExtResource("44_0n3wm")]
+position = Vector2(-994, 290)
+
+[node name="Turtle4" parent="Animals" unique_id=1815713561 instance=ExtResource("44_0n3wm")]
+position = Vector2(-1083, 371)
+
+[node name="Turtle5" parent="Animals" unique_id=1789153186 instance=ExtResource("44_0n3wm")]
+position = Vector2(-1251, 407)
+
+[node name="Turtle6" parent="Animals" unique_id=1605051423 instance=ExtResource("44_0n3wm")]
+position = Vector2(-546, 387)
+
+[node name="Turtle7" parent="Animals" unique_id=65156107 instance=ExtResource("44_0n3wm")]
+position = Vector2(-586, 360)
+
+[node name="Turtle8" parent="Animals" unique_id=1838873402 instance=ExtResource("44_0n3wm")]
+position = Vector2(-641, 422)
+
+[node name="Turtle9" parent="Animals" unique_id=1939944673 instance=ExtResource("44_0n3wm")]
+position = Vector2(-708, 390)
+
+[node name="Turtle10" parent="Animals" unique_id=235908597 instance=ExtResource("44_0n3wm")]
+position = Vector2(-747, 404)
+
+[node name="Turtle11" parent="Animals" unique_id=1476058903 instance=ExtResource("44_0n3wm")]
+position = Vector2(-640, 298)
+
+[node name="Pufferfish" parent="Animals" unique_id=2113459435 instance=ExtResource("45_qnost")]
+position = Vector2(-1253, 306)
+
+[node name="Pufferfish2" parent="Animals" unique_id=1958962907 instance=ExtResource("45_qnost")]
+position = Vector2(-857, 361)
+
+[node name="Pufferfish3" parent="Animals" unique_id=306152014 instance=ExtResource("45_qnost")]
+position = Vector2(-895, 412)
+
+[node name="Pufferfish4" parent="Animals" unique_id=1934034526 instance=ExtResource("45_qnost")]
+position = Vector2(-1280, 180)
+
+[node name="Pufferfish5" parent="Animals" unique_id=2006098574 instance=ExtResource("45_qnost")]
+position = Vector2(-1058, 297)
+
+[node name="Octopus" parent="Animals" unique_id=474945011 instance=ExtResource("46_wnkbs")]
+position = Vector2(-857, 298)
+
+[node name="Octopus2" parent="Animals" unique_id=1167159355 instance=ExtResource("46_wnkbs")]
+position = Vector2(-1291, 78)
+
+[node name="Octopus3" parent="Animals" unique_id=2008321498 instance=ExtResource("46_wnkbs")]
+position = Vector2(-1170, 344)
+
+[node name="Octopus4" parent="Animals" unique_id=730924572 instance=ExtResource("46_wnkbs")]
+position = Vector2(-1136, 410)
+
+[node name="Octopus5" parent="Animals" unique_id=1262088805 instance=ExtResource("46_wnkbs")]
+position = Vector2(-1300, 341)
+
+[node name="Octopus6" parent="Animals" unique_id=1749853074 instance=ExtResource("46_wnkbs")]
+position = Vector2(-859, 195)
+
 [node name="Player" parent="." unique_id=368569798 instance=ExtResource("1_ig7tw")]
 position = Vector2(-81, 685)
 
@@ -478,7 +676,7 @@ title_text = "Die verlassene Burg"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle/TriggerArea2D" index="0"]
 position = Vector2(21.5, -76)
-shape = SubResource("RectangleShape2D_d2t1y")
+shape = SubResource("RectangleShape2D_f6a44")
 
 [node name="DungeonTitle2" parent="Titles" unique_id=1265780115 instance=ExtResource("22_lswn8")]
 position = Vector2(114, 1121)
@@ -486,7 +684,7 @@ title_text = "Das Tierlabyrinth"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle2/TriggerArea2D" index="0"]
 position = Vector2(-1.5, -1.5)
-shape = SubResource("RectangleShape2D_gngh3")
+shape = SubResource("RectangleShape2D_0cbny")
 
 [node name="DungeonTitle3" parent="Titles" unique_id=1065713930 instance=ExtResource("22_lswn8")]
 position = Vector2(913, 670)
@@ -494,7 +692,7 @@ title_text = "Der unterirdische Teich"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle3/TriggerArea2D" index="0"]
 position = Vector2(-16.5, 1.5)
-shape = SubResource("RectangleShape2D_0n3wm")
+shape = SubResource("RectangleShape2D_hrvbo")
 
 [node name="DungeonTitle4" parent="Titles" unique_id=1103847014 instance=ExtResource("22_lswn8")]
 position = Vector2(1041, 1122)
@@ -502,7 +700,7 @@ title_text = "Die Villa"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle4/TriggerArea2D" index="0"]
 position = Vector2(-1.5, -2.5)
-shape = SubResource("RectangleShape2D_qnost")
+shape = SubResource("RectangleShape2D_uypp3")
 
 [node name="DungeonTitle5" parent="Titles" unique_id=395435328 instance=ExtResource("22_lswn8")]
 position = Vector2(865, 1505)
@@ -510,7 +708,7 @@ title_text = "Das Waldanwesen "
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle5/TriggerArea2D" index="0"]
 position = Vector2(14, -16)
-shape = SubResource("RectangleShape2D_wnkbs")
+shape = SubResource("RectangleShape2D_blkrb")
 
 [node name="DungeonTitle6" parent="Titles" unique_id=1333793762 instance=ExtResource("22_lswn8")]
 position = Vector2(31, 1560)
@@ -518,7 +716,7 @@ title_text = "Das Dorf"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle6/TriggerArea2D" index="0"]
 position = Vector2(14, -16)
-shape = SubResource("RectangleShape2D_f6a44")
+shape = SubResource("RectangleShape2D_abqjc")
 
 [node name="DungeonTitle7" parent="Titles" unique_id=511827281 instance=ExtResource("22_lswn8")]
 position = Vector2(1537, 1468)
@@ -526,7 +724,7 @@ title_text = "Das verlassene Dorf"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle7/TriggerArea2D" index="0"]
 position = Vector2(12, 15.5)
-shape = SubResource("RectangleShape2D_0cbny")
+shape = SubResource("RectangleShape2D_6iyjs")
 
 [node name="MapBorders" parent="." unique_id=1093876332 instance=ExtResource("20_d13ii")]
 
@@ -558,108 +756,6 @@ offset_left = 455.0
 offset_top = 25.0
 offset_right = 625.0
 offset_bottom = 65.0
-
-[node name="Axolotl" parent="." unique_id=201031099 instance=ExtResource("38_b1qrp")]
-position = Vector2(646, 818)
-
-[node name="Axolotl2" parent="." unique_id=1703728594 instance=ExtResource("38_b1qrp")]
-position = Vector2(766, 819)
-
-[node name="Frog" parent="." unique_id=1264381284 instance=ExtResource("39_come4")]
-position = Vector2(686, 779)
-
-[node name="Frog2" parent="." unique_id=295248777 instance=ExtResource("39_come4")]
-position = Vector2(511, 820)
-
-[node name="IronGolem" parent="." unique_id=1190687449 instance=ExtResource("28_facbu")]
-position = Vector2(1670, 3073)
-
-[node name="IronGolem2" parent="." unique_id=1873438235 instance=ExtResource("28_facbu")]
-position = Vector2(1185, 2527)
-
-[node name="Tadpole" parent="." unique_id=1495878777 instance=ExtResource("40_h8e4i")]
-position = Vector2(706, 877)
-
-[node name="Tadpole2" parent="." unique_id=353135452 instance=ExtResource("40_h8e4i")]
-position = Vector2(604, 834)
-
-[node name="Tadpole3" parent="." unique_id=898598788 instance=ExtResource("40_h8e4i")]
-position = Vector2(629, 886)
-
-[node name="Tadpole4" parent="." unique_id=1582163061 instance=ExtResource("40_h8e4i")]
-position = Vector2(595, 916)
-
-[node name="Frog3" parent="." unique_id=792908930 instance=ExtResource("39_come4")]
-position = Vector2(1091, 348)
-
-[node name="Frog4" parent="." unique_id=174244493 instance=ExtResource("39_come4")]
-position = Vector2(1027, 371)
-
-[node name="Axolotl3" parent="." unique_id=826341391 instance=ExtResource("38_b1qrp")]
-position = Vector2(1112, 410)
-
-[node name="Axolotl4" parent="." unique_id=1682262058 instance=ExtResource("38_b1qrp")]
-position = Vector2(1016, 496)
-
-[node name="Axolotl5" parent="." unique_id=1869726408 instance=ExtResource("38_b1qrp")]
-position = Vector2(39, 2462)
-
-[node name="Axolotl6" parent="." unique_id=724976218 instance=ExtResource("38_b1qrp")]
-position = Vector2(215, 1130)
-
-[node name="Frog5" parent="." unique_id=1885319922 instance=ExtResource("39_come4")]
-position = Vector2(243, 1135)
-
-[node name="Tadpole5" parent="." unique_id=931247983 instance=ExtResource("40_h8e4i")]
-position = Vector2(530, 1196)
-
-[node name="Frog6" parent="." unique_id=391963678 instance=ExtResource("39_come4")]
-position = Vector2(498, 1263)
-
-[node name="Axolotl7" parent="." unique_id=1573234829 instance=ExtResource("38_b1qrp")]
-position = Vector2(500, 1290)
-
-[node name="Tadpole6" parent="." unique_id=1820414087 instance=ExtResource("40_h8e4i")]
-position = Vector2(560, 1354)
-
-[node name="Allay" parent="." unique_id=1962077430 instance=ExtResource("41_4lmeg")]
-position = Vector2(1181, 2401)
-
-[node name="Allay2" parent="." unique_id=795289590 instance=ExtResource("41_4lmeg")]
-position = Vector2(1040, 2800)
-
-[node name="Salmon" parent="." unique_id=1612752367 instance=ExtResource("42_0cp0l")]
-position = Vector2(65, 2627)
-
-[node name="Salmon2" parent="." unique_id=1984602559 instance=ExtResource("42_0cp0l")]
-position = Vector2(-20, 2668)
-
-[node name="Salmon3" parent="." unique_id=1296282621 instance=ExtResource("42_0cp0l")]
-position = Vector2(133, 2660)
-
-[node name="Salmon4" parent="." unique_id=2006122564 instance=ExtResource("42_0cp0l")]
-position = Vector2(-51, 2526)
-
-[node name="Salmon5" parent="." unique_id=1820740939 instance=ExtResource("42_0cp0l")]
-position = Vector2(10, 2584)
-
-[node name="Salmon6" parent="." unique_id=937115835 instance=ExtResource("42_0cp0l")]
-position = Vector2(-54, 2627)
-
-[node name="Salmon7" parent="." unique_id=1624934480 instance=ExtResource("42_0cp0l")]
-position = Vector2(45, 2697)
-
-[node name="Salmon8" parent="." unique_id=1926558787 instance=ExtResource("42_0cp0l")]
-position = Vector2(680, 922)
-
-[node name="Salmon9" parent="." unique_id=2018112869 instance=ExtResource("42_0cp0l")]
-position = Vector2(689, 832)
-
-[node name="Salmon10" parent="." unique_id=195349515 instance=ExtResource("42_0cp0l")]
-position = Vector2(592, 789)
-
-[node name="Salmon11" parent="." unique_id=30791787 instance=ExtResource("42_0cp0l")]
-position = Vector2(660, 868)
 
 [editable path="Enemies/ShootingPillager"]
 [editable path="Enemies/ShootingSkeleton"]

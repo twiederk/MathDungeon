@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bqc3vkt0le88h"]
+
+[ext_resource type="Script" uid="uid://d4ibqddds0vpw" path="res://animals/animal.gd" id="1_qsojr"]
+[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="2_savqb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rmn7x"]
+radius = 15.033297
+
+[node name="Turtle" type="StaticBody2D" unique_id=201031099]
+collision_layer = 2
+script = ExtResource("1_qsojr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=394545895]
+texture = ExtResource("2_savqb")
+hframes = 9
+vframes = 9
+frame = 51
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=803488657]
+position = Vector2(-1, 8)
+shape = SubResource("CircleShape2D_rmn7x")
