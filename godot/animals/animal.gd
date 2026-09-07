@@ -1,0 +1,2 @@
+class_name Animal
+extends StaticBody2D
