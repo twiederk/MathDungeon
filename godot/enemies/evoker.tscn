@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://b3t6krerhsshv"]
+[gd_scene format=3 uid="uid://dhxipuoeb6vgp"]
 
-[ext_resource type="Script" uid="uid://d1tipsaj1l4x1" path="res://enemies/shooting_enemy.gd" id="1_dfvkm"]
-[ext_resource type="PackedScene" uid="uid://d4bxmbnfj62lw" path="res://enemies/arrow.tscn" id="2_bgqgd"]
-[ext_resource type="Resource" uid="uid://babipeuagskms" path="res://enemies/pillager_stats.tres" id="3_dfvkm"]
-[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="4_xy4of"]
+[ext_resource type="Script" uid="uid://d1tipsaj1l4x1" path="res://enemies/shooting_enemy.gd" id="1_jskxg"]
+[ext_resource type="PackedScene" uid="uid://b8x33jlf5ikm5" path="res://enemies/evoker_vex.tscn" id="2_jskxg"]
+[ext_resource type="Resource" uid="uid://babipeuagskms" path="res://enemies/pillager_stats.tres" id="3_qsjgk"]
+[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="4_rxy1s"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s4k5m"]
 height = 26.0
@@ -15,18 +15,18 @@ size = Vector2(26, 30)
 resource_local_to_scene = true
 radius = 267.1198
 
-[node name="ShootingPillager" type="StaticBody2D" unique_id=516032260]
+[node name="Evoker" type="StaticBody2D" unique_id=516032260]
 collision_layer = 2
-script = ExtResource("1_dfvkm")
+script = ExtResource("1_jskxg")
 fire_rate = 1.5
-projectile_scene = ExtResource("2_bgqgd")
-stats = ExtResource("3_dfvkm")
+projectile_scene = ExtResource("2_jskxg")
+stats = ExtResource("3_qsjgk")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1470147283]
-texture = ExtResource("4_xy4of")
+texture = ExtResource("4_rxy1s")
 hframes = 9
 vframes = 9
-frame = 66
+frame = 65
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2064927631]
 shape = SubResource("CapsuleShape2D_s4k5m")

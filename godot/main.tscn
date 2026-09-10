@@ -278,7 +278,7 @@ position = Vector2(-76, 1427)
 [node name="ShootingPillager" parent="Enemies" unique_id=1751484070 instance=ExtResource("21_a6jrf")]
 position = Vector2(1138, 2652)
 
-[node name="CollisionShape2D" parent="Enemies/ShootingPillager/ShootingArea" index="0"]
+[node name="CollisionShape2D" parent="Enemies/ShootingPillager/ShootingArea" parent_id_path=PackedInt32Array(1751484070, 1800570189) index="0" unique_id=931633192]
 position = Vector2(-256, 3)
 shape = SubResource("RectangleShape2D_4lmeg")
 
@@ -334,56 +334,56 @@ shape = SubResource("RectangleShape2D_0rl1p")
 [node name="ShootingPilligar" parent="Enemies" unique_id=1893404724 instance=ExtResource("21_a6jrf")]
 position = Vector2(690, 1687)
 
-[node name="CollisionShape2D" parent="Enemies/ShootingPilligar/ShootingArea" index="0"]
+[node name="CollisionShape2D" parent="Enemies/ShootingPilligar/ShootingArea" parent_id_path=PackedInt32Array(1893404724, 1800570189) index="0" unique_id=931633192]
 position = Vector2(192, 156.5)
 shape = SubResource("RectangleShape2D_ok6jj")
 
 [node name="ShootingPilligar2" parent="Enemies" unique_id=1657675909 instance=ExtResource("21_a6jrf")]
 position = Vector2(1071, 1685)
 
-[node name="CollisionShape2D" parent="Enemies/ShootingPilligar2/ShootingArea" index="0"]
+[node name="CollisionShape2D" parent="Enemies/ShootingPilligar2/ShootingArea" parent_id_path=PackedInt32Array(1657675909, 1800570189) index="0" unique_id=931633192]
 position = Vector2(-190, 157)
 shape = SubResource("RectangleShape2D_facbu")
 
 [node name="ShootingPilligar3" parent="Enemies" unique_id=85220774 instance=ExtResource("21_a6jrf")]
 position = Vector2(687, 1996)
 
-[node name="CollisionShape2D" parent="Enemies/ShootingPilligar3/ShootingArea" index="0"]
+[node name="CollisionShape2D" parent="Enemies/ShootingPilligar3/ShootingArea" parent_id_path=PackedInt32Array(85220774, 1800570189) index="0" unique_id=931633192]
 position = Vector2(190.5, -151)
 shape = SubResource("RectangleShape2D_b1qrp")
 
 [node name="ShootingPilligar4" parent="Enemies" unique_id=987569465 instance=ExtResource("21_a6jrf")]
 position = Vector2(1069, 2000)
 
-[node name="CollisionShape2D" parent="Enemies/ShootingPilligar4/ShootingArea" index="0"]
+[node name="CollisionShape2D" parent="Enemies/ShootingPilligar4/ShootingArea" parent_id_path=PackedInt32Array(987569465, 1800570189) index="0" unique_id=931633192]
 position = Vector2(-190, -157)
 shape = SubResource("RectangleShape2D_come4")
 
 [node name="ShootingPilligar5" parent="Enemies" unique_id=515240373 instance=ExtResource("21_a6jrf")]
 position = Vector2(689, 2230)
 
-[node name="CollisionShape2D" parent="Enemies/ShootingPilligar5/ShootingArea" index="0"]
+[node name="CollisionShape2D" parent="Enemies/ShootingPilligar5/ShootingArea" parent_id_path=PackedInt32Array(515240373, 1800570189) index="0" unique_id=931633192]
 position = Vector2(192, 156.5)
 shape = SubResource("RectangleShape2D_ok6jj")
 
 [node name="ShootingPilligar6" parent="Enemies" unique_id=1631807496 instance=ExtResource("21_a6jrf")]
 position = Vector2(1070, 2228)
 
-[node name="CollisionShape2D" parent="Enemies/ShootingPilligar6/ShootingArea" index="0"]
+[node name="CollisionShape2D" parent="Enemies/ShootingPilligar6/ShootingArea" parent_id_path=PackedInt32Array(1631807496, 1800570189) index="0" unique_id=931633192]
 position = Vector2(-190, 157)
 shape = SubResource("RectangleShape2D_facbu")
 
 [node name="ShootingPilligar7" parent="Enemies" unique_id=1925065584 instance=ExtResource("21_a6jrf")]
 position = Vector2(686, 2539)
 
-[node name="CollisionShape2D" parent="Enemies/ShootingPilligar7/ShootingArea" index="0"]
+[node name="CollisionShape2D" parent="Enemies/ShootingPilligar7/ShootingArea" parent_id_path=PackedInt32Array(1925065584, 1800570189) index="0" unique_id=931633192]
 position = Vector2(190.5, -151)
 shape = SubResource("RectangleShape2D_b1qrp")
 
 [node name="ShootingPilligar8" parent="Enemies" unique_id=295483548 instance=ExtResource("21_a6jrf")]
 position = Vector2(1068, 2543)
 
-[node name="CollisionShape2D" parent="Enemies/ShootingPilligar8/ShootingArea" index="0"]
+[node name="CollisionShape2D" parent="Enemies/ShootingPilligar8/ShootingArea" parent_id_path=PackedInt32Array(295483548, 1800570189) index="0" unique_id=931633192]
 position = Vector2(-190, -157)
 shape = SubResource("RectangleShape2D_come4")
 
