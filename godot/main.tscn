@@ -46,9 +46,8 @@
 [ext_resource type="PackedScene" uid="uid://bqc3vkt0le88h" path="res://animals/turtle.tscn" id="44_0n3wm"]
 [ext_resource type="PackedScene" uid="uid://ctorh6hyh3je8" path="res://animals/pufferfish.tscn" id="45_qnost"]
 [ext_resource type="PackedScene" uid="uid://dwfrjnrqa34od" path="res://animals/octopus.tscn" id="46_wnkbs"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4lmeg"]
-size = Vector2(476, 58)
+[ext_resource type="PackedScene" uid="uid://dhxipuoeb6vgp" path="res://enemies/evoker.tscn" id="48_0cbny"]
+[ext_resource type="PackedScene" uid="uid://crn8o2b0rjowu" path="res://enemies/vindicator.tscn" id="49_hrvbo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8e4i"]
 size = Vector2(380, 182)
@@ -82,6 +81,9 @@ size = Vector2(401, 322)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_come4"]
 size = Vector2(400, 334)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnost"]
+size = Vector2(459, 59)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f6a44"]
 resource_local_to_scene = true
@@ -275,13 +277,6 @@ position = Vector2(-102, 1375)
 [node name="Pig4" parent="Enemies" unique_id=1205663823 instance=ExtResource("21_0odxb")]
 position = Vector2(-76, 1427)
 
-[node name="ShootingPillager" parent="Enemies" unique_id=1751484070 instance=ExtResource("21_a6jrf")]
-position = Vector2(1138, 2652)
-
-[node name="CollisionShape2D" parent="Enemies/ShootingPillager/ShootingArea" parent_id_path=PackedInt32Array(1751484070, 1800570189) index="0" unique_id=931633192]
-position = Vector2(-256, 3)
-shape = SubResource("RectangleShape2D_4lmeg")
-
 [node name="ShootingSkeleton" parent="Enemies" unique_id=859423257 instance=ExtResource("27_a6jrf")]
 position = Vector2(341, 1182)
 
@@ -356,34 +351,6 @@ shape = SubResource("RectangleShape2D_b1qrp")
 position = Vector2(1069, 2000)
 
 [node name="CollisionShape2D" parent="Enemies/ShootingPilligar4/ShootingArea" parent_id_path=PackedInt32Array(987569465, 1800570189) index="0" unique_id=931633192]
-position = Vector2(-190, -157)
-shape = SubResource("RectangleShape2D_come4")
-
-[node name="ShootingPilligar5" parent="Enemies" unique_id=515240373 instance=ExtResource("21_a6jrf")]
-position = Vector2(689, 2230)
-
-[node name="CollisionShape2D" parent="Enemies/ShootingPilligar5/ShootingArea" parent_id_path=PackedInt32Array(515240373, 1800570189) index="0" unique_id=931633192]
-position = Vector2(192, 156.5)
-shape = SubResource("RectangleShape2D_ok6jj")
-
-[node name="ShootingPilligar6" parent="Enemies" unique_id=1631807496 instance=ExtResource("21_a6jrf")]
-position = Vector2(1070, 2228)
-
-[node name="CollisionShape2D" parent="Enemies/ShootingPilligar6/ShootingArea" parent_id_path=PackedInt32Array(1631807496, 1800570189) index="0" unique_id=931633192]
-position = Vector2(-190, 157)
-shape = SubResource("RectangleShape2D_facbu")
-
-[node name="ShootingPilligar7" parent="Enemies" unique_id=1925065584 instance=ExtResource("21_a6jrf")]
-position = Vector2(686, 2539)
-
-[node name="CollisionShape2D" parent="Enemies/ShootingPilligar7/ShootingArea" parent_id_path=PackedInt32Array(1925065584, 1800570189) index="0" unique_id=931633192]
-position = Vector2(190.5, -151)
-shape = SubResource("RectangleShape2D_b1qrp")
-
-[node name="ShootingPilligar8" parent="Enemies" unique_id=295483548 instance=ExtResource("21_a6jrf")]
-position = Vector2(1068, 2543)
-
-[node name="CollisionShape2D" parent="Enemies/ShootingPilligar8/ShootingArea" parent_id_path=PackedInt32Array(295483548, 1800570189) index="0" unique_id=931633192]
 position = Vector2(-190, -157)
 shape = SubResource("RectangleShape2D_come4")
 
@@ -490,7 +457,26 @@ position = Vector2(801, 2504)
 position = Vector2(1198, 2364)
 
 [node name="PiglinZombie7" parent="Enemies" unique_id=1890851438 instance=ExtResource("5_7mycd")]
-position = Vector2(1075, 2801)
+position = Vector2(1436, 2504)
+
+[node name="Vindicator" parent="Enemies" unique_id=979313460 instance=ExtResource("49_hrvbo")]
+position = Vector2(1074, 2543)
+
+[node name="Vindicator2" parent="Enemies" unique_id=1448483060 instance=ExtResource("49_hrvbo")]
+position = Vector2(1072, 2225)
+
+[node name="Vindicator3" parent="Enemies" unique_id=1779129250 instance=ExtResource("49_hrvbo")]
+position = Vector2(683, 2225)
+
+[node name="Vindicator4" parent="Enemies" unique_id=629013415 instance=ExtResource("49_hrvbo")]
+position = Vector2(686, 2543)
+
+[node name="Evoker" parent="Enemies" unique_id=516032260 instance=ExtResource("48_0cbny")]
+position = Vector2(1125, 2655)
+
+[node name="CollisionShape2D" parent="Enemies/Evoker/ShootingArea" parent_id_path=PackedInt32Array(516032260, 1800570189) index="0" unique_id=931633192]
+position = Vector2(-249.5, -0.5)
+shape = SubResource("RectangleShape2D_qnost")
 
 [node name="Animals" type="Node2D" parent="." unique_id=1647462520]
 position = Vector2(1170, 2401)
@@ -778,7 +764,6 @@ offset_top = 25.0
 offset_right = 625.0
 offset_bottom = 65.0
 
-[editable path="Enemies/ShootingPillager"]
 [editable path="Enemies/ShootingSkeleton"]
 [editable path="Enemies/ShootingSkeleton2"]
 [editable path="Enemies/ShootingSkeleton3"]
@@ -790,11 +775,8 @@ offset_bottom = 65.0
 [editable path="Enemies/ShootingPilligar2"]
 [editable path="Enemies/ShootingPilligar3"]
 [editable path="Enemies/ShootingPilligar4"]
-[editable path="Enemies/ShootingPilligar5"]
-[editable path="Enemies/ShootingPilligar6"]
-[editable path="Enemies/ShootingPilligar7"]
-[editable path="Enemies/ShootingPilligar8"]
 [editable path="Enemies/VillagerBabyZombie"]
+[editable path="Enemies/Evoker"]
 [editable path="Titles/DungeonTitle"]
 [editable path="Titles/DungeonTitle2"]
 [editable path="Titles/DungeonTitle3"]
