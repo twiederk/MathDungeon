@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://bl8ray54o27tu"]
+
+[ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_iqa68"]
+
+[resource]
+script = ExtResource("1_iqa68")
+name = "Evoker Vex"
+max_hit_points = 2
+arithmetic = Array[int]([0, 1, 3])
+metadata/_custom_type_script = "uid://b0c3oqfgm2626"

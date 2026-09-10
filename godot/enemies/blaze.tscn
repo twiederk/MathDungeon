@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dknfts4omoqf2"]
+
+[ext_resource type="Script" uid="uid://d1tipsaj1l4x1" path="res://enemies/shooting_enemy.gd" id="1_c3i2n"]
+[ext_resource type="PackedScene" uid="uid://cj3jx4sbejbvs" path="res://enemies/blaze-fireball.tscn" id="2_c3i2n"]
+[ext_resource type="Resource" uid="uid://b4km4b2ngerrt" path="res://enemies/blaze_stats.tres" id="3_c3i2n"]
+[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="4_uui7b"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s4k5m"]
+height = 26.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_detect"]
+size = Vector2(26, 30)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_73kb4"]
+resource_local_to_scene = true
+radius = 267.1198
+
+[node name="Blaze" type="StaticBody2D" unique_id=1171440455]
+collision_layer = 2
+script = ExtResource("1_c3i2n")
+projectile_scene = ExtResource("2_c3i2n")
+stats = ExtResource("3_c3i2n")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=950497551]
+texture = ExtResource("4_uui7b")
+hframes = 9
+vframes = 9
+frame = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1370769536]
+shape = SubResource("CapsuleShape2D_s4k5m")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=680908868]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1756977982]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_detect")
+
+[node name="ShootingArea" type="Area2D" parent="." unique_id=1951971501]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShootingArea" unique_id=1003688871]
+shape = SubResource("CircleShape2D_73kb4")
+
+[node name="FireTimer" type="Timer" parent="." unique_id=923260839]
+wait_time = 2.0
+
+[connection signal="body_entered" from="ShootingArea" to="." method="_on_shooting_area_body_entered"]
+[connection signal="body_exited" from="ShootingArea" to="." method="_on_shooting_area_body_exited"]
+[connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]

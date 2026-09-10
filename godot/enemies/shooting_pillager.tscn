@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3t6krerhsshv"]
+[gd_scene format=3 uid="uid://b3t6krerhsshv"]
 
 [ext_resource type="Script" uid="uid://d1tipsaj1l4x1" path="res://enemies/shooting_enemy.gd" id="1_dfvkm"]
 [ext_resource type="PackedScene" uid="uid://d4bxmbnfj62lw" path="res://enemies/arrow.tscn" id="2_bgqgd"]
@@ -15,36 +15,36 @@ size = Vector2(26, 30)
 resource_local_to_scene = true
 radius = 267.1198
 
-[node name="ShootingPillager" type="StaticBody2D"]
+[node name="ShootingPillager" type="StaticBody2D" unique_id=516032260]
 collision_layer = 2
 script = ExtResource("1_dfvkm")
 fire_rate = 1.5
 projectile_scene = ExtResource("2_bgqgd")
 stats = ExtResource("3_dfvkm")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1470147283]
 texture = ExtResource("4_xy4of")
 hframes = 9
 vframes = 9
 frame = 66
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2064927631]
 shape = SubResource("CapsuleShape2D_s4k5m")
 
-[node name="DetectionArea" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="." unique_id=329077110]
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1401675460]
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_detect")
 
-[node name="ShootingArea" type="Area2D" parent="."]
+[node name="ShootingArea" type="Area2D" parent="." unique_id=1800570189]
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ShootingArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShootingArea" unique_id=931633192]
 shape = SubResource("CircleShape2D_73kb4")
 
-[node name="FireTimer" type="Timer" parent="."]
+[node name="FireTimer" type="Timer" parent="." unique_id=753380029]
 wait_time = 2.0
 
 [connection signal="body_entered" from="ShootingArea" to="." method="_on_shooting_area_body_entered"]

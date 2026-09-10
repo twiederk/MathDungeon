@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://b8x33jlf5ikm5"]
+
+[ext_resource type="Script" uid="uid://72381y6phi57" path="res://enemies/projectile.gd" id="1_kuf1p"]
+[ext_resource type="Resource" uid="uid://bl8ray54o27tu" path="res://enemies/evoker_vex_stats.tres" id="2_kuf1p"]
+[ext_resource type="AudioStream" uid="uid://qnhhx7htjaw0" path="res://enemies/bow_shoot.ogg" id="3_fdqls"]
+[ext_resource type="Texture2D" uid="uid://bbnndd6ojvsms" path="res://enemies/evoker_vex.png" id="4_kuf1p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(22, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2"]
+size = Vector2(22, 8)
+
+[node name="EvokerVex" type="RigidBody2D" unique_id=355570121]
+collision_layer = 4
+script = ExtResource("1_kuf1p")
+projectile_stats = ExtResource("2_kuf1p")
+projectile_sound = ExtResource("3_fdqls")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=300334395]
+texture = ExtResource("4_kuf1p")
+region_rect = Rect2(192, 32, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1262109712]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="HitArea" type="Area2D" parent="." unique_id=900593293]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1530927305]
+shape = SubResource("RectangleShape2D_2")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=273575061]
+
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
