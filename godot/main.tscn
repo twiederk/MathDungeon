@@ -83,31 +83,31 @@ size = Vector2(401, 322)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_come4"]
 size = Vector2(400, 334)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnost"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6a44"]
 resource_local_to_scene = true
 size = Vector2(41, 384)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wnkbs"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0cbny"]
 resource_local_to_scene = true
 size = Vector2(31, 61)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6a44"]
-resource_local_to_scene = true
-size = Vector2(59, 61)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0cbny"]
-resource_local_to_scene = true
-size = Vector2(92, 88)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hrvbo"]
 resource_local_to_scene = true
-size = Vector2(92, 88)
+size = Vector2(59, 61)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uypp3"]
 resource_local_to_scene = true
 size = Vector2(92, 88)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_blkrb"]
+resource_local_to_scene = true
+size = Vector2(92, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abqjc"]
+resource_local_to_scene = true
+size = Vector2(92, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6iyjs"]
 resource_local_to_scene = true
 size = Vector2(124, 131)
 
@@ -697,7 +697,7 @@ title_text = "Die verlassene Burg"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle/TriggerArea2D" index="0"]
 position = Vector2(21.5, -76)
-shape = SubResource("RectangleShape2D_qnost")
+shape = SubResource("RectangleShape2D_f6a44")
 
 [node name="DungeonTitle2" parent="Titles" unique_id=1265780115 instance=ExtResource("22_lswn8")]
 position = Vector2(114, 1121)
@@ -705,7 +705,7 @@ title_text = "Das Tierlabyrinth"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle2/TriggerArea2D" index="0"]
 position = Vector2(-1.5, -1.5)
-shape = SubResource("RectangleShape2D_wnkbs")
+shape = SubResource("RectangleShape2D_0cbny")
 
 [node name="DungeonTitle3" parent="Titles" unique_id=1065713930 instance=ExtResource("22_lswn8")]
 position = Vector2(913, 670)
@@ -713,7 +713,7 @@ title_text = "Der unterirdische Teich"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle3/TriggerArea2D" index="0"]
 position = Vector2(-16.5, 1.5)
-shape = SubResource("RectangleShape2D_f6a44")
+shape = SubResource("RectangleShape2D_hrvbo")
 
 [node name="DungeonTitle4" parent="Titles" unique_id=1103847014 instance=ExtResource("22_lswn8")]
 position = Vector2(1041, 1122)
@@ -721,7 +721,7 @@ title_text = "Die Villa"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle4/TriggerArea2D" index="0"]
 position = Vector2(-1.5, -2.5)
-shape = SubResource("RectangleShape2D_0cbny")
+shape = SubResource("RectangleShape2D_uypp3")
 
 [node name="DungeonTitle5" parent="Titles" unique_id=395435328 instance=ExtResource("22_lswn8")]
 position = Vector2(865, 1505)
@@ -729,7 +729,7 @@ title_text = "Das Waldanwesen "
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle5/TriggerArea2D" index="0"]
 position = Vector2(14, -16)
-shape = SubResource("RectangleShape2D_hrvbo")
+shape = SubResource("RectangleShape2D_blkrb")
 
 [node name="DungeonTitle6" parent="Titles" unique_id=1333793762 instance=ExtResource("22_lswn8")]
 position = Vector2(31, 1560)
@@ -737,7 +737,7 @@ title_text = "Das Dorf"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle6/TriggerArea2D" index="0"]
 position = Vector2(14, -16)
-shape = SubResource("RectangleShape2D_uypp3")
+shape = SubResource("RectangleShape2D_abqjc")
 
 [node name="DungeonTitle7" parent="Titles" unique_id=511827281 instance=ExtResource("22_lswn8")]
 position = Vector2(1537, 1468)
@@ -745,7 +745,7 @@ title_text = "Das verlassene Dorf"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle7/TriggerArea2D" index="0"]
 position = Vector2(12, 15.5)
-shape = SubResource("RectangleShape2D_blkrb")
+shape = SubResource("RectangleShape2D_6iyjs")
 
 [node name="MapBorders" parent="." unique_id=1093876332 instance=ExtResource("20_d13ii")]
 

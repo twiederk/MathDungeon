@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cj3jx4sbejbvs"]
+
+[ext_resource type="Script" uid="uid://72381y6phi57" path="res://enemies/projectile.gd" id="1_umd1b"]
+[ext_resource type="Resource" uid="uid://cc6mtiovp78fb" path="res://enemies/blaze_fireball_stats.tres" id="2_umd1b"]
+[ext_resource type="AudioStream" uid="uid://hontbrl6n0iy" path="res://enemies/fireball_shoot.ogg" id="3_vqkdj"]
+[ext_resource type="Texture2D" uid="uid://bkwxlk63raxlx" path="res://enemies/fireball.png" id="4_5geyj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(22, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2"]
+size = Vector2(22, 8)
+
+[node name="BlazeFireball" type="RigidBody2D" unique_id=1358210386]
+collision_layer = 4
+script = ExtResource("1_umd1b")
+speed = 150.0
+projectile_stats = ExtResource("2_umd1b")
+projectile_sound = ExtResource("3_vqkdj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2136251462]
+texture = ExtResource("4_5geyj")
+region_rect = Rect2(192, 32, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=164563563]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="HitArea" type="Area2D" parent="." unique_id=1143129780]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=2044673022]
+shape = SubResource("RectangleShape2D_2")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1130604817]
+
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
