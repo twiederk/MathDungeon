@@ -1,6 +1,7 @@
 [gd_resource type="TileSet" format=3 uid="uid://v5a3weqc176k"]
 
 [ext_resource type="Texture2D" uid="uid://cv0nbbyqreie8" path="res://world_tiles.png" id="1_jtlsg"]
+[ext_resource type="Texture2D" uid="uid://cl4a8dom4ejxl" path="res://lava.png" id="2_cyyug"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cyyug"]
 texture = ExtResource("1_jtlsg")
@@ -122,8 +123,31 @@ texture_region_size = Vector2i(32, 32)
 8:9/0 = 0
 9:9/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s2vqg"]
+texture = ExtResource("2_cyyug")
+texture_region_size = Vector2i(32, 32)
+0:0/animation_columns = 16
+0:0/animation_frame_0/duration = 0.25
+0:0/animation_frame_1/duration = 0.25
+0:0/animation_frame_2/duration = 0.25
+0:0/animation_frame_3/duration = 0.25
+0:0/animation_frame_4/duration = 0.25
+0:0/animation_frame_5/duration = 0.25
+0:0/animation_frame_6/duration = 0.25
+0:0/animation_frame_7/duration = 0.25
+0:0/animation_frame_8/duration = 0.25
+0:0/animation_frame_9/duration = 0.25
+0:0/animation_frame_10/duration = 0.25
+0:0/animation_frame_11/duration = 0.25
+0:0/animation_frame_12/duration = 0.25
+0:0/animation_frame_13/duration = 0.25
+0:0/animation_frame_14/duration = 0.25
+0:0/animation_frame_15/duration = 0.25
+0:0/0 = 0
+
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_cyyug")
+sources/1 = SubResource("TileSetAtlasSource_s2vqg")

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_ej081")
-max_hit_points = 6
+max_hit_points = 2
 damage = 2
 arithmetic = Array[int]([3])
 time_limit = 20
