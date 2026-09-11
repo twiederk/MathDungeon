@@ -20,6 +20,43 @@
 [ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://gui/achievement_popup.tscn" id="24_achievement"]
 [ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://gui/achievement_badges.tscn" id="25_badges"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bcl7h"]
+radius = 79.0
+height = 368.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ygm8x"]
+radius = 88.0
+height = 339.1853
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s634n"]
+radius = 74.0
+height = 336.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oc63w"]
+size = Vector2(287, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ej081"]
+size = Vector2(293, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wat66"]
+resource_local_to_scene = true
+radius = 107.298645
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0jfqj"]
+resource_local_to_scene = true
+radius = 101.12369
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y5gub"]
+resource_local_to_scene = true
+radius = 111.01801
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcvh8"]
+size = Vector2(230, 90)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_40bte"]
+radius = 87.0
+height = 350.0
+
 [node name="Main" type="Node2D" unique_id=1982536266]
 script = ExtResource("1_rh6vo")
 
@@ -102,11 +139,24 @@ position = Vector2(1190, 681)
 [node name="ShootingGhast" parent="Enemies" unique_id=257884768 instance=ExtResource("8_orhj5")]
 position = Vector2(528, 512)
 
+[node name="CollisionShape2D" parent="Enemies/ShootingGhast/ShootingArea" index="0"]
+rotation = -0.7644542
+shape = SubResource("CapsuleShape2D_bcl7h")
+
 [node name="ShootingGhast2" parent="Enemies" unique_id=1380751500 instance=ExtResource("8_orhj5")]
 position = Vector2(465, 443)
 
+[node name="CollisionShape2D" parent="Enemies/ShootingGhast2/ShootingArea" index="0"]
+position = Vector2(76, 62)
+rotation = -0.6789331
+shape = SubResource("CapsuleShape2D_ygm8x")
+
 [node name="ShootingGhast3" parent="Enemies" unique_id=90495559 instance=ExtResource("8_orhj5")]
 position = Vector2(484, 511)
+
+[node name="CollisionShape2D" parent="Enemies/ShootingGhast3/ShootingArea" index="0"]
+rotation = -0.6789331
+shape = SubResource("CapsuleShape2D_s634n")
 
 [node name="Enderman" parent="Enemies" unique_id=1354519943 instance=ExtResource("9_muida")]
 position = Vector2(1628, 612)
@@ -207,23 +257,54 @@ position = Vector2(513, 1153)
 [node name="Blaze" parent="Enemies" unique_id=1171440455 instance=ExtResource("19_wat66")]
 position = Vector2(220, 240)
 
+[node name="CollisionShape2D" parent="Enemies/Blaze/ShootingArea" parent_id_path=PackedInt32Array(1171440455, 1951971501) index="0" unique_id=1003688871]
+position = Vector2(133.5, 0)
+shape = SubResource("RectangleShape2D_oc63w")
+
 [node name="Blaze2" parent="Enemies" unique_id=905791514 instance=ExtResource("19_wat66")]
 position = Vector2(377, 242)
+
+[node name="CollisionShape2D" parent="Enemies/Blaze2/ShootingArea" parent_id_path=PackedInt32Array(905791514, 1951971501) index="0" unique_id=1003688871]
+position = Vector2(136.5, 0)
+shape = SubResource("RectangleShape2D_ej081")
 
 [node name="Blaze3" parent="Enemies" unique_id=1265596083 instance=ExtResource("19_wat66")]
 position = Vector2(53, 152)
 
+[node name="ShootingArea" parent="Enemies/Blaze3" index="3" unique_id=1951971501]
+position = Vector2(52, 90)
+
+[node name="CollisionShape2D" parent="Enemies/Blaze3/ShootingArea" index="0" unique_id=1003688871]
+shape = SubResource("CircleShape2D_wat66")
+
 [node name="Blaze4" parent="Enemies" unique_id=636626386 instance=ExtResource("19_wat66")]
 position = Vector2(66, 302)
+
+[node name="CollisionShape2D" parent="Enemies/Blaze4/ShootingArea" parent_id_path=PackedInt32Array(636626386, 1951971501) index="0" unique_id=1003688871]
+position = Vector2(39, -60)
+shape = SubResource("CircleShape2D_0jfqj")
 
 [node name="Blaze5" parent="Enemies" unique_id=244087369 instance=ExtResource("19_wat66")]
 position = Vector2(134, 161)
 
+[node name="CollisionShape2D" parent="Enemies/Blaze5/ShootingArea" parent_id_path=PackedInt32Array(244087369, 1951971501) index="0" unique_id=1003688871]
+position = Vector2(-31, 83)
+shape = SubResource("CircleShape2D_y5gub")
+
 [node name="Blaze6" parent="Enemies" unique_id=1761431005 instance=ExtResource("19_wat66")]
 position = Vector2(102, 246)
 
+[node name="CollisionShape2D" parent="Enemies/Blaze6/ShootingArea" parent_id_path=PackedInt32Array(1761431005, 1951971501) index="0" unique_id=1003688871]
+position = Vector2(105, -9)
+shape = SubResource("RectangleShape2D_mcvh8")
+
 [node name="Blaze7" parent="Enemies" unique_id=1961541518 instance=ExtResource("19_wat66")]
 position = Vector2(448, 364)
+
+[node name="CollisionShape2D" parent="Enemies/Blaze7/ShootingArea" parent_id_path=PackedInt32Array(1961541518, 1951971501) index="0" unique_id=1003688871]
+position = Vector2(61, 102)
+rotation = -0.7644542
+shape = SubResource("CapsuleShape2D_40bte")
 
 [node name="Blaze8" parent="Enemies" unique_id=1708767096 instance=ExtResource("19_wat66")]
 position = Vector2(239, 647)
@@ -261,3 +342,14 @@ offset_left = 455.0
 offset_top = 25.0
 offset_right = 625.0
 offset_bottom = 65.0
+
+[editable path="Enemies/ShootingGhast"]
+[editable path="Enemies/ShootingGhast2"]
+[editable path="Enemies/ShootingGhast3"]
+[editable path="Enemies/Blaze"]
+[editable path="Enemies/Blaze2"]
+[editable path="Enemies/Blaze3"]
+[editable path="Enemies/Blaze4"]
+[editable path="Enemies/Blaze5"]
+[editable path="Enemies/Blaze6"]
+[editable path="Enemies/Blaze7"]
