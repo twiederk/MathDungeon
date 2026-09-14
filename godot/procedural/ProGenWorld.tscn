@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://br88si2kak15q"]
+
+[ext_resource type="Script" uid="uid://uov100t6ehma" path="res://procedural/pro_gen_world.gd" id="1_wtged"]
+
+[node name="ProGenWorld" type="Node2D" unique_id=1396004494]
+script = ExtResource("1_wtged")
