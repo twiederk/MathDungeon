@@ -10,6 +10,7 @@ var entrance: Vector2i
 
 func generate_dungeon(size: Vector2i) -> Dungeon:
 	floor_arr = []
+	wall_arr = []
 	var root_node  = Branch.new(Vector2i.ZERO, size)
 	var paths: Array[Dictionary] = []
 	root_node.split(3, paths)
