@@ -1,7 +1,7 @@
 class_name DungeonGenerator
 
 
-func generate_dungeon() -> Array[Vector2i]:
+func generate_dungeon() -> Dungeon:
 	var root_node  = Branch.new(Vector2i(0, 0), Vector2i(20, 20))
 	var paths: Array = []
 	root_node.split(3, paths)
@@ -24,7 +24,8 @@ func generate_dungeon() -> Array[Vector2i]:
 			for i in range(path['right'].y - path['left'].y):
 				var curr_pos = Vector2i(path['left'].x,path['left'].y+i)
 				floor_arr.append(curr_pos)
-	return floor_arr
+				
+	return Dungeon.new(root_node, floor_arr)
 
 
 func is_inside_padding(x, y, leaf, padding):
