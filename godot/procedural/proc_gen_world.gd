@@ -15,21 +15,6 @@ var paths: Array = []
 func _ready() -> void:
 	root_node  = Branch.new(Vector2i(0, 0), Vector2i(20, 20))
 	root_node.split(3, paths)
-	queue_redraw()
-
-
-func _draw() -> void:
-	for leaf in root_node.get_leaves():
-		draw_rect(
-			Rect2(
-				leaf.position.x * tile_size,
-				leaf.position.y * tile_size,
-				leaf.size.x * tile_size,
-				leaf.size.y * tile_size
-			), 
-			Color.GREEN,
-			false
-		)
 
 	for leaf in root_node.get_leaves():
 		var padding = Vector4i.ZERO
@@ -48,7 +33,22 @@ func _draw() -> void:
 			for i in range(path['right'].y - path['left'].y):
 				var curr_pos = Vector2i(path['left'].x,path['left'].y+i)
 				tile_map_layer.set_cell(curr_pos, WORLD_TILE_SET, DUNGEON_GROUND_TILE)
+	queue_redraw()
 
 
 func is_inside_padding(x, y, leaf, padding):
 	return x <= padding.x or y <= padding.y or x >= leaf.size.x - padding.z or y >= leaf.size.y - padding.w
+
+
+func _draw() -> void:
+	for leaf in root_node.get_leaves():
+		draw_rect(
+			Rect2(
+				leaf.position.x * tile_size,
+				leaf.position.y * tile_size,
+				leaf.size.x * tile_size,
+				leaf.size.y * tile_size
+			), 
+			Color.GREEN,
+			false
+		)
