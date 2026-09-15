@@ -2,10 +2,68 @@
 
 [ext_resource type="Script" uid="uid://uov100t6ehma" path="res://procedural/proc_gen_world.gd" id="1_4yoxp"]
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://world_tiles.tres" id="2_qifhp"]
+[ext_resource type="PackedScene" uid="uid://b008xnsl4xtfq" path="res://companions/wolf.tscn" id="3_nd7in"]
+[ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="4_ldss0"]
+[ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://map_borders.tscn" id="5_4gbkj"]
+[ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz/quiz_dialog.tscn" id="6_wh5hr"]
+[ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="7_w7atm"]
+[ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="8_ghex2"]
+[ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="9_0o1nv"]
+[ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://gui/achievement_popup.tscn" id="10_gsqn5"]
+[ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://gui/achievement_badges.tscn" id="11_nivld"]
 
 [node name="ProGenWorld" type="Node2D" unique_id=1396004494]
-scale = Vector2(0.33, 0.33)
 script = ExtResource("1_4yoxp")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1898491355]
 tile_set = ExtResource("2_qifhp")
+
+[node name="Locations" type="Node2D" parent="." unique_id=622720925]
+
+[node name="Items" type="Node2D" parent="." unique_id=1926190904]
+
+[node name="Companions" type="Node2D" parent="." unique_id=1789589125]
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="Wolf" parent="Companions" unique_id=816659735 instance=ExtResource("3_nd7in")]
+position = Vector2(199, -59)
+
+[node name="Wolf2" parent="Companions" unique_id=1811404612 instance=ExtResource("3_nd7in")]
+position = Vector2(81, -58)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=1957011003]
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="Player" parent="." unique_id=1715023786 instance=ExtResource("4_ldss0")]
+position = Vector2(48, 48)
+
+[node name="MapBorders" parent="." unique_id=1508724067 instance=ExtResource("5_4gbkj")]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=875827360]
+
+[node name="QuizDialog" parent="UI" unique_id=192361005 instance=ExtResource("6_wh5hr")]
+
+[node name="PlayerStatsSheet" parent="UI" unique_id=1455654887 instance=ExtResource("7_w7atm")]
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 3.0
+offset_bottom = 3.0
+
+[node name="PauseGui" parent="UI" unique_id=1715468996 instance=ExtResource("8_ghex2")]
+process_mode = 3
+
+[node name="ScoreWidget" parent="UI" unique_id=222261624 instance=ExtResource("9_0o1nv")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -40.0
+grow_horizontal = 0
+grow_vertical = 1
+
+[node name="AchievementPopup" parent="UI" unique_id=1343839798 instance=ExtResource("10_gsqn5")]
+
+[node name="AchievementBadges" parent="UI" unique_id=1767910076 instance=ExtResource("11_nivld")]
+offset_left = 455.0
+offset_top = 25.0
+offset_right = 625.0
+offset_bottom = 65.0
