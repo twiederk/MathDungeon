@@ -1,8 +1,8 @@
 class_name DungeonGenerator
 
 
-func generate_dungeon() -> Dungeon:
-	var root_node  = Branch.new(Vector2i(0, 0), Vector2i(20, 20))
+func generate_dungeon(size: Vector2i) -> Dungeon:
+	var root_node  = Branch.new(Vector2i.ZERO, size)
 	var paths: Array = []
 	root_node.split(3, paths)
 

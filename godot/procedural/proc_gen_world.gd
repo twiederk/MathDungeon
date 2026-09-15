@@ -11,6 +11,6 @@ var dungeon_generator: DungeonGenerator = DungeonGenerator.new()
 
 
 func _ready() -> void:
-	var dungeon = dungeon_generator.generate_dungeon()
+	var dungeon = dungeon_generator.generate_dungeon(Vector2i(20, 20))
 	for floor_pos in dungeon.floor_arr:
 		tile_map_layer.set_cell(floor_pos, WORLD_TILE_SET, DUNGEON_GROUND_TILE)
