@@ -124,11 +124,11 @@ tile_set = ExtResource("2_lquwl")
 
 [node name="NetherPortal" parent="Locations" unique_id=832113172 instance=ExtResource("10_1u8w0")]
 position = Vector2(876, 2512)
-dungeon_path = "res://nether.tscn"
+dungeon_path = "res://classic/nether.tscn"
 
 [node name="EndPortal" parent="Locations" unique_id=1557822626 instance=ExtResource("4_htxhm")]
 position = Vector2(1682, 1344)
-dungeon_path = "res://end.tscn"
+dungeon_path = "res://classic/end.tscn"
 
 [node name="Items" type="Node2D" parent="." unique_id=1410614695]
 
