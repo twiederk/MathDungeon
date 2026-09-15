@@ -23,7 +23,12 @@ func is_leaf() -> bool:
 	return not (left_child && right_child)
 
 
-func split(remaining):
+func get_center() -> Vector2i:
+	@warning_ignore("integer_division")
+	return Vector2i(position.x + size.x / 2, position.y + size.y / 2)
+
+
+func split(remaining: int, paths: Array):
 	var rng = RandomNumberGenerator.new()
 	var split_percent = rng.randf_range(0.3, 0.7) # splits will be between 30% and 70%
 	var split_horizontal = size.y >= size.x # if it is taller than it is wide
@@ -45,6 +50,8 @@ func split(remaining):
 			Vector2i(size.x - left_width, size.y)
 		)
 
+	paths.push_back({'left': left_child.get_center(), 'right': right_child.get_center()})
+
 	if (remaining > 0):
-		left_child.split(remaining - 1)
-		right_child.split(remaining - 1)
+		left_child.split(remaining - 1, paths)
+		right_child.split(remaining - 1, paths)
