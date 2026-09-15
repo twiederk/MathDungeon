@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://br88si2kak15q"]
 
 [ext_resource type="Script" uid="uid://uov100t6ehma" path="res://procedural/proc_gen_world.gd" id="1_4yoxp"]
+[ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://world_tiles.tres" id="2_qifhp"]
 
 [node name="ProGenWorld" type="Node2D" unique_id=1396004494]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.33, 0.33)
 script = ExtResource("1_4yoxp")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1898491355]
+tile_set = ExtResource("2_qifhp")
