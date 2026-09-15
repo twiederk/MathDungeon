@@ -36,11 +36,11 @@ horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1329546142]
 layout_mode = 2
-text = "Neues Spiel starten"
+text = "Klassisches Spiel starten"
 
 [node name="StartGenericButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1859544390]
 layout_mode = 2
-text = "Neues generisches Spiel starten"
+text = "Generisches Spiel starten"
 
 [node name="LoadButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1746410147]
 layout_mode = 2
