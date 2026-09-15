@@ -14,7 +14,7 @@ func _ready():
 func _on_start_game_button_pressed():
 	PlayerStats.reset()
 	AchievementManager.reset()
-	get_tree().change_scene_to_file("res://main.tscn")
+	get_tree().change_scene_to_file("res://classic/main.tscn")
 
 
 func _on_start_generic_button_pressed():
@@ -26,7 +26,7 @@ func _on_start_generic_button_pressed():
 func _on_load_button_pressed():
 	SaveManager.load_game()
 	AchievementManager.reset()
-	get_tree().change_scene_to_file("res://main.tscn")
+	get_tree().change_scene_to_file("res://classic/main.tscn")
 
 
 func _on_highscores_button_pressed():

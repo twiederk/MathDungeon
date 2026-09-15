@@ -4,7 +4,6 @@ class_name DungeonGenerator
 const ENTRANCE = Vector2i(0, 1)
 
 
-
 func generate_dungeon(size: Vector2i) -> Dungeon:
 	var root_node  = Branch.new(Vector2i.ZERO, size)
 	var paths: Array[Dictionary] = []

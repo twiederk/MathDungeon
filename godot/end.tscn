@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://ba6r3bpkv1mjw"]
 
-[ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://main.gd" id="1_ner4h"]
+[ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://classic/main.gd" id="1_ner4h"]
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://world_tiles.tres" id="2_206a3"]
 [ext_resource type="PackedScene" uid="uid://b008xnsl4xtfq" path="res://companions/wolf.tscn" id="5_yhxy7"]
 [ext_resource type="PackedScene" uid="uid://d0we0mbuvkkcc" path="res://enemies/enderdragon.tscn" id="10_ea6qb"]
