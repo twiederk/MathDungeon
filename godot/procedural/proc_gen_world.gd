@@ -6,7 +6,8 @@ var tile_size: int =  16
 
 
 func _ready() -> void:
-	root_node  = Branch.new(Vector2i(0, 0), Vector2i(10, 5))
+	root_node  = Branch.new(Vector2i(0, 0), Vector2i(60, 30))
+	root_node.split(5)
 	queue_redraw()
 
 
