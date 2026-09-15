@@ -29,3 +29,9 @@ func _on_highscores_button_pressed():
 
 func _on_quit_button_pressed():
 	get_tree().quit()
+
+
+func _on_start_generic_button_pressed():
+	PlayerStats.reset()
+	AchievementManager.reset()
+	get_tree().change_scene_to_file("res://procedural/proc_gen_world.tscn")
