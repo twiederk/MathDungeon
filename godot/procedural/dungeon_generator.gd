@@ -3,25 +3,21 @@ class_name DungeonGenerator
 
 const ENTRANCE = Vector2i(0, 1)
 
-var floor_arr: Array[Vector2i]
-var wall_arr: Array[Vector2i]
-var entrance: Vector2i
 
 
 func generate_dungeon(size: Vector2i) -> Dungeon:
-	floor_arr = []
-	wall_arr = []
 	var root_node  = Branch.new(Vector2i.ZERO, size)
 	var paths: Array[Dictionary] = []
 	root_node.split(3, paths)
-	_place_rooms(root_node)
-	_place_paths(paths)
-	_place_entrance()
-	_place_walls(size)
+	var floor_arr = _place_rooms(root_node)
+	_place_paths(paths, floor_arr)
+	var entrance = _place_entrance(floor_arr)
+	var wall_arr = _place_walls(size, floor_arr)
 	return Dungeon.new(root_node, entrance, floor_arr, wall_arr)
 
 
-func _place_rooms(root_node: Branch) -> void:
+func _place_rooms(root_node: Branch) -> Array[Vector2i]:
+	var floor_arr: Array[Vector2i]
 	for leaf in root_node.get_leaves():
 		var padding = Vector4i.ZERO
 		for x in range(leaf.size.x):
@@ -29,9 +25,10 @@ func _place_rooms(root_node: Branch) -> void:
 				if not is_inside_padding(x, y, leaf, padding):
 					var curr_pos = Vector2i(x + leaf.position.x, y + leaf.position.y)
 					floor_arr.append(curr_pos)
+	return floor_arr
 
 
-func _place_paths(paths: Array[Dictionary]) -> void:
+func _place_paths(paths: Array[Dictionary], floor_arr: Array[Vector2i]) -> void:
 	for path in paths:
 		if path['left'].y == path['right'].y:
 			for i in range(path['right'].x - path['left'].x):
@@ -43,16 +40,19 @@ func _place_paths(paths: Array[Dictionary]) -> void:
 				floor_arr.append(curr_pos)
 
 
-func _place_entrance() -> void:
+func _place_entrance(floor_arr: Array[Vector2i]) -> Vector2i:
 		floor_arr.append(ENTRANCE)
+		return ENTRANCE
 
 
-func _place_walls(size: Vector2i) -> void:
+func _place_walls(size: Vector2i, floor_arr: Array[Vector2i]) -> Array[Vector2i]:
+	var wall_arr: Array[Vector2i]
 	for x in range(size.x + 1):
 		for y in range(size.y + 1):
 			var curr_pos = Vector2i(x, y)
 			if not curr_pos in floor_arr:
 				wall_arr.append(curr_pos)
+	return wall_arr
 
 
 func is_inside_padding(x, y, leaf, padding) -> bool:
