@@ -28,7 +28,7 @@ func get_center() -> Vector2i:
 	return Vector2i(position.x + size.x / 2, position.y + size.y / 2)
 
 
-func split(remaining: int, paths: Array):
+func split(remaining: int, paths: Array[Dictionary]):
 	var rng = RandomNumberGenerator.new()
 	var split_percent = rng.randf_range(0.3, 0.7) # splits will be between 30% and 70%
 	var split_horizontal = size.y >= size.x # if it is taller than it is wide
