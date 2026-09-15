@@ -22,11 +22,11 @@ config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
-PlayerStats="*res://player_stats.gd"
-Sound="*res://sound.tscn"
-SaveManager="*res://save_manager.gd"
-HighscoreManager="*res://highscore_manager.gd"
-AchievementManager="*res://achievement_manager.gd"
+PlayerStats="*res://classic/player_stats.gd"
+Sound="*res://classic/sound.tscn"
+SaveManager="*res://classic/save_manager.gd"
+HighscoreManager="*res://classic/highscore_manager.gd"
+AchievementManager="*res://classic/achievement_manager.gd"
 
 [display]
 

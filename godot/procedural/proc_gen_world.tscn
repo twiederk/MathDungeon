@@ -1,10 +1,10 @@
 [gd_scene format=4 uid="uid://br88si2kak15q"]
 
 [ext_resource type="Script" uid="uid://uov100t6ehma" path="res://procedural/proc_gen_world.gd" id="1_4yoxp"]
-[ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://world_tiles.tres" id="2_qifhp"]
+[ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://classic/world_tiles.tres" id="2_qifhp"]
 [ext_resource type="PackedScene" uid="uid://b008xnsl4xtfq" path="res://companions/wolf.tscn" id="3_nd7in"]
-[ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="4_ldss0"]
-[ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://map_borders.tscn" id="5_4gbkj"]
+[ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://classic/player.tscn" id="4_ldss0"]
+[ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://classic/map_borders.tscn" id="5_4gbkj"]
 [ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz/quiz_dialog.tscn" id="6_wh5hr"]
 [ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="7_w7atm"]
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="8_ghex2"]
