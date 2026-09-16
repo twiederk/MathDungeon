@@ -15,21 +15,25 @@ func _ready() -> void:
 	var offset = Vector2i(5, 5)
 	_place_dungeon(dungeon, offset)
 	_place_enemies(dungeon, offset)
+	_place_items(dungeon, offset)
 	
 	dungeon = dungeon_generator.generate_dungeon(Vector2i(20, 20))
 	offset = Vector2i(35, 5)
 	_place_dungeon(dungeon, offset)
 	_place_enemies(dungeon, offset)
+	_place_items(dungeon, offset)
 	
 	dungeon = dungeon_generator.generate_dungeon(Vector2i(20, 20))
 	offset = Vector2i(5, 35)
 	_place_dungeon(dungeon, offset)
 	_place_enemies(dungeon, offset)
+	_place_items(dungeon, offset)
 	
 	dungeon = dungeon_generator.generate_dungeon(Vector2i(20, 20))
 	offset = Vector2i(35, 35)
 	_place_dungeon(dungeon, offset)
 	_place_enemies(dungeon, offset)
+	_place_items(dungeon, offset)
 		
 	super._ready()
 
@@ -45,3 +49,8 @@ func _place_enemies(dungeon: Dungeon, offset: Vector2i) -> void:
 	for enemy in dungeon.enemies:
 		enemy.position = (enemy.position + Vector2(offset)) * TILE_SIZE
 		enemies_root.add_child(enemy)
+
+func _place_items(dungeon: Dungeon, offset: Vector2i) -> void:
+	for item in dungeon.items:
+		item.position = (item.position + Vector2(offset)) * TILE_SIZE
+		items_root.add_child(item)

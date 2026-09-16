@@ -2,6 +2,7 @@ class_name DungeonGenerator
 
 
 const ENDERMAN_SCENE = preload("res://enemies/enderman.tscn")
+const EYE_OF_ENDER_SCENE = preload("res://items/eye_of_ender.tscn")
 
 
 const ENTRANCE = Vector2i(0, 1)
@@ -14,9 +15,10 @@ func generate_dungeon(size: Vector2i) -> Dungeon:
 	var floor_arr = _place_rooms(root_node)
 	_place_paths(paths, floor_arr)
 	var enemies = _place_enemies(root_node)
+	var items = _place_items(root_node)
 	var entrance = _place_entrance(floor_arr)
 	var wall_arr = _place_walls(size, floor_arr)
-	return Dungeon.new(root_node, entrance, floor_arr, wall_arr, enemies)
+	return Dungeon.new(root_node, entrance, floor_arr, wall_arr, enemies, items)
 
 
 func _place_rooms(root_node: Branch) -> Array[Vector2i]:
@@ -71,3 +73,14 @@ func _place_enemies(root_node: Branch) -> Array[Enemy]:
 	enemies.append(enderman)
 	
 	return enemies
+
+
+func _place_items(root_node: Branch) -> Array[Item]:
+	var items: Array[Item] = []
+	var last_room = root_node.get_leaves()[-1]
+
+	var eye_of_ender = EYE_OF_ENDER_SCENE.instantiate() as Item
+	eye_of_ender.position = last_room.get_center()
+	items.append(eye_of_ender)
+
+	return items
