@@ -1,5 +1,7 @@
 class_name Branch
 
+const SPLIT_PERCENT_MIN: float = 0.3
+const SPLIT_PERCENT_MAX: float = 0.7
 
 var position: Vector2i
 var size: Vector2i
@@ -30,10 +32,9 @@ func get_center() -> Vector2i:
 
 func split(remaining: int, paths: Array[Dictionary]):
 	var rng = RandomNumberGenerator.new()
-	var split_percent = rng.randf_range(0.3, 0.7) # splits will be between 30% and 70%
-	var split_horizontal = size.y >= size.x # if it is taller than it is wide
+	var split_percent = rng.randf_range(SPLIT_PERCENT_MIN, SPLIT_PERCENT_MAX)
 
-	if (split_horizontal):
+	if (_should_split_horizontal()):
 		# horizontal
 		var left_height = int(size.y * split_percent)
 		left_child = Branch.new(position, Vector2i(size.x, left_height))
@@ -55,3 +56,7 @@ func split(remaining: int, paths: Array[Dictionary]):
 	if (remaining > 0):
 		left_child.split(remaining - 1, paths)
 		right_child.split(remaining - 1, paths)
+
+
+func _should_split_horizontal() -> bool:
+	return size.y >= size.x

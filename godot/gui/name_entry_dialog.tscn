@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctlnlkhh85kv6"]
+[gd_scene format=3 uid="uid://ctlnlkhh85kv6"]
 
 [ext_resource type="Theme" uid="uid://laictl43pv1e" path="res://quiz/quiz_dialog_theme.tres" id="1_xartf"]
 [ext_resource type="Script" uid="uid://bq0057wi0ld20" path="res://gui/score_entry_dialog.gd" id="2_xartf"]
-[ext_resource type="Texture2D" uid="uid://dw55tpmimogdu" path="res://title_image.png" id="3_0hamy"]
+[ext_resource type="Texture2D" uid="uid://dw55tpmimogdu" path="res://gui/title_image.png" id="3_0hamy"]
 [ext_resource type="PackedScene" uid="uid://bpkpuwnv5gy7d" path="res://gui/version_widget.tscn" id="4_r0hxo"]
+
 
 [node name="NameEntryDialog" type="Control"]
 layout_mode = 3

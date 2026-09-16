@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwox4f8n83s0j"]
+[gd_scene format=3 uid="uid://cwox4f8n83s0j"]
 
-[ext_resource type="Script" uid="uid://p6hc482i4o3k" path="res://dungeon_title.gd" id="1_5v2gq"]
+[ext_resource type="Script" uid="uid://p6hc482i4o3k" path="res://classic/dungeon_title.gd" id="1_5v2gq"]
+
 
 [sub_resource type="Animation" id="Animation_0ivuu"]
 length = 0.001

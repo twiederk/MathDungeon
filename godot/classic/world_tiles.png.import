@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl4a8dom4ejxl"
-path="res://.godot/imported/lava.png-362957d11c12c0ad41755679afebc004.ctex"
+uid="uid://cv0nbbyqreie8"
+path="res://.godot/imported/world_tiles.png-1c3d7ef9f073d36b559a590041cfbb6b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://lava.png"
-dest_files=["res://.godot/imported/lava.png-362957d11c12c0ad41755679afebc004.ctex"]
+source_file="res://classic/world_tiles.png"
+dest_files=["res://.godot/imported/world_tiles.png-1c3d7ef9f073d36b559a590041cfbb6b.ctex"]
 
 [params]
 

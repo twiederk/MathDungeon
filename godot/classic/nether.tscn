@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://cgr3ur2xra4jo"]
 
-[ext_resource type="Script" uid="uid://bmdr15hyae3dh" path="res://nether.gd" id="1_rh6vo"]
-[ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://world_tiles.tres" id="2_friib"]
-[ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://player.tscn" id="3_ylnya"]
+[ext_resource type="Script" uid="uid://bmdr15hyae3dh" path="res://classic/nether.gd" id="1_rh6vo"]
+[ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://classic/world_tiles.tres" id="2_friib"]
+[ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://classic/player.tscn" id="3_ylnya"]
 [ext_resource type="PackedScene" uid="uid://i8jullgo6a5f" path="res://items/eye_of_ender.tscn" id="4_8g3rk"]
 [ext_resource type="PackedScene" uid="uid://ch27vu5jqwd8g" path="res://locations/nether_portal.tscn" id="4_orhj5"]
 [ext_resource type="PackedScene" uid="uid://8cptf68b7254" path="res://enemies/piglin.tscn" id="5_lci3x"]
@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://6wusnt285r11" path="res://enemies/piglin_zombie.tscn" id="10_pts44"]
 [ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="13_ua487"]
 [ext_resource type="PackedScene" uid="uid://dknfts4omoqf2" path="res://enemies/blaze.tscn" id="19_wat66"]
-[ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://map_borders.tscn" id="20_rmetm"]
+[ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://classic/map_borders.tscn" id="20_rmetm"]
 [ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz/quiz_dialog.tscn" id="21_pigpc"]
 [ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="22_og6u2"]
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="23_5xi5g"]
@@ -38,15 +38,15 @@ size = Vector2(287, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ej081"]
 size = Vector2(293, 20)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wat66"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_hvrnb"]
 resource_local_to_scene = true
 radius = 107.298645
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0jfqj"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_i43io"]
 resource_local_to_scene = true
 radius = 101.12369
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_y5gub"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ntn28"]
 resource_local_to_scene = true
 radius = 111.01801
 
@@ -68,7 +68,7 @@ tile_set = ExtResource("2_friib")
 
 [node name="NetherPortal" parent="Locations" unique_id=977874460 instance=ExtResource("4_orhj5")]
 position = Vector2(416, 1136)
-dungeon_path = "res://main.tscn"
+dungeon_path = "res://classic/main.tscn"
 
 [node name="Items" type="Node2D" parent="." unique_id=2138511099]
 
@@ -275,21 +275,21 @@ position = Vector2(53, 152)
 position = Vector2(52, 90)
 
 [node name="CollisionShape2D" parent="Enemies/Blaze3/ShootingArea" index="0" unique_id=1003688871]
-shape = SubResource("CircleShape2D_wat66")
+shape = SubResource("CircleShape2D_hvrnb")
 
 [node name="Blaze4" parent="Enemies" unique_id=636626386 instance=ExtResource("19_wat66")]
 position = Vector2(66, 302)
 
 [node name="CollisionShape2D" parent="Enemies/Blaze4/ShootingArea" parent_id_path=PackedInt32Array(636626386, 1951971501) index="0" unique_id=1003688871]
 position = Vector2(39, -60)
-shape = SubResource("CircleShape2D_0jfqj")
+shape = SubResource("CircleShape2D_i43io")
 
 [node name="Blaze5" parent="Enemies" unique_id=244087369 instance=ExtResource("19_wat66")]
 position = Vector2(134, 161)
 
 [node name="CollisionShape2D" parent="Enemies/Blaze5/ShootingArea" parent_id_path=PackedInt32Array(244087369, 1951971501) index="0" unique_id=1003688871]
 position = Vector2(-31, 83)
-shape = SubResource("CircleShape2D_y5gub")
+shape = SubResource("CircleShape2D_ntn28")
 
 [node name="Blaze6" parent="Enemies" unique_id=1761431005 instance=ExtResource("19_wat66")]
 position = Vector2(102, 246)

@@ -15,18 +15,18 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="MathDungeon"
-config/version="2.12.0"
+config/version="3.0.0"
 run/main_scene="uid://bskj0cyrtgd55"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
-PlayerStats="*res://player_stats.gd"
-Sound="*res://sound.tscn"
-SaveManager="*res://save_manager.gd"
-HighscoreManager="*res://highscore_manager.gd"
-AchievementManager="*res://achievement_manager.gd"
+PlayerStats="*res://classic/player_stats.gd"
+Sound="*res://classic/sound.tscn"
+SaveManager="*res://classic/save_manager.gd"
+HighscoreManager="*res://classic/highscore_manager.gd"
+AchievementManager="*res://classic/achievement_manager.gd"
 
 [display]
 
