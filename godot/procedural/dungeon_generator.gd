@@ -1,6 +1,9 @@
 class_name DungeonGenerator
 
 
+const ENDERMAN_SCENE = preload("res://enemies/enderman.tscn")
+
+
 const ENTRANCE = Vector2i(0, 1)
 
 
@@ -61,4 +64,10 @@ func is_inside_padding(x, y, leaf, padding) -> bool:
 
 func _place_enemies(root_node: Branch) -> Array[Enemy]:
 	var enemies: Array[Enemy] = []
+	var last_room = root_node.get_leaves()[-1]
+
+	var enderman = ENDERMAN_SCENE.instantiate() as Enemy
+	enderman.position = last_room.get_center()
+	enemies.append(enderman)
+	
 	return enemies
