@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://classic/player.tscn" id="4_ldss0"]
 [ext_resource type="PackedScene" uid="uid://ch27vu5jqwd8g" path="res://locations/nether_portal.tscn" id="4_wh5hr"]
 [ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://classic/map_borders.tscn" id="5_4gbkj"]
+[ext_resource type="PackedScene" uid="uid://d4by6x3ww0foy" path="res://items/lighter.tscn" id="5_wh5hr"]
 [ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz/quiz_dialog.tscn" id="6_wh5hr"]
 [ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="7_w7atm"]
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="8_ghex2"]
@@ -32,6 +33,9 @@ position = Vector2(2177, 1314)
 dungeon_path = "res://classic/nether.tscn"
 
 [node name="Items" type="Node2D" parent="." unique_id=1926190904]
+
+[node name="Lighter" parent="Items" unique_id=586288920 instance=ExtResource("5_wh5hr")]
+position = Vector2(121, 866)
 
 [node name="Companions" type="Node2D" parent="." unique_id=1789589125]
 scale = Vector2(0.99999994, 0.99999994)

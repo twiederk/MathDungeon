@@ -38,15 +38,15 @@ size = Vector2(287, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ej081"]
 size = Vector2(293, 20)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wat66"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_hvrnb"]
 resource_local_to_scene = true
 radius = 107.298645
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0jfqj"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_i43io"]
 resource_local_to_scene = true
 radius = 101.12369
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_y5gub"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ntn28"]
 resource_local_to_scene = true
 radius = 111.01801
 
@@ -68,7 +68,7 @@ tile_set = ExtResource("2_friib")
 
 [node name="NetherPortal" parent="Locations" unique_id=977874460 instance=ExtResource("4_orhj5")]
 position = Vector2(416, 1136)
-dungeon_path = "res://main.tscn"
+dungeon_path = "res://classic/main.tscn"
 
 [node name="Items" type="Node2D" parent="." unique_id=2138511099]
 
@@ -275,21 +275,21 @@ position = Vector2(53, 152)
 position = Vector2(52, 90)
 
 [node name="CollisionShape2D" parent="Enemies/Blaze3/ShootingArea" index="0" unique_id=1003688871]
-shape = SubResource("CircleShape2D_wat66")
+shape = SubResource("CircleShape2D_hvrnb")
 
 [node name="Blaze4" parent="Enemies" unique_id=636626386 instance=ExtResource("19_wat66")]
 position = Vector2(66, 302)
 
 [node name="CollisionShape2D" parent="Enemies/Blaze4/ShootingArea" parent_id_path=PackedInt32Array(636626386, 1951971501) index="0" unique_id=1003688871]
 position = Vector2(39, -60)
-shape = SubResource("CircleShape2D_0jfqj")
+shape = SubResource("CircleShape2D_i43io")
 
 [node name="Blaze5" parent="Enemies" unique_id=244087369 instance=ExtResource("19_wat66")]
 position = Vector2(134, 161)
 
 [node name="CollisionShape2D" parent="Enemies/Blaze5/ShootingArea" parent_id_path=PackedInt32Array(244087369, 1951971501) index="0" unique_id=1003688871]
 position = Vector2(-31, 83)
-shape = SubResource("CircleShape2D_y5gub")
+shape = SubResource("CircleShape2D_ntn28")
 
 [node name="Blaze6" parent="Enemies" unique_id=1761431005 instance=ExtResource("19_wat66")]
 position = Vector2(102, 246)
