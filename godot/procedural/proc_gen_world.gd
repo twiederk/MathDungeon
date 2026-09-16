@@ -4,6 +4,7 @@ extends Main
 
 const WORLD_TILE_SET: int = 0
 const TILE_SIZE: int = 32
+const TILE_SIZE_HALF: Vector2 = Vector2(TILE_SIZE / 2, TILE_SIZE / 2)
 const DUNGEON_GROUND_TILE: Vector2i = Vector2i(7, 0)
 const DUNGEON_WALL_TILE: Vector2i = Vector2i(6, 0)
 
@@ -47,10 +48,10 @@ func _place_dungeon(dungeon: Dungeon, offset: Vector2i) -> void:
 
 func _place_enemies(dungeon: Dungeon, offset: Vector2i) -> void:
 	for enemy in dungeon.enemies:
-		enemy.position = (enemy.position + Vector2(offset)) * TILE_SIZE
+		enemy.position = (enemy.position + Vector2(offset)) * TILE_SIZE + TILE_SIZE_HALF
 		enemies_root.add_child(enemy)
 
 func _place_items(dungeon: Dungeon, offset: Vector2i) -> void:
 	for item in dungeon.items:
-		item.position = (item.position + Vector2(offset)) * TILE_SIZE
+		item.position = (item.position + Vector2(offset)) * TILE_SIZE + TILE_SIZE_HALF
 		items_root.add_child(item)
