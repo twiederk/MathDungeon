@@ -48,10 +48,14 @@ func _place_dungeon(dungeon: Dungeon, offset: Vector2i) -> void:
 
 func _place_enemies(dungeon: Dungeon, offset: Vector2i) -> void:
 	for enemy in dungeon.enemies:
-		enemy.position = (enemy.position + Vector2(offset)) * TILE_SIZE + TILE_SIZE_HALF
+		enemy.position = _world_position(enemy.position, offset)
 		enemies_root.add_child(enemy)
 
 func _place_items(dungeon: Dungeon, offset: Vector2i) -> void:
 	for item in dungeon.items:
-		item.position = (item.position + Vector2(offset)) * TILE_SIZE + TILE_SIZE_HALF
+		item.position = _world_position(item.position, offset)
 		items_root.add_child(item)
+
+
+func _world_position(local_position: Vector2, offset: Vector2i) -> Vector2:
+	return (local_position + Vector2(offset)) * TILE_SIZE + TILE_SIZE_HALF
