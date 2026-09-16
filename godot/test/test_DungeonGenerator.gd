@@ -15,6 +15,13 @@ func test_generate():
 	
 	# assert
 	assert_not_null(dungeon.root_node, "Dungeon root node should not be null")
+	
+	# tear down
+	for item in dungeon.items:
+		item.free()
+		
+	for enemy in dungeon.enemies:
+		enemy.free()
 
 
 func test_place_entrance():
@@ -26,7 +33,7 @@ func test_place_entrance():
 	
 	# assert
 	assert_true(entrance == Vector2i(0, 1), "Entrance should be placed at (0, 1)")
-	
+
 
 func test_place_enemies():
 	# arrange
@@ -40,6 +47,10 @@ func test_place_enemies():
 	# assert
 	assert_true(enemies.size() > 0, "Enemies should be placed in the dungeon")
 
+	# tear down
+	for enemy in enemies:
+		enemy.free()
+
 
 func test_place_items():
 	# arrange
@@ -52,3 +63,7 @@ func test_place_items():
 	
 	# assert
 	assert_true(items.size() > 0, "Items should be placed in the dungeon")
+	
+	# tear down
+	for item in items:
+		item.free()
