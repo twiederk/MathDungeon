@@ -89,7 +89,7 @@ func is_inside_padding(x, y, leaf, padding) -> bool:
 func _place_enemies(root_node: Branch) -> Array[Enemy]:
 	var enemies: Array[Enemy] = []
 	var enemies_easy = [ZOMBIE_BABY_SCENE, ZOMBIE_SCENE, DROWN_SCENE]
-	var enemies_medium = [CREEPER_SCENE, SPIDER_SCENE, SHOOTING_SKELETON_SCENE, PIGLIN_SCENE, PIGLIN_ZOMBIE_SCENE]
+	var enemies_medium = [CREEPER_SCENE, SPIDER_SCENE, SHOOTING_SKELETON_SCENE, PIGLIN_ZOMBIE_SCENE]
 
 	var rooms = root_node.get_leaves()
 	var number_of_rooms = rooms.size()
