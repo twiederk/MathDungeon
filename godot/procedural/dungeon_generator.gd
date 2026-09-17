@@ -20,8 +20,12 @@ const IRON_SWORD_SCENE = preload("res://items/sword_iron.tscn")
 const HEALING_POTION_SCENE = preload("res://items/healing_potion.tscn")
 const EYE_OF_ENDER_SCENE = preload("res://items/eye_of_ender.tscn")
 
+const SPAWN_CHANCE_ITEM_EASY = 20
+const SPAWN_CHANCE_ITEM_MEDIUM = 30
+
 
 const ENTRANCE = Vector2i(0, 1)
+
 
 
 func generate_dungeon(size: Vector2i) -> Dungeon:
@@ -123,7 +127,7 @@ func _place_items(root_node: Branch) -> Array[Item]:
 	var half_number_of_rooms: int = number_of_rooms / 2
 
 	for room_index in range(1, half_number_of_rooms + 1):
-		if randi_range(0, 100) < 20:
+		if randi_range(0, 100) < SPAWN_CHANCE_ITEM_EASY:
 			var room = rooms[room_index]
 			var item_scene = items_easy.pick_random()
 			var item = item_scene.instantiate() as Item
@@ -131,7 +135,7 @@ func _place_items(root_node: Branch) -> Array[Item]:
 			items.append(item)
 
 	for room_index in range(half_number_of_rooms + 1, number_of_rooms - 1):
-		if randi_range(0, 100) < 30:
+		if randi_range(0, 100) < SPAWN_CHANCE_ITEM_MEDIUM:
 			var room = rooms[room_index]
 			var item_scene = items_medium.pick_random()
 			var item = item_scene.instantiate() as Item
