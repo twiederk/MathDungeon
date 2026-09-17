@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctlnlkhh85kv5"]
+[gd_scene format=3 uid="uid://ctlnlkhh85kv5"]
 
 [ext_resource type="Theme" uid="uid://laictl43pv1e" path="res://quiz/quiz_dialog_theme.tres" id="1_jj3p0"]
 [ext_resource type="Script" uid="uid://b5fwm3c5mv241" path="res://quiz/quiz_dialog.gd" id="1_pp5ga"]
@@ -6,7 +6,7 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_jj3p0"]
 
-[node name="QuizDialog" type="Control"]
+[node name="QuizDialog" type="Control" unique_id=1853310064]
 process_mode = 2
 visible = false
 layout_mode = 3
@@ -17,14 +17,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pp5ga")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=625108947]
 modulate = Color(0.5019608, 0.5019608, 0.5019608, 0.5019608)
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 360.0
 texture = SubResource("CanvasTexture_jj3p0")
 
-[node name="EnemyStatsSheet" parent="." instance=ExtResource("4_2nosh")]
+[node name="EnemyStatsSheet" parent="." unique_id=650043604 instance=ExtResource("4_2nosh")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -33,43 +33,43 @@ offset_top = 3.0
 offset_bottom = 3.0
 grow_horizontal = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=156736948]
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 360.0
 theme = ExtResource("1_jj3p0")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1690901171]
 layout_mode = 2
 
-[node name="QuestionLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="QuestionLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1146736975]
 custom_minimum_size = Vector2(580, 0)
 layout_mode = 2
 text = "Frage"
 autowrap_mode = 3
 
-[node name="AnswerLineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer"]
+[node name="AnswerLineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer" unique_id=470085051]
 layout_mode = 2
 
-[node name="StartGuiButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="StartGuiButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2100042775]
 visible = false
 layout_mode = 2
 text = "Hauptmenü"
 
-[node name="NameEntryButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="NameEntryButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1369315930]
 visible = false
 layout_mode = 2
 text = "Namen eingeben"
 
-[node name="TimelimitProgressBar" type="ProgressBar" parent="CenterContainer/VBoxContainer"]
+[node name="TimelimitProgressBar" type="ProgressBar" parent="CenterContainer/VBoxContainer" unique_id=1019803413]
 visible = false
 layout_mode = 2
 show_percentage = false
 
-[node name="AnswerTimer" type="Timer" parent="."]
+[node name="AnswerTimer" type="Timer" parent="." unique_id=468809062]
 one_shot = true
 
-[node name="ProgressTimer" type="Timer" parent="."]
+[node name="ProgressTimer" type="Timer" parent="." unique_id=1744945276]
 wait_time = 0.5
 
 [connection signal="text_submitted" from="CenterContainer/VBoxContainer/AnswerLineEdit" to="." method="_on_text_submitted"]
