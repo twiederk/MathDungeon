@@ -34,6 +34,7 @@ func _start_shooting() -> void:
 
 func _stop_shooting() -> void:
 	is_shooting = false
+	_delay_index = 0
 	fire_timer.stop()
 
 
