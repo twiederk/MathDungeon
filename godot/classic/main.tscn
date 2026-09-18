@@ -85,31 +85,31 @@ size = Vector2(400, 334)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnost"]
 size = Vector2(459, 59)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yoqxm"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4smsm"]
 resource_local_to_scene = true
 size = Vector2(41, 384)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iwbmy"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_akgpg"]
 resource_local_to_scene = true
 size = Vector2(31, 61)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_grvjq"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_752s6"]
 resource_local_to_scene = true
 size = Vector2(59, 61)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x08xo"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ibk5j"]
 resource_local_to_scene = true
 size = Vector2(92, 88)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4smsm"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cy10y"]
 resource_local_to_scene = true
 size = Vector2(92, 88)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_akgpg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oaidx"]
 resource_local_to_scene = true
 size = Vector2(92, 88)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_752s6"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdyuv"]
 resource_local_to_scene = true
 size = Vector2(124, 131)
 
@@ -683,7 +683,7 @@ title_text = "Die verlassene Burg"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle/TriggerArea2D" index="0"]
 position = Vector2(21.5, -76)
-shape = SubResource("RectangleShape2D_yoqxm")
+shape = SubResource("RectangleShape2D_4smsm")
 
 [node name="DungeonTitle2" parent="Titles" unique_id=1265780115 instance=ExtResource("22_lswn8")]
 position = Vector2(114, 1121)
@@ -691,7 +691,7 @@ title_text = "Das Tierlabyrinth"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle2/TriggerArea2D" index="0"]
 position = Vector2(-1.5, -1.5)
-shape = SubResource("RectangleShape2D_iwbmy")
+shape = SubResource("RectangleShape2D_akgpg")
 
 [node name="DungeonTitle3" parent="Titles" unique_id=1065713930 instance=ExtResource("22_lswn8")]
 position = Vector2(913, 670)
@@ -699,7 +699,7 @@ title_text = "Der unterirdische Teich"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle3/TriggerArea2D" index="0"]
 position = Vector2(-16.5, 1.5)
-shape = SubResource("RectangleShape2D_grvjq")
+shape = SubResource("RectangleShape2D_752s6")
 
 [node name="DungeonTitle4" parent="Titles" unique_id=1103847014 instance=ExtResource("22_lswn8")]
 position = Vector2(1041, 1122)
@@ -707,7 +707,7 @@ title_text = "Die Villa"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle4/TriggerArea2D" index="0"]
 position = Vector2(-1.5, -2.5)
-shape = SubResource("RectangleShape2D_x08xo")
+shape = SubResource("RectangleShape2D_ibk5j")
 
 [node name="DungeonTitle5" parent="Titles" unique_id=395435328 instance=ExtResource("22_lswn8")]
 position = Vector2(865, 1505)
@@ -715,7 +715,7 @@ title_text = "Das Waldanwesen "
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle5/TriggerArea2D" index="0"]
 position = Vector2(14, -16)
-shape = SubResource("RectangleShape2D_4smsm")
+shape = SubResource("RectangleShape2D_cy10y")
 
 [node name="DungeonTitle6" parent="Titles" unique_id=1333793762 instance=ExtResource("22_lswn8")]
 position = Vector2(31, 1560)
@@ -723,7 +723,7 @@ title_text = "Das Dorf"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle6/TriggerArea2D" index="0"]
 position = Vector2(14, -16)
-shape = SubResource("RectangleShape2D_akgpg")
+shape = SubResource("RectangleShape2D_oaidx")
 
 [node name="DungeonTitle7" parent="Titles" unique_id=511827281 instance=ExtResource("22_lswn8")]
 position = Vector2(1537, 1468)
@@ -731,7 +731,7 @@ title_text = "Das verlassene Dorf"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle7/TriggerArea2D" index="0"]
 position = Vector2(12, 15.5)
-shape = SubResource("RectangleShape2D_752s6")
+shape = SubResource("RectangleShape2D_sdyuv")
 
 [node name="MapBorders" parent="." unique_id=1093876332 instance=ExtResource("20_d13ii")]
 
