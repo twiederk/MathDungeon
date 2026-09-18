@@ -22,6 +22,8 @@ const EYE_OF_ENDER_SCENE = preload("res://items/eye_of_ender.tscn")
 
 const SPAWN_CHANCE_ITEM_EASY = 20
 const SPAWN_CHANCE_ITEM_MEDIUM = 30
+const SPAWN_CHANCE_ENEMY_EASY = 80
+const SPAWN_CHANCE_ENEMY_MEDIUM = 70
 
 
 const ENTRANCE = Vector2i(0, 1)
@@ -87,7 +89,7 @@ func is_inside_padding(x, y, leaf, padding) -> bool:
 func _place_enemies(root_node: Branch) -> Array[Enemy]:
 	var enemies: Array[Enemy] = []
 	var enemies_easy = [ZOMBIE_BABY_SCENE, ZOMBIE_SCENE, DROWN_SCENE]
-	var enemies_medium = [CREEPER_SCENE, SPIDER_SCENE, SHOOTING_SKELETON_SCENE, PIGLIN_SCENE, PIGLIN_ZOMBIE_SCENE]
+	var enemies_medium = [CREEPER_SCENE, SPIDER_SCENE, SHOOTING_SKELETON_SCENE, PIGLIN_ZOMBIE_SCENE]
 
 	var rooms = root_node.get_leaves()
 	var number_of_rooms = rooms.size()
@@ -95,6 +97,8 @@ func _place_enemies(root_node: Branch) -> Array[Enemy]:
 	var half_number_of_rooms: int = number_of_rooms / 2
 
 	for room_index in range(1, half_number_of_rooms + 1):
+		if randi_range(0, 100) > SPAWN_CHANCE_ENEMY_EASY:
+			continue
 		var room = rooms[room_index]
 		var enemy_scene = enemies_easy.pick_random()
 		var enemy = enemy_scene.instantiate() as Enemy
@@ -102,6 +106,8 @@ func _place_enemies(root_node: Branch) -> Array[Enemy]:
 		enemies.append(enemy)
 
 	for room_index in range(half_number_of_rooms + 1, number_of_rooms - 1):
+		if randi_range(0, 100) > SPAWN_CHANCE_ENEMY_MEDIUM:
+			continue
 		var room = rooms[room_index]
 		var enemy_scene = enemies_medium.pick_random()
 		var enemy = enemy_scene.instantiate() as Enemy
@@ -127,20 +133,22 @@ func _place_items(root_node: Branch) -> Array[Item]:
 	var half_number_of_rooms: int = number_of_rooms / 2
 
 	for room_index in range(1, half_number_of_rooms + 1):
-		if randi_range(0, 100) < SPAWN_CHANCE_ITEM_EASY:
-			var room = rooms[room_index]
-			var item_scene = items_easy.pick_random()
-			var item = item_scene.instantiate() as Item
-			item.position = room.get_center()
-			items.append(item)
+		if randi_range(0, 100) > SPAWN_CHANCE_ITEM_EASY:
+			continue
+		var room = rooms[room_index]
+		var item_scene = items_easy.pick_random()
+		var item = item_scene.instantiate() as Item
+		item.position = room.get_center()
+		items.append(item)
 
 	for room_index in range(half_number_of_rooms + 1, number_of_rooms - 1):
-		if randi_range(0, 100) < SPAWN_CHANCE_ITEM_MEDIUM:
-			var room = rooms[room_index]
-			var item_scene = items_medium.pick_random()
-			var item = item_scene.instantiate() as Item
-			item.position = room.get_center()
-			items.append(item)
+		if randi_range(0, 100) > SPAWN_CHANCE_ITEM_MEDIUM:
+			continue
+		var room = rooms[room_index]
+		var item_scene = items_medium.pick_random()
+		var item = item_scene.instantiate() as Item
+		item.position = room.get_center()
+		items.append(item)
 
 	var last_room = rooms[-1]
 	var eye_of_ender = EYE_OF_ENDER_SCENE.instantiate() as Item

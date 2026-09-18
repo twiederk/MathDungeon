@@ -18,7 +18,7 @@ radius = 267.1198
 [node name="ShootingPillager" type="StaticBody2D" unique_id=516032260]
 collision_layer = 2
 script = ExtResource("1_dfvkm")
-fire_rate = 1.5
+fire_delays = Array[float]([1.5])
 projectile_scene = ExtResource("2_bgqgd")
 stats = ExtResource("3_dfvkm")
 
@@ -46,6 +46,7 @@ shape = SubResource("CircleShape2D_73kb4")
 
 [node name="FireTimer" type="Timer" parent="." unique_id=753380029]
 wait_time = 2.0
+one_shot = true
 
 [connection signal="body_entered" from="ShootingArea" to="." method="_on_shooting_area_body_entered"]
 [connection signal="body_exited" from="ShootingArea" to="." method="_on_shooting_area_body_exited"]

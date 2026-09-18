@@ -31,8 +31,7 @@ func get_center() -> Vector2i:
 
 
 func split(remaining: int, paths: Array[Dictionary]):
-	var rng = RandomNumberGenerator.new()
-	var split_percent = rng.randf_range(SPLIT_PERCENT_MIN, SPLIT_PERCENT_MAX)
+	var split_percent = randf_range(SPLIT_PERCENT_MIN, SPLIT_PERCENT_MAX)
 
 	if (_should_split_horizontal()):
 		# horizontal

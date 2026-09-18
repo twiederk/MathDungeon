@@ -2,6 +2,9 @@ class_name ProcGenWorld
 extends Main
 
 
+@export var seed_value: int = 0
+
+
 const WORLD_TILE_SET: int = 0
 const TILE_SIZE: int = 32
 @warning_ignore("integer_division")
@@ -13,14 +16,18 @@ var dungeon_generator: DungeonGenerator = DungeonGenerator.new()
 
 
 func _ready() -> void:
+	generate_world(seed_value)
+	super._ready()
+
+
+func generate_world(new_seed: int) -> void:
+	_generate_seed(new_seed)
 	var offsets = [Vector2i(5, 5), Vector2i(35, 5), Vector2i(5, 35), Vector2i(35, 35)]
 	for offset in offsets:
 		var dungeon = dungeon_generator.generate_dungeon(Vector2i(20, 20))
 		_place_dungeon(dungeon, offset)
 		_place_enemies(dungeon, offset)
 		_place_items(dungeon, offset)
-
-	super._ready()
 
 
 func _place_dungeon(dungeon: Dungeon, offset: Vector2i) -> void:
@@ -43,3 +50,10 @@ func _place_items(dungeon: Dungeon, offset: Vector2i) -> void:
 
 func _world_position(local_position: Vector2, offset: Vector2i) -> Vector2:
 	return (local_position + Vector2(offset)) * TILE_SIZE + TILE_SIZE_HALF
+
+
+func _generate_seed(new_seed: int) -> void:
+	if new_seed == 0:
+		new_seed = randi()
+	seed_value = new_seed
+	seed(seed_value)
