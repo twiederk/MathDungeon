@@ -1,7 +1,7 @@
 class_name ShootingEnemy
 extends Enemy
 
-@export var fire_rate: float = 2.0
+@export var fire_delays: Array[float] = [2.0]
 @export var projectile_scene: PackedScene
 
 @onready var fire_timer: Timer = $FireTimer
@@ -9,11 +9,7 @@ extends Enemy
 
 var is_shooting: bool = false
 var player_target: Node = null
-
-
-func _ready() -> void:
-	super._ready()
-	fire_timer.wait_time = fire_rate
+var _delay_index: int = 0
 
 
 func _on_shooting_area_body_entered(body: Node) -> void:
@@ -31,8 +27,9 @@ func _on_shooting_area_body_exited(body: Node) -> void:
 func _start_shooting() -> void:
 	if not is_shooting:
 		is_shooting = true
+		_delay_index = 0
 		call_deferred("_shoot_arrow")
-		fire_timer.start()
+		_restart_fire_timer()
 
 
 func _stop_shooting() -> void:
@@ -40,9 +37,20 @@ func _stop_shooting() -> void:
 	fire_timer.stop()
 
 
+func _restart_fire_timer() -> void:
+	if fire_delays.is_empty():
+		return
+	fire_timer.wait_time = fire_delays[_delay_index]
+	_delay_index = (_delay_index + 1) % fire_delays.size()
+	fire_timer.start()
+
+
 func _on_fire_timer_timeout() -> void:
-	if is_shooting and player_target:
+	if not is_shooting:
+		return
+	if player_target:
 		_shoot_arrow()
+	_restart_fire_timer()
 
 
 func _shoot_arrow() -> void:
