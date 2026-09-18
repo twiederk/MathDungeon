@@ -730,7 +730,7 @@ position = Vector2(1537, 1468)
 title_text = "Das verlassene Dorf"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle7/TriggerArea2D" index="0"]
-position = Vector2(12, 15.5)
+position = Vector2(-3, 16)
 shape = SubResource("RectangleShape2D_sdyuv")
 
 [node name="MapBorders" parent="." unique_id=1093876332 instance=ExtResource("20_d13ii")]
