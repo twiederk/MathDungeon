@@ -3,6 +3,7 @@ extends Control
 
 @onready var start_button = $CenterContainer/VBoxContainer/StartButton
 @onready var load_button = $CenterContainer/VBoxContainer/LoadButton
+@onready var character_widget: CharacterWidget = $CharacterWidget
 
 
 func _ready():
@@ -12,21 +13,18 @@ func _ready():
 
 
 func _on_start_game_button_pressed():
-	PlayerStats.reset()
 	AchievementManager.reset()
 	get_tree().change_scene_to_file("res://classic/main.tscn")
 
 
 func _on_start_generic_button_pressed():
-	PlayerStats.reset()
 	AchievementManager.reset()
 	get_tree().change_scene_to_file("res://procedural/proc_gen_world.tscn")
 
 
 func _on_load_button_pressed():
 	SaveManager.load_game()
-	AchievementManager.reset()
-	get_tree().change_scene_to_file("res://classic/main.tscn")
+	character_widget.update_stats()
 
 
 func _on_highscores_button_pressed():
