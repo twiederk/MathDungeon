@@ -200,5 +200,5 @@ func _on_name_entry_button_pressed():
 
 
 func _physics_process(_delta):
-	if not answer_line_edit.is_editing():
+	if visible and not answer_line_edit.is_editing():
 		answer_line_edit.edit()
