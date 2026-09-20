@@ -45,7 +45,7 @@ text = "Generisches Spiel starten"
 
 [node name="LoadButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1746410147]
 layout_mode = 2
-text = "Spiel laden"
+text = "Character laden"
 
 [node name="HighscoresButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=587580212]
 layout_mode = 2
@@ -62,6 +62,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -60.0
+offset_bottom = 60.0
 grow_horizontal = 0
 grow_vertical = 2
 

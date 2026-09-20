@@ -20,7 +20,7 @@ offset_bottom = 96.0
 texture = SubResource("CanvasTexture_m5e2a")
 
 [node name="StatsSheet" parent="." unique_id=679510277 instance=ExtResource("1_y1wyp")]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(110, 110)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
