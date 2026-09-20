@@ -81,22 +81,7 @@ then becomes a pure internal swap and no call site changes twice.
 
 Update `test/test_PlayerStats.gd`.
 
-### Phase 2 — Portrait catalog
-
-Create `characters/portrait_catalog.tres`: an array of `{ id, display_name, texture }`. Put the
-images in `res://characters/portraits/`. Lookup is strictly id-based.
-
-### Phase 3 — `CharacterWidget` renders a character
-
-Replace the global `PlayerStats` read in `gui/character_widget.gd` with `setup(character: Character)`.
-Replace the placeholder `CanvasTexture` in `character_widget.tscn` with a real `TextureRect` bound to
-the portrait, plus a `Label` for the name.
-
-Leave an empty `HBoxContainer` named `InventoryStrip` in the scene so Phase 9 is purely additive.
-
-**First visible result: the character has a face and a name.**
-
-### Phase 4 — Per-character persistence
+### Phase 2 — Per-character persistence
 
 `user://characters/<id>.save`:
 
@@ -126,13 +111,28 @@ The `if hit_points > 0` guard stays: the character file is never written while d
 entries. A hand-edited save must never crash the game or cause an arbitrary resource path to load.
 The generated `id` is the filename — never the gamer-supplied name.
 
+### Phase 3 — Portrait catalog
+
+Create `characters/portrait_catalog.tres`: an array of `{ id, display_name, texture }`. Put the
+images in `res://characters/portraits/`. Lookup is strictly id-based.
+
+### Phase 4 — `CharacterWidget` renders a character
+
+Replace the global `PlayerStats` read in `gui/character_widget.gd` with `setup(character: Character)`.
+Replace the placeholder `CanvasTexture` in `character_widget.tscn` with a real `TextureRect` bound to
+the portrait, plus a `Label` for the name.
+
+Leave an empty `HBoxContainer` named `InventoryStrip` in the scene so Phase 9 is purely additive.
+
+**First visible result: the character has a face and a name.**
+
 ### Phase 5 — Character creation dialog
 
 `gui/character_create.tscn`: a name `LineEdit` plus a portrait picker driven by the catalog.
 
 Sanitize the name: trim whitespace, limit length (~16 characters), reject empty.
 
-Persistence landing in Phase 4 means the first version of this dialog already produces a character
+Persistence landing in Phase 2 means the first version of this dialog already produces a character
 that survives a restart.
 
 **The gamer can now set a name and a portrait.**
@@ -231,7 +231,7 @@ Fill the `InventoryStrip` in `CharacterWidget` with icons from `ItemDefinition.i
 
 ## Notes
 
-- The save format is invalidated twice (Phase 4 and Phase 9). Do not hand a build to testers between
+- The save format is invalidated twice (Phase 2 and Phase 9). Do not hand a build to testers between
   Phase 6 and Phase 9 expecting their progress to survive.
-- `CharacterWidget` is touched twice (Phase 3 and Phase 9). The pre-placed `InventoryStrip` keeps the
+- `CharacterWidget` is touched twice (Phase 4 and Phase 9). The pre-placed `InventoryStrip` keeps the
   second change additive.

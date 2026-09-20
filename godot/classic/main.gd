@@ -46,10 +46,10 @@ func _setup_limits_and_borders() -> void:
 
 
 func _setup_character_stats() -> void:
-	PlayerStats.health_changed.connect(_on_player_stats_changed)
-	PlayerStats.weapon_damage_changed.connect(_on_player_stats_changed)
-	PlayerStats.armor_changed.connect(_on_player_stats_changed)
-	player_stats_sheet.update_stats(PlayerStats.hit_points, PlayerStats.max_hit_points, PlayerStats.get_total_damage(), PlayerStats.armor)
+	CharacterManager.current.hit_points_changed.connect(_on_player_stats_changed)
+	CharacterManager.current.weapon_damage_changed.connect(_on_player_stats_changed)
+	CharacterManager.current.armor_changed.connect(_on_player_stats_changed)
+	player_stats_sheet.update_stats(CharacterManager.current.hit_points, CharacterManager.current.max_hit_points, CharacterManager.get_total_damage(), CharacterManager.current.armor)
 
 
 func _on_enemy_encountered(enemy: StaticBody2D) -> void:
@@ -67,12 +67,12 @@ func _on_companion_picked_up(companion: Companion) -> void:
 
 
 func _on_player_stats_changed() -> void:
-	player_stats_sheet.update_stats(PlayerStats.hit_points, PlayerStats.max_hit_points, PlayerStats.get_total_damage(), PlayerStats.armor)
+	player_stats_sheet.update_stats(CharacterManager.current.hit_points, CharacterManager.current.max_hit_points, CharacterManager.get_total_damage(), CharacterManager.current.armor)
 
 
 func _setup_companions() -> void:
-	for i in range(PlayerStats.companion_paths.size()):
-		var companion_path = PlayerStats.companion_paths[i]
+	for i in range(CharacterManager.current.companions.size()):
+		var companion_path = CharacterManager.current.companions[i]
 		var companion = get_node_or_null(companion_path)
 		
 		if companion and companion.has_method("start_following"):

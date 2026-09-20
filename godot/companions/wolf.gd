@@ -10,7 +10,7 @@ func execute() -> void:
 	if not damage_applied:
 		Sound.play(Sound.dog_bark)
 		damage_applied = true
-		PlayerStats.add_companion(str(get_path()))
+		CharacterManager.current.add_companion(str(get_path()))
 
 
 func set_damage_applied() -> void:

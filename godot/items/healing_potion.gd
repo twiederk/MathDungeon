@@ -3,7 +3,7 @@ extends Item
 
 
 func execute() -> void:
-	if PlayerStats.needs_healing():
-		PlayerStats.hit_points = PlayerStats.max_hit_points
+	if CharacterManager.current.needs_healing():
+		CharacterManager.current.hit_points = CharacterManager.current.max_hit_points
 		Sound.play(Sound.pickup_potion)
 		queue_free()

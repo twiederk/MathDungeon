@@ -108,7 +108,7 @@ func _check_answer(answer: String) -> void:
 
 
 func _answer_correct() -> void:
-	var enemy_hit_points = enemy.hurt(PlayerStats.get_total_damage())
+	var enemy_hit_points = enemy.hurt(CharacterManager.get_total_damage())
 	if enemy_hit_points > 0:
 		exercise = _create_exercise()
 		question_label.text = "Richtig!!!\n" + exercise.question
@@ -128,7 +128,7 @@ func _answer_correct() -> void:
 
 
 func _answer_incorrect() -> void:
-	var player_hit_points = PlayerStats.hurt(enemy.stats.damage)
+	var player_hit_points = CharacterManager.current.hurt(enemy.stats.damage)
 	if player_hit_points > 0:
 		question_label.text = "Nicht ganz. Versuch es nochmal:\n" + exercise.question
 		answer_line_edit.text = ""
@@ -174,7 +174,7 @@ func _on_progress_timer_timeout() -> void:
 
 
 func _answer_timeout() -> void:
-	var player_hit_points = PlayerStats.hurt(enemy.stats.damage)
+	var player_hit_points = CharacterManager.current.hurt(enemy.stats.damage)
 	if player_hit_points > 0:
 		exercise = _create_exercise()
 		question_label.text = "*** Zeitlimit überschritten ***\n" + exercise.question
@@ -197,3 +197,8 @@ func _on_main_menu_button_pressed() -> void:
 func _on_name_entry_button_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://gui/name_entry_dialog.tscn")
+
+
+func _physics_process(_delta):
+	if visible and not answer_line_edit.is_editing():
+		answer_line_edit.edit()

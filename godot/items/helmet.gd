@@ -5,7 +5,7 @@ extends Item
 
 
 func execute() -> void:
-	if armor > PlayerStats.armor:
-		PlayerStats.armor = armor	
+	if armor > CharacterManager.current.armor:
+		CharacterManager.current.armor = armor	
 	Sound.play(Sound.pickup_helmet)
 	queue_free()
