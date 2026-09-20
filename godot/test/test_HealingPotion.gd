@@ -14,10 +14,10 @@ func after_each():
 
 func test_execute_heal_player():
 	# arrange
-	PlayerStats.hit_points = 4
+	CharacterManager.current.hit_points = 4
 	
 	# act
 	healing_potion.execute()
 	
 	# assert
-	assert_eq(5, PlayerStats.hit_points)
+	assert_eq(CharacterManager.current.max_hit_points, CharacterManager.current.hit_points)

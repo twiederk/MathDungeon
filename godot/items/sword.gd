@@ -5,7 +5,7 @@ extends Item
 
 
 func execute() -> void:
-	if damage > PlayerStats.weapon_damage:
-		PlayerStats.weapon_damage = damage
+	if damage > CharacterManager.current.weapon_damage:
+		CharacterManager.current.weapon_damage = damage
 	Sound.play(Sound.pickup_sword)
 	queue_free()

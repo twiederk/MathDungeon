@@ -6,14 +6,14 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_m5e2a"]
 
 [node name="CharacterWidget" type="Control" unique_id=1751308748]
-custom_minimum_size = Vector2(130, 130)
+custom_minimum_size = Vector2(130, 150)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_nnimf")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1254566602]
 self_modulate = Color(0.7764706, 0.6039216, 0.3882353, 1)
-custom_minimum_size = Vector2(120, 120)
+custom_minimum_size = Vector2(120, 150)
 layout_mode = 0
 offset_right = 120.0
 offset_bottom = 96.0
@@ -26,6 +26,10 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 110.0
 offset_bottom = 110.0
+
+[node name="NameLabel" type="Label" parent="VBoxContainer" unique_id=6941428]
+layout_mode = 2
+text = "Name: Steve"
 
 [node name="HealthMeterWidget" parent="VBoxContainer" unique_id=2055304537 instance=ExtResource("2_nnimf")]
 custom_minimum_size = Vector2(0, 24)

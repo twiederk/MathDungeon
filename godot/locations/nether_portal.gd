@@ -14,7 +14,7 @@ var active: bool = false
 func _on_outer_area_2d_body_entered(body: Node2D) -> void:
 	if body.name != "Player":
 		return
-	if PlayerStats.has_lighter:
+	if CharacterManager.current.has_item("lighter"):
 		active = true
 		inner_sprite_2d.visible = true
 
