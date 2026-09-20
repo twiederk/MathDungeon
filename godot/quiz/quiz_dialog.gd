@@ -197,3 +197,8 @@ func _on_main_menu_button_pressed() -> void:
 func _on_name_entry_button_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://gui/name_entry_dialog.tscn")
+
+
+func _physics_process(_delta):
+	if not answer_line_edit.is_editing():
+		answer_line_edit.edit()
