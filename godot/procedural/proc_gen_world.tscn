@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://gui/achievement_popup.tscn" id="10_gsqn5"]
 [ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://gui/achievement_badges.tscn" id="11_nivld"]
 
-[node name="ProGenWorld" type="Node2D" unique_id=1396004494]
+[node name="Main" type="Node2D" unique_id=1396004494]
 script = ExtResource("1_4yoxp")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1898491355]
