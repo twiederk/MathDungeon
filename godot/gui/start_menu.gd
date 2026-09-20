@@ -26,7 +26,6 @@ func _on_load_button_pressed():
 	SaveManager.load_game()
 	character_widget.update_stats()
 
-
 func _on_highscores_button_pressed():
 	get_tree().change_scene_to_file("res://gui/highscore_gui.tscn")
 
