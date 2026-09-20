@@ -438,6 +438,9 @@ position = Vector2(99, 1700)
 [node name="IronGolem2" parent="Enemies" unique_id=621275917 instance=ExtResource("28_facbu")]
 position = Vector2(182, 1828)
 
+[node name="IronGolem3" parent="Enemies" unique_id=1873438235 instance=ExtResource("28_facbu")]
+position = Vector2(1185, 2527)
+
 [node name="PiglinZombie" parent="Enemies" unique_id=2490144 instance=ExtResource("5_7mycd")]
 position = Vector2(979, 2578)
 
@@ -454,7 +457,7 @@ position = Vector2(791, 2536)
 position = Vector2(801, 2504)
 
 [node name="PiglinZombie6" parent="Enemies" unique_id=1233291606 instance=ExtResource("5_7mycd")]
-position = Vector2(1198, 2364)
+position = Vector2(1186, 2364)
 
 [node name="PiglinZombie7" parent="Enemies" unique_id=1890851438 instance=ExtResource("5_7mycd")]
 position = Vector2(1436, 2504)
@@ -492,12 +495,6 @@ position = Vector2(-484, -1622)
 
 [node name="Frog2" parent="Animals" unique_id=295248777 instance=ExtResource("39_come4")]
 position = Vector2(-659, -1581)
-
-[node name="IronGolem" parent="Animals" unique_id=1190687449 instance=ExtResource("28_facbu")]
-position = Vector2(500, 672)
-
-[node name="IronGolem2" parent="Animals" unique_id=1873438235 instance=ExtResource("28_facbu")]
-position = Vector2(15, 126)
 
 [node name="Tadpole" parent="Animals" unique_id=1495878777 instance=ExtResource("40_h8e4i")]
 position = Vector2(-464, -1524)
