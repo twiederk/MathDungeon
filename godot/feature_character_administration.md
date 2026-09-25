@@ -44,7 +44,7 @@ save file.
 
 Each phase is independently shippable.
 
-### ✓ Phase 1 — `Character` data object
+### ✅ Phase 1 — `Character` data object
 
 Create `characters/character.gd` as `class_name Character extends RefCounted`:
 
@@ -81,7 +81,7 @@ then becomes a pure internal swap and no call site changes twice.
 
 Update `test/test_PlayerStats.gd`.
 
-### ✓ Phase 2 — Per-character persistence
+### ✅ Phase 2 — Per-character persistence
 
 `user://characters/<id>.save`:
 
