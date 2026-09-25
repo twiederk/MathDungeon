@@ -13,6 +13,8 @@ signal encountered(enemy: StaticBody2D)
 
 func _process(delta: float) -> void:
 	path_follow.progress += patrol_speed * delta
+	if vindicator == null or vindicator.is_queued_for_deletion():
+		queue_free()
 
 
 func _on_enemy_encountered(body: Node) -> void:
