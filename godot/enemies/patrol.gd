@@ -8,8 +8,6 @@ signal encountered(enemy: StaticBody2D)
 @onready var path_follow = $PathFollow2D
 @onready var vindicator = $PathFollow2D/Vindicator
 
-# The vindicator must signal his encoutered to Patrol!!!
-
 
 func _process(delta: float) -> void:
 	path_follow.progress += patrol_speed * delta

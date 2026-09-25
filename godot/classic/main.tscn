@@ -466,10 +466,10 @@ position = Vector2(1436, 2504)
 position = Vector2(1074, 2543)
 
 [node name="Vindicator2" parent="Enemies" unique_id=1448483060 instance=ExtResource("49_hrvbo")]
-position = Vector2(1072, 2225)
+position = Vector2(888, 2278)
 
 [node name="Vindicator3" parent="Enemies" unique_id=1779129250 instance=ExtResource("49_hrvbo")]
-position = Vector2(683, 2225)
+position = Vector2(889, 2209)
 
 [node name="Vindicator4" parent="Enemies" unique_id=629013415 instance=ExtResource("49_hrvbo")]
 position = Vector2(686, 2543)
