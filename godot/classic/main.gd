@@ -21,6 +21,7 @@ func _ready() -> void:
 
 func _setup_signals() -> void:
 	for child in enemies_root.get_children():
+		print("child.name: ", child.name)
 		if child.has_signal("encountered"):
 			child.encountered.connect(_on_enemy_encountered)
 

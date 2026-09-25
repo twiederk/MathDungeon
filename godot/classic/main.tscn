@@ -482,7 +482,7 @@ position = Vector2(-249.5, -0.5)
 shape = SubResource("RectangleShape2D_qnost")
 
 [node name="Vindicator5" parent="Enemies" unique_id=610373096 instance=ExtResource("49_hrvbo")]
-position = Vector2(70, 687)
+position = Vector2(133, 685)
 
 [node name="Animals" type="Node2D" parent="." unique_id=1647462520]
 position = Vector2(1170, 2401)

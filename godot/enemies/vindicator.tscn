@@ -45,3 +45,5 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Vindicator/DetectionArea" unique_id=1457090335]
 position = Vector2(-2, -3.5)
 shape = SubResource("RectangleShape2D_h2yge")
+
+[connection signal="encountered" from="PathFollow2D/Vindicator" to="." method="_on_vindicator_encountered"]
