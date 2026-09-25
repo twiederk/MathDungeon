@@ -463,7 +463,8 @@ position = Vector2(1186, 2364)
 position = Vector2(1436, 2504)
 
 [node name="Vindicator" parent="Enemies" unique_id=979313460 instance=ExtResource("49_hrvbo")]
-position = Vector2(1074, 2543)
+position = Vector2(972.01733, 2400)
+scale = Vector2(1.0346321, 1)
 
 [node name="Vindicator2" parent="Enemies" unique_id=1448483060 instance=ExtResource("49_hrvbo")]
 position = Vector2(888, 2278)
@@ -472,7 +473,7 @@ position = Vector2(888, 2278)
 position = Vector2(889, 2209)
 
 [node name="Vindicator4" parent="Enemies" unique_id=629013415 instance=ExtResource("49_hrvbo")]
-position = Vector2(686, 2543)
+position = Vector2(696, 2401)
 
 [node name="Evoker" parent="Enemies" unique_id=516032260 instance=ExtResource("48_0cbny")]
 position = Vector2(1125, 2655)

@@ -9,6 +9,10 @@ signal encountered(enemy: StaticBody2D)
 @onready var vindicator = $PathFollow2D/Vindicator
 
 
+func _ready() -> void:
+	path_follow.progress_ratio = randf_range(0, 1)
+
+
 func _process(delta: float) -> void:
 	path_follow.progress += patrol_speed * delta
 	if vindicator == null or vindicator.is_queued_for_deletion():
