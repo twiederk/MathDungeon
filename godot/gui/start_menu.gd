@@ -23,7 +23,7 @@ func _on_start_generic_button_pressed():
 
 
 func _on_load_button_pressed():
-	var target_id := CharacterManager.DEFAULT_CHARACTER_ID
+	var target_id = CharacterManager.DEFAULT_CHARACTER_ID
 	if CharacterManager.current.id == CharacterManager.DEFAULT_CHARACTER_ID:
 		target_id = CharacterManager.SECOND_CHARACTER_ID
 	elif CharacterManager.current.id == CharacterManager.SECOND_CHARACTER_ID:
