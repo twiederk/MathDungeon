@@ -47,7 +47,8 @@
 [ext_resource type="PackedScene" uid="uid://ctorh6hyh3je8" path="res://animals/pufferfish.tscn" id="45_qnost"]
 [ext_resource type="PackedScene" uid="uid://dwfrjnrqa34od" path="res://animals/octopus.tscn" id="46_wnkbs"]
 [ext_resource type="PackedScene" uid="uid://dhxipuoeb6vgp" path="res://enemies/evoker.tscn" id="48_0cbny"]
-[ext_resource type="PackedScene" uid="uid://crn8o2b0rjowu" path="res://enemies/vindicator.tscn" id="49_hrvbo"]
+[ext_resource type="PackedScene" uid="uid://crn8o2b0rjowu" path="res://enemies/patrolling_vindicator.tscn" id="49_hrvbo"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8e4i"]
 size = Vector2(380, 182)
