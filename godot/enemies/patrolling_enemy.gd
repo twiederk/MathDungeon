@@ -19,9 +19,5 @@ func _process(delta: float) -> void:
 		queue_free()
 
 
-func _on_enemy_encountered(body: Node) -> void:
-	enemy._on_body_entered(body)
-
-
-func _on_vindicator_encountered(enemy):
-	encountered.emit(enemy)
+func _on_vindicator_encountered(a_enemy):
+	encountered.emit(a_enemy)
