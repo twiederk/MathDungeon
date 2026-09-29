@@ -4,12 +4,12 @@ extends Control
 
 const PORTRAIT_CATALOG: PortraitCatalog = preload("res://characters/portrait_catalog.tres")
 
-@onready var name_label = $HBoxContainer/VBoxContainer/NameLabel
-@onready var health_meter_widget: HealthMeterWidget = $HBoxContainer/VBoxContainer/HealthMeterWidget
-@onready var damage_label: Label = $HBoxContainer/VBoxContainer/DamageLabel
-@onready var armor_label: Label = $HBoxContainer/VBoxContainer/ArmorLabel
-@onready var companion_label = $HBoxContainer/VBoxContainer/CompanionLabel
-@onready var portrait_texture_rect: TextureRect = $HBoxContainer/PortraitTextureRect
+@onready var name_label: Label = $VBoxContainer/NameLabel
+@onready var health_meter_widget: HealthMeterWidget = $VBoxContainer/HBoxContainer/VBoxContainer/HealthMeterWidget
+@onready var damage_label: Label = $VBoxContainer/HBoxContainer/VBoxContainer/DamageLabel
+@onready var armor_label: Label = $VBoxContainer/HBoxContainer/VBoxContainer/ArmorLabel
+@onready var companion_label: Label = $VBoxContainer/HBoxContainer/VBoxContainer/CompanionLabel
+@onready var portrait_texture_rect: TextureRect = $VBoxContainer/HBoxContainer/PortraitTextureRect
 
 
 func _ready() -> void:
