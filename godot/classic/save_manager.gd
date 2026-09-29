@@ -1,7 +1,6 @@
 extends Node
 
 const CHARACTERS_DIR: String = "user://characters/"
-const CHARACTERS_SAVE_VERSION: int = 2
 
 
 func save_character(character: Character) -> void:
@@ -9,7 +8,6 @@ func save_character(character: Character) -> void:
 		return
 	DirAccess.make_dir_recursive_absolute(CHARACTERS_DIR)
 	var data = {
-		"version": CHARACTERS_SAVE_VERSION,
 		"id": character.id,
 		"display_name": character.display_name,
 		"portrait_id": character.portrait_id,
@@ -54,7 +52,7 @@ func _character_from_data(id: String, data: Dictionary) -> Character:
 	var max_hit_points: int = int(data.get("max_hit_points", 5))
 	character.load_state(
 		str(data.get("display_name", "")),
-		str(data.get("portrait_id", "")),
+		str(data.get("portrait_id", "000")),
 		max_hit_points,
 		int(data.get("hit_points", max_hit_points)),
 		int(data.get("weapon_damage", 1)),
