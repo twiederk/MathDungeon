@@ -2,15 +2,19 @@ class_name CharacterWidget
 extends Control
 
 
-@onready var name_label = $VBoxContainer/NameLabel
-@onready var health_meter_widget: HealthMeterWidget = $VBoxContainer/HealthMeterWidget
-@onready var damage_label: Label = $VBoxContainer/DamageLabel
-@onready var armor_label: Label = $VBoxContainer/ArmorLabel
-@onready var companion_label = $VBoxContainer/CompanionLabel
+const PORTRAIT_CATALOG: PortraitCatalog = preload("res://characters/portrait_catalog.tres")
+
+@onready var name_label = $HBoxContainer/VBoxContainer/NameLabel
+@onready var health_meter_widget: HealthMeterWidget = $HBoxContainer/VBoxContainer/HealthMeterWidget
+@onready var damage_label: Label = $HBoxContainer/VBoxContainer/DamageLabel
+@onready var armor_label: Label = $HBoxContainer/VBoxContainer/ArmorLabel
+@onready var companion_label = $HBoxContainer/VBoxContainer/CompanionLabel
+@onready var portrait_texture_rect: TextureRect = $HBoxContainer/PortraitTextureRect
 
 
 func _ready() -> void:
 	update_stats()
+
 
 func update_stats() -> void:
 	var display_name  = CharacterManager.current.display_name
@@ -19,6 +23,7 @@ func update_stats() -> void:
 	var damage = CharacterManager.get_total_damage()
 	var armor = CharacterManager.current.armor
 	var number_of_companions = CharacterManager.current.companions.size()
+	var portrait: Portrait = PORTRAIT_CATALOG.get_portrait("000")
 
 	name_label.text = "Name: " + display_name
 	health_meter_widget.update_health_ui(hit_points)
@@ -26,3 +31,4 @@ func update_stats() -> void:
 	damage_label.text = "Schaden: " + str(damage)
 	armor_label.text = "Rüstung: " + str(armor)
 	companion_label.text = "Wölfe: " + str(number_of_companions)
+	portrait_texture_rect.texture = portrait.texture

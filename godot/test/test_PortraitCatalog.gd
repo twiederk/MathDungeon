@@ -1,6 +1,6 @@
 extends GutTest
 
-const CATALOG: PortraitCatalog = preload("res://characters/portrait_catalog.tres")
+const PORTRAIT_CATALOG: PortraitCatalog = preload("res://characters/portrait_catalog.tres")
 
 
 func test_portrait_id_resolves_to_portrait_and_texture():
@@ -8,7 +8,7 @@ func test_portrait_id_resolves_to_portrait_and_texture():
 	var portrait_id: String = "000"
 
 	# act
-	var portrait: Portrait = CATALOG.get_portrait(portrait_id)
+	var portrait: Portrait = PORTRAIT_CATALOG.get_portrait(portrait_id)
 
 	# assert
 	assert_eq(portrait.id, portrait_id, "Should return proper portrait")
@@ -20,7 +20,7 @@ func test_unknown_id_does_not_resolve():
 	var unknown_id: String = "unknown"
 
 	# act
-	var portrait: Portrait = CATALOG.get_portrait(unknown_id)
+	var portrait: Portrait = PORTRAIT_CATALOG.get_portrait(unknown_id)
 
 	# assert
 	assert_null(portrait, "Should return null, when no portrait is found")
