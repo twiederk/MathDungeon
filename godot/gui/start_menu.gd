@@ -7,8 +7,7 @@ extends Control
 
 
 func _ready():
-	if not SaveManager.character_exists(CharacterManager.DEFAULT_CHARACTER_ID):
-		load_button.set_disabled(true)
+	character_widget.update_stats()
 	start_button.grab_focus()
 
 
@@ -23,7 +22,7 @@ func _on_start_generic_button_pressed():
 
 
 func _on_load_button_pressed():
-	var target_id := CharacterManager.DEFAULT_CHARACTER_ID
+	var target_id = CharacterManager.DEFAULT_CHARACTER_ID
 	if CharacterManager.current.id == CharacterManager.DEFAULT_CHARACTER_ID:
 		target_id = CharacterManager.SECOND_CHARACTER_ID
 	elif CharacterManager.current.id == CharacterManager.SECOND_CHARACTER_ID:

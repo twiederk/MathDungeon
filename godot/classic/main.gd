@@ -16,6 +16,7 @@ func _ready() -> void:
 	_setup_signals()
 	_setup_limits_and_borders()
 	_setup_character_stats()
+	_setup_player_portrait()
 	_setup_companions()
 
 
@@ -50,6 +51,11 @@ func _setup_character_stats() -> void:
 	CharacterManager.current.weapon_damage_changed.connect(_on_player_stats_changed)
 	CharacterManager.current.armor_changed.connect(_on_player_stats_changed)
 	player_stats_sheet.update_stats(CharacterManager.current.hit_points, CharacterManager.current.max_hit_points, CharacterManager.get_total_damage(), CharacterManager.current.armor)
+
+
+func _setup_player_portrait() -> void:
+	var portrait: Portrait = CharacterManager.current.portrait
+	player.apply_portrait(portrait.texture)
 
 
 func _on_enemy_encountered(enemy: StaticBody2D) -> void:

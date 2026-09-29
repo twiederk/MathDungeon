@@ -111,20 +111,17 @@ The `if hit_points > 0` guard stays: the character file is never written while d
 entries. A hand-edited save must never crash the game or cause an arbitrary resource path to load.
 The generated `id` is the filename — never the gamer-supplied name.
 
-### Phase 3 — Portrait catalog
+### ✅ Phase 3 — Portrait catalog
 
 Create `characters/portrait_catalog.tres`: an array of `{ id, display_name, texture }`. Put the
 images in `res://characters/portraits/`. Lookup is strictly id-based.
 
-### Phase 4 — `CharacterWidget` renders a character
+### ✅ Phase 4 — `CharacterWidget` renders a character
 
 Replace the global `PlayerStats` read in `gui/character_widget.gd` with `setup(character: Character)`.
-Replace the placeholder `CanvasTexture` in `character_widget.tscn` with a real `TextureRect` bound to
-the portrait, plus a `Label` for the name.
+Add `TextureRect` to `character_widget.tscn` to display the portrait.
 
-Leave an empty `HBoxContainer` named `InventoryStrip` in the scene so Phase 9 is purely additive.
-
-**First visible result: the character has a face and a name.**
+**First visible result: the character has a protrait.**
 
 ### Phase 5 — Character creation dialog
 

@@ -15,6 +15,11 @@ func _physics_process(_delta: float) -> void:
 	_update_sprite_direction(dir.x)
 
 
+func apply_portrait(texture: Texture2D) -> void:
+	if texture:
+		sprite_2d.texture = texture
+
+
 func _update_sprite_direction(horizontal_direction: float) -> void:
 	if horizontal_direction > 0:
 		sprite_2d.flip_h = true

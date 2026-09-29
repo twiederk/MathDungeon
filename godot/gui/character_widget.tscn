@@ -6,14 +6,14 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_m5e2a"]
 
 [node name="CharacterWidget" type="Control" unique_id=1751308748]
-custom_minimum_size = Vector2(130, 150)
+custom_minimum_size = Vector2(200, 150)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_nnimf")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1254566602]
 self_modulate = Color(0.7764706, 0.6039216, 0.3882353, 1)
-custom_minimum_size = Vector2(120, 150)
+custom_minimum_size = Vector2(190, 150)
 layout_mode = 0
 offset_right = 120.0
 offset_bottom = 96.0
@@ -25,24 +25,35 @@ layout_mode = 0
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 110.0
-offset_bottom = 110.0
+offset_bottom = 142.0
 
 [node name="NameLabel" type="Label" parent="VBoxContainer" unique_id=6941428]
 layout_mode = 2
 text = "Name: Steve"
 
-[node name="HealthMeterWidget" parent="VBoxContainer" unique_id=2055304537 instance=ExtResource("2_nnimf")]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=753658637]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=391675735]
+layout_mode = 2
+
+[node name="HealthMeterWidget" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=2055304537 instance=ExtResource("2_nnimf")]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 
-[node name="DamageLabel" type="Label" parent="VBoxContainer" unique_id=373431063]
+[node name="DamageLabel" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=373431063]
 layout_mode = 2
 text = "Schaden: 1"
 
-[node name="ArmorLabel" type="Label" parent="VBoxContainer" unique_id=1910828359]
+[node name="ArmorLabel" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1910828359]
 layout_mode = 2
 text = "Rüstung: 0"
 
-[node name="CompanionLabel" type="Label" parent="VBoxContainer" unique_id=1191089324]
+[node name="CompanionLabel" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1191089324]
 layout_mode = 2
 text = "Wölfe: 0"
+
+[node name="PortraitTextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer" unique_id=854667893]
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
+layout_mode = 2

@@ -1,6 +1,8 @@
 class_name Character
 
 
+const PORTRAIT_CATALOG: PortraitCatalog = preload("res://characters/portrait_catalog.tres")
+
 signal weapon_damage_changed
 signal armor_changed
 signal has_lighter_changed
@@ -9,6 +11,9 @@ signal hit_points_changed
 var id: String
 var display_name: String
 var portrait_id: String
+var portrait: Portrait:
+	get:
+		return PORTRAIT_CATALOG.get_portrait(portrait_id)
 var max_hit_points: int = 5
 var companions: Array[String] = []
 

@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="PortraitCatalog" format=3 uid="uid://c2f3jx21g0atd"]
+
+[ext_resource type="Script" uid="uid://dvyc3oiy0b21s" path="res://characters/portrait_catalog.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://df7gjeri8djth" path="res://characters/portrait.gd" id="2_portrait"]
+[ext_resource type="Texture2D" uid="uid://0rfglmwytctn" path="res://characters/portraits/000.png" id="3_000"]
+[ext_resource type="Texture2D" uid="uid://bxvt43d1iihg" path="res://characters/portraits/001.png" id="4_001"]
+[ext_resource type="Texture2D" uid="uid://bky1yrxl1yfeu" path="res://characters/portraits/002.png" id="5_002"]
+[ext_resource type="Texture2D" uid="uid://cmg6vs4th6ndt" path="res://characters/portraits/003.png" id="6_003"]
+[ext_resource type="Texture2D" uid="uid://bgqm62m8kq2pu" path="res://characters/portraits/004.png" id="7_004"]
+
+[sub_resource type="Resource" id="Portrait000"]
+script = ExtResource("2_portrait")
+id = "000"
+texture = ExtResource("3_000")
+
+[sub_resource type="Resource" id="Portrait001"]
+script = ExtResource("2_portrait")
+id = "001"
+texture = ExtResource("4_001")
+
+[sub_resource type="Resource" id="Portrait002"]
+script = ExtResource("2_portrait")
+id = "002"
+texture = ExtResource("5_002")
+
+[sub_resource type="Resource" id="Portrait003"]
+script = ExtResource("2_portrait")
+id = "003"
+texture = ExtResource("6_003")
+
+[sub_resource type="Resource" id="Portrait004"]
+script = ExtResource("2_portrait")
+id = "004"
+texture = ExtResource("7_004")
+
+[resource]
+script = ExtResource("1_script")
+portraits = [SubResource("Portrait000"), SubResource("Portrait001"), SubResource("Portrait002"), SubResource("Portrait003"), SubResource("Portrait004")]
