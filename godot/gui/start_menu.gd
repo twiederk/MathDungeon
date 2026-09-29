@@ -7,8 +7,7 @@ extends Control
 
 
 func _ready():
-	if not SaveManager.character_exists(CharacterManager.DEFAULT_CHARACTER_ID):
-		load_button.set_disabled(true)
+	character_widget.update_stats()
 	start_button.grab_focus()
 
 

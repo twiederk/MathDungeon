@@ -12,18 +12,15 @@ const PORTRAIT_CATALOG: PortraitCatalog = preload("res://characters/portrait_cat
 @onready var portrait_texture_rect: TextureRect = $VBoxContainer/HBoxContainer/PortraitTextureRect
 
 
-func _ready() -> void:
-	update_stats()
-
-
 func update_stats() -> void:
-	var display_name  = CharacterManager.current.display_name
-	var hit_points = CharacterManager.current.hit_points
-	var max_hit_points = CharacterManager.current.max_hit_points
+	var character: Character = CharacterManager.current
+	var display_name  = character.display_name
+	var hit_points = character.hit_points
+	var max_hit_points = character.max_hit_points
 	var damage = CharacterManager.get_total_damage()
-	var armor = CharacterManager.current.armor
-	var number_of_companions = CharacterManager.current.companions.size()
-	var portrait: Portrait = PORTRAIT_CATALOG.get_portrait("000")
+	var armor = character.armor
+	var number_of_companions = character.companions.size()
+	var portrait: Portrait = PORTRAIT_CATALOG.get_portrait(character.portrait_id)
 
 	name_label.text = "Name: " + display_name
 	health_meter_widget.update_health_ui(hit_points)
