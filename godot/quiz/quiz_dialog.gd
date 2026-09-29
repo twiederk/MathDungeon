@@ -53,25 +53,25 @@ func _setup_time_limit_progress_bar() -> void:
 
 func _setup_enemy_stats_sheet() -> void:
 	enemy.health_changed.connect(_on_enemy_health_changed)
-	enemy_stats_sheet.update_stats(enemy.hit_points, enemy.stats.max_hit_points, enemy.stats.damage, enemy.stats.armor)
+	enemy_stats_sheet.update_stats(enemy.hit_points, enemy.stats.get_max_hit_points(), enemy.stats.get_damage(), enemy.stats.get_armor())
 
 
 
 func _start_timers() -> void:
 	time_limit_progress_bar.value = 0
-	time_limit_progress_bar.max_value = enemy.stats.time_limit
-	answer_timer.wait_time = enemy.stats.time_limit
+	time_limit_progress_bar.max_value = enemy.stats.get_time_limit()
+	answer_timer.wait_time = enemy.stats.get_time_limit()
 	answer_timer.start()
 	progress_timer.start()
 
 
 func _create_exercise() -> Exercise:
-	var arithmetic = enemy.stats.arithmetic.pick_random()
+	var arithmetic = enemy.stats.get_arithmetic().pick_random()
 	match arithmetic:
 		EnemyStats.ArithmeticType.ADDITION:
-			return addition_exercise_generator.create_exercise(enemy.stats.max_number)
+			return addition_exercise_generator.create_exercise(enemy.stats.get_max_number())
 		EnemyStats.ArithmeticType.SUBSTRACTION:
-			return subtraction_exercise_generator.create_exercise(enemy.stats.max_number)
+			return subtraction_exercise_generator.create_exercise(enemy.stats.get_max_number())
 		EnemyStats.ArithmeticType.MULTIPLICATION:
 			return multiplication_exercise_generator.create_exercise()
 		EnemyStats.ArithmeticType.DIVISION:
@@ -81,16 +81,16 @@ func _create_exercise() -> Exercise:
 		EnemyStats.ArithmeticType.TIMES_TABLE:
 			return times_table_exercise_generator.create_exercise()
 		EnemyStats.ArithmeticType.DIGIT_SUM:
-			return digit_sum_exercise_generator.create_exercise(enemy.stats.max_number)
+			return digit_sum_exercise_generator.create_exercise(enemy.stats.get_max_number())
 		EnemyStats.ArithmeticType.NUMBER_RIDDLE:
 			return number_riddle_exercise_generator.create_exercise()
 		EnemyStats.ArithmeticType.NEXT_NUMBER:
-			return next_number_exercise_generator.create_exercise(enemy.stats.max_number)
+			return next_number_exercise_generator.create_exercise(enemy.stats.get_max_number())
 		EnemyStats.ArithmeticType.VOCABULARY:
 			return vocabulary_exercise_generator.create_exercise()
 		EnemyStats.ArithmeticType.VOCABULARY_COLOR:
 			return vocabulary_color_exercise_generator.create_exercise()
-	return addition_exercise_generator.create_exercise(enemy.stats.max_number)
+	return addition_exercise_generator.create_exercise(enemy.stats.get_max_number())
 
 
 func _on_text_submitted(text: String) -> void:
@@ -128,7 +128,7 @@ func _answer_correct() -> void:
 
 
 func _answer_incorrect() -> void:
-	var player_hit_points = CharacterManager.current.hurt(enemy.stats.damage)
+	var player_hit_points = CharacterManager.current.hurt(enemy.stats.get_damage())
 	if player_hit_points > 0:
 		question_label.text = "Nicht ganz. Versuch es nochmal:\n" + exercise.question
 		answer_line_edit.text = ""
@@ -163,7 +163,7 @@ func _close_dialog() -> void:
 
 
 func _on_answer_timer_timeout() -> void:
-	time_limit_progress_bar.value = enemy.stats.time_limit
+	time_limit_progress_bar.value = enemy.stats.get_time_limit()
 	progress_timer.stop()
 	_answer_timeout()
 
@@ -174,7 +174,7 @@ func _on_progress_timer_timeout() -> void:
 
 
 func _answer_timeout() -> void:
-	var player_hit_points = CharacterManager.current.hurt(enemy.stats.damage)
+	var player_hit_points = CharacterManager.current.hurt(enemy.stats.get_damage())
 	if player_hit_points > 0:
 		exercise = _create_exercise()
 		question_label.text = "*** Zeitlimit überschritten ***\n" + exercise.question

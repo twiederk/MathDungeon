@@ -6,4 +6,5 @@
 script = ExtResource("1_umowu")
 name = "Villager Baby"
 arithmetic = Array[int]([8])
+hard_time_limit = 30
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

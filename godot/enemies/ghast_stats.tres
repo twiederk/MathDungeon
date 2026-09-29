@@ -8,4 +8,7 @@ name = "Ghast"
 max_hit_points = 12
 damage = 2
 arithmetic = Array[int]([0, 1, 2, 3])
+hard_max_hit_points = 18
+hard_damage = 3
+hard_time_limit = 15
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

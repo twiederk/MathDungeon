@@ -1,14 +1,30 @@
 class_name StartMenu
 extends Control
 
+const DIFFICULTY_LABELS := {
+	PlayerStats.DifficultyLevel.NORMAL: "Schwierigkeitsgrad: normal",
+	PlayerStats.DifficultyLevel.HARD: "Schwierigkeitsgrad: schwer"
+}
+
 @onready var start_button = $CenterContainer/VBoxContainer/StartButton
 @onready var load_button = $CenterContainer/VBoxContainer/LoadButton
+@onready var difficulty_button: Button = $CenterContainer/VBoxContainer/DifficultyButton
 @onready var character_widget: CharacterWidget = $CharacterWidget
 
 
 func _ready():
 	character_widget.update_stats()
+	_update_difficulty_button()
 	start_button.grab_focus()
+
+
+func _on_difficulty_button_pressed() -> void:
+	PlayerStats.toggle_difficulty_level()
+	_update_difficulty_button()
+
+
+func _update_difficulty_button() -> void:
+	difficulty_button.text = DIFFICULTY_LABELS[PlayerStats.difficulty_level]
 
 
 func _on_start_game_button_pressed():

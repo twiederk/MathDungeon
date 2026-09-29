@@ -7,4 +7,7 @@ script = ExtResource("1_3l6qx")
 name = "Piglin Zombie"
 max_hit_points = 7
 arithmetic = Array[int]([5, 3])
+hard_max_hit_points = 10
+hard_damage = 2
+hard_time_limit = 20
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

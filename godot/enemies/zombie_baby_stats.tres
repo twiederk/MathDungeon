@@ -5,4 +5,6 @@
 [resource]
 script = ExtResource("1_fqpqn")
 max_number = 10
+hard_max_number = 20
+hard_time_limit = 30
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

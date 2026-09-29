@@ -7,4 +7,7 @@ script = ExtResource("1_njn3i")
 name = "Zombie"
 max_hit_points = 2
 max_number = 20
+hard_max_hit_points = 3
+hard_max_number = 40
+hard_time_limit = 30
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"
