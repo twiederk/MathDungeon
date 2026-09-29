@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://d6w4n2q8k3mvp"]
+[gd_scene format=3 uid="uid://ci820ty0vq4x"]
 
 [ext_resource type="Script" uid="uid://b7x46e8sw1gka" path="res://enemies/enemy.gd" id="1_wds34"]
 [ext_resource type="Resource" uid="uid://bgj30bkx03xsa" path="res://enemies/vindicator_stats.tres" id="2_wds34"]
