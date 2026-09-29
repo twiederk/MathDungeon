@@ -2,8 +2,6 @@ class_name CharacterWidget
 extends Control
 
 
-const PORTRAIT_CATALOG: PortraitCatalog = preload("res://characters/portrait_catalog.tres")
-
 @onready var name_label: Label = $VBoxContainer/NameLabel
 @onready var health_meter_widget: HealthMeterWidget = $VBoxContainer/HBoxContainer/VBoxContainer/HealthMeterWidget
 @onready var damage_label: Label = $VBoxContainer/HBoxContainer/VBoxContainer/DamageLabel
@@ -20,7 +18,7 @@ func update_stats() -> void:
 	var damage = CharacterManager.get_total_damage()
 	var armor = character.armor
 	var number_of_companions = character.companions.size()
-	var portrait: Portrait = PORTRAIT_CATALOG.get_portrait(character.portrait_id)
+	var portrait: Portrait = character.portrait
 
 	name_label.text = "Name: " + display_name
 	health_meter_widget.update_health_ui(hit_points)
