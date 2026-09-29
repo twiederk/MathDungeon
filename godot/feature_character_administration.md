@@ -116,7 +116,7 @@ The generated `id` is the filename — never the gamer-supplied name.
 Create `characters/portrait_catalog.tres`: an array of `{ id, display_name, texture }`. Put the
 images in `res://characters/portraits/`. Lookup is strictly id-based.
 
-### Phase 4 — `CharacterWidget` renders a character
+### ✅ Phase 4 — `CharacterWidget` renders a character
 
 Replace the global `PlayerStats` read in `gui/character_widget.gd` with `setup(character: Character)`.
 Add `TextureRect` to `character_widget.tscn` to display the portrait.
