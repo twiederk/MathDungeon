@@ -6,10 +6,6 @@ signal menu_closed()
 @onready var resume_button = $CenterContainer/VBoxContainer/ResumeButton
 
 
-func _ready():
-	pass
-
-
 func show_menu():
 	show()
 	resume_button.grab_focus()
