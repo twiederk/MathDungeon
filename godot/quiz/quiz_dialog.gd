@@ -139,6 +139,8 @@ func _answer_incorrect() -> void:
 func _game_over() -> void:
 	var button : Button
 	var message: String
+	answer_line_edit.text = ""
+	answer_line_edit.visible = false
 	if HighscoreManager.is_highscore(PlayerStats.score):
 		message = "Du hast alle Lebenspunkte verloren.\nDu hast einen neuen Bestenwert erspielt!!!"
 		button = name_entry_button
@@ -148,8 +150,6 @@ func _game_over() -> void:
 	button.visible = true
 	button.grab_focus()
 	question_label.text = message
-	answer_line_edit.text = ""
-	answer_line_edit.visible = false
 	if enemy.has_time_limit():
 		answer_timer.stop()
 		progress_timer.stop()
@@ -200,5 +200,10 @@ func _on_name_entry_button_pressed():
 
 
 func _physics_process(_delta):
-	if visible and not answer_line_edit.is_editing():
+	print(_is_answer_focus_required())
+	if _is_answer_focus_required():
 		answer_line_edit.edit()
+
+
+func _is_answer_focus_required() -> bool:
+	return visible and answer_line_edit.visible and not answer_line_edit.is_editing()
