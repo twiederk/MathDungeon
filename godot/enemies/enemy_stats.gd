@@ -36,19 +36,19 @@ const NOT_SET: int = -1
 
 
 func get_max_hit_points() -> int:
-	if _use_hard() and hard_max_hit_points >= 0:
+	if _use_hard() and hard_max_hit_points != NOT_SET:
 		return hard_max_hit_points
 	return max_hit_points
 
 
 func get_damage() -> int:
-	if _use_hard() and hard_damage >= 0:
+	if _use_hard() and hard_damage != NOT_SET:
 		return hard_damage
 	return damage
 
 
 func get_armor() -> int:
-	if _use_hard() and hard_armor >= 0:
+	if _use_hard() and hard_armor != NOT_SET:
 		return hard_armor
 	return armor
 
@@ -60,7 +60,7 @@ func get_arithmetic() -> Array[ArithmeticType]:
 
 
 func get_max_number() -> int:
-	if _use_hard() and hard_max_number >= 0:
+	if _use_hard() and hard_max_number != NOT_SET:
 		return hard_max_number
 	return max_number
 
