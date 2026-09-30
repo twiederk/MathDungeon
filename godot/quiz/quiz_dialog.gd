@@ -200,7 +200,6 @@ func _on_name_entry_button_pressed():
 
 
 func _physics_process(_delta):
-	print(_is_answer_focus_required())
 	if _is_answer_focus_required():
 		answer_line_edit.edit()
 
