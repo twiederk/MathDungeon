@@ -7,4 +7,7 @@ script = ExtResource("1_638kb")
 name = "Skeleton"
 max_hit_points = 3
 arithmetic = Array[int]([0, 1])
+hard_max_hit_points = 5
+hard_damage = 2
+hard_time_limit = 25
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

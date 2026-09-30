@@ -15,7 +15,7 @@ signal health_changed
 
 
 func _ready() -> void:
-	hit_points = stats.max_hit_points
+	hit_points = stats.get_max_hit_points()
 	detection_area.body_entered.connect(_on_body_entered)
 
 
@@ -25,9 +25,9 @@ func _on_body_entered(body: Node) -> void:
 		
 		
 func has_time_limit() -> bool:
-	return stats.time_limit != -1
+	return stats.has_time_limit()
 
 
 func hurt(damage: int) -> int:
-	hit_points -= max(1, damage - stats.armor)
+	hit_points -= max(1, damage - stats.get_armor())
 	return hit_points

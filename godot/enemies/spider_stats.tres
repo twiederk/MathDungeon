@@ -8,4 +8,7 @@ name = "Spider"
 max_hit_points = 5
 arithmetic = Array[int]([0, 1])
 time_limit = 30
+hard_max_hit_points = 8
+hard_damage = 2
+hard_time_limit = 20
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

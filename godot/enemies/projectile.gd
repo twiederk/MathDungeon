@@ -34,7 +34,7 @@ func _on_hit_area_body_entered(body: Node) -> void:
 	if body.name == "Player":
 		var enemy = Enemy.new()
 		enemy.stats = projectile_stats
-		enemy.hit_points = projectile_stats.max_hit_points
+		enemy.hit_points = projectile_stats.get_max_hit_points()
 		encountered.emit(enemy)
 		queue_free()
 	elif body.name == "TileMapLayer":

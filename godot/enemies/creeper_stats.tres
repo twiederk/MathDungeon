@@ -7,4 +7,7 @@ script = ExtResource("1_7m7q8")
 name = "Creeper"
 max_hit_points = 4
 arithmetic = Array[int]([4])
+hard_max_hit_points = 6
+hard_damage = 2
+hard_time_limit = 25
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"
