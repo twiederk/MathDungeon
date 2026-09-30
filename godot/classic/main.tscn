@@ -49,7 +49,6 @@
 [ext_resource type="PackedScene" uid="uid://dhxipuoeb6vgp" path="res://enemies/evoker.tscn" id="48_0cbny"]
 [ext_resource type="PackedScene" uid="uid://crn8o2b0rjowu" path="res://enemies/patrolling_vindicator.tscn" id="49_hrvbo"]
 
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8e4i"]
 size = Vector2(380, 182)
 

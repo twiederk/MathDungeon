@@ -35,4 +35,4 @@ texture = ExtResource("7_004")
 
 [resource]
 script = ExtResource("1_script")
-portraits = [SubResource("Portrait000"), SubResource("Portrait001"), SubResource("Portrait002"), SubResource("Portrait003"), SubResource("Portrait004")]
+portraits = Array[ExtResource("2_portrait")]([SubResource("Portrait000"), SubResource("Portrait001"), SubResource("Portrait002"), SubResource("Portrait003"), SubResource("Portrait004")])

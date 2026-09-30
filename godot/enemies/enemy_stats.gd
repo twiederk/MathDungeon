@@ -16,21 +16,22 @@ enum ArithmeticType {
 	VOCABULARY_COLOR
 }
 
+const NOT_SET: int = -1
+
 @export var name: String = "Enemie"
 @export var max_hit_points: int = 1
 @export var damage: int = 1
 @export var armor: int = 0
 @export var arithmetic: Array[ArithmeticType] = [ArithmeticType.ADDITION]
 @export var max_number: int = 100
-@export var time_limit: int = -1
+@export var time_limit: int = NOT_SET
 
-# Sentinels mean "not set, fall back to the normal value".
 @export_group("Hard")
-@export var hard_max_hit_points: int = -1
-@export var hard_damage: int = -1
-@export var hard_armor: int = -1
+@export var hard_max_hit_points: int = NOT_SET
+@export var hard_damage: int = NOT_SET
+@export var hard_armor: int = NOT_SET
 @export var hard_arithmetic: Array[ArithmeticType] = []
-@export var hard_max_number: int = -1
+@export var hard_max_number: int = NOT_SET
 @export var hard_time_limit: int = 0
 
 
@@ -71,7 +72,7 @@ func get_time_limit() -> int:
 
 
 func has_time_limit() -> bool:
-	return get_time_limit() != -1
+	return get_time_limit() != NOT_SET
 
 
 func get_score() -> int:
@@ -83,7 +84,7 @@ func get_score() -> int:
 	score += get_armor() * 4
 	
 	var limit: int = get_time_limit()
-	if limit != -1:
+	if limit != NOT_SET:
 		score += (60 - limit) * 4
 	
 	return score
