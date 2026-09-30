@@ -32,7 +32,7 @@ const NOT_SET: int = -1
 @export var hard_armor: int = NOT_SET
 @export var hard_arithmetic: Array[ArithmeticType] = []
 @export var hard_max_number: int = NOT_SET
-@export var hard_time_limit: int = 0
+@export var hard_time_limit: int = NOT_SET
 
 
 func get_max_hit_points() -> int:
@@ -66,7 +66,7 @@ func get_max_number() -> int:
 
 
 func get_time_limit() -> int:
-	if _use_hard() and hard_time_limit != 0:
+	if _use_hard() and hard_time_limit != NOT_SET:
 		return hard_time_limit
 	return time_limit
 

@@ -117,7 +117,6 @@ func test_zombie_stats_hard_values():
 	assert_eq(zombie_stats.get_max_number(), 40)
 	assert_eq(zombie_stats.get_time_limit(), 30)
 	assert_true(zombie_stats.has_time_limit())
-	# not overridden, falls back to the normal value
 	assert_eq(zombie_stats.get_damage(), 1)
 	assert_eq(zombie_stats.get_armor(), 0)
 
@@ -145,15 +144,15 @@ func test_unset_hard_values_fall_back_to_normal():
 	assert_eq(stats.get_score(), normal_score)
 
 
-func test_hard_time_limit_minus_one_disables_time_limit():
+func test_hard_time_limit_not_set_falls_back_to_normal_time_limit():
 	# Arrange
 	var stats := EnemyStats.new()
 	stats.time_limit = 20
-	stats.hard_time_limit = -1
+	stats.hard_time_limit = EnemyStats.NOT_SET
 	
 	# Act
 	PlayerStats.difficulty_level = PlayerStats.DifficultyLevel.HARD
 	
 	# Assert
-	assert_eq(stats.get_time_limit(), -1)
-	assert_false(stats.has_time_limit())
+	assert_eq(stats.get_time_limit(), 20)
+	assert_true(stats.has_time_limit())
