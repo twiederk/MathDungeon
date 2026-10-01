@@ -33,8 +33,10 @@ func _setup_portrait_grid() -> void:
 		var texture_rect := TextureRect.new()
 		texture_rect.texture = portrait.texture
 		texture_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
-		texture_rect.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		texture_rect.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		texture_rect.anchor_left = 0.0
+		texture_rect.anchor_top = 0.0
+		texture_rect.anchor_right = 1.0
+		texture_rect.anchor_bottom = 1.0
 		button.add_child(texture_rect)
 		
 		button.set_meta("portrait_id", portrait.id)
