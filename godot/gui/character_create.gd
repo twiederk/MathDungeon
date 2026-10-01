@@ -16,6 +16,7 @@ var selected_portrait_id: String = CharacterManager.DEFAULT_CHARACTER_ID
 
 func _ready() -> void:
 	_setup_portrait_grid()
+	name_input.grab_focus()
 
 
 func _setup_portrait_grid() -> void:

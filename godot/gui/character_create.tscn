@@ -19,7 +19,6 @@ offset_bottom = 360.0
 texture = ExtResource("2_45yp1")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1676137460]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -90,6 +89,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Cancel"
 
+[connection signal="text_changed" from="VBoxContainer/NameContainer/NameInput" to="." method="_on_name_changed"]
 [connection signal="pressed" from="VBoxContainer/ButtonContainer/CreateButton" to="." method="_on_create_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonContainer/CancelButton" to="." method="_on_cancel_pressed"]
-[connection signal="text_changed" from="VBoxContainer/NameContainer/NameInput" to="." method="_on_name_changed"]
