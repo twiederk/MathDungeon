@@ -16,9 +16,6 @@ var selected_portrait_id: String = CharacterManager.DEFAULT_CHARACTER_ID
 
 func _ready() -> void:
 	_setup_portrait_grid()
-	create_button.pressed.connect(_on_create_pressed)
-	cancel_button.pressed.connect(_on_cancel_pressed)
-	name_input.text_changed.connect(_on_name_changed)
 
 
 func _setup_portrait_grid() -> void:
