@@ -2,8 +2,8 @@ class_name StartMenu
 extends Control
 
 const DIFFICULTY_LABELS := {
-	PlayerStats.DifficultyLevel.NORMAL: "Schwierigkeitsgrad: normal",
-	PlayerStats.DifficultyLevel.HARD: "Schwierigkeitsgrad: schwer"
+	GameSession.DifficultyLevel.NORMAL: "Schwierigkeitsgrad: normal",
+	GameSession.DifficultyLevel.HARD: "Schwierigkeitsgrad: schwer"
 }
 
 @onready var start_button = $CenterContainer/VBoxContainer/StartButton
@@ -13,26 +13,29 @@ const DIFFICULTY_LABELS := {
 
 
 func _ready():
+	SaveManager.load_and_activate_character(CharacterManager.current.id)
 	character_widget.update_stats()
 	_update_difficulty_button()
 	start_button.grab_focus()
 
 
 func _on_difficulty_button_pressed() -> void:
-	PlayerStats.toggle_difficulty_level()
+	GameSession.toggle_difficulty_level()
 	_update_difficulty_button()
 
 
 func _update_difficulty_button() -> void:
-	difficulty_button.text = DIFFICULTY_LABELS[PlayerStats.difficulty_level]
+	difficulty_button.text = DIFFICULTY_LABELS[GameSession.difficulty_level]
 
 
 func _on_start_game_button_pressed():
+	GameSession.reset()
 	AchievementManager.reset()
 	get_tree().change_scene_to_file("res://classic/main.tscn")
 
 
 func _on_start_generic_button_pressed():
+	GameSession.reset()
 	AchievementManager.reset()
 	get_tree().change_scene_to_file("res://procedural/proc_gen_world.tscn")
 
@@ -45,8 +48,8 @@ func _on_load_button_pressed():
 		target_id = CharacterManager.THIRD_CHARACTER_ID
 	else:
 		target_id = CharacterManager.DEFAULT_CHARACTER_ID
-	if SaveManager.load_and_activate_character(target_id):
-		character_widget.update_stats()
+	SaveManager.load_and_activate_character(target_id)
+	character_widget.update_stats()
 
 
 func _on_highscores_button_pressed():

@@ -11,7 +11,7 @@ var number_format = NumberFormat.new()
 
 
 func _ready():
-	score_label.text = "Dein Punktestand: %s" % number_format.format(PlayerStats.score)
+	score_label.text = "Dein Punktestand: %s" % number_format.format(GameSession.score)
 	name_line_edit.text = ""
 	name_line_edit.grab_focus()
 
@@ -28,5 +28,5 @@ func _submit_name() -> void:
 	var player_name = name_line_edit.text.strip_edges()
 	if player_name.is_empty():
 		return
-	HighscoreManager.add_score(player_name, PlayerStats.score)
+	HighscoreManager.add_score(player_name, GameSession.score)
 	get_tree().change_scene_to_file("res://gui/highscore_gui.tscn")

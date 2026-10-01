@@ -12,6 +12,7 @@ signal eyes_of_ender_changed
 
 
 var difficulty_level: DifficultyLevel = DifficultyLevel.NORMAL
+var quiz_dialog_displayed: bool = false
 
 
 var eyes_of_ender: int = 0:

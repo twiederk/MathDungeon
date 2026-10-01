@@ -9,7 +9,7 @@ var number_format = NumberFormat.new()
 
 
 func _ready() -> void:
-	PlayerStats.score_changed.connect(_on_score_changed)
+	GameSession.score_changed.connect(_on_score_changed)
 	update_score()
 
 
@@ -18,4 +18,4 @@ func _on_score_changed() -> void:
 
 
 func update_score() -> void:
-	score_label.text = "Punkte: " + number_format.format(PlayerStats.score)
+	score_label.text = "Punkte: " + number_format.format(GameSession.score)

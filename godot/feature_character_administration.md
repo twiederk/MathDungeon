@@ -31,7 +31,7 @@ save file.
 
 ## Current state
 
-- `PlayerStats` (autoload) mixes persistent character identity (`weapon_damage`, `armor`,
+- `GameSession` (autoload) mixes persistent character identity (`weapon_damage`, `armor`,
   `companion_paths`) with per-run state (`score`, `hit_points`, `eyes_of_ender`, `has_lighter`).
 - Items are fire-and-forget: `Sword` and `Helmet` write `max(current, new)` into an int and
   `queue_free()`. There is no record of *which* item was picked up.
@@ -60,7 +60,7 @@ var companions: Array[String] = []
 
 Add a `CharacterManager` autoload holding `current: Character`.
 
-Reduce `PlayerStats` to run state only (`hit_points`, `score`, `eyes_of_ender`) and delegate
+Reduce `GameSession` to run state only (`hit_points`, `score`, `eyes_of_ender`) and delegate
 `max_hit_points` to `CharacterManager.current`.
 
 **Critical:** expose the *API* now, even though the implementation is trivial:
@@ -79,7 +79,7 @@ func has_item(item_id: String) -> bool:
 Every consumer (`quiz_dialog.gd`, `main.gd`, `StatsSheet`, `hurt()`) calls these from day one. Phase 9
 then becomes a pure internal swap and no call site changes twice.
 
-Update `test/test_PlayerStats.gd`.
+Update `test/test_GameSession.gd`.
 
 ### ✅ Phase 2 — Per-character persistence
 
@@ -118,7 +118,7 @@ images in `res://characters/portraits/`. Lookup is strictly id-based.
 
 ### ✅ Phase 4 — `CharacterWidget` renders a character
 
-Replace the global `PlayerStats` read in `gui/character_widget.gd` with `setup(character: Character)`.
+Replace the global `GameSession` read in `gui/character_widget.gd` with `setup(character: Character)`.
 Add `TextureRect` to `character_widget.tscn` to display the portrait.
 
 **First visible result: the character has a protrait.**
@@ -203,7 +203,7 @@ func add_item(item_id: String) -> void:
 
 
 func _save_if_alive() -> void:
-	if PlayerStats.hit_points > 0:
+	if GameSession.hit_points > 0:
 		SaveManager.save_character(self)
 ```
 

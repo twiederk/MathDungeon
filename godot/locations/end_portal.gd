@@ -14,7 +14,7 @@ var active: bool = false
 
 
 func _ready() -> void:
-	PlayerStats.eyes_of_ender_changed.connect(_on_eyes_of_ender_changed)
+	GameSession.eyes_of_ender_changed.connect(_on_eyes_of_ender_changed)
 	_on_eyes_of_ender_changed()
 
 
@@ -33,13 +33,13 @@ func _on_eyes_of_ender_changed() -> void:
 func _display_eyes_of_ender() -> void:
 	var eyes = eyes_root.get_children()
 	for index in range(eyes.size()):
-		if index < PlayerStats.eyes_of_ender:
+		if index < GameSession.eyes_of_ender:
 			eyes[index].visible = true
 		else:
 			eyes[index].visible = false
 
 
 func _activate_portal() -> void:
-	if PlayerStats.eyes_of_ender >= REQUIRED_EYES_OF_ENDER:
+	if GameSession.eyes_of_ender >= REQUIRED_EYES_OF_ENDER:
 		active = true
 		inner_sprite_2d.visible = true
