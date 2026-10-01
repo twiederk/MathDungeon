@@ -15,7 +15,7 @@ var paused = false:
 
 
 func _process(_delta) -> void:
-	if PlayerStats.quiz_dialog_displayed:
+	if GameSession.quiz_dialog_displayed:
 		_hide_menus()
 		return
 	if Input.is_action_just_pressed("pause_menu"):

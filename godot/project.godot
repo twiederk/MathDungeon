@@ -22,7 +22,7 @@ config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
-PlayerStats="*res://classic/player_stats.gd"
+GameSession="*res://classic/game_session.gd"
 Sound="*res://classic/sound.tscn"
 SaveManager="*res://classic/save_manager.gd"
 HighscoreManager="*res://classic/highscore_manager.gd"

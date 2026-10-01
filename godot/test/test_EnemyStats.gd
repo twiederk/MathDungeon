@@ -18,7 +18,7 @@ func before_each():
 
 
 func after_each():
-	PlayerStats.difficulty_level = PlayerStats.DifficultyLevel.NORMAL
+	GameSession.difficulty_level = GameSession.DifficultyLevel.NORMAL
 	zombie_stats = null
 	skeleton_stats = null
 	piglin_stats = null
@@ -77,7 +77,7 @@ func test_enderdragon_stats_score():
 
 func test_zombie_stats_score_hard():
 	# Arrange
-	PlayerStats.difficulty_level = PlayerStats.DifficultyLevel.HARD
+	GameSession.difficulty_level = GameSession.DifficultyLevel.HARD
 	
 	# Act
 	var actual_score = zombie_stats.get_score()
@@ -88,7 +88,7 @@ func test_zombie_stats_score_hard():
 
 func test_spider_stats_score_hard():
 	# Arrange
-	PlayerStats.difficulty_level = PlayerStats.DifficultyLevel.HARD
+	GameSession.difficulty_level = GameSession.DifficultyLevel.HARD
 	
 	# Act
 	var actual_score = spider_stats.get_score()
@@ -99,7 +99,7 @@ func test_spider_stats_score_hard():
 
 func test_enderdragon_stats_score_hard():
 	# Arrange
-	PlayerStats.difficulty_level = PlayerStats.DifficultyLevel.HARD
+	GameSession.difficulty_level = GameSession.DifficultyLevel.HARD
 	
 	# Act
 	var actual_score = enderdragon_stats.get_score()
@@ -110,7 +110,7 @@ func test_enderdragon_stats_score_hard():
 
 func test_zombie_stats_hard_values():
 	# Arrange
-	PlayerStats.difficulty_level = PlayerStats.DifficultyLevel.HARD
+	GameSession.difficulty_level = GameSession.DifficultyLevel.HARD
 	
 	# Assert
 	assert_eq(zombie_stats.get_max_hit_points(), 3)
@@ -132,7 +132,7 @@ func test_unset_hard_values_fall_back_to_normal():
 	var normal_score := stats.get_score()
 	
 	# Act
-	PlayerStats.difficulty_level = PlayerStats.DifficultyLevel.HARD
+	GameSession.difficulty_level = GameSession.DifficultyLevel.HARD
 	
 	# Assert
 	assert_eq(stats.get_max_hit_points(), 4)
@@ -151,7 +151,7 @@ func test_hard_time_limit_not_set_falls_back_to_normal_time_limit():
 	stats.hard_time_limit = EnemyStats.NOT_SET
 	
 	# Act
-	PlayerStats.difficulty_level = PlayerStats.DifficultyLevel.HARD
+	GameSession.difficulty_level = GameSession.DifficultyLevel.HARD
 	
 	# Assert
 	assert_eq(stats.get_time_limit(), 20)

@@ -3,6 +3,6 @@ extends Item
 
 
 func execute() -> void:
-	PlayerStats.eyes_of_ender += 1
+	GameSession.eyes_of_ender += 1
 	Sound.play(Sound.victory)
 	queue_free()

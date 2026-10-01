@@ -91,4 +91,4 @@ func get_score() -> int:
 
 
 func _use_hard() -> bool:
-	return PlayerStats.is_hard()
+	return GameSession.is_hard()
