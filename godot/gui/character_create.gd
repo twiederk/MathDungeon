@@ -5,8 +5,6 @@ extends Control
 const PORTRAIT_CATALOG: PortraitCatalog = preload("res://characters/portrait_catalog.tres")
 const MAX_NAME_LENGTH: int = 16
 
-signal character_created(character: Character)
-
 @onready var name_input: LineEdit = $VBoxContainer/NameContainer/NameInput
 @onready var portrait_grid: GridContainer = $VBoxContainer/PortraitGrid
 @onready var create_button: Button = $VBoxContainer/ButtonContainer/CreateButton
@@ -86,12 +84,13 @@ func _on_create_pressed() -> void:
 	
 	SaveManager.save_character(character)
 	
-	character_created.emit(character)
-	queue_free()
+	# Set as current character and return to start menu
+	CharacterManager.current = character
+	get_tree().change_scene_to_file("res://gui/start_menu.tscn")
 
 
 func _on_cancel_pressed() -> void:
-	queue_free()
+	get_tree().change_scene_to_file("res://gui/start_menu.tscn")
 
 
 func _sanitize_name(character_name: String) -> String:

@@ -6,10 +6,7 @@ const DIFFICULTY_LABELS := {
 	GameSession.DifficultyLevel.HARD: "Schwierigkeitsgrad: schwer"
 }
 
-const CHARACTER_CREATE_SCENE = preload("res://gui/character_create.tscn")
-
 @onready var start_button = $CenterContainer/VBoxContainer/StartButton
-@onready var new_character_button = $CenterContainer/VBoxContainer/NewCharacterButton
 @onready var load_button = $CenterContainer/VBoxContainer/LoadButton
 @onready var difficulty_button: Button = $CenterContainer/VBoxContainer/DifficultyButton
 @onready var character_widget: CharacterWidget = $CharacterWidget
@@ -20,7 +17,6 @@ func _ready():
 	character_widget.update_stats()
 	_update_difficulty_button()
 	start_button.grab_focus()
-	new_character_button.pressed.connect(_on_new_character_button_pressed)
 
 
 func _on_difficulty_button_pressed() -> void:
@@ -57,14 +53,7 @@ func _on_load_button_pressed():
 
 
 func _on_new_character_button_pressed():
-	var create_dialog = CHARACTER_CREATE_SCENE.instantiate()
-	add_child(create_dialog)
-	create_dialog.character_created.connect(_on_character_created)
-
-
-func _on_character_created(character: Character) -> void:
-	CharacterManager.current = character
-	character_widget.update_stats()
+	get_tree().change_scene_to_file("res://gui/character_create.tscn")
 
 
 func _on_highscores_button_pressed():
