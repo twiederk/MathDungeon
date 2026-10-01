@@ -62,7 +62,6 @@ max_length = 16
 
 [node name="PortraitLabel" type="Label" parent="VBoxContainer" unique_id=2049777770]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
 text = "Portrait auswählen:"
 
 [node name="PortraitGrid" type="GridContainer" parent="VBoxContainer" unique_id=429338526]
