@@ -41,14 +41,17 @@ func _on_start_generic_button_pressed():
 
 
 func _on_switch_character_button_pressed():
-	var target_id = CharacterManager.DEFAULT_CHARACTER_ID
-	if CharacterManager.current.id == CharacterManager.DEFAULT_CHARACTER_ID:
-		target_id = CharacterManager.SECOND_CHARACTER_ID
-	elif CharacterManager.current.id == CharacterManager.SECOND_CHARACTER_ID:
-		target_id = CharacterManager.THIRD_CHARACTER_ID
-	else:
-		target_id = CharacterManager.DEFAULT_CHARACTER_ID
-	SaveManager.load_and_activate_character(target_id)
+	var characters = SaveManager.list_characters()
+	if characters.is_empty():
+		return
+	
+	var current_id = CharacterManager.current.id
+	var current_index = characters.find(current_id)
+	
+	var next_index = (current_index + 1) % characters.size()
+	var next_character_id = characters[next_index]
+	
+	SaveManager.load_and_activate_character(next_character_id)
 	character_widget.update_stats()
 
 

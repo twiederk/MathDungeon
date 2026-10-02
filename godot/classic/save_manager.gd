@@ -35,16 +35,17 @@ func character_exists(id: String) -> bool:
 
 
 func list_characters() -> Array[String]:
-	var filenames: Array[String] = []
+	var character_ids: Array[String] = []
 	var dir = DirAccess.open(CHARACTERS_DIR)
 	if dir:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
 			if file_name.ends_with(".save"):
-				filenames.append(file_name)
+				var character_id = file_name.trim_suffix(".save")
+				character_ids.append(character_id)
 			file_name = dir.get_next()
-	return filenames
+	return character_ids
 
 
 func _read_character_data(id: String):

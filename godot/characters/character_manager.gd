@@ -1,16 +1,12 @@
 extends Node
 
 const DEFAULT_CHARACTER_ID: String = "000"
-const SECOND_CHARACTER_ID: String = "001"
-const THIRD_CHARACTER_ID: String = "002"
 
 var current: Character
 
 
 func _ready() -> void:
 	_ensure_default_character(DEFAULT_CHARACTER_ID, "Steve")
-	_ensure_default_character(SECOND_CHARACTER_ID, "Tobias")
-	_ensure_default_character(THIRD_CHARACTER_ID, "Torsten")
 	SaveManager.load_and_activate_character(DEFAULT_CHARACTER_ID)
 
 
