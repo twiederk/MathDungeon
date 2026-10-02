@@ -41,7 +41,7 @@ func _on_start_generic_button_pressed():
 
 
 func _on_switch_character_button_pressed():
-	var characters = SaveManager.list_characters()
+	var characters = SaveManager.list_character_ids()
 	if characters.is_empty():
 		return
 	

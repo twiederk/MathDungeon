@@ -26,4 +26,5 @@ func update_stats() -> void:
 	damage_label.text = "Schaden: " + str(damage)
 	armor_label.text = "Rüstung: " + str(armor)
 	companion_label.text = "Wölfe: " + str(number_of_companions)
+
 	portrait_texture_rect.texture = portrait.texture

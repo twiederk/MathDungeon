@@ -99,7 +99,7 @@ func _validate_name(character_name: String) -> String:
 
 
 func _generate_unique_id() -> String:
-	var next_id = SaveManager.list_characters().size()
+	var next_id = SaveManager.list_character_ids().size()
 	
 	while next_id < MAX_CHARACTER_ID:
 		var id_string = str(next_id).pad_zeros(CHARACTER_ID_PADDING)

@@ -4,7 +4,7 @@ const CHARACTERS_DIR: String = "user://characters/"
 
 
 func save_character(character: Character) -> void:
-	if character.hit_points <= 0:
+	if character.id.is_empty() or character.hit_points <= 0:
 		return
 	DirAccess.make_dir_recursive_absolute(CHARACTERS_DIR)
 	var data = {
@@ -34,7 +34,7 @@ func character_exists(id: String) -> bool:
 	return FileAccess.file_exists(_character_path(id))
 
 
-func list_characters() -> Array[String]:
+func list_character_ids() -> Array[String]:
 	var character_ids: Array[String] = []
 	var dir = DirAccess.open(CHARACTERS_DIR)
 	if not dir:

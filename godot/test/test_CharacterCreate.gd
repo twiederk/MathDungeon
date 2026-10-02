@@ -9,7 +9,7 @@ func before_each():
 
 
 func after_each():
-	character_create = null
+	character_create.free()
 
 
 func test_create_character_sets_default_values():
