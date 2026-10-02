@@ -1,4 +1,4 @@
-class_name CharacterCreates
+class_name CharacterCreate
 extends Control
 
 
@@ -85,10 +85,10 @@ func _on_cancel_pressed() -> void:
 	get_tree().change_scene_to_file("res://gui/start_menu.tscn")
 
 
-func _create_character(sanitized_name: String) -> Character:
+func _create_character(character_name: String) -> Character:
 	var character := Character.new()
 	character.id = _generate_unique_id()
-	character.display_name = sanitized_name
+	character.display_name = character_name
 	character.portrait_id = selected_portrait_id
 	character.max_hit_points = 5
 	character.hit_points = 5
