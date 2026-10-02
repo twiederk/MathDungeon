@@ -125,7 +125,7 @@ Add `TextureRect` to `character_widget.tscn` to display the portrait.
 
 ### ✅ Phase 5 — Character creation dialog
 
-`gui/character_create.tscn`: a name `LineEdit` plus a portrait picker driven by the catalog.
+`gui/character_create_dialog.tscn`: a name `LineEdit` plus a portrait picker driven by the catalog.
 
 Sanitize the name: trim whitespace, limit length (~16 characters), reject empty.
 

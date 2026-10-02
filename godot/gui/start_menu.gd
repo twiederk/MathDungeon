@@ -56,7 +56,7 @@ func _on_switch_character_button_pressed():
 
 
 func _on_new_character_button_pressed():
-	get_tree().change_scene_to_file("res://gui/character_create.tscn")
+	get_tree().change_scene_to_file("res://gui/character_create_dialog.tscn")
 
 
 func _on_highscores_button_pressed():

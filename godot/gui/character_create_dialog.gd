@@ -1,4 +1,4 @@
-class_name CharacterCreate
+class_name CharacterCreateDialog
 extends Control
 
 

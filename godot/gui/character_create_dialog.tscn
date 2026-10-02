@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://lwwpbij0oxqr"]
 
-[ext_resource type="Script" uid="uid://bvhlwe3knnpqn" path="res://gui/character_create.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://bvhlwe3knnpqn" path="res://gui/character_create_dialog.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://dw55tpmimogdu" path="res://gui/title_image.png" id="2_45yp1"]
 
-[node name="CharacterCreate" type="Control" unique_id=1609688071]
+[node name="CharacterCreateDialog" type="Control" unique_id=1609688071]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
