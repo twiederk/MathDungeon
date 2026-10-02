@@ -39,12 +39,12 @@ func _setup_portrait_grid() -> void:
 
 func _on_portrait_selected(portrait_id: String) -> void:
 	selected_portrait_id = portrait_id
-	for button in portrait_grid.get_children():
-		if button is Button:
-			if button.get_meta("portrait_id") == portrait_id:
-				button.highlight()
+	for portrait_button in portrait_grid.get_children():
+		if portrait_button is Button:
+			if portrait_button.get_meta("portrait_id") == portrait_id:
+				portrait_button.highlight()
 			else:
-				button.unhighlight()
+				portrait_button.unhighlight()
 
 
 func _on_name_changed(_new_text: String) -> void:
