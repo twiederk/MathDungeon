@@ -72,15 +72,7 @@ func _on_create_pressed() -> void:
 		error_label.text = error
 		return
 	
-	var character := Character.new()
-	character.id = _generate_unique_id()
-	character.display_name = sanitized_name
-	character.portrait_id = selected_portrait_id
-	character.max_hit_points = 5
-	character.hit_points = 5
-	character.weapon_damage = 1
-	character.armor = 0
-	character.companions = []
+	var character = _create_character(sanitized_name)
 	
 	SaveManager.save_character(character)
 	
@@ -91,6 +83,19 @@ func _on_create_pressed() -> void:
 
 func _on_cancel_pressed() -> void:
 	get_tree().change_scene_to_file("res://gui/start_menu.tscn")
+
+
+func _create_character(sanitized_name: String) -> Character:
+	var character := Character.new()
+	character.id = _generate_unique_id()
+	character.display_name = sanitized_name
+	character.portrait_id = selected_portrait_id
+	character.max_hit_points = 5
+	character.hit_points = 5
+	character.weapon_damage = 1
+	character.armor = 0
+	character.companions = []
+	return character
 
 
 func _sanitize_name(character_name: String) -> String:
