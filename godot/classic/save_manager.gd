@@ -48,7 +48,7 @@ func _read_character_data(id: String):
 
 func _character_from_data(id: String, data: Dictionary) -> Character:
 	var character := Character.new()
-	character.id = _sanitize_id(id)
+	character.id = id
 	var max_hit_points: int = int(data.get("max_hit_points", 5))
 	character.load_state(
 		str(data.get("display_name", "")),
@@ -63,13 +63,8 @@ func _character_from_data(id: String, data: Dictionary) -> Character:
 
 
 func _character_path(id: String) -> String:
-	return CHARACTERS_DIR + _sanitize_id(id) + ".save"
+	return CHARACTERS_DIR + id + ".save"
 
-
-func _sanitize_id(id: String) -> String:
-	var regex := RegEx.new()
-	regex.compile("[^a-zA-Z0-9_]")
-	return regex.sub(id, "", true)
 
 
 func _sanitize_string_array(value) -> Array[String]:
