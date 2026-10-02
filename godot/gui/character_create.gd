@@ -60,10 +60,8 @@ func _on_create_pressed() -> void:
 		return
 	
 	var character = _create_character(sanitized_name)
-	
 	SaveManager.save_character(character)
 	
-	# Set as current character and return to start menu
 	CharacterManager.current = character
 	get_tree().change_scene_to_file("res://gui/start_menu.tscn")
 
@@ -74,7 +72,6 @@ func _on_cancel_pressed() -> void:
 
 func _create_character(character_name: String) -> Character:
 	var character := Character.new()
-	character.id = _generate_unique_id()
 	character.display_name = character_name
 	character.portrait_id = selected_portrait_id
 	character.max_hit_points = 5
@@ -82,6 +79,7 @@ func _create_character(character_name: String) -> Character:
 	character.weapon_damage = 1
 	character.armor = 0
 	character.companions = []
+	character.id = _generate_unique_id()
 	return character
 
 
