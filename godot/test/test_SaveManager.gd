@@ -5,9 +5,7 @@ var character: Character = null
 
 func before_each():
 	character = Character.new()
-	# load_state() avoids the property setters' save-on-write side effect during setup
-	character.load_state("Steve", "steve", 8, 5, 3, 2, ["/root/Main/Companions/Wolf1"])
-
+	
 
 func after_each():
 	var path := "user://characters/%s.save" % character.id
@@ -17,6 +15,10 @@ func after_each():
 
 
 func test_save_character_creates_file():
+	# arrange
+	var character_id = "1001"
+	character.id = character_id
+	
 	# act
 	SaveManager.save_character(character)
 
@@ -26,7 +28,7 @@ func test_save_character_creates_file():
 
 func test_save_character_is_skipped_while_dead():
 	# arrange
-	character.hit_points = 0
+	character.load_state("Steve", "000", 5, 0, 3, 2, ["/root/Main/Companions/Wolf1"])
 
 	# act
 	SaveManager.save_character(character)

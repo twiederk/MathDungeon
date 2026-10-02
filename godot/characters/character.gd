@@ -102,8 +102,3 @@ func load_state(a_display_name: String, a_portrait_id: String, a_max_hit_points:
 	_weapon_damage = a_damage
 	_armor = a_armor
 	companions = a_companions
-
-
-func _init() -> void:
-	if id.is_empty():
-		id = "%d_%d" % [Time.get_unix_time_from_system(), randi()]

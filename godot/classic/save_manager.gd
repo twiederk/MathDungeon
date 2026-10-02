@@ -4,7 +4,7 @@ const CHARACTERS_DIR: String = "user://characters/"
 
 
 func save_character(character: Character) -> void:
-	if character.hit_points <= 0:
+	if character.id.is_empty() or character.hit_points <= 0:
 		return
 	DirAccess.make_dir_recursive_absolute(CHARACTERS_DIR)
 	var data = {
@@ -34,6 +34,22 @@ func character_exists(id: String) -> bool:
 	return FileAccess.file_exists(_character_path(id))
 
 
+func list_character_ids() -> Array[String]:
+	var character_ids: Array[String] = []
+	var dir = DirAccess.open(CHARACTERS_DIR)
+	if not dir:
+		return character_ids
+	
+	dir.list_dir_begin()
+	var file_name = dir.get_next()
+	while file_name != "":
+		if file_name.ends_with(".save"):
+			var character_id = file_name.trim_suffix(".save")
+			character_ids.append(character_id)
+		file_name = dir.get_next()
+	return character_ids
+
+
 func _read_character_data(id: String):
 	var path := _character_path(id)
 	if not FileAccess.file_exists(path):
@@ -48,7 +64,7 @@ func _read_character_data(id: String):
 
 func _character_from_data(id: String, data: Dictionary) -> Character:
 	var character := Character.new()
-	character.id = _sanitize_id(id)
+	character.id = id
 	var max_hit_points: int = int(data.get("max_hit_points", 5))
 	character.load_state(
 		str(data.get("display_name", "")),
@@ -63,13 +79,8 @@ func _character_from_data(id: String, data: Dictionary) -> Character:
 
 
 func _character_path(id: String) -> String:
-	return CHARACTERS_DIR + _sanitize_id(id) + ".save"
+	return CHARACTERS_DIR + id + ".save"
 
-
-func _sanitize_id(id: String) -> String:
-	var regex := RegEx.new()
-	regex.compile("[^a-zA-Z0-9_]")
-	return regex.sub(id, "", true)
 
 
 func _sanitize_string_array(value) -> Array[String]:

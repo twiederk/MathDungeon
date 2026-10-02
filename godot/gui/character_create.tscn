@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://lwwpbij0oxqr"]
+
+[ext_resource type="Script" uid="uid://bvhlwe3knnpqn" path="res://gui/character_create.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dw55tpmimogdu" path="res://gui/title_image.png" id="2_45yp1"]
+
+[node name="CharacterCreate" type="Control" unique_id=1609688071]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1049973347]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("2_45yp1")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1676137460]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=185706864]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_right = 250.0
+offset_bottom = 350.0
+grow_horizontal = 2
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer" unique_id=1675092509]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Neuen Character erstellen"
+horizontal_alignment = 1
+
+[node name="NameContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=837552714]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="NameLabel" type="Label" parent="VBoxContainer/NameContainer" unique_id=831118743]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Name:"
+
+[node name="NameInput" type="LineEdit" parent="VBoxContainer/NameContainer" unique_id=824047489]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Namen eingeben"
+max_length = 16
+
+[node name="PortraitLabel" type="Label" parent="VBoxContainer" unique_id=2049777770]
+layout_mode = 2
+text = "Portrait auswählen:"
+
+[node name="PortraitGrid" type="GridContainer" parent="VBoxContainer" unique_id=429338526]
+layout_mode = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 5
+
+[node name="ErrorLabel" type="Label" parent="VBoxContainer" unique_id=198735134]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+horizontal_alignment = 1
+
+[node name="ButtonContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1563618591]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CreateButton" type="Button" parent="VBoxContainer/ButtonContainer" unique_id=145330443]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Erstellen"
+
+[node name="CancelButton" type="Button" parent="VBoxContainer/ButtonContainer" unique_id=616089442]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Abbrechen"
+
+[connection signal="text_changed" from="VBoxContainer/NameContainer/NameInput" to="." method="_on_name_changed"]
+[connection signal="pressed" from="VBoxContainer/ButtonContainer/CreateButton" to="." method="_on_create_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonContainer/CancelButton" to="." method="_on_cancel_pressed"]

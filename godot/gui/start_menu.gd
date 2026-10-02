@@ -7,7 +7,7 @@ const DIFFICULTY_LABELS := {
 }
 
 @onready var start_button = $CenterContainer/VBoxContainer/StartButton
-@onready var load_button = $CenterContainer/VBoxContainer/LoadButton
+@onready var switch_character_button = $CenterContainer/VBoxContainer/SwitchCharacterButton
 @onready var difficulty_button: Button = $CenterContainer/VBoxContainer/DifficultyButton
 @onready var character_widget: CharacterWidget = $CharacterWidget
 
@@ -40,16 +40,23 @@ func _on_start_generic_button_pressed():
 	get_tree().change_scene_to_file("res://procedural/proc_gen_world.tscn")
 
 
-func _on_load_button_pressed():
-	var target_id = CharacterManager.DEFAULT_CHARACTER_ID
-	if CharacterManager.current.id == CharacterManager.DEFAULT_CHARACTER_ID:
-		target_id = CharacterManager.SECOND_CHARACTER_ID
-	elif CharacterManager.current.id == CharacterManager.SECOND_CHARACTER_ID:
-		target_id = CharacterManager.THIRD_CHARACTER_ID
-	else:
-		target_id = CharacterManager.DEFAULT_CHARACTER_ID
-	SaveManager.load_and_activate_character(target_id)
+func _on_switch_character_button_pressed():
+	var characters = SaveManager.list_character_ids()
+	if characters.is_empty():
+		return
+	
+	var current_id = CharacterManager.current.id
+	var current_index = characters.find(current_id)
+	
+	var next_index = (current_index + 1) % characters.size()
+	var next_character_id = characters[next_index]
+	
+	SaveManager.load_and_activate_character(next_character_id)
 	character_widget.update_stats()
+
+
+func _on_new_character_button_pressed():
+	get_tree().change_scene_to_file("res://gui/character_create.tscn")
 
 
 func _on_highscores_button_pressed():
