@@ -72,14 +72,9 @@ func _on_cancel_pressed() -> void:
 
 func _create_character(character_name: String) -> Character:
 	var character := Character.new()
+	character.id = _generate_unique_id()
 	character.display_name = character_name
 	character.portrait_id = selected_portrait_id
-	character.max_hit_points = 5
-	character.hit_points = 5
-	character.weapon_damage = 1
-	character.armor = 0
-	character.companions = []
-	character.id = _generate_unique_id()
 	return character
 
 
