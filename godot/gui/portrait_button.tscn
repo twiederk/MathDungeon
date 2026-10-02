@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b7siqrpdhwnry"]
 
-[ext_resource type="Script" uid="uid://d15oi5p7l0lsndgfjdn" path="res://gui/portrait_button.gd" id="1_script"]
+[ext_resource type="Script" path="res://gui/portrait_button.gd" id="1_script"]
 
 [node name="PortraitButton" type="Button"]
 custom_minimum_size = Vector2(64, 64)
