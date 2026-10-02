@@ -8,7 +8,7 @@ border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(1, 0.85, 0, 1)
+border_color = Color(0.56, 0.93, 0.56, 1)
 
 [node name="PortraitButton" type="Button" unique_id=2103479012]
 custom_minimum_size = Vector2(64, 64)
