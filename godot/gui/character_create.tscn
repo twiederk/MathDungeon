@@ -82,12 +82,12 @@ theme_override_constants/separation = 10
 [node name="CreateButton" type="Button" parent="VBoxContainer/ButtonContainer" unique_id=145330443]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Create"
+text = "Erstellen"
 
 [node name="CancelButton" type="Button" parent="VBoxContainer/ButtonContainer" unique_id=616089442]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Cancel"
+text = "Abbrechen"
 
 [connection signal="text_changed" from="VBoxContainer/NameContainer/NameInput" to="." method="_on_name_changed"]
 [connection signal="pressed" from="VBoxContainer/ButtonContainer/CreateButton" to="." method="_on_create_pressed"]
