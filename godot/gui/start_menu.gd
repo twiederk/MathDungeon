@@ -7,7 +7,7 @@ const DIFFICULTY_LABELS := {
 }
 
 @onready var start_button = $CenterContainer/VBoxContainer/StartButton
-@onready var load_button = $CenterContainer/VBoxContainer/LoadButton
+@onready var switch_character_button = $CenterContainer/VBoxContainer/SwitchCharacterButton
 @onready var difficulty_button: Button = $CenterContainer/VBoxContainer/DifficultyButton
 @onready var character_widget: CharacterWidget = $CharacterWidget
 
@@ -40,7 +40,7 @@ func _on_start_generic_button_pressed():
 	get_tree().change_scene_to_file("res://procedural/proc_gen_world.tscn")
 
 
-func _on_load_button_pressed():
+func _on_switch_character_button_pressed():
 	var target_id = CharacterManager.DEFAULT_CHARACTER_ID
 	if CharacterManager.current.id == CharacterManager.DEFAULT_CHARACTER_ID:
 		target_id = CharacterManager.SECOND_CHARACTER_ID

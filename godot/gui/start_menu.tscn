@@ -51,7 +51,7 @@ text = "Schwierigkeitsgrad: normal"
 layout_mode = 2
 text = "Neuen Character erstellen"
 
-[node name="LoadButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1746410147]
+[node name="SwitchCharacterButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1746410147]
 layout_mode = 2
 text = "Character wechseln"
 
@@ -80,6 +80,6 @@ grow_vertical = 2
 [connection signal="pressed" from="CenterContainer/VBoxContainer/StartGenericButton" to="." method="_on_start_generic_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/DifficultyButton" to="." method="_on_difficulty_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/NewCharacterButton" to="." method="_on_new_character_button_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/SwitchCharacterButton" to="." method="_on_switch_character_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HighscoresButton" to="." method="_on_highscores_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
