@@ -5,6 +5,8 @@ extends Control
 const PORTRAIT_CATALOG: PortraitCatalog = preload("res://characters/portrait_catalog.tres")
 const PORTRAIT_BUTTON_SCENE = preload("res://gui/portrait_button.tscn")
 const MAX_NAME_LENGTH: int = 16
+const MAX_CHARACTER_ID: int = 1000
+const CHARACTER_ID_PADDING: int = 3
 
 @onready var name_input: LineEdit = $VBoxContainer/NameContainer/NameInput
 @onready var portrait_grid: GridContainer = $VBoxContainer/PortraitGrid
@@ -99,10 +101,10 @@ func _validate_name(character_name: String) -> String:
 func _generate_unique_id() -> String:
 	var next_id = SaveManager.list_characters().size()
 	
-	while next_id < 1000:
-		var id_string = str(next_id).pad_zeros(3)
+	while next_id < MAX_CHARACTER_ID:
+		var id_string = str(next_id).pad_zeros(CHARACTER_ID_PADDING)
 		if not SaveManager.character_exists(id_string):
 			return id_string
 		next_id += 1
 	
-	return "999"
+	return str(MAX_CHARACTER_ID - 1).pad_zeros(CHARACTER_ID_PADDING)
