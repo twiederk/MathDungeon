@@ -34,6 +34,19 @@ func character_exists(id: String) -> bool:
 	return FileAccess.file_exists(_character_path(id))
 
 
+func list_characters() -> Array[String]:
+	var filenames: Array[String] = []
+	var dir = DirAccess.open(CHARACTERS_DIR)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if file_name.ends_with(".save"):
+				filenames.append(file_name)
+			file_name = dir.get_next()
+	return filenames
+
+
 func _read_character_data(id: String):
 	var path := _character_path(id)
 	if not FileAccess.file_exists(path):

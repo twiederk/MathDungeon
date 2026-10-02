@@ -97,16 +97,12 @@ func _validate_name(character_name: String) -> String:
 
 
 func _generate_unique_id() -> String:
-	# Generate a unique ID based on timestamp and random number
-	var timestamp = int(Time.get_ticks_msec())
-	var random_part = randi() % 10000
-	var id = str(timestamp % 1000000) + "_" + str(random_part)
+	var next_id = SaveManager.list_characters().size()
 	
-	# Ensure ID is unique (retry if needed)
-	var attempts = 0
-	while SaveManager.character_exists(id) and attempts < 10:
-		random_part = randi() % 10000
-		id = str(timestamp % 1000000) + "_" + str(random_part)
-		attempts += 1
+	while next_id < 1000:
+		var id_string = str(next_id).pad_zeros(3)
+		if not SaveManager.character_exists(id_string):
+			return id_string
+		next_id += 1
 	
-	return id
+	return "999"
