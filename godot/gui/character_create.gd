@@ -3,6 +3,7 @@ extends Control
 
 
 const PORTRAIT_CATALOG: PortraitCatalog = preload("res://characters/portrait_catalog.tres")
+const PORTRAIT_BUTTON_SCENE = preload("res://gui/portrait_button.tscn")
 const MAX_NAME_LENGTH: int = 16
 
 @onready var name_input: LineEdit = $VBoxContainer/NameContainer/NameInput
@@ -24,40 +25,24 @@ func _setup_portrait_grid() -> void:
 		child.queue_free()
 	
 	for portrait in PORTRAIT_CATALOG.portraits:
-		var button := Button.new()
-		button.custom_minimum_size = Vector2(64, 64)
-		button.modulate = Color.WHITE
+		var portrait_button = PORTRAIT_BUTTON_SCENE.instantiate()
+		portrait_grid.add_child(portrait_button)
 		
-		var texture_rect := TextureRect.new()
-		texture_rect.texture = portrait.texture
-		texture_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
-		texture_rect.anchor_left = 0.0
-		texture_rect.anchor_top = 0.0
-		texture_rect.anchor_right = 1.0
-		texture_rect.anchor_bottom = 1.0
-		button.add_child(texture_rect)
-		
-		button.set_meta("portrait_id", portrait.id)
-		button.pressed.connect(_on_portrait_selected.bindv([portrait.id]))
-		
-		portrait_grid.add_child(button)
+		portrait_button.setup(portrait)
+		portrait_button.portrait_selected.connect(_on_portrait_selected)
 		
 		if portrait.id == CharacterManager.DEFAULT_CHARACTER_ID:
-			_highlight_portrait_button(button)
-
-
-func _highlight_portrait_button(button: Button) -> void:
-	for child in portrait_grid.get_children():
-		if child is Button:
-			child.modulate = Color.WHITE
-
-	button.modulate = Color.YELLOW
+			portrait_button.highlight()
 
 
 func _on_portrait_selected(portrait_id: String) -> void:
 	selected_portrait_id = portrait_id
-	var button = portrait_grid.get_children().filter(func(b): return b.get_meta("portrait_id") == portrait_id)[0]
-	_highlight_portrait_button(button)
+	for button in portrait_grid.get_children():
+		if button is Button:
+			if button.get_meta("portrait_id") == portrait_id:
+				button.highlight()
+			else:
+				button.unhighlight()
 
 
 func _on_name_changed(_new_text: String) -> void:
