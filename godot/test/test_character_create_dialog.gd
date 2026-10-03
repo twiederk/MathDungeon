@@ -1,15 +1,15 @@
 extends GutTest
 
-var character_create: CharacterCreate = null
+var character_create_dialog: CharacterCreateDialog = null
 
 
 func before_each():
-	character_create = CharacterCreate.new()
-	character_create.selected_portrait_id = "000"
+	character_create_dialog = CharacterCreateDialog.new()
+	character_create_dialog.selected_portrait_id = "000"
 
 
 func after_each():
-	character_create.free()
+	character_create_dialog.free()
 
 
 func test_create_character_sets_default_values():
@@ -24,7 +24,7 @@ func test_create_character_sets_default_values():
 	var expected_companions_size = 0
 
 	# act
-	var character = character_create._create_character(character_name)
+	var character = character_create_dialog._create_character(character_name)
 
 	# assert
 	assert_true(character is Character, "Should return a Character object")

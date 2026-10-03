@@ -123,9 +123,9 @@ Add `TextureRect` to `character_widget.tscn` to display the portrait.
 
 **First visible result: the character has a protrait.**
 
-### Phase 5 — Character creation dialog
+### ✅ Phase 5 — Character creation dialog
 
-`gui/character_create.tscn`: a name `LineEdit` plus a portrait picker driven by the catalog.
+`gui/character_create_dialog.tscn`: a name `LineEdit` plus a portrait picker driven by the catalog.
 
 Sanitize the name: trim whitespace, limit length (~16 characters), reject empty.
 
@@ -134,7 +134,7 @@ that survives a restart.
 
 **The gamer can now set a name and a portrait.**
 
-### Phase 6 — Character selection screen
+### ⛔ Phase 6 — Character selection screen - Replaces by simple character carussell
 
 `gui/character_select.tscn`: a grid of `CharacterWidget`s built from `SaveManager.list_characters()`,
 plus a "new character" tile and a delete button with confirmation.

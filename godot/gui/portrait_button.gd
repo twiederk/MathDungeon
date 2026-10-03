@@ -7,6 +7,7 @@ signal portrait_selected(portrait_id: String)
 var portrait_id: String = ""
 
 @onready var texture_rect: TextureRect = $TextureRect
+@onready var selection_frame: Panel = $SelectionFrame
 
 
 func _ready() -> void:
@@ -24,8 +25,8 @@ func _on_pressed() -> void:
 
 
 func highlight() -> void:
-	modulate = Color.YELLOW
+	selection_frame.visible = true
 
 
 func unhighlight() -> void:
-	modulate = Color.WHITE
+	selection_frame.visible = false
