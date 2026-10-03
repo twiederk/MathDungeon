@@ -14,9 +14,14 @@ const DIFFICULTY_LABELS := {
 
 func _ready():
 	SaveManager.load_and_activate_character(CharacterManager.current.id)
+	_heal_current_character()
 	character_widget.update_stats()
 	_update_difficulty_button()
 	start_button.grab_focus()
+
+
+func _heal_current_character() -> void:
+	CharacterManager.current.hit_points = CharacterManager.current.max_hit_points
 
 
 func _on_difficulty_button_pressed() -> void:
@@ -52,6 +57,7 @@ func _on_switch_character_button_pressed():
 	var next_character_id = characters[next_index]
 	
 	SaveManager.load_and_activate_character(next_character_id)
+	_heal_current_character()
 	character_widget.update_stats()
 
 
