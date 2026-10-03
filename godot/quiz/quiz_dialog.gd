@@ -183,8 +183,7 @@ func _answer_timeout() -> void:
 		answer_line_edit.text = ""
 		_start_timers()
 	else:
-		question_label.text = "GAME OVER\nDu hast verloren."
-		answer_line_edit.visible = false
+		_game_over()
 
 
 func _on_enemy_health_changed() -> void:
