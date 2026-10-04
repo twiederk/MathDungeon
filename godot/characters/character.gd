@@ -66,6 +66,22 @@ func get_total_damage() -> int:
 	return total
 
 
+func get_wolf_count() -> int:
+	var count = 0
+	for companion_type in companions:
+		if companion_type == "Wolf":
+			count += 1
+	return count
+
+
+func get_allay_count() -> int:
+	var count = 0
+	for companion_type in companions:
+		if companion_type == "Allay":
+			count += 1
+	return count
+
+
 func get_armor() -> int:
 	return armor
 

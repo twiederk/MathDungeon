@@ -17,7 +17,8 @@ func update_stats() -> void:
 	var max_hit_points = character.max_hit_points
 	var damage = character.get_total_damage()
 	var armor = character.armor
-	var number_of_companions = character.companions.size()
+	var wolf_count = character.get_wolf_count()
+	var allay_count = character.get_allay_count()
 	var portrait: Portrait = character.portrait
 
 	name_label.text = "Name: " + display_name
@@ -25,6 +26,6 @@ func update_stats() -> void:
 	health_meter_widget.update_max_health_ui(max_hit_points)
 	damage_label.text = "Schaden: " + str(damage)
 	armor_label.text = "Rüstung: " + str(armor)
-	companion_label.text = "Wölfe: " + str(number_of_companions)
+	companion_label.text = "Wölfe: " + str(wolf_count) + " Allays: " + str(allay_count)
 
 	portrait_texture_rect.texture = portrait.texture

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://du42xjh5bgq8lo"]
+
+[ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="1_8f5g7"]
+[ext_resource type="Script" uid="uid://c4v8lfj7hd2mg2" path="res://companions/allay.gd" id="1_wyb0x"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x7c0l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4ynd"]
+size = Vector2(32, 26)
+
+[node name="Allay" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_wyb0x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8f5g7")
+hframes = 9
+vframes = 9
+frame = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 6)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_x7c0l")
+
+[node name="PickupArea" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+position = Vector2(-2, 5)
+shape = SubResource("RectangleShape2D_e4ynd")

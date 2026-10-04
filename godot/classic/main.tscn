@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://t4t4xwnjo6vs" path="res://enemies/spider.tscn" id="7_4c57u"]
 [ext_resource type="PackedScene" uid="uid://byl4j4ap7dkhk" path="res://items/helmet_wood.tscn" id="7_ryguw"]
 [ext_resource type="PackedScene" uid="uid://b008xnsl4xtfq" path="res://companions/wolf.tscn" id="8_cegan"]
+[ext_resource type="PackedScene" uid="uid://du42xjh5bgq8lo" path="res://companions/allay.tscn" id="8_allay"]
 [ext_resource type="PackedScene" uid="uid://8xckg1kvi70g" path="res://enemies/drown.tscn" id="8_efxa6"]
 [ext_resource type="PackedScene" uid="uid://dq5hvtr5p280m" path="res://items/helmet_stone.tscn" id="9_d13ii"]
 [ext_resource type="PackedScene" uid="uid://ch27vu5jqwd8g" path="res://locations/nether_portal.tscn" id="10_1u8w0"]
@@ -40,7 +41,6 @@
 [ext_resource type="PackedScene" uid="uid://dlocg2skf3j3j" path="res://animals/axolotl.tscn" id="38_b1qrp"]
 [ext_resource type="PackedScene" uid="uid://gqtn68ys1a2m" path="res://animals/frog.tscn" id="39_come4"]
 [ext_resource type="PackedScene" uid="uid://cg7niey7e55c0" path="res://animals/tadpole.tscn" id="40_h8e4i"]
-[ext_resource type="PackedScene" uid="uid://deiw20d4xtqpg" path="res://animals/allay.tscn" id="41_4lmeg"]
 [ext_resource type="PackedScene" uid="uid://dpltdrfxhhkxw" path="res://animals/salmon.tscn" id="42_0cp0l"]
 [ext_resource type="PackedScene" uid="uid://b24x0f7up44p4" path="res://animals/dolphin.tscn" id="43_gngh3"]
 [ext_resource type="PackedScene" uid="uid://bqc3vkt0le88h" path="res://animals/turtle.tscn" id="44_0n3wm"]
@@ -175,6 +175,12 @@ position = Vector2(371, 1133)
 
 [node name="Wolf2" parent="Companions" unique_id=717531754 instance=ExtResource("8_cegan")]
 position = Vector2(177, 1335)
+
+[node name="Allay" parent="Companions" unique_id=1962077430 instance=ExtResource("8_allay")]
+position = Vector2(290, 1200)
+
+[node name="Allay2" parent="Companions" unique_id=795289590 instance=ExtResource("8_allay")]
+position = Vector2(230, 1300)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=2023242683]
 
@@ -541,11 +547,6 @@ position = Vector2(-670, -1111)
 
 [node name="Tadpole6" parent="Animals" unique_id=1820414087 instance=ExtResource("40_h8e4i")]
 position = Vector2(-610, -1047)
-
-[node name="Allay" parent="Animals" unique_id=1962077430 instance=ExtResource("41_4lmeg")]
-
-[node name="Allay2" parent="Animals" unique_id=795289590 instance=ExtResource("41_4lmeg")]
-position = Vector2(-130, 399)
 
 [node name="Salmon" parent="Animals" unique_id=1612752367 instance=ExtResource("42_0cp0l")]
 position = Vector2(-1105, 226)

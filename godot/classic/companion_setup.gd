@@ -20,12 +20,28 @@ func setup() -> void:
 	var companion_types := CharacterManager.current.companions
 
 	for i in companion_types.size():
-		var companion := _claim_companion(companion_types[i], used)
-		if companion == null:
+		if companion_types[i] == "Allay":
+			# Allay: only queue_free existing instances, don't instantiate or follow
+			var allay := _claim_allay(used)
+			if allay:
+				used.append(allay)
+		else:
+			# Wolf and other companions: claim/instantiate and make follow player
+			var companion := _claim_companion(companion_types[i], used)
+			if companion == null:
+				continue
+			used.append(companion)
+			companion.global_position = _player.global_position + Vector2(60.0 + (i * 40.0), 0.0)
+			companion.start_following(_player)
+
+
+func _claim_allay(used: Array[Node]) -> Companion:
+	for child in _companions_root.get_children():
+		if child in used or not child is Companion:
 			continue
-		used.append(companion)
-		companion.global_position = _player.global_position + Vector2(60.0 + (i * 40.0), 0.0)
-		companion.start_following(_player)
+		if String(child.get_script().get_global_name()) == "Allay":
+			return child
+	return null
 
 
 func _claim_companion(companion_type: String, used: Array[Node]) -> Companion:
