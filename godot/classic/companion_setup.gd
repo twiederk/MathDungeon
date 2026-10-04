@@ -21,18 +21,20 @@ func setup() -> void:
 
 	for i in companion_types.size():
 		if companion_types[i] == "Allay":
-			# Allay: only queue_free existing instances, don't instantiate or follow
 			var allay := _claim_allay(used)
-			if allay:
+			if allay != null:
 				used.append(allay)
 		else:
-			# Wolf and other companions: claim/instantiate and make follow player
 			var companion := _claim_companion(companion_types[i], used)
 			if companion == null:
 				continue
 			used.append(companion)
 			companion.global_position = _player.global_position + Vector2(60.0 + (i * 40.0), 0.0)
 			companion.start_following(_player)
+
+	for node in used:
+		if String(node.get_script().get_global_name()) == "Allay":
+			node.queue_free()
 
 
 func _claim_allay(used: Array[Node]) -> Companion:
