@@ -5,23 +5,34 @@
 Convert the `Allay` animal (currently a passive `Animal` in `animals/allay.tscn`) into a
 pickup-able companion, following the same pattern as `Wolf`. After this change, `Allay`
 instances behave exactly like `Wolf`: they sit in the world, get picked up by the player,
-follow the player, and are persisted via `Character.companions`.
+follow the player, and are persisted via `Character.companions` (a type-based array).
 
 ## Current state (reference: Wolf)
 
+**Architecture:**
+- Companions are identified by **type name** (e.g., "Wolf", "Allay"), stored in
+  `Character.companions: Array[String]`.
+- On pickup, the type is registered via `CharacterManager.current.add_companion_type(String(companion.get_script().get_global_name()))`.
+- On level load, `CompanionSetup` iterates through `Character.companions` and either claims
+  existing matching children or instantiates new ones from the `COMPANION_SCENES` lookup table.
+- Damage calculation reads `Character.companions`, not node paths.
+
+**Key files:**
 - `companions/companion.gd` (`Companion`, extends `CharacterBody2D`): generic pickup +
   follow behavior (`PickupArea`, `start_following`, `execute()` placeholder).
-- `companions/wolf.gd` (`Wolf`, extends `Companion`): overrides `execute()` to play a sound
-  and register itself with `CharacterManager.current.add_companion(str(get_path()))`.
+- `companions/wolf.gd` (`Wolf`, extends `Companion`): overrides `execute()` to play
+  `Sound.dog_bark`.
 - `companions/wolf.tscn`: `CharacterBody2D` root (`collision_layer = 2`, `collision_mask = 3`),
   child `Sprite2D` (creatures.png spritesheet), child `CollisionShape2D` (capsule, for
   movement/physics), child `PickupArea` (`Area2D`, `collision_layer = 2`) with its own
   `CollisionShape2D` (rectangle, for pickup detection).
+- `classic/companion_setup.gd` (`CompanionSetup`): class that handles companion instantiation
+  and positioning. Uses `COMPANION_SCENES` lookup table to map type names to scene paths.
+  Called from `classic/main.gd` during `_ready()`.
 - `classic/main.tscn`, `classic/nether.tscn`, `classic/end.tscn`,
   `procedural/proc_gen_world.tscn` each have a `Companions` node containing `Wolf`/`Wolf2`
   instances.
-- `classic/main.gd`: iterates `companions_root` children to connect `companion_picked_up`,
-  and `_setup_companions()` re-attaches persisted companions (by node path) to the player.
+- `classic/main.gd`: no longer has companion setup logic—delegates to `CompanionSetup`.
 
 ## Current state of Allay
 
@@ -39,23 +50,17 @@ follow the player, and are persisted via `Character.companions`.
 class_name Allay
 extends Companion
 
-var damage_applied: bool = false
-
 
 func execute() -> void:
-	if not damage_applied:
-		damage_applied = true
-		CharacterManager.current.add_companion(str(get_path()))
-
-
-func set_damage_applied() -> void:
-	damage_applied = true
+	Sound.play(Sound.dog_bark)
 ```
 
-Mirrors `Wolf`, minus the `Sound.play(Sound.dog_bark)` call and the `damage` export (Allay
-has no attack/damage stat). No pickup sound asset exists for Allay yet — skip audio for now,
-or reuse `Sound.dog_bark` if the user wants a placeholder sound until a dedicated asset
-exists (needs a decision).
+Mirrors `Wolf`, with the same `execute()` pattern. Currently plays `Sound.dog_bark` as a
+placeholder. No special bookkeeping needed—the pickup logic is handled by
+`Companion.PickupArea` → `_on_companion_picked_up()` in `main.gd`, which calls
+`add_companion_type(String(companion.get_script().get_global_name()))` automatically.
+**Note**: Once a dedicated Allay pickup sound asset is created, replace `Sound.dog_bark`
+with the new asset identifier.
 
 ### 2. Create `companions/allay.tscn`
 
@@ -65,50 +70,71 @@ Model it directly after `companions/wolf.tscn`:
   script `res://companions/allay.gd`.
 - `Sprite2D` using `res://enemies/creatures.png`, `hframes = 9`, `vframes = 9`,
   `frame = 63` (same frame Allay already uses).
-- `CollisionShape2D` with a shape suited to movement collision (reuse/adapt the existing
-  circle shape from `animals/allay.tscn`, or a capsule like Wolf's — needs a quick visual
-  check in-editor).
+- `CollisionShape2D` with a **capsule shape** (like Wolf's) for movement collision,
+  sized appropriately for Allay's sprite.
 - `PickupArea` (`Area2D`, `collision_layer = 2`) with its own `CollisionShape2D` sized to
   the sprite for pickup detection.
 
-### 3. Retire `animals/allay.tscn`
+### 3. Register Allay in `CompanionSetup.COMPANION_SCENES`
+
+In `classic/companion_setup.gd`, add `Allay` to the lookup table:
+
+```gdscript
+const COMPANION_SCENES := {
+	"Wolf": "res://companions/wolf.tscn",
+	"Allay": "res://companions/allay.tscn",
+}
+```
+
+This tells the system how to instantiate Allay when its type is encountered in
+`Character.companions`.
+
+### 4. Retire `animals/allay.tscn`
 
 - Delete `animals/allay.tscn` (and its `.uid`/cache entries) once the new companion scene
   replaces all usages. Do **not** touch `animals/animal.gd` — it's still shared by the other
   animals (axolotl, frog, tadpole, etc.).
 
-### 4. Update scene files
+### 5. Update scene files
 
 For `classic/main.tscn`, `classic/nether.tscn`, `classic/end.tscn`, and
 `procedural/proc_gen_world.tscn`:
 
 - Add an `ext_resource` for `res://companions/allay.tscn`.
-- Add `Allay` node instance(s) as a child of the existing `Companions` node, placed below
-  the `Wolf`/`Wolf2` entries (give them a reasonable `position` like the existing
-  Wolf/Wolf2 offsets).
+- Add `Allay` node instance as a child of the existing `Companions` node, positioned
+  next to the player following the same offset pattern as Wolf:
+  `position = player.global_position + Vector2(60.0 + (i * 40.0), 0.0)` where `i` is
+  the companion index (e.g., i=1 for first Allay).
 - In `classic/main.tscn` specifically: remove the existing `Allay` / `Allay2` nodes from
   the `Animals` node and their now-unused `res://animals/allay.tscn` `ext_resource` (unless
   other animal instances still reference it — they don't, per current scan).
 - `nether.tscn`, `end.tscn`, `proc_gen_world.tscn` currently have no Allay instance at all —
   add one new `Allay` instance to each, under `Companions`.
 
-### 5. No script changes needed in `main.gd`
+### 6. Verify automatic pickup handling
 
-`_setup_signals()` and `_setup_companions()` already operate generically on
-`companions_root.get_children()` / stored node paths, so `Allay` is picked up automatically
-once it lives under the `Companions` node and extends `Companion`.
+`_on_companion_picked_up()` in `main.gd` already handles any `Companion` that emits
+`companion_picked_up`. It automatically:
+- Registers the type via `add_companion_type(String(companion.get_script().get_global_name()))`
+  (which extracts "Allay" from the Allay instance).
+- Calls `companion.execute()` (which plays the sound).
+- Calls `companion.start_following(player)`.
 
-### 6. Testing
+No further changes to `main.gd` are needed.
 
-- No existing `test_Wolf.gd` to mirror. Optionally add `test/test_Allay.gd` verifying
-  `execute()` calls `CharacterManager.current.add_companion` and that `set_damage_applied()`
-  prevents double-registration — same shape as a hypothetical Wolf test, if desired.
+### 7. Testing (optional)
+
+No existing `test_Allay.gd` required. The type-based persistence system is already tested
+via `test_Character.gd` (which verifies damage calculation from the `companions` array).
+Allay will automatically be covered once a test adds "Allay" to a character's `companions`
+array and verifies `get_total_damage()` correctly ignores unknown types (same as the existing
+`test_get_total_damage_ignores_unknown_companion_types()` test).
 
 ## Open questions
 
-1. Should Allay play a pickup sound (reuse `Sound.dog_bark` placeholder, add a new
-   `Sound.allay_pickup` stream, or stay silent)?
-2. Exact `CollisionShape2D` shape/size for the new `Allay` companion body (reuse the old
-   circle from `animals/allay.tscn` vs. a capsule like Wolf).
-3. Positions for the new `Allay` instances in `nether.tscn`, `end.tscn`, and
-   `proc_gen_world.tscn` (none exist today, so placement is arbitrary/new).
+**RESOLVED:**
+
+1. ✅ **Sound**: Allay reuses `Sound.dog_bark` as placeholder. When a dedicated Allay pickup sound asset is created, update `Allay.execute()` to play it.
+2. ✅ **Collision shape**: Allay uses a capsule collision shape (like Wolf) for consistency.
+3. ✅ **Positions**: Allay instances are placed next to the player in each level, matching the Wolf offsets pattern (`position = player.global_position + Vector2(60.0 + (i * 40.0), 0.0)`).
+4. ✅ **Damage**: Allay remains non-damaging—it contributes 0 to total damage. Only Wolf adds damage.
