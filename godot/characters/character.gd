@@ -16,7 +16,6 @@ var portrait: Portrait:
 	get:
 		return PORTRAIT_CATALOG.get_portrait(portrait_id)
 var max_hit_points: int = 5
-var companions: Array[String] = []
 var companion_types: Array[String] = []
 
 var hit_points: int = 5:
@@ -88,25 +87,17 @@ func needs_healing() -> bool:
 	return hit_points < max_hit_points
 
 
-func add_companion(companion_path: String) -> void:
-	if companion_path not in companions:
-		companions.append(companion_path)
-		weapon_damage_changed.emit()
-		SaveManager.save_character(self)
-
-
 func add_companion_type(companion_type: String) -> void:
 	companion_types.append(companion_type)
 	weapon_damage_changed.emit()
 	SaveManager.save_character(self)
 
 
-func load_state(a_display_name: String, a_portrait_id: String, a_max_hit_points: int, a_hit_points: int, a_damage: int, a_armor: int, a_companions: Array[String], a_companion_types: Array[String]) -> void:
+func load_state(a_display_name: String, a_portrait_id: String, a_max_hit_points: int, a_hit_points: int, a_damage: int, a_armor: int, a_companion_types: Array[String]) -> void:
 	display_name = a_display_name
 	portrait_id = a_portrait_id
 	max_hit_points = a_max_hit_points
 	_hit_points = clampi(a_hit_points, 0, a_max_hit_points)
 	_weapon_damage = a_damage
 	_armor = a_armor
-	companions = a_companions
 	companion_types = a_companion_types
