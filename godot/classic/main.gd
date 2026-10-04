@@ -50,7 +50,7 @@ func _setup_character_stats() -> void:
 	CharacterManager.current.hit_points_changed.connect(_on_player_stats_changed)
 	CharacterManager.current.weapon_damage_changed.connect(_on_player_stats_changed)
 	CharacterManager.current.armor_changed.connect(_on_player_stats_changed)
-	player_stats_sheet.update_stats(CharacterManager.current.hit_points, CharacterManager.current.max_hit_points, CharacterManager.get_total_damage(), CharacterManager.current.armor)
+	player_stats_sheet.update_stats(CharacterManager.current.hit_points, CharacterManager.current.max_hit_points, CharacterManager.current.get_total_damage(), CharacterManager.current.armor)
 
 
 func _setup_player_portrait() -> void:
@@ -74,7 +74,7 @@ func _on_companion_picked_up(companion: Companion) -> void:
 
 
 func _on_player_stats_changed() -> void:
-	player_stats_sheet.update_stats(CharacterManager.current.hit_points, CharacterManager.current.max_hit_points, CharacterManager.get_total_damage(), CharacterManager.current.armor)
+	player_stats_sheet.update_stats(CharacterManager.current.hit_points, CharacterManager.current.max_hit_points, CharacterManager.current.get_total_damage(), CharacterManager.current.armor)
 
 
 func _setup_companions() -> void:

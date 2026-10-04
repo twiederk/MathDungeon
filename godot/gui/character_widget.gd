@@ -15,7 +15,7 @@ func update_stats() -> void:
 	var display_name  = character.display_name
 	var hit_points = character.hit_points
 	var max_hit_points = character.max_hit_points
-	var damage = CharacterManager.get_total_damage()
+	var damage = character.get_total_damage()
 	var armor = character.armor
 	var number_of_companions = character.companions.size()
 	var portrait: Portrait = character.portrait

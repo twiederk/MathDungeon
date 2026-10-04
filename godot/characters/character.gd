@@ -2,6 +2,7 @@ class_name Character
 
 
 const PORTRAIT_CATALOG: PortraitCatalog = preload("res://characters/portrait_catalog.tres")
+const WOLF_DAMAGE: int = 1
 
 signal weapon_damage_changed
 signal armor_changed
@@ -58,12 +59,11 @@ func get_damage() -> int:
 	return weapon_damage
 
 
-func get_total_damage(root: Node) -> int:
+func get_total_damage() -> int:
 	var total = get_damage()
-	for companion_path in companions:
-		var companion = root.get_node_or_null(companion_path)
-		if companion and "damage" in companion:
-			total += companion.damage
+	for companion_type in companion_types:
+		if companion_type == "Wolf":
+			total += WOLF_DAMAGE
 	return total
 
 

@@ -51,3 +51,34 @@ func test_hurt_is_reduced_by_armor():
 
 	# assert
 	assert_eq(3, result)
+
+
+func test_get_total_damage_without_companions():
+	# act
+	var result = character.get_total_damage()
+
+	# assert
+	assert_eq(1, result, "Total damage equals the weapon damage when no companion is owned")
+
+
+func test_get_total_damage_adds_one_per_wolf():
+	# arrange
+	character.add_companion_type("Wolf")
+	character.add_companion_type("Wolf")
+
+	# act
+	var result = character.get_total_damage()
+
+	# assert
+	assert_eq(3, result, "Each wolf adds one damage on top of the weapon damage")
+
+
+func test_get_total_damage_ignores_unknown_companion_types():
+	# arrange
+	character.add_companion_type("Allay")
+
+	# act
+	var result = character.get_total_damage()
+
+	# assert
+	assert_eq(1, result, "Unknown companion types contribute no damage")
