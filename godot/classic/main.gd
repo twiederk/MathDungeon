@@ -17,7 +17,7 @@ func _ready() -> void:
 	_setup_limits_and_borders()
 	_setup_character_stats()
 	_setup_player_portrait()
-	_setup_companions()
+	CompanionSetup.new(companions_root, player).setup()
 
 
 func _setup_signals() -> void:
@@ -47,10 +47,11 @@ func _setup_limits_and_borders() -> void:
 
 
 func _setup_character_stats() -> void:
-	CharacterManager.current.hit_points_changed.connect(_on_player_stats_changed)
-	CharacterManager.current.weapon_damage_changed.connect(_on_player_stats_changed)
-	CharacterManager.current.armor_changed.connect(_on_player_stats_changed)
-	player_stats_sheet.update_stats(CharacterManager.current.hit_points, CharacterManager.current.max_hit_points, CharacterManager.get_total_damage(), CharacterManager.current.armor)
+	var character := CharacterManager.current
+	character.hit_points_changed.connect(_on_player_stats_changed)
+	character.weapon_damage_changed.connect(_on_player_stats_changed)
+	character.armor_changed.connect(_on_player_stats_changed)
+	player_stats_sheet.update_stats(character.hit_points, character.max_hit_points, character.get_total_damage(), character.armor)
 
 
 func _setup_player_portrait() -> void:
@@ -67,23 +68,12 @@ func _on_item_picked_up(item: Item) -> void:
 
 
 func _on_companion_picked_up(companion: Companion) -> void:
+	CharacterManager.current.add_companion_type(String(companion.get_script().get_global_name()))
 	companion.execute()
 	if player:
 		companion.start_following(player)
 
 
 func _on_player_stats_changed() -> void:
-	player_stats_sheet.update_stats(CharacterManager.current.hit_points, CharacterManager.current.max_hit_points, CharacterManager.get_total_damage(), CharacterManager.current.armor)
-
-
-func _setup_companions() -> void:
-	for i in range(CharacterManager.current.companions.size()):
-		var companion_path = CharacterManager.current.companions[i]
-		var companion = get_node_or_null(companion_path)
-		
-		if companion and companion.has_method("start_following"):
-			var offset = Vector2(60.0 + (i * 40.0), 0.0)
-			companion.global_position = player.global_position + offset
-			companion.start_following(player)
-			if companion.has_method("set_damage_applied"):
-				companion.set_damage_applied()
+	var character := CharacterManager.current
+	player_stats_sheet.update_stats(character.hit_points, character.max_hit_points, character.get_total_damage(), character.armor)

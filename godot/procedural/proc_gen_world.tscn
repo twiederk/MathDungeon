@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://uov100t6ehma" path="res://procedural/proc_gen_world.gd" id="1_4yoxp"]
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://classic/world_tiles.tres" id="2_qifhp"]
 [ext_resource type="PackedScene" uid="uid://bqy23htwiovfo" path="res://locations/end_portal.tscn" id="3_4gbkj"]
-[ext_resource type="PackedScene" uid="uid://b008xnsl4xtfq" path="res://companions/wolf.tscn" id="3_nd7in"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://classic/player.tscn" id="4_ldss0"]
 [ext_resource type="PackedScene" uid="uid://ch27vu5jqwd8g" path="res://locations/nether_portal.tscn" id="4_wh5hr"]
 [ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://classic/map_borders.tscn" id="5_4gbkj"]
@@ -39,12 +38,6 @@ position = Vector2(121, 866)
 
 [node name="Companions" type="Node2D" parent="." unique_id=1789589125]
 scale = Vector2(0.99999994, 0.99999994)
-
-[node name="Wolf" parent="Companions" unique_id=816659735 instance=ExtResource("3_nd7in")]
-position = Vector2(199, -59)
-
-[node name="Wolf2" parent="Companions" unique_id=1811404612 instance=ExtResource("3_nd7in")]
-position = Vector2(81, -58)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1957011003]
 scale = Vector2(0.99999994, 0.99999994)

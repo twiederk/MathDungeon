@@ -19,7 +19,3 @@ func _ensure_default_character() -> void:
 	character.display_name = DEFAULT_CHARACTER_NAME
 	character.portrait_id = DEFAULT_CHARACTER_ID
 	SaveManager.save_character(character)
-
-
-func get_total_damage() -> int:
-	return current.get_total_damage(self)

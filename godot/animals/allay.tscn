@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://deiw20d4xtqpg"]
+[gd_scene format=3 uid="uid://d1xs4gq4nfcvt"]
 
 [ext_resource type="Script" uid="uid://d4ibqddds0vpw" path="res://animals/animal.gd" id="1_sildp"]
 [ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="2_bufp8"]

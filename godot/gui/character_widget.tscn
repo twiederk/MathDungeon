@@ -6,14 +6,14 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_m5e2a"]
 
 [node name="CharacterWidget" type="Control" unique_id=1751308748]
-custom_minimum_size = Vector2(200, 150)
+custom_minimum_size = Vector2(200, 180)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_nnimf")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1254566602]
 self_modulate = Color(0.7764706, 0.6039216, 0.3882353, 1)
-custom_minimum_size = Vector2(190, 150)
+custom_minimum_size = Vector2(190, 180)
 layout_mode = 0
 offset_right = 120.0
 offset_bottom = 96.0
@@ -49,9 +49,13 @@ text = "Schaden: 1"
 layout_mode = 2
 text = "Rüstung: 0"
 
-[node name="CompanionLabel" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1191089324]
+[node name="WolfLabel" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1191089324]
 layout_mode = 2
 text = "Wölfe: 0"
+
+[node name="AllayLabel" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=768708695]
+layout_mode = 2
+text = "Allays: 0"
 
 [node name="PortraitTextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer" unique_id=854667893]
 custom_minimum_size = Vector2(64, 64)

@@ -2,6 +2,7 @@ class_name Character
 
 
 const PORTRAIT_CATALOG: PortraitCatalog = preload("res://characters/portrait_catalog.tres")
+const WOLF_DAMAGE: int = 1
 
 signal weapon_damage_changed
 signal armor_changed
@@ -57,13 +58,28 @@ func get_damage() -> int:
 	return weapon_damage
 
 
-func get_total_damage(root: Node) -> int:
+func get_total_damage() -> int:
 	var total = get_damage()
-	for companion_path in companions:
-		var companion = root.get_node_or_null(companion_path)
-		if companion and "damage" in companion:
-			total += companion.damage
+	for companion_type in companions:
+		if companion_type == "Wolf":
+			total += WOLF_DAMAGE
 	return total
+
+
+func get_wolf_count() -> int:
+	var count = 0
+	for companion_type in companions:
+		if companion_type == "Wolf":
+			count += 1
+	return count
+
+
+func get_allay_count() -> int:
+	var count = 0
+	for companion_type in companions:
+		if companion_type == "Allay":
+			count += 1
+	return count
 
 
 func get_armor() -> int:
@@ -87,11 +103,10 @@ func needs_healing() -> bool:
 	return hit_points < max_hit_points
 
 
-func add_companion(companion_path: String) -> void:
-	if companion_path not in companions:
-		companions.append(companion_path)
-		weapon_damage_changed.emit()
-		SaveManager.save_character(self)
+func add_companion_type(companion_type: String) -> void:
+	companions.append(companion_type)
+	weapon_damage_changed.emit()
+	SaveManager.save_character(self)
 
 
 func load_state(a_display_name: String, a_portrait_id: String, a_max_hit_points: int, a_hit_points: int, a_damage: int, a_armor: int, a_companions: Array[String]) -> void:

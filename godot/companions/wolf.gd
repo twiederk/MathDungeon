@@ -1,17 +1,6 @@
 class_name Wolf
 extends Companion
 
-@export var damage: int
-
-var damage_applied: bool = false
-
 
 func execute() -> void:
-	if not damage_applied:
-		Sound.play(Sound.dog_bark)
-		damage_applied = true
-		CharacterManager.current.add_companion(str(get_path()))
-
-
-func set_damage_applied() -> void:
-	damage_applied = true
+	Sound.play(Sound.dog_bark)

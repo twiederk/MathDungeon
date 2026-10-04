@@ -109,7 +109,7 @@ func _check_answer(answer: String) -> void:
 
 
 func _answer_correct() -> void:
-	var enemy_hit_points = enemy.hurt(CharacterManager.get_total_damage())
+	var enemy_hit_points = enemy.hurt(CharacterManager.current.get_total_damage())
 	if enemy_hit_points > 0:
 		exercise = _create_exercise()
 		question_label.text = "Richtig!!!\n" + exercise.question

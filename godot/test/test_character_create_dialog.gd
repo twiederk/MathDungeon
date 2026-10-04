@@ -34,5 +34,5 @@ func test_create_character_sets_default_values():
 	assert_eq(expected_hit_points, character.hit_points, "Should set hit_points to 5")
 	assert_eq(expected_weapon_damage, character.weapon_damage, "Should set weapon_damage to 1")
 	assert_eq(expected_armor, character.armor, "Should set armor to 0")
-	assert_eq(expected_companions_size, character.companions.size(), "Should initialize companions as empty array")
+	assert_eq(expected_companions_size, character.companions.size(), "Should initialize companion_types as empty array")
 	assert_ne("", character.id, "Character ID should not be empty")
