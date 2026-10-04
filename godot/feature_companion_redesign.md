@@ -310,3 +310,91 @@ also covers stale entries in old save files.
 - [ ] Enter those levels with 0 wolves: no companions appear and no warning is logged.
 - [ ] A stale or misspelled entry in `companion_types` logs the warning and is skipped
       without crashing.
+
+## Phase 4 — remove the legacy path mechanism
+
+After phase 3 nothing reads the node-path array any more. This phase deletes it and the
+bookkeeping that only existed to support it.
+
+### 4.1 `characters/character.gd`
+
+Remove:
+
+```gdscript
+var companions: Array[String] = []
+
+
+func add_companion(companion_path: String) -> void:
+	if companion_path not in companions:
+		companions.append(companion_path)
+		weapon_damage_changed.emit()
+		SaveManager.save_character(self)
+```
+
+`load_state()` drops its `a_companions` parameter and the `companions = a_companions`
+assignment, keeping only `a_companion_types` from phase 1. `companion_types` becomes the
+single source of truth.
+
+### 4.2 `classic/save_manager.gd`
+
+Remove the `"companions": character.companions,` entry from the `save_character()`
+dictionary and the matching
+`_sanitize_string_array(data.get("companions", []))` argument in `_character_from_data()`.
+`_sanitize_string_array()` itself stays — it is still used for `companion_types`.
+
+Old save files keep their now-unread `companions` key; `JSON.parse_string()` ignores it and
+the next `save_character()` drops it. No migration code is required, but note that wolves
+earned before phase 1 are **not** carried over — those players restart with an empty
+companion list unless a one-off back-fill is added in `_character_from_data()`.
+
+### 4.3 `companions/wolf.gd`
+
+Reduces to the sound hook:
+
+```gdscript
+class_name Wolf
+extends Companion
+
+
+func execute() -> void:
+	Sound.play(Sound.dog_bark)
+```
+
+Gone: `@export var damage`, `var damage_applied`, `set_damage_applied()` and the
+`CharacterManager.current.add_companion(str(get_path()))` call. The damage value now lives
+in `Character.WOLF_DAMAGE` (phase 2), and the "already collected" guard is covered by
+`is_following` plus the claiming logic from phase 3.
+
+Note `damage = 1` remains written in `companions/wolf.tscn` as an orphaned property for a
+no-longer-existing export; re-save the scene in the editor to drop it cleanly.
+
+### 4.4 `classic/main.gd`
+
+`_setup_companions()` no longer needs the `has_method("set_damage_applied")` branch, and
+`_on_companion_picked_up()` keeps only the `companion_types` registration from phase 1:
+
+```gdscript
+func _on_companion_picked_up(companion: Companion) -> void:
+	CharacterManager.current.add_companion_type(String(companion.get_script().get_global_name()))
+	companion.execute()
+	if player:
+		companion.start_following(player)
+```
+
+### 4.5 Dependent call sites
+
+| File | Change |
+| --- | --- |
+| `gui/character_widget.gd` | `character.companions.size()` → `character.companion_types.size()` |
+| `test/test_SaveManager.gd` | the fixture passes `["/root/Main/Companions/Wolf1"]` into `load_state()`; switch it to `["Wolf"]` and assert on the `companion_types` key |
+| `test/test_character_create_dialog.gd` | `companions.size() == 0` → `companion_types.size() == 0` |
+| `test/test_Character.gd` | `before_each()`'s `load_state(...)` loses the old array argument |
+
+A grep for `\.companions\b` should return no hits once this phase is done.
+
+### 4.6 Verification
+
+- [ ] Full GUT suite passes.
+- [ ] Picking up a wolf still plays the bark and increases the damage on the stats sheet.
+- [ ] Save, quit, restart: the wolves return in `main` and in every other level.
+- [ ] Neither `Character` nor `SaveManager` mentions node paths any more.
