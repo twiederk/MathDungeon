@@ -100,14 +100,54 @@ Persist the new array alongside the old one:
 ```
 
 and restore it through the existing `_sanitize_string_array()` helper. `load_state()` gains
-a trailing `a_companion_types: Array[String]` parameter. Saves written before this change
-have no `companion_types` key, so the default `[]` applies — existing wolves are not
-back-filled unless the load step derives them from the old path entries.
+a trailing `a_companion_types: Array[String]` parameter.
 
-### 1.5 Verification
+### 1.5 Migrate existing saves
+
+Saves written before this change have no `companion_types` key, so the default `[]` would
+apply. That is **not** acceptable: phase 2 derives damage exclusively from
+`companion_types`, and a player whose wolves are already following cannot re-collect them
+(the `is_following` guard in `companions/companion.gd` blocks it). Those wolves would
+become permanently damage-less.
+
+Derive the types from the legacy path entries in `_character_from_data()`:
+
+```gdscript
+var companion_types := _sanitize_string_array(data.get("companion_types", []))
+if companion_types.is_empty():
+	for companion_path in _sanitize_string_array(data.get("companions", [])):
+		companion_types.append(_type_from_legacy_path(companion_path))
+```
+
+The legacy paths all end in the node name — `/root/Main/Companions/Wolf`,
+`.../Wolf2` — so the type is the trailing name with any numeric suffix stripped:
+
+```gdscript
+func _type_from_legacy_path(companion_path: String) -> String:
+	return companion_path.get_file().rstrip("0123456789")
+```
+
+This runs once; the next `save_character()` writes the `companion_types` key and the
+fallback never triggers again.
+
+### 1.6 Update every `load_state()` call site
+
+The new parameter changes the method's arity, so **all** existing callers must be updated
+in this same phase — otherwise phase 1 breaks the test suite and is not shippable on its
+own:
+
+| File | Change |
+| --- | --- |
+| `classic/save_manager.gd` (`_character_from_data`) | pass the migrated `companion_types` as the new trailing argument |
+| `test/test_Character.gd` (`before_each`) | `load_state("Steve", "steve", 5, 5, 1, 0, [])` gains a trailing `[]` |
+| `test/test_SaveManager.gd` | `load_state("Steve", "000", 5, 0, 3, 2, ["/root/Main/Companions/Wolf1"])` gains a trailing `[]` |
+
+### 1.7 Verification
 
 - [ ] Pick up both wolves in `main`: `companion_types == ["Wolf", "Wolf"]`.
 - [ ] Restart the game: the array survives the save/load round-trip.
+- [ ] A save file written before this change loads with `companion_types == ["Wolf", "Wolf"]`.
+- [ ] The full GUT suite passes.
 - [ ] Nothing else changes — damage, following and the stats sheet behave as before.
 
 ## Phase 2 — make `get_total_damage()` root-free
@@ -139,9 +179,8 @@ replace the hardcoded constant by reading the value back from the companion scen
 
 ### 2.2 Unit test — `test/test_Character.gd`
 
-The existing suite builds its fixture via
-`character.load_state("Steve", "steve", 5, 5, 1, 0, [])`, so the new parameter from phase 1
-has to be threaded through `before_each()`. Add cases covering the three interesting
+The existing suite builds its fixture via `load_state(...)` in `before_each()`, already
+updated for the extra parameter in phase 1. Add cases covering the three interesting
 states:
 
 ```gdscript
@@ -254,11 +293,22 @@ func _claim_companion(companion_type: String, used: Array[Node]) -> Companion:
 
 func _instantiate_companion(companion_type: String) -> Companion:
 	var scene_path := "res://companions/%s.tscn" % companion_type.to_snake_case()
-	if not ResourceLoader.exists(scene_path):
+	var scene: PackedScene = load(scene_path) if ResourceLoader.exists(scene_path) else null
+	if scene == null:
 		push_warning("Unknown companion type: " + companion_type)
 		return null
-	return load(scene_path).instantiate()
+
+	var instance := scene.instantiate()
+	if not instance is Companion:
+		push_warning("Scene is not a Companion: " + scene_path)
+		instance.free()
+		return null
+	return instance
 ```
+
+`ResourceLoader.exists()` only proves that *some* resource is at that path — not that it is
+a `PackedScene` whose root is a `Companion`. Without the second check the declared
+`-> Companion` return type fails at runtime on a misnamed or wrongly-typed file.
 
 Three details that make this correct:
 
@@ -295,6 +345,10 @@ also covers stale entries in old save files.
 - `classic/nether.tscn`, `classic/end.tscn`, `procedural/proc_gen_world.tscn`: **delete the
   `Wolf` and `Wolf2` instances.** Keep the empty `Companions` node — `main.gd` still
   resolves `$Companions`, and spawned companions are parented to it.
+- Same three files: also drop the now-unused `wolf.tscn` `[ext_resource]` lines
+  (`classic/nether.tscn` id `10_0p2k4`, `classic/end.tscn` id `3_an1ed`,
+  `procedural/proc_gen_world.tscn` id `3_nd7in`). Re-saving each scene in the editor does
+  this automatically. Not a runtime break, just a stale dependency.
 - `classic/main.tscn`: unchanged. Its two wolves stay as the in-world pickups and are now
   claimed by `_setup_companions()` when already owned.
 
@@ -343,9 +397,12 @@ dictionary and the matching
 `_sanitize_string_array()` itself stays — it is still used for `companion_types`.
 
 Old save files keep their now-unread `companions` key; `JSON.parse_string()` ignores it and
-the next `save_character()` drops it. No migration code is required, but note that wolves
-earned before phase 1 are **not** carried over — those players restart with an empty
-companion list unless a one-off back-fill is added in `_character_from_data()`.
+the next `save_character()` drops it.
+
+The legacy back-fill from section 1.5 (`_type_from_legacy_path()`) must be removed here
+too — it reads the key that this phase stops writing. Only delete it once you are confident
+every save in circulation has been loaded at least once under phase 1; until then it is the
+only thing carrying pre-redesign wolves forward.
 
 ### 4.3 `companions/wolf.gd`
 
