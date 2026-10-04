@@ -15,7 +15,7 @@ func save_character(character: Character) -> void:
 		"hit_points": character.hit_points,
 		"weapon_damage": character.weapon_damage,
 		"armor": character.armor,
-		"companion_types": character.companion_types,
+		"companions": character.companions,
 	}
 	var save_file := FileAccess.open(_character_path(character.id), FileAccess.WRITE)
 	save_file.store_string(JSON.stringify(data))
@@ -73,7 +73,7 @@ func _character_from_data(id: String, data: Dictionary) -> Character:
 		int(data.get("hit_points", max_hit_points)),
 		int(data.get("weapon_damage", 1)),
 		int(data.get("armor", 0)),
-		_sanitize_string_array(data.get("companion_types", []))
+		_sanitize_string_array(data.get("companions", []))
 	)
 	return character
 

@@ -81,7 +81,7 @@ func _on_player_stats_changed() -> void:
 
 func _setup_companions() -> void:
 	var used: Array[Node] = []
-	var companion_types := CharacterManager.current.companion_types
+	var companion_types := CharacterManager.current.companions
 
 	for i in companion_types.size():
 		var companion := _claim_companion(companion_types[i], used)
