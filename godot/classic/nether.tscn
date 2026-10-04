@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://b5pvf74jx7ptx" path="res://enemies/piglin_boss.tscn" id="6_xedoa"]
 [ext_resource type="PackedScene" uid="uid://0pfsc41na6j6" path="res://enemies/shooting_ghast.tscn" id="8_orhj5"]
 [ext_resource type="PackedScene" uid="uid://c6luw4aoh1qpi" path="res://enemies/enderman.tscn" id="9_muida"]
-[ext_resource type="PackedScene" uid="uid://b008xnsl4xtfq" path="res://companions/wolf.tscn" id="10_0p2k4"]
 [ext_resource type="PackedScene" uid="uid://6wusnt285r11" path="res://enemies/piglin_zombie.tscn" id="10_pts44"]
 [ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="13_ua487"]
 [ext_resource type="PackedScene" uid="uid://dknfts4omoqf2" path="res://enemies/blaze.tscn" id="19_wat66"]
@@ -88,12 +87,6 @@ position = Vector2(1629, 612)
 position = Vector2(653, 107)
 
 [node name="Companions" type="Node2D" parent="." unique_id=126640029]
-
-[node name="Wolf" parent="Companions" unique_id=1048194228 instance=ExtResource("10_0p2k4")]
-position = Vector2(199, -59)
-
-[node name="Wolf2" parent="Companions" unique_id=400497793 instance=ExtResource("10_0p2k4")]
-position = Vector2(81, -58)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=777213420]
 

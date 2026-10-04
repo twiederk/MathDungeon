@@ -80,13 +80,41 @@ func _on_player_stats_changed() -> void:
 
 
 func _setup_companions() -> void:
-	for i in range(CharacterManager.current.companions.size()):
-		var companion_path = CharacterManager.current.companions[i]
-		var companion = get_node_or_null(companion_path)
-		
-		if companion and companion.has_method("start_following"):
-			var offset = Vector2(60.0 + (i * 40.0), 0.0)
-			companion.global_position = player.global_position + offset
-			companion.start_following(player)
-			if companion.has_method("set_damage_applied"):
-				companion.set_damage_applied()
+	var used: Array[Node] = []
+	var companion_types := CharacterManager.current.companion_types
+
+	for i in companion_types.size():
+		var companion := _claim_companion(companion_types[i], used)
+		if companion == null:
+			continue
+		used.append(companion)
+		companion.global_position = player.global_position + Vector2(60.0 + (i * 40.0), 0.0)
+		companion.start_following(player)
+
+
+func _claim_companion(companion_type: String, used: Array[Node]) -> Companion:
+	for child in companions_root.get_children():
+		if child in used or not child is Companion:
+			continue
+		if String(child.get_script().get_global_name()) == companion_type:
+			return child
+
+	var companion := _instantiate_companion(companion_type)
+	if companion:
+		companions_root.add_child(companion)
+	return companion
+
+
+func _instantiate_companion(companion_type: String) -> Companion:
+	var scene_path := "res://companions/%s.tscn" % companion_type.to_snake_case()
+	var scene: PackedScene = load(scene_path) if ResourceLoader.exists(scene_path) else null
+	if scene == null:
+		push_warning("Unknown companion type: " + companion_type)
+		return null
+
+	var instance := scene.instantiate()
+	if not instance is Companion:
+		push_warning("Scene is not a Companion: " + scene_path)
+		instance.free()
+		return null
+	return instance
