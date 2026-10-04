@@ -1,6 +1,11 @@
 class_name CompanionSetup
 extends Object
 
+
+const COMPANION_SCENES := {
+	"Wolf": "res://companions/wolf.tscn",
+}
+
 var _companions_root: Node
 var _player: Player
 
@@ -37,15 +42,6 @@ func _claim_companion(companion_type: String, used: Array[Node]) -> Companion:
 
 
 func _instantiate_companion(companion_type: String) -> Companion:
-	var scene_path := "res://companions/%s.tscn" % companion_type.to_snake_case()
-	var scene: PackedScene = load(scene_path) if ResourceLoader.exists(scene_path) else null
-	if scene == null:
-		push_warning("Unknown companion type: " + companion_type)
-		return null
-
+	var scene: PackedScene = load(COMPANION_SCENES[companion_type])
 	var instance := scene.instantiate()
-	if not instance is Companion:
-		push_warning("Scene is not a Companion: " + scene_path)
-		instance.free()
-		return null
 	return instance
