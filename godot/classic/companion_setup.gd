@@ -32,6 +32,10 @@ func setup() -> void:
 			companion.global_position = _player.global_position + Vector2(60.0 + (i * 40.0), 0.0)
 			companion.start_following(_player)
 
+	_free_allays(used)
+
+
+func _free_allays(used: Array[Node]) -> void:
 	for node in used:
 		if String(node.get_script().get_global_name()) == "Allay":
 			node.queue_free()
