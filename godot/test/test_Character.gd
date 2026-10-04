@@ -5,7 +5,7 @@ var character: Character = null
 
 func before_each():
 	character = Character.new()
-	character.load_state("Steve", "steve", 5, 5, 1, 0, [])
+	character.load_state("Steve", "steve", 5, 5, 1, 0, [], [])
 
 
 func after_each():

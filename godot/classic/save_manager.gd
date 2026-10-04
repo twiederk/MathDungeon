@@ -16,6 +16,7 @@ func save_character(character: Character) -> void:
 		"weapon_damage": character.weapon_damage,
 		"armor": character.armor,
 		"companions": character.companions,
+		"companion_types": character.companion_types,
 	}
 	var save_file := FileAccess.open(_character_path(character.id), FileAccess.WRITE)
 	save_file.store_string(JSON.stringify(data))
@@ -66,6 +67,7 @@ func _character_from_data(id: String, data: Dictionary) -> Character:
 	var character := Character.new()
 	character.id = id
 	var max_hit_points: int = int(data.get("max_hit_points", 5))
+	var companions := _sanitize_string_array(data.get("companions", []))
 	character.load_state(
 		str(data.get("display_name", "")),
 		str(data.get("portrait_id", "000")),
@@ -73,9 +75,24 @@ func _character_from_data(id: String, data: Dictionary) -> Character:
 		int(data.get("hit_points", max_hit_points)),
 		int(data.get("weapon_damage", 1)),
 		int(data.get("armor", 0)),
-		_sanitize_string_array(data.get("companions", []))
+		companions,
+		_companion_types_from_data(data, companions)
 	)
 	return character
+
+
+func _companion_types_from_data(data: Dictionary, companions: Array[String]) -> Array[String]:
+	var companion_types := _sanitize_string_array(data.get("companion_types", []))
+	if not companion_types.is_empty():
+		return companion_types
+	for companion_path in companions:
+		companion_types.append(_type_from_legacy_path(companion_path))
+	return companion_types
+
+
+# Legacy saves identified companions by node path, e.g. "/root/Main/Companions/Wolf2".
+func _type_from_legacy_path(companion_path: String) -> String:
+	return companion_path.get_file().rstrip("0123456789")
 
 
 func _character_path(id: String) -> String:

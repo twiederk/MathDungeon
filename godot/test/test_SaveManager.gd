@@ -28,7 +28,7 @@ func test_save_character_creates_file():
 
 func test_save_character_is_skipped_while_dead():
 	# arrange
-	character.load_state("Steve", "000", 5, 0, 3, 2, ["/root/Main/Companions/Wolf1"])
+	character.load_state("Steve", "000", 5, 0, 3, 2, ["/root/Main/Companions/Wolf1"], ["Wolf"])
 
 	# act
 	SaveManager.save_character(character)
