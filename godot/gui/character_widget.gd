@@ -6,7 +6,8 @@ extends Control
 @onready var health_meter_widget: HealthMeterWidget = $VBoxContainer/HBoxContainer/VBoxContainer/HealthMeterWidget
 @onready var damage_label: Label = $VBoxContainer/HBoxContainer/VBoxContainer/DamageLabel
 @onready var armor_label: Label = $VBoxContainer/HBoxContainer/VBoxContainer/ArmorLabel
-@onready var companion_label: Label = $VBoxContainer/HBoxContainer/VBoxContainer/CompanionLabel
+@onready var wolf_label = $VBoxContainer/HBoxContainer/VBoxContainer/WolfLabel
+@onready var allay_label = $VBoxContainer/HBoxContainer/VBoxContainer/AllayLabel
 @onready var portrait_texture_rect: TextureRect = $VBoxContainer/HBoxContainer/PortraitTextureRect
 
 
@@ -26,6 +27,7 @@ func update_stats() -> void:
 	health_meter_widget.update_max_health_ui(max_hit_points)
 	damage_label.text = "Schaden: " + str(damage)
 	armor_label.text = "Rüstung: " + str(armor)
-	companion_label.text = "Wölfe: " + str(wolf_count) + " Allays: " + str(allay_count)
+	wolf_label.text = "Wölfe: " + str(wolf_count)
+	allay_label.text = "Allays: " + str(allay_count)
 
 	portrait_texture_rect.texture = portrait.texture

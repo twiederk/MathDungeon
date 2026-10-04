@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://du42xjh5bgq8lo"]
+[gd_scene format=3 uid="uid://dcfx8qnhxh33y"]
 
 [ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="1_8f5g7"]
 [ext_resource type="Script" uid="uid://c4v8lfj7hd2mg2" path="res://companions/allay.gd" id="1_wyb0x"]
