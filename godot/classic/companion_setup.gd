@@ -19,20 +19,28 @@ func setup() -> void:
 	var used: Array[Node] = []
 	var companion_types := CharacterManager.current.companions
 
-	for i in companion_types.size():
-		if companion_types[i] == "Allay":
-			var allay := _claim_allay(used)
-			if allay != null:
-				used.append(allay)
+	for index in companion_types.size():
+		if companion_types[index] == "Allay":
+			_mark_allay_used(used)
 		else:
-			var companion := _claim_companion(companion_types[i], used)
-			if companion == null:
-				continue
-			used.append(companion)
-			companion.global_position = _player.global_position + Vector2(60.0 + (i * 40.0), 0.0)
-			companion.start_following(_player)
+			_place_companion(companion_types[index], index, used)
 
 	_free_allays(used)
+
+
+func _mark_allay_used(used: Array[Node]) -> void:
+	var allay := _claim_allay(used)
+	if allay != null:
+		used.append(allay)
+
+
+func _place_companion(companion_type: String, index: int, used: Array[Node]) -> void:
+	var companion := _claim_companion(companion_type, used)
+	if companion == null:
+		return
+	used.append(companion)
+	companion.global_position = _player.global_position + Vector2(60.0 + (index * 40.0), 0.0)
+	companion.start_following(_player)
 
 
 func _free_allays(used: Array[Node]) -> void:
