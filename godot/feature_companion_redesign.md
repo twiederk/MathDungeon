@@ -214,3 +214,99 @@ With it goes the last reason for the autoload to be passed around as a node path
 - [ ] `CharacterWidget` in the menu now also shows the companion bonus — previously it
       silently showed 0 extra, because the absolute node paths never resolved there.
 - [ ] Quiz damage dealt to enemies matches the stats sheet.
+
+## Phase 3 — reuse or spawn companions per level
+
+`companion_types` is the list of companions that *must* be present in the current level.
+`companions_root` holds whatever the level scene happens to provide. Phase 3 reconciles the
+two: **reuse a matching node if the level already has one, otherwise instantiate the scene.**
+This completes goal 1 and makes the companion nodes in `nether`, `end` and
+`proc_gen_world` obsolete.
+
+### 3.1 `classic/main.gd` — reconcile instead of look up
+
+```gdscript
+func _setup_companions() -> void:
+	var used: Array[Node] = []
+	var companion_types := CharacterManager.current.companion_types
+
+	for i in companion_types.size():
+		var companion := _claim_companion(companion_types[i], used)
+		if companion == null:
+			continue
+		used.append(companion)
+		companion.global_position = player.global_position + Vector2(60.0 + i * 40.0, 0.0)
+		companion.start_following(player)
+
+
+func _claim_companion(companion_type: String, used: Array[Node]) -> Companion:
+	for child in companions_root.get_children():
+		if child in used or not child is Companion:
+			continue
+		if String(child.get_script().get_global_name()) == companion_type:
+			return child
+
+	var companion := _instantiate_companion(companion_type)
+	if companion:
+		companions_root.add_child(companion)
+	return companion
+
+
+func _instantiate_companion(companion_type: String) -> Companion:
+	var scene_path := "res://companions/%s.tscn" % companion_type.to_snake_case()
+	if not ResourceLoader.exists(scene_path):
+		push_warning("Unknown companion type: " + companion_type)
+		return null
+	return load(scene_path).instantiate()
+```
+
+Three details that make this correct:
+
+- **`used` prevents double-claiming.** With `["Wolf", "Wolf"]` and `Wolf` + `Wolf2` in
+  `main.tscn`, the first entry claims `Wolf` and the second must fall through to `Wolf2`
+  rather than matching `Wolf` again.
+- **Unclaimed children stay pickups.** Owning one wolf claims one node; the other keeps its
+  `companion_picked_up` connection from `_setup_signals()` and remains collectable. Owning
+  both leaves nothing collectable, which reproduces today's "can't pick them up again"
+  behavior without any node-path bookkeeping.
+- **Spawned nodes are never pickups.** They are added after `_setup_signals()` has run, so
+  their signal is unconnected, and `start_following()` sets `is_following = true`, which
+  the guard in `Companion._on_body_entered` already respects.
+
+### 3.2 The name-to-path convention
+
+`get_global_name()` yields `"Wolf"` but the file is `companions/wolf.tscn`, so a plain
+concatenation of `"res://companions/" + companion_type + ".tscn"` does **not** resolve.
+`to_snake_case()` bridges the gap and also handles future multi-word types:
+
+| `class_name` | `to_snake_case()` | Expected scene |
+| --- | --- | --- |
+| `Wolf` | `wolf` | `res://companions/wolf.tscn` |
+| `Allay` | `allay` | `res://companions/allay.tscn` |
+| `IronGolem` | `iron_golem` | `res://companions/iron_golem.tscn` |
+
+This makes the convention load-bearing: **every companion scene must live in
+`res://companions/` and be named after the snake_case form of its `class_name`.** The
+`ResourceLoader.exists()` guard turns a violation into a warning instead of a crash, which
+also covers stale entries in old save files.
+
+### 3.3 Scene cleanup
+
+- `classic/nether.tscn`, `classic/end.tscn`, `procedural/proc_gen_world.tscn`: **delete the
+  `Wolf` and `Wolf2` instances.** Keep the empty `Companions` node — `main.gd` still
+  resolves `$Companions`, and spawned companions are parented to it.
+- `classic/main.tscn`: unchanged. Its two wolves stay as the in-world pickups and are now
+  claimed by `_setup_companions()` when already owned.
+
+### 3.4 Verification
+
+- [ ] 0 wolves owned, enter `main`: both wolves sit in the world and can be picked up.
+- [ ] 1 wolf owned, enter `main`: one wolf follows the player, the other is still
+      collectable.
+- [ ] 2 wolves owned, enter `main`: both follow, nothing is collectable, and no third wolf
+      appears.
+- [ ] Enter `nether` / `end` / `proc_gen_world` with 2 wolves: both are spawned next to the
+      player although the scenes contain no companion nodes.
+- [ ] Enter those levels with 0 wolves: no companions appear and no warning is logged.
+- [ ] A stale or misspelled entry in `companion_types` logs the warning and is skipped
+      without crashing.
