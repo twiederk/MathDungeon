@@ -16,16 +16,16 @@ func _init(companions_root: Node, player: Player) -> void:
 
 
 func setup() -> void:
-	var used: Array[Node] = []
-	var companion_types := CharacterManager.current.companions
+	var used_companion_nodes: Array[Node] = []
+	var companions := CharacterManager.current.companions
 
-	for index in companion_types.size():
-		if companion_types[index] == "Allay":
-			_mark_allay_used(used)
+	for index in companions.size():
+		if companions[index] == "Allay":
+			_mark_allay_used(used_companion_nodes)
 		else:
-			_place_companion(companion_types[index], index, used)
+			_place_companion(companions[index], index, used_companion_nodes)
 
-	_free_allays(used)
+	_free_allays(used_companion_nodes)
 
 
 func _mark_allay_used(used: Array[Node]) -> void:

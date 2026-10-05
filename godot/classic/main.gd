@@ -68,7 +68,7 @@ func _on_item_picked_up(item: Item) -> void:
 
 
 func _on_companion_picked_up(companion: Companion) -> void:
-	CharacterManager.current.add_companion_type(String(companion.get_script().get_global_name()))
+	CharacterManager.current.add_companion(String(companion.get_script().get_global_name()))
 	companion.execute()
 	if player:
 		companion.start_following(player)
