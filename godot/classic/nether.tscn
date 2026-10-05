@@ -32,10 +32,10 @@ radius = 74.0
 height = 336.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oc63w"]
-size = Vector2(287, 20)
+size = Vector2(287, 88)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ej081"]
-size = Vector2(293, 20)
+size = Vector2(293, 88)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1qbol"]
 resource_local_to_scene = true
@@ -53,7 +53,7 @@ radius = 111.01801
 size = Vector2(230, 90)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_40bte"]
-radius = 87.0
+radius = 84.804596
 height = 350.0
 
 [node name="Nether" type="Node2D" unique_id=1982536266]
@@ -251,14 +251,14 @@ position = Vector2(513, 1153)
 position = Vector2(220, 240)
 
 [node name="CollisionShape2D" parent="Enemies/Blaze/ShootingArea" parent_id_path=PackedInt32Array(1171440455, 1951971501) index="0" unique_id=1003688871]
-position = Vector2(133.5, 0)
+position = Vector2(133.5, -2)
 shape = SubResource("RectangleShape2D_oc63w")
 
 [node name="Blaze2" parent="Enemies" unique_id=905791514 instance=ExtResource("19_wat66")]
 position = Vector2(377, 242)
 
 [node name="CollisionShape2D" parent="Enemies/Blaze2/ShootingArea" parent_id_path=PackedInt32Array(905791514, 1951971501) index="0" unique_id=1003688871]
-position = Vector2(136.5, 0)
+position = Vector2(136.5, -3)
 shape = SubResource("RectangleShape2D_ej081")
 
 [node name="Blaze3" parent="Enemies" unique_id=1265596083 instance=ExtResource("19_wat66")]
