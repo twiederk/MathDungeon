@@ -1,0 +1,8 @@
+lieben,liebt,liebten
+lesen,liest,lasen
+scheinen,scheint,schienen
+schlafen,schläft,schliefen
+schreiben,schreibt,schrieben
+zielen,zielt,zielten
+springen,springt,sprangen
+rufen,ruft,riefen

@@ -1,0 +1,3 @@
+der Fisch,die Fische
+die Nase,die Nasen
+die Tür,die Türen
