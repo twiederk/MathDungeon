@@ -4,7 +4,7 @@ extends Node
 @export var pickup_sword : AudioStream
 @export var pickup_helmet : AudioStream
 @export var pickup_lighter : AudioStream
-@export var dog_bark: AudioStream
+@export var companion_wolf: AudioStream
 @export var victory: AudioStream
 @export var achievement_unlock: AudioStream
 @export var companion_ally: AudioStream
