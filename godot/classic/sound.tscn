@@ -8,9 +8,9 @@
 [ext_resource type="AudioStream" uid="uid://tlwviidcb8v0" path="res://enemies/victory.mp3" id="4_victory"]
 [ext_resource type="AudioStream" uid="uid://doglmolxgtdl6" path="res://items/LighterPickUp.ogg" id="5_kycvu"]
 [ext_resource type="AudioStream" uid="uid://vapewagvnujf" path="res://enemies/achievement.mp3" id="6_achievement"]
+[ext_resource type="AudioStream" uid="uid://r3tq1fxiync4" path="res://companions/AllayPickup.mp3" id="9_3toxw"]
 
-
-[node name="Sound" type="Node"]
+[node name="Sound" type="Node" unique_id=207141569]
 script = ExtResource("1_7ywqe")
 pickup_potion = ExtResource("2_tdv2v")
 pickup_sword = ExtResource("3_njgaf")
@@ -19,35 +19,36 @@ pickup_lighter = ExtResource("5_kycvu")
 dog_bark = ExtResource("3_tdv2v")
 victory = ExtResource("4_victory")
 achievement_unlock = ExtResource("6_achievement")
+companion_ally = ExtResource("9_3toxw")
 
-[node name="AudioStreamPlayer1" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer1" type="AudioStreamPlayer" parent="." unique_id=895126907]
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=913322585]
 
-[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="." unique_id=1506367896]
 
-[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="." unique_id=873090256]
 
-[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="." unique_id=810142467]
 
-[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="." unique_id=742344900]
 
-[node name="AudioStreamPlayer7" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer7" type="AudioStreamPlayer" parent="." unique_id=397556156]
 
-[node name="AudioStreamPlayer8" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer8" type="AudioStreamPlayer" parent="." unique_id=2047381905]
 
-[node name="AudioStreamPlayer9" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer9" type="AudioStreamPlayer" parent="." unique_id=206546]
 
-[node name="AudioStreamPlayer10" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer10" type="AudioStreamPlayer" parent="." unique_id=660319085]
 
-[node name="AudioStreamPlayer11" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer11" type="AudioStreamPlayer" parent="." unique_id=2136934718]
 
-[node name="AudioStreamPlayer12" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer12" type="AudioStreamPlayer" parent="." unique_id=1056200294]
 
-[node name="AudioStreamPlayer13" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer13" type="AudioStreamPlayer" parent="." unique_id=911796797]
 
-[node name="AudioStreamPlayer14" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer14" type="AudioStreamPlayer" parent="." unique_id=184318161]
 
-[node name="AudioStreamPlayer15" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer15" type="AudioStreamPlayer" parent="." unique_id=2001527897]
 
-[node name="AudioStreamPlayer16" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer16" type="AudioStreamPlayer" parent="." unique_id=308433785]
