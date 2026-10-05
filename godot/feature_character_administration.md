@@ -146,7 +146,7 @@ disappears — selecting a character *is* loading.
 
 **Shippable milestone: the gamer creates, picks and plays named characters with portraits.**
 
-### Phase 7 — Companions by id
+### ✅ Phase 7 — Companions by id
 
 Create `companions/companion_definition.gd` (`Resource`: `id`, `display_name`, `icon`,
 `scene: PackedScene`, `damage`) and a `CompanionDatabase` autoload.

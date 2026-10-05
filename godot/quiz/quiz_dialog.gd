@@ -13,6 +13,7 @@ var number_riddle_exercise_generator = NumberRiddleExerciseGenerator.new()
 var next_number_exercise_generator = NextNumberExerciseGenerator.new()
 var vocabulary_exercise_generator = EnglishVocabularyExerciseGenerator.new()
 var vocabulary_color_exercise_generator = EnglishVocabularyExerciseGenerator.new(EnglishVocabularyExerciseGenerator.DictionaryType.COLOR)
+var german_word_forms_exercise_generator = GermanWordFormsExerciseGenerator.new()
 var enemy: Enemy = null
 var exercise: Exercise = null
 
@@ -91,6 +92,8 @@ func _create_exercise() -> Exercise:
 			return vocabulary_exercise_generator.create_exercise()
 		EnemyStats.ArithmeticType.VOCABULARY_COLOR:
 			return vocabulary_color_exercise_generator.create_exercise()
+		EnemyStats.ArithmeticType.GERMAN_WORD_FORMS:
+			return german_word_forms_exercise_generator.create_exercise()
 	return addition_exercise_generator.create_exercise(enemy.stats.get_max_number())
 
 

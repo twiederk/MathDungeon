@@ -63,8 +63,8 @@ func test_get_total_damage_without_companions():
 
 func test_get_total_damage_adds_one_per_wolf():
 	# arrange
-	character.add_companion_type("Wolf")
-	character.add_companion_type("Wolf")
+	character.add_companion("Wolf")
+	character.add_companion("Wolf")
 
 	# act
 	var result = character.get_total_damage()
@@ -75,7 +75,7 @@ func test_get_total_damage_adds_one_per_wolf():
 
 func test_get_total_damage_ignores_unknown_companion_types():
 	# arrange
-	character.add_companion_type("Allay")
+	character.add_companion("Allay")
 
 	# act
 	var result = character.get_total_damage()

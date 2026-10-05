@@ -103,7 +103,7 @@ func needs_healing() -> bool:
 	return hit_points < max_hit_points
 
 
-func add_companion_type(companion_type: String) -> void:
+func add_companion(companion_type: String) -> void:
 	companions.append(companion_type)
 	weapon_damage_changed.emit()
 	SaveManager.save_character(self)
