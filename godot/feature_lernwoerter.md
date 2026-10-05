@@ -63,7 +63,7 @@ rufen-ruft-riefen
 
 - Verb form: "Wie lautet die er/sie/es-Form (Präsens) von *lesen*?" → `liest`
 - Verb form: "Wie lautet die Vergangenheitsform (Mehrzahl) von *schlafen*?" → `schliefen`
-- Participle: "Wie lautet das Partizip II von *schreiben*?" → `geschrieben`
+- Participle: "Wie heißt das Wort nach „ich habe“, wenn man „schreiben“ verwendet?" → `geschrieben`
 - Noun plural: "Wie lautet die Mehrzahl von *der Fisch*?" → `die Fische`
 - Noun plural: "Wie lautet die Einzahl von *die Türen*?" → `die Tür`
 - Catch-all: "Wie lautet die Dativform (Einzahl) von „dies“?" → `diesem`
