@@ -67,7 +67,7 @@ tile_set = ExtResource("2_friib")
 
 [node name="NetherPortal" parent="Locations" unique_id=977874460 instance=ExtResource("4_orhj5")]
 position = Vector2(416, 1136)
-dungeon_path = "res://classic/main.tscn"
+dungeon_path = "res://classic/overworld.tscn"
 
 [node name="Items" type="Node2D" parent="." unique_id=2138511099]
 

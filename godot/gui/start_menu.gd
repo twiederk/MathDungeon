@@ -36,7 +36,7 @@ func _update_difficulty_button() -> void:
 func _on_start_game_button_pressed():
 	GameSession.reset()
 	AchievementManager.reset()
-	get_tree().change_scene_to_file("res://classic/main.tscn")
+	get_tree().change_scene_to_file("res://classic/overworld.tscn")
 
 
 func _on_start_generic_button_pressed():
