@@ -2,6 +2,11 @@ class_name HighscoreMenu
 extends Control
 
 
+const DIFFICULTY_LABELS := {
+	"normal": "normal",
+	"hard": "schwer",
+}
+
 var number_format = NumberFormat.new()
 
 @onready var back_button = $BackButton
@@ -45,9 +50,15 @@ func _update_highscore_display():
 		date_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		date_label.custom_minimum_size.x = 100
 		
+		var difficulty_label = Label.new()
+		difficulty_label.text = DIFFICULTY_LABELS.get(entry.get("difficulty_level", ""), "")
+		difficulty_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		difficulty_label.custom_minimum_size.x = 100
+		
 		hbox.add_child(rank_name_label)
 		hbox.add_child(score_label)
 		hbox.add_child(date_label)
+		hbox.add_child(difficulty_label)
 		highscore_container.add_child(hbox)
 
 
