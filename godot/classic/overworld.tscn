@@ -85,31 +85,31 @@ size = Vector2(400, 334)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnost"]
 size = Vector2(459, 59)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cwm3p"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u7shu"]
 resource_local_to_scene = true
 size = Vector2(41, 384)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8l0b6"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2t5r"]
 resource_local_to_scene = true
 size = Vector2(31, 61)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4msn"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgg77"]
 resource_local_to_scene = true
 size = Vector2(59, 61)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ne7en"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iywah"]
 resource_local_to_scene = true
 size = Vector2(92, 88)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmnbx"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fbmp2"]
 resource_local_to_scene = true
 size = Vector2(92, 88)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_grksm"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yukv7"]
 resource_local_to_scene = true
 size = Vector2(92, 88)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5d0mn"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqxsy"]
 resource_local_to_scene = true
 size = Vector2(124, 131)
 
@@ -137,6 +137,24 @@ position = Vector2(184, 131)
 
 [node name="HealingPotion" parent="Items" unique_id=1591279802 instance=ExtResource("6_yukv7")]
 position = Vector2(139, 865)
+
+[node name="HealingPotion2" parent="Items" unique_id=784148420 instance=ExtResource("6_yukv7")]
+position = Vector2(276, 217)
+
+[node name="HealingPotion3" parent="Items" unique_id=895399996 instance=ExtResource("6_yukv7")]
+position = Vector2(1108, 101)
+
+[node name="HealingPotion4" parent="Items" unique_id=665670122 instance=ExtResource("6_yukv7")]
+position = Vector2(1202, 1004)
+
+[node name="HealingPotion5" parent="Items" unique_id=271537772 instance=ExtResource("6_yukv7")]
+position = Vector2(1232, 2609)
+
+[node name="HealingPotion6" parent="Items" unique_id=1673354425 instance=ExtResource("6_yukv7")]
+position = Vector2(1739, 1992)
+
+[node name="HealingPotion7" parent="Items" unique_id=1423447424 instance=ExtResource("6_yukv7")]
+position = Vector2(173, 2025)
 
 [node name="StoneSword" parent="Items" unique_id=1147275999 instance=ExtResource("7_gqxsy")]
 position = Vector2(591, 305)
@@ -185,7 +203,7 @@ position = Vector2(1039, 2798)
 [node name="Enemies" type="Node2D" parent="." unique_id=2023242683]
 
 [node name="Drown7" parent="Enemies" unique_id=291992726 instance=ExtResource("15_inpva")]
-position = Vector2(1474, 900)
+position = Vector2(1475, 973)
 
 [node name="ZombiePiglin3" parent="Enemies" unique_id=1158698120 instance=ExtResource("16_7e0qn")]
 position = Vector2(1384, 943)
@@ -254,7 +272,7 @@ position = Vector2(1166, 466)
 position = Vector2(942, 673)
 
 [node name="ZombieBaby3" parent="Enemies" unique_id=54280764 instance=ExtResource("20_yugn5")]
-position = Vector2(1489, 658)
+position = Vector2(1464, 653)
 
 [node name="Enderman3" parent="Enemies" unique_id=2014094747 instance=ExtResource("18_vjnci")]
 position = Vector2(1124, 920)
@@ -312,10 +330,10 @@ position = Vector2(111, 28)
 shape = SubResource("RectangleShape2D_htxhm")
 
 [node name="ShootingSkeleton5" parent="Enemies" unique_id=1748502866 instance=ExtResource("23_pryxa")]
-position = Vector2(1267, 53)
+position = Vector2(1235, 52)
 
 [node name="CollisionShape2D" parent="Enemies/ShootingSkeleton5/ShootingArea" index="0"]
-position = Vector2(-3.5, 170.5)
+position = Vector2(29, 172)
 shape = SubResource("RectangleShape2D_jq2sk")
 
 [node name="ShootingSkeleton6" parent="Enemies" unique_id=1713796424 instance=ExtResource("23_pryxa")]
@@ -364,10 +382,10 @@ shape = SubResource("RectangleShape2D_come4")
 position = Vector2(246, 1711)
 
 [node name="Villager2" parent="Enemies" unique_id=1676253217 instance=ExtResource("25_tpygc")]
-position = Vector2(47, 1954)
+position = Vector2(73, 1918)
 
 [node name="Villager3" parent="Enemies" unique_id=1590534486 instance=ExtResource("25_tpygc")]
-position = Vector2(127, 1976)
+position = Vector2(110, 1956)
 
 [node name="Villager4" parent="Enemies" unique_id=717510801 instance=ExtResource("25_tpygc")]
 position = Vector2(-17, 1680)
@@ -382,7 +400,7 @@ position = Vector2(141, 1745)
 position = Vector2(132, 1780)
 
 [node name="VillagerBaby2" parent="Enemies" unique_id=620614687 instance=ExtResource("26_jyd2n")]
-position = Vector2(147, 1934)
+position = Vector2(133, 1912)
 
 [node name="VillagerZombie2" parent="Enemies" unique_id=2117933631 instance=ExtResource("27_64f8k")]
 position = Vector2(1417, 1548)
@@ -682,7 +700,7 @@ title_text = "Die verlassene Burg"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle/TriggerArea2D" index="0"]
 position = Vector2(21.5, -76)
-shape = SubResource("RectangleShape2D_cwm3p")
+shape = SubResource("RectangleShape2D_u7shu")
 
 [node name="DungeonTitle2" parent="Titles" unique_id=1265780115 instance=ExtResource("41_egkod")]
 position = Vector2(114, 1121)
@@ -690,7 +708,7 @@ title_text = "Das Tierlabyrinth"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle2/TriggerArea2D" index="0"]
 position = Vector2(-1.5, -1.5)
-shape = SubResource("RectangleShape2D_8l0b6")
+shape = SubResource("RectangleShape2D_f2t5r")
 
 [node name="DungeonTitle3" parent="Titles" unique_id=1065713930 instance=ExtResource("41_egkod")]
 position = Vector2(913, 670)
@@ -698,7 +716,7 @@ title_text = "Der unterirdische Teich"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle3/TriggerArea2D" index="0"]
 position = Vector2(-16.5, 1.5)
-shape = SubResource("RectangleShape2D_e4msn")
+shape = SubResource("RectangleShape2D_hgg77")
 
 [node name="DungeonTitle4" parent="Titles" unique_id=1103847014 instance=ExtResource("41_egkod")]
 position = Vector2(1041, 1122)
@@ -706,7 +724,7 @@ title_text = "Die Villa"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle4/TriggerArea2D" index="0"]
 position = Vector2(-1.5, -2.5)
-shape = SubResource("RectangleShape2D_ne7en")
+shape = SubResource("RectangleShape2D_iywah")
 
 [node name="DungeonTitle5" parent="Titles" unique_id=395435328 instance=ExtResource("41_egkod")]
 position = Vector2(865, 1505)
@@ -714,7 +732,7 @@ title_text = "Das Waldanwesen "
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle5/TriggerArea2D" index="0"]
 position = Vector2(14, -16)
-shape = SubResource("RectangleShape2D_jmnbx")
+shape = SubResource("RectangleShape2D_fbmp2")
 
 [node name="DungeonTitle6" parent="Titles" unique_id=1333793762 instance=ExtResource("41_egkod")]
 position = Vector2(31, 1560)
@@ -722,7 +740,7 @@ title_text = "Das Dorf"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle6/TriggerArea2D" index="0"]
 position = Vector2(14, -16)
-shape = SubResource("RectangleShape2D_grksm")
+shape = SubResource("RectangleShape2D_yukv7")
 
 [node name="DungeonTitle7" parent="Titles" unique_id=511827281 instance=ExtResource("41_egkod")]
 position = Vector2(1537, 1468)
@@ -730,7 +748,7 @@ title_text = "Das verlassene Dorf"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle7/TriggerArea2D" index="0"]
 position = Vector2(-3, 16)
-shape = SubResource("RectangleShape2D_5d0mn")
+shape = SubResource("RectangleShape2D_gqxsy")
 
 [node name="MapBorders" parent="." unique_id=1093876332 instance=ExtResource("42_nbqs7")]
 
