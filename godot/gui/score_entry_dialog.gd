@@ -28,5 +28,5 @@ func _submit_name() -> void:
 	var player_name = name_line_edit.text.strip_edges()
 	if player_name.is_empty():
 		return
-	HighscoreManager.add_score(player_name, GameSession.score)
+	HighscoreManager.add_score(player_name, GameSession.score, GameSession.difficulty_level)
 	get_tree().change_scene_to_file("res://gui/highscore_gui.tscn")

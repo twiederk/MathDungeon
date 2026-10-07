@@ -6,7 +6,7 @@
 script = ExtResource("1_gn084")
 name = "Villager"
 max_hit_points = 2
-arithmetic = Array[int]([7, 11])
+arithmetic = Array[int]([7, 11, 11])
 hard_max_hit_points = 3
 hard_time_limit = 30
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

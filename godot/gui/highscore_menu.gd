@@ -2,7 +2,7 @@ class_name HighscoreMenu
 extends Control
 
 
-var number_format = NumberFormat.new()
+const HighscoreEntryScene := preload("res://gui/highscore_entry.tscn")
 
 @onready var back_button = $BackButton
 @onready var highscore_container: VBoxContainer = $CenterContainer/VBoxContainer/HighscoreContainer
@@ -29,26 +29,10 @@ func _update_highscore_display():
 	# Add each highscore entry
 	for i in range(HighscoreManager.highscores.size()):
 		var entry = HighscoreManager.highscores[i]
-		var hbox = HBoxContainer.new()
-		
-		var rank_name_label = Label.new()
-		rank_name_label.text = "%d. %s" % [i + 1, entry.name]
-		rank_name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		
-		var score_label = Label.new()
-		score_label.text = "%s" % number_format.format(entry.score)
-		score_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-		score_label.custom_minimum_size.x = 100
-		
-		var date_label = Label.new()
-		date_label.text = entry.get("date", "---")
-		date_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-		date_label.custom_minimum_size.x = 100
-		
-		hbox.add_child(rank_name_label)
-		hbox.add_child(score_label)
-		hbox.add_child(date_label)
-		highscore_container.add_child(hbox)
+		var entry_row: HighscoreEntry = HighscoreEntryScene.instantiate()
+		highscore_container.add_child(entry_row)
+		var rank = i + 1
+		entry_row.setup(rank, entry)
 
 
 func _on_back_button_pressed():

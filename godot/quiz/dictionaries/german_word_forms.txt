@@ -1,14 +1,49 @@
-Wie lautet die Dativform (Einzahl) von „dies“?,diesem
-Wie lautet die Akkusativform (Mehrzahl) von „dies“?,diesen
-Wie lautet die Akkusativform von „ich“ (mich oder mir)?,mich
-Wie lautet die Dativform von „ich“ (mich oder mir)?,mir
-Ergänze mit Artikel: Fr___e (Gegenteil von Streit)?,der Friede
-Ergänze mit Artikel: L___e (ein Gefühl)?,die Liebe
-Ergänze mit Artikel: F___er (hohe Körpertemperatur)?,das Fieber
+Lückentext mit Artikel: Fr___e (Gegenteil von Streit)?,der Friede
+Lückentext mit Artikel: L___e (ein Gefühl)?,die Liebe
+Lückentext mit Artikel: F___er (hohe Körpertemperatur)?,das Fieber
 Wie lautet das Gegenteil von „dort“?,hier
 Wie lautet das Gegenteil von „unten“?,oben
 Wie lautet das Gegenteil von „auf“ (z. B. den Knopf ___ machen)?,ab
-Ergänze die Präposition: Das Spiel steht 2:1 ___ uns.,gegen
-Wie lautet ein Wort für „genauso/sofort“?,gleich
-Verneine: „Das ist richtig.“ → „Das ist ___ richtig.“,nicht
-Ergänze die Fragepartikel: Ich weiß nicht, ___ das stimmt.,ob
+Lückentext: Das Spiel steht 2:1 ___ uns.,gegen
+Lückentext: Ich weiß nicht, ___ das stimmt.,ob
+Lückentext: Ich möchte ___ Buch lesen,dieses
+Lückentext: Kannst du mir mit ___ Problem helfen?,diesem
+Lückentext: Ich kenne ___ Jungen.“,diesen
+Lückentext: Kannst du ___ bitte helfen?,mir
+Lückentext: Der Hund folgt ___ nach Hause.,mir
+Lückentext: Sie hat ___ ein Geschenk gegeben.,mir
+Lückentext: Der Lehrer lobt ___.,mich
+Lückentext: Kannst du ___ sehen?,mich
+Lückentext: Das Foto zeigt ___.,mich
+Lückentext: Meine Oma hat ___ eine Postkarte geschickt.,mir
+Lückentext: Mein Freund besucht ___.,mich
+Lückentext: Das fällt ___ leicht.,mir
+Lückentext: Die Kinder rufen ___.,mich
+Lückentext: Ich komme ___ wieder.,gleich
+Lückentext: Der Unterricht beginnt ___.,gleich
+Lückentext: Wir sind alle ___ groß.,gleich
+Lückentext: Die beiden Bilder sehen ___ aus.,gleich
+Lückentext: Warte bitte einen Moment, ich bin ___ fertig.,gleich
+Lückentext: Wir treffen uns ___ nach der Schule.,gleich
+Lückentext: Heute regnet es ___.,nicht
+Lückentext: Das ist ___ richtig.,nicht
+Lückentext: Wir dürfen ___ zu spät kommen.,nicht
+Lückentext: Er kann ___ schwimmen.,nicht
+Lückentext: Du sollst ___ rennen.,nicht
+Lückentext: Unsere Mannschaft spielt heute ___ die Nachbarschule.,gegen
+Lückentext: Der Fußball prallte ___ die Mauer.,gegen
+Lückentext: Paul läuft im Wettkampf ___ Tim.,gegen
+Lückentext: Die Medizin hilft ___ die Kopfschmerzen.,gegen
+Lückentext: Ich weiß nicht, ___ es morgen regnet.,ob
+Lückentext: Laura fragt, ___ sie mitkommen darf.,ob
+Lückentext: Wir überlegen, ___ der Film schon begonnen hat.,ob
+Lückentext: Niemand weiß, ___ der Bus pünktlich kommt.,ob
+Lückentext: Kennst du ___ Spiel?,dieses
+Lückentext: Ich möchte ___ Fahrrad kaufen.,dieses
+Lückentext: Kannst du ___ Ball holen?,diesen
+Lückentext: Ich kenne ___ Jungen aus der Schule.,diesen
+Lückentext: Hast du ___ Film schon gesehen?,diesen
+Lückentext: Ich helfe ___ Kind.,diesem
+Lückentext: Mit ___ Stift schreibe ich am liebsten.,diesem
+Lückentext: Wir wohnen in ___ Haus.,diesem
+Lückentext: Zu ___ Thema weiß ich viel.,diesem

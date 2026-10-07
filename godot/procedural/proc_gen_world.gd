@@ -1,5 +1,5 @@
 class_name ProcGenWorld
-extends Main
+extends WorldLevel
 
 
 @export var seed_value: int = 0

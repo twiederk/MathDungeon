@@ -1,4 +1,4 @@
-class_name Main
+class_name WorldLevel
 extends Node2D
 
 @onready var enemies_root: Node = $Enemies
