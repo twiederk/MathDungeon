@@ -13,10 +13,11 @@ func _ready():
 	_load_highscores()
 
 
-func add_score(player_name: String, score: int) -> bool:
+func add_score(player_name: String, score: int, difficulty_level: GameSession.DifficultyLevel = GameSession.DifficultyLevel.NORMAL) -> bool:
 	var date_dict = Time.get_date_dict_from_system()
 	var date_string = "%02d.%02d.%d" % [date_dict.day, date_dict.month, date_dict.year]
-	var new_entry = {"name": player_name, "score": score, "date": date_string}
+	var difficulty_string = "hard" if difficulty_level == GameSession.DifficultyLevel.HARD else "normal"
+	var new_entry = {"name": player_name, "score": score, "date": date_string, "difficulty_level": difficulty_string}
 	
 	highscores.append(new_entry)
 	
