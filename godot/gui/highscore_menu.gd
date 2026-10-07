@@ -3,8 +3,8 @@ extends Control
 
 
 const DIFFICULTY_LABELS := {
-	"normal": "normal",
-	"hard": "schwer",
+	"normal": "Normal",
+	"hard": "Schwer",
 }
 
 var number_format = NumberFormat.new()
