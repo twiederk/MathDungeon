@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bmdr15hyae3dh" path="res://classic/nether.gd" id="1_rh6vo"]
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://classic/world_tiles.tres" id="2_friib"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://classic/player.tscn" id="3_ylnya"]
-[ext_resource type="PackedScene" uid="uid://i8jullgo6a5f" path="res://items/eye_of_ender.tscn" id="4_8g3rk"]
 [ext_resource type="PackedScene" uid="uid://ch27vu5jqwd8g" path="res://locations/nether_portal.tscn" id="4_orhj5"]
 [ext_resource type="PackedScene" uid="uid://8cptf68b7254" path="res://enemies/piglin.tscn" id="5_lci3x"]
 [ext_resource type="PackedScene" uid="uid://b5pvf74jx7ptx" path="res://enemies/piglin_boss.tscn" id="6_xedoa"]
@@ -37,15 +36,15 @@ size = Vector2(287, 88)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ej081"]
 size = Vector2(293, 88)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1qbol"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_jy6fh"]
 resource_local_to_scene = true
 radius = 107.298645
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hvrnb"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_1qbol"]
 resource_local_to_scene = true
 radius = 101.12369
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_i43io"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_hvrnb"]
 resource_local_to_scene = true
 radius = 111.01801
 
@@ -70,21 +69,6 @@ position = Vector2(416, 1136)
 dungeon_path = "res://classic/overworld.tscn"
 
 [node name="Items" type="Node2D" parent="." unique_id=2138511099]
-
-[node name="EyeOfEnder" parent="Items" unique_id=616811345 instance=ExtResource("4_8g3rk")]
-position = Vector2(1065, 754)
-
-[node name="EyeOfEnder2" parent="Items" unique_id=54196201 instance=ExtResource("4_8g3rk")]
-position = Vector2(399, 967)
-
-[node name="EyeOfEnder3" parent="Items" unique_id=84244244 instance=ExtResource("4_8g3rk")]
-position = Vector2(1283, 1144)
-
-[node name="EyeOfEnder4" parent="Items" unique_id=1279545403 instance=ExtResource("4_8g3rk")]
-position = Vector2(1629, 612)
-
-[node name="EyeOfEnder5" parent="Items" unique_id=470462525 instance=ExtResource("4_8g3rk")]
-position = Vector2(653, 107)
 
 [node name="Companions" type="Node2D" parent="." unique_id=126640029]
 
@@ -268,21 +252,21 @@ position = Vector2(53, 152)
 position = Vector2(52, 90)
 
 [node name="CollisionShape2D" parent="Enemies/Blaze3/ShootingArea" index="0" unique_id=1003688871]
-shape = SubResource("CircleShape2D_1qbol")
+shape = SubResource("CircleShape2D_jy6fh")
 
 [node name="Blaze4" parent="Enemies" unique_id=636626386 instance=ExtResource("19_wat66")]
 position = Vector2(66, 302)
 
 [node name="CollisionShape2D" parent="Enemies/Blaze4/ShootingArea" parent_id_path=PackedInt32Array(636626386, 1951971501) index="0" unique_id=1003688871]
 position = Vector2(39, -60)
-shape = SubResource("CircleShape2D_hvrnb")
+shape = SubResource("CircleShape2D_1qbol")
 
 [node name="Blaze5" parent="Enemies" unique_id=244087369 instance=ExtResource("19_wat66")]
 position = Vector2(134, 161)
 
 [node name="CollisionShape2D" parent="Enemies/Blaze5/ShootingArea" parent_id_path=PackedInt32Array(244087369, 1951971501) index="0" unique_id=1003688871]
 position = Vector2(-31, 83)
-shape = SubResource("CircleShape2D_i43io")
+shape = SubResource("CircleShape2D_hvrnb")
 
 [node name="Blaze6" parent="Enemies" unique_id=1761431005 instance=ExtResource("19_wat66")]
 position = Vector2(102, 246)
