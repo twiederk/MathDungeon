@@ -1,6 +1,12 @@
-[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://cvsd805s7lle2"]
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://cvsd805s7lle2"]
 
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_3jesd"]
+[ext_resource type="PackedScene" uid="uid://i8jullgo6a5f" path="res://items/eye_of_ender.tscn" id="2_eye_of_ender"]
+[ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="3_loot_drop"]
+
+[sub_resource type="Resource" id="LootDropDefinition_EndermanEye"]
+script = ExtResource("3_loot_drop")
+item_scene = ExtResource("2_eye_of_ender")
 
 [resource]
 script = ExtResource("1_3jesd")
@@ -9,6 +15,7 @@ max_hit_points = 10
 damage = 2
 arithmetic = Array[int]([0, 1, 2, 3])
 time_limit = 15
+loot_drops = Array[ExtResource("3_loot_drop")]([SubResource("LootDropDefinition_EndermanEye")])
 hard_max_hit_points = 15
 hard_damage = 3
 hard_time_limit = 10

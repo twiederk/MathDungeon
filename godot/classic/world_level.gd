@@ -1,6 +1,9 @@
 class_name WorldLevel
 extends Node2D
 
+
+var loot_droper: LootDropper = LootDropper.new()
+
 @onready var enemies_root: Node = $Enemies
 @onready var items_root: Node = $Items
 @onready var companions_root = $Companions
@@ -24,10 +27,12 @@ func _setup_signals() -> void:
 	for child in enemies_root.get_children():
 		if child.has_signal("encountered"):
 			child.encountered.connect(_on_enemy_encountered)
+		if child.has_signal("defeated"):
+			child.defeated.connect(_on_enemy_defeated)
 
 	for child in items_root.get_children():
 		if child.has_signal("item_picked_up"):
-			child.item_picked_up.connect(_on_item_picked_up)
+			_register_item(child as Item)
 
 	for child in companions_root.get_children():
 		if child.has_signal("companion_picked_up"):
@@ -61,6 +66,16 @@ func _setup_player_portrait() -> void:
 
 func _on_enemy_encountered(enemy: StaticBody2D) -> void:
 	quiz.open_for(enemy)
+
+
+func _on_enemy_defeated(enemy: Enemy) -> void:
+	for item in loot_droper.drop_items(enemy, items_root):
+		_register_item(item)
+
+
+func _register_item(item: Item) -> void:
+	if not item.item_picked_up.is_connected(_on_item_picked_up):
+		item.item_picked_up.connect(_on_item_picked_up)
 
 
 func _on_item_picked_up(item: Item) -> void:

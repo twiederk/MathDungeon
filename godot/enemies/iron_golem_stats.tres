@@ -1,6 +1,19 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://bn6vw6a56paaa"]
 
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_ewk1p"]
+[ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_loot"]
+[ext_resource type="PackedScene" path="res://items/helmet_iron.tscn" id="2_iron_helmet"]
+[ext_resource type="PackedScene" path="res://items/sword_iron.tscn" id="3_iron_sword"]
+
+[sub_resource type="Resource" id="LootDropDefinition_GolemHelmet"]
+script = ExtResource("1_loot")
+item_scene = ExtResource("2_iron_helmet")
+probability = 0.5
+
+[sub_resource type="Resource" id="LootDropDefinition_GolemSword"]
+script = ExtResource("1_loot")
+item_scene = ExtResource("3_iron_sword")
+probability = 0.3
 
 [resource]
 script = ExtResource("1_ewk1p")
@@ -10,6 +23,7 @@ damage = 3
 armor = 2
 arithmetic = Array[int]([0, 1])
 max_number = 1000
+loot_drops = Array[ExtResource("1_loot")]([SubResource("LootDropDefinition_GolemHelmet"), SubResource("LootDropDefinition_GolemSword")])
 hard_max_hit_points = 18
 hard_damage = 4
 hard_armor = 3

@@ -26,6 +26,7 @@ const NOT_SET: int = -1
 @export var arithmetic: Array[ArithmeticType] = [ArithmeticType.ADDITION]
 @export var max_number: int = 100
 @export var time_limit: int = NOT_SET
+@export var loot_drops: Array[LootDropDefinition] = []
 
 @export_group("Hard")
 @export var hard_max_hit_points: int = NOT_SET

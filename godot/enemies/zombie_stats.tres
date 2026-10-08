@@ -1,12 +1,26 @@
 [gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://dn8b07p0dusc"]
 
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_njn3i"]
+[ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_loot"]
+[ext_resource type="PackedScene" path="res://items/healing_potion.tscn" id="2_healing_potion"]
+[ext_resource type="PackedScene" path="res://items/sword_iron.tscn" id="3_iron_sword"]
+
+[sub_resource type="Resource" id="LootDropDefinition_ZombiePotion"]
+script = ExtResource("1_loot")
+item_scene = ExtResource("2_healing_potion")
+probability = 0.25
+
+[sub_resource type="Resource" id="LootDropDefinition_ZombieSword"]
+script = ExtResource("1_loot")
+item_scene = ExtResource("3_iron_sword")
+probability = 0.2
 
 [resource]
 script = ExtResource("1_njn3i")
 name = "Zombie"
 max_hit_points = 2
 max_number = 20
+loot_drops = Array[ExtResource("1_loot")]([SubResource("LootDropDefinition_ZombiePotion"), SubResource("LootDropDefinition_ZombieSword")])
 hard_max_hit_points = 3
 hard_max_number = 40
 hard_time_limit = 30

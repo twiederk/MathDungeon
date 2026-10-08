@@ -1,10 +1,24 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://clrjqi3jvjalq"]
 
+[ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_orafn"]
+[ext_resource type="PackedScene" path="res://items/healing_potion.tscn" id="2_healing_potion"]
+[ext_resource type="PackedScene" path="res://items/helmet_stone.tscn" id="3_stone_helmet"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_qa4ru"]
+
+[sub_resource type="Resource" id="LootDropDefinition_BabyZombieVillagerPotion"]
+script = ExtResource("1_orafn")
+item_scene = ExtResource("2_healing_potion")
+probability = 0.25
+
+[sub_resource type="Resource" id="LootDropDefinition_BabyZombieVillagerHelmet"]
+script = ExtResource("1_orafn")
+item_scene = ExtResource("3_stone_helmet")
+probability = 0.15
 
 [resource]
 script = ExtResource("1_qa4ru")
-name = "Villager Zombie Baby"
+name = "Baby Zombie Villager"
 arithmetic = Array[int]([10])
+loot_drops = Array[ExtResource("1_orafn")]([SubResource("LootDropDefinition_BabyZombieVillagerPotion"), SubResource("LootDropDefinition_BabyZombieVillagerHelmet")])
 hard_time_limit = 30
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

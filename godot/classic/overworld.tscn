@@ -4,7 +4,6 @@
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://classic/world_tiles.tres" id="2_f2t5r"]
 [ext_resource type="PackedScene" uid="uid://ch27vu5jqwd8g" path="res://locations/nether_portal.tscn" id="3_hgg77"]
 [ext_resource type="PackedScene" uid="uid://bqy23htwiovfo" path="res://locations/end_portal.tscn" id="4_iywah"]
-[ext_resource type="PackedScene" uid="uid://i8jullgo6a5f" path="res://items/eye_of_ender.tscn" id="5_fbmp2"]
 [ext_resource type="PackedScene" uid="uid://cinn45uh8snch" path="res://items/healing_potion.tscn" id="6_yukv7"]
 [ext_resource type="PackedScene" uid="uid://wjx4klpp85sw" path="res://items/sword_stone.tscn" id="7_gqxsy"]
 [ext_resource type="PackedScene" uid="uid://byl4j4ap7dkhk" path="res://items/helmet_wood.tscn" id="8_rbxem"]
@@ -113,7 +112,7 @@ size = Vector2(92, 88)
 resource_local_to_scene = true
 size = Vector2(124, 131)
 
-[node name="Main" type="Node2D" unique_id=1680778199]
+[node name="Overworld" type="Node2D" unique_id=1680778199]
 script = ExtResource("1_u7shu")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1679541652]
@@ -131,9 +130,6 @@ position = Vector2(1682, 1344)
 dungeon_path = "res://classic/end.tscn"
 
 [node name="Items" type="Node2D" parent="." unique_id=1410614695]
-
-[node name="EyeOfEnder1" parent="Items" unique_id=395770601 instance=ExtResource("5_fbmp2")]
-position = Vector2(184, 131)
 
 [node name="HealingPotion" parent="Items" unique_id=1591279802 instance=ExtResource("6_yukv7")]
 position = Vector2(139, 865)
@@ -176,15 +172,6 @@ position = Vector2(1036, 449)
 
 [node name="Lighter" parent="Items" unique_id=1688415558 instance=ExtResource("12_q7bwf")]
 position = Vector2(1231, 2699)
-
-[node name="EyeOfEnder2" parent="Items" unique_id=2018297138 instance=ExtResource("5_fbmp2")]
-position = Vector2(101, 865)
-
-[node name="EyeOfEnder3" parent="Items" unique_id=623116332 instance=ExtResource("5_fbmp2")]
-position = Vector2(1124, 917)
-
-[node name="EyeOfEnder" parent="Items" unique_id=478900091 instance=ExtResource("5_fbmp2")]
-position = Vector2(1166, 465)
 
 [node name="Companions" type="Node2D" parent="." unique_id=1372013443]
 
