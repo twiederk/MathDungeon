@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://2ib147i23msi"]
+
+[ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_arok1"]
+[ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="2_yrmpi"]
+
+[resource]
+script = ExtResource("2_yrmpi")
+name = "Evoker"
+max_hit_points = 5
+armor = 1
+arithmetic = Array[int]([0, 1, 2, 3])
+hard_max_hit_points = 8
+hard_damage = 2
+hard_armor = 2
+hard_time_limit = 20
+metadata/_custom_type_script = "uid://b0c3oqfgm2626"

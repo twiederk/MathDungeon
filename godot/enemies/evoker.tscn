@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d1tipsaj1l4x1" path="res://enemies/shooting_enemy.gd" id="1_jskxg"]
 [ext_resource type="PackedScene" uid="uid://b8x33jlf5ikm5" path="res://enemies/evoker_vex.tscn" id="2_jskxg"]
-[ext_resource type="Resource" uid="uid://babipeuagskms" path="res://enemies/pillager_stats.tres" id="3_qsjgk"]
+[ext_resource type="Resource" uid="uid://2ib147i23msi" path="res://enemies/evoker_stats.tres" id="3_jskxg"]
 [ext_resource type="Texture2D" uid="uid://cwj2uteg8oob3" path="res://enemies/creatures.png" id="4_rxy1s"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s4k5m"]
@@ -20,7 +20,7 @@ collision_layer = 2
 script = ExtResource("1_jskxg")
 fire_delays = Array[float]([1.5])
 projectile_scene = ExtResource("2_jskxg")
-stats = ExtResource("3_qsjgk")
+stats = ExtResource("3_jskxg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1470147283]
 texture = ExtResource("4_rxy1s")
