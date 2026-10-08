@@ -1,10 +1,12 @@
 class_name Enemy
 extends StaticBody2D
 
+
 @export var stats: EnemyStats
 
 signal encountered(enemy: StaticBody2D)
 signal health_changed
+signal defeated(enemy: Enemy)
 
 @onready var detection_area: Area2D = $DetectionArea
 
@@ -30,4 +32,6 @@ func has_time_limit() -> bool:
 
 func hurt(damage: int) -> int:
 	hit_points -= max(1, damage - stats.get_armor())
+	if hit_points <= 0:
+		defeated.emit(self)
 	return hit_points
