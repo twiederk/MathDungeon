@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://d4nugi7fla2ef"]
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://d4nugi7fla2ef"]
 
+[ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_6skyo"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_umowu"]
 
 [resource]
 script = ExtResource("1_umowu")
-name = "Villager Baby"
+name = "Baby Villager"
 arithmetic = Array[int]([8])
 hard_time_limit = 30
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

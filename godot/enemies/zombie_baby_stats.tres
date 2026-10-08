@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://crpyvnewu5sv3"]
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://crpyvnewu5sv3"]
 
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_fqpqn"]
+[ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_kogld"]
 
 [resource]
 script = ExtResource("1_fqpqn")
+name = "Baby Zombie"
 max_number = 10
 hard_max_number = 20
 hard_time_limit = 30

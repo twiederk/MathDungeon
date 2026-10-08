@@ -1,10 +1,11 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://bv20tsy1ji5pn"]
 
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_gc00b"]
+[ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_ipsf5"]
 
 [resource]
 script = ExtResource("1_gc00b")
-name = "Villager Zombie"
+name = "Zombie Villager"
 max_hit_points = 2
 arithmetic = Array[int]([9, 11])
 hard_max_hit_points = 3

@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://xk8ept65fhe2"]
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://xk8ept65fhe2"]
 
+[ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_34u1b"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_ltatt"]
 
 [resource]
 script = ExtResource("1_ltatt")
-name = "Drown"
+name = "Drowned"
 max_hit_points = 3
 hard_max_hit_points = 5
 hard_damage = 2
