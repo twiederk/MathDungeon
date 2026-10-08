@@ -113,7 +113,7 @@ size = Vector2(92, 88)
 resource_local_to_scene = true
 size = Vector2(124, 131)
 
-[node name="Main" type="Node2D" unique_id=1680778199]
+[node name="Overworld" type="Node2D" unique_id=1680778199]
 script = ExtResource("1_u7shu")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1679541652]
