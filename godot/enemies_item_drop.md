@@ -10,7 +10,7 @@ Reference for the enemy types represented in this project. Drops below summarize
 | `enderdragon_stats.tres` | Ender Dragon | [Ender Dragon](https://minecraft.wiki/w/Ender_Dragon) | Dragon Egg appears on the first defeat only in Java Edition. Later defeats do not drop another egg. The exit portal and End gateway are generated as fight rewards, not inventory items. |
 | `enderman_stats.tres` | Enderman | [Enderman](https://minecraft.wiki/w/Enderman) | Ender Pearl: 0–1, 50%. An Enderman also drops the block it is carrying, if any. It does **not** drop an Eye of Ender in Minecraft. |
 | `evoker_vex_stats.tres` | Vex | [Vex](https://minecraft.wiki/w/Vex) | No item drops. Its held Iron Sword is configured not to drop. |
-| `pillager_stats.tres` (shared) | Pilligar | [Evoker](https://minecraft.wiki/w/Evoker) | Totem of Undying: 1, guaranteed. Emerald: 0–1, 50%, on player/tamed-wolf kill. Raid-captain drops are conditional. This scene currently reuses the Pillager stats resource. |
+| `evoker_stats.tres` | Evoker | [Evoker](https://minecraft.wiki/w/Evoker) | Totem of Undying: 1, guaranteed. Emerald: 0–1, 50%, on player/tamed-wolf kill. Raid-captain drops are conditional. |
 | `ghast_stats.tres` | Ghast | [Ghast](https://minecraft.wiki/w/Ghast) | Ghast Tear: 0–1, 50%. Gunpowder: 0–2, 66.7%. Music Disc Tears drops if killed by a player-deflected fireball. |
 | `iron_golem_stats.tres` | Iron Golem | [Iron Golem](https://minecraft.wiki/w/Iron_Golem) | Iron Ingot: 3–5, guaranteed. Poppy: 0–2, 66.7%. |
 | `pig_stats.tres` | Pig | [Pig](https://minecraft.wiki/w/Pig) | Adult: Raw Porkchop, 1–3, guaranteed; Cooked Porkchop instead if killed while burning. A saddled Pig drops its Saddle. Baby Pigs drop no items. |
@@ -30,7 +30,7 @@ Reference for the enemy types represented in this project. Drops below summarize
 
 ## Project Mapping Notes
 
-- `pillager_stats.tres` is still named `Pilligar`. It is used by both `shooting_pillager.tscn` and `evoker.tscn`; the Evoker row gives actual Minecraft Evoker drops, while the Pillager row gives Pillager drops.
+- `pillager_stats.tres` is still named `Pilligar` and is used by `shooting_pillager.tscn`. The Evoker uses its own `evoker_stats.tres` resource.
 - `zombie_baby_stats.tres` is named `Baby Zombie` and is used by `zombie_baby.tscn`.
 - `arrow_stats.tres`, `blaze_fireball_stats.tres`, and `fireball_stats.tres` describe projectiles, not enemy types, so they are not listed as enemy rows. Shooting variants reuse their base enemy stats and are covered by the corresponding row.
 
