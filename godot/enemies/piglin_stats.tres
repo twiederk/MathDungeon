@@ -1,6 +1,13 @@
 [gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://m2ge1bma5cqq"]
 
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_u8ym2"]
+[ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_loot"]
+[ext_resource type="PackedScene" path="res://items/sword_iron.tscn" id="2_iron_sword"]
+
+[sub_resource type="Resource" id="LootDropDefinition_PiglinSword"]
+script = ExtResource("1_loot")
+item_scene = ExtResource("2_iron_sword")
+probability = 0.3
 
 [resource]
 script = ExtResource("1_u8ym2")
@@ -9,6 +16,7 @@ max_hit_points = 8
 damage = 2
 armor = 1
 arithmetic = Array[int]([5, 3])
+loot_drops = Array[ExtResource("1_loot")]([SubResource("LootDropDefinition_PiglinSword")])
 hard_max_hit_points = 12
 hard_damage = 3
 hard_armor = 2

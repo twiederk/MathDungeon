@@ -1,12 +1,20 @@
 [gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://bneorwhq7d366"]
 
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_7m7q8"]
+[ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_loot"]
+[ext_resource type="PackedScene" path="res://items/healing_potion.tscn" id="2_healing_potion"]
+
+[sub_resource type="Resource" id="LootDropDefinition_CreeperPotion"]
+script = ExtResource("1_loot")
+item_scene = ExtResource("2_healing_potion")
+probability = 0.35
 
 [resource]
 script = ExtResource("1_7m7q8")
 name = "Creeper"
 max_hit_points = 4
 arithmetic = Array[int]([4])
+loot_drops = Array[ExtResource("1_loot")]([SubResource("LootDropDefinition_CreeperPotion")])
 hard_max_hit_points = 6
 hard_damage = 2
 hard_time_limit = 25

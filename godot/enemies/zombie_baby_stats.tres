@@ -2,11 +2,18 @@
 
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_fqpqn"]
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_kogld"]
+[ext_resource type="PackedScene" path="res://items/healing_potion.tscn" id="2_healing_potion"]
+
+[sub_resource type="Resource" id="LootDropDefinition_BabyZombiePotion"]
+script = ExtResource("1_kogld")
+item_scene = ExtResource("2_healing_potion")
+probability = 0.2
 
 [resource]
 script = ExtResource("1_fqpqn")
 name = "Baby Zombie"
 max_number = 10
+loot_drops = Array[ExtResource("1_kogld")]([SubResource("LootDropDefinition_BabyZombiePotion")])
 hard_max_number = 20
 hard_time_limit = 30
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

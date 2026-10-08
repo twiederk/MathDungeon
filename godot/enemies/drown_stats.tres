@@ -1,12 +1,25 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://xk8ept65fhe2"]
 
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_34u1b"]
+[ext_resource type="PackedScene" path="res://items/healing_potion.tscn" id="2_healing_potion"]
+[ext_resource type="PackedScene" path="res://items/helmet_iron.tscn" id="3_iron_helmet"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_ltatt"]
+
+[sub_resource type="Resource" id="LootDropDefinition_DrownedPotion"]
+script = ExtResource("1_34u1b")
+item_scene = ExtResource("2_healing_potion")
+probability = 0.3
+
+[sub_resource type="Resource" id="LootDropDefinition_DrownedHelmet"]
+script = ExtResource("1_34u1b")
+item_scene = ExtResource("3_iron_helmet")
+probability = 0.15
 
 [resource]
 script = ExtResource("1_ltatt")
 name = "Drowned"
 max_hit_points = 3
+loot_drops = Array[ExtResource("1_34u1b")]([SubResource("LootDropDefinition_DrownedPotion"), SubResource("LootDropDefinition_DrownedHelmet")])
 hard_max_hit_points = 5
 hard_damage = 2
 hard_time_limit = 25

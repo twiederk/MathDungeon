@@ -1,7 +1,19 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://bgj30bkx03xsa"]
 
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_4ulap"]
+[ext_resource type="PackedScene" path="res://items/sword_iron.tscn" id="2_iron_sword"]
+[ext_resource type="PackedScene" path="res://items/helmet_iron.tscn" id="3_iron_helmet"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_nd33w"]
+
+[sub_resource type="Resource" id="LootDropDefinition_VindicatorSword"]
+script = ExtResource("1_4ulap")
+item_scene = ExtResource("2_iron_sword")
+probability = 0.3
+
+[sub_resource type="Resource" id="LootDropDefinition_VindicatorHelmet"]
+script = ExtResource("1_4ulap")
+item_scene = ExtResource("3_iron_helmet")
+probability = 0.2
 
 [resource]
 script = ExtResource("1_nd33w")
@@ -10,6 +22,7 @@ max_hit_points = 5
 damage = 2
 armor = 1
 arithmetic = Array[int]([0, 1, 2, 3])
+loot_drops = Array[ExtResource("1_4ulap")]([SubResource("LootDropDefinition_VindicatorSword"), SubResource("LootDropDefinition_VindicatorHelmet")])
 hard_max_hit_points = 8
 hard_damage = 3
 hard_armor = 2

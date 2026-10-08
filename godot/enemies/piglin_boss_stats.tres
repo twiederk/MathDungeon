@@ -2,6 +2,12 @@
 
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_kcsu3"]
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_kcxxx"]
+[ext_resource type="PackedScene" path="res://items/sword_iron.tscn" id="2_iron_sword"]
+
+[sub_resource type="Resource" id="LootDropDefinition_PiglinBruteSword"]
+script = ExtResource("1_kcxxx")
+item_scene = ExtResource("2_iron_sword")
+probability = 0.35
 
 [resource]
 script = ExtResource("1_kcsu3")
@@ -10,6 +16,7 @@ max_hit_points = 10
 damage = 3
 armor = 1
 arithmetic = Array[int]([2, 3, 5])
+loot_drops = Array[ExtResource("1_kcxxx")]([SubResource("LootDropDefinition_PiglinBruteSword")])
 hard_max_hit_points = 15
 hard_damage = 4
 hard_armor = 2

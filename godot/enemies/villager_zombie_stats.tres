@@ -2,12 +2,25 @@
 
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_gc00b"]
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_ipsf5"]
+[ext_resource type="PackedScene" path="res://items/healing_potion.tscn" id="2_healing_potion"]
+[ext_resource type="PackedScene" path="res://items/helmet_iron.tscn" id="3_iron_helmet"]
+
+[sub_resource type="Resource" id="LootDropDefinition_ZombieVillagerPotion"]
+script = ExtResource("1_ipsf5")
+item_scene = ExtResource("2_healing_potion")
+probability = 0.25
+
+[sub_resource type="Resource" id="LootDropDefinition_ZombieVillagerHelmet"]
+script = ExtResource("1_ipsf5")
+item_scene = ExtResource("3_iron_helmet")
+probability = 0.2
 
 [resource]
 script = ExtResource("1_gc00b")
 name = "Zombie Villager"
 max_hit_points = 2
 arithmetic = Array[int]([9, 11])
+loot_drops = Array[ExtResource("1_ipsf5")]([SubResource("LootDropDefinition_ZombieVillagerPotion"), SubResource("LootDropDefinition_ZombieVillagerHelmet")])
 hard_max_hit_points = 3
 hard_time_limit = 30
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

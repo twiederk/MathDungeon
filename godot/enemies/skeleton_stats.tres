@@ -1,12 +1,26 @@
 [gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://cjvr1oocuggtm"]
 
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_638kb"]
+[ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_loot"]
+[ext_resource type="PackedScene" path="res://items/sword_iron.tscn" id="2_iron_sword"]
+[ext_resource type="PackedScene" path="res://items/helmet_stone.tscn" id="3_stone_helmet"]
+
+[sub_resource type="Resource" id="LootDropDefinition_SkeletonSword"]
+script = ExtResource("1_loot")
+item_scene = ExtResource("2_iron_sword")
+probability = 0.25
+
+[sub_resource type="Resource" id="LootDropDefinition_SkeletonHelmet"]
+script = ExtResource("1_loot")
+item_scene = ExtResource("3_stone_helmet")
+probability = 0.2
 
 [resource]
 script = ExtResource("1_638kb")
 name = "Skeleton"
 max_hit_points = 3
 arithmetic = Array[int]([0, 1])
+loot_drops = Array[ExtResource("1_loot")]([SubResource("LootDropDefinition_SkeletonSword"), SubResource("LootDropDefinition_SkeletonHelmet")])
 hard_max_hit_points = 5
 hard_damage = 2
 hard_time_limit = 25
