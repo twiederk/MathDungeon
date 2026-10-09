@@ -373,6 +373,7 @@ shape = SubResource("RectangleShape2D_0rl1p")
 
 [node name="ShootingPilligar" parent="Enemies" unique_id=1893404724 instance=ExtResource("24_73cfi")]
 position = Vector2(690, 1687)
+location = "woodland_mansion"
 
 [node name="CollisionShape2D" parent="Enemies/ShootingPilligar/ShootingArea" parent_id_path=PackedInt32Array(1893404724, 1800570189) index="0" unique_id=931633192]
 position = Vector2(192, 156.5)
@@ -380,6 +381,7 @@ shape = SubResource("RectangleShape2D_ok6jj")
 
 [node name="ShootingPilligar2" parent="Enemies" unique_id=1657675909 instance=ExtResource("24_73cfi")]
 position = Vector2(1071, 1685)
+location = "woodland_mansion"
 
 [node name="CollisionShape2D" parent="Enemies/ShootingPilligar2/ShootingArea" parent_id_path=PackedInt32Array(1657675909, 1800570189) index="0" unique_id=931633192]
 position = Vector2(-190, 157)
@@ -387,6 +389,7 @@ shape = SubResource("RectangleShape2D_facbu")
 
 [node name="ShootingPilligar3" parent="Enemies" unique_id=85220774 instance=ExtResource("24_73cfi")]
 position = Vector2(687, 1996)
+location = "woodland_mansion"
 
 [node name="CollisionShape2D" parent="Enemies/ShootingPilligar3/ShootingArea" parent_id_path=PackedInt32Array(85220774, 1800570189) index="0" unique_id=931633192]
 position = Vector2(190.5, -151)
@@ -394,6 +397,7 @@ shape = SubResource("RectangleShape2D_b1qrp")
 
 [node name="ShootingPilligar4" parent="Enemies" unique_id=987569465 instance=ExtResource("24_73cfi")]
 position = Vector2(1069, 2000)
+location = "woodland_mansion"
 
 [node name="CollisionShape2D" parent="Enemies/ShootingPilligar4/ShootingArea" parent_id_path=PackedInt32Array(987569465, 1800570189) index="0" unique_id=931633192]
 position = Vector2(-190, -157)
@@ -488,21 +492,27 @@ position = Vector2(1185, 2527)
 
 [node name="PiglinZombie" parent="Enemies" unique_id=2490144 instance=ExtResource("16_7e0qn")]
 position = Vector2(979, 2578)
+location = "woodland_mansion"
 
 [node name="PiglinZombie2" parent="Enemies" unique_id=1982493857 instance=ExtResource("16_7e0qn")]
 position = Vector2(769, 2574)
+location = "woodland_mansion"
 
 [node name="PiglinZombie3" parent="Enemies" unique_id=1735956958 instance=ExtResource("16_7e0qn")]
 position = Vector2(973, 2536)
+location = "woodland_mansion"
 
 [node name="PiglinZombie4" parent="Enemies" unique_id=257177548 instance=ExtResource("16_7e0qn")]
 position = Vector2(791, 2536)
+location = "woodland_mansion"
 
 [node name="PiglinZombie5" parent="Enemies" unique_id=801909994 instance=ExtResource("16_7e0qn")]
 position = Vector2(801, 2504)
+location = "woodland_mansion"
 
 [node name="PiglinZombie6" parent="Enemies" unique_id=1233291606 instance=ExtResource("16_7e0qn")]
 position = Vector2(1186, 2364)
+location = "woodland_mansion"
 
 [node name="PiglinZombie7" parent="Enemies" unique_id=1890851438 instance=ExtResource("16_7e0qn")]
 position = Vector2(1436, 2504)
@@ -510,18 +520,23 @@ position = Vector2(1436, 2504)
 [node name="Vindicator" parent="Enemies" unique_id=979313460 instance=ExtResource("30_7ggy0")]
 position = Vector2(972.01733, 2400)
 scale = Vector2(1.0346321, 1)
+location = "woodland_mansion"
 
 [node name="Vindicator2" parent="Enemies" unique_id=1448483060 instance=ExtResource("30_7ggy0")]
 position = Vector2(888, 2278)
+location = "woodland_mansion"
 
 [node name="Vindicator3" parent="Enemies" unique_id=1779129250 instance=ExtResource("30_7ggy0")]
 position = Vector2(889, 2209)
+location = "woodland_mansion"
 
 [node name="Vindicator4" parent="Enemies" unique_id=629013415 instance=ExtResource("30_7ggy0")]
 position = Vector2(696, 2401)
+location = "woodland_mansion"
 
 [node name="Evoker" parent="Enemies" unique_id=516032260 instance=ExtResource("31_2gccy")]
 position = Vector2(1125, 2655)
+location = "woodland_mansion"
 
 [node name="CollisionShape2D" parent="Enemies/Evoker/ShootingArea" parent_id_path=PackedInt32Array(516032260, 1800570189) index="0" unique_id=931633192]
 position = Vector2(-249.5, -0.5)
