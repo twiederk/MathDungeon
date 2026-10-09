@@ -41,7 +41,7 @@ func _show_next() -> void:
 	if achievement.bonus > 0:
 		description_label.text += "\n+%s Punkte!" % number_format.format(achievement.bonus)
 
-	_animation()
+	await _animation()
 	_show_next()
 
 
