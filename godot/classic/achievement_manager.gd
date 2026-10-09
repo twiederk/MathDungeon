@@ -37,6 +37,14 @@ var ACHIEVEMENTS = {
 	"nether_1": Achievement.new("Ab in den Nether!", "Besuche den Nether zum ersten Mal", 1, "nether", "nether_1.png"),
 	"nether_5": Achievement.new("Nether-Erkunder", "Besuche den Nether 5 Mal", 5, "nether", "nether_5.png"),
 	"nether_10": Achievement.new("Nether-Meister", "Besuche den Nether 10 Mal", 10, "nether", "nether_10.png"),
+	
+	"woodland_mansion": Achievement.new("Waldanwesen erobert!", "Besiege alle Bewohner des Waldanwesens", 1, "woodland_mansion", "woodland_mansion.png"),
+	"nether_fortress": Achievement.new("Festung gesäubert!", "Besiege alle Gegner der Nether-Festung", 1, "nether_fortress", "nether_fortress.png"),
+	
+	"dungeon_0": Achievement.new("Dungeon 1 gesäubert!", "Besiege alle Gegner im ersten Dungeon", 1, "dungeon_0", "dungeon_0.png"),
+	"dungeon_1": Achievement.new("Dungeon 2 gesäubert!", "Besiege alle Gegner im zweiten Dungeon", 1, "dungeon_1", "dungeon_1.png"),
+	"dungeon_2": Achievement.new("Dungeon 3 gesäubert!", "Besiege alle Gegner im dritten Dungeon", 1, "dungeon_2", "dungeon_2.png"),
+	"dungeon_3": Achievement.new("Dungeon 4 gesäubert!", "Besiege alle Gegner im vierten Dungeon", 1, "dungeon_3", "dungeon_3.png"),
 }
 
 var unlocked_achievements: Array[String] = []
@@ -50,6 +58,18 @@ var progress: Dictionary = {
 var recent_unlocks: Array[String] = []
 const MAX_RECENT: int = 5
 
+var _locations: Dictionary = {}
+
+
+func clear_locations() -> void:
+	_locations.clear()
+
+
+func register_locations(enemies: Array) -> void:
+	for enemy in enemies:
+		if enemy is not Enemy or enemy.location == "":
+			continue
+		_locations[enemy.location] = _locations.get(enemy.location, 0) + 1
 
 
 func track_score(new_score: int) -> void:
@@ -57,7 +77,12 @@ func track_score(new_score: int) -> void:
 	_check_progress_achievements("score")
 
 
-func track_enemy_defeat(enemy_name: String) -> void:
+func track_enemy_defeat(enemy: Enemy) -> void:
+	_track_enemy_type_defeat(enemy.stats.name)
+	_track_location_defeat(enemy.location)
+
+
+func _track_enemy_type_defeat(enemy_name: String) -> void:
 	if enemy_name == "Enderman":
 		progress["enderman"] += 1
 		_check_progress_achievements("enderman")
@@ -66,13 +91,24 @@ func track_enemy_defeat(enemy_name: String) -> void:
 		_check_progress_achievements("enderdragon")
 
 
+func _track_location_defeat(location: String) -> void:
+	if not _locations.has(location):
+		return
+	_locations[location] -= 1
+	if _locations[location] > 0:
+		return
+	_locations.erase(location)
+	progress[location] = progress.get(location, 0) + 1
+	_check_progress_achievements(location)
+
+
 func track_nether_visit() -> void:
 	progress["nether"] += 1
 	_check_progress_achievements("nether")
 
 
 func _check_progress_achievements(type: String) -> void:
-	var current = progress[type]
+	var current = progress.get(type, 0)
 	
 	for achievement_id in ACHIEVEMENTS:
 		var achievement = ACHIEVEMENTS[achievement_id]
@@ -102,3 +138,4 @@ func reset() -> void:
 	unlocked_achievements.clear()
 	progress = {"score": 0, "enderman": 0, "enderdragon": 0, "nether": 0}
 	recent_unlocks.clear()
+	_locations.clear()
