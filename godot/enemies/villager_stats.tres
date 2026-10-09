@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_gn084"]
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_loot"]
-[ext_resource type="PackedScene" path="res://items/healing_potion.tscn" id="2_healing_potion"]
+[ext_resource type="PackedScene" uid="uid://cinn45uh8snch" path="res://items/healing_potion.tscn" id="2_healing_potion"]
 
 [sub_resource type="Resource" id="LootDropDefinition_VillagerPotion"]
 script = ExtResource("1_loot")

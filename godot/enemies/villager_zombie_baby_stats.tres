@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://clrjqi3jvjalq"]
 
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_orafn"]
-[ext_resource type="PackedScene" path="res://items/healing_potion.tscn" id="2_healing_potion"]
-[ext_resource type="PackedScene" path="res://items/helmet_stone.tscn" id="3_stone_helmet"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_qa4ru"]
+[ext_resource type="PackedScene" uid="uid://cinn45uh8snch" path="res://items/healing_potion.tscn" id="2_healing_potion"]
+[ext_resource type="PackedScene" uid="uid://dq5hvtr5p280m" path="res://items/helmet_stone.tscn" id="3_stone_helmet"]
 
 [sub_resource type="Resource" id="LootDropDefinition_BabyZombieVillagerPotion"]
 script = ExtResource("1_orafn")

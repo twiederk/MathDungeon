@@ -1,13 +1,12 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://c5erghmh2xj58"]
 
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_uv53k"]
-[ext_resource type="PackedScene" path="res://items/eye_of_ender.tscn" id="2_eye_of_ender"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_yey48"]
+[ext_resource type="PackedScene" uid="uid://i8jullgo6a5f" path="res://items/eye_of_ender.tscn" id="2_eye_of_ender"]
 
 [sub_resource type="Resource" id="LootDropDefinition_EnderDragonEye"]
 script = ExtResource("1_uv53k")
 item_scene = ExtResource("2_eye_of_ender")
-probability = 1.0
 
 [resource]
 script = ExtResource("1_yey48")
@@ -15,8 +14,8 @@ name = "Ender Dragon"
 max_hit_points = 20
 damage = 3
 arithmetic = Array[int]([0, 1, 2, 3])
-loot_drops = Array[ExtResource("1_uv53k")]([SubResource("LootDropDefinition_EnderDragonEye")])
 time_limit = 10
+loot_drops = Array[ExtResource("1_uv53k")]([SubResource("LootDropDefinition_EnderDragonEye")])
 hard_max_hit_points = 30
 hard_damage = 4
 hard_time_limit = 8

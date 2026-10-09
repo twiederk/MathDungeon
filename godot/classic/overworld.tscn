@@ -84,17 +84,21 @@ size = Vector2(400, 334)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnost"]
 size = Vector2(459, 59)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u7shu"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tm32w"]
 resource_local_to_scene = true
 size = Vector2(41, 384)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2t5r"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u7shu"]
 resource_local_to_scene = true
 size = Vector2(31, 61)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgg77"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2t5r"]
 resource_local_to_scene = true
 size = Vector2(59, 61)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgg77"]
+resource_local_to_scene = true
+size = Vector2(92, 88)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iywah"]
 resource_local_to_scene = true
@@ -105,10 +109,6 @@ resource_local_to_scene = true
 size = Vector2(92, 88)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yukv7"]
-resource_local_to_scene = true
-size = Vector2(92, 88)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqxsy"]
 resource_local_to_scene = true
 size = Vector2(124, 131)
 
@@ -687,7 +687,7 @@ title_text = "Die verlassene Burg"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle/TriggerArea2D" index="0"]
 position = Vector2(21.5, -76)
-shape = SubResource("RectangleShape2D_u7shu")
+shape = SubResource("RectangleShape2D_tm32w")
 
 [node name="DungeonTitle2" parent="Titles" unique_id=1265780115 instance=ExtResource("41_egkod")]
 position = Vector2(114, 1121)
@@ -695,7 +695,7 @@ title_text = "Das Tierlabyrinth"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle2/TriggerArea2D" index="0"]
 position = Vector2(-1.5, -1.5)
-shape = SubResource("RectangleShape2D_f2t5r")
+shape = SubResource("RectangleShape2D_u7shu")
 
 [node name="DungeonTitle3" parent="Titles" unique_id=1065713930 instance=ExtResource("41_egkod")]
 position = Vector2(913, 670)
@@ -703,7 +703,7 @@ title_text = "Der unterirdische Teich"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle3/TriggerArea2D" index="0"]
 position = Vector2(-16.5, 1.5)
-shape = SubResource("RectangleShape2D_hgg77")
+shape = SubResource("RectangleShape2D_f2t5r")
 
 [node name="DungeonTitle4" parent="Titles" unique_id=1103847014 instance=ExtResource("41_egkod")]
 position = Vector2(1041, 1122)
@@ -711,7 +711,7 @@ title_text = "Die Villa"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle4/TriggerArea2D" index="0"]
 position = Vector2(-1.5, -2.5)
-shape = SubResource("RectangleShape2D_iywah")
+shape = SubResource("RectangleShape2D_hgg77")
 
 [node name="DungeonTitle5" parent="Titles" unique_id=395435328 instance=ExtResource("41_egkod")]
 position = Vector2(865, 1505)
@@ -719,7 +719,7 @@ title_text = "Das Waldanwesen "
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle5/TriggerArea2D" index="0"]
 position = Vector2(14, -16)
-shape = SubResource("RectangleShape2D_fbmp2")
+shape = SubResource("RectangleShape2D_iywah")
 
 [node name="DungeonTitle6" parent="Titles" unique_id=1333793762 instance=ExtResource("41_egkod")]
 position = Vector2(31, 1560)
@@ -727,7 +727,7 @@ title_text = "Das Dorf"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle6/TriggerArea2D" index="0"]
 position = Vector2(14, -16)
-shape = SubResource("RectangleShape2D_yukv7")
+shape = SubResource("RectangleShape2D_fbmp2")
 
 [node name="DungeonTitle7" parent="Titles" unique_id=511827281 instance=ExtResource("41_egkod")]
 position = Vector2(1537, 1468)
@@ -735,7 +735,7 @@ title_text = "Das verlassene Dorf"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle7/TriggerArea2D" index="0"]
 position = Vector2(-3, 16)
-shape = SubResource("RectangleShape2D_gqxsy")
+shape = SubResource("RectangleShape2D_yukv7")
 
 [node name="MapBorders" parent="." unique_id=1093876332 instance=ExtResource("42_nbqs7")]
 
