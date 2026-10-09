@@ -157,10 +157,10 @@ Adjust the call: `AchievementManager.track_enemy_defeat(enemy)` instead of
 - `classic/nether.tscn`: `location = nether_fortress` on the chosen enemies.
 - `classic/end.tscn`: nothing to do.
 
-### 8. Badges
+### 8. ✅ Badges
 
 `gui/achievement_badges.gd` loads `gui/badges/<badge_graphic>`; the fallback points to
-`badge_1000.png`, which does not exist. There is no artwork for the 6 new achievements
+`score_1000.png`. There is no artwork for the 6 new achievements
 yet, so they all use the existing `score_1000.png` for now.
 
 ### 9. Tests (`test/`, GUT)
