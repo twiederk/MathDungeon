@@ -144,7 +144,7 @@ subscenes are missing.
 No registration inside `ProcGenWorld` — that is done by `WorldLevel._ready()`, which
 runs afterwards via `super._ready()`.
 
-### 6. `quiz/quiz_dialog.gd`
+### 6. ✅ `quiz/quiz_dialog.gd`
 
 Adjust the call: `AchievementManager.track_enemy_defeat(enemy)` instead of
 `track_enemy_defeat(enemy.stats.name)`. Only call site.
