@@ -149,7 +149,7 @@ runs afterwards via `super._ready()`.
 Adjust the call: `AchievementManager.track_enemy_defeat(enemy)` instead of
 `track_enemy_defeat(enemy.stats.name)`. Only call site.
 
-### 7. Scenes / editor work
+### 7. ✅ Scenes / editor work
 
 - `classic/overworld.tscn`: set `location = woodland_mansion` on the root `Path2D` of
   Vindicator 1–4 (instances of `patrolling_vindicator.tscn`); set it on the `Enemy` node
