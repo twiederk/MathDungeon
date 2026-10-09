@@ -27,6 +27,10 @@ var score: int = 0:
 		score_changed.emit()
 
 
+func _ready() -> void:
+	AchievementManager.achievement_unlocked.connect(_on_achievement_unlocked)
+
+
 func reset() -> void:
 	score = 0
 	eyes_of_ender = 0
@@ -46,3 +50,8 @@ func toggle_difficulty_level() -> void:
 func add_score(points: int) -> void:
 	score += points
 	AchievementManager.track_score(score)
+
+
+func _on_achievement_unlocked(achievement: AchievementManager.Achievement) -> void:
+	if achievement.bonus > 0:
+		add_score(achievement.bonus)

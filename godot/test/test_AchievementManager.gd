@@ -3,6 +3,7 @@ extends GutTest
 
 func after_each():
 	AchievementManager.reset()
+	GameSession.reset()
 
 
 func test_location_achievements_have_bonus_points():
@@ -100,8 +101,67 @@ func test_defeat_of_unregistered_location_is_ignored():
 	assert_eq(0, AchievementManager._locations.size())
 
 
+func test_clearing_dungeon_awards_bonus_score():
+	# arrange
+	var enemy = _create_enemy("dungeon_0")
+	AchievementManager.register_locations([enemy])
+	
+	# act
+	AchievementManager.track_enemy_defeat(enemy)
+	
+	# assert
+	assert_eq(500, GameSession.score)
+
+
+func test_clearing_woodland_mansion_awards_bonus_score():
+	# arrange
+	var enemy = _create_enemy("woodland_mansion")
+	AchievementManager.register_locations([enemy])
+	
+	# act
+	AchievementManager.track_enemy_defeat(enemy)
+	
+	# assert
+	assert_eq(1000, GameSession.score)
+
+
+func test_clearing_nether_fortress_awards_bonus_score():
+	# arrange
+	var enemy = _create_enemy("nether_fortress")
+	AchievementManager.register_locations([enemy])
+	
+	# act
+	AchievementManager.track_enemy_defeat(enemy)
+	
+	# assert
+	assert_eq(1500, GameSession.score)
+
+
+func test_bonus_score_is_awarded_only_once():
+	# arrange
+	var enemy = _create_enemy("dungeon_0")
+	AchievementManager.register_locations([enemy])
+	AchievementManager.track_enemy_defeat(enemy)
+	
+	# act
+	AchievementManager.track_enemy_defeat(enemy)
+	
+	# assert
+	assert_eq(500, GameSession.score)
+
+
+func test_score_achievement_does_not_award_bonus_score():
+	# act
+	GameSession.add_score(1000)
+	
+	# assert
+	assert_true("score_1000" in AchievementManager.unlocked_achievements)
+	assert_eq(1000, GameSession.score)
+
+
 func _create_enemy(location: String) -> Enemy:
 	var enemy = autofree(Enemy.new())
 	enemy.stats = EnemyStats.new()
 	enemy.location = location
 	return enemy
+
