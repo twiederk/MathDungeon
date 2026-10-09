@@ -160,9 +160,8 @@ Adjust the call: `AchievementManager.track_enemy_defeat(enemy)` instead of
 ### 8. Badges
 
 `gui/achievement_badges.gd` loads `gui/badges/<badge_graphic>`; the fallback points to
-`badge_1000.png`, which does not exist. So PNGs for the 6 new achievements have to be
-placed in `gui/badges/`, otherwise loading fails. If no artwork exists yet, point them
-at an existing file for now.
+`badge_1000.png`, which does not exist. There is no artwork for the 6 new achievements
+yet, so they all use the existing `score_1000.png` for now.
 
 ### 9. Tests (`test/`, GUT)
 
