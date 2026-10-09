@@ -111,12 +111,17 @@ func track_nether_visit() -> void:
 
 func _check_progress_achievements(type: String) -> void:
 	var current = progress.get(type, 0)
+	var to_unlock: Array[String] = []
 	
 	for achievement_id in ACHIEVEMENTS:
 		var achievement = ACHIEVEMENTS[achievement_id]
 		if achievement.type == type:
 			if current >= achievement.target and achievement_id not in unlocked_achievements:
-				_unlock_achievement(achievement_id)
+				to_unlock.append(achievement_id)
+	
+	# unlocking may re-enter this function via score bonuses, so collect first
+	for achievement_id in to_unlock:
+		_unlock_achievement(achievement_id)
 
 
 func _unlock_achievement(achievement_id: String) -> void:
