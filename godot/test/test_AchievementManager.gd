@@ -164,4 +164,3 @@ func _create_enemy(location: String) -> Enemy:
 	enemy.stats = EnemyStats.new()
 	enemy.location = location
 	return enemy
-
