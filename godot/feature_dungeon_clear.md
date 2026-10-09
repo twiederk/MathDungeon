@@ -42,7 +42,7 @@ Popup, sound and badge display already exist and only listen to the
 
 ## Implementation steps
 
-### 1. `enemies/enemy.gd`
+### 1. ✅ `enemies/enemy.gd`
 
 ```gdscript
 @export var location: String = ""
@@ -50,7 +50,7 @@ Popup, sound and badge display already exist and only listen to the
 
 `_ready()` stays unchanged.
 
-### 2. `enemies/patrolling_enemy.gd`
+### 2. ✅ `enemies/patrolling_enemy.gd`
 
 For patrolling enemies the actual `Enemy` is nested under `PathFollow2D/Enemy` and is
 not reachable in the inspector of the Overworld level. Therefore the `Path2D` wrapper
