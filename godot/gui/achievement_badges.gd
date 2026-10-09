@@ -50,7 +50,7 @@ func _get_badge_graphic(achievement_id: String) -> String:
 		var achievement = AchievementManager.ACHIEVEMENTS[achievement_id]
 		if achievement.badge_graphic != "":
 			return BADGE_GRAPHICS_PATH + achievement.badge_graphic
-	return BADGE_GRAPHICS_PATH + "badge_1000.png"
+	return BADGE_GRAPHICS_PATH + "score_1000.png"
 
 
 func _animate_newest_badge() -> void:

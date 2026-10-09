@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_ewk1p"]
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_loot"]
-[ext_resource type="PackedScene" path="res://items/helmet_iron.tscn" id="2_iron_helmet"]
-[ext_resource type="PackedScene" path="res://items/sword_iron.tscn" id="3_iron_sword"]
+[ext_resource type="PackedScene" uid="uid://cecyxjivevnmn" path="res://items/helmet_iron.tscn" id="2_iron_helmet"]
+[ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="3_iron_sword"]
 
 [sub_resource type="Resource" id="LootDropDefinition_GolemHelmet"]
 script = ExtResource("1_loot")

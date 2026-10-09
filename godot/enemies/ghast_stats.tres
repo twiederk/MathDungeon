@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://dootbkhqjjjuj"]
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://dootbkhqjjjuj"]
 
-[ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_ro23o"]
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_loot"]
-[ext_resource type="PackedScene" path="res://items/lighter.tscn" id="2_lighter"]
-[ext_resource type="PackedScene" path="res://items/healing_potion.tscn" id="3_healing_potion"]
+[ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_ro23o"]
+[ext_resource type="PackedScene" uid="uid://d4by6x3ww0foy" path="res://items/lighter.tscn" id="2_lighter"]
+[ext_resource type="PackedScene" uid="uid://cinn45uh8snch" path="res://items/healing_potion.tscn" id="3_healing_potion"]
 
 [sub_resource type="Resource" id="LootDropDefinition_GhastLighter"]
 script = ExtResource("1_loot")

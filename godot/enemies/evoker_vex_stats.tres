@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://bl8ray54o27tu"]
 
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_byvop"]
-[ext_resource type="PackedScene" path="res://items/sword_iron.tscn" id="2_iron_sword"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_iqa68"]
+[ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="2_iron_sword"]
 
 [sub_resource type="Resource" id="LootDropDefinition_VexSword"]
 script = ExtResource("1_byvop")

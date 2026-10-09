@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://b4km4b2ngerrt"]
 
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_rur3n"]
-[ext_resource type="PackedScene" path="res://items/lighter.tscn" id="2_lighter"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_xwgdh"]
+[ext_resource type="PackedScene" uid="uid://d4by6x3ww0foy" path="res://items/lighter.tscn" id="2_lighter"]
 
 [sub_resource type="Resource" id="LootDropDefinition_BlazeLighter"]
 script = ExtResource("1_rur3n")

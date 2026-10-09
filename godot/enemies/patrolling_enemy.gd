@@ -4,6 +4,7 @@ extends Path2D
 signal encountered(enemy: StaticBody2D)
 
 @export var patrol_speed: float = 50.0 
+@export var location: String = ""
 
 @onready var path_follow = $PathFollow2D
 @onready var enemy = $PathFollow2D/Enemy
@@ -11,6 +12,7 @@ signal encountered(enemy: StaticBody2D)
 
 func _ready() -> void:
 	path_follow.progress_ratio = randf_range(0, 1)
+	enemy.location = location
 
 
 func _process(delta: float) -> void:

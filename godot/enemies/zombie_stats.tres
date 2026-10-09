@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://dn8b07p0dusc"]
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://dn8b07p0dusc"]
 
-[ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_njn3i"]
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_loot"]
-[ext_resource type="PackedScene" path="res://items/healing_potion.tscn" id="2_healing_potion"]
-[ext_resource type="PackedScene" path="res://items/sword_iron.tscn" id="3_iron_sword"]
+[ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_njn3i"]
+[ext_resource type="PackedScene" uid="uid://cinn45uh8snch" path="res://items/healing_potion.tscn" id="2_healing_potion"]
+[ext_resource type="PackedScene" uid="uid://wjx4klpp85sw" path="res://items/sword_stone.tscn" id="3_pfds4"]
 
 [sub_resource type="Resource" id="LootDropDefinition_ZombiePotion"]
 script = ExtResource("1_loot")
@@ -12,7 +12,7 @@ probability = 0.25
 
 [sub_resource type="Resource" id="LootDropDefinition_ZombieSword"]
 script = ExtResource("1_loot")
-item_scene = ExtResource("3_iron_sword")
+item_scene = ExtResource("3_pfds4")
 probability = 0.2
 
 [resource]

@@ -3,6 +3,7 @@ extends StaticBody2D
 
 
 @export var stats: EnemyStats
+@export var location: String = ""
 
 signal encountered(enemy: StaticBody2D)
 signal health_changed
