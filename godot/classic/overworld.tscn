@@ -492,27 +492,21 @@ position = Vector2(1185, 2527)
 
 [node name="PiglinZombie" parent="Enemies" unique_id=2490144 instance=ExtResource("16_7e0qn")]
 position = Vector2(979, 2578)
-location = "woodland_mansion"
 
 [node name="PiglinZombie2" parent="Enemies" unique_id=1982493857 instance=ExtResource("16_7e0qn")]
 position = Vector2(769, 2574)
-location = "woodland_mansion"
 
 [node name="PiglinZombie3" parent="Enemies" unique_id=1735956958 instance=ExtResource("16_7e0qn")]
 position = Vector2(973, 2536)
-location = "woodland_mansion"
 
 [node name="PiglinZombie4" parent="Enemies" unique_id=257177548 instance=ExtResource("16_7e0qn")]
 position = Vector2(791, 2536)
-location = "woodland_mansion"
 
 [node name="PiglinZombie5" parent="Enemies" unique_id=801909994 instance=ExtResource("16_7e0qn")]
 position = Vector2(801, 2504)
-location = "woodland_mansion"
 
 [node name="PiglinZombie6" parent="Enemies" unique_id=1233291606 instance=ExtResource("16_7e0qn")]
 position = Vector2(1186, 2364)
-location = "woodland_mansion"
 
 [node name="PiglinZombie7" parent="Enemies" unique_id=1890851438 instance=ExtResource("16_7e0qn")]
 position = Vector2(1436, 2504)
