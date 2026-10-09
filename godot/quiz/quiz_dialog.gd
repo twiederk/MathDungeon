@@ -121,7 +121,7 @@ func _answer_correct() -> void:
 			_start_timers()
 	else:
 		GameSession.add_score(enemy.stats.get_score())
-		AchievementManager.track_enemy_defeat(enemy.stats.name)
+		AchievementManager.track_enemy_defeat(enemy)
 		if enemy.has_time_limit():
 			answer_timer.stop()
 			progress_timer.stop()
