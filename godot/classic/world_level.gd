@@ -17,10 +17,16 @@ var loot_droper: LootDropper = LootDropper.new()
 
 func _ready() -> void:
 	_setup_signals()
+	_setup_locations()
 	_setup_limits_and_borders()
 	_setup_character_stats()
 	_setup_player_portrait()
 	CompanionSetup.new(companions_root, player).setup()
+
+
+func _setup_locations() -> void:
+	AchievementManager.clear_locations()
+	AchievementManager.register_locations(enemies_root.find_children("", "Enemy", true, false))
 
 
 func _setup_signals() -> void:

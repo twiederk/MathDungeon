@@ -66,7 +66,7 @@ func _ready() -> void:
 
 Order is not a problem: `_ready()` of the children runs before `WorldLevel._ready()`.
 
-### 3. `classic/achievement_manager.gd`
+### 3. ✅ `classic/achievement_manager.gd`
 
 - New achievements (each `target = 1`, `type` == location id). Titles and descriptions
   stay German because they are in-game text:
