@@ -794,7 +794,6 @@ offset_bottom = 3.0
 
 [node name="PauseGui" parent="UI" unique_id=852372694 instance=ExtResource("45_0doom")]
 process_mode = 3
-visible = false
 
 [node name="ScoreWidget" parent="UI" unique_id=2098320157 instance=ExtResource("46_s05jy")]
 anchors_preset = 1
