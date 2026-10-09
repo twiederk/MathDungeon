@@ -118,7 +118,7 @@ Order is not a problem: `_ready()` of the children runs before `WorldLevel._read
 
 - `reset()` additionally clears `_locations` and removes the location progress entries.
 
-### 4. `classic/world_level.gd`
+### 4. ✅ `classic/world_level.gd`
 
 In `_ready()`, before/after `_setup_signals()`:
 
@@ -133,7 +133,7 @@ with `recursive = true` and `owned = false` returns exactly the set of nodes tha
 actually be defeated. `owned = false` is mandatory, otherwise nodes inside instanced
 subscenes are missing.
 
-### 5. `procedural/dungeon.gd` + `dungeon_generator.gd` + `proc_gen_world.gd`
+### 5. ✅ `procedural/dungeon.gd` + `dungeon_generator.gd` + `proc_gen_world.gd`
 
 - `Dungeon` gets an `id: String` field (extra `_init` parameter or assigned
   afterwards — assigning afterwards keeps `DungeonGenerator` free of numbering logic).

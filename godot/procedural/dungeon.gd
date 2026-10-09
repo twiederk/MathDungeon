@@ -1,5 +1,6 @@
 class_name Dungeon
 
+var id: String = ""
 var root_node: Branch
 var entrance: Vector2i
 var floor_arr: Array[Vector2i] = []
