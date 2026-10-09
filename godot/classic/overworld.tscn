@@ -191,9 +191,11 @@ position = Vector2(1039, 2798)
 
 [node name="Drown7" parent="Enemies" unique_id=291992726 instance=ExtResource("15_inpva")]
 position = Vector2(1475, 973)
+location = "dungeon_3"
 
 [node name="ZombiePiglin3" parent="Enemies" unique_id=1158698120 instance=ExtResource("16_7e0qn")]
 position = Vector2(1384, 943)
+location = "dungeon_3"
 
 [node name="Zombie1" parent="Enemies" unique_id=88138127 instance=ExtResource("17_1gckk")]
 position = Vector2(80, 541)
@@ -224,7 +226,7 @@ position = Vector2(100, 867)
 
 [node name="Zombie" parent="Enemies" unique_id=1431190433 instance=ExtResource("17_1gckk")]
 position = Vector2(295, 1123)
-location = "dungeon_1"
+location = "dungeon_1   "
 
 [node name="Drown" parent="Enemies" unique_id=224087180 instance=ExtResource("15_inpva")]
 position = Vector2(385, 1310)
@@ -263,33 +265,43 @@ position = Vector2(1249, 482)
 
 [node name="Drown4" parent="Enemies" unique_id=53245081 instance=ExtResource("15_inpva")]
 position = Vector2(1378, 476)
+location = "dungeon_2"
 
 [node name="Drown5" parent="Enemies" unique_id=1136021306 instance=ExtResource("15_inpva")]
 position = Vector2(1379, 532)
+location = "dungeon_2       "
 
 [node name="Enderman4" parent="Enemies" unique_id=1401342693 instance=ExtResource("18_vjnci")]
 position = Vector2(1166, 466)
+location = "dungeon_2"
 
 [node name="Zombie2" parent="Enemies" unique_id=1586649158 instance=ExtResource("17_1gckk")]
 position = Vector2(942, 673)
+location = "dungeon_2"
 
 [node name="ZombieBaby3" parent="Enemies" unique_id=54280764 instance=ExtResource("20_yugn5")]
 position = Vector2(1464, 653)
+location = "dungeon_2"
 
 [node name="Enderman3" parent="Enemies" unique_id=2014094747 instance=ExtResource("18_vjnci")]
 position = Vector2(1124, 920)
+location = "dungeon_3"
 
 [node name="Zombie3" parent="Enemies" unique_id=960086907 instance=ExtResource("17_1gckk")]
 position = Vector2(1078, 1117)
+location = "dungeon_3"
 
 [node name="Drown6" parent="Enemies" unique_id=1488629201 instance=ExtResource("15_inpva")]
 position = Vector2(1715, 933)
+location = "dungeon_3"
 
 [node name="Spider2" parent="Enemies" unique_id=1563043297 instance=ExtResource("19_udwem")]
 position = Vector2(1723, 1003)
+location = "dungeon_3"
 
 [node name="ZombieBaby4" parent="Enemies" unique_id=2111575277 instance=ExtResource("20_yugn5")]
 position = Vector2(1377, 1069)
+location = "dungeon_3"
 
 [node name="Pig" parent="Enemies" unique_id=376396593 instance=ExtResource("22_8h7ey")]
 position = Vector2(-121, 1475)
@@ -329,6 +341,7 @@ shape = SubResource("RectangleShape2D_seu75")
 
 [node name="ShootingSkeleton4" parent="Enemies" unique_id=1311664668 instance=ExtResource("23_pryxa")]
 position = Vector2(1329, 338)
+location = "dungeon_2"
 
 [node name="CollisionShape2D" parent="Enemies/ShootingSkeleton4/ShootingArea" index="0"]
 position = Vector2(111, 28)
@@ -336,6 +349,7 @@ shape = SubResource("RectangleShape2D_htxhm")
 
 [node name="ShootingSkeleton5" parent="Enemies" unique_id=1748502866 instance=ExtResource("23_pryxa")]
 position = Vector2(1235, 52)
+location = "dungeon_2"
 
 [node name="CollisionShape2D" parent="Enemies/ShootingSkeleton5/ShootingArea" index="0"]
 position = Vector2(29, 172)
@@ -343,6 +357,7 @@ shape = SubResource("RectangleShape2D_jq2sk")
 
 [node name="ShootingSkeleton6" parent="Enemies" unique_id=1713796424 instance=ExtResource("23_pryxa")]
 position = Vector2(1574, 880)
+location = "dungeon_3"
 
 [node name="CollisionShape2D" parent="Enemies/ShootingSkeleton6/ShootingArea" index="0"]
 position = Vector2(-6, 110.75)
@@ -350,6 +365,7 @@ shape = SubResource("RectangleShape2D_4k2k6")
 
 [node name="ShootingSkeleton7" parent="Enemies" unique_id=1457692874 instance=ExtResource("23_pryxa")]
 position = Vector2(1199, 1213)
+location = "dungeon_3"
 
 [node name="CollisionShape2D" parent="Enemies/ShootingSkeleton7/ShootingArea" index="0"]
 position = Vector2(-188.75, 2.5)
