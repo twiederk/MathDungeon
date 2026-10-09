@@ -10,13 +10,15 @@ class Achievement:
 	var target: int
 	var type: String
 	var badge_graphic: String
+	var bonus: int
 	
-	func _init(p_title: String, p_desc: String, p_target: int, p_type: String, p_badge_graphic: String = "") -> void:
+	func _init(p_title: String, p_desc: String, p_target: int, p_type: String, p_badge_graphic: String = "", p_bonus: int = 0) -> void:
 		title = p_title
 		desc = p_desc
 		target = p_target
 		type = p_type
 		badge_graphic = p_badge_graphic
+		bonus = p_bonus
 
 
 var ACHIEVEMENTS = {
@@ -38,13 +40,13 @@ var ACHIEVEMENTS = {
 	"nether_5": Achievement.new("Nether-Erkunder", "Besuche den Nether 5 Mal", 5, "nether", "nether_5.png"),
 	"nether_10": Achievement.new("Nether-Meister", "Besuche den Nether 10 Mal", 10, "nether", "nether_10.png"),
 	
-	"woodland_mansion": Achievement.new("Waldanwesen erobert!", "Besiege alle Bewohner des Waldanwesens", 1, "woodland_mansion", "score_1000.png"),
-	"nether_fortress": Achievement.new("Festung gesäubert!", "Besiege alle Gegner der Nether-Festung", 1, "nether_fortress", "score_1000.png"),
+	"woodland_mansion": Achievement.new("Waldanwesen erobert!", "Besiege alle Bewohner des Waldanwesens", 1, "woodland_mansion", "score_1000.png", 1000),
+	"nether_fortress": Achievement.new("Festung gesäubert!", "Besiege alle Gegner der Nether-Festung", 1, "nether_fortress", "score_1000.png", 1500),
 	
-	"dungeon_0": Achievement.new("Dungeon 1 gesäubert!", "Besiege alle Gegner im ersten Dungeon", 1, "dungeon_0", "score_1000.png"),
-	"dungeon_1": Achievement.new("Dungeon 2 gesäubert!", "Besiege alle Gegner im zweiten Dungeon", 1, "dungeon_1", "score_1000.png"),
-	"dungeon_2": Achievement.new("Dungeon 3 gesäubert!", "Besiege alle Gegner im dritten Dungeon", 1, "dungeon_2", "score_1000.png"),
-	"dungeon_3": Achievement.new("Dungeon 4 gesäubert!", "Besiege alle Gegner im vierten Dungeon", 1, "dungeon_3", "score_1000.png"),
+	"dungeon_0": Achievement.new("Dungeon 1 gesäubert!", "Besiege alle Gegner im ersten Dungeon", 1, "dungeon_0", "score_1000.png", 500),
+	"dungeon_1": Achievement.new("Dungeon 2 gesäubert!", "Besiege alle Gegner im zweiten Dungeon", 1, "dungeon_1", "score_1000.png", 500),
+	"dungeon_2": Achievement.new("Dungeon 3 gesäubert!", "Besiege alle Gegner im dritten Dungeon", 1, "dungeon_2", "score_1000.png", 500),
+	"dungeon_3": Achievement.new("Dungeon 4 gesäubert!", "Besiege alle Gegner im vierten Dungeon", 1, "dungeon_3", "score_1000.png", 500),
 }
 
 var unlocked_achievements: Array[String] = []

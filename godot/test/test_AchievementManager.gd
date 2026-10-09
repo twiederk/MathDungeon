@@ -5,6 +5,24 @@ func after_each():
 	AchievementManager.reset()
 
 
+func test_location_achievements_have_bonus_points():
+	# assert
+	assert_eq(500, AchievementManager.ACHIEVEMENTS["dungeon_0"].bonus)
+	assert_eq(500, AchievementManager.ACHIEVEMENTS["dungeon_1"].bonus)
+	assert_eq(500, AchievementManager.ACHIEVEMENTS["dungeon_2"].bonus)
+	assert_eq(500, AchievementManager.ACHIEVEMENTS["dungeon_3"].bonus)
+	assert_eq(1000, AchievementManager.ACHIEVEMENTS["woodland_mansion"].bonus)
+	assert_eq(1500, AchievementManager.ACHIEVEMENTS["nether_fortress"].bonus)
+
+
+func test_other_achievements_have_no_bonus_points():
+	# assert
+	assert_eq(0, AchievementManager.ACHIEVEMENTS["score_1000"].bonus)
+	assert_eq(0, AchievementManager.ACHIEVEMENTS["enderman_1"].bonus)
+	assert_eq(0, AchievementManager.ACHIEVEMENTS["enderdragon_1"].bonus)
+	assert_eq(0, AchievementManager.ACHIEVEMENTS["nether_1"].bonus)
+
+
 func test_register_locations_counts_enemies_per_location():
 	# arrange
 	var enemies = [_create_enemy("dungeon_0"), _create_enemy("dungeon_0"), _create_enemy("dungeon_1")]
