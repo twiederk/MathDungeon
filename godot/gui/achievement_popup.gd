@@ -1,7 +1,7 @@
 class_name AchievementPopup
 extends Control
 
-const AUTO_HIDE_SECONDS: float = 4.0
+const AUTO_HIDE_SECONDS: float = 5.0
 
 
 @onready var panel_container: PanelContainer = $PanelContainer
