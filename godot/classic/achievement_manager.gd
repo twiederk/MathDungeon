@@ -11,14 +11,16 @@ class Achievement:
 	var type: String
 	var badge_graphic: String
 	var bonus: int
+	var repeatable: bool
 	
-	func _init(p_title: String, p_desc: String, p_target: int, p_type: String, p_badge_graphic: String = "", p_bonus: int = 0) -> void:
+	func _init(p_title: String, p_desc: String, p_target: int, p_type: String, p_badge_graphic: String = "", p_bonus: int = 0, p_repeatable: bool = false) -> void:
 		title = p_title
 		desc = p_desc
 		target = p_target
 		type = p_type
 		badge_graphic = p_badge_graphic
 		bonus = p_bonus
+		repeatable = p_repeatable
 
 
 var ACHIEVEMENTS = {
@@ -45,7 +47,7 @@ var ACHIEVEMENTS = {
 	"woodland_mansion": Achievement.new("Waldanwesen erobert!", "Besiege alle Bewohner des Waldanwesens", 1, "woodland_mansion", "conquere_woodland_mansion.png", 1000),
 	"nether_fortress": Achievement.new("Festung gesäubert!", "Besiege alle Gegner der Nether-Festung", 1, "nether_fortress", "conquere_nether_fortress.png", 1500),
 	
-	"dungeon": Achievement.new("Dungeon gesäubert!", "Besiege alle Gegner eines Dungeons", 1, "dungeon", "conquere_dungeon.png", 1000),
+	"dungeon": Achievement.new("Dungeon gesäubert!", "Besiege alle Gegner eines Dungeons", 1, "dungeon", "conquere_dungeon.png", 500, true),
 }
 
 var unlocked_achievements: Array[String] = []
@@ -136,7 +138,7 @@ func _check_progress_achievements(type: String) -> void:
 	for achievement_id in ACHIEVEMENTS:
 		var achievement = ACHIEVEMENTS[achievement_id]
 		if achievement.type == type:
-			if current >= achievement.target and achievement_id not in unlocked_achievements:
+			if current >= achievement.target and _can_unlock(achievement_id):
 				to_unlock.append(achievement_id)
 	
 	# unlocking may re-enter this function via score bonuses, so collect first
@@ -144,11 +146,16 @@ func _check_progress_achievements(type: String) -> void:
 		_unlock_achievement(achievement_id)
 
 
+func _can_unlock(achievement_id: String) -> bool:
+	return achievement_id not in unlocked_achievements or ACHIEVEMENTS[achievement_id].repeatable
+
+
 func _unlock_achievement(achievement_id: String) -> void:
-	if achievement_id in unlocked_achievements:
+	if not _can_unlock(achievement_id):
 		return
 	
-	unlocked_achievements.append(achievement_id)
+	if achievement_id not in unlocked_achievements:
+		unlocked_achievements.append(achievement_id)
 	recent_unlocks.append(achievement_id)
 	if recent_unlocks.size() > MAX_RECENT:
 		recent_unlocks.pop_front()

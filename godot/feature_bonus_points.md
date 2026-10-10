@@ -11,8 +11,8 @@ Clearing a whole location rewards the player with bonus score on top of the per-
 | `nether_fortress` | 1.500 |
 
 > Superseded by [feature_quest_log.md](feature_quest_log.md) Phase 3: the four dungeon achievements
-> were collapsed into a single `dungeon` achievement worth 1.000, awarded for the first dungeon
-> cleared.
+> were collapsed into a single `dungeon` achievement, still worth 500. It is `repeatable` — every
+> cleared dungeon awards the bonus again, so "Double awarding" below no longer applies to it.
 
 ## Decisions
 

@@ -140,12 +140,23 @@ func _location_to_type(location: String) -> String:
 ```
 
 Replace `dungeon_0..3` with a single
-`"dungeon": Achievement.new("Dungeon gesäubert!", "Besiege alle Gegner eines Dungeons", 1, "dungeon", "conquere_dungeon.png", 1000)`.
+`"dungeon": Achievement.new("Dungeon gesäubert!", "Besiege alle Gegner eines Dungeons", 1, "dungeon", "conquere_dungeon.png", 500, true)`.
 
-**Score balance:** the award drops from 4 × 500 to 1 × 1000. Reconcile with
+The trailing `true` is a new `repeatable` flag on `Achievement`. Clearing a dungeon is a *repeatable
+deed*, not a one-off milestone: every cleared dungeon fires `achievement_unlocked` again and awards
+the bonus again, including the same dungeon on a second visit. `unlocked_achievements` still holds
+the id only once, so the quest log's `COMPLETED` check is unaffected.
+
+The `_locations` guard still prevents double counting within one visit — re-arming happens in
+`WorldLevel._setup_locations()`, which clears and re-registers on every level load.
+
+**Score balance:** the bonus stays at 500 per dungeon, but is no longer capped at 4 × 500 — a
+player who revisits dungeons can farm it. Reconcile with
 [feature_bonus_points.md](feature_bonus_points.md).
+
 Tests: `test/test_AchievementManager.gd` currently asserts `"dungeon_0" in unlocked_achievements`
-— update to `"dungeon"`, and add a case proving a second dungeon does not unlock it twice.
+— update to `"dungeon"`, and cover both halves of the flag: a second dungeon awards the bonus
+again, a second woodland mansion does not.
 
 ### Phase 4 — `Quest` and `QuestLog`
 
