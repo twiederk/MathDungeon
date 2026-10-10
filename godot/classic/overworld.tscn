@@ -47,7 +47,7 @@
 [ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="46_s05jy"]
 [ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://gui/achievement_popup.tscn" id="47_fym2a"]
 [ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://gui/achievement_badges.tscn" id="48_bewqi"]
-[ext_resource type="PackedScene" path="res://gui/quest_log_gui.tscn" id="49_questlog"]
+[ext_resource type="PackedScene" uid="uid://cq8nvt3xr7kql" path="res://gui/quest_log_gui.tscn" id="49_questlog"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8e4i"]
 size = Vector2(380, 182)

@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="10_7tdwu"]
 [ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://gui/achievement_popup.tscn" id="11_lnqdw"]
 [ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://gui/achievement_badges.tscn" id="12_fa5nh"]
-[ext_resource type="PackedScene" path="res://gui/quest_log_gui.tscn" id="13_questlog"]
+[ext_resource type="PackedScene" uid="uid://cq8nvt3xr7kql" path="res://gui/quest_log_gui.tscn" id="13_questlog"]
 
 
 [node name="End" type="Node2D" unique_id=1281862831]
