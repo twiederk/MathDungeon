@@ -9,6 +9,7 @@ enum DifficultyLevel {
 
 signal score_changed
 signal eyes_of_ender_changed
+signal has_lighter_changed
 
 
 var difficulty_level: DifficultyLevel = DifficultyLevel.NORMAL
@@ -19,6 +20,12 @@ var eyes_of_ender: int = 0:
 	set(value):
 		eyes_of_ender = value
 		eyes_of_ender_changed.emit()
+
+
+var has_lighter: bool = false:
+	set(value):
+		has_lighter = value
+		has_lighter_changed.emit()
 
 
 var score: int = 0:
@@ -34,6 +41,7 @@ func _ready() -> void:
 func reset() -> void:
 	score = 0
 	eyes_of_ender = 0
+	has_lighter = false
 
 
 func is_hard() -> bool:

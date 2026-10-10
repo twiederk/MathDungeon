@@ -8,20 +8,55 @@ func after_each():
 
 func test_location_achievements_have_bonus_points():
 	# assert
-	assert_eq(500, AchievementManager.ACHIEVEMENTS["dungeon_0"].bonus)
-	assert_eq(500, AchievementManager.ACHIEVEMENTS["dungeon_1"].bonus)
-	assert_eq(500, AchievementManager.ACHIEVEMENTS["dungeon_2"].bonus)
-	assert_eq(500, AchievementManager.ACHIEVEMENTS["dungeon_3"].bonus)
+	assert_eq(500, AchievementManager.ACHIEVEMENTS["dungeon"].bonus)
 	assert_eq(1000, AchievementManager.ACHIEVEMENTS["woodland_mansion"].bonus)
 	assert_eq(1500, AchievementManager.ACHIEVEMENTS["nether_fortress"].bonus)
+
+
+func test_item_achievements_have_bonus_points():
+	# assert
+	assert_eq(250, AchievementManager.ACHIEVEMENTS["lighter"].bonus)
+	assert_eq(1000, AchievementManager.ACHIEVEMENTS["eyes_12"].bonus)
 
 
 func test_other_achievements_have_no_bonus_points():
 	# assert
 	assert_eq(0, AchievementManager.ACHIEVEMENTS["score_1000"].bonus)
-	assert_eq(0, AchievementManager.ACHIEVEMENTS["enderman_1"].bonus)
+	assert_eq(0, AchievementManager.ACHIEVEMENTS["eyes_4"].bonus)
 	assert_eq(0, AchievementManager.ACHIEVEMENTS["enderdragon_1"].bonus)
 	assert_eq(0, AchievementManager.ACHIEVEMENTS["nether_1"].bonus)
+
+
+func test_collecting_eyes_of_ender_unlocks_achievement():
+	# act
+	GameSession.eyes_of_ender = 4
+	
+	# assert
+	assert_true("eyes_4" in AchievementManager.unlocked_achievements)
+	assert_false("eyes_8" in AchievementManager.unlocked_achievements)
+
+
+func test_twelve_eyes_of_ender_unlock_all_eye_achievements():
+	# act
+	GameSession.eyes_of_ender = 12
+	
+	# assert
+	assert_true("eyes_4" in AchievementManager.unlocked_achievements)
+	assert_true("eyes_8" in AchievementManager.unlocked_achievements)
+	assert_true("eyes_12" in AchievementManager.unlocked_achievements)
+
+
+func test_picking_up_lighter_unlocks_achievement():
+	# act
+	GameSession.has_lighter = true
+	
+	# assert
+	assert_true("lighter" in AchievementManager.unlocked_achievements)
+
+
+func test_lighter_is_not_unlocked_without_pickup():
+	# assert
+	assert_false("lighter" in AchievementManager.unlocked_achievements)
 
 
 func test_register_locations_counts_enemies_per_location():
@@ -71,7 +106,50 @@ func test_last_defeat_unlocks_achievement():
 	
 	# assert
 	assert_signal_emitted(AchievementManager, "achievement_unlocked")
-	assert_true("dungeon_0" in AchievementManager.unlocked_achievements)
+	assert_true("dungeon" in AchievementManager.unlocked_achievements)
+
+
+func test_every_dungeon_unlocks_the_same_achievement():
+	# arrange
+	var first = _create_enemy("dungeon_0")
+	var second = _create_enemy("dungeon_1")
+	AchievementManager.register_locations([first, second])
+	AchievementManager.track_enemy_defeat(first)
+	
+	# act
+	AchievementManager.track_enemy_defeat(second)
+	
+	# assert
+	assert_eq(2, AchievementManager.progress["dungeon"])
+	assert_eq(1000, GameSession.score, "Every cleared dungeon awards the bonus again")
+
+
+func test_clearing_the_same_dungeon_again_awards_the_bonus_again():
+	# arrange
+	var enemy = _create_enemy("dungeon_0")
+	AchievementManager.register_locations([enemy])
+	AchievementManager.track_enemy_defeat(enemy)
+	
+	# act
+	AchievementManager.register_locations([enemy])
+	AchievementManager.track_enemy_defeat(enemy)
+	
+	# assert
+	assert_eq(1000, GameSession.score)
+
+
+func test_clearing_woodland_mansion_again_does_not_award_the_bonus_again():
+	# arrange
+	var enemy = _create_enemy("woodland_mansion")
+	AchievementManager.register_locations([enemy])
+	AchievementManager.track_enemy_defeat(enemy)
+	
+	# act
+	AchievementManager.register_locations([enemy])
+	AchievementManager.track_enemy_defeat(enemy)
+	
+	# assert
+	assert_eq(1000, GameSession.score)
 
 
 func test_defeat_before_last_does_not_unlock():
@@ -137,7 +215,7 @@ func test_clearing_nether_fortress_awards_bonus_score():
 	assert_eq(1500, GameSession.score)
 
 
-func test_bonus_score_is_awarded_only_once():
+func test_defeat_after_location_is_cleared_is_ignored():
 	# arrange
 	var enemy = _create_enemy("dungeon_0")
 	AchievementManager.register_locations([enemy])

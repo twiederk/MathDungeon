@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://cq8nvt3xr7kql"]
+
+[ext_resource type="Script" uid="uid://icx3eyln4346" path="res://gui/quest_log_gui.gd" id="1_questlog"]
+
+[node name="QuestLogGui" type="Control" unique_id=1232824536]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_questlog")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1274037626]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 30.0
+offset_right = 500.0
+offset_bottom = 330.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=653962333]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1763703852]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="TitleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1937334000]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "Quests – aktueller Lauf"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1777652166]
+layout_mode = 2
+
+[node name="QuestList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=48802740]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8

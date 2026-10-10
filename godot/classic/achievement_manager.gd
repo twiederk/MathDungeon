@@ -11,14 +11,16 @@ class Achievement:
 	var type: String
 	var badge_graphic: String
 	var bonus: int
+	var repeatable: bool
 	
-	func _init(p_title: String, p_desc: String, p_target: int, p_type: String, p_badge_graphic: String = "", p_bonus: int = 0) -> void:
+	func _init(p_title: String, p_desc: String, p_target: int, p_type: String, p_badge_graphic: String = "", p_bonus: int = 0, p_repeatable: bool = false) -> void:
 		title = p_title
 		desc = p_desc
 		target = p_target
 		type = p_type
 		badge_graphic = p_badge_graphic
 		bonus = p_bonus
+		repeatable = p_repeatable
 
 
 var ACHIEVEMENTS = {
@@ -28,9 +30,11 @@ var ACHIEVEMENTS = {
 	"score_5000": Achievement.new("Fünftausend!", "Erreiche 5.000 Punkte", 5000, "score", "score_5000.png"),
 	"score_10000": Achievement.new("Zehntausend!", "Erreiche 10.000 Punkte", 10000, "score", "score_10000.png"),
 	
-	"enderman_1": Achievement.new("Erster Enderman besiegt!", "Besiege deinen ersten Enderman", 1, "enderman", "enderman_1.png"),
-	"enderman_5": Achievement.new("Enderman-Jäger", "Besiege 5 Endermen", 5, "enderman", "enderman_5.png"),
-	"enderman_10": Achievement.new("Enderman-Meister", "Besiege 10 Endermen", 10, "enderman", "enderman_10.png"),
+	"eyes_4": Achievement.new("Vier Augen", "Sammle 4 Augen des Enders", 4, "eyes_of_ender", ""),
+	"eyes_8": Achievement.new("Acht Augen", "Sammle 8 Augen des Enders", 8, "eyes_of_ender", ""),
+	"eyes_12": Achievement.new("Das Endportal ruft!", "Sammle 12 Augen des Enders", 12, "eyes_of_ender", "", 1000),
+	
+	"lighter": Achievement.new("Feuerzeug gefunden!", "Finde das Feuerzeug", 1, "lighter", "", 250),
 	
 	"enderdragon_1": Achievement.new("Drachentöter!", "Besiege deinen ersten Enderdrachen", 1, "enderdragon", "enderdragon_1.png"),
 	"enderdragon_3": Achievement.new("Drachenjäger", "Besiege 3 Enderdrachen", 3, "enderdragon", "enderdragon_3.png"),
@@ -43,16 +47,14 @@ var ACHIEVEMENTS = {
 	"woodland_mansion": Achievement.new("Waldanwesen erobert!", "Besiege alle Bewohner des Waldanwesens", 1, "woodland_mansion", "conquere_woodland_mansion.png", 1000),
 	"nether_fortress": Achievement.new("Festung gesäubert!", "Besiege alle Gegner der Nether-Festung", 1, "nether_fortress", "conquere_nether_fortress.png", 1500),
 	
-	"dungeon_0": Achievement.new("Dungeon 1 gesäubert!", "Besiege alle Gegner im ersten Dungeon", 1, "dungeon_0", "conquere_dungeon.png", 500),
-	"dungeon_1": Achievement.new("Dungeon 2 gesäubert!", "Besiege alle Gegner im zweiten Dungeon", 1, "dungeon_1", "conquere_dungeon.png", 500),
-	"dungeon_2": Achievement.new("Dungeon 3 gesäubert!", "Besiege alle Gegner im dritten Dungeon", 1, "dungeon_2", "conquere_dungeon.png", 500),
-	"dungeon_3": Achievement.new("Dungeon 4 gesäubert!", "Besiege alle Gegner im vierten Dungeon", 1, "dungeon_3", "conquere_dungeon.png", 500),
+	"dungeon": Achievement.new("Dungeon gesäubert!", "Besiege alle Gegner eines Dungeons", 1, "dungeon", "conquere_dungeon.png", 500, true),
 }
 
 var unlocked_achievements: Array[String] = []
 var progress: Dictionary = {
 	"score": 0,
-	"enderman": 0,
+	"eyes_of_ender": 0,
+	"lighter": 0,
 	"enderdragon": 0,
 	"nether": 0,
 }
@@ -61,6 +63,19 @@ var recent_unlocks: Array[String] = []
 const MAX_RECENT: int = 5
 
 var _locations: Dictionary = {}
+
+
+func _ready() -> void:
+	GameSession.eyes_of_ender_changed.connect(_on_eyes_of_ender_changed)
+	GameSession.has_lighter_changed.connect(_on_has_lighter_changed)
+
+
+func _on_eyes_of_ender_changed() -> void:
+	_set_progress("eyes_of_ender", GameSession.eyes_of_ender)
+
+
+func _on_has_lighter_changed() -> void:
+	_set_progress("lighter", 1 if GameSession.has_lighter else 0)
 
 
 func clear_locations() -> void:
@@ -75,8 +90,7 @@ func register_locations(enemies: Array) -> void:
 
 
 func track_score(new_score: int) -> void:
-	progress["score"] = new_score
-	_check_progress_achievements("score")
+	_set_progress("score", new_score)
 
 
 func track_enemy_defeat(enemy: Enemy) -> void:
@@ -85,10 +99,7 @@ func track_enemy_defeat(enemy: Enemy) -> void:
 
 
 func _track_enemy_type_defeat(enemy_name: String) -> void:
-	if enemy_name == "Enderman":
-		progress["enderman"] += 1
-		_check_progress_achievements("enderman")
-	elif enemy_name == "Enderdragon":
+	if enemy_name == "Enderdragon":
 		progress["enderdragon"] += 1
 		_check_progress_achievements("enderdragon")
 
@@ -100,13 +111,24 @@ func _track_location_defeat(location: String) -> void:
 	if _locations[location] > 0:
 		return
 	_locations.erase(location)
-	progress[location] = progress.get(location, 0) + 1
-	_check_progress_achievements(location)
+	var type = _location_to_type(location)
+	progress[type] = progress.get(type, 0) + 1
+	_check_progress_achievements(type)
+
+
+# Enemies are counted per dungeon, but all dungeons share one achievement.
+func _location_to_type(location: String) -> String:
+	return "dungeon" if location.begins_with("dungeon") else location
 
 
 func track_nether_visit() -> void:
 	progress["nether"] += 1
 	_check_progress_achievements("nether")
+
+
+func _set_progress(type: String, value: int) -> void:
+	progress[type] = value
+	_check_progress_achievements(type)
 
 
 func _check_progress_achievements(type: String) -> void:
@@ -116,7 +138,7 @@ func _check_progress_achievements(type: String) -> void:
 	for achievement_id in ACHIEVEMENTS:
 		var achievement = ACHIEVEMENTS[achievement_id]
 		if achievement.type == type:
-			if current >= achievement.target and achievement_id not in unlocked_achievements:
+			if current >= achievement.target and _can_unlock(achievement_id):
 				to_unlock.append(achievement_id)
 	
 	# unlocking may re-enter this function via score bonuses, so collect first
@@ -124,11 +146,16 @@ func _check_progress_achievements(type: String) -> void:
 		_unlock_achievement(achievement_id)
 
 
+func _can_unlock(achievement_id: String) -> bool:
+	return achievement_id not in unlocked_achievements or ACHIEVEMENTS[achievement_id].repeatable
+
+
 func _unlock_achievement(achievement_id: String) -> void:
-	if achievement_id in unlocked_achievements:
+	if not _can_unlock(achievement_id):
 		return
 	
-	unlocked_achievements.append(achievement_id)
+	if achievement_id not in unlocked_achievements:
+		unlocked_achievements.append(achievement_id)
 	recent_unlocks.append(achievement_id)
 	if recent_unlocks.size() > MAX_RECENT:
 		recent_unlocks.pop_front()
@@ -143,6 +170,6 @@ func get_recent_unlocks() -> Array[String]:
 
 func reset() -> void:
 	unlocked_achievements.clear()
-	progress = {"score": 0, "enderman": 0, "enderdragon": 0, "nether": 0}
+	progress = {"score": 0, "eyes_of_ender": 0, "lighter": 0, "enderdragon": 0, "nether": 0}
 	recent_unlocks.clear()
 	_locations.clear()
