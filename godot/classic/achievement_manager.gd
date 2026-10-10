@@ -45,10 +45,7 @@ var ACHIEVEMENTS = {
 	"woodland_mansion": Achievement.new("Waldanwesen erobert!", "Besiege alle Bewohner des Waldanwesens", 1, "woodland_mansion", "conquere_woodland_mansion.png", 1000),
 	"nether_fortress": Achievement.new("Festung gesäubert!", "Besiege alle Gegner der Nether-Festung", 1, "nether_fortress", "conquere_nether_fortress.png", 1500),
 	
-	"dungeon_0": Achievement.new("Dungeon 1 gesäubert!", "Besiege alle Gegner im ersten Dungeon", 1, "dungeon_0", "conquere_dungeon.png", 500),
-	"dungeon_1": Achievement.new("Dungeon 2 gesäubert!", "Besiege alle Gegner im zweiten Dungeon", 1, "dungeon_1", "conquere_dungeon.png", 500),
-	"dungeon_2": Achievement.new("Dungeon 3 gesäubert!", "Besiege alle Gegner im dritten Dungeon", 1, "dungeon_2", "conquere_dungeon.png", 500),
-	"dungeon_3": Achievement.new("Dungeon 4 gesäubert!", "Besiege alle Gegner im vierten Dungeon", 1, "dungeon_3", "conquere_dungeon.png", 500),
+	"dungeon": Achievement.new("Dungeon gesäubert!", "Besiege alle Gegner eines Dungeons", 1, "dungeon", "conquere_dungeon.png", 1000),
 }
 
 var unlocked_achievements: Array[String] = []
@@ -112,8 +109,14 @@ func _track_location_defeat(location: String) -> void:
 	if _locations[location] > 0:
 		return
 	_locations.erase(location)
-	progress[location] = progress.get(location, 0) + 1
-	_check_progress_achievements(location)
+	var type = _location_to_type(location)
+	progress[type] = progress.get(type, 0) + 1
+	_check_progress_achievements(type)
+
+
+# Enemies are counted per dungeon, but all dungeons share one achievement.
+func _location_to_type(location: String) -> String:
+	return "dungeon" if location.begins_with("dungeon") else location
 
 
 func track_nether_visit() -> void:

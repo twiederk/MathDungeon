@@ -129,7 +129,7 @@ unused `enderman_1/5/10.png` are left in place as source art for the eye badges.
 Tests: rewrite the Enderman cases in `test/test_AchievementManager.gd` against
 `GameSession.eyes_of_ender`.
 
-### Phase 3 — One dungeon achievement
+### ✅ Phase 3 — One dungeon achievement
 
 Keep `_locations` keyed by the individual location so the "all enemies defeated" counting still
 works per dungeon, but normalise to one achievement type:
@@ -144,7 +144,6 @@ Replace `dungeon_0..3` with a single
 
 **Score balance:** the award drops from 4 × 500 to 1 × 1000. Reconcile with
 [feature_bonus_points.md](feature_bonus_points.md).
-
 Tests: `test/test_AchievementManager.gd` currently asserts `"dungeon_0" in unlocked_achievements`
 — update to `"dungeon"`, and add a case proving a second dungeon does not unlock it twice.
 

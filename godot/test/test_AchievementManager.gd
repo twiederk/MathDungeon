@@ -8,10 +8,7 @@ func after_each():
 
 func test_location_achievements_have_bonus_points():
 	# assert
-	assert_eq(500, AchievementManager.ACHIEVEMENTS["dungeon_0"].bonus)
-	assert_eq(500, AchievementManager.ACHIEVEMENTS["dungeon_1"].bonus)
-	assert_eq(500, AchievementManager.ACHIEVEMENTS["dungeon_2"].bonus)
-	assert_eq(500, AchievementManager.ACHIEVEMENTS["dungeon_3"].bonus)
+	assert_eq(1000, AchievementManager.ACHIEVEMENTS["dungeon"].bonus)
 	assert_eq(1000, AchievementManager.ACHIEVEMENTS["woodland_mansion"].bonus)
 	assert_eq(1500, AchievementManager.ACHIEVEMENTS["nether_fortress"].bonus)
 
@@ -109,7 +106,22 @@ func test_last_defeat_unlocks_achievement():
 	
 	# assert
 	assert_signal_emitted(AchievementManager, "achievement_unlocked")
-	assert_true("dungeon_0" in AchievementManager.unlocked_achievements)
+	assert_true("dungeon" in AchievementManager.unlocked_achievements)
+
+
+func test_every_dungeon_unlocks_the_same_achievement():
+	# arrange
+	var first = _create_enemy("dungeon_0")
+	var second = _create_enemy("dungeon_1")
+	AchievementManager.register_locations([first, second])
+	AchievementManager.track_enemy_defeat(first)
+	
+	# act
+	AchievementManager.track_enemy_defeat(second)
+	
+	# assert
+	assert_eq(2, AchievementManager.progress["dungeon"])
+	assert_eq(1000, GameSession.score, "Bonus is awarded for the first dungeon only")
 
 
 func test_defeat_before_last_does_not_unlock():
@@ -148,7 +160,7 @@ func test_clearing_dungeon_awards_bonus_score():
 	AchievementManager.track_enemy_defeat(enemy)
 	
 	# assert
-	assert_eq(500, GameSession.score)
+	assert_eq(1000, GameSession.score)
 
 
 func test_clearing_woodland_mansion_awards_bonus_score():
@@ -185,7 +197,7 @@ func test_bonus_score_is_awarded_only_once():
 	AchievementManager.track_enemy_defeat(enemy)
 	
 	# assert
-	assert_eq(500, GameSession.score)
+	assert_eq(1000, GameSession.score)
 
 
 func test_score_achievement_does_not_award_bonus_score():
