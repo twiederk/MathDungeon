@@ -158,7 +158,7 @@ Tests: `test/test_AchievementManager.gd` currently asserts `"dungeon_0" in unloc
 — update to `"dungeon"`, and cover both halves of the flag: a second dungeon awards the bonus
 again, a second woodland mansion does not.
 
-### Phase 4 — `Quest` and `QuestLog`
+### ✅ Phase 4 — `Quest` and `QuestLog`
 
 `quests/quest.gd` — data only, `RefCounted`:
 
