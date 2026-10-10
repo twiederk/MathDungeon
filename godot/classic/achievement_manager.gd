@@ -28,9 +28,11 @@ var ACHIEVEMENTS = {
 	"score_5000": Achievement.new("Fünftausend!", "Erreiche 5.000 Punkte", 5000, "score", "score_5000.png"),
 	"score_10000": Achievement.new("Zehntausend!", "Erreiche 10.000 Punkte", 10000, "score", "score_10000.png"),
 	
-	"enderman_1": Achievement.new("Erster Enderman besiegt!", "Besiege deinen ersten Enderman", 1, "enderman", "enderman_1.png"),
-	"enderman_5": Achievement.new("Enderman-Jäger", "Besiege 5 Endermen", 5, "enderman", "enderman_5.png"),
-	"enderman_10": Achievement.new("Enderman-Meister", "Besiege 10 Endermen", 10, "enderman", "enderman_10.png"),
+	"eyes_4": Achievement.new("Vier Augen", "Sammle 4 Augen des Enders", 4, "eyes_of_ender", ""),
+	"eyes_8": Achievement.new("Acht Augen", "Sammle 8 Augen des Enders", 8, "eyes_of_ender", ""),
+	"eyes_12": Achievement.new("Das Endportal ruft!", "Sammle 12 Augen des Enders", 12, "eyes_of_ender", "", 1000),
+	
+	"lighter": Achievement.new("Feuerzeug gefunden!", "Finde das Feuerzeug", 1, "lighter", "", 250),
 	
 	"enderdragon_1": Achievement.new("Drachentöter!", "Besiege deinen ersten Enderdrachen", 1, "enderdragon", "enderdragon_1.png"),
 	"enderdragon_3": Achievement.new("Drachenjäger", "Besiege 3 Enderdrachen", 3, "enderdragon", "enderdragon_3.png"),
@@ -52,7 +54,8 @@ var ACHIEVEMENTS = {
 var unlocked_achievements: Array[String] = []
 var progress: Dictionary = {
 	"score": 0,
-	"enderman": 0,
+	"eyes_of_ender": 0,
+	"lighter": 0,
 	"enderdragon": 0,
 	"nether": 0,
 }
@@ -61,6 +64,19 @@ var recent_unlocks: Array[String] = []
 const MAX_RECENT: int = 5
 
 var _locations: Dictionary = {}
+
+
+func _ready() -> void:
+	GameSession.eyes_of_ender_changed.connect(_on_eyes_of_ender_changed)
+	GameSession.has_lighter_changed.connect(_on_has_lighter_changed)
+
+
+func _on_eyes_of_ender_changed() -> void:
+	_set_progress("eyes_of_ender", GameSession.eyes_of_ender)
+
+
+func _on_has_lighter_changed() -> void:
+	_set_progress("lighter", 1 if GameSession.has_lighter else 0)
 
 
 func clear_locations() -> void:
@@ -75,8 +91,7 @@ func register_locations(enemies: Array) -> void:
 
 
 func track_score(new_score: int) -> void:
-	progress["score"] = new_score
-	_check_progress_achievements("score")
+	_set_progress("score", new_score)
 
 
 func track_enemy_defeat(enemy: Enemy) -> void:
@@ -85,10 +100,7 @@ func track_enemy_defeat(enemy: Enemy) -> void:
 
 
 func _track_enemy_type_defeat(enemy_name: String) -> void:
-	if enemy_name == "Enderman":
-		progress["enderman"] += 1
-		_check_progress_achievements("enderman")
-	elif enemy_name == "Enderdragon":
+	if enemy_name == "Enderdragon":
 		progress["enderdragon"] += 1
 		_check_progress_achievements("enderdragon")
 
@@ -107,6 +119,11 @@ func _track_location_defeat(location: String) -> void:
 func track_nether_visit() -> void:
 	progress["nether"] += 1
 	_check_progress_achievements("nether")
+
+
+func _set_progress(type: String, value: int) -> void:
+	progress[type] = value
+	_check_progress_achievements(type)
 
 
 func _check_progress_achievements(type: String) -> void:
@@ -143,6 +160,6 @@ func get_recent_unlocks() -> Array[String]:
 
 func reset() -> void:
 	unlocked_achievements.clear()
-	progress = {"score": 0, "enderman": 0, "enderdragon": 0, "nether": 0}
+	progress = {"score": 0, "eyes_of_ender": 0, "lighter": 0, "enderdragon": 0, "nether": 0}
 	recent_unlocks.clear()
 	_locations.clear()

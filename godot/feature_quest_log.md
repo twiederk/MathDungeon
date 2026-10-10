@@ -92,7 +92,7 @@ Boundary after this phase:
 - `Character` — persists across runs (gear, companions, hit points)
 - `GameSession` — per run (score, eyes of ender, lighter)
 
-### Phase 2 — Eyes of ender replace the Enderman achievements
+### ✅ Phase 2 — Eyes of ender replace the Enderman achievements
 
 Remove `"enderman"` from `progress`, from `reset()` and from `_track_enemy_type_defeat()`, and drop
 `enderman_1 / enderman_5 / enderman_10`.
@@ -100,9 +100,9 @@ Remove `"enderman"` from `progress`, from `reset()` and from `_track_enemy_type_
 Add:
 
 ```gdscript
-"eyes_4": Achievement.new("Vier Augen", "Sammle 4 Augen des Enders", 4, "eyes_of_ender", "eyes_4.png"),
-"eyes_8": Achievement.new("Acht Augen", "Sammle 8 Augen des Enders", 8, "eyes_of_ender", "eyes_8.png"),
-"eyes_12": Achievement.new("Das Endportal ruft!", "Sammle 12 Augen des Enders", 12, "eyes_of_ender", "eyes_12.png", 1000),
+"eyes_4": Achievement.new("Vier Augen", "Sammle 4 Augen des Enders", 4, "eyes_of_ender", ""),
+"eyes_8": Achievement.new("Acht Augen", "Sammle 8 Augen des Enders", 8, "eyes_of_ender", ""),
+"eyes_12": Achievement.new("Das Endportal ruft!", "Sammle 12 Augen des Enders", 12, "eyes_of_ender", "", 1000),
 "lighter": Achievement.new("Feuerzeug gefunden!", "Finde das Feuerzeug", 1, "lighter", "lighter.png", 250),
 ```
 
@@ -121,14 +121,13 @@ func _set_progress(type: String, value: int) -> void:
 Absolute values, not increments — same contract as `track_score()`, so no double counting against
 `GameSession`. Autoload order already has `GameSession` before `AchievementManager`.
 
-Assets: replace `enderman_1/5/10.png` in [gui/badges](gui/badges) with `eyes_4/8/12.png` and
-`lighter.png`.
+**Assets — outstanding:** the four new achievements ship with an empty `badge_graphic`, so
+`AchievementBadges._get_badge_graphic()` falls back to `score_1000.png`. Create
+`eyes_4/8/12.png` and `lighter.png` in [gui/badges](gui/badges) and fill the field in. The now
+unused `enderman_1/5/10.png` are left in place as source art for the eye badges.
 
 Tests: rewrite the Enderman cases in `test/test_AchievementManager.gd` against
 `GameSession.eyes_of_ender`.
-
-**Playtest note:** eyes come from loot drops, so "12 eyes" is a materially harder bar than
-"10 Enderman kills". Check that a normal run can still reach the End.
 
 ### Phase 3 — One dungeon achievement
 
@@ -246,3 +245,5 @@ func _process(_delta) -> void:
   quest can never be completed there.
 - Revisit `LOCKED` after playtesting: if seven open quests overwhelm younger players, it can be
   added on top of the derived status without touching stored data.
+- **Playtest:** eyes come from loot drops, so "12 eyes" is a materially harder bar than the old
+  "10 Enderman kills". Check that a normal run can still reach the End.

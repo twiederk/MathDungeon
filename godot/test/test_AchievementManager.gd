@@ -16,12 +16,50 @@ func test_location_achievements_have_bonus_points():
 	assert_eq(1500, AchievementManager.ACHIEVEMENTS["nether_fortress"].bonus)
 
 
+func test_item_achievements_have_bonus_points():
+	# assert
+	assert_eq(250, AchievementManager.ACHIEVEMENTS["lighter"].bonus)
+	assert_eq(1000, AchievementManager.ACHIEVEMENTS["eyes_12"].bonus)
+
+
 func test_other_achievements_have_no_bonus_points():
 	# assert
 	assert_eq(0, AchievementManager.ACHIEVEMENTS["score_1000"].bonus)
-	assert_eq(0, AchievementManager.ACHIEVEMENTS["enderman_1"].bonus)
+	assert_eq(0, AchievementManager.ACHIEVEMENTS["eyes_4"].bonus)
 	assert_eq(0, AchievementManager.ACHIEVEMENTS["enderdragon_1"].bonus)
 	assert_eq(0, AchievementManager.ACHIEVEMENTS["nether_1"].bonus)
+
+
+func test_collecting_eyes_of_ender_unlocks_achievement():
+	# act
+	GameSession.eyes_of_ender = 4
+	
+	# assert
+	assert_true("eyes_4" in AchievementManager.unlocked_achievements)
+	assert_false("eyes_8" in AchievementManager.unlocked_achievements)
+
+
+func test_twelve_eyes_of_ender_unlock_all_eye_achievements():
+	# act
+	GameSession.eyes_of_ender = 12
+	
+	# assert
+	assert_true("eyes_4" in AchievementManager.unlocked_achievements)
+	assert_true("eyes_8" in AchievementManager.unlocked_achievements)
+	assert_true("eyes_12" in AchievementManager.unlocked_achievements)
+
+
+func test_picking_up_lighter_unlocks_achievement():
+	# act
+	GameSession.has_lighter = true
+	
+	# assert
+	assert_true("lighter" in AchievementManager.unlocked_achievements)
+
+
+func test_lighter_is_not_unlocked_without_pickup():
+	# assert
+	assert_false("lighter" in AchievementManager.unlocked_achievements)
 
 
 func test_register_locations_counts_enemies_per_location():
