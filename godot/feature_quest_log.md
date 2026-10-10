@@ -236,9 +236,10 @@ func _process(_delta) -> void:
 - One row per quest: status icon, title, hint, and either a checkbox or `current / target` when
   `target > 1`.
 - `COMPLETED` rows keep the title but drop the hint and are visually ticked off.
-- Rebuild the rows on `AchievementManager.achievement_unlocked` so the log is live while open.
-- Reuse `NumberFormat` for the counters, as `AchievementPopup` does.
-- Header makes the scope explicit: "Quests — aktueller Lauf".
+- Rows are built once in `_open()`. No `achievement_unlocked` listener is needed: the tree is paused
+  for the whole time the log is visible, so nothing can be unlocked while it is on screen.
+- Counters stay plain `%d / %d` — `NumberFormat` is for thousands and these never exceed 12.
+- Header makes the scope explicit: "Quests – aktueller Lauf".
 
 ### Phase 7 — Polish
 

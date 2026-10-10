@@ -10,12 +10,6 @@ const OPEN_MARK: String = "•"
 @onready var quest_list: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/QuestList
 
 var quest_log: QuestLog = QuestLog.new()
-var is_open: bool = false
-
-
-func _ready() -> void:
-	AchievementManager.achievement_unlocked.connect(_on_achievement_unlocked)
-	visible = false
 
 
 func _process(_delta: float) -> void:
@@ -24,7 +18,7 @@ func _process(_delta: float) -> void:
 		return
 	if not Input.is_action_just_pressed("quest_log"):
 		return
-	if is_open:
+	if visible:
 		_close()
 	elif not get_tree().paused:
 		_open()
@@ -32,22 +26,15 @@ func _process(_delta: float) -> void:
 
 func _open() -> void:
 	_rebuild()
-	is_open = true
 	visible = true
 	get_tree().paused = true
 
 
 func _close() -> void:
-	if not is_open:
+	if not visible:
 		return
-	is_open = false
 	visible = false
 	get_tree().paused = false
-
-
-func _on_achievement_unlocked(_achievement: AchievementManager.Achievement) -> void:
-	if is_open:
-		_rebuild()
 
 
 func _rebuild() -> void:
