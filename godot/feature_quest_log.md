@@ -216,7 +216,7 @@ quest_log={
 
 Desktop-only export, so `F1` needs no fallback binding.
 
-### Phase 6 — `QuestLogGui`
+### ✅ Phase 6 — `QuestLogGui`
 
 `gui/quest_log_gui.tscn` / `.gd`, styled like `achievement_popup.tscn`, added to the same HUD layer.
 

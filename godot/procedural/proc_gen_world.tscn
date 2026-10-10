@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="9_0o1nv"]
 [ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://gui/achievement_popup.tscn" id="10_gsqn5"]
 [ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://gui/achievement_badges.tscn" id="11_nivld"]
+[ext_resource type="PackedScene" path="res://gui/quest_log_gui.tscn" id="12_questlog"]
 
 [node name="ProcGenWorld" type="Node2D" unique_id=1396004494]
 script = ExtResource("1_4yoxp")
@@ -75,3 +76,5 @@ offset_left = 455.0
 offset_top = 25.0
 offset_right = 625.0
 offset_bottom = 65.0
+
+[node name="QuestLogGui" parent="UI" instance=ExtResource("12_questlog")]
