@@ -6,7 +6,6 @@ const WOLF_DAMAGE: int = 1
 
 signal weapon_damage_changed
 signal armor_changed
-signal has_lighter_changed
 signal hit_points_changed
 
 var id: String
@@ -47,12 +46,6 @@ var _weapon_damage: int = 1
 var _armor: int = 0
 var _hit_points: int = 5
 
-var _has_lighter: bool = false:
-	set(value):
-		_has_lighter = value
-		has_lighter_changed.emit()
-		SaveManager.save_character(self)
-
 
 func get_damage() -> int:
 	return weapon_damage
@@ -84,14 +77,6 @@ func get_allay_count() -> int:
 
 func get_armor() -> int:
 	return armor
-
-
-func has_item(item_id: String) -> bool:
-	return item_id == "lighter" and _has_lighter
-
-
-func set_has_lighter(value: bool) -> void:
-	_has_lighter = value
 
 
 func hurt(damage: int) -> int:

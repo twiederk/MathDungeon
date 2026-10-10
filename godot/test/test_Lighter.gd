@@ -14,10 +14,10 @@ func after_each():
 
 func test_execute():
 	# arrange
-	CharacterManager.current.set_has_lighter(false)
+	GameSession.has_lighter = false
 	
 	# act
 	lighter.execute()
 	
 	# assert
-	assert_true(CharacterManager.current.has_item("lighter"), "Player should have lighter")
+	assert_true(GameSession.has_lighter, "Player should have lighter")

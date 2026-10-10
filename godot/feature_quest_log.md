@@ -61,7 +61,7 @@ playtesting shows the full list overwhelms players.
 
 Each phase is independently shippable.
 
-### Phase 1 — Move the lighter to `GameSession` (bug fix)
+### ✅ Phase 1 — Move the lighter to `GameSession` (bug fix)
 
 Add run state mirroring `eyes_of_ender`:
 
@@ -76,10 +76,10 @@ var has_lighter: bool = false:
 
 Clear it in `GameSession.reset()`.
 
-Remove `_has_lighter`, `set_has_lighter()`, `has_lighter_changed` and the `"lighter"` branch of
-`has_item()` from `Character`. `has_item()` stays as the API for persistent gear (sword, helmet) as
-planned in [feature_inventory_system.md](feature_inventory_system.md) — the lighter never belonged
-there.
+Remove `_has_lighter`, `set_has_lighter()`, `has_lighter_changed` and `has_item()` from `Character`.
+Without the lighter, `has_item()` would always return `false`, so it is dropped rather than left as
+dead code — [feature_inventory_system.md](feature_inventory_system.md) Phase 9 reintroduces it for
+persistent gear (sword, helmet), where it belongs. The lighter never did.
 
 Call sites: [items/lighter.gd](items/lighter.gd) sets `GameSession.has_lighter = true`,
 [locations/nether_portal.gd](locations/nether_portal.gd) reads it.
