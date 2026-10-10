@@ -203,7 +203,7 @@ quest starts `OPEN`; unlocking the backing achievement flips it to `COMPLETED`;
 `AchievementManager.reset()` returns everything to the start state; every `achievement_id` in
 `QUESTS` actually exists in `AchievementManager.ACHIEVEMENTS` (guards against typos after a rename).
 
-### Phase 5 — Input action
+### ✅ Phase 5 — Input action
 
 Add to the `[input]` section of `project.godot`, next to `pause_menu`:
 
