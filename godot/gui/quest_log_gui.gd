@@ -19,7 +19,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("quest_log"):
 		if visible:
 			_hide_menu()
-		elif not get_tree().paused:
+		else:
 			_show_menu()
 
 
@@ -32,12 +32,10 @@ func _show_menu() -> void:
 		quest_list.add_child(_create_row(quest))
 	
 	visible = true
-	get_tree().paused = true
 
 
 func _hide_menu() -> void:
 	visible = false
-	get_tree().paused = false
 
 
 func _create_row(quest: Quest) -> HBoxContainer:

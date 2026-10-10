@@ -231,13 +231,15 @@ func _process(_delta) -> void:
 		_toggle()
 ```
 
-- Pause the tree while open, like the pause menu — the player should not be attacked while reading.
+- The game keeps running while the log is open. The node uses the **inherited** process mode and
+  never touches `get_tree().paused` — driving the pause state from a second widget conflicts with
+  the pause menu and the quiz dialog. Inherited mode also means F1 is ignored automatically while
+  the pause menu has the tree paused.
 - Quests are listed in `QUESTS` order, so the chain reads top to bottom.
 - One row per quest: status icon, title, hint, and either a checkbox or `current / target` when
   `target > 1`.
 - `COMPLETED` rows keep the title but drop the hint and are visually ticked off.
-- Rows are built once in `_open()`. No `achievement_unlocked` listener is needed: the tree is paused
-  for the whole time the log is visible, so nothing can be unlocked while it is on screen.
+- Rows are built in `_show_menu()`, so every opening shows current values.
 - Counters stay plain `%d / %d` — `NumberFormat` is for thousands and these never exceed 12.
 - Header makes the scope explicit: "Quests – aktueller Lauf".
 

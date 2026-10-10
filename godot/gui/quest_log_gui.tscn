@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://icx3eyln4346" path="res://gui/quest_log_gui.gd" id="1_questlog"]
 
 [node name="QuestLogGui" type="Control" unique_id=1232824536]
-process_mode = 3
 visible = false
 layout_mode = 3
 anchors_preset = 15
