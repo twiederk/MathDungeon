@@ -211,7 +211,7 @@ location = "dungeon_0"
 
 [node name="Spider1" parent="Enemies" unique_id=1031652946 instance=ExtResource("19_udwem")]
 position = Vector2(534, 429)
-location = "dungeon_0     "
+location = "dungeon_0"
 
 [node name="Drown1" parent="Enemies" unique_id=1076008437 instance=ExtResource("15_inpva")]
 position = Vector2(78, 452)
@@ -226,7 +226,7 @@ position = Vector2(100, 867)
 
 [node name="Zombie" parent="Enemies" unique_id=1431190433 instance=ExtResource("17_1gckk")]
 position = Vector2(295, 1123)
-location = "dungeon_1   "
+location = "dungeon_1"
 
 [node name="Drown" parent="Enemies" unique_id=224087180 instance=ExtResource("15_inpva")]
 position = Vector2(385, 1310)
@@ -269,7 +269,7 @@ location = "dungeon_2"
 
 [node name="Drown5" parent="Enemies" unique_id=1136021306 instance=ExtResource("15_inpva")]
 position = Vector2(1379, 532)
-location = "dungeon_2       "
+location = "dungeon_2"
 
 [node name="Enderman4" parent="Enemies" unique_id=1401342693 instance=ExtResource("18_vjnci")]
 position = Vector2(1166, 466)

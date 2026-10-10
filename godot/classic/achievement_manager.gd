@@ -40,13 +40,13 @@ var ACHIEVEMENTS = {
 	"nether_5": Achievement.new("Nether-Erkunder", "Besuche den Nether 5 Mal", 5, "nether", "nether_5.png"),
 	"nether_10": Achievement.new("Nether-Meister", "Besuche den Nether 10 Mal", 10, "nether", "nether_10.png"),
 	
-	"woodland_mansion": Achievement.new("Waldanwesen erobert!", "Besiege alle Bewohner des Waldanwesens", 1, "woodland_mansion", "score_1000.png", 1000),
-	"nether_fortress": Achievement.new("Festung gesäubert!", "Besiege alle Gegner der Nether-Festung", 1, "nether_fortress", "score_1000.png", 1500),
+	"woodland_mansion": Achievement.new("Waldanwesen erobert!", "Besiege alle Bewohner des Waldanwesens", 1, "woodland_mansion", "conquere_woodland_mansion.png", 1000),
+	"nether_fortress": Achievement.new("Festung gesäubert!", "Besiege alle Gegner der Nether-Festung", 1, "nether_fortress", "conquere_nether_fortress.png", 1500),
 	
-	"dungeon_0": Achievement.new("Dungeon 1 gesäubert!", "Besiege alle Gegner im ersten Dungeon", 1, "dungeon_0", "score_1000.png", 500),
-	"dungeon_1": Achievement.new("Dungeon 2 gesäubert!", "Besiege alle Gegner im zweiten Dungeon", 1, "dungeon_1", "score_1000.png", 500),
-	"dungeon_2": Achievement.new("Dungeon 3 gesäubert!", "Besiege alle Gegner im dritten Dungeon", 1, "dungeon_2", "score_1000.png", 500),
-	"dungeon_3": Achievement.new("Dungeon 4 gesäubert!", "Besiege alle Gegner im vierten Dungeon", 1, "dungeon_3", "score_1000.png", 500),
+	"dungeon_0": Achievement.new("Dungeon 1 gesäubert!", "Besiege alle Gegner im ersten Dungeon", 1, "dungeon_0", "conquere_dungeon.png", 500),
+	"dungeon_1": Achievement.new("Dungeon 2 gesäubert!", "Besiege alle Gegner im zweiten Dungeon", 1, "dungeon_1", "conquere_dungeon.png", 500),
+	"dungeon_2": Achievement.new("Dungeon 3 gesäubert!", "Besiege alle Gegner im dritten Dungeon", 1, "dungeon_2", "conquere_dungeon.png", 500),
+	"dungeon_3": Achievement.new("Dungeon 4 gesäubert!", "Besiege alle Gegner im vierten Dungeon", 1, "dungeon_3", "conquere_dungeon.png", 500),
 }
 
 var unlocked_achievements: Array[String] = []
@@ -71,6 +71,7 @@ func register_locations(enemies: Array) -> void:
 	for enemy in enemies:
 		if enemy is not Enemy or enemy.location == "":
 			continue
+		print("register_locations: ", str(enemy.name), " [", str(enemy.location), "]")
 		_locations[enemy.location] = _locations.get(enemy.location, 0) + 1
 
 
