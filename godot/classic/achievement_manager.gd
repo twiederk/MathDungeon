@@ -71,7 +71,6 @@ func register_locations(enemies: Array) -> void:
 	for enemy in enemies:
 		if enemy is not Enemy or enemy.location == "":
 			continue
-		print("register_locations: ", str(enemy.name), " [", str(enemy.location), "]")
 		_locations[enemy.location] = _locations.get(enemy.location, 0) + 1
 
 
