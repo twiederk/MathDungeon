@@ -19,7 +19,7 @@ func test_quest_log_starts_hidden():
 
 func test_one_row_per_quest():
 	# act
-	gui._rebuild()
+	_open_and_close()
 	
 	# assert
 	assert_eq(gui.quest_log.quests.size(), gui.quest_list.get_child_count())
@@ -30,7 +30,7 @@ func test_completed_quest_row_is_marked():
 	AchievementManager._unlock_achievement(gui.quest_log.quests[0].achievement_id)
 	
 	# act
-	gui._rebuild()
+	_open_and_close()
 	
 	# assert
 	assert_eq(QuestLogGui.COMPLETED_MARK, _mark_of_row(0))
@@ -38,10 +38,16 @@ func test_completed_quest_row_is_marked():
 
 func test_open_quest_row_is_not_marked():
 	# act
-	gui._rebuild()
+	_open_and_close()
 	
 	# assert
 	assert_eq(QuestLogGui.OPEN_MARK, _mark_of_row(0))
+
+
+# Closing again leaves the rows in place and unpauses the tree the test runner needs.
+func _open_and_close() -> void:
+	gui._show_menu()
+	gui._hide_menu()
 
 
 func _mark_of_row(index: int) -> String:

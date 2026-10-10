@@ -14,36 +14,30 @@ var quest_log: QuestLog = QuestLog.new()
 
 func _process(_delta: float) -> void:
 	if GameSession.quiz_dialog_displayed:
-		_close()
+		_hide_menu()
 		return
-	if not Input.is_action_just_pressed("quest_log"):
-		return
-	if visible:
-		_close()
-	elif not get_tree().paused:
-		_open()
+	if Input.is_action_just_pressed("quest_log"):
+		if visible:
+			_hide_menu()
+		elif not get_tree().paused:
+			_show_menu()
 
 
-func _open() -> void:
-	_rebuild()
-	visible = true
-	get_tree().paused = true
-
-
-func _close() -> void:
-	if not visible:
-		return
-	visible = false
-	get_tree().paused = false
-
-
-func _rebuild() -> void:
+func _show_menu() -> void:
 	for child in quest_list.get_children():
 		child.queue_free()
 		quest_list.remove_child(child)
 	
 	for quest in quest_log.quests:
 		quest_list.add_child(_create_row(quest))
+	
+	visible = true
+	get_tree().paused = true
+
+
+func _hide_menu() -> void:
+	visible = false
+	get_tree().paused = false
 
 
 func _create_row(quest: Quest) -> HBoxContainer:
