@@ -24,10 +24,10 @@ class Achievement:
 
 
 var ACHIEVEMENTS = {
-	"eyes_4": Achievement.new("Enderman-Besieger", "Sammle 4 Enderaugen", 4, "eyes_of_ender", "", 250),
-	"eyes_8": Achievement.new("Enderman-Jäger", "Sammle 8 Enderaugen", 8, "eyes_of_ender", "", 500),
-	"eyes_12": Achievement.new("Enderman-Meister", "Sammle 12 Enderaugen", 12, "eyes_of_ender", "", 1000),	
-	"lighter": Achievement.new("Feuerzeug gefunden!", "Finde das Feuerzeug", 1, "lighter", "", 250),
+	"eyes_4": Achievement.new("Enderman-Besieger", "Sammle 4 Enderaugen", 4, "eyes_of_ender", "eyes_of_ender.png", 250),
+	"eyes_8": Achievement.new("Enderman-Jäger", "Sammle 8 Enderaugen", 8, "eyes_of_ender", "eyes_of_ender.png", 500),
+	"eyes_12": Achievement.new("Enderman-Meister", "Sammle 12 Enderaugen", 12, "eyes_of_ender", "eyes_of_ender.png", 1000),	
+	"lighter": Achievement.new("Feuerzeug gefunden!", "Finde das Feuerzeug", 1, "lighter", "lighter.png", 250),
 	"enderdragon": Achievement.new("Drachentöter!", "Besiege deinen ersten Enderdrachen", 1, "enderdragon", "enderdragon.png", 1000),
 	"nether": Achievement.new("Ab in den Nether!", "Besuche den Nether zum ersten Mal", 1, "nether", "nether.png", 1000),
 	"woodland_mansion": Achievement.new("Waldanwesen erobert!", "Besiege alle Bewohner des Waldanwesens", 1, "woodland_mansion", "conquere_woodland_mansion.png", 1000),
