@@ -122,7 +122,7 @@ Absolute values, not increments — same contract as `track_score()`, so no doub
 `GameSession`. Autoload order already has `GameSession` before `AchievementManager`.
 
 **Assets — outstanding:** the four new achievements ship with an empty `badge_graphic`, so
-`AchievementBadges._get_badge_graphic()` falls back to `score_1000.png`. Create
+`AchievementBadges._get_badge_graphic()` falls back to `conquere_dungeon.png`. Create
 `eyes_4/8/12.png` and `lighter.png` in [gui/badges](gui/badges) and fill the field in. The now
 unused `enderman_1/5/10.png` are left in place as source art for the eye badges.
 

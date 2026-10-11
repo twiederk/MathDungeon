@@ -11,7 +11,7 @@
 | `eyes_8` | `eyes_of_ender` | — | 500 | add badge |
 | `eyes_12` | `eyes_of_ender` | — | 750 | add badge |
 | `lighter` | `lighter` | — | 250 | |
-| `enderdragon_1` | `enderdragon` | `enderdragon_1.png` | 0 | remove |
+| `enderdragon_1` | `enderdragon` | `enderdragon_1.png` | 0 | |
 | `enderdragon_3` | `enderdragon` | `enderdragon_3.png` | 0 | remove|
 | `enderdragon_5` | `enderdragon` | `enderdragon_5.png` | 0 | remove|
 | `nether_1` | `nether` | `nether_1.png` | 0 | reanme to nether |

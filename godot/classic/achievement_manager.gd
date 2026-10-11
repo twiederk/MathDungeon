@@ -24,12 +24,6 @@ class Achievement:
 
 
 var ACHIEVEMENTS = {
-	"score_1000": Achievement.new("Erste Tausend!", "Erreiche 1.000 Punkte", 1000, "score", "score_1000.png"),
-	"score_2000": Achievement.new("Zweitausend!", "Erreiche 2.000 Punkte", 2000, "score", "score_2000.png"),
-	"score_3000": Achievement.new("Dreitausend!", "Erreiche 3.000 Punkte", 3000, "score", "score_3000.png"),
-	"score_5000": Achievement.new("Fünftausend!", "Erreiche 5.000 Punkte", 5000, "score", "score_5000.png"),
-	"score_10000": Achievement.new("Zehntausend!", "Erreiche 10.000 Punkte", 10000, "score", "score_10000.png"),
-	
 	"eyes_4": Achievement.new("Vier Augen", "Sammle 4 Augen des Enders", 4, "eyes_of_ender", ""),
 	"eyes_8": Achievement.new("Acht Augen", "Sammle 8 Augen des Enders", 8, "eyes_of_ender", ""),
 	"eyes_12": Achievement.new("Das Endportal ruft!", "Sammle 12 Augen des Enders", 12, "eyes_of_ender", "", 1000),
@@ -37,12 +31,8 @@ var ACHIEVEMENTS = {
 	"lighter": Achievement.new("Feuerzeug gefunden!", "Finde das Feuerzeug", 1, "lighter", "", 250),
 	
 	"enderdragon_1": Achievement.new("Drachentöter!", "Besiege deinen ersten Enderdrachen", 1, "enderdragon", "enderdragon_1.png"),
-	"enderdragon_3": Achievement.new("Drachenjäger", "Besiege 3 Enderdrachen", 3, "enderdragon", "enderdragon_3.png"),
-	"enderdragon_5": Achievement.new("Drachenmeister", "Besiege 5 Enderdrachen", 5, "enderdragon", "enderdragon_5.png"),
 	
 	"nether_1": Achievement.new("Ab in den Nether!", "Besuche den Nether zum ersten Mal", 1, "nether", "nether_1.png"),
-	"nether_5": Achievement.new("Nether-Erkunder", "Besuche den Nether 5 Mal", 5, "nether", "nether_5.png"),
-	"nether_10": Achievement.new("Nether-Meister", "Besuche den Nether 10 Mal", 10, "nether", "nether_10.png"),
 	
 	"woodland_mansion": Achievement.new("Waldanwesen erobert!", "Besiege alle Bewohner des Waldanwesens", 1, "woodland_mansion", "conquere_woodland_mansion.png", 1000),
 	"nether_fortress": Achievement.new("Festung gesäubert!", "Besiege alle Gegner der Nether-Festung", 1, "nether_fortress", "conquere_nether_fortress.png", 1500),
