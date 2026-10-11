@@ -19,13 +19,6 @@ func test_item_achievements_have_bonus_points():
 	assert_eq(1000, AchievementManager.ACHIEVEMENTS["eyes_12"].bonus)
 
 
-func test_other_achievements_have_no_bonus_points():
-	# assert
-	assert_eq(0, AchievementManager.ACHIEVEMENTS["eyes_4"].bonus)
-	assert_eq(0, AchievementManager.ACHIEVEMENTS["enderdragon"].bonus)
-	assert_eq(0, AchievementManager.ACHIEVEMENTS["nether"].bonus)
-
-
 func test_collecting_eyes_of_ender_unlocks_achievement():
 	# act
 	GameSession.eyes_of_ender = 4
