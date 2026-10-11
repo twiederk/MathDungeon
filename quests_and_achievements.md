@@ -11,10 +11,10 @@
 | `eyes_8` | `eyes_of_ender` | — | 500 | add badge |
 | `eyes_12` | `eyes_of_ender` | — | 750 | add badge |
 | `lighter` | `lighter` | — | 250 | add badge |
-| `enderdragon_1` | `enderdragon` | `enderdragon_1.png` | 0 | rename to enderdragon |
+| `enderdragon` | `enderdragon` | `enderdragon.png` | 0 | |
 | `enderdragon_3` | `enderdragon` | `enderdragon_3.png` | 0 | REMOVED|
 | `enderdragon_5` | `enderdragon` | `enderdragon_5.png` | 0 | REMOVED|
-| `nether_1` | `nether` | `nether_1.png` | 0 | rename to nether |
+| `nether` | `nether` | `nether.png` | 0 | |
 | `nether_5` | `nether` | `nether_5.png` | 0 | REMOVED |
 | `nether_10` | `nether` | `nether_10.png` | 0 | REMOVED |
 | `woodland_mansion` | `woodland_mansion` | `conquere_woodland_mansion.png` | 1000 | |

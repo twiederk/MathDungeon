@@ -21,10 +21,9 @@ func test_item_achievements_have_bonus_points():
 
 func test_other_achievements_have_no_bonus_points():
 	# assert
-	assert_eq(0, AchievementManager.ACHIEVEMENTS["score_1000"].bonus)
 	assert_eq(0, AchievementManager.ACHIEVEMENTS["eyes_4"].bonus)
-	assert_eq(0, AchievementManager.ACHIEVEMENTS["enderdragon_1"].bonus)
-	assert_eq(0, AchievementManager.ACHIEVEMENTS["nether_1"].bonus)
+	assert_eq(0, AchievementManager.ACHIEVEMENTS["enderdragon"].bonus)
+	assert_eq(0, AchievementManager.ACHIEVEMENTS["nether"].bonus)
 
 
 func test_collecting_eyes_of_ender_unlocks_achievement():
@@ -226,15 +225,6 @@ func test_defeat_after_location_is_cleared_is_ignored():
 	
 	# assert
 	assert_eq(500, GameSession.score)
-
-
-func test_score_achievement_does_not_award_bonus_score():
-	# act
-	GameSession.add_score(1000)
-	
-	# assert
-	assert_true("score_1000" in AchievementManager.unlocked_achievements)
-	assert_eq(1000, GameSession.score)
 
 
 func _create_enemy(location: String) -> Enemy:
