@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjwua2vxfhil4"
-path="res://.godot/imported/score_5000.png-9eef497e58c9670a1b0a6c9fac2ba2e4.ctex"
+uid="uid://hsp5oqk7le4r"
+path="res://.godot/imported/eyes_of_ender.png-f1b19c500bcc8a48569ae71a1851a905.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/badges/score_5000.png"
-dest_files=["res://.godot/imported/score_5000.png-9eef497e58c9670a1b0a6c9fac2ba2e4.ctex"]
+source_file="res://gui/badges/eyes_of_ender.png"
+dest_files=["res://.godot/imported/eyes_of_ender.png-f1b19c500bcc8a48569ae71a1851a905.ctex"]
 
 [params]
 

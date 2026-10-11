@@ -122,7 +122,7 @@ Absolute values, not increments — same contract as `track_score()`, so no doub
 `GameSession`. Autoload order already has `GameSession` before `AchievementManager`.
 
 **Assets — outstanding:** the four new achievements ship with an empty `badge_graphic`, so
-`AchievementBadges._get_badge_graphic()` falls back to `score_1000.png`. Create
+`AchievementBadges._get_badge_graphic()` falls back to `conquere_dungeon.png`. Create
 `eyes_4/8/12.png` and `lighter.png` in [gui/badges](gui/badges) and fill the field in. The now
 unused `enderman_1/5/10.png` are left in place as source art for the eye badges.
 
@@ -190,12 +190,12 @@ func get_progress(quest: Quest) -> Vector2i:
 | # | Quest | `achievement_id` | Hint |
 |---|---|---|---|
 | 1 | Feuerzeug finden | `lighter` | Ohne Feuerzeug bleibt das Nether-Portal kalt. |
-| 2 | Ab in den Nether | `nether_1` | Benötigt das Feuerzeug. |
+| 2 | Ab in den Nether | `nether` | Benötigt das Feuerzeug. |
 | 3 | Nether-Festung erobern | `nether_fortress` | Besiege alle Gegner der Festung. |
 | 4 | Dungeon säubern | `dungeon` | Besiege alle Gegner eines Dungeons. |
 | 5 | Waldanwesen erobern | `woodland_mansion` | Besiege alle Bewohner des Waldanwesens. |
 | 6 | 12 Augen des Enders sammeln | `eyes_12` | Augen fallen von besiegten Gegnern. |
-| 7 | Enderdrachen besiegen | `enderdragon_1` | Benötigt 12 Augen des Enders. |
+| 7 | Enderdrachen besiegen | `enderdragon` | Benötigt 12 Augen des Enders. |
 
 Tests: `test/test_QuestLog.gd` drives `AchievementManager` and asserts derived statuses. No UI
 needed, same arrange/act/assert style as `test/test_AchievementManager.gd`. Cover at least: every
@@ -251,7 +251,7 @@ func _process(_delta) -> void:
 
 ## Open questions
 
-- Should quest 2 ("Ab in den Nether") use `nether_1`, which unlocks merely by entering? It makes the
+- Should quest 2 ("Ab in den Nether") use `nether`, which unlocks merely by entering? It makes the
   chain readable but is trivially completed. Alternative: fold it into quest 3's hint.
 - Does the dungeon quest exist in every world type? `register_locations()` is only called from
   [classic/world_level.gd](classic/world_level.gd) — confirm the procedural worlds reach it, or the

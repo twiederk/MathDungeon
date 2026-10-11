@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckja3xwy1xumx"
-path="res://.godot/imported/score_10000.png-04085bf8293edb44c1b78389d68d507f.ctex"
+uid="uid://co17g67cw4gdr"
+path="res://.godot/imported/lighter.png-f1bc0abbf57d01c6342134bfbc1c2eac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/badges/score_10000.png"
-dest_files=["res://.godot/imported/score_10000.png-04085bf8293edb44c1b78389d68d507f.ctex"]
+source_file="res://gui/badges/lighter.png"
+dest_files=["res://.godot/imported/lighter.png-f1bc0abbf57d01c6342134bfbc1c2eac.ctex"]
 
 [params]
 
