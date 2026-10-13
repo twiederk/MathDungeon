@@ -17,6 +17,7 @@ func _on_resume_button_pressed():
 
 func _on_start_gui_button_pressed():
 	get_tree().paused = false
+	GameSession.display_state = GameSession.DisplayState.NONE
 	if HighscoreManager.is_highscore(GameSession.score):
 		get_tree().change_scene_to_file("res://gui/name_entry_dialog.tscn")
 	else:

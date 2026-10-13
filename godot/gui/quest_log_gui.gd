@@ -12,15 +12,25 @@ const OPEN_MARK: String = "•"
 var quest_log: QuestLog = QuestLog.new()
 
 
+func _ready() -> void:
+	GameSession.display_state_changed.connect(_on_display_state_changed)
+	_on_display_state_changed(GameSession.display_state)
+
+
 func _process(_delta: float) -> void:
-	if GameSession.quiz_dialog_displayed:
-		_hide_menu()
-		return
 	if Input.is_action_just_pressed("quest_log"):
-		if visible:
-			_hide_menu()
-		else:
-			_show_menu()
+		match GameSession.display_state:
+			GameSession.DisplayState.NONE:
+				GameSession.display_state = GameSession.DisplayState.QUEST_LOG
+			GameSession.DisplayState.QUEST_LOG:
+				GameSession.display_state = GameSession.DisplayState.NONE
+
+
+func _on_display_state_changed(state: int) -> void:
+	if state == GameSession.DisplayState.QUEST_LOG:
+		_show_menu()
+	else:
+		_hide_menu()
 
 
 func _show_menu() -> void:
