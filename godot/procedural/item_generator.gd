@@ -6,7 +6,6 @@ const STONE_HELMET_SCENE = preload("res://items/helmet_stone.tscn")
 const STONE_SWORD_SCENE = preload("res://items/sword_stone.tscn")
 const IRON_SWORD_SCENE = preload("res://items/sword_iron.tscn")
 const HEALING_POTION_SCENE = preload("res://items/healing_potion.tscn")
-const EYE_OF_ENDER_SCENE = preload("res://items/eye_of_ender.tscn")
 
 const SPAWN_CHANCE_ITEM_EASY = 20
 const SPAWN_CHANCE_ITEM_MEDIUM = 30
@@ -39,10 +38,5 @@ func generate_items(root_node: Branch) -> Array[Item]:
 		var item = item_scene.instantiate() as Item
 		item.position = room.get_center()
 		items.append(item)
-
-	var last_room = rooms[-1]
-	var eye_of_ender = EYE_OF_ENDER_SCENE.instantiate() as Item
-	eye_of_ender.position = last_room.get_center()
-	items.append(eye_of_ender)
 
 	return items
