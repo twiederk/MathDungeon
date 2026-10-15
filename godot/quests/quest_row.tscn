@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://21nm6qajptti"]
 
-[ext_resource type="Script" uid="uid://dnkcu06e005j7" path="res://gui/quest_row.gd" id="1_quest_row"]
+[ext_resource type="Script" uid="uid://dnkcu06e005j7" path="res://quests/quest_row.gd" id="1_quest_row"]
 
 [node name="QuestRow" type="HBoxContainer" unique_id=437231151]
 theme_override_constants/separation = 6

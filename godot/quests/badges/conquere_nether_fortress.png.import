@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hsp5oqk7le4r"
-path="res://.godot/imported/eyes_of_ender.png-f1b19c500bcc8a48569ae71a1851a905.ctex"
+uid="uid://5iw25lbtkvff"
+path="res://.godot/imported/conquere_nether_fortress.png-898c994f2fa7de7381ae24c7ea0f9e99.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/badges/eyes_of_ender.png"
-dest_files=["res://.godot/imported/eyes_of_ender.png-f1b19c500bcc8a48569ae71a1851a905.ctex"]
+source_file="res://quests/badges/conquere_nether_fortress.png"
+dest_files=["res://.godot/imported/conquere_nether_fortress.png-898c994f2fa7de7381ae24c7ea0f9e99.ctex"]
 
 [params]
 

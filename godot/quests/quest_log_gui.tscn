@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cq8nvt3xr7kql"]
 
-[ext_resource type="Script" uid="uid://icx3eyln4346" path="res://gui/quest_log_gui.gd" id="1_questlog"]
+[ext_resource type="Script" uid="uid://icx3eyln4346" path="res://quests/quest_log_gui.gd" id="1_questlog"]
 
 [node name="QuestLogGui" type="Control" unique_id=1232824536]
 visible = false

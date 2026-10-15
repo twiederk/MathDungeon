@@ -16,9 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz/quiz_dialog.tscn" id="21_pigpc"]
 [ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="22_og6u2"]
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="23_5xi5g"]
-[ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://gui/achievement_popup.tscn" id="24_achievement"]
-[ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://gui/achievement_badges.tscn" id="25_badges"]
-[ext_resource type="PackedScene" uid="uid://cq8nvt3xr7kql" path="res://gui/quest_log_gui.tscn" id="26_questlog"]
+[ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://quests/achievement_popup.tscn" id="24_achievement"]
+[ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://quests/achievement_badges.tscn" id="25_badges"]
+[ext_resource type="PackedScene" uid="uid://cq8nvt3xr7kql" path="res://quests/quest_log_gui.tscn" id="26_questlog"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bcl7h"]
 radius = 79.0
@@ -38,15 +38,15 @@ size = Vector2(287, 88)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ej081"]
 size = Vector2(293, 88)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_i43io"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_hvrnb"]
 resource_local_to_scene = true
 radius = 107.298645
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ntn28"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_i43io"]
 resource_local_to_scene = true
 radius = 101.12369
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8cn3y"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ntn28"]
 resource_local_to_scene = true
 radius = 111.01801
 
@@ -57,7 +57,7 @@ size = Vector2(230, 90)
 radius = 84.804596
 height = 350.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vw2q1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8cn3y"]
 resource_local_to_scene = true
 size = Vector2(126, 126)
 
@@ -261,7 +261,7 @@ location = "nether_fortress"
 position = Vector2(52, 90)
 
 [node name="CollisionShape2D" parent="Enemies/Blaze3/ShootingArea" index="0" unique_id=1003688871]
-shape = SubResource("CircleShape2D_i43io")
+shape = SubResource("CircleShape2D_hvrnb")
 
 [node name="Blaze4" parent="Enemies" unique_id=636626386 instance=ExtResource("19_wat66")]
 position = Vector2(66, 302)
@@ -269,7 +269,7 @@ location = "nether_fortress"
 
 [node name="CollisionShape2D" parent="Enemies/Blaze4/ShootingArea" parent_id_path=PackedInt32Array(636626386, 1951971501) index="0" unique_id=1003688871]
 position = Vector2(39, -60)
-shape = SubResource("CircleShape2D_ntn28")
+shape = SubResource("CircleShape2D_i43io")
 
 [node name="Blaze5" parent="Enemies" unique_id=244087369 instance=ExtResource("19_wat66")]
 position = Vector2(134, 161)
@@ -277,7 +277,7 @@ location = "nether_fortress"
 
 [node name="CollisionShape2D" parent="Enemies/Blaze5/ShootingArea" parent_id_path=PackedInt32Array(244087369, 1951971501) index="0" unique_id=1003688871]
 position = Vector2(-31, 83)
-shape = SubResource("CircleShape2D_8cn3y")
+shape = SubResource("CircleShape2D_ntn28")
 
 [node name="Blaze6" parent="Enemies" unique_id=1761431005 instance=ExtResource("19_wat66")]
 position = Vector2(102, 246)
@@ -343,7 +343,7 @@ title_text = "Die Nether Festung"
 
 [node name="CollisionShape2D" parent="DungeonTitle/TriggerArea2D" index="0"]
 position = Vector2(13, 13)
-shape = SubResource("RectangleShape2D_vw2q1")
+shape = SubResource("RectangleShape2D_8cn3y")
 
 [editable path="Enemies/ShootingGhast"]
 [editable path="Enemies/ShootingGhast2"]

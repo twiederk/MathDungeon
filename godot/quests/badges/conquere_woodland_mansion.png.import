@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5iw25lbtkvff"
-path="res://.godot/imported/conquere_nether_fortress.png-cfbaa92c9f72594b225eebbb48bd909e.ctex"
+uid="uid://beu5ijsd534t6"
+path="res://.godot/imported/conquere_woodland_mansion.png-f2c65d8e29635663758cd0ee3c185ba2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/badges/conquere_nether_fortress.png"
-dest_files=["res://.godot/imported/conquere_nether_fortress.png-cfbaa92c9f72594b225eebbb48bd909e.ctex"]
+source_file="res://quests/badges/conquere_woodland_mansion.png"
+dest_files=["res://.godot/imported/conquere_woodland_mansion.png-f2c65d8e29635663758cd0ee3c185ba2.ctex"]
 
 [params]
 

@@ -5,7 +5,7 @@ extends Control
 @onready var achievement_badges = $AchievementBadges
 
 
-const BADGE_GRAPHICS_PATH: String = "res://gui/badges/"
+const BADGE_GRAPHICS_PATH: String = "res://quests/badges/"
 
 
 var badge_nodes: Array[Panel] = []

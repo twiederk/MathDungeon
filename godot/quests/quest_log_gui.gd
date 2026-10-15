@@ -1,7 +1,7 @@
 class_name QuestLogGui
 extends Control
 
-const QUEST_ROW_SCENE := preload("res://gui/quest_row.tscn")
+const QUEST_ROW_SCENE := preload("res://quests/quest_row.tscn")
 
 
 @onready var quest_list: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/QuestList

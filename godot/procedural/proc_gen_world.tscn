@@ -11,9 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="7_w7atm"]
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="8_ghex2"]
 [ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="9_0o1nv"]
-[ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://gui/achievement_popup.tscn" id="10_gsqn5"]
-[ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://gui/achievement_badges.tscn" id="11_nivld"]
-[ext_resource type="PackedScene" uid="uid://cq8nvt3xr7kql" path="res://gui/quest_log_gui.tscn" id="12_questlog"]
+[ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://quests/achievement_popup.tscn" id="10_gsqn5"]
+[ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://quests/achievement_badges.tscn" id="11_nivld"]
+[ext_resource type="PackedScene" uid="uid://cq8nvt3xr7kql" path="res://quests/quest_log_gui.tscn" id="12_questlog"]
+
 
 [node name="ProcGenWorld" type="Node2D" unique_id=1396004494]
 script = ExtResource("1_4yoxp")
