@@ -26,7 +26,7 @@ GameSession="*res://classic/game_session.gd"
 Sound="*res://classic/sound.tscn"
 SaveManager="*res://classic/save_manager.gd"
 HighscoreManager="*res://classic/highscore_manager.gd"
-AchievementManager="*res://classic/achievement_manager.gd"
+AchievementManager="*res://quests/achievement_manager.gd"
 CharacterManager="*uid://p7moau7wdt3x"
 
 [display]
