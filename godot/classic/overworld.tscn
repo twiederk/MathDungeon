@@ -45,9 +45,9 @@
 [ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="44_ie4wd"]
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="45_0doom"]
 [ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="46_s05jy"]
-[ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://gui/achievement_popup.tscn" id="47_fym2a"]
-[ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://gui/achievement_badges.tscn" id="48_bewqi"]
-[ext_resource type="PackedScene" uid="uid://cq8nvt3xr7kql" path="res://gui/quest_log_gui.tscn" id="49_questlog"]
+[ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://quests/achievement_popup.tscn" id="47_fym2a"]
+[ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://quests/achievement_badges.tscn" id="48_bewqi"]
+[ext_resource type="PackedScene" uid="uid://cq8nvt3xr7kql" path="res://quests/quest_log_gui.tscn" id="49_questlog"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8e4i"]
 size = Vector2(380, 182)

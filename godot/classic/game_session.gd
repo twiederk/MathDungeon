@@ -6,14 +6,27 @@ enum DifficultyLevel {
 	HARD
 }
 
+enum DisplayState {
+	NONE,
+	QUIZ_DIALOG,
+	PAUSE_MENU,
+	QUEST_LOG
+}
+
 
 signal score_changed
 signal eyes_of_ender_changed
 signal has_lighter_changed
+signal display_state_changed(state: int)
 
 
 var difficulty_level: DifficultyLevel = DifficultyLevel.NORMAL
-var quiz_dialog_displayed: bool = false
+var display_state: int = DisplayState.NONE:
+	set(value):
+		if display_state == value:
+			return
+		display_state = value
+		display_state_changed.emit(value)
 
 
 var eyes_of_ender: int = 0:
@@ -42,6 +55,7 @@ func reset() -> void:
 	score = 0
 	eyes_of_ender = 0
 	has_lighter = false
+	display_state = DisplayState.NONE
 
 
 func is_hard() -> bool:

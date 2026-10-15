@@ -30,7 +30,7 @@ var exercise: Exercise = null
 
 func open_for(my_enemy: Enemy) -> void:
 	enemy = my_enemy
-	GameSession.quiz_dialog_displayed = true
+	GameSession.display_state = GameSession.DisplayState.QUIZ_DIALOG
 	_setup_exercise()
 	_setup_time_limit_progress_bar()
 	_setup_enemy_stats_sheet()
@@ -161,7 +161,7 @@ func _game_over() -> void:
 
 func _close_dialog() -> void:
 	visible = false
-	GameSession.quiz_dialog_displayed = false
+	GameSession.display_state = GameSession.DisplayState.NONE
 	get_tree().paused = false
 	enemy = null
 	exercise = null
@@ -194,13 +194,13 @@ func _on_enemy_health_changed() -> void:
 
 
 func _on_main_menu_button_pressed() -> void:
-	GameSession.quiz_dialog_displayed = false
+	GameSession.display_state = GameSession.DisplayState.NONE
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://gui/start_gui.tscn")
 
 
 func _on_name_entry_button_pressed():
-	GameSession.quiz_dialog_displayed = false
+	GameSession.display_state = GameSession.DisplayState.NONE
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://gui/name_entry_dialog.tscn")
 

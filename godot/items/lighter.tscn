@@ -1,21 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4by6x3ww0foy"]
+[gd_scene format=3 uid="uid://d4by6x3ww0foy"]
 
 [ext_resource type="Script" uid="uid://bm7yc0nhswspe" path="res://items/lighter.gd" id="1_ukcjh"]
 [ext_resource type="Texture2D" uid="uid://c31gniut2rq2q" path="res://items/items.png" id="2_bexnb"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4ynd"]
-size = Vector2(23, 29)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wb1o8"]
+height = 22.0
 
-[node name="Lighter" type="Area2D"]
+[node name="Lighter" type="Area2D" unique_id=1635877061]
 collision_layer = 2
 script = ExtResource("1_ukcjh")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=433432948]
 texture = ExtResource("2_bexnb")
 hframes = 16
 vframes = 16
 frame = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0.5)
-shape = SubResource("RectangleShape2D_e4ynd")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=215388183]
+shape = SubResource("CapsuleShape2D_wb1o8")

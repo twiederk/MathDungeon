@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv1qk60kehkm0"
-path="res://.godot/imported/nether.png-202fe2ef82524665f25869c8537223b2.ctex"
+uid="uid://co17g67cw4gdr"
+path="res://.godot/imported/lighter.png-284c3e579d98cf600849265c547950d5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/badges/nether.png"
-dest_files=["res://.godot/imported/nether.png-202fe2ef82524665f25869c8537223b2.ctex"]
+source_file="res://quests/badges/lighter.png"
+dest_files=["res://.godot/imported/lighter.png-284c3e579d98cf600849265c547950d5.ctex"]
 
 [params]
 

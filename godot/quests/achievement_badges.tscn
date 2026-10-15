@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bwxq8ydpbgak"]
 
-[ext_resource type="Script" uid="uid://dgraydpbf13p" path="res://gui/achievement_badges.gd" id="1_badges"]
+[ext_resource type="Script" uid="uid://dgraydpbf13p" path="res://quests/achievement_badges.gd" id="1_badges"]
+
 
 [node name="Control" type="Control" unique_id=1767910076]
 layout_mode = 3

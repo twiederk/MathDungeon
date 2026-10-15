@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da84ji3fs2err"
-path="res://.godot/imported/conquere_dungeon.png-fe38012df79dd2d990168f1a42ecd6be.ctex"
+uid="uid://hsp5oqk7le4r"
+path="res://.godot/imported/eyes_of_ender.png-69d59db9b09c2d0425f4c76387ace9c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/badges/conquere_dungeon.png"
-dest_files=["res://.godot/imported/conquere_dungeon.png-fe38012df79dd2d990168f1a42ecd6be.ctex"]
+source_file="res://quests/badges/eyes_of_ender.png"
+dest_files=["res://.godot/imported/eyes_of_ender.png-69d59db9b09c2d0425f4c76387ace9c5.ctex"]
 
 [params]
 

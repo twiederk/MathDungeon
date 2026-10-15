@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd6eqv8o4tyy3"
-path="res://.godot/imported/enderdragon.png-fa479aa37667a3158684c22d3e6bd01f.ctex"
+uid="uid://bv1qk60kehkm0"
+path="res://.godot/imported/nether.png-08bd9e64abf73159dc84b7fade1a040b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/badges/enderdragon.png"
-dest_files=["res://.godot/imported/enderdragon.png-fa479aa37667a3158684c22d3e6bd01f.ctex"]
+source_file="res://quests/badges/nether.png"
+dest_files=["res://.godot/imported/nether.png-08bd9e64abf73159dc84b7fade1a040b.ctex"]
 
 [params]
 

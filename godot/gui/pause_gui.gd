@@ -4,22 +4,22 @@ extends Control
 @onready var pause_menu: PauseMenu = $PauseMenu
 
 
-var paused = false:
-	set(value):
-		paused = value
-		get_tree().paused = paused
-		if paused:
-			_show_menu()
-		else:
-			_hide_menus()
+func _ready() -> void:
+	GameSession.display_state_changed.connect(_on_display_state_changed)
+	_on_display_state_changed(GameSession.display_state)
 
 
 func _process(_delta) -> void:
-	if GameSession.quiz_dialog_displayed:
-		_hide_menus()
-		return
 	if Input.is_action_just_pressed("pause_menu"):
-		paused = !paused
+		match GameSession.display_state:
+			GameSession.DisplayState.QUIZ_DIALOG:
+				return
+			GameSession.DisplayState.PAUSE_MENU:
+				GameSession.display_state = GameSession.DisplayState.NONE
+				get_tree().paused = false
+			GameSession.DisplayState.NONE, GameSession.DisplayState.QUEST_LOG:
+				GameSession.display_state = GameSession.DisplayState.PAUSE_MENU
+				get_tree().paused = true
 
 
 func _hide_menus() -> void:
@@ -31,4 +31,12 @@ func _show_menu() -> void:
 
 
 func _on_menu_closed():
-	paused = false
+	GameSession.display_state = GameSession.DisplayState.NONE
+	get_tree().paused = false
+
+
+func _on_display_state_changed(state: int) -> void:
+	if state == GameSession.DisplayState.PAUSE_MENU:
+		_show_menu()
+	else:
+		_hide_menus()

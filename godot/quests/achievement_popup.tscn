@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cc3xq7ydpbf8j"]
+[gd_scene format=3 uid="uid://cc3xq7ydpbf8j"]
 
-[ext_resource type="Script" uid="uid://cfq8ydpbf12o" path="res://gui/achievement_popup.gd" id="1_achievement"]
+[ext_resource type="Script" uid="uid://cfq8ydpbf12o" path="res://quests/achievement_popup.gd" id="1_achievement"]
+
 
 [sub_resource type="Animation" id="Animation_slide_in"]
 resource_name = "slide_in"
