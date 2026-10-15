@@ -11,10 +11,13 @@ const OPEN_MARK: String = "•"
 @onready var hint_label: Label = $TextBox/HintLabel
 @onready var progress_label: Label = $ProgressLabel
 
+var number_format = NumberFormat.new()
+
 
 func setup(quest: Quest, completed: bool, progress: Vector2i) -> void:
 	mark_label.text = COMPLETED_MARK if completed else OPEN_MARK
-	title_label.text = quest.title
+	var achievement = AchievementManager.ACHIEVEMENTS[quest.achievement_id]
+	title_label.text = str(quest.title, " (+%s Punkte)" % number_format.format(achievement.bonus))
 	hint_label.text = quest.hint
 	hint_label.visible = not completed
 	progress_label.text = "%d / %d" % [progress.x, progress.y] if progress.y > 1 and not completed else ""
