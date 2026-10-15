@@ -2,21 +2,14 @@ class_name DivisionExerciseGenerator
 
 
 const MIN_DIVISOR := 1
-
-var exercises: Array = []
-
-
-func _init(max_dividend: int = 100, max_divisor: int = 10):
-	exercises.clear()
-	for divisor in range(MIN_DIVISOR, max_divisor + 1):
-		@warning_ignore("integer_division")
-		var max_quotient = int(max_dividend / divisor)
-		for quotient in range(1, max_quotient + 1):
-			var dividend = divisor * quotient
-			var question = "Was ist das Ergebnis von %s : %s?" % [str(dividend), str(divisor)]
-			exercises.append(Exercise.new(question, str(quotient)))
+const MAX_DIVISOR := 10
 
 
-func create_exercise() -> Exercise:
-	var idx = randi() % exercises.size()
-	return exercises[idx]
+func create_exercise(max_dividend: int = 100) -> Exercise:
+	var divisor = randi_range(MIN_DIVISOR, MAX_DIVISOR)
+	@warning_ignore("integer_division")
+	var max_quotient = maxi(1, int(max_dividend / divisor))
+	var quotient = randi_range(1, max_quotient)
+	var dividend = divisor * quotient
+	var question = "Was ist das Ergebnis von %s : %s?" % [str(dividend), str(divisor)]
+	return Exercise.new(question, str(quotient))
