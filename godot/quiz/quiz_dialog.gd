@@ -112,6 +112,7 @@ func _check_answer(answer: String) -> void:
 
 
 func _answer_correct() -> void:
+	GameSession.correct_answers += 1
 	var enemy_hit_points = enemy.hurt(CharacterManager.current.get_total_damage())
 	if enemy_hit_points > 0:
 		exercise = _create_exercise()

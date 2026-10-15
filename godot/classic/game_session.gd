@@ -47,12 +47,16 @@ var score: int = 0:
 		score_changed.emit()
 
 
+var correct_answers: int = 0
+
+
 func _ready() -> void:
 	AchievementManager.achievement_unlocked.connect(_on_achievement_unlocked)
 
 
 func reset() -> void:
 	score = 0
+	correct_answers = 0
 	eyes_of_ender = 0
 	has_lighter = false
 	display_state = DisplayState.NONE
