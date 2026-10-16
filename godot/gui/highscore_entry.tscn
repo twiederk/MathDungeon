@@ -19,7 +19,7 @@ layout_mode = 2
 horizontal_alignment = 2
 
 [node name="CorrectAnswersLabel" type="Label" parent="." unique_id=2024806242]
-custom_minimum_size = Vector2(80, 0)
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 horizontal_alignment = 2
 

@@ -61,7 +61,7 @@ text = "Punkte"
 horizontal_alignment = 2
 
 [node name="CorrectAnswersLabel" type="Label" parent="CenterContainer/VBoxContainer/HeaderRow" unique_id=8546351]
-custom_minimum_size = Vector2(80, 0)
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 text = "Antw."
 horizontal_alignment = 2
