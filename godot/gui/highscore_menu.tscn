@@ -41,6 +41,43 @@ layout_mode = 2
 text = "Bestenliste"
 horizontal_alignment = 1
 
+[node name="HeaderRow" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RankLabel" type="Label" parent="CenterContainer/VBoxContainer/HeaderRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(50, 0)
+text = "Pos."
+
+[node name="NameLabel" type="Label" parent="CenterContainer/VBoxContainer/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+
+[node name="ScoreLabel" type="Label" parent="CenterContainer/VBoxContainer/HeaderRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(100, 0)
+text = "Punkte"
+horizontal_alignment = 2
+
+[node name="CorrectAnswersLabel" type="Label" parent="CenterContainer/VBoxContainer/HeaderRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(100, 0)
+text = "Antworten"
+horizontal_alignment = 2
+
+[node name="DateLabel" type="Label" parent="CenterContainer/VBoxContainer/HeaderRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(100, 0)
+text = "Datum"
+horizontal_alignment = 2
+
+[node name="DifficultyLabel" type="Label" parent="CenterContainer/VBoxContainer/HeaderRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+text = "Schwierigkeit"
+horizontal_alignment = 2
+
 [node name="HighscoreContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(180, 298)
 layout_mode = 2
