@@ -21,6 +21,12 @@ func setup(rank: int, highscore: Highscore) -> void:
 	rank_label.text = str(rank, ".")
 	name_label.text = highscore.name
 	score_label.text = str(number_format.format(highscore.score))
-	correct_answers_label.text = str(highscore.correct_answers)
+	correct_answers_label.text = _format_correct_answers(highscore.correct_answers)
 	date_label.text = highscore.date
 	difficulty_label.text = DIFFICULTY_LABELS.get(highscore.difficulty_level, "")
+
+
+func _format_correct_answers(correct_answers: int) -> String:
+	if correct_answers == 0:
+		return ""
+	return str(correct_answers)
