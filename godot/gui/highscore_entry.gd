@@ -18,9 +18,9 @@ var number_format = NumberFormat.new()
 
 
 func setup(rank: int, highscore: Highscore) -> void:
-	rank_label.text = "%d." % rank
+	rank_label.text = str(rank, ".")
 	name_label.text = highscore.name
-	score_label.text = "%s" % number_format.format(highscore.score)
-	correct_answers_label.text = "%d" % highscore.correct_answers
+	score_label.text = str(number_format.format(highscore.score))
+	correct_answers_label.text = str(highscore.correct_answers)
 	date_label.text = highscore.date
 	difficulty_label.text = DIFFICULTY_LABELS.get(highscore.difficulty_level, "")
