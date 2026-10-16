@@ -16,9 +16,9 @@ var number_format = NumberFormat.new()
 @onready var difficulty_label: Label = $DifficultyLabel
 
 
-func setup(rank: int, entry: Dictionary) -> void:
-	rank_name_label.text = "%d. %s" % [rank, entry.name]
-	score_label.text = "%s" % number_format.format(entry.score)
-	correct_answers_label.text = "%d richtig" % entry.get("correct_answers", 0)
-	date_label.text = entry.get("date", "---")
-	difficulty_label.text = DIFFICULTY_LABELS.get(entry.get("difficulty_level", ""), "")
+func setup(rank: int, highscore: Highscore) -> void:
+	rank_name_label.text = "%d. %s" % [rank, highscore.name]
+	score_label.text = "%s" % number_format.format(highscore.score)
+	correct_answers_label.text = "%d richtig" % highscore.correct_answers
+	date_label.text = highscore.date
+	difficulty_label.text = DIFFICULTY_LABELS.get(highscore.difficulty_level, "")

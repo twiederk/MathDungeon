@@ -4,7 +4,7 @@ const HIGHSCORE_PATH: String = "user://high_scores"
 const POINTS_PER_CORRECT_ANSWER: int = 10
 const MAX_HIGHSCORES: int = 10
 
-var highscores: Array = []
+var highscores: Array[Highscore] = []
 
 signal highscores_updated
 
@@ -17,7 +17,7 @@ func add_score(player_name: String, score: int, difficulty_level: GameSession.Di
 	var date_dict = Time.get_date_dict_from_system()
 	var date_string = "%02d.%02d.%d" % [date_dict.day, date_dict.month, date_dict.year]
 	var difficulty_string = "hard" if difficulty_level == GameSession.DifficultyLevel.HARD else "normal"
-	var new_entry = {"name": player_name, "score": score, "date": date_string, "difficulty_level": difficulty_string, "correct_answers": correct_answers}
+	var new_entry = Highscore.new(player_name, score, date_string, difficulty_string, correct_answers)
 	
 	highscores.append(new_entry)
 	
@@ -38,7 +38,7 @@ func add_score(player_name: String, score: int, difficulty_level: GameSession.Di
 	return made_highscore
 
 
-func get_highscores() -> Array:
+func get_highscores() -> Array[Highscore]:
 	return highscores.duplicate()
 
 
@@ -54,7 +54,7 @@ func _save_highscores():
 		print("Error: Could not open highscore file for writing")
 		return
 	
-	var data_string = JSON.stringify(highscores)
+	var data_string = JSON.stringify(highscores.map(func(entry): return entry.to_dict()))
 	save_file.store_string(data_string)
 	save_file.close()
 
@@ -74,7 +74,7 @@ func _load_highscores():
 	load_file.close()
 	
 	var parsed_data = JSON.parse_string(file_content)
+	highscores = []
 	if parsed_data != null and typeof(parsed_data) == TYPE_ARRAY:
-		highscores = parsed_data
-	else:
-		highscores = []
+		for data in parsed_data:
+			highscores.append(Highscore.from_dict(data))
