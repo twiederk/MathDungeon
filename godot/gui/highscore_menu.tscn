@@ -28,7 +28,7 @@ anchor_bottom = 0.5
 offset_left = -320.0
 offset_top = -180.0
 offset_right = 320.0
-offset_bottom = 180.0
+offset_bottom = 140.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -79,7 +79,7 @@ text = "Schwierigkeit"
 horizontal_alignment = 2
 
 [node name="HighscoreContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(180, 298)
+custom_minimum_size = Vector2(180, 250)
 layout_mode = 2
 
 [node name="BackButton" type="Button" parent="."]
