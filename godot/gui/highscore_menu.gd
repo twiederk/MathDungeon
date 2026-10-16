@@ -15,7 +15,6 @@ func _ready():
 
 
 func _update_highscore_display():
-	# Clear existing entries
 	for child in highscore_container.get_children():
 		child.queue_free()
 	
@@ -26,7 +25,6 @@ func _update_highscore_display():
 		highscore_container.add_child(no_scores_label)
 		return
 	
-	# Add each highscore entry
 	for i in range(HighscoreManager.highscores.size()):
 		var entry = HighscoreManager.highscores[i]
 		var entry_row: HighscoreEntry = HighscoreEntryScene.instantiate()

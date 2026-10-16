@@ -9,14 +9,24 @@ const DIFFICULTY_LABELS := {
 
 var number_format = NumberFormat.new()
 
-@onready var rank_name_label: Label = $RankNameLabel
+@onready var rank_label: Label = $RankLabel
+@onready var name_label: Label = $NameLabel
 @onready var score_label: Label = $ScoreLabel
+@onready var correct_answers_label: Label = $CorrectAnswersLabel
 @onready var date_label: Label = $DateLabel
 @onready var difficulty_label: Label = $DifficultyLabel
 
 
-func setup(rank: int, entry: Dictionary) -> void:
-	rank_name_label.text = "%d. %s" % [rank, entry.name]
-	score_label.text = "%s" % number_format.format(entry.score)
-	date_label.text = entry.get("date", "---")
-	difficulty_label.text = DIFFICULTY_LABELS.get(entry.get("difficulty_level", ""), "")
+func setup(rank: int, highscore: Highscore) -> void:
+	rank_label.text = str(rank, ".")
+	name_label.text = highscore.name
+	score_label.text = str(number_format.format(highscore.score))
+	correct_answers_label.text = _format_correct_answers(highscore.correct_answers)
+	date_label.text = highscore.date
+	difficulty_label.text = DIFFICULTY_LABELS.get(highscore.difficulty_level, "")
+
+
+func _format_correct_answers(correct_answers: int) -> String:
+	if correct_answers == 0:
+		return ""
+	return str(correct_answers)

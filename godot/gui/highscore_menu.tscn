@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkpkuwnv5g0ad"]
+[gd_scene format=3 uid="uid://bkpkuwnv5g0ad"]
 
 [ext_resource type="Script" uid="uid://dhrydq41ll8uc" path="res://gui/highscore_menu.gd" id="1_jwbto"]
 [ext_resource type="Texture2D" uid="uid://dwvvofefi4whr" path="res://gui/victory_image.png" id="2_lafkx"]
 
-[node name="HighscoreMenu" type="Control"]
+[node name="HighscoreMenu" type="Control" unique_id=1969977370]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,13 +12,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jwbto")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1617895802]
 layout_mode = 0
 offset_right = 1.0
 offset_bottom = 1.0
 texture = ExtResource("2_lafkx")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=636301116]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -28,24 +28,61 @@ anchor_bottom = 0.5
 offset_left = -320.0
 offset_top = -180.0
 offset_right = 320.0
-offset_bottom = 180.0
+offset_bottom = 140.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=2141445966]
 layout_mode = 2
 alignment = 1
 
-[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=2063099675]
 layout_mode = 2
 text = "Bestenliste"
 horizontal_alignment = 1
 
-[node name="HighscoreContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(180, 298)
+[node name="HeaderRow" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1915303105]
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="."]
+[node name="RankLabel" type="Label" parent="CenterContainer/VBoxContainer/HeaderRow" unique_id=26846481]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Pos."
+
+[node name="NameLabel" type="Label" parent="CenterContainer/VBoxContainer/HeaderRow" unique_id=740802419]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+
+[node name="ScoreLabel" type="Label" parent="CenterContainer/VBoxContainer/HeaderRow" unique_id=542355102]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Punkte"
+horizontal_alignment = 2
+
+[node name="CorrectAnswersLabel" type="Label" parent="CenterContainer/VBoxContainer/HeaderRow" unique_id=8546351]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Antw."
+horizontal_alignment = 2
+
+[node name="DateLabel" type="Label" parent="CenterContainer/VBoxContainer/HeaderRow" unique_id=1048600744]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Datum"
+horizontal_alignment = 2
+
+[node name="DifficultyLabel" type="Label" parent="CenterContainer/VBoxContainer/HeaderRow" unique_id=1400850699]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "Schwierigkeit"
+horizontal_alignment = 2
+
+[node name="HighscoreContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1823067149]
+custom_minimum_size = Vector2(180, 250)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="." unique_id=161371264]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -53,9 +90,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -50.0
-offset_top = -40.0
+offset_top = -36.0
 offset_right = 50.0
-offset_bottom = -10.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Zurück"

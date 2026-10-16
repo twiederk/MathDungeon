@@ -77,7 +77,7 @@ func _create_exercise() -> Exercise:
 		EnemyStats.ArithmeticType.MULTIPLICATION:
 			return multiplication_exercise_generator.create_exercise()
 		EnemyStats.ArithmeticType.DIVISION:
-			return division_exercise_generator.create_exercise()
+			return division_exercise_generator.create_exercise(enemy.stats.get_max_number())
 		EnemyStats.ArithmeticType.DIVISION_REMAINDER:
 			return division_remainder_exercise_generator.create_exercise()
 		EnemyStats.ArithmeticType.TIMES_TABLE:
@@ -112,6 +112,7 @@ func _check_answer(answer: String) -> void:
 
 
 func _answer_correct() -> void:
+	GameSession.correct_answers += 1
 	var enemy_hit_points = enemy.hurt(CharacterManager.current.get_total_damage())
 	if enemy_hit_points > 0:
 		exercise = _create_exercise()
