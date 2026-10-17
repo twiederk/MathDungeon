@@ -28,4 +28,5 @@ func _on_inner_area_2d_body_entered(body: Node2D) -> void:
 	if body.name != "Player":
 		return
 	if active:
+		GameSession.spawn_point = GameSession.SpawnPoint.NETHER_PORTAL
 		get_tree().call_deferred("change_scene_to_file", dungeon_path)
