@@ -33,6 +33,7 @@ var ACHIEVEMENTS = {
 	"woodland_mansion": Achievement.new("Waldanwesen erobert!", "Besiege alle Bewohner des Waldanwesens", 1, "woodland_mansion", "conquere_woodland_mansion.png", 1000),
 	"nether_fortress": Achievement.new("Nether-Festung erobert!", "Besiege alle Gegner der Nether-Festung", 1, "nether_fortress", "conquere_nether_fortress.png", 1500),
 	"dungeon": Achievement.new("Dungeon gesäubert!", "Besiege alle Gegner eines Dungeons", 1, "dungeon", "conquere_dungeon.png", 500, true),
+	"dungeon_4": Achievement.new("Dungeon-Meister", "Erobere 4 Dungeons", 4, "dungeon", "conquere_dungeon.png", 0),
 }
 
 var unlocked_achievements: Array[String] = []
@@ -42,6 +43,7 @@ var progress: Dictionary = {
 	"lighter": 0,
 	"enderdragon": 0,
 	"nether": 0,
+	"dungeon": 0,
 }
 
 var recent_unlocks: Array[String] = []
@@ -155,6 +157,6 @@ func get_recent_unlocks() -> Array[String]:
 
 func reset() -> void:
 	unlocked_achievements.clear()
-	progress = {"score": 0, "eyes_of_ender": 0, "lighter": 0, "enderdragon": 0, "nether": 0}
+	progress = {"score": 0, "eyes_of_ender": 0, "lighter": 0, "enderdragon": 0, "nether": 0, "dungeon": 0}
 	recent_unlocks.clear()
 	_locations.clear()
