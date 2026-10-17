@@ -38,15 +38,15 @@ size = Vector2(287, 88)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ej081"]
 size = Vector2(293, 88)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_i43io"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_hvrnb"]
 resource_local_to_scene = true
 radius = 107.298645
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ntn28"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_i43io"]
 resource_local_to_scene = true
 radius = 101.12369
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8cn3y"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ntn28"]
 resource_local_to_scene = true
 radius = 111.01801
 
@@ -57,7 +57,7 @@ size = Vector2(230, 90)
 radius = 84.804596
 height = 350.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vw2q1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8cn3y"]
 resource_local_to_scene = true
 size = Vector2(126, 126)
 
@@ -223,7 +223,7 @@ position = Vector2(469, 1232)
 position = Vector2(497, 1230)
 
 [node name="PiglinZombie14" parent="Enemies" unique_id=1377593764 instance=ExtResource("10_pts44")]
-position = Vector2(418, 1235)
+position = Vector2(334, 1114)
 
 [node name="PiglinZombie15" parent="Enemies" unique_id=1092950307 instance=ExtResource("10_pts44")]
 position = Vector2(371, 1231)
@@ -261,7 +261,7 @@ location = "nether_fortress"
 position = Vector2(52, 90)
 
 [node name="CollisionShape2D" parent="Enemies/Blaze3/ShootingArea" index="0" unique_id=1003688871]
-shape = SubResource("CircleShape2D_i43io")
+shape = SubResource("CircleShape2D_hvrnb")
 
 [node name="Blaze4" parent="Enemies" unique_id=636626386 instance=ExtResource("19_wat66")]
 position = Vector2(66, 302)
@@ -269,7 +269,7 @@ location = "nether_fortress"
 
 [node name="CollisionShape2D" parent="Enemies/Blaze4/ShootingArea" parent_id_path=PackedInt32Array(636626386, 1951971501) index="0" unique_id=1003688871]
 position = Vector2(39, -60)
-shape = SubResource("CircleShape2D_ntn28")
+shape = SubResource("CircleShape2D_i43io")
 
 [node name="Blaze5" parent="Enemies" unique_id=244087369 instance=ExtResource("19_wat66")]
 position = Vector2(134, 161)
@@ -277,7 +277,7 @@ location = "nether_fortress"
 
 [node name="CollisionShape2D" parent="Enemies/Blaze5/ShootingArea" parent_id_path=PackedInt32Array(244087369, 1951971501) index="0" unique_id=1003688871]
 position = Vector2(-31, 83)
-shape = SubResource("CircleShape2D_8cn3y")
+shape = SubResource("CircleShape2D_ntn28")
 
 [node name="Blaze6" parent="Enemies" unique_id=1761431005 instance=ExtResource("19_wat66")]
 position = Vector2(102, 246)
@@ -299,7 +299,7 @@ shape = SubResource("CapsuleShape2D_40bte")
 position = Vector2(239, 647)
 
 [node name="Player" parent="." unique_id=1035642811 instance=ExtResource("3_ylnya")]
-position = Vector2(869, 708)
+position = Vector2(414, 1200)
 
 [node name="Titles" type="Node2D" parent="." unique_id=1623922931]
 position = Vector2(869, 708)
@@ -343,7 +343,7 @@ title_text = "Die Nether Festung"
 
 [node name="CollisionShape2D" parent="DungeonTitle/TriggerArea2D" index="0"]
 position = Vector2(13, 13)
-shape = SubResource("RectangleShape2D_vw2q1")
+shape = SubResource("RectangleShape2D_8cn3y")
 
 [editable path="Enemies/ShootingGhast"]
 [editable path="Enemies/ShootingGhast2"]
