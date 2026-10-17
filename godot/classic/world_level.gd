@@ -10,18 +10,31 @@ var loot_droper: LootDropper = LootDropper.new()
 @onready var player: Player = $Player
 @onready var map_borders = $MapBorders
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
+@onready var nether_portal: NetherPortal = $Locations/NetherPortal
 
 @onready var quiz: Control = $UI/QuizDialog
 @onready var player_stats_sheet: StatsSheet = $UI/PlayerStatsSheet
 
 
 func _ready() -> void:
+	_apply_start_position()
 	_setup_signals()
 	_setup_locations()
 	_setup_limits_and_borders()
 	_setup_character_stats()
 	_setup_player_portrait()
 	CompanionSetup.new(companions_root, player).setup()
+
+
+func _apply_start_position() -> void:
+	player.global_position = get_start_position()
+
+
+func get_start_position() -> Vector2:
+	if GameSession.spawns_at_nether_portal():
+		if nether_portal:
+			return nether_portal.get_spawn_position()
+	return player.global_position
 
 
 func _setup_locations() -> void:

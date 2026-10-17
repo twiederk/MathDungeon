@@ -8,7 +8,7 @@ enum Status {
 
 
 var quests: Array[Quest] = [
-	Quest.new("dungeon", "Erobere ein Dungeon", "Besiege alle Bewohner eines Dungeons.", "dungeon"),
+	Quest.new("dungeon", "Erobere 4 Dungeons", "Besiege alle Bewohner von 4 Dungeons.", "dungeon_4"),
 	Quest.new("woodland_mansion", "Erobere das Waldanwesen", "Besiege alle Bewohner des Waldanwesens.", "woodland_mansion"),
 	Quest.new("lighter", "Aktivere das Nether-Portal", "Finde das Feuerzeug und aktiviere das Nether-Portal.", "lighter"),
 	Quest.new("nether", "Betritt den Nether", "Durchschreite das aktivierte Nether-Portal.", "nether"),

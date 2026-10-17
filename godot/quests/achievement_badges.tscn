@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dgraydpbf13p" path="res://quests/achievement_badges.gd" id="1_badges"]
 
-
 [node name="Control" type="Control" unique_id=1767910076]
 layout_mode = 3
 anchors_preset = 0
@@ -11,16 +10,16 @@ script = ExtResource("1_badges")
 
 [node name="AchievementBadges" type="HBoxContainer" parent="." unique_id=1598613482]
 layout_mode = 0
-offset_right = 170.0
-offset_bottom = 40.0
+offset_right = 180.0
+offset_bottom = 32.0
 theme_override_constants/separation = 5
 
-[node name="Badge1" type="Panel" parent="AchievementBadges"]
+[node name="Badge1" type="Panel" parent="AchievementBadges" unique_id=1951743118]
+modulate = Color(1, 1, 1, 0.3)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-modulate = Color(1, 1, 1, 0.3)
 
-[node name="TextureRect" type="TextureRect" parent="AchievementBadges/Badge1"]
+[node name="TextureRect" type="TextureRect" parent="AchievementBadges/Badge1" unique_id=609922625]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 15
@@ -30,12 +29,12 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch_mode = 2
 
-[node name="Badge2" type="Panel" parent="AchievementBadges"]
+[node name="Badge2" type="Panel" parent="AchievementBadges" unique_id=1787923088]
+modulate = Color(1, 1, 1, 0.3)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-modulate = Color(1, 1, 1, 0.3)
 
-[node name="TextureRect" type="TextureRect" parent="AchievementBadges/Badge2"]
+[node name="TextureRect" type="TextureRect" parent="AchievementBadges/Badge2" unique_id=1841657400]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 15
@@ -45,12 +44,12 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch_mode = 2
 
-[node name="Badge3" type="Panel" parent="AchievementBadges"]
+[node name="Badge3" type="Panel" parent="AchievementBadges" unique_id=667535022]
+modulate = Color(1, 1, 1, 0.3)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-modulate = Color(1, 1, 1, 0.3)
 
-[node name="TextureRect" type="TextureRect" parent="AchievementBadges/Badge3"]
+[node name="TextureRect" type="TextureRect" parent="AchievementBadges/Badge3" unique_id=1450713686]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 15
@@ -60,12 +59,12 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch_mode = 2
 
-[node name="Badge4" type="Panel" parent="AchievementBadges"]
+[node name="Badge4" type="Panel" parent="AchievementBadges" unique_id=597995042]
+modulate = Color(1, 1, 1, 0.3)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-modulate = Color(1, 1, 1, 0.3)
 
-[node name="TextureRect" type="TextureRect" parent="AchievementBadges/Badge4"]
+[node name="TextureRect" type="TextureRect" parent="AchievementBadges/Badge4" unique_id=1547632480]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 15
@@ -75,12 +74,12 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch_mode = 2
 
-[node name="Badge5" type="Panel" parent="AchievementBadges"]
+[node name="Badge5" type="Panel" parent="AchievementBadges" unique_id=703849222]
+modulate = Color(1, 1, 1, 0.3)
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-modulate = Color(1, 1, 1, 0.3)
 
-[node name="TextureRect" type="TextureRect" parent="AchievementBadges/Badge5"]
+[node name="TextureRect" type="TextureRect" parent="AchievementBadges/Badge5" unique_id=514732560]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 15

@@ -13,6 +13,11 @@ enum DisplayState {
 	QUEST_LOG
 }
 
+enum SpawnPoint {
+	START,
+	NETHER_PORTAL
+}
+
 
 signal score_changed
 signal eyes_of_ender_changed
@@ -21,6 +26,7 @@ signal display_state_changed(state: int)
 
 
 var difficulty_level: DifficultyLevel = DifficultyLevel.NORMAL
+var spawn_point: SpawnPoint = SpawnPoint.START
 var display_state: int = DisplayState.NONE:
 	set(value):
 		if display_state == value:
@@ -60,10 +66,15 @@ func reset() -> void:
 	eyes_of_ender = 0
 	has_lighter = false
 	display_state = DisplayState.NONE
+	spawn_point = SpawnPoint.START
 
 
 func is_hard() -> bool:
 	return difficulty_level == DifficultyLevel.HARD
+
+
+func spawns_at_nether_portal() -> bool:
+	return spawn_point == SpawnPoint.NETHER_PORTAL
 
 
 func toggle_difficulty_level() -> void:

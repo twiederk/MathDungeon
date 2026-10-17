@@ -71,16 +71,16 @@ size = Vector2(61, 249.5)
 size = Vector2(339.5, 59)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ok6jj"]
-size = Vector2(404, 333)
+size = Vector2(396, 330)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_facbu"]
-size = Vector2(400, 334)
+size = Vector2(400, 332)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b1qrp"]
-size = Vector2(401, 322)
+size = Vector2(396, 322)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_come4"]
-size = Vector2(400, 334)
+size = Vector2(399, 331)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnost"]
 size = Vector2(459, 59)
@@ -377,7 +377,7 @@ position = Vector2(690, 1687)
 location = "woodland_mansion"
 
 [node name="CollisionShape2D" parent="Enemies/ShootingPilligar/ShootingArea" parent_id_path=PackedInt32Array(1893404724, 1800570189) index="0" unique_id=931633192]
-position = Vector2(192, 156.5)
+position = Vector2(192, 155)
 shape = SubResource("RectangleShape2D_ok6jj")
 
 [node name="ShootingPilligar2" parent="Enemies" unique_id=1657675909 instance=ExtResource("24_73cfi")]
@@ -385,7 +385,7 @@ position = Vector2(1071, 1685)
 location = "woodland_mansion"
 
 [node name="CollisionShape2D" parent="Enemies/ShootingPilligar2/ShootingArea" parent_id_path=PackedInt32Array(1657675909, 1800570189) index="0" unique_id=931633192]
-position = Vector2(-190, 157)
+position = Vector2(-190, 156)
 shape = SubResource("RectangleShape2D_facbu")
 
 [node name="ShootingPilligar3" parent="Enemies" unique_id=85220774 instance=ExtResource("24_73cfi")]
@@ -393,15 +393,15 @@ position = Vector2(687, 1996)
 location = "woodland_mansion"
 
 [node name="CollisionShape2D" parent="Enemies/ShootingPilligar3/ShootingArea" parent_id_path=PackedInt32Array(85220774, 1800570189) index="0" unique_id=931633192]
-position = Vector2(190.5, -151)
+position = Vector2(193, -151)
 shape = SubResource("RectangleShape2D_b1qrp")
 
 [node name="ShootingPilligar4" parent="Enemies" unique_id=987569465 instance=ExtResource("24_73cfi")]
-position = Vector2(1069, 2000)
+position = Vector2(1070, 2000)
 location = "woodland_mansion"
 
 [node name="CollisionShape2D" parent="Enemies/ShootingPilligar4/ShootingArea" parent_id_path=PackedInt32Array(987569465, 1800570189) index="0" unique_id=931633192]
-position = Vector2(-190, -157)
+position = Vector2(-188.5, -158.5)
 shape = SubResource("RectangleShape2D_come4")
 
 [node name="Villager" parent="Enemies" unique_id=1020425473 instance=ExtResource("25_tpygc")]
