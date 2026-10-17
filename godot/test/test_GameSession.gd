@@ -18,6 +18,17 @@ func test_reset():
 	assert_false(GameSession.has_lighter)
 
 
+func test_reset_restores_the_start_spawn_point():
+	# arrange
+	GameSession.spawn_point = GameSession.SpawnPoint.NETHER_PORTAL
+	
+	# act
+	GameSession.reset()
+	
+	# assert
+	assert_eq(GameSession.spawn_point, GameSession.SpawnPoint.START)
+
+
 func test_toggle_difficulty_level():
 	# arrange
 	GameSession.difficulty_level = GameSession.DifficultyLevel.HARD
