@@ -31,7 +31,7 @@ func _apply_start_position() -> void:
 
 
 func get_start_position() -> Vector2:
-	if GameSession.spawn_point == GameSession.SpawnPoint.NETHER_PORTAL:
+	if GameSession.spawns_at_nether_portal():
 		if nether_portal:
 			return nether_portal.get_spawn_position()
 	return player.global_position

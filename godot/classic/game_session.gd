@@ -73,6 +73,10 @@ func is_hard() -> bool:
 	return difficulty_level == DifficultyLevel.HARD
 
 
+func spawns_at_nether_portal() -> bool:
+	return spawn_point == SpawnPoint.NETHER_PORTAL
+
+
 func toggle_difficulty_level() -> void:
 	if difficulty_level == DifficultyLevel.NORMAL:
 		difficulty_level = DifficultyLevel.HARD
