@@ -33,7 +33,7 @@ collision_layer = 0
 shape = SubResource("RectangleShape2D_e4ynd")
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=183937857]
-position = Vector2(0, 64)
+position = Vector2(45, 60)
 
 [connection signal="body_entered" from="OuterArea2D" to="." method="_on_outer_area_2d_body_entered"]
 [connection signal="body_entered" from="InnerArea2D" to="." method="_on_inner_area_2d_body_entered"]
