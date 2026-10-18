@@ -18,12 +18,14 @@ func _init(companions_root: Node, player: Player) -> void:
 func setup() -> void:
 	var used_companion_nodes: Array[Node] = []
 	var companions := CharacterManager.current.companions
+	var placed_count := 0
 
 	for index in companions.size():
 		if companions[index] == "Allay":
 			_mark_allay_used(used_companion_nodes)
 		else:
-			_place_companion(companions[index], index, used_companion_nodes)
+			_place_companion(companions[index], placed_count, used_companion_nodes)
+			placed_count += 1
 
 	_free_allays(used_companion_nodes)
 
@@ -34,12 +36,12 @@ func _mark_allay_used(used: Array[Node]) -> void:
 		used.append(allay)
 
 
-func _place_companion(companion_type: String, index: int, used: Array[Node]) -> void:
+func _place_companion(companion_type: String, slot: int, used: Array[Node]) -> void:
 	var companion := _claim_companion(companion_type, used)
 	if companion == null:
 		return
 	used.append(companion)
-	companion.global_position = _player.global_position + Vector2(60.0 + (index * 40.0), 0.0)
+	companion.global_position = _player.global_position + Vector2(60.0 + (slot * 40.0), 0.0)
 	companion.start_following(_player)
 
 
