@@ -214,7 +214,7 @@ position = Vector2(857, 625)
 position = Vector2(780, 745)
 
 [node name="PiglinZombie11" parent="Enemies" unique_id=1248870012 instance=ExtResource("10_pts44")]
-position = Vector2(513, 1192)
+position = Vector2(417, 1233)
 
 [node name="PiglinZombie12" parent="Enemies" unique_id=2035565625 instance=ExtResource("10_pts44")]
 position = Vector2(503, 1115)
@@ -299,7 +299,7 @@ shape = SubResource("CapsuleShape2D_40bte")
 position = Vector2(239, 647)
 
 [node name="Player" parent="." unique_id=1035642811 instance=ExtResource("3_ylnya")]
-position = Vector2(413, 1200)
+position = Vector2(457, 1195)
 
 [node name="Titles" type="Node2D" parent="." unique_id=1623922931]
 position = Vector2(869, 708)

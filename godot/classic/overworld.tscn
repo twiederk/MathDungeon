@@ -492,7 +492,7 @@ position = Vector2(182, 1828)
 position = Vector2(1185, 2527)
 
 [node name="PiglinZombie" parent="Enemies" unique_id=2490144 instance=ExtResource("16_7e0qn")]
-position = Vector2(979, 2578)
+position = Vector2(969, 2500)
 
 [node name="PiglinZombie2" parent="Enemies" unique_id=1982493857 instance=ExtResource("16_7e0qn")]
 position = Vector2(769, 2574)
@@ -504,7 +504,7 @@ position = Vector2(973, 2536)
 position = Vector2(791, 2536)
 
 [node name="PiglinZombie5" parent="Enemies" unique_id=801909994 instance=ExtResource("16_7e0qn")]
-position = Vector2(801, 2504)
+position = Vector2(795, 2497)
 
 [node name="PiglinZombie6" parent="Enemies" unique_id=1233291606 instance=ExtResource("16_7e0qn")]
 position = Vector2(1186, 2364)
