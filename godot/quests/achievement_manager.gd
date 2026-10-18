@@ -86,7 +86,7 @@ func track_enemy_defeat(enemy: Enemy) -> void:
 
 
 func _track_enemy_type_defeat(enemy_name: String) -> void:
-	if enemy_name == "Enderdragon":
+	if enemy_name == "Ender Dragon":
 		progress["enderdragon"] += 1
 		_check_progress_achievements("enderdragon")
 
