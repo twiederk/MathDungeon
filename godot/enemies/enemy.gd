@@ -62,16 +62,12 @@ func hurt(damage: int) -> int:
 	return hit_points
 
 
-# Parented to the level root, not to this enemy, so it keeps animating even while
-# Enemies/Companions/Player are disabled during a dialog.
 func _spawn_hit_effect() -> void:
 	var effect := HIT_EFFECT_SCENE.instantiate()
 	effect.global_position = global_position
 	_effect_parent().add_child(effect)
 
 
-# Topmost ancestor (the level root in-game, the test node in unit tests), so the
-# effect's parent is never inside this enemy's own, possibly disabled, subtree.
 func _effect_parent() -> Node:
 	var node: Node = self
 	while node.get_parent() != null and node.get_parent() != get_tree().root:
