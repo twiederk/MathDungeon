@@ -65,9 +65,9 @@ func _on_simulation_running_changed(running: bool) -> void:
 	var mode := Node.PROCESS_MODE_INHERIT
 	if not running:
 		mode = Node.PROCESS_MODE_DISABLED
-	player.process_mode = mode
-	enemies_root.process_mode = mode
-	companions_root.process_mode = mode
+	player.set_deferred("process_mode", mode)
+	enemies_root.set_deferred("process_mode", mode)
+	companions_root.set_deferred("process_mode", mode)
 
 
 func _setup_limits_and_borders() -> void:
