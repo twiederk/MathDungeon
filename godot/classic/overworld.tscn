@@ -205,16 +205,12 @@ location = "dungeon_0"
 [node name="Zombie_Piglin1" parent="Enemies" unique_id=411263357 instance=ExtResource("16_7e0qn")]
 position = Vector2(333, 128)
 location = "dungeon_0"
-
-[node name="Sprite2D" parent="Enemies/Zombie_Piglin1" index="0"]
-flip_h = true
+flip_sprite = true
 
 [node name="Enderman1" parent="Enemies" unique_id=752944073 instance=ExtResource("18_vjnci")]
 position = Vector2(184, 132)
 location = "dungeon_0"
-
-[node name="Sprite2D" parent="Enemies/Enderman1" index="0"]
-flip_h = true
+flip_sprite = true
 
 [node name="Spider1" parent="Enemies" unique_id=1031652946 instance=ExtResource("19_udwem")]
 position = Vector2(534, 429)
@@ -820,8 +816,6 @@ offset_bottom = 65.0
 
 [node name="QuestLogGui" parent="UI" unique_id=1184004014 instance=ExtResource("49_questlog")]
 
-[editable path="Enemies/Zombie_Piglin1"]
-[editable path="Enemies/Enderman1"]
 [editable path="Enemies/ShootingSkeleton"]
 [editable path="Enemies/ShootingSkeleton2"]
 [editable path="Enemies/ShootingSkeleton3"]
