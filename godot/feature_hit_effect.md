@@ -19,15 +19,22 @@ quiz dialog is currently open.
 ## Decision
 
 Don't parent the effect under the enemy (or anything else inside `Enemies`/`Companions`/`Player`).
-Instead, spawn it as a child of `get_tree().current_scene`, i.e. the `WorldLevel` root itself.
+Instead, spawn it as a child of the topmost ancestor of the enemy — the `WorldLevel` root in a
+real level, the GUT test node in a unit test.
 
 - `WorldLevel`'s root node already has `process_mode = PROCESS_MODE_ALWAYS` set in every level
   scene (`overworld.tscn`, `nether.tscn`, `procedural/proc_gen_world.tscn`, `end.tscn`), so a
   direct child keeps animating no matter what state `display_state` is in (`QUIZ_DIALOG`,
   `QUEST_LOG`, `PAUSE_MENU`).
-- `get_tree().current_scene` is already used the same way in `enemies/shooting_enemy.gd`
-  (`var main_scene = get_tree().current_scene`), so this is an established pattern in this
-  codebase, not a new one.
+- `get_tree().current_scene` looked like the obvious parent (it's already used the same way in
+  `enemies/shooting_enemy.gd`), but `SceneTree.set_current_scene()` requires its argument to be a
+  **direct child of `root`**. GUT test nodes are nested several levels under `root`, so assigning
+  `current_scene` for a test fails with `Condition "p_scene && p_scene->get_parent() != root" is
+  true` and `current_scene` stays `null`, in turn making `enemy.hurt()` crash in any test. Walking
+  up the enemy's own ancestor chain instead works both in a real level (where it resolves to the
+  same `WorldLevel` node that `current_scene` would have pointed to, because `change_scene_to_file`
+  always parents the new scene directly under `root`) and inside a unit test (where it resolves to
+  whatever node the test added the enemy under).
 - The effect's lifetime is fully decoupled from the enemy's: `Effect._on_animation_finished()`
   already calls `queue_free()` on itself once the one-shot animation ends. If the enemy is
   defeated and freed right after (`QuizDialog._defeat_enemy()`), the already-spawned effect is
@@ -65,7 +72,16 @@ Instead, spawn it as a child of `get_tree().current_scene`, i.e. the `WorldLevel
   func _spawn_hit_effect() -> void:
       var effect := HIT_EFFECT_SCENE.instantiate()
       effect.global_position = global_position
-      get_tree().current_scene.add_child(effect)
+      _effect_parent().add_child(effect)
+
+
+  # Topmost ancestor (the level root in-game, the test node in unit tests), so the
+  # effect's parent is never inside this enemy's own, possibly disabled, subtree.
+  func _effect_parent() -> Node:
+      var node: Node = self
+      while node.get_parent() != null and node.get_parent() != get_tree().root:
+          node = node.get_parent()
+      return node
   ```
 
 - No change to `enemies/effect.gd`, `enemies/hit_effect.tscn`, `enemies/patrolling_enemy.gd`, or
@@ -75,12 +91,12 @@ Instead, spawn it as a child of `get_tree().current_scene`, i.e. the `WorldLevel
 
 ## Risks / Notes
 
-- `get_tree().current_scene` must be the `WorldLevel` instance for this to render in world space.
-  True for all current play scenes (`overworld.tscn`, `nether.tscn`, procedurally generated
-  dungeons, `end.tscn`); if a future scene change swaps `current_scene` to something without a 2D
-  canvas (e.g. a pure UI scene) while an enemy is still hurt in the same frame, the effect would be
-  parented to the wrong scene. Not a realistic case today since `hurt()` only runs while a
-  `WorldLevel` is active and visible.
+- `_effect_parent()` relies on `change_scene_to_file` always parenting the active `WorldLevel`
+  directly under `root` — true today for every play scene (`overworld.tscn`, `nether.tscn`,
+  procedurally generated dungeons, `end.tscn`). If a `WorldLevel` were ever nested one level
+  deeper (e.g. wrapped in another container scene), the effect would still end up on that
+  container instead of `root`'s direct child — harmless as long as the container also keeps
+  `PROCESS_MODE_ALWAYS` or inherits it.
 - The effect also keeps animating while the ESC pause menu is open (tree paused), because
   `PROCESS_MODE_ALWAYS` ignores `SceneTree.paused`. Given the animation is two frames long this is
   not noticeable and is accepted the same way `Sound` already behaves during pause.

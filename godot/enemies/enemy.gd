@@ -2,6 +2,8 @@ class_name Enemy
 extends StaticBody2D
 
 
+const HIT_EFFECT_SCENE := preload("res://enemies/hit_effect.tscn")
+
 enum AttackType { NORMAL, SURPRISE }
 
 @export var stats: EnemyStats
@@ -53,7 +55,25 @@ func has_time_limit() -> bool:
 
 func hurt(damage: int) -> int:
 	Sound.play(Sound.hurt)
+	_spawn_hit_effect()
 	hit_points -= max(1, damage - stats.get_armor())
 	if hit_points <= 0:
 		defeated.emit(self)
 	return hit_points
+
+
+# Parented to the level root, not to this enemy, so it keeps animating even while
+# Enemies/Companions/Player are disabled during a dialog.
+func _spawn_hit_effect() -> void:
+	var effect := HIT_EFFECT_SCENE.instantiate()
+	effect.global_position = global_position
+	_effect_parent().add_child(effect)
+
+
+# Topmost ancestor (the level root in-game, the test node in unit tests), so the
+# effect's parent is never inside this enemy's own, possibly disabled, subtree.
+func _effect_parent() -> Node:
+	var node: Node = self
+	while node.get_parent() != null and node.get_parent() != get_tree().root:
+		node = node.get_parent()
+	return node
