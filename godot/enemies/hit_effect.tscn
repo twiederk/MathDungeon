@@ -22,7 +22,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"Animate",
-"speed": 10.0
+"speed": 5.0
 }]
 
 [node name="HitEffect" type="AnimatedSprite2D" unique_id=856024402]
