@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bc3gwr6dqbxxi"
-path="res://.godot/imported/Hit.wav-8841f66f9378785d2dad24e7791d1c42.sample"
+path="res://.godot/imported/Hit.wav-6440dfecd19525a71692a50ef3ea0c6a.sample"
 
 [deps]
 
-source_file="res://quiz/Hit.wav"
-dest_files=["res://.godot/imported/Hit.wav-8841f66f9378785d2dad24e7791d1c42.sample"]
+source_file="res://enemies/Hit.wav"
+dest_files=["res://.godot/imported/Hit.wav-6440dfecd19525a71692a50ef3ea0c6a.sample"]
 
 [params]
 
