@@ -114,11 +114,6 @@ not stop the simulation at all, so enemies keep moving while the player reads it
 - No change. Toggling `display_state` to `QUEST_LOG` now automatically freezes the simulation.
 - The quest log itself lives in the UI layer and stays interactive.
 
-### 7. `classic/sound.tscn`
-
-- Root `Sound` node: `process_mode = 3` (`PROCESS_MODE_ALWAYS`), so audio plays immediately in
-  every state, including while the pause menu holds the tree paused.
-
 ## Risks / Notes
 
 - `PROCESS_MODE_DISABLED` also stops `Area2D` monitoring in the frozen subtrees. That is desired:
