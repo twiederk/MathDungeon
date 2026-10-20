@@ -9,8 +9,10 @@
 [ext_resource type="AudioStream" uid="uid://doglmolxgtdl6" path="res://items/LighterPickUp.ogg" id="5_kycvu"]
 [ext_resource type="AudioStream" uid="uid://vapewagvnujf" path="res://enemies/achievement.mp3" id="6_achievement"]
 [ext_resource type="AudioStream" uid="uid://r3tq1fxiync4" path="res://companions/AllayPickup.mp3" id="9_3toxw"]
+[ext_resource type="AudioStream" uid="uid://bc3gwr6dqbxxi" path="res://quiz/Hit.wav" id="10_05dd7"]
 
 [node name="Sound" type="Node" unique_id=207141569]
+process_mode = 3
 script = ExtResource("1_7ywqe")
 pickup_potion = ExtResource("2_tdv2v")
 pickup_sword = ExtResource("3_njgaf")
@@ -20,6 +22,7 @@ companion_wolf = ExtResource("3_tdv2v")
 victory = ExtResource("4_victory")
 achievement_unlock = ExtResource("6_achievement")
 companion_ally = ExtResource("9_3toxw")
+surprise_attack = ExtResource("10_05dd7")
 
 [node name="AudioStreamPlayer1" type="AudioStreamPlayer" parent="." unique_id=895126907]
 

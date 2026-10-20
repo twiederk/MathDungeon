@@ -1,7 +1,7 @@
 class_name Projectile
 extends RigidBody2D
 
-signal encountered(enemy: StaticBody2D)
+signal encountered(enemy: StaticBody2D, attack_type: Enemy.AttackType)
 
 @export var speed: float = 300.0
 @export var projectile_stats: EnemyStats
@@ -35,7 +35,7 @@ func _on_hit_area_body_entered(body: Node) -> void:
 		var enemy = Enemy.new()
 		enemy.stats = projectile_stats
 		enemy.hit_points = projectile_stats.get_max_hit_points()
-		encountered.emit(enemy)
+		encountered.emit(enemy, Enemy.AttackType.NORMAL)
 		queue_free()
 	elif body.name == "TileMapLayer":
 		queue_free()

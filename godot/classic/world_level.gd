@@ -83,8 +83,8 @@ func _setup_player_portrait() -> void:
 	player.apply_portrait(portrait.texture)
 
 
-func _on_enemy_encountered(enemy: StaticBody2D) -> void:
-	quiz.open_for(enemy)
+func _on_enemy_encountered(enemy: StaticBody2D, attack_type: Enemy.AttackType) -> void:
+	quiz.open_for(enemy, attack_type)
 
 
 func _on_enemy_defeated(enemy: Enemy) -> void:

@@ -1,7 +1,7 @@
 class_name PatrollingEnemy
 extends Path2D
 
-signal encountered(enemy: StaticBody2D)
+signal encountered(enemy: StaticBody2D, attack_type: Enemy.AttackType)
 
 @export var patrol_speed: float = 50.0 
 @export var location: String = ""
@@ -21,5 +21,5 @@ func _process(delta: float) -> void:
 		queue_free()
 
 
-func _on_enemy_encountered(a_enemy):
-	encountered.emit(a_enemy)
+func _on_enemy_encountered(a_enemy, attack_type):
+	encountered.emit(a_enemy, attack_type)

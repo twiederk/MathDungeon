@@ -2,6 +2,9 @@ class_name QuizDialog
 extends Control
 
 
+const SURPRISE_DAMAGE: int = 1
+const SURPRISE_MESSAGE: String = "Überraschungsangriff! −1 LP"
+
 var addition_exercise_generator = AdditionExerciseGenerator.new()
 var subtraction_exercise_generator = SubtractionExerciseGenerator.new()
 var multiplication_exercise_generator = MultiplicationExerciseGenerator.new()
@@ -28,15 +31,25 @@ var exercise: Exercise = null
 @onready var progress_timer = $ProgressTimer
 
 
-func open_for(my_enemy: Enemy) -> void:
+func open_for(my_enemy: Enemy, attack_type: Enemy.AttackType = Enemy.AttackType.NORMAL) -> void:
 	enemy = my_enemy
 	GameSession.display_state = GameSession.DisplayState.QUIZ_DIALOG
 	_setup_exercise()
 	_setup_time_limit_progress_bar()
 	_setup_enemy_stats_sheet()
+	if attack_type == Enemy.AttackType.SURPRISE:
+		_apply_surprise_attack()
 	visible = true
 	answer_line_edit.grab_focus()
 	get_tree().paused = true
+
+
+func _apply_surprise_attack() -> void:
+	Sound.play(Sound.surprise_attack)
+	if enemy.hurt(SURPRISE_DAMAGE) <= 0:
+		_defeat_enemy()
+		return
+	question_label.text = SURPRISE_MESSAGE + "\n" + exercise.question
 
 
 func _setup_exercise() -> void:
@@ -121,15 +134,19 @@ func _answer_correct() -> void:
 		if enemy.has_time_limit():
 			_start_timers()
 	else:
-		GameSession.add_score(enemy.stats.get_score())
-		AchievementManager.track_enemy_defeat(enemy)
-		if enemy.has_time_limit():
-			answer_timer.stop()
-			progress_timer.stop()
-		if enemy.stats.name == "Ender Dragon":
-			get_tree().call_deferred("change_scene_to_file", "res://gui/victory_dialog.tscn")
-		enemy.queue_free()
-		_close_dialog()
+		_defeat_enemy()
+
+
+func _defeat_enemy() -> void:
+	GameSession.add_score(enemy.stats.get_score())
+	AchievementManager.track_enemy_defeat(enemy)
+	if enemy.has_time_limit():
+		answer_timer.stop()
+		progress_timer.stop()
+	if enemy.stats.name == "Ender Dragon":
+		get_tree().call_deferred("change_scene_to_file", "res://gui/victory_dialog.tscn")
+	enemy.queue_free()
+	_close_dialog()
 
 
 func _answer_incorrect() -> void:
