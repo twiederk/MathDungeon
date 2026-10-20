@@ -44,7 +44,6 @@ func open_for(my_enemy: Enemy, attack_type: Enemy.AttackType = Enemy.AttackType.
 
 
 func _apply_surprise_attack() -> void:
-	Sound.play(Sound.surprise_attack)
 	if enemy.hurt(SURPRISE_DAMAGE) <= 0:
 		_defeat_enemy()
 		return

@@ -52,6 +52,7 @@ func has_time_limit() -> bool:
 
 
 func hurt(damage: int) -> int:
+	Sound.play(Sound.hurt)
 	hit_points -= max(1, damage - stats.get_armor())
 	if hit_points <= 0:
 		defeated.emit(self)
