@@ -23,6 +23,7 @@ signal score_changed
 signal eyes_of_ender_changed
 signal has_lighter_changed
 signal display_state_changed(state: int)
+signal simulation_running_changed(running: bool)
 
 
 var difficulty_level: DifficultyLevel = DifficultyLevel.NORMAL
@@ -33,6 +34,7 @@ var display_state: int = DisplayState.NONE:
 			return
 		display_state = value
 		display_state_changed.emit(value)
+		simulation_running_changed.emit(is_simulation_running())
 
 
 var eyes_of_ender: int = 0:
@@ -71,6 +73,10 @@ func reset() -> void:
 
 func is_hard() -> bool:
 	return difficulty_level == DifficultyLevel.HARD
+
+
+func is_simulation_running() -> bool:
+	return display_state == DisplayState.NONE
 
 
 func spawns_at_nether_portal() -> bool:
