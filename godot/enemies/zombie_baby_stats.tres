@@ -12,7 +12,6 @@ probability = 0.2
 [resource]
 script = ExtResource("1_fqpqn")
 name = "Baby Zombie"
-max_hit_points = 2
 max_number = 10
 loot_drops = Array[ExtResource("1_kogld")]([SubResource("LootDropDefinition_BabyZombiePotion")])
 hard_max_number = 20

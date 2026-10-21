@@ -18,7 +18,6 @@ probability = 0.15
 [resource]
 script = ExtResource("1_qa4ru")
 name = "Baby Zombie Villager"
-max_hit_points = 2
 arithmetic = Array[int]([10])
 loot_drops = Array[ExtResource("1_orafn")]([SubResource("LootDropDefinition_BabyZombieVillagerPotion"), SubResource("LootDropDefinition_BabyZombieVillagerHelmet")])
 hard_time_limit = 30

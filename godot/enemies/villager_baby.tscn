@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjuiaid8a3011"]
+[gd_scene format=3 uid="uid://bjuiaid8a3011"]
 
 [ext_resource type="Script" uid="uid://b7x46e8sw1gka" path="res://enemies/enemy.gd" id="1_46jx0"]
 [ext_resource type="Resource" uid="uid://d4nugi7fla2ef" path="res://enemies/villager_baby_stats.tres" id="2_46jx0"]
@@ -10,22 +10,22 @@ height = 28.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(26, 32)
 
-[node name="VillagerBaby" type="StaticBody2D"]
+[node name="VillagerBaby" type="StaticBody2D" unique_id=178991219]
 collision_layer = 2
 script = ExtResource("1_46jx0")
 stats = ExtResource("2_46jx0")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=38606796]
 texture = ExtResource("3_6oxx6")
 hframes = 9
 vframes = 9
 frame = 76
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2084714803]
 shape = SubResource("CapsuleShape2D_c8iql")
 
-[node name="DetectionArea" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="." unique_id=951792947]
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=962086317]
 shape = SubResource("RectangleShape2D_h2yge")
