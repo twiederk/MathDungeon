@@ -197,6 +197,7 @@ location = "dungeon_3"
 [node name="ZombiePiglin3" parent="Enemies" unique_id=1158698120 instance=ExtResource("16_7e0qn")]
 position = Vector2(1384, 943)
 location = "dungeon_3"
+flip_sprite = true
 
 [node name="Zombie1" parent="Enemies" unique_id=88138127 instance=ExtResource("17_1gckk")]
 position = Vector2(80, 541)
@@ -223,6 +224,7 @@ location = "dungeon_0"
 [node name="Drown2" parent="Enemies" unique_id=1845808839 instance=ExtResource("15_inpva")]
 position = Vector2(351, 284)
 location = "dungeon_0"
+flip_sprite = true
 
 [node name="Enderman2" parent="Enemies" unique_id=1926164710 instance=ExtResource("18_vjnci")]
 position = Vector2(100, 867)
@@ -236,15 +238,15 @@ position = Vector2(385, 1310)
 location = "dungeon_1"
 
 [node name="ZombiePiglin" parent="Enemies" unique_id=848151852 instance=ExtResource("16_7e0qn")]
-position = Vector2(322, 887)
+position = Vector2(308, 896)
 location = "dungeon_1"
 
 [node name="Spider" parent="Enemies" unique_id=307987464 instance=ExtResource("19_udwem")]
-position = Vector2(536, 972)
+position = Vector2(479, 971)
 location = "dungeon_1"
 
 [node name="Drown3" parent="Enemies" unique_id=965328885 instance=ExtResource("15_inpva")]
-position = Vector2(566, 1171)
+position = Vector2(573, 1168)
 location = "dungeon_1"
 
 [node name="ZombieBaby" parent="Enemies" unique_id=1582023112 instance=ExtResource("20_yugn5")]
@@ -252,7 +254,7 @@ position = Vector2(273, 1301)
 location = "dungeon_1"
 
 [node name="ZombieBaby2" parent="Enemies" unique_id=1734856488 instance=ExtResource("20_yugn5")]
-position = Vector2(210, 447)
+position = Vector2(237, 445)
 location = "dungeon_0"
 
 [node name="Creeper" parent="Enemies" unique_id=1165393389 instance=ExtResource("21_g6hd4")]
@@ -265,6 +267,7 @@ location = "dungeon_1"
 
 [node name="ZombiePiglin2" parent="Enemies" unique_id=1473421824 instance=ExtResource("16_7e0qn")]
 position = Vector2(1249, 482)
+flip_sprite = true
 
 [node name="Drown4" parent="Enemies" unique_id=53245081 instance=ExtResource("15_inpva")]
 position = Vector2(1378, 476)
@@ -277,6 +280,7 @@ location = "dungeon_2"
 [node name="Enderman4" parent="Enemies" unique_id=1401342693 instance=ExtResource("18_vjnci")]
 position = Vector2(1166, 466)
 location = "dungeon_2"
+flip_sprite = true
 
 [node name="Zombie2" parent="Enemies" unique_id=1586649158 instance=ExtResource("17_1gckk")]
 position = Vector2(942, 673)
@@ -345,6 +349,7 @@ shape = SubResource("RectangleShape2D_seu75")
 [node name="ShootingSkeleton4" parent="Enemies" unique_id=1311664668 instance=ExtResource("23_pryxa")]
 position = Vector2(1329, 338)
 location = "dungeon_2"
+flip_sprite = true
 
 [node name="CollisionShape2D" parent="Enemies/ShootingSkeleton4/ShootingArea" index="0"]
 position = Vector2(111, 28)
@@ -353,6 +358,7 @@ shape = SubResource("RectangleShape2D_htxhm")
 [node name="ShootingSkeleton5" parent="Enemies" unique_id=1748502866 instance=ExtResource("23_pryxa")]
 position = Vector2(1235, 52)
 location = "dungeon_2"
+flip_sprite = true
 
 [node name="CollisionShape2D" parent="Enemies/ShootingSkeleton5/ShootingArea" index="0"]
 position = Vector2(29, 172)
@@ -377,6 +383,7 @@ shape = SubResource("RectangleShape2D_0rl1p")
 [node name="ShootingPilligar" parent="Enemies" unique_id=1893404724 instance=ExtResource("24_73cfi")]
 position = Vector2(690, 1687)
 location = "woodland_mansion"
+flip_sprite = true
 
 [node name="CollisionShape2D" parent="Enemies/ShootingPilligar/ShootingArea" parent_id_path=PackedInt32Array(1893404724, 1800570189) index="0" unique_id=931633192]
 position = Vector2(192, 155)
@@ -393,6 +400,7 @@ shape = SubResource("RectangleShape2D_facbu")
 [node name="ShootingPilligar3" parent="Enemies" unique_id=85220774 instance=ExtResource("24_73cfi")]
 position = Vector2(687, 1996)
 location = "woodland_mansion"
+flip_sprite = true
 
 [node name="CollisionShape2D" parent="Enemies/ShootingPilligar3/ShootingArea" parent_id_path=PackedInt32Array(85220774, 1800570189) index="0" unique_id=931633192]
 position = Vector2(193, -151)
@@ -411,12 +419,14 @@ position = Vector2(246, 1711)
 
 [node name="Villager2" parent="Enemies" unique_id=1676253217 instance=ExtResource("25_tpygc")]
 position = Vector2(73, 1918)
+flip_sprite = true
 
 [node name="Villager3" parent="Enemies" unique_id=1590534486 instance=ExtResource("25_tpygc")]
 position = Vector2(110, 1956)
 
 [node name="Villager4" parent="Enemies" unique_id=717510801 instance=ExtResource("25_tpygc")]
 position = Vector2(-17, 1680)
+flip_sprite = true
 
 [node name="Villager5" parent="Enemies" unique_id=258238857 instance=ExtResource("25_tpygc")]
 position = Vector2(149, 1512)
@@ -498,15 +508,18 @@ position = Vector2(969, 2500)
 
 [node name="PiglinZombie2" parent="Enemies" unique_id=1982493857 instance=ExtResource("16_7e0qn")]
 position = Vector2(769, 2574)
+flip_sprite = true
 
 [node name="PiglinZombie3" parent="Enemies" unique_id=1735956958 instance=ExtResource("16_7e0qn")]
 position = Vector2(973, 2536)
 
 [node name="PiglinZombie4" parent="Enemies" unique_id=257177548 instance=ExtResource("16_7e0qn")]
 position = Vector2(791, 2536)
+flip_sprite = true
 
 [node name="PiglinZombie5" parent="Enemies" unique_id=801909994 instance=ExtResource("16_7e0qn")]
 position = Vector2(795, 2497)
+flip_sprite = true
 
 [node name="PiglinZombie6" parent="Enemies" unique_id=1233291606 instance=ExtResource("16_7e0qn")]
 position = Vector2(1186, 2364)
