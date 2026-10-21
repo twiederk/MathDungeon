@@ -121,6 +121,7 @@ position = Vector2(1190, 681)
 
 [node name="ShootingGhast" parent="Enemies" unique_id=257884768 instance=ExtResource("8_orhj5")]
 position = Vector2(528, 512)
+flip_sprite = true
 
 [node name="CollisionShape2D" parent="Enemies/ShootingGhast/ShootingArea" index="0"]
 rotation = -0.7644542
@@ -128,6 +129,7 @@ shape = SubResource("CapsuleShape2D_bcl7h")
 
 [node name="ShootingGhast2" parent="Enemies" unique_id=1380751500 instance=ExtResource("8_orhj5")]
 position = Vector2(465, 443)
+flip_sprite = true
 
 [node name="CollisionShape2D" parent="Enemies/ShootingGhast2/ShootingArea" index="0"]
 position = Vector2(76, 62)
@@ -136,6 +138,7 @@ shape = SubResource("CapsuleShape2D_ygm8x")
 
 [node name="ShootingGhast3" parent="Enemies" unique_id=90495559 instance=ExtResource("8_orhj5")]
 position = Vector2(484, 511)
+flip_sprite = true
 
 [node name="CollisionShape2D" parent="Enemies/ShootingGhast3/ShootingArea" index="0"]
 rotation = -0.6789331
@@ -149,12 +152,14 @@ position = Vector2(1065, 756)
 
 [node name="Enderman3" parent="Enemies" unique_id=997121870 instance=ExtResource("9_muida")]
 position = Vector2(400, 968)
+flip_sprite = true
 
 [node name="Enderman4" parent="Enemies" unique_id=711608393 instance=ExtResource("9_muida")]
 position = Vector2(1283, 1144)
 
 [node name="Enderman5" parent="Enemies" unique_id=884839533 instance=ExtResource("9_muida")]
 position = Vector2(654, 109)
+flip_sprite = true
 
 [node name="Piglin13" parent="Enemies" unique_id=757534575 instance=ExtResource("5_lci3x")]
 position = Vector2(1557, 242)
@@ -164,18 +169,23 @@ position = Vector2(1483, 241)
 
 [node name="Piglin15" parent="Enemies" unique_id=122502232 instance=ExtResource("5_lci3x")]
 position = Vector2(926, 336)
+flip_sprite = true
 
 [node name="Piglin16" parent="Enemies" unique_id=841312482 instance=ExtResource("5_lci3x")]
 position = Vector2(764, 72)
+flip_sprite = true
 
 [node name="Piglin17" parent="Enemies" unique_id=883996739 instance=ExtResource("5_lci3x")]
 position = Vector2(761, 119)
+flip_sprite = true
 
 [node name="Piglin18" parent="Enemies" unique_id=799159415 instance=ExtResource("5_lci3x")]
 position = Vector2(717, 91)
+flip_sprite = true
 
 [node name="PiglinBoss2" parent="Enemies" unique_id=1149415217 instance=ExtResource("6_xedoa")]
 position = Vector2(845, 81)
+flip_sprite = true
 
 [node name="PiglinBoss3" parent="Enemies" unique_id=1725491590 instance=ExtResource("6_xedoa")]
 position = Vector2(1624, 258)
@@ -215,6 +225,7 @@ position = Vector2(780, 745)
 
 [node name="PiglinZombie11" parent="Enemies" unique_id=1248870012 instance=ExtResource("10_pts44")]
 position = Vector2(417, 1233)
+flip_sprite = true
 
 [node name="PiglinZombie12" parent="Enemies" unique_id=2035565625 instance=ExtResource("10_pts44")]
 position = Vector2(503, 1115)
@@ -224,15 +235,19 @@ position = Vector2(500, 1233)
 
 [node name="PiglinZombie14" parent="Enemies" unique_id=1377593764 instance=ExtResource("10_pts44")]
 position = Vector2(334, 1114)
+flip_sprite = true
 
 [node name="PiglinZombie15" parent="Enemies" unique_id=1092950307 instance=ExtResource("10_pts44")]
 position = Vector2(371, 1233)
+flip_sprite = true
 
 [node name="PiglinZombie16" parent="Enemies" unique_id=1099697158 instance=ExtResource("10_pts44")]
 position = Vector2(335, 1204)
+flip_sprite = true
 
 [node name="PiglinZombie17" parent="Enemies" unique_id=1467114699 instance=ExtResource("10_pts44")]
 position = Vector2(335, 1165)
+flip_sprite = true
 
 [node name="PiglinZombie18" parent="Enemies" unique_id=1486199099 instance=ExtResource("10_pts44")]
 position = Vector2(513, 1153)
@@ -240,6 +255,7 @@ position = Vector2(513, 1153)
 [node name="Blaze" parent="Enemies" unique_id=1171440455 instance=ExtResource("19_wat66")]
 position = Vector2(220, 240)
 location = "nether_fortress"
+flip_sprite = true
 
 [node name="CollisionShape2D" parent="Enemies/Blaze/ShootingArea" parent_id_path=PackedInt32Array(1171440455, 1951971501) index="0" unique_id=1003688871]
 position = Vector2(133.5, -2)
@@ -248,6 +264,7 @@ shape = SubResource("RectangleShape2D_oc63w")
 [node name="Blaze2" parent="Enemies" unique_id=905791514 instance=ExtResource("19_wat66")]
 position = Vector2(377, 242)
 location = "nether_fortress"
+flip_sprite = true
 
 [node name="CollisionShape2D" parent="Enemies/Blaze2/ShootingArea" parent_id_path=PackedInt32Array(905791514, 1951971501) index="0" unique_id=1003688871]
 position = Vector2(136.5, -3)
@@ -256,6 +273,7 @@ shape = SubResource("RectangleShape2D_ej081")
 [node name="Blaze3" parent="Enemies" unique_id=1265596083 instance=ExtResource("19_wat66")]
 position = Vector2(53, 152)
 location = "nether_fortress"
+flip_sprite = true
 
 [node name="ShootingArea" parent="Enemies/Blaze3" index="3" unique_id=1951971501]
 position = Vector2(52, 90)
@@ -266,6 +284,7 @@ shape = SubResource("CircleShape2D_hvrnb")
 [node name="Blaze4" parent="Enemies" unique_id=636626386 instance=ExtResource("19_wat66")]
 position = Vector2(66, 302)
 location = "nether_fortress"
+flip_sprite = true
 
 [node name="CollisionShape2D" parent="Enemies/Blaze4/ShootingArea" parent_id_path=PackedInt32Array(636626386, 1951971501) index="0" unique_id=1003688871]
 position = Vector2(39, -60)
@@ -274,6 +293,7 @@ shape = SubResource("CircleShape2D_i43io")
 [node name="Blaze5" parent="Enemies" unique_id=244087369 instance=ExtResource("19_wat66")]
 position = Vector2(134, 161)
 location = "nether_fortress"
+flip_sprite = true
 
 [node name="CollisionShape2D" parent="Enemies/Blaze5/ShootingArea" parent_id_path=PackedInt32Array(244087369, 1951971501) index="0" unique_id=1003688871]
 position = Vector2(-31, 83)
@@ -282,6 +302,7 @@ shape = SubResource("CircleShape2D_ntn28")
 [node name="Blaze6" parent="Enemies" unique_id=1761431005 instance=ExtResource("19_wat66")]
 position = Vector2(102, 246)
 location = "nether_fortress"
+flip_sprite = true
 
 [node name="CollisionShape2D" parent="Enemies/Blaze6/ShootingArea" parent_id_path=PackedInt32Array(1761431005, 1951971501) index="0" unique_id=1003688871]
 position = Vector2(105, -9)
@@ -289,6 +310,7 @@ shape = SubResource("RectangleShape2D_mcvh8")
 
 [node name="Blaze7" parent="Enemies" unique_id=1961541518 instance=ExtResource("19_wat66")]
 position = Vector2(448, 364)
+flip_sprite = true
 
 [node name="CollisionShape2D" parent="Enemies/Blaze7/ShootingArea" parent_id_path=PackedInt32Array(1961541518, 1951971501) index="0" unique_id=1003688871]
 position = Vector2(61, 102)
@@ -297,6 +319,7 @@ shape = SubResource("CapsuleShape2D_40bte")
 
 [node name="Blaze8" parent="Enemies" unique_id=1708767096 instance=ExtResource("19_wat66")]
 position = Vector2(239, 647)
+flip_sprite = true
 
 [node name="Player" parent="." unique_id=1035642811 instance=ExtResource("3_ylnya")]
 position = Vector2(457, 1195)

@@ -3,7 +3,7 @@ extends Control
 
 
 const SURPRISE_DAMAGE: int = 1
-const SURPRISE_MESSAGE: String = "Überraschungsangriff! −1 LP"
+const SURPRISE_MESSAGE: String = "!!!ÜBERRASCHUNGSANGRIFF!!!"
 
 var addition_exercise_generator = AdditionExerciseGenerator.new()
 var subtraction_exercise_generator = SubtractionExerciseGenerator.new()
@@ -41,11 +41,9 @@ func open_for(my_enemy: Enemy, attack_type: Enemy.AttackType = Enemy.AttackType.
 		_apply_surprise_attack()
 	visible = true
 	answer_line_edit.grab_focus()
-	get_tree().paused = true
 
 
 func _apply_surprise_attack() -> void:
-	Sound.play(Sound.surprise_attack)
 	if enemy.hurt(SURPRISE_DAMAGE) <= 0:
 		_defeat_enemy()
 		return
@@ -180,7 +178,6 @@ func _game_over() -> void:
 func _close_dialog() -> void:
 	visible = false
 	GameSession.display_state = GameSession.DisplayState.NONE
-	get_tree().paused = false
 	enemy = null
 	exercise = null
 
@@ -213,13 +210,11 @@ func _on_enemy_health_changed() -> void:
 
 func _on_main_menu_button_pressed() -> void:
 	GameSession.display_state = GameSession.DisplayState.NONE
-	get_tree().paused = false
 	get_tree().change_scene_to_file("res://gui/start_gui.tscn")
 
 
 func _on_name_entry_button_pressed():
 	GameSession.display_state = GameSession.DisplayState.NONE
-	get_tree().paused = false
 	get_tree().change_scene_to_file("res://gui/name_entry_dialog.tscn")
 
 

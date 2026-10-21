@@ -7,12 +7,11 @@ var enemy: Enemy
 
 
 func before_each():
-	enemy = ENEMY_SCENE.instantiate()
+	enemy = add_child_autofree(ENEMY_SCENE.instantiate())
 	watch_signals(enemy)
 
 
 func after_each():
-	enemy.free()
 	enemy = null
 
 

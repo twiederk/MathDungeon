@@ -41,7 +41,7 @@ func _place_companion(companion_type: String, slot: int, used: Array[Node]) -> v
 	if companion == null:
 		return
 	used.append(companion)
-	companion.global_position = _player.global_position + Vector2(60.0 + (slot * 40.0), 0.0)
+	companion.global_position = _player.global_position + Vector2(40.0 + (slot * 40.0), 0.0)
 	companion.start_following(_player)
 
 

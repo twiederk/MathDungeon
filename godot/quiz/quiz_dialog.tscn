@@ -7,7 +7,6 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_jj3p0"]
 
 [node name="QuizDialog" type="Control" unique_id=1853310064]
-process_mode = 2
 visible = false
 layout_mode = 3
 anchors_preset = 15

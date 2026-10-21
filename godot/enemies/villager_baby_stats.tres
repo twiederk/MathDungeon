@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_umowu")
 name = "Baby Villager"
+max_hit_points = 2
 arithmetic = Array[int]([8])
 hard_time_limit = 30
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

@@ -24,6 +24,7 @@ func _ready() -> void:
 	_setup_character_stats()
 	_setup_player_portrait()
 	CompanionSetup.new(companions_root, player).setup()
+	_on_simulation_running_changed(GameSession.is_simulation_running())
 
 
 func _apply_start_position() -> void:
@@ -43,6 +44,8 @@ func _setup_locations() -> void:
 
 
 func _setup_signals() -> void:
+	GameSession.simulation_running_changed.connect(_on_simulation_running_changed)
+
 	for child in enemies_root.get_children():
 		if child.has_signal("encountered"):
 			child.encountered.connect(_on_enemy_encountered)
@@ -56,6 +59,15 @@ func _setup_signals() -> void:
 	for child in companions_root.get_children():
 		if child.has_signal("companion_picked_up"):
 			child.companion_picked_up.connect(_on_companion_picked_up)
+
+
+func _on_simulation_running_changed(running: bool) -> void:
+	var mode := Node.PROCESS_MODE_INHERIT
+	if not running:
+		mode = Node.PROCESS_MODE_DISABLED
+	player.set_deferred("process_mode", mode)
+	enemies_root.set_deferred("process_mode", mode)
+	companions_root.set_deferred("process_mode", mode)
 
 
 func _setup_limits_and_borders() -> void:
