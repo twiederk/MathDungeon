@@ -3,7 +3,7 @@ extends Control
 
 
 const SURPRISE_DAMAGE: int = 1
-const SURPRISE_MESSAGE: String = "Überraschungsangriff! −1 LP"
+const SURPRISE_MESSAGE: String = "!!!ÜBERRASCHUNGSANGRIFF!!!"
 
 var addition_exercise_generator = AdditionExerciseGenerator.new()
 var subtraction_exercise_generator = SubtractionExerciseGenerator.new()
