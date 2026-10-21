@@ -3,22 +3,22 @@
 [ext_resource type="Texture2D" uid="uid://bggqwbf158p2s" path="res://enemies/hit_effect.png" id="1_digvr"]
 [ext_resource type="Script" uid="uid://dypbwgff252ch" path="res://enemies/effect.gd" id="2_6vuwc"]
 
-[sub_resource type="AtlasTexture" id="1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkwpw"]
 atlas = ExtResource("1_digvr")
-region = Rect2(0, 0, 24, 24)
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_digvr"]
 atlas = ExtResource("1_digvr")
-region = Rect2(24, 0, 24, 24)
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("1")
+"texture": SubResource("AtlasTexture_xkwpw")
 }, {
 "duration": 1.0,
-"texture": SubResource("2")
+"texture": SubResource("AtlasTexture_digvr")
 }],
 "loop": 0,
 "name": &"Animate",
