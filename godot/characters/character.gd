@@ -81,7 +81,7 @@ func get_armor() -> int:
 
 
 func hurt(damage: int) -> int:
-	Sound.play(Sound.hurt)
+	Sound.play(Sound.hurt_player)
 	_spawn_hit_effect()
 	hit_points -= max(1, damage - get_armor())
 	return hit_points
