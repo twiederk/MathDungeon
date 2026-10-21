@@ -2,6 +2,7 @@ class_name Character
 
 
 const PORTRAIT_CATALOG: PortraitCatalog = preload("res://characters/portrait_catalog.tres")
+const HIT_EFFECT_SCENE: PackedScene = preload("res://enemies/hit_effect.tscn")
 const WOLF_DAMAGE: int = 1
 
 signal weapon_damage_changed
@@ -80,8 +81,27 @@ func get_armor() -> int:
 
 
 func hurt(damage: int) -> int:
+	Sound.play(Sound.hurt)
+	_spawn_hit_effect()
 	hit_points -= max(1, damage - get_armor())
 	return hit_points
+
+
+func _spawn_hit_effect() -> void:
+	var player := _find_player()
+	if player == null:
+		return
+	var effect := HIT_EFFECT_SCENE.instantiate()
+	effect.global_position = player.global_position
+	# parented to the scene root so the effect keeps animating while the player is disabled
+	player.get_tree().current_scene.add_child(effect)
+
+
+func _find_player() -> Node2D:
+	var tree := Engine.get_main_loop() as SceneTree
+	if tree == null or tree.current_scene == null:
+		return null
+	return tree.current_scene.find_child("Player", true, false) as Node2D
 
 
 func needs_healing() -> bool:
