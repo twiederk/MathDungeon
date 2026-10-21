@@ -93,7 +93,6 @@ func _spawn_hit_effect() -> void:
 		return
 	var effect := HIT_EFFECT_SCENE.instantiate()
 	effect.global_position = player.global_position
-	# parented to the scene root so the effect keeps animating while the player is disabled
 	player.get_tree().current_scene.add_child(effect)
 
 
