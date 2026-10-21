@@ -8,7 +8,8 @@ extends Node
 @export var victory: AudioStream
 @export var achievement_unlock: AudioStream
 @export var companion_ally: AudioStream
-@export var hurt: AudioStream
+@export var hurt_player: AudioStream
+@export var hurt_enemy: AudioStream
 
 @onready var sound_players = get_children()
 

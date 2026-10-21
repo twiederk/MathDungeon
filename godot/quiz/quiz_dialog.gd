@@ -38,16 +38,19 @@ func open_for(my_enemy: Enemy, attack_type: Enemy.AttackType = Enemy.AttackType.
 	_setup_time_limit_progress_bar()
 	_setup_enemy_stats_sheet()
 	if attack_type == Enemy.AttackType.SURPRISE:
-		_apply_surprise_attack()
+		if _surprise_attack():
+			# Enemy was killed by the surprise attack
+			return
 	visible = true
 	answer_line_edit.grab_focus()
 
 
-func _apply_surprise_attack() -> void:
+func _surprise_attack() -> bool:
 	if enemy.hurt(SURPRISE_DAMAGE) <= 0:
 		_defeat_enemy()
-		return
+		return true
 	question_label.text = SURPRISE_MESSAGE + "\n" + exercise.question
+	return false
 
 
 func _setup_exercise() -> void:

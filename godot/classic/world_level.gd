@@ -10,7 +10,7 @@ var loot_droper: LootDropper = LootDropper.new()
 @onready var player: Player = $Player
 @onready var map_borders = $MapBorders
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
-@onready var nether_portal: NetherPortal = $Locations/NetherPortal
+@onready var nether_portal: NetherPortal = get_node_or_null("Locations/NetherPortal")
 
 @onready var quiz: Control = $UI/QuizDialog
 @onready var player_stats_sheet: StatsSheet = $UI/PlayerStatsSheet

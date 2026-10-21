@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://drpmo3xnxwl3i"]
+[gd_scene format=3 uid="uid://drpmo3xnxwl3i"]
 
 [ext_resource type="Script" uid="uid://b7x46e8sw1gka" path="res://enemies/enemy.gd" id="1_inj8k"]
 [ext_resource type="Resource" uid="uid://crpyvnewu5sv3" path="res://enemies/zombie_baby_stats.tres" id="2_inj8k"]
@@ -11,24 +11,24 @@ height = 22.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(22, 24)
 
-[node name="ZombieBaby" type="StaticBody2D"]
+[node name="ZombieBaby" type="StaticBody2D" unique_id=1368937937]
 collision_layer = 2
 script = ExtResource("1_inj8k")
 stats = ExtResource("2_inj8k")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=678482594]
 texture = ExtResource("3_jelrq")
 hframes = 9
 vframes = 9
 frame = 75
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1295150634]
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_inj8k")
 
-[node name="DetectionArea" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1615600132]
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1848925512]
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_h2yge")

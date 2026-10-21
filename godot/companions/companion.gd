@@ -6,6 +6,9 @@ signal companion_picked_up(companion: Companion)
 @export var follow_speed: float = 150.0
 @export var follow_distance: float = 80.0
 @export var min_follow_distance: float = 40.0
+@export var catch_up_margin: float = 1.15
+@export var catch_up_distance: float = 150.0
+@export var teleport_distance: float = 400.0
 
 @onready var pickup_area: Area2D = $PickupArea
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -38,10 +41,14 @@ func _follow_player(_delta: float) -> void:
 	
 	var distance_to_player = global_position.distance_to(player_reference.global_position)
 	
-	# Only move if too far from player
+	if distance_to_player > teleport_distance:
+		global_position = player_reference.global_position
+		velocity = Vector2.ZERO
+		return
+	
 	if distance_to_player > follow_distance:
 		var direction = (player_reference.global_position - global_position).normalized()
-		velocity = direction * follow_speed
+		velocity = direction * _current_follow_speed()
 	elif distance_to_player < min_follow_distance:
 		var direction = (global_position - player_reference.global_position).normalized()
 		velocity = direction * follow_speed * 0.5
@@ -50,6 +57,13 @@ func _follow_player(_delta: float) -> void:
 	
 	move_and_slide()
 	_update_sprite_direction(velocity.x)
+
+
+func _current_follow_speed() -> float:
+	var excess := global_position.distance_to(player_reference.global_position) - follow_distance
+	var factor := clampf(excess / catch_up_distance, 0.0, 1.0)
+	var top_speed := maxf(follow_speed, player_reference.velocity.length() * catch_up_margin)
+	return lerpf(follow_speed, top_speed, factor)
 
 
 func _update_sprite_direction(horizontal_direction: float) -> void:
