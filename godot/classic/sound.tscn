@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://r3tq1fxiync4" path="res://companions/AllayPickup.mp3" id="9_3toxw"]
 [ext_resource type="AudioStream" uid="uid://c3m6bnc8mrhew" path="res://classic/hurt_player.mp3" id="10_lmvu1"]
 [ext_resource type="AudioStream" uid="uid://h22lljc06kbg" path="res://enemies/hurt_enemy.mp3" id="11_fhr66"]
+[ext_resource type="AudioStream" path="res://enemies/iron_golem_hurt4.ogg" id="12_golem"]
 
 [node name="Sound" type="Node" unique_id=207141569]
 process_mode = 3
@@ -25,6 +26,7 @@ achievement_unlock = ExtResource("6_achievement")
 companion_ally = ExtResource("9_3toxw")
 hurt_player = ExtResource("10_lmvu1")
 hurt_enemy = ExtResource("11_fhr66")
+golem_hostile = ExtResource("12_golem")
 
 [node name="AudioStreamPlayer1" type="AudioStreamPlayer" parent="." unique_id=895126907]
 

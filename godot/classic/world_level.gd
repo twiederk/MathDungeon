@@ -102,6 +102,14 @@ func _on_enemy_encountered(enemy: StaticBody2D, attack_type: Enemy.AttackType) -
 func _on_enemy_defeated(enemy: Enemy) -> void:
 	for item in loot_droper.drop_items(enemy, items_root):
 		_register_item(item)
+	if enemy.is_in_group("villagers"):
+		_enrage_iron_golems(enemy.global_position)
+
+
+func _enrage_iron_golems(villager_position: Vector2) -> void:
+	for child in enemies_root.get_children():
+		if child.has_method("on_villager_defeated"):
+			child.on_villager_defeated(villager_position, player)
 
 
 func _register_item(item: Item) -> void:
