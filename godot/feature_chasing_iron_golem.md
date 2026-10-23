@@ -200,9 +200,7 @@ Add one more stream slot:
 @export var golem_hostile: AudioStream
 ```
 
-and assign it in `sound.tscn`. There is no dedicated asset yet — until one is added, point it at
-`res://enemies/hurt_enemy.mp3` (the only usable "creature" sound in the project) so the feature is
-complete; swapping in a real golem roar later is a pure scene-file change.
+and assign it to `res://enemies/iron_golem_hurt4.ogg` in `sound.tscn`.
 
 ### 6. `classic/overworld.tscn`
 
