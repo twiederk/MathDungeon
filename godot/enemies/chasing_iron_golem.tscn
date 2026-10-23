@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c6iqb6c40uo77"]
+
+[ext_resource type="Script" uid="uid://cekdod75hsopj" path="res://enemies/chasing_iron_golem.gd" id="1_cgdlm"]
+[ext_resource type="PackedScene" uid="uid://b1giv0tpkj4hj" path="res://enemies/iron_golem.tscn" id="2_cgdlm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cgdlm"]
+height = 28.0
+
+[node name="ChasingIronGolem" type="CharacterBody2D" unique_id=1695140959]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_cgdlm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1512981916]
+shape = SubResource("CapsuleShape2D_cgdlm")
+
+[node name="IronGolem" parent="." unique_id=538109564 instance=ExtResource("2_cgdlm")]
+collision_layer = 0

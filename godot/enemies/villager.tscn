@@ -10,7 +10,7 @@ height = 28.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(26, 32)
 
-[node name="Villager" type="StaticBody2D"]
+[node name="Villager" type="StaticBody2D" groups=["villagers"]]
 collision_layer = 2
 script = ExtResource("1_bhqoy")
 stats = ExtResource("2_bhqoy")

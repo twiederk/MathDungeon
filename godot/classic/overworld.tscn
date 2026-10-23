@@ -27,7 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://bjuiaid8a3011" path="res://enemies/villager_baby.tscn" id="26_jyd2n"]
 [ext_resource type="PackedScene" uid="uid://dudt4kmrappps" path="res://enemies/villager_zombie.tscn" id="27_64f8k"]
 [ext_resource type="PackedScene" uid="uid://pg7u76p21jhj" path="res://enemies/villager_zombie_baby.tscn" id="28_hpy5g"]
-[ext_resource type="PackedScene" uid="uid://b1giv0tpkj4hj" path="res://enemies/iron_golem.tscn" id="29_ufkdo"]
+[ext_resource type="PackedScene" path="res://enemies/chasing_iron_golem.tscn" id="29_chasing"]
 [ext_resource type="PackedScene" uid="uid://crn8o2b0rjowu" path="res://enemies/patrolling_vindicator.tscn" id="30_7ggy0"]
 [ext_resource type="PackedScene" uid="uid://dhxipuoeb6vgp" path="res://enemies/evoker.tscn" id="31_2gccy"]
 [ext_resource type="PackedScene" uid="uid://dlocg2skf3j3j" path="res://animals/axolotl.tscn" id="32_6f203"]
@@ -494,13 +494,13 @@ position = Vector2(1358, 1734)
 [node name="VillagerBabyZombie3" parent="Enemies" unique_id=223156601 instance=ExtResource("28_hpy5g")]
 position = Vector2(1349, 1773)
 
-[node name="IronGolem" parent="Enemies" unique_id=3751457 instance=ExtResource("29_ufkdo")]
+[node name="IronGolem" parent="Enemies" unique_id=3751457 instance=ExtResource("29_chasing")]
 position = Vector2(99, 1700)
 
-[node name="IronGolem2" parent="Enemies" unique_id=621275917 instance=ExtResource("29_ufkdo")]
+[node name="IronGolem2" parent="Enemies" unique_id=621275917 instance=ExtResource("29_chasing")]
 position = Vector2(182, 1828)
 
-[node name="IronGolem3" parent="Enemies" unique_id=1873438235 instance=ExtResource("29_ufkdo")]
+[node name="IronGolem3" parent="Enemies" unique_id=1873438235 instance=ExtResource("29_chasing")]
 position = Vector2(1185, 2527)
 
 [node name="PiglinZombie" parent="Enemies" unique_id=2490144 instance=ExtResource("16_7e0qn")]

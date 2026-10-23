@@ -10,6 +10,7 @@ extends Node
 @export var companion_ally: AudioStream
 @export var hurt_player: AudioStream
 @export var hurt_enemy: AudioStream
+@export var golem_hostile: AudioStream
 
 @onready var sound_players = get_children()
 
