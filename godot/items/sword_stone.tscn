@@ -9,6 +9,7 @@
 collision_layer = 2
 script = ExtResource("1_qfojx")
 damage = 2
+item_id = "sword_stone"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=319731519]
 texture = ExtResource("2_qaqor")
