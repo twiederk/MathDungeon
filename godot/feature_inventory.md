@@ -36,11 +36,12 @@ rules must stay simple: few slots, clear icons, one obvious action per item.
 ### In scope
 - Weapon slot, Armor slot (both fixed, exactly one item each).
 - A small fixed number of Consumable slots (start with 1 type: Healing Potion, stacked as a count).
-- Manual "use" action for consumables (keybind + inventory UI button).
+- Manual "use" action for consumables (**H** key only, no button in the UI).
 - Equip/replace flow for Weapon and Armor, using the existing "only replace if better" rule to keep
   decisions simple for kids (no drag-and-drop, no selling/discarding UI).
 - A dedicated **Character Sheet screen**, toggled like the existing Quest Log (own `DisplayState`, own
-  input action, pauses the simulation while open), showing stats + equipped gear + consumables.
+  input action bound to **F2**, pauses the simulation while open), showing stats + equipped gear +
+  consumables.
 - Save/load of **weapon and armor only** via `SaveManager`.
 
 ### Out of scope (future work, not part of this feature)
@@ -90,9 +91,9 @@ pass-throughs to `inventory.weapon_damage` / `inventory.armor_value` so existing
 - `HealingPotion.execute()` calls `CharacterManager.current.inventory.add_potion()` instead of healing
   immediately. If the potion slot is full, play a distinct "can't carry more" sound/feedback instead of
   silently doing nothing (important for kids to understand why pickup had no effect).
-- New input action `use_potion` (default key, e.g. `H`) and a button on the inventory UI both call
-  `CharacterManager.current.inventory.use_potion()`, which heals the player by a fixed amount (or to
-  full, matching current potion behavior) when count > 0.
+- New input action `use_potion` (bound to **H**) calls `CharacterManager.current.inventory.use_potion()`,
+  which heals the player by a fixed amount (or to full, matching current potion behavior) when
+  count > 0. There is no "Use Potion" button in the character sheet — the key is the only trigger.
 - `Lighter` / `EyeOfEnder` stay unchanged (`GameSession` flags), just get surfaced read-only in the UI.
 
 ### UI
@@ -104,12 +105,14 @@ Note: `StatsSheet` (`gui/stats_sheet.tscn`) is reused today both as the always-v
 - New scene `gui/character_sheet_gui.tscn` / `character_sheet_gui.gd`, built the same way as
   `quests/quest_log_gui.gd`:
   - Listens to `GameSession.display_state_changed`; shows/hides itself and flips `visible`.
-  - New input action `character_sheet` toggles `GameSession.display_state` between `NONE` and the new
-    `DisplayState.CHARACTER_SHEET` value (mirrors the `quest_log` action/`QUEST_LOG` state pair).
+  - New input action `character_sheet` (bound to **F2**, mirroring `quest_log`'s F1 binding) toggles
+    `GameSession.display_state` between `NONE` and the new `DisplayState.CHARACTER_SHEET` value (mirrors
+    the `quest_log` action/`QUEST_LOG` state pair).
   - Because `is_simulation_running()` already checks `display_state == DisplayState.NONE`, opening the
     character sheet automatically pauses the simulation like the quest log does — no extra wiring needed.
   - Contents: an embedded `StatsSheet` instance (HP/damage/armor, unchanged), plus new rows for Weapon
-    icon, Armor icon, Potion count + "Use" button, and read-only Lighter / Eyes of Ender indicators.
+    icon, Armor icon, Potion count (no "Use" button — potions are only consumed via the **H** key), and
+    read-only Lighter / Eyes of Ender indicators.
 - `gui/pause_menu.tscn` / `pause_gui.tscn` are **not modified** — pausing and the character sheet remain
   two separate, independently toggled screens.
 - The character sheet listens to `Inventory.changed` (and existing `GameSession` signals) to refresh,
@@ -168,23 +171,24 @@ Note: `StatsSheet` (`gui/stats_sheet.tscn`) is reused today both as the always-v
   `add_potion()` returned `true`, otherwise play a "can't carry more" cue and leave the potion item in
   the world so the pickup isn't silently lost.
 - `Lighter.execute()` / `EyeOfEnder.execute()` are not touched.
-- Add the `use_potion` input action in `project.godot` (`InputMap`), wired wherever player input is
-  handled (likely a new check next to the existing `Input.is_action_just_pressed("quest_log")` pattern
-  in a relevant `_process`), calling `CharacterManager.current.inventory.use_potion()`.
+- Add the `use_potion` input action in `project.godot` (`InputMap`), bound to **H**, wired wherever
+  player input is handled (likely a new check next to the existing
+  `Input.is_action_just_pressed("quest_log")` pattern in a relevant `_process`), calling
+  `CharacterManager.current.inventory.use_potion()`.
 
 ### Phase 4 — Character Sheet screen
 
 - Add `GameSession.DisplayState.CHARACTER_SHEET` to the enum in `classic/game_session.gd`, next to
   `QUEST_LOG`. No other change needed in `game_session.gd` — `is_simulation_running()` already treats
   any non-`NONE` state as paused.
-- Add the `character_sheet` input action in `project.godot`.
+- Add the `character_sheet` input action in `project.godot`, bound to **F2**.
 - Add `gui/character_sheet_gui.gd` + `gui/character_sheet_gui.tscn`, structurally copying
   `quests/quest_log_gui.gd`'s `_process`/`_on_display_state_changed`/`_show_menu`/`_hide_menu` pattern,
   but toggling `DisplayState.CHARACTER_SHEET` on the `character_sheet` action instead of `QUEST_LOG` on
   `quest_log`. Its scene embeds one `StatsSheet` instance unchanged (for HP/damage/armor) plus new
-  `Label`/`TextureRect` nodes for weapon icon, armor icon, potion count, a "Use Potion" `Button`, and
-  read-only Lighter/Eyes-of-Ender indicators fed by `GameSession.has_lighter_changed` /
-  `eyes_of_ender_changed` and `Inventory.changed`.
+  `Label`/`TextureRect` nodes for weapon icon, armor icon and potion count (no "Use Potion" `Button` —
+  potions are consumed only via the `use_potion` (**H**) action), and read-only Lighter/Eyes-of-Ender
+  indicators fed by `GameSession.has_lighter_changed` / `eyes_of_ender_changed` and `Inventory.changed`.
 - Add one `CharacterSheetGui` instance to each level scene (`classic/overworld.tscn`, `classic/nether.tscn`,
   `classic/end.tscn`, `procedural/proc_gen_world.tscn`) under `UI`, next to the existing
   `QuestLogGui` instance. `gui/pause_menu.tscn` / `pause_gui.tscn` stay untouched.
@@ -207,8 +211,8 @@ Note: `StatsSheet` (`gui/stats_sheet.tscn`) is reused today both as the always-v
   be rejected).
 - Pick up potions until the slot is full, confirm the "can't carry more" feedback, then use one mid-fight
   and confirm healing only happens on the explicit action.
-- Open/close the character sheet with the `character_sheet` action, confirming the simulation pauses and
-  resumes correctly, and that it does not interfere with the quest log or pause menu.
+- Open/close the character sheet with the **F2** `character_sheet` action, confirming the simulation
+  pauses and resumes correctly, and that it does not interfere with the quest log or pause menu.
 - Save, reload, and confirm weapon/armor persisted while potions/lighter/eyes of ender reset.
 
 ## Why this shape

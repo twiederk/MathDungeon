@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://quests/achievement_popup.tscn" id="11_lnqdw"]
 [ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://quests/achievement_badges.tscn" id="12_fa5nh"]
 [ext_resource type="PackedScene" uid="uid://cq8nvt3xr7kql" path="res://quests/quest_log_gui.tscn" id="13_questlog"]
+[ext_resource type="PackedScene" uid="uid://b5i3hqfqrjnem" path="res://gui/character_sheet_gui.tscn" id="14_charsheet"]
 
 [node name="End" type="Node2D" unique_id=1281862831]
 script = ExtResource("1_qa73l")
@@ -66,3 +67,6 @@ offset_right = 625.0
 offset_bottom = 65.0
 
 [node name="QuestLogGui" parent="UI" unique_id=1292638235 instance=ExtResource("13_questlog")]
+
+[node name="CharacterSheetGui" parent="UI" unique_id=1218902046 instance=ExtResource("14_charsheet")]
+visible = false

@@ -10,7 +10,8 @@ enum DisplayState {
 	NONE,
 	QUIZ_DIALOG,
 	PAUSE_MENU,
-	QUEST_LOG
+	QUEST_LOG,
+	CHARACTER_SHEET
 }
 
 enum SpawnPoint {

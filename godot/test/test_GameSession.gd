@@ -96,6 +96,17 @@ func test_simulation_not_running_during_quest_log():
 	assert_false(running)
 
 
+func test_simulation_not_running_during_character_sheet():
+	# arrange
+	GameSession.display_state = GameSession.DisplayState.CHARACTER_SHEET
+	
+	# act
+	var running = GameSession.is_simulation_running()
+	
+	# assert
+	assert_false(running)
+
+
 func test_simulation_running_changed_emits_false_when_dialog_opens():
 	# arrange
 	watch_signals(GameSession)

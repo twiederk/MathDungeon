@@ -10,6 +10,7 @@ size = Vector2(20, 18)
 collision_layer = 2
 script = ExtResource("1_gaqaq")
 armor = 1
+item_id = "helmet_wood"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_n26nq")

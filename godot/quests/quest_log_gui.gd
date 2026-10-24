@@ -21,6 +21,8 @@ func _process(_delta: float) -> void:
 				GameSession.display_state = GameSession.DisplayState.QUEST_LOG
 			GameSession.DisplayState.QUEST_LOG:
 				GameSession.display_state = GameSession.DisplayState.NONE
+			GameSession.DisplayState.CHARACTER_SHEET:
+				GameSession.display_state = GameSession.DisplayState.QUEST_LOG
 
 
 func _on_display_state_changed(state: int) -> void:

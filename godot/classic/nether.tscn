@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://quests/achievement_popup.tscn" id="24_achievement"]
 [ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://quests/achievement_badges.tscn" id="25_badges"]
 [ext_resource type="PackedScene" uid="uid://cq8nvt3xr7kql" path="res://quests/quest_log_gui.tscn" id="26_questlog"]
+[ext_resource type="PackedScene" uid="uid://b5i3hqfqrjnem" path="res://gui/character_sheet_gui.tscn" id="27_charsheet"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bcl7h"]
 radius = 79.0
@@ -38,15 +39,15 @@ size = Vector2(287, 88)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ej081"]
 size = Vector2(293, 88)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hvrnb"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_i43io"]
 resource_local_to_scene = true
 radius = 107.298645
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_i43io"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ntn28"]
 resource_local_to_scene = true
 radius = 101.12369
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ntn28"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_8cn3y"]
 resource_local_to_scene = true
 radius = 111.01801
 
@@ -57,7 +58,7 @@ size = Vector2(230, 90)
 radius = 84.804596
 height = 350.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8cn3y"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vw2q1"]
 resource_local_to_scene = true
 size = Vector2(126, 126)
 
@@ -279,7 +280,7 @@ flip_sprite = true
 position = Vector2(52, 90)
 
 [node name="CollisionShape2D" parent="Enemies/Blaze3/ShootingArea" index="0" unique_id=1003688871]
-shape = SubResource("CircleShape2D_hvrnb")
+shape = SubResource("CircleShape2D_i43io")
 
 [node name="Blaze4" parent="Enemies" unique_id=636626386 instance=ExtResource("19_wat66")]
 position = Vector2(66, 302)
@@ -288,7 +289,7 @@ flip_sprite = true
 
 [node name="CollisionShape2D" parent="Enemies/Blaze4/ShootingArea" parent_id_path=PackedInt32Array(636626386, 1951971501) index="0" unique_id=1003688871]
 position = Vector2(39, -60)
-shape = SubResource("CircleShape2D_i43io")
+shape = SubResource("CircleShape2D_ntn28")
 
 [node name="Blaze5" parent="Enemies" unique_id=244087369 instance=ExtResource("19_wat66")]
 position = Vector2(134, 161)
@@ -297,7 +298,7 @@ flip_sprite = true
 
 [node name="CollisionShape2D" parent="Enemies/Blaze5/ShootingArea" parent_id_path=PackedInt32Array(244087369, 1951971501) index="0" unique_id=1003688871]
 position = Vector2(-31, 83)
-shape = SubResource("CircleShape2D_ntn28")
+shape = SubResource("CircleShape2D_8cn3y")
 
 [node name="Blaze6" parent="Enemies" unique_id=1761431005 instance=ExtResource("19_wat66")]
 position = Vector2(102, 246)
@@ -360,13 +361,16 @@ offset_bottom = 65.0
 
 [node name="QuestLogGui" parent="UI" unique_id=1527121230 instance=ExtResource("26_questlog")]
 
+[node name="CharacterSheetGui" parent="UI" unique_id=268166765 instance=ExtResource("27_charsheet")]
+visible = false
+
 [node name="DungeonTitle" parent="." unique_id=1666495363 instance=ExtResource("19_hvrnb")]
 position = Vector2(624, 245)
 title_text = "Die Nether Festung"
 
 [node name="CollisionShape2D" parent="DungeonTitle/TriggerArea2D" index="0"]
 position = Vector2(13, 13)
-shape = SubResource("RectangleShape2D_8cn3y")
+shape = SubResource("RectangleShape2D_vw2q1")
 
 [editable path="Enemies/ShootingGhast"]
 [editable path="Enemies/ShootingGhast2"]
