@@ -119,11 +119,11 @@ func add_companion(companion_type: String) -> void:
 	SaveManager.save_character(self)
 
 
-func load_state(a_display_name: String, a_portrait_id: String, a_max_hit_points: int, a_hit_points: int, a_damage: int, a_armor: int, a_companions: Array[String]) -> void:
+func load_state(a_display_name: String, a_portrait_id: String, a_max_hit_points: int, a_hit_points: int, a_damage: int, a_weapon_item_id: String, a_armor: int, a_armor_item_id: String, a_companions: Array[String]) -> void:
 	display_name = a_display_name
 	portrait_id = a_portrait_id
 	max_hit_points = a_max_hit_points
 	_hit_points = clampi(a_hit_points, 0, a_max_hit_points)
-	inventory.equip_weapon("", a_damage)
-	inventory.equip_armor("", a_armor)
+	inventory.equip_weapon(a_weapon_item_id, a_damage)
+	inventory.equip_armor(a_armor_item_id, a_armor)
 	companions = a_companions
