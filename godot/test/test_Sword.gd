@@ -15,26 +15,32 @@ func after_each():
 
 func test_execute_equips_a_stronger_sword():
 	# arrange
-	sword.damage = 3
-	sword.item_id = "sword_iron"
+	sword.weapon_resource = _weapon("sword_iron", 3)
 
 	# act
 	sword.execute()
 
 	# assert
-	assert_eq("sword_iron", CharacterManager.current.inventory.weapon_item_id)
-	assert_eq(3, CharacterManager.current.weapon_damage)
+	assert_eq("sword_iron", CharacterManager.current.inventory.get_weapon_id())
+	assert_eq(3, CharacterManager.current.inventory.get_weapon_damage())
 
 
 func test_execute_does_not_downgrade_the_weapon():
 	# arrange
-	CharacterManager.current.inventory.equip_weapon("sword_iron", 3)
-	sword.damage = 2
-	sword.item_id = "sword_stone"
+	CharacterManager.current.inventory.equip_weapon(_weapon("sword_iron", 3))
+	sword.weapon_resource = _weapon("sword_stone", 2)
 
 	# act
 	sword.execute()
 
 	# assert
-	assert_eq("sword_iron", CharacterManager.current.inventory.weapon_item_id)
-	assert_eq(3, CharacterManager.current.weapon_damage)
+	assert_eq("sword_iron", CharacterManager.current.inventory.get_weapon_id())
+	assert_eq(3, CharacterManager.current.inventory.get_weapon_damage())
+
+
+func _weapon(id: String, damage: int) -> WeaponResource:
+	var resource := WeaponResource.new()
+	resource.id = id
+	resource.name = id
+	resource.damage = damage
+	return resource

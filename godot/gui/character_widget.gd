@@ -16,8 +16,8 @@ func update_stats() -> void:
 	var display_name  = character.display_name
 	var hit_points = character.hit_points
 	var max_hit_points = character.max_hit_points
-	var damage = character.get_total_damage()
-	var armor = character.armor
+	var damage = character.get_damage()
+	var armor = character.get_armor()
 	var wolf_count = character.get_wolf_count()
 	var allay_count = character.get_allay_count()
 	var portrait: Portrait = character.portrait

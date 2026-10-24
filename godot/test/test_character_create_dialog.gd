@@ -19,8 +19,8 @@ func test_create_character_sets_default_values():
 	var expected_portrait_id = "000"
 	var expected_max_hit_points = 5
 	var expected_hit_points = 5
-	var expected_weapon_damage = 1
-	var expected_armor = 0
+	var expected_base_damage = 1
+	var expected_base_armor = 0
 	var expected_companions_size = 0
 
 	# act
@@ -32,7 +32,7 @@ func test_create_character_sets_default_values():
 	assert_eq(expected_portrait_id, character.portrait_id, "Should set the portrait id from selected_portrait_id")
 	assert_eq(expected_max_hit_points, character.max_hit_points, "Should set max_hit_points to 5")
 	assert_eq(expected_hit_points, character.hit_points, "Should set hit_points to 5")
-	assert_eq(expected_weapon_damage, character.weapon_damage, "Should set weapon_damage to 1")
-	assert_eq(expected_armor, character.armor, "Should set armor to 0")
+	assert_eq(expected_base_damage, character.base_damage, "Should set base_damage to 1")
+	assert_eq(expected_base_armor, character.base_armor, "Should set base_armor to 0")
 	assert_eq(expected_companions_size, character.companions.size(), "Should initialize companion_types as empty array")
 	assert_ne("", character.id, "Character ID should not be empty")

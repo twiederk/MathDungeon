@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" uid="uid://5nfmr5l4hlxx" path="res://items/sword.gd" id="1_e4ynd"]
 [ext_resource type="Texture2D" uid="uid://c31gniut2rq2q" path="res://items/items.png" id="2_e4ynd"]
+[ext_resource type="Resource" uid="uid://cn6y8wfxkq3mr" path="res://items/sword_iron.tres" id="3_weapon"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e4ynd"]
 
 [node name="IronSword" type="Area2D" unique_id=2023378324]
 collision_layer = 2
 script = ExtResource("1_e4ynd")
-damage = 3
-item_id = "sword_iron"
+weapon_resource = ExtResource("3_weapon")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1684856632]
 texture = ExtResource("2_e4ynd")
