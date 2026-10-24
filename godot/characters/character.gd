@@ -113,6 +113,16 @@ func needs_healing() -> bool:
 	return hit_points < max_hit_points
 
 
+func use_healing_potion() -> bool:
+	if not needs_healing():
+		return false
+	if not inventory.use_potion():
+		return false
+	hit_points = max_hit_points
+	Sound.play(Sound.pickup_potion)
+	return true
+
+
 func add_companion(companion_type: String) -> void:
 	companions.append(companion_type)
 	weapon_damage_changed.emit()
