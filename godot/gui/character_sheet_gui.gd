@@ -13,10 +13,6 @@ extends Control
 
 func _ready() -> void:
 	GameSession.display_state_changed.connect(_on_display_state_changed)
-	GameSession.has_lighter_changed.connect(_refresh)
-	GameSession.eyes_of_ender_changed.connect(_refresh)
-	CharacterManager.current.inventory.changed.connect(_refresh)
-	CharacterManager.current.hit_points_changed.connect(_refresh)
 	_on_display_state_changed(GameSession.display_state)
 
 
@@ -27,6 +23,8 @@ func _process(_delta: float) -> void:
 				GameSession.display_state = GameSession.DisplayState.CHARACTER_SHEET
 			GameSession.DisplayState.CHARACTER_SHEET:
 				GameSession.display_state = GameSession.DisplayState.NONE
+			GameSession.DisplayState.QUEST_LOG:
+				GameSession.display_state = GameSession.DisplayState.CHARACTER_SHEET
 
 
 func _on_display_state_changed(state: int) -> void:
