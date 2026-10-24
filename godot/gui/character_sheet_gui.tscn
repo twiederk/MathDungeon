@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://b5i3hqfqrjnem"]
+
+[ext_resource type="Script" uid="uid://d0y2ityga8xgn" path="res://gui/character_sheet_gui.gd" id="1_charsheet"]
+[ext_resource type="PackedScene" uid="uid://c8mct8qyopwdd" path="res://gui/health_meter_widget.tscn" id="2_healthmeter"]
+
+[node name="CharacterSheetGui" type="Control" unique_id=1232824537]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_charsheet")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1274037627]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 30.0
+offset_right = 500.0
+offset_bottom = 400.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=653962334]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1763703853]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="TitleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1937334001]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "Charakterbogen"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1777652167]
+layout_mode = 2
+
+[node name="HealthMeterWidget" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=48802740 instance=ExtResource("2_healthmeter")]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="DamageLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=48802747]
+layout_mode = 2
+text = "Schaden: 1"
+
+[node name="ArmorPointsLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=48802748]
+layout_mode = 2
+text = "Rüstungspunkte: 0"
+
+[node name="WeaponLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=48802742]
+layout_mode = 2
+text = "Waffe: -"
+
+[node name="ArmorLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=48802743]
+layout_mode = 2
+text = "Rüstung: -"
+
+[node name="PotionLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=48802744]
+layout_mode = 2
+text = "Tränke: 0/5"
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1777652168]
+layout_mode = 2
+
+[node name="LighterLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=48802745]
+layout_mode = 2
+text = "Feuerzeug: Nein"
+
+[node name="EyesOfEnderLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=48802746]
+layout_mode = 2
+text = "Enderaugen: 0"

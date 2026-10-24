@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://quests/achievement_popup.tscn" id="10_gsqn5"]
 [ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://quests/achievement_badges.tscn" id="11_nivld"]
 [ext_resource type="PackedScene" uid="uid://cq8nvt3xr7kql" path="res://quests/quest_log_gui.tscn" id="12_questlog"]
-
+[ext_resource type="PackedScene" uid="uid://b5i3hqfqrjnem" path="res://gui/character_sheet_gui.tscn" id="13_charsheet"]
 
 [node name="ProcGenWorld" type="Node2D" unique_id=1396004494]
 script = ExtResource("1_4yoxp")
@@ -78,4 +78,7 @@ offset_top = 25.0
 offset_right = 625.0
 offset_bottom = 65.0
 
-[node name="QuestLogGui" parent="UI" instance=ExtResource("12_questlog")]
+[node name="QuestLogGui" parent="UI" unique_id=802925845 instance=ExtResource("12_questlog")]
+
+[node name="CharacterSheetGui" parent="UI" unique_id=684792756 instance=ExtResource("13_charsheet")]
+visible = false
