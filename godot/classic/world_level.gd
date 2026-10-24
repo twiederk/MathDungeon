@@ -85,9 +85,9 @@ func _setup_limits_and_borders() -> void:
 func _setup_character_stats() -> void:
 	var character := CharacterManager.current
 	character.hit_points_changed.connect(_on_player_stats_changed)
-	character.weapon_damage_changed.connect(_on_player_stats_changed)
+	character.damage_changed.connect(_on_player_stats_changed)
 	character.armor_changed.connect(_on_player_stats_changed)
-	player_stats_sheet.update_stats(character.hit_points, character.max_hit_points, character.get_total_damage(), character.armor)
+	player_stats_sheet.update_stats(character.hit_points, character.max_hit_points, character.get_damage(), character.get_armor())
 
 
 func _setup_player_portrait() -> void:
@@ -130,4 +130,4 @@ func _on_companion_picked_up(companion: Companion) -> void:
 
 func _on_player_stats_changed() -> void:
 	var character := CharacterManager.current
-	player_stats_sheet.update_stats(character.hit_points, character.max_hit_points, character.get_total_damage(), character.armor)
+	player_stats_sheet.update_stats(character.hit_points, character.max_hit_points, character.get_damage(), character.get_armor())

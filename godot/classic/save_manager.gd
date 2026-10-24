@@ -1,6 +1,7 @@
 extends Node
 
 const CHARACTERS_DIR: String = "user://characters/"
+const ITEM_CATALOG: ItemCatalog = preload("res://items/item_catalog.tres")
 
 
 func save_character(character: Character) -> void:
@@ -13,10 +14,10 @@ func save_character(character: Character) -> void:
 		"portrait_id": character.portrait_id,
 		"max_hit_points": character.max_hit_points,
 		"hit_points": character.hit_points,
-		"weapon_damage": character.weapon_damage,
-		"weapon_item_id": character.inventory.weapon_item_id,
-		"armor": character.armor,
-		"armor_item_id": character.inventory.armor_item_id,
+		"base_damage": character.base_damage,
+		"weapon_item_id": character.inventory.get_weapon_id(),
+		"base_armor": character.base_armor,
+		"armor_item_id": character.inventory.get_armor_id(),
 		"companions": character.companions,
 	}
 	var save_file := FileAccess.open(_character_path(character.id), FileAccess.WRITE)
@@ -73,10 +74,10 @@ func _character_from_data(id: String, data: Dictionary) -> Character:
 		str(data.get("portrait_id", "000")),
 		max_hit_points,
 		int(data.get("hit_points", max_hit_points)),
-		int(data.get("weapon_damage", 1)),
-		str(data.get("weapon_item_id", "")),
-		int(data.get("armor", 0)),
-		str(data.get("armor_item_id", "")),
+		int(data.get("base_damage", data.get("weapon_damage", 1))),
+		ITEM_CATALOG.get_weapon(str(data.get("weapon_item_id", ""))),
+		int(data.get("base_armor", data.get("armor", 0))),
+		ITEM_CATALOG.get_armor(str(data.get("armor_item_id", ""))),
 		_sanitize_string_array(data.get("companions", []))
 	)
 	return character

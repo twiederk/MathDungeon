@@ -1,11 +1,10 @@
 class_name Sword
 extends Item
 
-@export var damage: int
-@export var item_id: String = ""
+@export var weapon_resource: WeaponResource
 
 
 func execute() -> void:
-	CharacterManager.current.inventory.equip_weapon(item_id, damage)
+	CharacterManager.current.inventory.equip_weapon(weapon_resource)
 	Sound.play(Sound.pickup_sword)
 	queue_free()

@@ -48,19 +48,19 @@ func _refresh() -> void:
 	var inventory := character.inventory
 	health_meter_widget.update_health_ui(character.hit_points)
 	health_meter_widget.update_max_health_ui(character.max_hit_points)
-	damage_label.text = "Schaden: " + str(character.get_total_damage())
-	armor_points_label.text = "Rüstungspunkte: " + str(character.armor)
-	weapon_label.text = "Waffe: " + _item_label(inventory.weapon_item_id, inventory.weapon_damage)
-	armor_label.text = "Rüstung: " + _item_label(inventory.armor_item_id, inventory.armor_value)
+	damage_label.text = "Schaden: " + str(character.get_damage())
+	armor_points_label.text = "Rüstung: " + str(character.get_armor())
+	weapon_label.text = "Waffe: " + _item_label(inventory.get_weapon_name(), inventory.get_weapon_damage())
+	armor_label.text = "Rüstung: " + _item_label(inventory.get_armor_name(), inventory.get_armor_value())
 	potion_label.text = "Tränke: %d/%d" % [inventory.potion_count, Inventory.MAX_POTIONS]
 	lighter_label.text = "Feuerzeug: " + _yes_no(GameSession.has_lighter)
 	eyes_of_ender_label.text = "Enderaugen: %d" % GameSession.eyes_of_ender
 
 
-func _item_label(item_id: String, value: int) -> String:
-	if item_id.is_empty():
+func _item_label(item_name: String, value: int) -> String:
+	if item_name.is_empty():
 		return "-"
-	return "%s (%d)" % [item_id, value]
+	return "%s (%d)" % [item_name, value]
 
 
 func _yes_no(value: bool) -> String:

@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" uid="uid://5nfmr5l4hlxx" path="res://items/sword.gd" id="1_qfojx"]
 [ext_resource type="Texture2D" uid="uid://c31gniut2rq2q" path="res://items/items.png" id="2_qaqor"]
+[ext_resource type="Resource" uid="uid://b4qxn7wsvgkd2" path="res://items/sword_stone.tres" id="3_weapon"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e4ynd"]
 
 [node name="StoneSword" type="Area2D" unique_id=148799207]
 collision_layer = 2
 script = ExtResource("1_qfojx")
-damage = 2
-item_id = "sword_stone"
+weapon_resource = ExtResource("3_weapon")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=319731519]
 texture = ExtResource("2_qaqor")

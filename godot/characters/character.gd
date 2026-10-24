@@ -5,7 +5,7 @@ const PORTRAIT_CATALOG: PortraitCatalog = preload("res://characters/portrait_cat
 const HIT_EFFECT_SCENE: PackedScene = preload("res://enemies/hit_effect.tscn")
 const WOLF_DAMAGE: int = 1
 
-signal weapon_damage_changed
+signal damage_changed
 signal armor_changed
 signal hit_points_changed
 
@@ -28,42 +28,39 @@ var hit_points: int = 5:
 		if _hit_points > 0:
 			SaveManager.save_character(self)
 
-var weapon_damage: int:
+var base_damage: int = 1:
 	get:
-		return inventory.weapon_damage
+		return _base_damage
 	set(value):
-		inventory.equip_weapon("", value)
+		_base_damage = value
+		damage_changed.emit()
+		SaveManager.save_character(self)
 
-var armor: int:
+var base_armor: int = 0:
 	get:
-		return inventory.armor_value
+		return _base_armor
 	set(value):
-		inventory.equip_armor("", value)
+		_base_armor = value
+		armor_changed.emit()
+		SaveManager.save_character(self)
 
+var _base_damage: int = 1
+var _base_armor: int = 0
 var _hit_points: int = 5
 
 
 func _init() -> void:
-	inventory.weapon_damage = 1
 	inventory.changed.connect(_on_inventory_changed)
 
 
 func _on_inventory_changed() -> void:
-	weapon_damage_changed.emit()
+	damage_changed.emit()
 	armor_changed.emit()
 	SaveManager.save_character(self)
 
 
 func get_damage() -> int:
-	return weapon_damage
-
-
-func get_total_damage() -> int:
-	var total = get_damage()
-	for companion_type in companions:
-		if companion_type == "Wolf":
-			total += WOLF_DAMAGE
-	return total
+	return _base_damage + inventory.get_weapon_damage() + get_wolf_count() * WOLF_DAMAGE
 
 
 func get_wolf_count() -> int:
@@ -83,7 +80,7 @@ func get_allay_count() -> int:
 
 
 func get_armor() -> int:
-	return armor
+	return _base_armor + inventory.get_armor_value()
 
 
 func hurt(damage: int) -> int:
@@ -113,17 +110,29 @@ func needs_healing() -> bool:
 	return hit_points < max_hit_points
 
 
+func use_healing_potion() -> bool:
+	if not needs_healing():
+		return false
+	if not inventory.use_potion():
+		return false
+	hit_points = max_hit_points
+	Sound.play(Sound.pickup_potion)
+	return true
+
+
 func add_companion(companion_type: String) -> void:
 	companions.append(companion_type)
-	weapon_damage_changed.emit()
+	damage_changed.emit()
 	SaveManager.save_character(self)
 
 
-func load_state(a_display_name: String, a_portrait_id: String, a_max_hit_points: int, a_hit_points: int, a_damage: int, a_weapon_item_id: String, a_armor: int, a_armor_item_id: String, a_companions: Array[String]) -> void:
+func load_state(a_display_name: String, a_portrait_id: String, a_max_hit_points: int, a_hit_points: int, a_base_damage: int, a_weapon: WeaponResource, a_base_armor: int, a_armor: ArmorResource, a_companions: Array[String]) -> void:
 	display_name = a_display_name
 	portrait_id = a_portrait_id
 	max_hit_points = a_max_hit_points
 	_hit_points = clampi(a_hit_points, 0, a_max_hit_points)
-	inventory.equip_weapon(a_weapon_item_id, a_damage)
-	inventory.equip_armor(a_armor_item_id, a_armor)
+	_base_damage = a_base_damage
+	_base_armor = a_base_armor
+	inventory.equip_weapon(a_weapon)
+	inventory.equip_armor(a_armor)
 	companions = a_companions

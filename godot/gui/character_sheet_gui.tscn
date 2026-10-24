@@ -18,7 +18,7 @@ layout_mode = 0
 offset_left = 140.0
 offset_top = 30.0
 offset_right = 500.0
-offset_bottom = 400.0
+offset_bottom = 330.0
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=653962334]
 layout_mode = 2
@@ -61,12 +61,12 @@ text = "Waffe: -"
 layout_mode = 2
 text = "Rüstung: -"
 
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1777652168]
+layout_mode = 2
+
 [node name="PotionLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=48802744]
 layout_mode = 2
 text = "Tränke: 0/5"
-
-[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1777652168]
-layout_mode = 2
 
 [node name="LighterLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=48802745]
 layout_mode = 2

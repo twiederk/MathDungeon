@@ -17,7 +17,7 @@ func _process(_delta) -> void:
 			GameSession.DisplayState.PAUSE_MENU:
 				GameSession.display_state = GameSession.DisplayState.NONE
 				get_tree().paused = false
-			GameSession.DisplayState.NONE, GameSession.DisplayState.QUEST_LOG:
+			GameSession.DisplayState.NONE, GameSession.DisplayState.QUEST_LOG, GameSession.DisplayState.CHARACTER_SHEET:
 				GameSession.display_state = GameSession.DisplayState.PAUSE_MENU
 				get_tree().paused = true
 

@@ -17,8 +17,7 @@ func _physics_process(_delta: float) -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("use_potion"):
-		if CharacterManager.current.inventory.use_potion():
-			CharacterManager.current.hit_points = CharacterManager.current.max_hit_points
+		CharacterManager.current.use_healing_potion()
 
 
 func apply_portrait(texture: Texture2D) -> void:
