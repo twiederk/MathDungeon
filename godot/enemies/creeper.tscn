@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://txgje162j88t"]
+[gd_scene format=3 uid="uid://txgje162j88t"]
 
 [ext_resource type="Script" uid="uid://b7x46e8sw1gka" path="res://enemies/enemy.gd" id="1_61e4x"]
 [ext_resource type="Resource" uid="uid://bneorwhq7d366" path="res://enemies/creeper_stats.tres" id="2_i4hxb"]
@@ -10,24 +10,22 @@ height = 26.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(26, 30)
 
-[node name="Creeper" type="StaticBody2D"]
+[node name="Creeper" type="StaticBody2D" unique_id=1673568367]
 collision_layer = 2
 script = ExtResource("1_61e4x")
 stats = ExtResource("2_i4hxb")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=978005485]
 texture = ExtResource("2_xyqsm")
 hframes = 9
 vframes = 9
 frame = 17
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1718202515]
 shape = SubResource("CapsuleShape2D_i4hxb")
 
-[node name="DetectionArea" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="." unique_id=253585786]
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(-5, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=2116117141]
 shape = SubResource("RectangleShape2D_h2yge")

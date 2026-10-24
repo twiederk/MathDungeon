@@ -8,6 +8,7 @@ height = 24.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1649447883]
 collision_mask = 2
+disable_mode = 2
 script = ExtResource("1_onrkg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1472839895]

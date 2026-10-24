@@ -20,7 +20,6 @@ vframes = 9
 frame = 63
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=697753408]
-position = Vector2(2, -1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_x7c0l")
 
@@ -28,5 +27,4 @@ shape = SubResource("CapsuleShape2D_x7c0l")
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" unique_id=1654668170]
-position = Vector2(2, -0.5)
 shape = SubResource("RectangleShape2D_e4ynd")

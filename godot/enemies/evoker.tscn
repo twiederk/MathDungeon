@@ -33,6 +33,7 @@ shape = SubResource("CapsuleShape2D_s4k5m")
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=329077110]
 collision_layer = 0
+disable_mode = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1401675460]
 position = Vector2(1, 0)
@@ -40,6 +41,7 @@ shape = SubResource("RectangleShape2D_detect")
 
 [node name="ShootingArea" type="Area2D" parent="." unique_id=1800570189]
 collision_layer = 0
+disable_mode = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShootingArea" unique_id=931633192]
 shape = SubResource("CircleShape2D_73kb4")
