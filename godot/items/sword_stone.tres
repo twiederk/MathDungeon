@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="WeaponResource" format=3 uid="uid://b4qxn7wsvgkd2"]
+
+[ext_resource type="Script" uid="uid://cga2gx46clmmh" path="res://items/weapon_resource.gd" id="1_weapon"]
+
+[resource]
+script = ExtResource("1_weapon")
+id = "sword_stone"
+name = "Steinschwert"
+damage = 2

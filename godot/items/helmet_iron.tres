@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ArmorResource" format=3 uid="uid://bq7h3nxlvc0da"]
+
+[ext_resource type="Script" uid="uid://cvvocs4krryds" path="res://items/armor_resource.gd" id="1_armor"]
+
+[resource]
+script = ExtResource("1_armor")
+id = "helmet_iron"
+name = "Eisenhelm"
+armor = 3
