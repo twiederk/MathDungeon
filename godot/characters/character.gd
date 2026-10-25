@@ -64,17 +64,17 @@ func get_damage() -> int:
 
 
 func get_wolf_count() -> int:
-	var count = 0
-	for companion_type in companions:
-		if companion_type == "Wolf":
-			count += 1
-	return count
+	return get_companion_count("Wolf")
 
 
 func get_allay_count() -> int:
+	return get_companion_count("Allay")
+
+
+func get_companion_count(companion_type: String) -> int:
 	var count = 0
-	for companion_type in companions:
-		if companion_type == "Allay":
+	for c_type in companions:
+		if c_type == companion_type:
 			count += 1
 	return count
 
