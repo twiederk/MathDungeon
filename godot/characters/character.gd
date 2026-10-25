@@ -5,6 +5,7 @@ const PORTRAIT_CATALOG: PortraitCatalog = preload("res://characters/portrait_cat
 const HIT_EFFECT_SCENE: PackedScene = preload("res://enemies/hit_effect.tscn")
 const WOLF_DAMAGE: int = 1
 const EYE_OF_ENDER_ID: String = "eye_of_ender"
+const LIGHTER_ID: String = "lighter"
 
 signal damage_changed
 signal armor_changed
@@ -21,11 +22,6 @@ var portrait: Portrait:
 var max_hit_points: int = 5
 var companions: Array[String] = []
 var inventory: Inventory = Inventory.new()
-
-var has_lighter: bool = false:
-	set(value):
-		has_lighter = value
-		has_lighter_changed.emit()
 
 var hit_points: int = 5:
 	get:
@@ -99,10 +95,19 @@ func get_eyes_of_ender_count() -> int:
 	return count
 
 
+func has_lighter() -> bool:
+	for good in inventory.goods:
+		if good.id == LIGHTER_ID:
+			return true
+	return false
+
+
 func equip_good(resource: GoodResource) -> void:
 	inventory.equip_good(resource)
 	if resource.id == EYE_OF_ENDER_ID:
 		eyes_of_ender_changed.emit()
+	elif resource.id == LIGHTER_ID:
+		has_lighter_changed.emit()
 
 
 func hurt(damage: int) -> int:

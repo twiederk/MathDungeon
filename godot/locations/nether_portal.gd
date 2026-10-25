@@ -19,7 +19,7 @@ func get_spawn_position() -> Vector2:
 func _on_outer_area_2d_body_entered(body: Node2D) -> void:
 	if body.name != "Player":
 		return
-	if CharacterManager.current.has_lighter:
+	if CharacterManager.current.has_lighter():
 		active = true
 		inner_sprite_2d.visible = true
 

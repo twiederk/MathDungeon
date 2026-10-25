@@ -62,7 +62,7 @@ func _on_eyes_of_ender_changed() -> void:
 
 
 func _on_has_lighter_changed() -> void:
-	_set_progress("lighter", 1 if CharacterManager.current.has_lighter else 0)
+	_set_progress("lighter", 1 if CharacterManager.current.has_lighter() else 0)
 
 
 func clear_locations() -> void:

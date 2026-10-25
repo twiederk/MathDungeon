@@ -5,7 +5,6 @@ extends Item
 
 
 func execute() -> void:
-	CharacterManager.current.inventory.equip_good(good_resource)
-	CharacterManager.current.has_lighter = true
+	CharacterManager.current.equip_good(good_resource)
 	Sound.play(Sound.pickup_lighter)
 	queue_free()
