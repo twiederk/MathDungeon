@@ -1,6 +1,7 @@
 class_name CharacterSheetGui
 extends Control
 
+@onready var title_label: Label = $PanelContainer/MarginContainer/VBoxContainer/TitleLabel
 @onready var health_meter_widget: HealthMeterWidget = $PanelContainer/MarginContainer/VBoxContainer/HealthMeterWidget
 @onready var damage_label: Label = $PanelContainer/MarginContainer/VBoxContainer/DamageLabel
 @onready var armor_points_label: Label = $PanelContainer/MarginContainer/VBoxContainer/ArmorPointsLabel
@@ -46,6 +47,7 @@ func _hide_menu() -> void:
 func _refresh() -> void:
 	var character := CharacterManager.current
 	var inventory := character.inventory
+	title_label.text = character.display_name
 	health_meter_widget.update_health_ui(character.hit_points)
 	health_meter_widget.update_max_health_ui(character.max_hit_points)
 	damage_label.text = "Schaden: " + str(character.get_damage())
