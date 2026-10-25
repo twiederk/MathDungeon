@@ -57,7 +57,7 @@ func has_time_limit() -> bool:
 
 func hurt(damage: int) -> int:
 	if is_inside_tree():
-		Sound.play(Sound.hurt_enemy)
+		Sound.play(stats.get_hurt_sound())
 		_spawn_hit_effect()
 	hit_points -= max(1, damage - stats.get_armor())
 	if hit_points <= 0:
