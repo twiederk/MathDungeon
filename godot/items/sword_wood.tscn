@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cvbmjlpev7um7"]
+
+[ext_resource type="Script" uid="uid://5nfmr5l4hlxx" path="res://items/sword.gd" id="1_1orkt"]
+[ext_resource type="Resource" uid="uid://b5b8u4rtx8qjo" path="res://items/sword_wood.tres" id="2_1orkt"]
+[ext_resource type="Texture2D" uid="uid://c31gniut2rq2q" path="res://items/items.png" id="3_h61xc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4ynd"]
+
+[node name="WoodSword" type="Area2D" unique_id=148799207]
+collision_layer = 2
+script = ExtResource("1_1orkt")
+weapon_resource = ExtResource("2_1orkt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=319731519]
+texture = ExtResource("3_h61xc")
+hframes = 16
+vframes = 16
+frame = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=232010829]
+shape = SubResource("RectangleShape2D_e4ynd")

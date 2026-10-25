@@ -7,9 +7,10 @@
 [ext_resource type="Resource" uid="uid://cn6y8wfxkq3mr" path="res://items/sword_iron.tres" id="5_sword_iron"]
 [ext_resource type="Resource" uid="uid://dk2wq5v8xbn7l" path="res://items/helmet_wood.tres" id="6_helmet_wood"]
 [ext_resource type="Resource" uid="uid://ces4ry1m8tqwv" path="res://items/helmet_stone.tres" id="7_helmet_stone"]
+[ext_resource type="Resource" uid="uid://b5b8u4rtx8qjo" path="res://items/sword_wood.tres" id="7_mpvfo"]
 [ext_resource type="Resource" uid="uid://bq7h3nxlvc0da" path="res://items/helmet_iron.tres" id="8_helmet_iron"]
 
 [resource]
 script = ExtResource("1_catalog")
-weapons = Array[ExtResource("2_weapon")]([ExtResource("4_sword_stone"), ExtResource("5_sword_iron")])
+weapons = Array[ExtResource("2_weapon")]([ExtResource("7_mpvfo"), ExtResource("4_sword_stone"), ExtResource("5_sword_iron")])
 armors = Array[ExtResource("3_armor")]([ExtResource("6_helmet_wood"), ExtResource("7_helmet_stone"), ExtResource("8_helmet_iron")])
