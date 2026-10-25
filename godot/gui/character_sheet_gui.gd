@@ -11,7 +11,8 @@ extends Control
 @onready var armor_row: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/ArmorRow
 @onready var armor_icon: TextureRect = $PanelContainer/MarginContainer/VBoxContainer/ArmorRow/ArmorIcon
 @onready var armor_label: Label = $PanelContainer/MarginContainer/VBoxContainer/ArmorRow/ArmorLabel
-@onready var potion_label: Label = $PanelContainer/MarginContainer/VBoxContainer/PotionLabel
+@onready var potion_row: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/PotionRow
+@onready var potion_label: Label = $PanelContainer/MarginContainer/VBoxContainer/PotionRow/PotionLabel
 @onready var lighter_label: Label = $PanelContainer/MarginContainer/VBoxContainer/LighterLabel
 @onready var eyes_of_ender_label: Label = $PanelContainer/MarginContainer/VBoxContainer/EyesOfEnderLabel
 
@@ -58,7 +59,8 @@ func _refresh() -> void:
 	armor_points_label.text = "Rüstung: " + str(character.get_armor())
 	_update_item_row(weapon_row, weapon_icon, weapon_label, inventory.weapon_resource, inventory.get_weapon_name(), inventory.get_weapon_damage())
 	_update_item_row(armor_row, armor_icon, armor_label, inventory.armor_resource, inventory.get_armor_name(), inventory.get_armor_value())
-	potion_label.text = "Tränke: %d/%d" % [inventory.get_potion_count(), Inventory.MAX_POTIONS]
+	potion_label.text = "Tränke (max. %d):" % Inventory.MAX_POTIONS
+	_update_potion_icons(inventory)
 	lighter_label.text = "Feuerzeug: " + _yes_no(character.has_lighter())
 	eyes_of_ender_label.text = "Enderaugen: %d" % character.get_eyes_of_ender_count()
 
@@ -76,6 +78,29 @@ func _update_item_row(row: HBoxContainer, icon_rect: TextureRect, label: Label, 
 	icon_rect.texture = resource.get_icon()
 	label.text = _item_label(item_name, value)
 	row.visible = true
+
+
+func _update_potion_icons(inventory: Inventory) -> void:
+	_clear_potion_icons()
+	_add_potion_icons(inventory)
+
+
+func _clear_potion_icons() -> void:
+	for child in potion_row.get_children():
+		if child != potion_label:
+			child.queue_free()
+			potion_row.remove_child(child)
+
+
+func _add_potion_icons(inventory: Inventory) -> void:
+	for good in inventory.goods:
+		if good.id != Inventory.HEALING_POTION_ID:
+			continue
+		var icon_rect := TextureRect.new()
+		icon_rect.custom_minimum_size = Vector2(20, 20)
+		icon_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		icon_rect.texture = good.get_icon()
+		potion_row.add_child(icon_rect)
 
 
 func _yes_no(value: bool) -> String:

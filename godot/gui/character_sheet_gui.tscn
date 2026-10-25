@@ -80,9 +80,12 @@ text = "Rüstung: -"
 [node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1777652168]
 layout_mode = 2
 
-[node name="PotionLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=48802744]
+[node name="PotionRow" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Tränke: 0/5"
+
+[node name="PotionLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/PotionRow" unique_id=48802744]
+layout_mode = 2
+text = "Tränke (max. 5):"
 
 [node name="LighterLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=48802745]
 layout_mode = 2
