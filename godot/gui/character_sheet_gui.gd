@@ -1,6 +1,13 @@
 class_name CharacterSheetGui
 extends Control
 
+const COMPANION_SPRITE_SHEET: Texture2D = preload("res://enemies/creatures.png")
+const COMPANION_SPRITE_GRID_SIZE: int = 9
+const COMPANION_SPRITE_FRAMES := {
+	"Wolf": 7,
+	"Allay": 63,
+}
+
 @onready var title_label: Label = $PanelContainer/MarginContainer/VBoxContainer/TitleLabel
 @onready var health_meter_widget: HealthMeterWidget = $PanelContainer/MarginContainer/VBoxContainer/HealthMeterWidget
 @onready var damage_label: Label = $PanelContainer/MarginContainer/VBoxContainer/DamageLabel
@@ -11,9 +18,14 @@ extends Control
 @onready var armor_row: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/ArmorRow
 @onready var armor_icon: TextureRect = $PanelContainer/MarginContainer/VBoxContainer/ArmorRow/ArmorIcon
 @onready var armor_label: Label = $PanelContainer/MarginContainer/VBoxContainer/ArmorRow/ArmorLabel
-@onready var potion_label: Label = $PanelContainer/MarginContainer/VBoxContainer/PotionLabel
-@onready var lighter_label: Label = $PanelContainer/MarginContainer/VBoxContainer/LighterLabel
-@onready var eyes_of_ender_label: Label = $PanelContainer/MarginContainer/VBoxContainer/EyesOfEnderLabel
+@onready var potion_row: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/PotionRow
+@onready var potion_label: Label = $PanelContainer/MarginContainer/VBoxContainer/PotionRow/PotionLabel
+@onready var lighter_row: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/LighterRow
+@onready var lighter_label: Label = $PanelContainer/MarginContainer/VBoxContainer/LighterRow/LighterLabel
+@onready var eyes_of_ender_row: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/EyesOfEnderRow
+@onready var eyes_of_ender_label: Label = $PanelContainer/MarginContainer/VBoxContainer/EyesOfEnderRow/EyesOfEnderLabel
+@onready var companion_row: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/CompanionRow
+@onready var companion_label: Label = $PanelContainer/MarginContainer/VBoxContainer/CompanionRow/CompanionLabel
 
 
 func _ready() -> void:
@@ -58,9 +70,14 @@ func _refresh() -> void:
 	armor_points_label.text = "Rüstung: " + str(character.get_armor())
 	_update_item_row(weapon_row, weapon_icon, weapon_label, inventory.weapon_resource, inventory.get_weapon_name(), inventory.get_weapon_damage())
 	_update_item_row(armor_row, armor_icon, armor_label, inventory.armor_resource, inventory.get_armor_name(), inventory.get_armor_value())
-	potion_label.text = "Tränke: %d/%d" % [inventory.get_potion_count(), Inventory.MAX_POTIONS]
-	lighter_label.text = "Feuerzeug: " + _yes_no(character.has_lighter())
-	eyes_of_ender_label.text = "Enderaugen: %d" % character.get_eyes_of_ender_count()
+	potion_label.text = "Tränke (max. %d):" % Inventory.MAX_POTIONS
+	_update_good_icons(potion_row, potion_label, inventory, Inventory.HEALING_POTION_ID)
+	lighter_label.text = "Feuerzeug:"
+	_update_good_icons(lighter_row, lighter_label, inventory, Character.LIGHTER_ID)
+	eyes_of_ender_label.text = "Enderaugen:"
+	_update_good_icons(eyes_of_ender_row, eyes_of_ender_label, inventory, Character.EYE_OF_ENDER_ID)
+	companion_label.text = "Begleiter:"
+	_update_companion_icons(character)
 
 
 func _item_label(item_name: String, value: int) -> String:
@@ -78,7 +95,48 @@ func _update_item_row(row: HBoxContainer, icon_rect: TextureRect, label: Label, 
 	row.visible = true
 
 
-func _yes_no(value: bool) -> String:
-	if value:
-		return "Ja"
-	return "Nein"
+func _update_good_icons(row: HBoxContainer, label: Label, inventory: Inventory, good_id: String) -> void:
+	_clear_good_icons(row, label)
+	_add_good_icons(row, inventory, good_id)
+
+
+func _clear_good_icons(row: HBoxContainer, label: Label) -> void:
+	for child in row.get_children():
+		if child != label:
+			child.queue_free()
+			row.remove_child(child)
+
+
+func _add_good_icons(row: HBoxContainer, inventory: Inventory, good_id: String) -> void:
+	for good in inventory.goods:
+		if good.id != good_id:
+			continue
+		row.add_child(_create_icon_rect(good.get_icon()))
+
+
+func _update_companion_icons(character: Character) -> void:
+	_clear_good_icons(companion_row, companion_label)
+	for companion_type in character.companions:
+		if not COMPANION_SPRITE_FRAMES.has(companion_type):
+			continue
+		companion_row.add_child(_create_icon_rect(_companion_icon(companion_type)))
+
+
+func _companion_icon(companion_type: String) -> Texture2D:
+	var frame: int = COMPANION_SPRITE_FRAMES[companion_type]
+	var atlas := AtlasTexture.new()
+	atlas.atlas = COMPANION_SPRITE_SHEET
+	var cell := COMPANION_SPRITE_SHEET.get_size() / Vector2(COMPANION_SPRITE_GRID_SIZE, COMPANION_SPRITE_GRID_SIZE)
+	var col := frame % COMPANION_SPRITE_GRID_SIZE
+	@warning_ignore("integer_division")
+	var row := frame / COMPANION_SPRITE_GRID_SIZE
+	atlas.region = Rect2(col * cell.x, row * cell.y, cell.x, cell.y)
+	return atlas
+
+
+func _create_icon_rect(texture: Texture2D) -> TextureRect:
+	var icon_rect := TextureRect.new()
+	icon_rect.custom_minimum_size = Vector2(20, 20)
+	icon_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	icon_rect.texture = texture
+	return icon_rect

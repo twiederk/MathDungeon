@@ -27,6 +27,7 @@ const NOT_SET: int = -1
 @export var max_number: int = 100
 @export var time_limit: int = NOT_SET
 @export var loot_drops: Array[LootDropDefinition] = []
+@export var hurt_sounds: Array[AudioStream] = []
 
 @export_group("Hard")
 @export var hard_max_hit_points: int = NOT_SET
@@ -75,6 +76,12 @@ func get_time_limit() -> int:
 
 func has_time_limit() -> bool:
 	return get_time_limit() != NOT_SET
+
+
+func get_hurt_sound() -> AudioStream:
+	if hurt_sounds.is_empty():
+		return Sound.hurt_enemy
+	return hurt_sounds.pick_random()
 
 
 func get_score() -> int:

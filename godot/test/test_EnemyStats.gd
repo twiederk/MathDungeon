@@ -156,3 +156,60 @@ func test_hard_time_limit_not_set_falls_back_to_normal_time_limit():
 	# Assert
 	assert_eq(stats.get_time_limit(), 20)
 	assert_true(stats.has_time_limit())
+
+
+func test_get_hurt_sound_falls_back_to_default_when_empty():
+	# Arrange
+	var stats := EnemyStats.new()
+	
+	# Act
+	var actual_sound = stats.get_hurt_sound()
+	
+	# Assert
+	assert_eq(actual_sound, Sound.hurt_enemy)
+
+
+func test_get_hurt_sound_returns_single_configured_sound():
+	# Arrange
+	var stats := EnemyStats.new()
+	var sound := AudioStreamWAV.new()
+	stats.hurt_sounds = [sound]
+	
+	# Act
+	var actual_sound = stats.get_hurt_sound()
+	
+	# Assert
+	assert_eq(actual_sound, sound)
+
+
+func test_get_hurt_sound_returns_one_of_the_configured_sounds():
+	# Arrange
+	var stats := EnemyStats.new()
+	stats.hurt_sounds = [AudioStreamWAV.new(), AudioStreamWAV.new(), AudioStreamWAV.new()]
+	
+	# Act
+	var actual_sound = stats.get_hurt_sound()
+	
+	# Assert
+	assert_has(stats.hurt_sounds, actual_sound)
+
+
+func test_all_non_projectile_stats_define_hurt_sounds():
+	# Arrange
+	var projectiles := ["arrow_stats", "fireball_stats", "blaze_fireball_stats"]
+	var dir := DirAccess.open("res://enemies")
+	var without_sounds: Array[String] = []
+	for file_name in dir.get_files():
+		if not file_name.ends_with("_stats.tres"):
+			continue
+		if file_name.get_basename() in projectiles:
+			continue
+		var stats: EnemyStats = load("res://enemies/" + file_name)
+		if stats.hurt_sounds.is_empty():
+			without_sounds.append(file_name)
+	
+	# Act
+	var actual_count = without_sounds.size()
+	
+	# Assert
+	assert_eq(actual_count, 0, "stats without hurt_sounds: %s" % [without_sounds])
