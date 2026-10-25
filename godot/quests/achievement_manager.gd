@@ -53,16 +53,16 @@ var _locations: Dictionary = {}
 
 
 func _ready() -> void:
-	GameSession.eyes_of_ender_changed.connect(_on_eyes_of_ender_changed)
-	GameSession.has_lighter_changed.connect(_on_has_lighter_changed)
+	CharacterManager.current.eyes_of_ender_changed.connect(_on_eyes_of_ender_changed)
+	CharacterManager.current.has_lighter_changed.connect(_on_has_lighter_changed)
 
 
 func _on_eyes_of_ender_changed() -> void:
-	_set_progress("eyes_of_ender", GameSession.eyes_of_ender)
+	_set_progress("eyes_of_ender", CharacterManager.current.get_eyes_of_ender_count())
 
 
 func _on_has_lighter_changed() -> void:
-	_set_progress("lighter", 1 if GameSession.has_lighter else 0)
+	_set_progress("lighter", 1 if CharacterManager.current.has_lighter else 0)
 
 
 func clear_locations() -> void:

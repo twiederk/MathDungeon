@@ -58,9 +58,9 @@ func _refresh() -> void:
 	armor_points_label.text = "Rüstung: " + str(character.get_armor())
 	_update_item_row(weapon_row, weapon_icon, weapon_label, inventory.weapon_resource, inventory.get_weapon_name(), inventory.get_weapon_damage())
 	_update_item_row(armor_row, armor_icon, armor_label, inventory.armor_resource, inventory.get_armor_name(), inventory.get_armor_value())
-	potion_label.text = "Tränke: %d/%d" % [inventory.potion_count, Inventory.MAX_POTIONS]
-	lighter_label.text = "Feuerzeug: " + _yes_no(GameSession.has_lighter)
-	eyes_of_ender_label.text = "Enderaugen: %d" % GameSession.eyes_of_ender
+	potion_label.text = "Tränke: %d/%d" % [inventory.get_potion_count(), Inventory.MAX_POTIONS]
+	lighter_label.text = "Feuerzeug: " + _yes_no(character.has_lighter)
+	eyes_of_ender_label.text = "Enderaugen: %d" % character.get_eyes_of_ender_count()
 
 
 func _item_label(item_name: String, value: int) -> String:

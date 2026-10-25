@@ -4,10 +4,13 @@ class_name Character
 const PORTRAIT_CATALOG: PortraitCatalog = preload("res://characters/portrait_catalog.tres")
 const HIT_EFFECT_SCENE: PackedScene = preload("res://enemies/hit_effect.tscn")
 const WOLF_DAMAGE: int = 1
+const EYE_OF_ENDER_ID: String = "eye_of_ender"
 
 signal damage_changed
 signal armor_changed
 signal hit_points_changed
+signal eyes_of_ender_changed
+signal has_lighter_changed
 
 var id: String
 var display_name: String
@@ -18,6 +21,11 @@ var portrait: Portrait:
 var max_hit_points: int = 5
 var companions: Array[String] = []
 var inventory: Inventory = Inventory.new()
+
+var has_lighter: bool = false:
+	set(value):
+		has_lighter = value
+		has_lighter_changed.emit()
 
 var hit_points: int = 5:
 	get:
@@ -81,6 +89,20 @@ func get_companion_count(companion_type: String) -> int:
 
 func get_armor() -> int:
 	return _base_armor + inventory.get_armor_value()
+
+
+func get_eyes_of_ender_count() -> int:
+	var count := 0
+	for good in inventory.goods:
+		if good.id == EYE_OF_ENDER_ID:
+			count += 1
+	return count
+
+
+func equip_good(resource: GoodResource) -> void:
+	inventory.equip_good(resource)
+	if resource.id == EYE_OF_ENDER_ID:
+		eyes_of_ender_changed.emit()
 
 
 func hurt(damage: int) -> int:

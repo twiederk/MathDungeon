@@ -5,7 +5,6 @@ extends Item
 
 
 func execute() -> void:
-	CharacterManager.current.inventory.equip_good(good_resource)
-	GameSession.eyes_of_ender += 1
+	CharacterManager.current.equip_good(good_resource)
 	Sound.play(Sound.victory)
 	queue_free()
