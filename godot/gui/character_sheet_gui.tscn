@@ -87,9 +87,12 @@ layout_mode = 2
 layout_mode = 2
 text = "Tränke (max. 5):"
 
-[node name="LighterLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=48802745]
+[node name="LighterRow" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Feuerzeug: Nein"
+
+[node name="LighterLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/LighterRow" unique_id=48802745]
+layout_mode = 2
+text = "Feuerzeug:"
 
 [node name="EyesOfEnderLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=48802746]
 layout_mode = 2
