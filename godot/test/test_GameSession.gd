@@ -6,17 +6,11 @@ func after_each():
 
 
 func test_reset():
-	# arrange
-	GameSession.eyes_of_ender = 5
-	GameSession.has_lighter = true
-	
 	# act
 	GameSession.reset()
 	
 	# assert
 	assert_eq(0, GameSession.score)
-	assert_eq(0, GameSession.eyes_of_ender)
-	assert_false(GameSession.has_lighter)
 
 
 func test_reset_restores_the_start_spawn_point():

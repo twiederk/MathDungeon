@@ -107,6 +107,45 @@ func test_get_damage_ignores_unknown_companion_types():
 	assert_eq(1, result, "Unknown companion types contribute no damage")
 
 
+func test_get_eyes_of_ender_count_counts_matching_goods():
+	# act
+	character.equip_good(_good("eye_of_ender"))
+
+	# assert
+	assert_eq(1, character.get_eyes_of_ender_count())
+
+
+func test_equip_good_emits_eyes_of_ender_changed():
+	# arrange
+	watch_signals(character)
+
+	# act
+	character.equip_good(_good("eye_of_ender"))
+
+	# assert
+	assert_signal_emitted(character, "eyes_of_ender_changed")
+
+
+func test_has_lighter_false_without_pickup():
+	# act
+	var result = character.has_lighter()
+
+	# assert
+	assert_false(result)
+
+
+func test_equip_good_grants_lighter_and_emits_has_lighter_changed():
+	# arrange
+	watch_signals(character)
+
+	# act
+	character.equip_good(_good("lighter"))
+
+	# assert
+	assert_true(character.has_lighter())
+	assert_signal_emitted(character, "has_lighter_changed")
+
+
 func _weapon(id: String, damage: int) -> WeaponResource:
 	var resource := WeaponResource.new()
 	resource.id = id
@@ -120,4 +159,11 @@ func _armor(id: String, armor: int) -> ArmorResource:
 	resource.id = id
 	resource.name = id
 	resource.armor = armor
+	return resource
+
+
+func _good(id: String) -> GoodResource:
+	var resource := GoodResource.new()
+	resource.id = id
+	resource.name = id
 	return resource

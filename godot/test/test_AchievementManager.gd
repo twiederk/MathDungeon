@@ -4,6 +4,7 @@ extends GutTest
 func after_each():
 	AchievementManager.reset()
 	GameSession.reset()
+	CharacterManager.current.inventory.goods.clear()
 
 
 func test_location_achievements_have_bonus_points():
@@ -21,7 +22,8 @@ func test_item_achievements_have_bonus_points():
 
 func test_collecting_eyes_of_ender_unlocks_achievement():
 	# act
-	GameSession.eyes_of_ender = 4
+	for i in 4:
+		CharacterManager.current.equip_good(_create_good("eye_of_ender"))
 	
 	# assert
 	assert_true("eyes_4" in AchievementManager.unlocked_achievements)
@@ -30,7 +32,8 @@ func test_collecting_eyes_of_ender_unlocks_achievement():
 
 func test_twelve_eyes_of_ender_unlock_all_eye_achievements():
 	# act
-	GameSession.eyes_of_ender = 12
+	for i in 12:
+		CharacterManager.current.equip_good(_create_good("eye_of_ender"))
 	
 	# assert
 	assert_true("eyes_4" in AchievementManager.unlocked_achievements)
@@ -40,7 +43,7 @@ func test_twelve_eyes_of_ender_unlock_all_eye_achievements():
 
 func test_picking_up_lighter_unlocks_achievement():
 	# act
-	GameSession.has_lighter = true
+	CharacterManager.current.equip_good(_create_good("lighter"))
 	
 	# assert
 	assert_true("lighter" in AchievementManager.unlocked_achievements)
@@ -225,3 +228,10 @@ func _create_enemy(location: String) -> Enemy:
 	enemy.stats = EnemyStats.new()
 	enemy.location = location
 	return enemy
+
+
+func _create_good(id: String) -> GoodResource:
+	var resource := GoodResource.new()
+	resource.id = id
+	resource.name = id
+	return resource

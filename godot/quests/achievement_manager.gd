@@ -53,8 +53,8 @@ var _locations: Dictionary = {}
 
 
 func _ready() -> void:
-	CharacterManager.current.eyes_of_ender_changed.connect(_on_eyes_of_ender_changed)
-	CharacterManager.current.has_lighter_changed.connect(_on_has_lighter_changed)
+	CharacterManager.eyes_of_ender_changed.connect(_on_eyes_of_ender_changed)
+	CharacterManager.has_lighter_changed.connect(_on_has_lighter_changed)
 
 
 func _on_eyes_of_ender_changed() -> void:

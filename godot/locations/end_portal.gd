@@ -14,7 +14,7 @@ var active: bool = false
 
 
 func _ready() -> void:
-	CharacterManager.current.eyes_of_ender_changed.connect(_on_eyes_of_ender_changed)
+	CharacterManager.eyes_of_ender_changed.connect(_on_eyes_of_ender_changed)
 	_on_eyes_of_ender_changed()
 
 
