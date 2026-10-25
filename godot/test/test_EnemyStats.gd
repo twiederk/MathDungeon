@@ -192,3 +192,24 @@ func test_get_hurt_sound_returns_one_of_the_configured_sounds():
 	
 	# Assert
 	assert_has(stats.hurt_sounds, actual_sound)
+
+
+func test_all_non_projectile_stats_define_hurt_sounds():
+	# Arrange
+	var projectiles := ["arrow_stats", "fireball_stats", "blaze_fireball_stats"]
+	var dir := DirAccess.open("res://enemies")
+	var without_sounds: Array[String] = []
+	for file_name in dir.get_files():
+		if not file_name.ends_with("_stats.tres"):
+			continue
+		if file_name.get_basename() in projectiles:
+			continue
+		var stats: EnemyStats = load("res://enemies/" + file_name)
+		if stats.hurt_sounds.is_empty():
+			without_sounds.append(file_name)
+	
+	# Act
+	var actual_count = without_sounds.size()
+	
+	# Assert
+	assert_eq(actual_count, 0, "stats without hurt_sounds: %s" % [without_sounds])

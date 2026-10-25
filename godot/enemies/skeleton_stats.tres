@@ -1,5 +1,10 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://cjvr1oocuggtm"]
 
+[ext_resource type="AudioStream" uid="uid://dx6xati530mh8" path="res://enemies/sounds/Skeleton_hurt1.ogg" id="hurt_1"]
+[ext_resource type="AudioStream" uid="uid://d2fdi1t370cfg" path="res://enemies/sounds/Skeleton_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://b125re1dbgqsa" path="res://enemies/sounds/Skeleton_hurt3.ogg" id="hurt_3"]
+[ext_resource type="AudioStream" uid="uid://k6w0t2mt8cse" path="res://enemies/sounds/Skeleton_hurt4.ogg" id="hurt_4"]
+
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_638kb"]
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_loot"]
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="2_iron_sword"]
@@ -24,4 +29,5 @@ loot_drops = Array[ExtResource("1_loot")]([SubResource("LootDropDefinition_Skele
 hard_max_hit_points = 5
 hard_damage = 2
 hard_time_limit = 25
+hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3"), ExtResource("hurt_4")])
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"
