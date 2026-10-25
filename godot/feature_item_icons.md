@@ -25,9 +25,9 @@ existing `WeaponLabel` / `ArmorLabel` text.
 Add icon fields and a helper to build the displayable texture:
 
 ```gdscript
+const ICON_GRID_SIZE: int = 16
+
 @export var icon_texture: Texture2D
-@export var icon_hframes: int = 16
-@export var icon_vframes: int = 16
 @export var icon_frame: int = 0
 
 func get_icon() -> Texture2D:
@@ -35,12 +35,15 @@ func get_icon() -> Texture2D:
         return null
     var atlas := AtlasTexture.new()
     atlas.atlas = icon_texture
-    var cell := icon_texture.get_size() / Vector2(icon_hframes, icon_vframes)
-    var col := icon_frame % icon_hframes
-    var row := icon_frame / icon_hframes
+    var cell := icon_texture.get_size() / Vector2(ICON_GRID_SIZE, ICON_GRID_SIZE)
+    var col := icon_frame % ICON_GRID_SIZE
+    var row := icon_frame / ICON_GRID_SIZE
     atlas.region = Rect2(col * cell.x, row * cell.y, cell.x, cell.y)
     return atlas
 ```
+
+(`items.png` is always a 16x16 atlas for every item, so the grid size is a constant
+rather than a per-resource export.)
 
 (Identical helper in both resources; no shared base class exists today so it's duplicated
 to match the existing pattern of these two classes.)

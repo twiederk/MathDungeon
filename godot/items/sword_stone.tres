@@ -1,9 +1,12 @@
 [gd_resource type="Resource" script_class="WeaponResource" format=3 uid="uid://b4qxn7wsvgkd2"]
 
 [ext_resource type="Script" uid="uid://cga2gx46clmmh" path="res://items/weapon_resource.gd" id="1_weapon"]
+[ext_resource type="Texture2D" uid="uid://c31gniut2rq2q" path="res://items/items.png" id="2_icon"]
 
 [resource]
 script = ExtResource("1_weapon")
 id = "sword_stone"
 name = "Steinschwert"
 damage = 2
+icon_texture = ExtResource("2_icon")
+icon_frame = 65

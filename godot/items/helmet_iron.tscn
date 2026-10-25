@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cecyxjivevnmn"]
+[gd_scene format=3 uid="uid://cecyxjivevnmn"]
 
 [ext_resource type="Script" uid="uid://dy2ugvq1ya782" path="res://items/helmet.gd" id="1_rq4g6"]
 [ext_resource type="Texture2D" uid="uid://c31gniut2rq2q" path="res://items/items.png" id="2_g31u4"]
@@ -7,17 +7,17 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e4ynd"]
 size = Vector2(20, 18)
 
-[node name="IronHelmet" type="Area2D"]
+[node name="IronHelmet" type="Area2D" unique_id=775802033]
 collision_layer = 2
 script = ExtResource("1_rq4g6")
 armor_resource = ExtResource("3_armor")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1260212953]
 texture = ExtResource("2_g31u4")
 hframes = 16
 vframes = 16
 frame = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2136329053]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_e4ynd")
