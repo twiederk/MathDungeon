@@ -4,6 +4,7 @@ extends Control
 
 const PORTRAIT_CATALOG: PortraitCatalog = preload("res://characters/portrait_catalog.tres")
 const PORTRAIT_BUTTON_SCENE = preload("res://gui/portrait_button.tscn")
+const STARTING_WEAPON: WeaponResource = preload("res://items/sword_wood.tres")
 const MAX_NAME_LENGTH: int = 16
 const MAX_CHARACTER_ID: int = 1000
 const CHARACTER_ID_PADDING: int = 3
@@ -75,6 +76,7 @@ func _create_character(character_name: String) -> Character:
 	character.id = _generate_unique_id()
 	character.display_name = character_name
 	character.portrait_id = selected_portrait_id
+	character.inventory.equip_weapon(STARTING_WEAPON)
 	return character
 
 
