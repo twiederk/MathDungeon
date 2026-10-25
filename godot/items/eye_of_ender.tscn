@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://pglqka1gaor8" path="res://items/eye_of_ender.gd" id="1_wb1o8"]
 [ext_resource type="Texture2D" uid="uid://c31gniut2rq2q" path="res://items/items.png" id="2_qfwhk"]
+[ext_resource type="Resource" path="res://items/eye_of_ender_good.tres" id="3_good"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wb1o8"]
 radius = 8.514693
@@ -9,6 +10,7 @@ radius = 8.514693
 [node name="EyeOfEnder" type="Area2D" unique_id=1981869147]
 collision_layer = 2
 script = ExtResource("1_wb1o8")
+good_resource = ExtResource("3_good")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1682134354]
 scale = Vector2(0.7, 0.7)

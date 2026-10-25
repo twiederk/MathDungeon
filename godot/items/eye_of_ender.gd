@@ -1,8 +1,10 @@
 class_name EyeOfEnder
 extends Item
 
+@export var good_resource: GoodResource
+
 
 func execute() -> void:
-	GameSession.eyes_of_ender += 1
+	CharacterManager.current.equip_good(good_resource)
 	Sound.play(Sound.victory)
 	queue_free()

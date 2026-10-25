@@ -4,10 +4,14 @@ class_name Character
 const PORTRAIT_CATALOG: PortraitCatalog = preload("res://characters/portrait_catalog.tres")
 const HIT_EFFECT_SCENE: PackedScene = preload("res://enemies/hit_effect.tscn")
 const WOLF_DAMAGE: int = 1
+const EYE_OF_ENDER_ID: String = "eye_of_ender"
+const LIGHTER_ID: String = "lighter"
 
 signal damage_changed
 signal armor_changed
 signal hit_points_changed
+signal eyes_of_ender_changed
+signal has_lighter_changed
 
 var id: String
 var display_name: String
@@ -27,14 +31,16 @@ var hit_points: int = 5:
 		hit_points_changed.emit()
 		if _hit_points > 0:
 			SaveManager.save_character(self)
+var _hit_points: int = 5
 
-var base_damage: int = 1:
+var base_damage: int = 0:
 	get:
 		return _base_damage
 	set(value):
 		_base_damage = value
 		damage_changed.emit()
 		SaveManager.save_character(self)
+var _base_damage: int = 0
 
 var base_armor: int = 0:
 	get:
@@ -43,10 +49,8 @@ var base_armor: int = 0:
 		_base_armor = value
 		armor_changed.emit()
 		SaveManager.save_character(self)
-
-var _base_damage: int = 1
 var _base_armor: int = 0
-var _hit_points: int = 5
+
 
 
 func _init() -> void:
@@ -64,23 +68,46 @@ func get_damage() -> int:
 
 
 func get_wolf_count() -> int:
-	var count = 0
-	for companion_type in companions:
-		if companion_type == "Wolf":
-			count += 1
-	return count
+	return get_companion_count("Wolf")
 
 
 func get_allay_count() -> int:
+	return get_companion_count("Allay")
+
+
+func get_companion_count(companion_type: String) -> int:
 	var count = 0
-	for companion_type in companions:
-		if companion_type == "Allay":
+	for c_type in companions:
+		if c_type == companion_type:
 			count += 1
 	return count
 
 
 func get_armor() -> int:
 	return _base_armor + inventory.get_armor_value()
+
+
+func get_eyes_of_ender_count() -> int:
+	var count := 0
+	for good in inventory.goods:
+		if good.id == EYE_OF_ENDER_ID:
+			count += 1
+	return count
+
+
+func has_lighter() -> bool:
+	for good in inventory.goods:
+		if good.id == LIGHTER_ID:
+			return true
+	return false
+
+
+func equip_good(resource: GoodResource) -> void:
+	inventory.equip_good(resource)
+	if resource.id == EYE_OF_ENDER_ID:
+		eyes_of_ender_changed.emit()
+	elif resource.id == LIGHTER_ID:
+		has_lighter_changed.emit()
 
 
 func hurt(damage: int) -> int:

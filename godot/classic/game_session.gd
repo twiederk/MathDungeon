@@ -21,8 +21,6 @@ enum SpawnPoint {
 
 
 signal score_changed
-signal eyes_of_ender_changed
-signal has_lighter_changed
 signal display_state_changed(state: int)
 signal simulation_running_changed(running: bool)
 
@@ -36,18 +34,6 @@ var display_state: int = DisplayState.NONE:
 		display_state = value
 		display_state_changed.emit(value)
 		simulation_running_changed.emit(is_simulation_running())
-
-
-var eyes_of_ender: int = 0:
-	set(value):
-		eyes_of_ender = value
-		eyes_of_ender_changed.emit()
-
-
-var has_lighter: bool = false:
-	set(value):
-		has_lighter = value
-		has_lighter_changed.emit()
 
 
 var score: int = 0:
@@ -66,8 +52,6 @@ func _ready() -> void:
 func reset() -> void:
 	score = 0
 	correct_answers = 0
-	eyes_of_ender = 0
-	has_lighter = false
 	display_state = DisplayState.NONE
 	spawn_point = SpawnPoint.START
 

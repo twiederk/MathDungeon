@@ -10,6 +10,7 @@ func before_each():
 func after_each():
 	AchievementManager.reset()
 	GameSession.reset()
+	CharacterManager.current.inventory.goods.clear()
 
 
 
@@ -18,7 +19,7 @@ func test_unlocking_the_achievement_completes_the_quest():
 	var quest = _quest("lighter")
 	
 	# act
-	GameSession.has_lighter = true
+	CharacterManager.current.equip_good(_create_good("lighter"))
 	
 	# assert
 	assert_eq(QuestLog.Status.COMPLETED, quest_log.get_status(quest))
@@ -27,8 +28,9 @@ func test_unlocking_the_achievement_completes_the_quest():
 
 func test_reset_reopens_all_quests():
 	# arrange
-	GameSession.has_lighter = true
-	GameSession.eyes_of_ender = 12
+	CharacterManager.current.equip_good(_create_good("lighter"))
+	for i in 12:
+		CharacterManager.current.equip_good(_create_good("eye_of_ender"))
 	
 	# act
 	AchievementManager.reset()
@@ -43,7 +45,8 @@ func test_progress_of_a_counting_quest():
 	var quest = _quest("eyes_of_ender")
 	
 	# act
-	GameSession.eyes_of_ender = 7
+	for i in 7:
+		CharacterManager.current.equip_good(_create_good("eye_of_ender"))
 	
 	# assert
 	assert_eq(Vector2i(7, 12), quest_log.get_progress(quest))
@@ -55,7 +58,8 @@ func test_progress_is_capped_at_the_target():
 	var quest = _quest("eyes_of_ender")
 	
 	# act
-	GameSession.eyes_of_ender = 15
+	for i in 15:
+		CharacterManager.current.equip_good(_create_good("eye_of_ender"))
 	
 	# assert
 	assert_eq(Vector2i(12, 12), quest_log.get_progress(quest))
@@ -72,3 +76,10 @@ func _quest(id: String) -> Quest:
 			return quest
 	fail_test("No quest with id '%s'" % id)
 	return null
+
+
+func _create_good(id: String) -> GoodResource:
+	var resource := GoodResource.new()
+	resource.id = id
+	resource.name = id
+	return resource

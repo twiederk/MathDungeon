@@ -53,11 +53,27 @@ text = "Schaden: 1"
 layout_mode = 2
 text = "Rüstungspunkte: 0"
 
-[node name="WeaponLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=48802742]
+[node name="WeaponRow" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="WeaponIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/WeaponRow"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+stretch_mode = 5
+
+[node name="WeaponLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/WeaponRow" unique_id=48802742]
 layout_mode = 2
 text = "Waffe: -"
 
-[node name="ArmorLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=48802743]
+[node name="ArmorRow" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ArmorIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/ArmorRow"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+stretch_mode = 5
+
+[node name="ArmorLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ArmorRow" unique_id=48802743]
 layout_mode = 2
 text = "Rüstung: -"
 

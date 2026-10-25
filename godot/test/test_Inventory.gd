@@ -83,14 +83,14 @@ func test_empty_armor_slot_contributes_no_armor():
 func test_add_potion_is_rejected_once_at_max():
 	# arrange
 	for i in Inventory.MAX_POTIONS:
-		inventory.add_potion()
+		inventory.add_potion(_create_good("healing_potion"))
 
 	# act
-	var result = inventory.add_potion()
+	var result = inventory.add_potion(_create_good("healing_potion"))
 
 	# assert
 	assert_false(result)
-	assert_eq(Inventory.MAX_POTIONS, inventory.potion_count)
+	assert_eq(Inventory.MAX_POTIONS, inventory.get_potion_count())
 
 
 func test_add_potion_increments_count_and_emits_changed():
@@ -98,11 +98,11 @@ func test_add_potion_increments_count_and_emits_changed():
 	watch_signals(inventory)
 
 	# act
-	var result = inventory.add_potion()
+	var result = inventory.add_potion(_create_good("healing_potion"))
 
 	# assert
 	assert_true(result)
-	assert_eq(1, inventory.potion_count)
+	assert_eq(1, inventory.get_potion_count())
 	assert_signal_emitted(inventory, "changed")
 
 
@@ -112,12 +112,12 @@ func test_use_potion_is_rejected_when_empty():
 
 	# assert
 	assert_false(result)
-	assert_eq(0, inventory.potion_count)
+	assert_eq(0, inventory.get_potion_count())
 
 
 func test_use_potion_decrements_count_and_emits_changed():
 	# arrange
-	inventory.add_potion()
+	inventory.add_potion(_create_good("healing_potion"))
 	watch_signals(inventory)
 
 	# act
@@ -125,7 +125,19 @@ func test_use_potion_decrements_count_and_emits_changed():
 
 	# assert
 	assert_true(result)
-	assert_eq(0, inventory.potion_count)
+	assert_eq(0, inventory.get_potion_count())
+	assert_signal_emitted(inventory, "changed")
+
+
+func test_equip_good_appends_to_goods_and_emits_changed():
+	# arrange
+	watch_signals(inventory)
+
+	# act
+	inventory.equip_good(_create_good("eye_of_ender"))
+
+	# assert
+	assert_eq(1, inventory.goods.size())
 	assert_signal_emitted(inventory, "changed")
 
 
@@ -142,4 +154,11 @@ func _armor(id: String, armor: int) -> ArmorResource:
 	resource.id = id
 	resource.name = id
 	resource.armor = armor
+	return resource
+
+
+func _create_good(id: String) -> GoodResource:
+	var resource := GoodResource.new()
+	resource.id = id
+	resource.name = id
 	return resource

@@ -44,7 +44,7 @@ func test_save_and_load_round_trip_persists_weapon_armor_and_base_stats():
 	character.id = "1002"
 	character.base_armor = 2
 	character.inventory.equip_weapon(ITEM_CATALOG.get_weapon("sword_iron"))
-	character.inventory.add_potion()
+	character.inventory.add_potion(_create_good("healing_potion"))
 	SaveManager.save_character(character)
 
 	# act
@@ -55,7 +55,7 @@ func test_save_and_load_round_trip_persists_weapon_armor_and_base_stats():
 	assert_eq("sword_iron", loaded.inventory.get_weapon_id())
 	assert_eq(3, loaded.inventory.get_weapon_damage())
 	assert_eq(2, loaded.base_armor)
-	assert_eq(0, loaded.inventory.potion_count, "Potions are session-only and must not be persisted")
+	assert_eq(0, loaded.inventory.get_potion_count(), "Potions are session-only and must not be persisted")
 
 
 func test_legacy_save_without_base_stats_falls_back_to_the_old_totals():
@@ -83,3 +83,10 @@ func test_legacy_save_without_base_stats_falls_back_to_the_old_totals():
 	var loaded := CharacterManager.current
 	assert_eq(4, loaded.base_damage, "The old weapon_damage total becomes the new base damage")
 	assert_eq(2, loaded.base_armor, "The old armor total becomes the new base armor")
+
+
+func _create_good(id: String) -> GoodResource:
+	var resource := GoodResource.new()
+	resource.id = id
+	resource.name = id
+	return resource
