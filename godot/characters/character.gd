@@ -27,14 +27,16 @@ var hit_points: int = 5:
 		hit_points_changed.emit()
 		if _hit_points > 0:
 			SaveManager.save_character(self)
+var _hit_points: int = 5
 
-var base_damage: int = 1:
+var base_damage: int = 0:
 	get:
 		return _base_damage
 	set(value):
 		_base_damage = value
 		damage_changed.emit()
 		SaveManager.save_character(self)
+var _base_damage: int = 0
 
 var base_armor: int = 0:
 	get:
@@ -43,10 +45,8 @@ var base_armor: int = 0:
 		_base_armor = value
 		armor_changed.emit()
 		SaveManager.save_character(self)
-
-var _base_damage: int = 1
 var _base_armor: int = 0
-var _hit_points: int = 5
+
 
 
 func _init() -> void:
