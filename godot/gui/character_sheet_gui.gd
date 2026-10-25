@@ -15,7 +15,8 @@ extends Control
 @onready var potion_label: Label = $PanelContainer/MarginContainer/VBoxContainer/PotionRow/PotionLabel
 @onready var lighter_row: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/LighterRow
 @onready var lighter_label: Label = $PanelContainer/MarginContainer/VBoxContainer/LighterRow/LighterLabel
-@onready var eyes_of_ender_label: Label = $PanelContainer/MarginContainer/VBoxContainer/EyesOfEnderLabel
+@onready var eyes_of_ender_row: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/EyesOfEnderRow
+@onready var eyes_of_ender_label: Label = $PanelContainer/MarginContainer/VBoxContainer/EyesOfEnderRow/EyesOfEnderLabel
 
 
 func _ready() -> void:
@@ -64,7 +65,8 @@ func _refresh() -> void:
 	_update_good_icons(potion_row, potion_label, inventory, Inventory.HEALING_POTION_ID)
 	lighter_label.text = "Feuerzeug:"
 	_update_good_icons(lighter_row, lighter_label, inventory, Character.LIGHTER_ID)
-	eyes_of_ender_label.text = "Enderaugen: %d" % character.get_eyes_of_ender_count()
+	eyes_of_ender_label.text = "Enderaugen:"
+	_update_good_icons(eyes_of_ender_row, eyes_of_ender_label, inventory, Character.EYE_OF_ENDER_ID)
 
 
 func _item_label(item_name: String, value: int) -> String:
