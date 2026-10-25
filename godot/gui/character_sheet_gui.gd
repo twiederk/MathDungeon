@@ -5,8 +5,12 @@ extends Control
 @onready var health_meter_widget: HealthMeterWidget = $PanelContainer/MarginContainer/VBoxContainer/HealthMeterWidget
 @onready var damage_label: Label = $PanelContainer/MarginContainer/VBoxContainer/DamageLabel
 @onready var armor_points_label: Label = $PanelContainer/MarginContainer/VBoxContainer/ArmorPointsLabel
-@onready var weapon_label: Label = $PanelContainer/MarginContainer/VBoxContainer/WeaponLabel
-@onready var armor_label: Label = $PanelContainer/MarginContainer/VBoxContainer/ArmorLabel
+@onready var weapon_row: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/WeaponRow
+@onready var weapon_icon: TextureRect = $PanelContainer/MarginContainer/VBoxContainer/WeaponRow/WeaponIcon
+@onready var weapon_label: Label = $PanelContainer/MarginContainer/VBoxContainer/WeaponRow/WeaponLabel
+@onready var armor_row: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/ArmorRow
+@onready var armor_icon: TextureRect = $PanelContainer/MarginContainer/VBoxContainer/ArmorRow/ArmorIcon
+@onready var armor_label: Label = $PanelContainer/MarginContainer/VBoxContainer/ArmorRow/ArmorLabel
 @onready var potion_label: Label = $PanelContainer/MarginContainer/VBoxContainer/PotionLabel
 @onready var lighter_label: Label = $PanelContainer/MarginContainer/VBoxContainer/LighterLabel
 @onready var eyes_of_ender_label: Label = $PanelContainer/MarginContainer/VBoxContainer/EyesOfEnderLabel
@@ -52,8 +56,8 @@ func _refresh() -> void:
 	health_meter_widget.update_max_health_ui(character.max_hit_points)
 	damage_label.text = "Schaden: " + str(character.get_damage())
 	armor_points_label.text = "Rüstung: " + str(character.get_armor())
-	weapon_label.text = "Waffe: " + _item_label(inventory.get_weapon_name(), inventory.get_weapon_damage())
-	armor_label.text = "Rüstung: " + _item_label(inventory.get_armor_name(), inventory.get_armor_value())
+	_update_item_row(weapon_row, weapon_icon, weapon_label, inventory.weapon_resource, inventory.get_weapon_name(), inventory.get_weapon_damage())
+	_update_item_row(armor_row, armor_icon, armor_label, inventory.armor_resource, inventory.get_armor_name(), inventory.get_armor_value())
 	potion_label.text = "Tränke: %d/%d" % [inventory.potion_count, Inventory.MAX_POTIONS]
 	lighter_label.text = "Feuerzeug: " + _yes_no(GameSession.has_lighter)
 	eyes_of_ender_label.text = "Enderaugen: %d" % GameSession.eyes_of_ender
@@ -63,6 +67,15 @@ func _item_label(item_name: String, value: int) -> String:
 	if item_name.is_empty():
 		return "-"
 	return "%s (%d)" % [item_name, value]
+
+
+func _update_item_row(row: HBoxContainer, icon_rect: TextureRect, label: Label, resource, item_name: String, value: int) -> void:
+	if resource == null:
+		row.visible = false
+		return
+	icon_rect.texture = resource.get_icon()
+	label.text = _item_label(item_name, value)
+	row.visible = true
 
 
 func _yes_no(value: bool) -> String:
