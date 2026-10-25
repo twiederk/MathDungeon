@@ -1,6 +1,13 @@
 class_name CharacterSheetGui
 extends Control
 
+const COMPANION_SPRITE_SHEET: Texture2D = preload("res://enemies/creatures.png")
+const COMPANION_SPRITE_GRID_SIZE: int = 9
+const COMPANION_SPRITE_FRAMES := {
+	"Wolf": 7,
+	"Allay": 63,
+}
+
 @onready var title_label: Label = $PanelContainer/MarginContainer/VBoxContainer/TitleLabel
 @onready var health_meter_widget: HealthMeterWidget = $PanelContainer/MarginContainer/VBoxContainer/HealthMeterWidget
 @onready var damage_label: Label = $PanelContainer/MarginContainer/VBoxContainer/DamageLabel
@@ -17,6 +24,8 @@ extends Control
 @onready var lighter_label: Label = $PanelContainer/MarginContainer/VBoxContainer/LighterRow/LighterLabel
 @onready var eyes_of_ender_row: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/EyesOfEnderRow
 @onready var eyes_of_ender_label: Label = $PanelContainer/MarginContainer/VBoxContainer/EyesOfEnderRow/EyesOfEnderLabel
+@onready var companion_row: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/CompanionRow
+@onready var companion_label: Label = $PanelContainer/MarginContainer/VBoxContainer/CompanionRow/CompanionLabel
 
 
 func _ready() -> void:
@@ -67,6 +76,8 @@ func _refresh() -> void:
 	_update_good_icons(lighter_row, lighter_label, inventory, Character.LIGHTER_ID)
 	eyes_of_ender_label.text = "Enderaugen:"
 	_update_good_icons(eyes_of_ender_row, eyes_of_ender_label, inventory, Character.EYE_OF_ENDER_ID)
+	companion_label.text = "Begleiter:"
+	_update_companion_icons(character)
 
 
 func _item_label(item_name: String, value: int) -> String:
@@ -100,8 +111,32 @@ func _add_good_icons(row: HBoxContainer, inventory: Inventory, good_id: String) 
 	for good in inventory.goods:
 		if good.id != good_id:
 			continue
-		var icon_rect := TextureRect.new()
-		icon_rect.custom_minimum_size = Vector2(20, 20)
-		icon_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		icon_rect.texture = good.get_icon()
-		row.add_child(icon_rect)
+		row.add_child(_create_icon_rect(good.get_icon()))
+
+
+func _update_companion_icons(character: Character) -> void:
+	_clear_good_icons(companion_row, companion_label)
+	for companion_type in character.companions:
+		if not COMPANION_SPRITE_FRAMES.has(companion_type):
+			continue
+		companion_row.add_child(_create_icon_rect(_companion_icon(companion_type)))
+
+
+func _companion_icon(companion_type: String) -> Texture2D:
+	var frame: int = COMPANION_SPRITE_FRAMES[companion_type]
+	var atlas := AtlasTexture.new()
+	atlas.atlas = COMPANION_SPRITE_SHEET
+	var cell := COMPANION_SPRITE_SHEET.get_size() / Vector2(COMPANION_SPRITE_GRID_SIZE, COMPANION_SPRITE_GRID_SIZE)
+	var col := frame % COMPANION_SPRITE_GRID_SIZE
+	@warning_ignore("integer_division")
+	var row := frame / COMPANION_SPRITE_GRID_SIZE
+	atlas.region = Rect2(col * cell.x, row * cell.y, cell.x, cell.y)
+	return atlas
+
+
+func _create_icon_rect(texture: Texture2D) -> TextureRect:
+	var icon_rect := TextureRect.new()
+	icon_rect.custom_minimum_size = Vector2(20, 20)
+	icon_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	icon_rect.texture = texture
+	return icon_rect
