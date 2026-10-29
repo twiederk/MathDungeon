@@ -1,12 +1,11 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://m2ge1bma5cqq"]
 
-[ext_resource type="AudioStream" uid="uid://cdyr73v1qsaba" path="res://enemies/sounds/Piglin_hurt1.ogg" id="hurt_1"]
-[ext_resource type="AudioStream" uid="uid://cpal5e14plhvj" path="res://enemies/sounds/Piglin_hurt2.ogg" id="hurt_2"]
-[ext_resource type="AudioStream" uid="uid://bey072u5gif7" path="res://enemies/sounds/Piglin_hurt3.ogg" id="hurt_3"]
-
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_loot"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_u8ym2"]
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="2_iron_sword"]
+[ext_resource type="AudioStream" uid="uid://cdyr73v1qsaba" path="res://enemies/sounds/Piglin_hurt1.ogg" id="hurt_1"]
+[ext_resource type="AudioStream" uid="uid://cpal5e14plhvj" path="res://enemies/sounds/Piglin_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://bey072u5gif7" path="res://enemies/sounds/Piglin_hurt3.ogg" id="hurt_3"]
 
 [sub_resource type="Resource" id="LootDropDefinition_PiglinSword"]
 script = ExtResource("1_loot")
@@ -21,9 +20,9 @@ damage = 2
 armor = 1
 arithmetic = Array[int]([5, 3])
 loot_drops = Array[ExtResource("1_loot")]([SubResource("LootDropDefinition_PiglinSword")])
+hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3")])
 hard_max_hit_points = 12
 hard_damage = 3
 hard_armor = 2
 hard_time_limit = 20
-hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3")])
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

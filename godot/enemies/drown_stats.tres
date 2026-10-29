@@ -1,13 +1,12 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://xk8ept65fhe2"]
 
-[ext_resource type="AudioStream" uid="uid://bhtc70syehww0" path="res://enemies/sounds/Drowned_hurt1.ogg" id="hurt_1"]
-[ext_resource type="AudioStream" uid="uid://61ao85evu240" path="res://enemies/sounds/Drowned_hurt2.ogg" id="hurt_2"]
-[ext_resource type="AudioStream" uid="uid://c6mqsnrlwbt4" path="res://enemies/sounds/Drowned_hurt3.ogg" id="hurt_3"]
-
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_34u1b"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_ltatt"]
 [ext_resource type="PackedScene" uid="uid://cinn45uh8snch" path="res://items/healing_potion.tscn" id="2_healing_potion"]
 [ext_resource type="PackedScene" uid="uid://cecyxjivevnmn" path="res://items/helmet_iron.tscn" id="3_iron_helmet"]
+[ext_resource type="AudioStream" uid="uid://bhtc70syehww0" path="res://enemies/sounds/Drowned_hurt1.ogg" id="hurt_1"]
+[ext_resource type="AudioStream" uid="uid://61ao85evu240" path="res://enemies/sounds/Drowned_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://c6mqsnrlwbt4" path="res://enemies/sounds/Drowned_hurt3.ogg" id="hurt_3"]
 
 [sub_resource type="Resource" id="LootDropDefinition_DrownedPotion"]
 script = ExtResource("1_34u1b")
@@ -24,8 +23,8 @@ script = ExtResource("1_ltatt")
 name = "Drowned"
 max_hit_points = 3
 loot_drops = Array[ExtResource("1_34u1b")]([SubResource("LootDropDefinition_DrownedPotion"), SubResource("LootDropDefinition_DrownedHelmet")])
+hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3")])
 hard_max_hit_points = 5
 hard_damage = 2
 hard_time_limit = 25
-hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3")])
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"
