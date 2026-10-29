@@ -1,12 +1,11 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://dmamxv4b4pgsv"]
 
-[ext_resource type="AudioStream" uid="uid://pso6bi1twcas" path="res://enemies/sounds/Pig_hurt1.ogg" id="hurt_1"]
-[ext_resource type="AudioStream" uid="uid://dq4wvpsf3r8i7" path="res://enemies/sounds/Pig_hurt2.ogg" id="hurt_2"]
-[ext_resource type="AudioStream" uid="uid://dglkx4byvruuo" path="res://enemies/sounds/Pig_hurt3.ogg" id="hurt_3"]
-
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_loot"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_xptjm"]
 [ext_resource type="PackedScene" uid="uid://cinn45uh8snch" path="res://items/healing_potion.tscn" id="2_healing_potion"]
+[ext_resource type="AudioStream" uid="uid://pso6bi1twcas" path="res://enemies/sounds/Pig_hurt1.ogg" id="hurt_1"]
+[ext_resource type="AudioStream" uid="uid://dq4wvpsf3r8i7" path="res://enemies/sounds/Pig_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://dglkx4byvruuo" path="res://enemies/sounds/Pig_hurt3.ogg" id="hurt_3"]
 
 [sub_resource type="Resource" id="LootDropDefinition_PigPotion"]
 script = ExtResource("1_loot")
@@ -19,7 +18,7 @@ name = "Pig"
 arithmetic = Array[int]([6])
 max_number = 5
 loot_drops = Array[ExtResource("1_loot")]([SubResource("LootDropDefinition_PigPotion")])
+hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3")])
 hard_max_number = 10
 hard_time_limit = 30
-hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3")])
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"
