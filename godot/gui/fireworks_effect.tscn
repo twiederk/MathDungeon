@@ -15,8 +15,8 @@ spread = 180.0
 initial_velocity_min = 80.0
 initial_velocity_max = 140.0
 gravity = Vector3(0, 120, 0)
-scale_min = 0.6
-scale_max = 1.4
+scale_min = 6.0
+scale_max = 10.0
 color_ramp = SubResource("GradientTexture1D_red")
 
 [sub_resource type="Gradient" id="Gradient_gold"]
@@ -32,8 +32,8 @@ spread = 180.0
 initial_velocity_min = 80.0
 initial_velocity_max = 140.0
 gravity = Vector3(0, 120, 0)
-scale_min = 0.6
-scale_max = 1.4
+scale_min = 6.0
+scale_max = 10.0
 color_ramp = SubResource("GradientTexture1D_gold")
 
 [sub_resource type="Gradient" id="Gradient_blue"]
@@ -49,8 +49,8 @@ spread = 180.0
 initial_velocity_min = 80.0
 initial_velocity_max = 140.0
 gravity = Vector3(0, 120, 0)
-scale_min = 0.6
-scale_max = 1.4
+scale_min = 6.0
+scale_max = 10.0
 color_ramp = SubResource("GradientTexture1D_blue")
 
 [node name="FireworksEffect" type="Control" unique_id=1233690238]
