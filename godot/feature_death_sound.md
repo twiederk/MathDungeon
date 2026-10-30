@@ -25,6 +25,11 @@ sounds when `is_inside_tree()` is true.
   exist yet, these entries will be left as empty arrays for now (follow-up task to
   assign actual audio files), matching how the user will populate them manually in
   the editor.
+- **Folder layout change**: hurt sound files currently live flat in
+  `enemies/sounds/` (e.g. `enemies/sounds/Zombie_hurt1.ogg`, referenced as
+  `ExtResource`s in each `*_stats.tres`). Going forward:
+  - All hurt sound files move to `enemies/hurt_sounds/`.
+  - All death sound files are stored in `enemies/death_sounds/`.
 
 ## Implementation Steps
 
@@ -61,9 +66,19 @@ sounds when `is_inside_tree()` is true.
      ```
      (Damage is applied before the sound check so the lethal/non-lethal branch can
      be determined; behavior for `defeated.emit()` timing is unchanged.)
-5. **`enemies/*_stats.tres`** (all non-projectile enemy stats resources)
+5. **Move existing hurt sound files**: `enemies/sounds/*.ogg` → `enemies/hurt_sounds/*.ogg`
+   (keep the same file names). Update every `*_stats.tres` `ext_resource` `path=`
+   entry pointing at `res://enemies/sounds/...` to `res://enemies/hurt_sounds/...`.
+   Godot/`uid://` references should still resolve by UID after the move, but paths
+   in the `.tres` text need updating to match (and re-importing if `.import` files
+   don't follow the move automatically — verify with `--headless --import`).
+   - Delete the now-empty `enemies/sounds/` folder once confirmed empty.
+6. **Create `enemies/death_sounds/`** folder for the new death sound audio files
+   sourced in the section below.
+7. **`enemies/*_stats.tres`** (all non-projectile enemy stats resources)
    - Add `death_sounds = Array[AudioStream]([])` (empty array) next to each
-     resource's `hurt_sounds` line, ready for the user to fill in via the editor.
+     resource's `hurt_sounds` line, ready for the user to fill in via the editor
+     once files exist under `enemies/death_sounds/`.
 
 ## Tests (`test/test_EnemyStats.gd`)
 - `test_get_death_sound_falls_back_to_default_when_empty`: new `EnemyStats`,
@@ -90,9 +105,40 @@ sounds when `is_inside_tree()` is true.
 - `test_nonlethal_damage_still_plays_hurt_sound`: similar indirect verification for
   the non-lethal branch, ensuring no regression.
 
+## Sourcing Death Sound Assets from the Local Minecraft Installation
+Minecraft is installed on this machine, so the real per-mob death sounds can be
+extracted from it instead of using placeholders, the same way the existing
+`enemies/sounds/*_hurt*.ogg` assets were presumably sourced (those files are being
+moved to `enemies/hurt_sounds/` as part of this feature, see step 5 above):
+
+1. Locate the client jar for an installed version, e.g.
+   `%APPDATA%\.minecraft\versions\<version>\<version>.jar`.
+2. Extract `assets/minecraft/sounds/entity/<mob>/death*.ogg` (and `hurt*.ogg` for
+   reference/consistency) from the jar — e.g. via `Expand-Archive` after renaming
+   the `.jar` to `.zip`, or any zip tool.
+3. Match extracted mob sound folders to this project's enemies (e.g.
+   `entity/zombie/death1.ogg` → `zombie_stats.tres`, `entity/skeleton/death1.ogg` →
+   `skeleton_stats.tres`, `entity/enderman/death.ogg` → `enderman_stats.tres`, etc.).
+   Some project enemies don't map 1:1 to vanilla mobs (e.g. `chasing_iron_golem`,
+   `evoker_vex`) — use the closest matching vanilla entity folder.
+4. Copy the chosen `.ogg` files into `enemies/death_sounds/`, following the existing
+   naming convention used in `enemies/hurt_sounds/`
+   (e.g. `Zombie_hurt1.ogg` → `Zombie_death1.ogg`), referenced as `ExtResource`s
+   in the `*_stats.tres` files.
+5. Let Godot import them (`.import` files are generated automatically), then wire
+   each enemy's `death_sounds` array in its `.tres` to the imported `AudioStream`
+   resources under `res://enemies/death_sounds/...`, replacing the empty
+   placeholders from step 7 above.
+6. Pick/record one general-purpose fallback sound for `Sound.death_enemy` (e.g. a
+   generic vanilla "entity.generic.death" sound) and assign it in `sound.tscn`.
+
+This step replaces the "empty array placeholder" fallback mentioned above with
+actual audio once the assets are extracted and imported — it should be done before
+the `test_all_non_projectile_stats_define_death_sounds` test is expected to pass.
+
 ## Out of Scope
 - Projectiles (`Projectile`/`shooting_enemy.gd`) — no hurt/death sound change needed;
   already unaffected since the transient `Enemy` instance they create is never added
   to the tree.
-- Actually sourcing/assigning the death sound audio files — only the code structure
-  and empty placeholders are covered here.
+- Writing a script to automate the jar extraction/mapping — done manually per the
+  steps above unless you ask for an extraction script.
