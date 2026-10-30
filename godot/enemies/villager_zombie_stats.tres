@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cecyxjivevnmn" path="res://items/helmet_iron.tscn" id="3_iron_helmet"]
 [ext_resource type="AudioStream" uid="uid://b3crtauxsxt2d" path="res://enemies/hurt_sounds/Zombie_villager_hurt1.ogg" id="hurt_1"]
 [ext_resource type="AudioStream" uid="uid://dnjt85njs52dw" path="res://enemies/hurt_sounds/Zombie_villager_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://c3wn7iagegsvy" path="res://enemies/death_sounds/Zombie_villager_death.ogg" id="death_1"]
 
 [sub_resource type="Resource" id="LootDropDefinition_ZombieVillagerPotion"]
 script = ExtResource("1_ipsf5")
@@ -24,6 +25,7 @@ max_hit_points = 2
 arithmetic = Array[int]([9, 11])
 loot_drops = Array[ExtResource("1_ipsf5")]([SubResource("LootDropDefinition_ZombieVillagerPotion"), SubResource("LootDropDefinition_ZombieVillagerHelmet")])
 hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2")])
+death_sounds = Array[AudioStream]([ExtResource("death_1")])
 hard_max_hit_points = 3
 hard_time_limit = 30
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

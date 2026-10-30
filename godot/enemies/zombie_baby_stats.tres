@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cinn45uh8snch" path="res://items/healing_potion.tscn" id="2_healing_potion"]
 [ext_resource type="AudioStream" uid="uid://sckmvu6hnq45" path="res://enemies/hurt_sounds/Zombie_hurt1.ogg" id="hurt_1"]
 [ext_resource type="AudioStream" uid="uid://2ajyip552gg6" path="res://enemies/hurt_sounds/Zombie_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://cujavosl3vys5" path="res://enemies/death_sounds/Zombie_death.ogg" id="death_1"]
 
 [sub_resource type="Resource" id="LootDropDefinition_BabyZombiePotion"]
 script = ExtResource("1_kogld")
@@ -17,6 +18,7 @@ name = "Baby Zombie"
 max_number = 10
 loot_drops = Array[ExtResource("1_kogld")]([SubResource("LootDropDefinition_BabyZombiePotion")])
 hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2")])
+death_sounds = Array[AudioStream]([ExtResource("death_1")])
 hard_max_number = 20
 hard_time_limit = 30
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

@@ -7,6 +7,8 @@
 [ext_resource type="AudioStream" uid="uid://dj8oru88lwrno" path="res://enemies/hurt_sounds/Vindicator_hurt1.ogg" id="hurt_1"]
 [ext_resource type="AudioStream" uid="uid://5deqosuc0j47" path="res://enemies/hurt_sounds/Vindicator_hurt2.ogg" id="hurt_2"]
 [ext_resource type="AudioStream" uid="uid://bixu1ry8ntd8n" path="res://enemies/hurt_sounds/Vindicator_hurt3.ogg" id="hurt_3"]
+[ext_resource type="AudioStream" uid="uid://dfvoelv6bf5m7" path="res://enemies/death_sounds/Vindicator_death1.ogg" id="death_1"]
+[ext_resource type="AudioStream" uid="uid://dc73rhpuuapw5" path="res://enemies/death_sounds/Vindicator_death2.ogg" id="death_2"]
 
 [sub_resource type="Resource" id="LootDropDefinition_VindicatorSword"]
 script = ExtResource("1_4ulap")
@@ -27,6 +29,7 @@ armor = 1
 arithmetic = Array[int]([0, 1, 2, 3])
 loot_drops = Array[ExtResource("1_4ulap")]([SubResource("LootDropDefinition_VindicatorSword"), SubResource("LootDropDefinition_VindicatorHelmet")])
 hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3")])
+death_sounds = Array[AudioStream]([ExtResource("death_1"), ExtResource("death_2")])
 hard_max_hit_points = 8
 hard_damage = 3
 hard_armor = 2

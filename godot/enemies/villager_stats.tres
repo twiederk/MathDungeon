@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://ukpx42ga4qy1" path="res://enemies/hurt_sounds/Villager_hurt2.ogg" id="hurt_2"]
 [ext_resource type="AudioStream" uid="uid://cbll2wk6p2xbm" path="res://enemies/hurt_sounds/Villager_hurt3.ogg" id="hurt_3"]
 [ext_resource type="AudioStream" uid="uid://crpmissky0npe" path="res://enemies/hurt_sounds/Villager_hurt4.ogg" id="hurt_4"]
+[ext_resource type="AudioStream" uid="uid://dcffb618ri0fn" path="res://enemies/death_sounds/Villager_death.ogg" id="death_1"]
 
 [sub_resource type="Resource" id="LootDropDefinition_VillagerPotion"]
 script = ExtResource("1_loot")
@@ -20,6 +21,7 @@ max_hit_points = 2
 arithmetic = Array[int]([7, 11, 11])
 loot_drops = Array[ExtResource("1_loot")]([SubResource("LootDropDefinition_VillagerPotion")])
 hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3"), ExtResource("hurt_4")])
+death_sounds = Array[AudioStream]([ExtResource("death_1")])
 hard_max_hit_points = 3
 hard_time_limit = 30
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

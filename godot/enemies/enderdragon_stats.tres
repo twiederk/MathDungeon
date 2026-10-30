@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_uv53k"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_yey48"]
 [ext_resource type="PackedScene" uid="uid://i8jullgo6a5f" path="res://items/eye_of_ender.tscn" id="2_eye_of_ender"]
+[ext_resource type="AudioStream" uid="uid://dus4msve54ttm" path="res://enemies/death_sounds/Enderdragon_death.ogg" id="death_1"]
 
 [sub_resource type="Resource" id="LootDropDefinition_EnderDragonEye"]
 script = ExtResource("1_uv53k")
@@ -25,4 +26,6 @@ hard_max_hit_points = 30
 hard_damage = 4
 hard_time_limit = 8
 hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3"), ExtResource("hurt_4")])
+
+death_sounds = Array[AudioStream]([ExtResource("death_1")])
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

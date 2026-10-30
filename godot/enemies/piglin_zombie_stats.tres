@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="3_iron_sword"]
 [ext_resource type="AudioStream" uid="uid://sd38wsqx8q18" path="res://enemies/hurt_sounds/Zombified_piglin_hurt1.ogg" id="hurt_1"]
 [ext_resource type="AudioStream" uid="uid://c53ifdqojmmp2" path="res://enemies/hurt_sounds/Zombified_piglin_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://38veboy8pi00" path="res://enemies/death_sounds/Zombified_piglin_death.ogg" id="death_1"]
 
 [sub_resource type="Resource" id="LootDropDefinition_ZPiglinPotion"]
 script = ExtResource("1_doxnd")
@@ -24,6 +25,7 @@ max_hit_points = 7
 arithmetic = Array[int]([5, 3])
 loot_drops = Array[ExtResource("1_doxnd")]([SubResource("LootDropDefinition_ZPiglinPotion"), SubResource("LootDropDefinition_ZPiglinSword")])
 hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2")])
+death_sounds = Array[AudioStream]([ExtResource("death_1")])
 hard_max_hit_points = 10
 hard_damage = 2
 hard_time_limit = 20

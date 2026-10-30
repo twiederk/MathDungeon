@@ -6,6 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://ck57t222jb3ip" path="res://enemies/hurt_sounds/Pillager_hurt1.ogg" id="hurt_1"]
 [ext_resource type="AudioStream" uid="uid://bkxxdedau5834" path="res://enemies/hurt_sounds/Pillager_hurt2.ogg" id="hurt_2"]
 [ext_resource type="AudioStream" uid="uid://51d10d4u4p57" path="res://enemies/hurt_sounds/Pillager_hurt3.ogg" id="hurt_3"]
+[ext_resource type="AudioStream" uid="uid://creqj7k3s1uq7" path="res://enemies/death_sounds/Pillager_death1.ogg" id="death_1"]
+[ext_resource type="AudioStream" uid="uid://di26afch0c6v1" path="res://enemies/death_sounds/Pillager_death2.ogg" id="death_2"]
 
 [sub_resource type="Resource" id="LootDropDefinition_PillagerSword"]
 script = ExtResource("1_loot")
@@ -20,6 +22,7 @@ armor = 1
 arithmetic = Array[int]([0, 1, 2, 3])
 loot_drops = Array[ExtResource("1_loot")]([SubResource("LootDropDefinition_PillagerSword")])
 hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3")])
+death_sounds = Array[AudioStream]([ExtResource("death_1"), ExtResource("death_2")])
 hard_max_hit_points = 8
 hard_damage = 2
 hard_armor = 2

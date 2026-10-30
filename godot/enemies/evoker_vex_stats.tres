@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="2_iron_sword"]
 [ext_resource type="AudioStream" uid="uid://byvt1k1e4m6j4" path="res://enemies/hurt_sounds/Vex_hurt1.ogg" id="hurt_1"]
 [ext_resource type="AudioStream" uid="uid://bxtaaq8y8db83" path="res://enemies/hurt_sounds/Vex_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://bghawm5j5nddw" path="res://enemies/death_sounds/Vex_death1.ogg" id="death_1"]
+[ext_resource type="AudioStream" uid="uid://ddbljk0bqd6ad" path="res://enemies/death_sounds/Vex_death2.ogg" id="death_2"]
 
 [sub_resource type="Resource" id="LootDropDefinition_VexSword"]
 script = ExtResource("1_byvop")
@@ -18,6 +20,7 @@ max_hit_points = 2
 arithmetic = Array[int]([0, 1, 3])
 loot_drops = Array[ExtResource("1_byvop")]([SubResource("LootDropDefinition_VexSword")])
 hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2")])
+death_sounds = Array[AudioStream]([ExtResource("death_1"), ExtResource("death_2")])
 hard_max_hit_points = 3
 hard_damage = 2
 hard_time_limit = 15

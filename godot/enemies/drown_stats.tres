@@ -7,6 +7,8 @@
 [ext_resource type="AudioStream" uid="uid://bhtc70syehww0" path="res://enemies/hurt_sounds/Drowned_hurt1.ogg" id="hurt_1"]
 [ext_resource type="AudioStream" uid="uid://61ao85evu240" path="res://enemies/hurt_sounds/Drowned_hurt2.ogg" id="hurt_2"]
 [ext_resource type="AudioStream" uid="uid://c6mqsnrlwbt4" path="res://enemies/hurt_sounds/Drowned_hurt3.ogg" id="hurt_3"]
+[ext_resource type="AudioStream" uid="uid://cmpcmhxddl17" path="res://enemies/death_sounds/Drowned_death1.ogg" id="death_1"]
+[ext_resource type="AudioStream" uid="uid://eql475cpj55e" path="res://enemies/death_sounds/Drowned_death2.ogg" id="death_2"]
 
 [sub_resource type="Resource" id="LootDropDefinition_DrownedPotion"]
 script = ExtResource("1_34u1b")
@@ -24,6 +26,7 @@ name = "Drowned"
 max_hit_points = 3
 loot_drops = Array[ExtResource("1_34u1b")]([SubResource("LootDropDefinition_DrownedPotion"), SubResource("LootDropDefinition_DrownedHelmet")])
 hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3")])
+death_sounds = Array[AudioStream]([ExtResource("death_1"), ExtResource("death_2")])
 hard_max_hit_points = 5
 hard_damage = 2
 hard_time_limit = 25

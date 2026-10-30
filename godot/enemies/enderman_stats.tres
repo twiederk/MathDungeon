@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://blx6bixm0ogru" path="res://enemies/hurt_sounds/Enderman_hurt2.ogg" id="hurt_2"]
 [ext_resource type="AudioStream" uid="uid://cgxg5xa5qdvuc" path="res://enemies/hurt_sounds/Enderman_hurt3.ogg" id="hurt_3"]
 [ext_resource type="AudioStream" uid="uid://duqlcyj47d8db" path="res://enemies/hurt_sounds/Enderman_hurt4.ogg" id="hurt_4"]
+[ext_resource type="AudioStream" uid="uid://bwtri72smcwny" path="res://enemies/death_sounds/Enderman_death.ogg" id="death_1"]
 
 [sub_resource type="Resource" id="LootDropDefinition_EndermanEye"]
 script = ExtResource("3_loot_drop")
@@ -21,6 +22,7 @@ arithmetic = Array[int]([0, 1, 2, 3])
 time_limit = 15
 loot_drops = Array[ExtResource("3_loot_drop")]([SubResource("LootDropDefinition_EndermanEye")])
 hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3"), ExtResource("hurt_4")])
+death_sounds = Array[AudioStream]([ExtResource("death_1")])
 hard_max_hit_points = 15
 hard_damage = 3
 hard_time_limit = 10

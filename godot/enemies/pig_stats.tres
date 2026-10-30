@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://pso6bi1twcas" path="res://enemies/hurt_sounds/Pig_hurt1.ogg" id="hurt_1"]
 [ext_resource type="AudioStream" uid="uid://dq4wvpsf3r8i7" path="res://enemies/hurt_sounds/Pig_hurt2.ogg" id="hurt_2"]
 [ext_resource type="AudioStream" uid="uid://dglkx4byvruuo" path="res://enemies/hurt_sounds/Pig_hurt3.ogg" id="hurt_3"]
+[ext_resource type="AudioStream" uid="uid://dgm6m45g0u8yl" path="res://enemies/death_sounds/Pig_death.ogg" id="death_1"]
 
 [sub_resource type="Resource" id="LootDropDefinition_PigPotion"]
 script = ExtResource("1_loot")
@@ -19,6 +20,7 @@ arithmetic = Array[int]([6])
 max_number = 5
 loot_drops = Array[ExtResource("1_loot")]([SubResource("LootDropDefinition_PigPotion")])
 hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3")])
+death_sounds = Array[AudioStream]([ExtResource("death_1")])
 hard_max_number = 10
 hard_time_limit = 30
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://d2fdi1t370cfg" path="res://enemies/hurt_sounds/Skeleton_hurt2.ogg" id="hurt_2"]
 [ext_resource type="AudioStream" uid="uid://b125re1dbgqsa" path="res://enemies/hurt_sounds/Skeleton_hurt3.ogg" id="hurt_3"]
 [ext_resource type="AudioStream" uid="uid://k6w0t2mt8cse" path="res://enemies/hurt_sounds/Skeleton_hurt4.ogg" id="hurt_4"]
+[ext_resource type="AudioStream" uid="uid://dynq7mktbd6ki" path="res://enemies/death_sounds/Skeleton_death.ogg" id="death_1"]
 
 [sub_resource type="Resource" id="LootDropDefinition_SkeletonSword"]
 script = ExtResource("1_loot")
@@ -26,6 +27,7 @@ max_hit_points = 3
 arithmetic = Array[int]([0, 1])
 loot_drops = Array[ExtResource("1_loot")]([SubResource("LootDropDefinition_SkeletonSword"), SubResource("LootDropDefinition_SkeletonHelmet")])
 hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3"), ExtResource("hurt_4")])
+death_sounds = Array[AudioStream]([ExtResource("death_1")])
 hard_max_hit_points = 5
 hard_damage = 2
 hard_time_limit = 25

@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://d3okapk4kjtd1" path="res://enemies/hurt_sounds/Spider_hurt2.ogg" id="hurt_2"]
 [ext_resource type="AudioStream" uid="uid://c5kivs4c8km8n" path="res://enemies/hurt_sounds/Spider_hurt3.ogg" id="hurt_3"]
 [ext_resource type="AudioStream" uid="uid://vns1rdfexcct" path="res://enemies/hurt_sounds/Spider_hurt4.ogg" id="hurt_4"]
+[ext_resource type="AudioStream" uid="uid://blcaejir4xyo7" path="res://enemies/death_sounds/Spider_death.ogg" id="death_1"]
 
 [sub_resource type="Resource" id="LootDropDefinition_SpiderPotion"]
 script = ExtResource("1_loot")
@@ -21,6 +22,7 @@ arithmetic = Array[int]([0, 1])
 time_limit = 30
 loot_drops = Array[ExtResource("1_loot")]([SubResource("LootDropDefinition_SpiderPotion")])
 hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3"), ExtResource("hurt_4")])
+death_sounds = Array[AudioStream]([ExtResource("death_1")])
 hard_max_hit_points = 8
 hard_damage = 2
 hard_time_limit = 20

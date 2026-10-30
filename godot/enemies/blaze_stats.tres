@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_rur3n"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_xwgdh"]
 [ext_resource type="PackedScene" uid="uid://d4by6x3ww0foy" path="res://items/lighter.tscn" id="2_lighter"]
+[ext_resource type="AudioStream" uid="uid://guvxaeah831q" path="res://enemies/death_sounds/Blaze_death.ogg" id="death_1"]
 
 [sub_resource type="Resource" id="LootDropDefinition_BlazeLighter"]
 script = ExtResource("1_rur3n")
@@ -25,4 +26,6 @@ hard_max_hit_points = 9
 hard_damage = 3
 hard_time_limit = 15
 hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3"), ExtResource("hurt_4")])
+
+death_sounds = Array[AudioStream]([ExtResource("death_1")])
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

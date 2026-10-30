@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dq5hvtr5p280m" path="res://items/helmet_stone.tscn" id="3_stone_helmet"]
 [ext_resource type="AudioStream" uid="uid://b3crtauxsxt2d" path="res://enemies/hurt_sounds/Zombie_villager_hurt1.ogg" id="hurt_1"]
 [ext_resource type="AudioStream" uid="uid://dnjt85njs52dw" path="res://enemies/hurt_sounds/Zombie_villager_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://c3wn7iagegsvy" path="res://enemies/death_sounds/Zombie_villager_death.ogg" id="death_1"]
 
 [sub_resource type="Resource" id="LootDropDefinition_BabyZombieVillagerPotion"]
 script = ExtResource("1_orafn")
@@ -23,5 +24,6 @@ name = "Baby Zombie Villager"
 arithmetic = Array[int]([10])
 loot_drops = Array[ExtResource("1_orafn")]([SubResource("LootDropDefinition_BabyZombieVillagerPotion"), SubResource("LootDropDefinition_BabyZombieVillagerHelmet")])
 hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2")])
+death_sounds = Array[AudioStream]([ExtResource("death_1")])
 hard_time_limit = 30
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

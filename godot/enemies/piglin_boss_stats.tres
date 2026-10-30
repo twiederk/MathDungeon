@@ -8,6 +8,9 @@
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_kcsu3"]
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_kcxxx"]
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="2_iron_sword"]
+[ext_resource type="AudioStream" uid="uid://c5frtfa4yxrgc" path="res://enemies/death_sounds/Piglin_brute_death1.ogg" id="death_1"]
+[ext_resource type="AudioStream" uid="uid://fllaw4c2cd2s" path="res://enemies/death_sounds/Piglin_brute_death2.ogg" id="death_2"]
+[ext_resource type="AudioStream" uid="uid://bamxl1mlv2b7g" path="res://enemies/death_sounds/Piglin_brute_death3.ogg" id="death_3"]
 
 [sub_resource type="Resource" id="LootDropDefinition_PiglinBruteSword"]
 script = ExtResource("1_kcxxx")
@@ -27,4 +30,6 @@ hard_damage = 4
 hard_armor = 2
 hard_time_limit = 15
 hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3"), ExtResource("hurt_4")])
+
+death_sounds = Array[AudioStream]([ExtResource("death_1"), ExtResource("death_2"), ExtResource("death_3")])
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

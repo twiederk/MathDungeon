@@ -7,6 +7,7 @@
 
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_6skyo"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_umowu"]
+[ext_resource type="AudioStream" uid="uid://dcffb618ri0fn" path="res://enemies/death_sounds/Villager_death.ogg" id="death_1"]
 
 [resource]
 script = ExtResource("1_umowu")
@@ -14,4 +15,6 @@ name = "Baby Villager"
 arithmetic = Array[int]([8])
 hard_time_limit = 30
 hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3"), ExtResource("hurt_4")])
+
+death_sounds = Array[AudioStream]([ExtResource("death_1")])
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"
