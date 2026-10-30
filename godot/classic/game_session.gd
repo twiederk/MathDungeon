@@ -23,10 +23,12 @@ enum SpawnPoint {
 signal score_changed
 signal display_state_changed(state: int)
 signal simulation_running_changed(running: bool)
+signal entered_highscores
 
 
 var difficulty_level: DifficultyLevel = DifficultyLevel.NORMAL
 var spawn_point: SpawnPoint = SpawnPoint.START
+var has_entered_highscores: bool = false
 var display_state: int = DisplayState.NONE:
 	set(value):
 		if display_state == value:
@@ -52,6 +54,7 @@ func _ready() -> void:
 func reset() -> void:
 	score = 0
 	correct_answers = 0
+	has_entered_highscores = false
 	display_state = DisplayState.NONE
 	spawn_point = SpawnPoint.START
 
@@ -77,6 +80,9 @@ func toggle_difficulty_level() -> void:
 
 func add_score(points: int) -> void:
 	score += points
+	if not has_entered_highscores and HighscoreManager.is_highscore(score):
+		has_entered_highscores = true
+		entered_highscores.emit()
 	AchievementManager.track_score(score)
 
 
