@@ -28,91 +28,91 @@ func after_each():
 
 
 func test_zombie_stats_score():
-	# Act
+	# act
 	var actual_score = zombie_stats.get_score()
 	
-	# Assert
+	# assert
 	assert_eq(actual_score, 8)
 
 
 func test_skeleton_stats_score():
-	# Act
+	# act
 	var actual_score = skeleton_stats.get_score()
 	
-	# Assert
+	# assert
 	assert_eq(actual_score, 12)
 
 
 func test_piglin_stats_score():
-	# Act
+	# act
 	var actual_score = piglin_stats.get_score()
 	
-	# Assert
+	# assert
 	assert_eq(actual_score, 28)
 
 
 func test_spider_stats_score():
-	# Act
+	# act
 	var actual_score = spider_stats.get_score()
 	
-	# Assert
+	# assert
 	assert_eq(actual_score, 136)
 
 
 func test_enderman_stats_score():
-	# Act
+	# act
 	var actual_score = enderman_stats.get_score()
 	
-	# Assert
+	# assert
 	assert_eq(actual_score, 212)
 
 
 func test_enderdragon_stats_score():
-	# Act
+	# act
 	var actual_score = enderdragon_stats.get_score()
 	
-	# Assert
+	# assert
 	assert_eq(actual_score, 254)
 
 
 func test_zombie_stats_score_hard():
-	# Arrange
+	# arrange
 	GameSession.difficulty_level = GameSession.DifficultyLevel.HARD
 	
-	# Act
+	# act
 	var actual_score = zombie_stats.get_score()
 	
-	# Assert
+	# assert
 	assert_eq(actual_score, 130)
 
 
 func test_spider_stats_score_hard():
-	# Arrange
+	# arrange
 	GameSession.difficulty_level = GameSession.DifficultyLevel.HARD
 	
-	# Act
+	# act
 	var actual_score = spider_stats.get_score()
 	
-	# Assert
+	# assert
 	assert_eq(actual_score, 184)
 
 
 func test_enderdragon_stats_score_hard():
-	# Arrange
+	# arrange
 	GameSession.difficulty_level = GameSession.DifficultyLevel.HARD
 	
-	# Act
+	# act
 	var actual_score = enderdragon_stats.get_score()
 	
-	# Assert
+	# assert
 	assert_eq(actual_score, 284)
 
 
 func test_zombie_stats_hard_values():
-	# Arrange
+	# arrange
 	GameSession.difficulty_level = GameSession.DifficultyLevel.HARD
 	
-	# Assert
+	# assert
 	assert_eq(zombie_stats.get_max_hit_points(), 3)
 	assert_eq(zombie_stats.get_max_number(), 40)
 	assert_eq(zombie_stats.get_time_limit(), 30)
@@ -122,7 +122,7 @@ func test_zombie_stats_hard_values():
 
 
 func test_unset_hard_values_fall_back_to_normal():
-	# Arrange
+	# arrange
 	var stats := EnemyStats.new()
 	stats.max_hit_points = 4
 	stats.damage = 2
@@ -131,10 +131,10 @@ func test_unset_hard_values_fall_back_to_normal():
 	stats.time_limit = 25
 	var normal_score := stats.get_score()
 	
-	# Act
+	# act
 	GameSession.difficulty_level = GameSession.DifficultyLevel.HARD
 	
-	# Assert
+	# assert
 	assert_eq(stats.get_max_hit_points(), 4)
 	assert_eq(stats.get_damage(), 2)
 	assert_eq(stats.get_armor(), 1)
@@ -145,57 +145,57 @@ func test_unset_hard_values_fall_back_to_normal():
 
 
 func test_hard_time_limit_not_set_falls_back_to_normal_time_limit():
-	# Arrange
+	# arrange
 	var stats := EnemyStats.new()
 	stats.time_limit = 20
 	stats.hard_time_limit = EnemyStats.NOT_SET
 	
-	# Act
+	# act
 	GameSession.difficulty_level = GameSession.DifficultyLevel.HARD
 	
-	# Assert
+	# assert
 	assert_eq(stats.get_time_limit(), 20)
 	assert_true(stats.has_time_limit())
 
 
 func test_get_hurt_sound_falls_back_to_default_when_empty():
-	# Arrange
+	# arrange
 	var stats := EnemyStats.new()
 	
-	# Act
+	# act
 	var actual_sound = stats.get_hurt_sound()
 	
-	# Assert
+	# assert
 	assert_eq(actual_sound, Sound.hurt_enemy)
 
 
 func test_get_hurt_sound_returns_single_configured_sound():
-	# Arrange
+	# arrange
 	var stats := EnemyStats.new()
 	var sound := AudioStreamWAV.new()
 	stats.hurt_sounds = [sound]
 	
-	# Act
+	# act
 	var actual_sound = stats.get_hurt_sound()
 	
-	# Assert
+	# assert
 	assert_eq(actual_sound, sound)
 
 
 func test_get_hurt_sound_returns_one_of_the_configured_sounds():
-	# Arrange
+	# arrange
 	var stats := EnemyStats.new()
 	stats.hurt_sounds = [AudioStreamWAV.new(), AudioStreamWAV.new(), AudioStreamWAV.new()]
 	
-	# Act
+	# act
 	var actual_sound = stats.get_hurt_sound()
 	
-	# Assert
+	# assert
 	assert_has(stats.hurt_sounds, actual_sound)
 
 
 func test_all_non_projectile_stats_define_hurt_sounds():
-	# Arrange
+	# arrange
 	var projectiles := ["arrow_stats", "fireball_stats", "blaze_fireball_stats"]
 	var dir := DirAccess.open("res://enemies")
 	var without_sounds: Array[String] = []
@@ -208,8 +208,31 @@ func test_all_non_projectile_stats_define_hurt_sounds():
 		if stats.hurt_sounds.is_empty():
 			without_sounds.append(file_name)
 	
-	# Act
+	# act
 	var actual_count = without_sounds.size()
 	
-	# Assert
+	# assert
 	assert_eq(actual_count, 0, "stats without hurt_sounds: %s" % [without_sounds])
+
+
+func test_get_death_sound_falls_back_to_default_when_empty():
+	# arrange
+	var stats := EnemyStats.new()
+	
+	# act
+	var actual_sound = stats.get_death_sound()
+	
+	# assert
+	assert_eq(actual_sound, Sound.death_enemy)
+
+
+func test_get_death_sound_returns_one_of_the_configured_sounds():
+	# arrange
+	var stats := EnemyStats.new()
+	stats.death_sounds = [AudioStreamWAV.new(), AudioStreamWAV.new(), AudioStreamWAV.new()]
+	
+	# act
+	var actual_sound = stats.get_death_sound()
+	
+	# assert
+	assert_has(stats.death_sounds, actual_sound)
