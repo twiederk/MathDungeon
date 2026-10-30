@@ -4,11 +4,11 @@
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_loot"]
 [ext_resource type="PackedScene" uid="uid://dq5hvtr5p280m" path="res://items/helmet_stone.tscn" id="3_stone_helmet"]
 [ext_resource type="PackedScene" uid="uid://wjx4klpp85sw" path="res://items/sword_stone.tscn" id="6_bp4wk"]
+[ext_resource type="AudioStream" uid="uid://dynq7mktbd6ki" path="res://enemies/death_sounds/Skeleton_death.ogg" id="death_1"]
 [ext_resource type="AudioStream" uid="uid://dx6xati530mh8" path="res://enemies/hurt_sounds/Skeleton_hurt1.ogg" id="hurt_1"]
 [ext_resource type="AudioStream" uid="uid://d2fdi1t370cfg" path="res://enemies/hurt_sounds/Skeleton_hurt2.ogg" id="hurt_2"]
 [ext_resource type="AudioStream" uid="uid://b125re1dbgqsa" path="res://enemies/hurt_sounds/Skeleton_hurt3.ogg" id="hurt_3"]
 [ext_resource type="AudioStream" uid="uid://k6w0t2mt8cse" path="res://enemies/hurt_sounds/Skeleton_hurt4.ogg" id="hurt_4"]
-[ext_resource type="AudioStream" uid="uid://dynq7mktbd6ki" path="res://enemies/death_sounds/Skeleton_death.ogg" id="death_1"]
 
 [sub_resource type="Resource" id="LootDropDefinition_SkeletonSword"]
 script = ExtResource("1_loot")

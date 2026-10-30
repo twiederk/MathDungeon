@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_njn3i"]
 [ext_resource type="PackedScene" uid="uid://cinn45uh8snch" path="res://items/healing_potion.tscn" id="2_healing_potion"]
 [ext_resource type="PackedScene" uid="uid://wjx4klpp85sw" path="res://items/sword_stone.tscn" id="3_pfds4"]
+[ext_resource type="AudioStream" uid="uid://cujavosl3vys5" path="res://enemies/death_sounds/Zombie_death.ogg" id="death_1"]
 [ext_resource type="AudioStream" uid="uid://sckmvu6hnq45" path="res://enemies/hurt_sounds/Zombie_hurt1.ogg" id="hurt_1"]
 [ext_resource type="AudioStream" uid="uid://2ajyip552gg6" path="res://enemies/hurt_sounds/Zombie_hurt2.ogg" id="hurt_2"]
-[ext_resource type="AudioStream" uid="uid://cujavosl3vys5" path="res://enemies/death_sounds/Zombie_death.ogg" id="death_1"]
 
 [sub_resource type="Resource" id="LootDropDefinition_ZombiePotion"]
 script = ExtResource("1_loot")

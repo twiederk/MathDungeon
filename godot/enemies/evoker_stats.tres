@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_arok1"]
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="2_iron_sword"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="2_yrmpi"]
-[ext_resource type="AudioStream" uid="uid://dry3dm47ieqet" path="res://enemies/hurt_sounds/Evoker_hurt1.ogg" id="hurt_1"]
-[ext_resource type="AudioStream" uid="uid://b5bsuti60bv5x" path="res://enemies/hurt_sounds/Evoker_hurt2.ogg" id="hurt_2"]
 [ext_resource type="AudioStream" uid="uid://vusu10hvphyp" path="res://enemies/death_sounds/Evoker_death1.ogg" id="death_1"]
 [ext_resource type="AudioStream" uid="uid://bl1bkao1fwdsb" path="res://enemies/death_sounds/Evoker_death2.ogg" id="death_2"]
+[ext_resource type="AudioStream" uid="uid://dry3dm47ieqet" path="res://enemies/hurt_sounds/Evoker_hurt1.ogg" id="hurt_1"]
+[ext_resource type="AudioStream" uid="uid://b5bsuti60bv5x" path="res://enemies/hurt_sounds/Evoker_hurt2.ogg" id="hurt_2"]
 
 [sub_resource type="Resource" id="LootDropDefinition_EvokerSword"]
 script = ExtResource("1_arok1")
