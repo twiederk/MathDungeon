@@ -83,31 +83,33 @@ play a fireworks animation once per game session.
    two preload sites (`enemies/enemy.gd`, `characters/character.gd`) to
    `res://effects/...`. Re-run `--headless --import` after moving.
 4. **Extract a shared safe-parent helper**, e.g. `effects/effect_spawner.gd`
-   (`class_name EffectSpawner`, a small autoload-free static-style utility, or
-   a `static func` directly on a new tiny class):
+   (`class_name EffectSpawner`, instantiated per-script like `NumberFormat`
+   is elsewhere in the codebase, e.g. `var effect_spawner := EffectSpawner.new()`
+   — not static, to match that existing convention):
    ```gdscript
    class_name EffectSpawner
 
 
-   static func spawn(effect_scene: PackedScene, at: Node2D) -> void:
+   func spawn(effect_scene: PackedScene, at: Node2D) -> void:
        var effect := effect_scene.instantiate()
        effect.global_position = at.global_position
        _safe_parent(at).add_child(effect)
 
 
-   static func _safe_parent(node: Node) -> Node:
+   func _safe_parent(node: Node) -> Node:
        var current := node
        while current.get_parent() != null and current.get_parent() != current.get_tree().root:
            current = current.get_parent()
        return current
    ```
-   - Replace `Enemy._spawn_hit_effect()`/`_effect_parent()` with a call to
-     `EffectSpawner.spawn(HIT_EFFECT_SCENE, self)`.
+   - Replace `Enemy._spawn_hit_effect()`/`_effect_parent()` with a
+     `var effect_spawner := EffectSpawner.new()` plus a call to
+     `effect_spawner.spawn(HIT_EFFECT_SCENE, self)`.
    - Replace `Character._spawn_hit_effect()`'s `current_scene`-based lookup with
      the same call, fixing the pre-existing test-unsafe code path as a side
      effect (confirm with the user before changing `Character`'s behavior,
      since it's outside this feature's direct scope — flagged below).
-   - `Player` will use `EffectSpawner.spawn(FIREWORKS_EFFECT_SCENE, self)` too.
+   - `Player` will use its own `effect_spawner.spawn(FIREWORKS_EFFECT_SCENE, self)` too.
 5. **Create `effects/fireworks_effect.gd`** (`class_name FireworksEffect`,
    `extends GPUParticles2D`):
    ```gdscript
@@ -135,8 +137,9 @@ play a fireworks animation once per game session.
 ## Phase 4 — Spawn the effect from `Player`
 7. **`classic/player.gd`**
    - Add `const FIREWORKS_EFFECT_SCENE := preload("res://effects/fireworks_effect.tscn")`.
+   - Add `var effect_spawner := EffectSpawner.new()`.
    - In `_ready()`, connect `GameSession.entered_highscores.connect(_on_entered_highscores)`.
-   - Add `_on_entered_highscores()`: call `EffectSpawner.spawn(FIREWORKS_EFFECT_SCENE, self)`.
+   - Add `_on_entered_highscores()`: call `effect_spawner.spawn(FIREWORKS_EFFECT_SCENE, self)`.
 
 ## Phase 5 — Out of scope / follow-ups
 - Sourcing a celebratory sound effect (e.g. from the local Minecraft installation,
