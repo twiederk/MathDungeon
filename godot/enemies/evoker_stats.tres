@@ -1,11 +1,12 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://2ib147i23msi"]
 
-[ext_resource type="AudioStream" uid="uid://dry3dm47ieqet" path="res://enemies/sounds/Evoker_hurt1.ogg" id="hurt_1"]
-[ext_resource type="AudioStream" uid="uid://b5bsuti60bv5x" path="res://enemies/sounds/Evoker_hurt2.ogg" id="hurt_2"]
-
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_arok1"]
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="2_iron_sword"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="2_yrmpi"]
+[ext_resource type="AudioStream" uid="uid://dry3dm47ieqet" path="res://enemies/hurt_sounds/Evoker_hurt1.ogg" id="hurt_1"]
+[ext_resource type="AudioStream" uid="uid://b5bsuti60bv5x" path="res://enemies/hurt_sounds/Evoker_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://vusu10hvphyp" path="res://enemies/death_sounds/Evoker_death1.ogg" id="death_1"]
+[ext_resource type="AudioStream" uid="uid://bl1bkao1fwdsb" path="res://enemies/death_sounds/Evoker_death2.ogg" id="death_2"]
 
 [sub_resource type="Resource" id="LootDropDefinition_EvokerSword"]
 script = ExtResource("1_arok1")
@@ -19,9 +20,10 @@ max_hit_points = 5
 armor = 1
 arithmetic = Array[int]([0, 1, 2, 3])
 loot_drops = Array[ExtResource("1_arok1")]([SubResource("LootDropDefinition_EvokerSword")])
+hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2")])
+death_sounds = Array[AudioStream]([ExtResource("death_1"), ExtResource("death_2")])
 hard_max_hit_points = 8
 hard_damage = 2
 hard_armor = 2
 hard_time_limit = 20
-hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2")])
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

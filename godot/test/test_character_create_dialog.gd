@@ -1,15 +1,21 @@
 extends GutTest
 
 var character_create_dialog: CharacterCreateDialog = null
+var created_character_id: String = ""
 
 
 func before_each():
 	character_create_dialog = CharacterCreateDialog.new()
 	character_create_dialog.selected_portrait_id = "000"
+	created_character_id = ""
 
 
 func after_each():
 	character_create_dialog.free()
+	if created_character_id != "":
+		var path := "user://characters/%s.save" % created_character_id
+		if FileAccess.file_exists(path):
+			DirAccess.remove_absolute(path)
 
 
 func test_create_character_sets_default_values():
@@ -25,6 +31,7 @@ func test_create_character_sets_default_values():
 
 	# act
 	var character = character_create_dialog._create_character(character_name)
+	created_character_id = character.id
 
 	# assert
 	assert_true(character is Character, "Should return a Character object")

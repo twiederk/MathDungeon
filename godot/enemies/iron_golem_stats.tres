@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://bn6vw6a56paaa"]
 
-[ext_resource type="AudioStream" uid="uid://6t2n74xiehwe" path="res://enemies/sounds/Iron_golem_hurt1.ogg" id="hurt_1"]
-[ext_resource type="AudioStream" uid="uid://dvlor21qr6vfx" path="res://enemies/sounds/Iron_golem_hurt2.ogg" id="hurt_2"]
-[ext_resource type="AudioStream" uid="uid://ufo7k7regq7a" path="res://enemies/sounds/Iron_golem_hurt3.ogg" id="hurt_3"]
-[ext_resource type="AudioStream" uid="uid://dy5ooowjcw4ui" path="res://enemies/sounds/Iron_golem_hurt4.ogg" id="hurt_4"]
-
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_ewk1p"]
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_loot"]
 [ext_resource type="PackedScene" uid="uid://cecyxjivevnmn" path="res://items/helmet_iron.tscn" id="2_iron_helmet"]
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="3_iron_sword"]
+[ext_resource type="AudioStream" uid="uid://6t2n74xiehwe" path="res://enemies/hurt_sounds/Iron_golem_hurt1.ogg" id="hurt_1"]
+[ext_resource type="AudioStream" uid="uid://dvlor21qr6vfx" path="res://enemies/hurt_sounds/Iron_golem_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://ufo7k7regq7a" path="res://enemies/hurt_sounds/Iron_golem_hurt3.ogg" id="hurt_3"]
+[ext_resource type="AudioStream" uid="uid://dy5ooowjcw4ui" path="res://enemies/hurt_sounds/Iron_golem_hurt4.ogg" id="hurt_4"]
+[ext_resource type="AudioStream" uid="uid://d2ivpqqmjwbye" path="res://enemies/death_sounds/Iron_golem_death.ogg" id="death_1"]
 
 [sub_resource type="Resource" id="LootDropDefinition_GolemHelmet"]
 script = ExtResource("1_loot")
@@ -29,10 +29,11 @@ armor = 2
 arithmetic = Array[int]([0, 1])
 max_number = 1000
 loot_drops = Array[ExtResource("1_loot")]([SubResource("LootDropDefinition_GolemHelmet"), SubResource("LootDropDefinition_GolemSword")])
+hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3"), ExtResource("hurt_4")])
+death_sounds = Array[AudioStream]([ExtResource("death_1")])
 hard_max_hit_points = 18
 hard_damage = 4
 hard_armor = 3
 hard_max_number = 2000
 hard_time_limit = 15
-hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3"), ExtResource("hurt_4")])
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

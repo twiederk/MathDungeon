@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://bneorwhq7d366"]
 
-[ext_resource type="AudioStream" uid="uid://b5mxfamldpdk6" path="res://enemies/sounds/Creeper_hurt1.ogg" id="hurt_1"]
-[ext_resource type="AudioStream" uid="uid://de6gr54c28sml" path="res://enemies/sounds/Creeper_hurt2.ogg" id="hurt_2"]
-[ext_resource type="AudioStream" uid="uid://bs6ir7axar4o7" path="res://enemies/sounds/Creeper_hurt3.ogg" id="hurt_3"]
-[ext_resource type="AudioStream" uid="uid://bjnrqwxacpqri" path="res://enemies/sounds/Creeper_hurt4.ogg" id="hurt_4"]
-
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_7m7q8"]
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_loot"]
 [ext_resource type="PackedScene" uid="uid://cinn45uh8snch" path="res://items/healing_potion.tscn" id="2_healing_potion"]
+[ext_resource type="AudioStream" uid="uid://b5mxfamldpdk6" path="res://enemies/hurt_sounds/Creeper_hurt1.ogg" id="hurt_1"]
+[ext_resource type="AudioStream" uid="uid://de6gr54c28sml" path="res://enemies/hurt_sounds/Creeper_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://bs6ir7axar4o7" path="res://enemies/hurt_sounds/Creeper_hurt3.ogg" id="hurt_3"]
+[ext_resource type="AudioStream" uid="uid://bjnrqwxacpqri" path="res://enemies/hurt_sounds/Creeper_hurt4.ogg" id="hurt_4"]
+[ext_resource type="AudioStream" uid="uid://c7wmw186scis5" path="res://enemies/death_sounds/Creeper_death.ogg" id="death_1"]
 
 [sub_resource type="Resource" id="LootDropDefinition_CreeperPotion"]
 script = ExtResource("1_loot")
@@ -20,8 +20,9 @@ name = "Creeper"
 max_hit_points = 4
 arithmetic = Array[int]([4])
 loot_drops = Array[ExtResource("1_loot")]([SubResource("LootDropDefinition_CreeperPotion")])
+hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3"), ExtResource("hurt_4")])
+death_sounds = Array[AudioStream]([ExtResource("death_1")])
 hard_max_hit_points = 6
 hard_damage = 2
 hard_time_limit = 25
-hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3"), ExtResource("hurt_4")])
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

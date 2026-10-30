@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://d4nugi7fla2ef"]
 
-[ext_resource type="AudioStream" uid="uid://dellp0670sv05" path="res://enemies/sounds/Villager_hurt1.ogg" id="hurt_1"]
-[ext_resource type="AudioStream" uid="uid://ukpx42ga4qy1" path="res://enemies/sounds/Villager_hurt2.ogg" id="hurt_2"]
-[ext_resource type="AudioStream" uid="uid://cbll2wk6p2xbm" path="res://enemies/sounds/Villager_hurt3.ogg" id="hurt_3"]
-[ext_resource type="AudioStream" uid="uid://crpmissky0npe" path="res://enemies/sounds/Villager_hurt4.ogg" id="hurt_4"]
+[ext_resource type="AudioStream" uid="uid://dellp0670sv05" path="res://enemies/hurt_sounds/Villager_hurt1.ogg" id="hurt_1"]
+[ext_resource type="AudioStream" uid="uid://ukpx42ga4qy1" path="res://enemies/hurt_sounds/Villager_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://cbll2wk6p2xbm" path="res://enemies/hurt_sounds/Villager_hurt3.ogg" id="hurt_3"]
+[ext_resource type="AudioStream" uid="uid://crpmissky0npe" path="res://enemies/hurt_sounds/Villager_hurt4.ogg" id="hurt_4"]
 
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_6skyo"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_umowu"]
+[ext_resource type="AudioStream" uid="uid://dcffb618ri0fn" path="res://enemies/death_sounds/Villager_death.ogg" id="death_1"]
 
 [resource]
 script = ExtResource("1_umowu")
@@ -14,4 +15,6 @@ name = "Baby Villager"
 arithmetic = Array[int]([8])
 hard_time_limit = 30
 hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3"), ExtResource("hurt_4")])
+
+death_sounds = Array[AudioStream]([ExtResource("death_1")])
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"
