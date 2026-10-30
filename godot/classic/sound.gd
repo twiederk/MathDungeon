@@ -12,6 +12,7 @@ extends Node
 @export var hurt_enemy: AudioStream
 @export var death_enemy: AudioStream
 @export var golem_hostile: AudioStream
+@export var firework: AudioStream
 
 @onready var sound_players = get_children()
 

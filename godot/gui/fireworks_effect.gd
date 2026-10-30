@@ -9,5 +9,6 @@ func _ready() -> void:
 
 
 func _on_entered_highscores() -> void:
+	Sound.play(Sound.firework)
 	for burst: GPUParticles2D in bursts.get_children():
 		burst.emitting = true
