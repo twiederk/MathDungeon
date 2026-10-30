@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://c5erghmh2xj58"]
 
-[ext_resource type="AudioStream" uid="uid://b3ip0t3g1wwvd" path="res://enemies/sounds/Enderdragon_hurt1.ogg" id="hurt_1"]
-[ext_resource type="AudioStream" uid="uid://bfysjhxl6cosr" path="res://enemies/sounds/Enderdragon_hurt2.ogg" id="hurt_2"]
-[ext_resource type="AudioStream" uid="uid://cdykrk8023ben" path="res://enemies/sounds/Enderdragon_hurt3.ogg" id="hurt_3"]
-[ext_resource type="AudioStream" uid="uid://ckqpkr3cgu5b8" path="res://enemies/sounds/Enderdragon_hurt4.ogg" id="hurt_4"]
+[ext_resource type="AudioStream" uid="uid://b3ip0t3g1wwvd" path="res://enemies/hurt_sounds/Enderdragon_hurt1.ogg" id="hurt_1"]
+[ext_resource type="AudioStream" uid="uid://bfysjhxl6cosr" path="res://enemies/hurt_sounds/Enderdragon_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://cdykrk8023ben" path="res://enemies/hurt_sounds/Enderdragon_hurt3.ogg" id="hurt_3"]
+[ext_resource type="AudioStream" uid="uid://ckqpkr3cgu5b8" path="res://enemies/hurt_sounds/Enderdragon_hurt4.ogg" id="hurt_4"]
 
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_uv53k"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_yey48"]

@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_2bk54"]
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_loot"]
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="2_iron_sword"]
-[ext_resource type="AudioStream" uid="uid://ck57t222jb3ip" path="res://enemies/sounds/Pillager_hurt1.ogg" id="hurt_1"]
-[ext_resource type="AudioStream" uid="uid://bkxxdedau5834" path="res://enemies/sounds/Pillager_hurt2.ogg" id="hurt_2"]
-[ext_resource type="AudioStream" uid="uid://51d10d4u4p57" path="res://enemies/sounds/Pillager_hurt3.ogg" id="hurt_3"]
+[ext_resource type="AudioStream" uid="uid://ck57t222jb3ip" path="res://enemies/hurt_sounds/Pillager_hurt1.ogg" id="hurt_1"]
+[ext_resource type="AudioStream" uid="uid://bkxxdedau5834" path="res://enemies/hurt_sounds/Pillager_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://51d10d4u4p57" path="res://enemies/hurt_sounds/Pillager_hurt3.ogg" id="hurt_3"]
 
 [sub_resource type="Resource" id="LootDropDefinition_PillagerSword"]
 script = ExtResource("1_loot")

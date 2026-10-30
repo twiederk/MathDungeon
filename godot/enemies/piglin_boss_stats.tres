@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://dlgmrp6uvxnmo"]
 
-[ext_resource type="AudioStream" uid="uid://dqkksc7ong155" path="res://enemies/sounds/Piglin_brute_hurt1.ogg" id="hurt_1"]
-[ext_resource type="AudioStream" uid="uid://bgohlq6fima7h" path="res://enemies/sounds/Piglin_brute_hurt2.ogg" id="hurt_2"]
-[ext_resource type="AudioStream" uid="uid://bn308sr3r54nc" path="res://enemies/sounds/Piglin_brute_hurt3.ogg" id="hurt_3"]
-[ext_resource type="AudioStream" uid="uid://b3mwyfu0muao4" path="res://enemies/sounds/Piglin_brute_hurt4.ogg" id="hurt_4"]
+[ext_resource type="AudioStream" uid="uid://dqkksc7ong155" path="res://enemies/hurt_sounds/Piglin_brute_hurt1.ogg" id="hurt_1"]
+[ext_resource type="AudioStream" uid="uid://bgohlq6fima7h" path="res://enemies/hurt_sounds/Piglin_brute_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://bn308sr3r54nc" path="res://enemies/hurt_sounds/Piglin_brute_hurt3.ogg" id="hurt_3"]
+[ext_resource type="AudioStream" uid="uid://b3mwyfu0muao4" path="res://enemies/hurt_sounds/Piglin_brute_hurt4.ogg" id="hurt_4"]
 
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_kcsu3"]
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_kcxxx"]

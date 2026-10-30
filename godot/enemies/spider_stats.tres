@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_06bmf"]
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_loot"]
 [ext_resource type="PackedScene" uid="uid://cinn45uh8snch" path="res://items/healing_potion.tscn" id="2_healing_potion"]
-[ext_resource type="AudioStream" uid="uid://bq67il31afidu" path="res://enemies/sounds/Spider_hurt1.ogg" id="hurt_1"]
-[ext_resource type="AudioStream" uid="uid://d3okapk4kjtd1" path="res://enemies/sounds/Spider_hurt2.ogg" id="hurt_2"]
-[ext_resource type="AudioStream" uid="uid://c5kivs4c8km8n" path="res://enemies/sounds/Spider_hurt3.ogg" id="hurt_3"]
-[ext_resource type="AudioStream" uid="uid://vns1rdfexcct" path="res://enemies/sounds/Spider_hurt4.ogg" id="hurt_4"]
+[ext_resource type="AudioStream" uid="uid://bq67il31afidu" path="res://enemies/hurt_sounds/Spider_hurt1.ogg" id="hurt_1"]
+[ext_resource type="AudioStream" uid="uid://d3okapk4kjtd1" path="res://enemies/hurt_sounds/Spider_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://c5kivs4c8km8n" path="res://enemies/hurt_sounds/Spider_hurt3.ogg" id="hurt_3"]
+[ext_resource type="AudioStream" uid="uid://vns1rdfexcct" path="res://enemies/hurt_sounds/Spider_hurt4.ogg" id="hurt_4"]
 
 [sub_resource type="Resource" id="LootDropDefinition_SpiderPotion"]
 script = ExtResource("1_loot")

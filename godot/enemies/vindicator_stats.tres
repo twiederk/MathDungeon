@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_nd33w"]
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="2_iron_sword"]
 [ext_resource type="PackedScene" uid="uid://cecyxjivevnmn" path="res://items/helmet_iron.tscn" id="3_iron_helmet"]
-[ext_resource type="AudioStream" uid="uid://dj8oru88lwrno" path="res://enemies/sounds/Vindicator_hurt1.ogg" id="hurt_1"]
-[ext_resource type="AudioStream" uid="uid://5deqosuc0j47" path="res://enemies/sounds/Vindicator_hurt2.ogg" id="hurt_2"]
-[ext_resource type="AudioStream" uid="uid://bixu1ry8ntd8n" path="res://enemies/sounds/Vindicator_hurt3.ogg" id="hurt_3"]
+[ext_resource type="AudioStream" uid="uid://dj8oru88lwrno" path="res://enemies/hurt_sounds/Vindicator_hurt1.ogg" id="hurt_1"]
+[ext_resource type="AudioStream" uid="uid://5deqosuc0j47" path="res://enemies/hurt_sounds/Vindicator_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://bixu1ry8ntd8n" path="res://enemies/hurt_sounds/Vindicator_hurt3.ogg" id="hurt_3"]
 
 [sub_resource type="Resource" id="LootDropDefinition_VindicatorSword"]
 script = ExtResource("1_4ulap")

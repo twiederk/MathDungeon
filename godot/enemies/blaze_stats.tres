@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://b4km4b2ngerrt"]
 
-[ext_resource type="AudioStream" uid="uid://t0k0d2bscwi1" path="res://enemies/sounds/Blaze_hurt1.ogg" id="hurt_1"]
-[ext_resource type="AudioStream" uid="uid://btgvol2xbe18t" path="res://enemies/sounds/Blaze_hurt2.ogg" id="hurt_2"]
-[ext_resource type="AudioStream" uid="uid://naug5duo8asw" path="res://enemies/sounds/Blaze_hurt3.ogg" id="hurt_3"]
-[ext_resource type="AudioStream" uid="uid://dpjyy5u4dq0a4" path="res://enemies/sounds/Blaze_hurt4.ogg" id="hurt_4"]
+[ext_resource type="AudioStream" uid="uid://t0k0d2bscwi1" path="res://enemies/hurt_sounds/Blaze_hurt1.ogg" id="hurt_1"]
+[ext_resource type="AudioStream" uid="uid://btgvol2xbe18t" path="res://enemies/hurt_sounds/Blaze_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://naug5duo8asw" path="res://enemies/hurt_sounds/Blaze_hurt3.ogg" id="hurt_3"]
+[ext_resource type="AudioStream" uid="uid://dpjyy5u4dq0a4" path="res://enemies/hurt_sounds/Blaze_hurt4.ogg" id="hurt_4"]
 
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_rur3n"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_xwgdh"]

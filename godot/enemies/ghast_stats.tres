@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://dootbkhqjjjuj"]
 
-[ext_resource type="AudioStream" uid="uid://d12xq3srj0kls" path="res://enemies/sounds/Ghast_hurt1.ogg" id="hurt_1"]
-[ext_resource type="AudioStream" uid="uid://boio3dbjq1xp2" path="res://enemies/sounds/Ghast_hurt2.ogg" id="hurt_2"]
-[ext_resource type="AudioStream" uid="uid://c6bhycqud02g8" path="res://enemies/sounds/Ghast_hurt3.ogg" id="hurt_3"]
-[ext_resource type="AudioStream" uid="uid://benjeiemapc0d" path="res://enemies/sounds/Ghast_hurt4.ogg" id="hurt_4"]
-[ext_resource type="AudioStream" uid="uid://cldsmg4eg2pui" path="res://enemies/sounds/Ghast_hurt5.ogg" id="hurt_5"]
+[ext_resource type="AudioStream" uid="uid://d12xq3srj0kls" path="res://enemies/hurt_sounds/Ghast_hurt1.ogg" id="hurt_1"]
+[ext_resource type="AudioStream" uid="uid://boio3dbjq1xp2" path="res://enemies/hurt_sounds/Ghast_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://c6bhycqud02g8" path="res://enemies/hurt_sounds/Ghast_hurt3.ogg" id="hurt_3"]
+[ext_resource type="AudioStream" uid="uid://benjeiemapc0d" path="res://enemies/hurt_sounds/Ghast_hurt4.ogg" id="hurt_4"]
+[ext_resource type="AudioStream" uid="uid://cldsmg4eg2pui" path="res://enemies/hurt_sounds/Ghast_hurt5.ogg" id="hurt_5"]
 
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_loot"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_ro23o"]
