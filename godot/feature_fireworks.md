@@ -13,9 +13,28 @@ play a fireworks animation once per game session.
   (new game), so a new run can trigger fireworks again.
 - The firework visual is a built-in `GPUParticles2D` burst — no external sprite/
   particle texture asset needed.
-- The effect follows the same pattern as `quests/achievement_popup.tscn`: a scene
-  added as a child to each level root scene (`overworld.tscn`, `nether.tscn`,
-  `proc_gen_world.tscn`, `end.tscn`), reacting to a global signal in `_ready()`.
+- **Synergy with `enemies/effect.gd`**: the project already has a reusable
+  one-shot effect pattern — `Effect` (`enemies/effect.gd`, extends `AnimatedSprite2D`)
+  plays an animation and `queue_free()`s itself when finished, instanced on
+  demand via `Enemy._spawn_hit_effect()` (`HIT_EFFECT_SCENE.instantiate()`,
+  positioned at `global_position`, added via `_effect_parent()` which walks up
+  to a safe top-level node under `get_tree().root`). The fireworks effect
+  should follow this exact same spawn-and-self-destroy pattern instead of being
+  permanently embedded in every level scene like `achievement_popup.tscn`:
+  - A new `FireworksEffect` class (`extends GPUParticles2D`) mirrors `Effect`:
+    connect to its own `finished` signal (emitted once when a `one_shot`
+    particle system completes) with `CONNECT_ONE_SHOT` and `queue_free()`.
+  - It is instantiated dynamically (preloaded scene, like `HIT_EFFECT_SCENE`)
+    and spawned at the player's `global_position` when
+    `GameSession.entered_highscores` fires, reusing the same "walk up to a
+    safe top-level parent" logic as `Enemy._effect_parent()`.
+  - `Player` (`classic/player.gd`) is the natural trigger point: it already
+    exists exactly once per level scene with a valid `global_position`, unlike
+    `GameSession` (an autoload, no position) or `achievement_popup` (a fixed UI
+    overlay, not world-positioned).
+  - This avoids touching `overworld.tscn`, `nether.tscn`, `proc_gen_world.tscn`,
+    and `end.tscn` at all — no permanent node needs to be added to any level
+    scene.
 
 ## Phase 1 — GameSession: track & signal "entered top 10"
 1. **`classic/game_session.gd`**
@@ -55,38 +74,69 @@ play a fireworks animation once per game session.
      and `test/test_quiz_dialog.gd` for the established setup/teardown style
      before writing these).
 
-## Phase 3 — Fireworks effect scene
-3. **Create `gui/fireworks_effect.gd`** (`class_name FireworksEffect`, `extends Node2D`
-   or `Control` depending on how it needs to be positioned — likely `Node2D`
-   anchored to the player or screen-center, consistent with how other level-root
-   children are positioned; confirm by checking how `achievement_popup` is
-   anchored/positioned inside `overworld.tscn` before deciding).
-   - `_ready()`: connect to `GameSession.entered_highscores`.
-   - On signal: trigger one or more `GPUParticles2D` bursts (`emitting = true`,
-     `one_shot = true`), optionally staggered with short `await get_tree().create_timer(...).timeout`
-     calls for a multi-burst "fireworks show" effect.
-   - Optionally play a sound via `Sound.play(...)` if a suitable firework/
-     celebratory sound is added later (out of scope for now — see Phase 5).
-4. **Create `gui/fireworks_effect.tscn`**
-   - Root `Node2D`/`Control` with the script above.
-   - 2–3 `GPUParticles2D` children, each configured with a `ParticleProcessMaterial`
-     for a radial burst (`direction`, `spread = 180`, `initial_velocity_min/max`,
-     `gravity` pulling particles down, `scale_amount`, `color_ramp` cycling
-     through a few bright colors per particle system to mimic distinct firework
-     colors), `one_shot = true`, `explosiveness = 1.0`, `amount` tuned for a
-     dense/short burst.
-   - Position particle children at varied offsets (e.g. top area of the screen)
-     so multiple bursts appear at different spots.
+## Phase 3 — Shared `effects/` folder + safe-parent helper
+3. **Create the `effects/` folder** and move:
+   - `enemies/effect.gd` → `effects/effect.gd`
+   - `enemies/hit_effect.tscn` → `effects/hit_effect.tscn`
+   - `enemies/hit_effect.png` (+ `.import`) → `effects/hit_effect.png`
+   Update `uid://`-based `ext_resource` paths inside `hit_effect.tscn` and the
+   two preload sites (`enemies/enemy.gd`, `characters/character.gd`) to
+   `res://effects/...`. Re-run `--headless --import` after moving.
+4. **Extract a shared safe-parent helper**, e.g. `effects/effect_spawner.gd`
+   (`class_name EffectSpawner`, a small autoload-free static-style utility, or
+   a `static func` directly on a new tiny class):
+   ```gdscript
+   class_name EffectSpawner
 
-## Phase 4 — Wire into level scenes
-5. **`classic/overworld.tscn`, `classic/nether.tscn`, `procedural/proc_gen_world.tscn`,
-   `classic/end.tscn`**
-   - Add `[ext_resource type="PackedScene" path="res://gui/fireworks_effect.tscn"]`
-     and instance it as a child node, mirroring exactly where/how
-     `achievement_popup.tscn` is added in each of these scenes (same parent
-     container, similar z-index/layering so it renders above gameplay but
-     doesn't block input — check `achievement_popup`'s parent node and CanvasLayer
-     usage, if any, before placing).
+
+   static func spawn(effect_scene: PackedScene, at: Node2D) -> void:
+       var effect := effect_scene.instantiate()
+       effect.global_position = at.global_position
+       _safe_parent(at).add_child(effect)
+
+
+   static func _safe_parent(node: Node) -> Node:
+       var current := node
+       while current.get_parent() != null and current.get_parent() != current.get_tree().root:
+           current = current.get_parent()
+       return current
+   ```
+   - Replace `Enemy._spawn_hit_effect()`/`_effect_parent()` with a call to
+     `EffectSpawner.spawn(HIT_EFFECT_SCENE, self)`.
+   - Replace `Character._spawn_hit_effect()`'s `current_scene`-based lookup with
+     the same call, fixing the pre-existing test-unsafe code path as a side
+     effect (confirm with the user before changing `Character`'s behavior,
+     since it's outside this feature's direct scope — flagged below).
+   - `Player` will use `EffectSpawner.spawn(FIREWORKS_EFFECT_SCENE, self)` too.
+5. **Create `effects/fireworks_effect.gd`** (`class_name FireworksEffect`,
+   `extends GPUParticles2D`):
+   ```gdscript
+   class_name FireworksEffect
+   extends GPUParticles2D
+
+
+   func _ready() -> void:
+       finished.connect(queue_free, CONNECT_ONE_SHOT)
+       emitting = true
+   ```
+   (`GPUParticles2D.finished` only fires when `one_shot = true`, set on the
+   particle node itself in the scene — see below.)
+6. **Create `effects/fireworks_effect.tscn`**
+   - Root `GPUParticles2D` (`one_shot = true`, `explosiveness = 1.0`) with the
+     script above.
+   - 2–3 child `GPUParticles2D` nodes (or sibling emitters under the root, each
+     with its own `ParticleProcessMaterial`) positioned at slightly different
+     offsets/delays, each configured for a radial burst (`spread = 180`,
+     `initial_velocity_min/max`, `gravity` pulling particles down, a
+     `color_ramp` cycling through bright colors) to mimic a short multi-burst
+     fireworks show. All child emitters must also be `one_shot = true` so the
+     root's `finished` signal only fires after every burst completes.
+
+## Phase 4 — Spawn the effect from `Player`
+7. **`classic/player.gd`**
+   - Add `const FIREWORKS_EFFECT_SCENE := preload("res://effects/fireworks_effect.tscn")`.
+   - In `_ready()`, connect `GameSession.entered_highscores.connect(_on_entered_highscores)`.
+   - Add `_on_entered_highscores()`: call `EffectSpawner.spawn(FIREWORKS_EFFECT_SCENE, self)`.
 
 ## Phase 5 — Out of scope / follow-ups
 - Sourcing a celebratory sound effect (e.g. from the local Minecraft installation,
@@ -97,10 +147,11 @@ play a fireworks animation once per game session.
   without changing the trigger logic in `GameSession`.
 
 ## Open Questions to Confirm Before Implementing
-- Exact node type/parent and CanvasLayer usage for `achievement_popup.tscn` in
-  each level scene needs to be inspected before building `fireworks_effect.tscn`
-  layout, to keep the fireworks visually consistent (e.g. same UI layer so it
-  isn't hidden behind tile layers).
+- Whether changing `Character._spawn_hit_effect()` to use the new shared
+  `EffectSpawner` helper (fixing its test-unsafe `current_scene` usage) is
+  acceptable as part of this feature, or should be left untouched/done as a
+  separate follow-up change, since it's not strictly required to implement
+  fireworks (only `Enemy` and the new `Player` call site strictly need it).
 - Whether `test/test_GameSession.gd` already exists and what conventions it
   already follows for stubbing/resetting `HighscoreManager` state, to keep new
   tests consistent instead of introducing a new pattern.
