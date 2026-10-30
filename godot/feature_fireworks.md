@@ -52,7 +52,9 @@ play a fireworks animation once per game session.
      minimal diff).
 
 ## Phase 2 — Tests for `GameSession`
-2. **`test/test_GameSession.gd`** (create if it doesn't exist yet — check first)
+2. **Create `test/test_GameSession_Highscore.gd`** (`test_GameSession.gd`
+   already exists with 23 unrelated tests and its own conventions — keep this
+   new, separate trigger logic in its own file rather than mixing in):
    - `test_add_score_emits_entered_highscores_when_score_qualifies`: arrange
      `HighscoreManager.highscores` so a low score (e.g. `0`) qualifies (empty
      list or below `MAX_HIGHSCORES` entries), `watch_signals(GameSession)`, act
@@ -66,13 +68,15 @@ play a fireworks animation once per game session.
    - `test_reset_clears_entered_highscores_flag`: set `has_entered_highscores = true`
      via a qualifying `add_score()` call, act `reset()`, assert a subsequent
      qualifying `add_score()` emits `entered_highscores` again.
-   - Arrange/cleanup: save & restore `HighscoreManager.highscores` and
-     `GameSession` state in `before_each`/`after_each` (both are autoloads with
-     persistent state across tests — follow the existing pattern used in other
-     tests that touch `GameSession`/`HighscoreManager`, e.g. resetting
-     `difficulty_level`, `highscores` list, etc. Check `test/test_HighscoreManager.gd`
-     and `test/test_quiz_dialog.gd` for the established setup/teardown style
-     before writing these).
+   - Arrange/cleanup: `HighscoreManager` persists to `user://high_scores` on every
+     `add_score()`/mutation, so tests must not touch disk or leak state. In
+     `before_each`, capture `var original_highscores := HighscoreManager.highscores.duplicate()`
+     and set `HighscoreManager.highscores` to the test's in-memory fixture array
+     directly (no `add_score()` calls on `HighscoreManager`, to avoid triggering
+     `_save_highscores()`); in `after_each`, restore
+     `HighscoreManager.highscores = original_highscores` and reset
+     `GameSession.reset()` to clear `score`/`has_entered_highscores` for the next
+     test.
 
 ## Phase 3 — Fireworks effect scene (screen-space overlay)
 3. **Create `gui/fireworks_effect.gd`** (`class_name FireworksEffect`,
@@ -128,9 +132,7 @@ play a fireworks animation once per game session.
   without changing the trigger logic in `GameSession`.
 
 ## Open Questions to Confirm Before Implementing
-- None currently blocking — the screen-space `UI` `CanvasLayer` + permanent
-  overlay approach directly mirrors `AchievementPopup`, which is already
-  instanced identically across all four level scenes.
-- Whether `test/test_GameSession.gd` already exists and what conventions it
-  already follows for stubbing/resetting `HighscoreManager` state, to keep new
-  tests consistent instead of introducing a new pattern.
+- None remaining — the screen-space `UI` `CanvasLayer` + permanent overlay
+  approach directly mirrors `AchievementPopup`, which is already instanced
+  identically across all four level scenes, and the test file/state-reset
+  approach is settled (Phase 2).
