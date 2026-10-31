@@ -16,6 +16,12 @@ func get_spawn_position() -> Vector2:
 	return spawn_point.global_position
 
 
+func get_target_path() -> String:
+	if dungeon_path.is_empty():
+		return GameSession.overworld_path
+	return dungeon_path
+
+
 func _on_outer_area_2d_body_entered(body: Node2D) -> void:
 	if body.name != "Player":
 		return
@@ -29,4 +35,4 @@ func _on_inner_area_2d_body_entered(body: Node2D) -> void:
 		return
 	if active:
 		GameSession.spawn_point = GameSession.SpawnPoint.NETHER_PORTAL
-		get_tree().call_deferred("change_scene_to_file", dungeon_path)
+		get_tree().call_deferred("change_scene_to_file", get_target_path())
