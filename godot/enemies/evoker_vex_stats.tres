@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_byvop"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_iqa68"]
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="2_iron_sword"]
-[ext_resource type="AudioStream" uid="uid://byvt1k1e4m6j4" path="res://enemies/hurt_sounds/Vex_hurt1.ogg" id="hurt_1"]
-[ext_resource type="AudioStream" uid="uid://bxtaaq8y8db83" path="res://enemies/hurt_sounds/Vex_hurt2.ogg" id="hurt_2"]
 [ext_resource type="AudioStream" uid="uid://bghawm5j5nddw" path="res://enemies/death_sounds/Vex_death1.ogg" id="death_1"]
 [ext_resource type="AudioStream" uid="uid://ddbljk0bqd6ad" path="res://enemies/death_sounds/Vex_death2.ogg" id="death_2"]
+[ext_resource type="AudioStream" uid="uid://byvt1k1e4m6j4" path="res://enemies/hurt_sounds/Vex_hurt1.ogg" id="hurt_1"]
+[ext_resource type="AudioStream" uid="uid://bxtaaq8y8db83" path="res://enemies/hurt_sounds/Vex_hurt2.ogg" id="hurt_2"]
 
 [sub_resource type="Resource" id="LootDropDefinition_VexSword"]
 script = ExtResource("1_byvop")

@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://h22lljc06kbg" path="res://enemies/hurt_enemy.mp3" id="11_fhr66"]
 [ext_resource type="AudioStream" path="res://enemies/iron_golem_hurt4.ogg" id="12_golem"]
 [ext_resource type="AudioStream" uid="uid://cujavosl3vys5" path="res://enemies/death_sounds/Zombie_death.ogg" id="13_death"]
+[ext_resource type="AudioStream" uid="uid://cs8oo3k3bxm1k" path="res://gui/Firework_largeblast.ogg" id="14_firework"]
 
 [node name="Sound" type="Node" unique_id=207141569]
 process_mode = 3
@@ -29,6 +30,7 @@ hurt_player = ExtResource("10_lmvu1")
 hurt_enemy = ExtResource("11_fhr66")
 golem_hostile = ExtResource("12_golem")
 death_enemy = ExtResource("13_death")
+firework = ExtResource("14_firework")
 
 [node name="AudioStreamPlayer1" type="AudioStreamPlayer" parent="." unique_id=895126907]
 

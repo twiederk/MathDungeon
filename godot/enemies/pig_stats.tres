@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_loot"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_xptjm"]
 [ext_resource type="PackedScene" uid="uid://cinn45uh8snch" path="res://items/healing_potion.tscn" id="2_healing_potion"]
+[ext_resource type="AudioStream" uid="uid://dgm6m45g0u8yl" path="res://enemies/death_sounds/Pig_death.ogg" id="death_1"]
 [ext_resource type="AudioStream" uid="uid://pso6bi1twcas" path="res://enemies/hurt_sounds/Pig_hurt1.ogg" id="hurt_1"]
 [ext_resource type="AudioStream" uid="uid://dq4wvpsf3r8i7" path="res://enemies/hurt_sounds/Pig_hurt2.ogg" id="hurt_2"]
 [ext_resource type="AudioStream" uid="uid://dglkx4byvruuo" path="res://enemies/hurt_sounds/Pig_hurt3.ogg" id="hurt_3"]
-[ext_resource type="AudioStream" uid="uid://dgm6m45g0u8yl" path="res://enemies/death_sounds/Pig_death.ogg" id="death_1"]
 
 [sub_resource type="Resource" id="LootDropDefinition_PigPotion"]
 script = ExtResource("1_loot")

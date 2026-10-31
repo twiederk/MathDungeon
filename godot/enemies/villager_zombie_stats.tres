@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_ipsf5"]
 [ext_resource type="PackedScene" uid="uid://cinn45uh8snch" path="res://items/healing_potion.tscn" id="2_healing_potion"]
 [ext_resource type="PackedScene" uid="uid://cecyxjivevnmn" path="res://items/helmet_iron.tscn" id="3_iron_helmet"]
+[ext_resource type="AudioStream" uid="uid://c3wn7iagegsvy" path="res://enemies/death_sounds/Zombie_villager_death.ogg" id="death_1"]
 [ext_resource type="AudioStream" uid="uid://b3crtauxsxt2d" path="res://enemies/hurt_sounds/Zombie_villager_hurt1.ogg" id="hurt_1"]
 [ext_resource type="AudioStream" uid="uid://dnjt85njs52dw" path="res://enemies/hurt_sounds/Zombie_villager_hurt2.ogg" id="hurt_2"]
-[ext_resource type="AudioStream" uid="uid://c3wn7iagegsvy" path="res://enemies/death_sounds/Zombie_villager_death.ogg" id="death_1"]
 
 [sub_resource type="Resource" id="LootDropDefinition_ZombieVillagerPotion"]
 script = ExtResource("1_ipsf5")

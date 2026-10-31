@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_loot"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="1_u8ym2"]
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="2_iron_sword"]
-[ext_resource type="AudioStream" uid="uid://cdyr73v1qsaba" path="res://enemies/hurt_sounds/Piglin_hurt1.ogg" id="hurt_1"]
-[ext_resource type="AudioStream" uid="uid://cpal5e14plhvj" path="res://enemies/hurt_sounds/Piglin_hurt2.ogg" id="hurt_2"]
-[ext_resource type="AudioStream" uid="uid://bey072u5gif7" path="res://enemies/hurt_sounds/Piglin_hurt3.ogg" id="hurt_3"]
 [ext_resource type="AudioStream" uid="uid://bufvphx43xe0i" path="res://enemies/death_sounds/Piglin_death1.ogg" id="death_1"]
 [ext_resource type="AudioStream" uid="uid://bpmrwmchmhpcv" path="res://enemies/death_sounds/Piglin_death2.ogg" id="death_2"]
 [ext_resource type="AudioStream" uid="uid://ciwj7eiuvkyhk" path="res://enemies/death_sounds/Piglin_death3.ogg" id="death_3"]
 [ext_resource type="AudioStream" uid="uid://rcvhqywt73es" path="res://enemies/death_sounds/Piglin_death4.ogg" id="death_4"]
+[ext_resource type="AudioStream" uid="uid://cdyr73v1qsaba" path="res://enemies/hurt_sounds/Piglin_hurt1.ogg" id="hurt_1"]
+[ext_resource type="AudioStream" uid="uid://cpal5e14plhvj" path="res://enemies/hurt_sounds/Piglin_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://bey072u5gif7" path="res://enemies/hurt_sounds/Piglin_hurt3.ogg" id="hurt_3"]
 
 [sub_resource type="Resource" id="LootDropDefinition_PiglinSword"]
 script = ExtResource("1_loot")

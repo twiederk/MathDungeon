@@ -4,11 +4,11 @@
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_loot"]
 [ext_resource type="PackedScene" uid="uid://cecyxjivevnmn" path="res://items/helmet_iron.tscn" id="2_iron_helmet"]
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="3_iron_sword"]
+[ext_resource type="AudioStream" uid="uid://d2ivpqqmjwbye" path="res://enemies/death_sounds/Iron_golem_death.ogg" id="death_1"]
 [ext_resource type="AudioStream" uid="uid://6t2n74xiehwe" path="res://enemies/hurt_sounds/Iron_golem_hurt1.ogg" id="hurt_1"]
 [ext_resource type="AudioStream" uid="uid://dvlor21qr6vfx" path="res://enemies/hurt_sounds/Iron_golem_hurt2.ogg" id="hurt_2"]
 [ext_resource type="AudioStream" uid="uid://ufo7k7regq7a" path="res://enemies/hurt_sounds/Iron_golem_hurt3.ogg" id="hurt_3"]
 [ext_resource type="AudioStream" uid="uid://dy5ooowjcw4ui" path="res://enemies/hurt_sounds/Iron_golem_hurt4.ogg" id="hurt_4"]
-[ext_resource type="AudioStream" uid="uid://d2ivpqqmjwbye" path="res://enemies/death_sounds/Iron_golem_death.ogg" id="death_1"]
 
 [sub_resource type="Resource" id="LootDropDefinition_GolemHelmet"]
 script = ExtResource("1_loot")

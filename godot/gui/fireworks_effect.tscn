@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://b8fireworks1"]
+
+[ext_resource type="Script" uid="uid://blvw7vcf7hhkq" path="res://gui/fireworks_effect.gd" id="1_script"]
+
+[sub_resource type="Gradient" id="Gradient_red"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 0.3, 0.2, 1, 1, 0.8, 0.2, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_red"]
+gradient = SubResource("Gradient_red")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_red"]
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 80.0
+initial_velocity_max = 140.0
+gravity = Vector3(0, 120, 0)
+scale_min = 6.0
+scale_max = 10.0
+color_ramp = SubResource("GradientTexture1D_red")
+
+[sub_resource type="Gradient" id="Gradient_gold"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 0.9, 0.3, 1, 1, 1, 0.6, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gold"]
+gradient = SubResource("Gradient_gold")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gold"]
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 80.0
+initial_velocity_max = 140.0
+gravity = Vector3(0, 120, 0)
+scale_min = 6.0
+scale_max = 10.0
+color_ramp = SubResource("GradientTexture1D_gold")
+
+[sub_resource type="Gradient" id="Gradient_blue"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.3, 0.6, 1, 1, 0.6, 0.9, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_blue"]
+gradient = SubResource("Gradient_blue")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_blue"]
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 80.0
+initial_velocity_max = 140.0
+gravity = Vector3(0, 120, 0)
+scale_min = 6.0
+scale_max = 10.0
+color_ramp = SubResource("GradientTexture1D_blue")
+
+[node name="FireworksEffect" type="Control" unique_id=1233690238]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("1_script")
+
+[node name="Bursts" type="Node2D" parent="." unique_id=459933214]
+
+[node name="BurstRed" type="GPUParticles2D" parent="Bursts" unique_id=1883237838]
+position = Vector2(140, 110)
+emitting = false
+amount = 48
+lifetime = 1.2
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_red")
+
+[node name="BurstGold" type="GPUParticles2D" parent="Bursts" unique_id=116015484]
+position = Vector2(320, 80)
+emitting = false
+amount = 48
+lifetime = 1.2
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_gold")
+
+[node name="BurstBlue" type="GPUParticles2D" parent="Bursts" unique_id=1402786173]
+position = Vector2(500, 110)
+emitting = false
+amount = 48
+lifetime = 1.2
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_blue")

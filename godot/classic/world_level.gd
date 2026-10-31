@@ -18,6 +18,7 @@ var loot_droper: LootDropper = LootDropper.new()
 
 func _ready() -> void:
 	_apply_start_position()
+	_register_return_path()
 	_setup_signals()
 	_setup_locations()
 	_setup_limits_and_borders()
@@ -25,6 +26,14 @@ func _ready() -> void:
 	_setup_player_portrait()
 	CompanionSetup.new(companions_root, player).setup()
 	_on_simulation_running_changed(GameSession.is_simulation_running())
+
+
+func _register_return_path() -> void:
+	if scene_file_path.is_empty():
+		return
+	if nether_portal == null or nether_portal.dungeon_path.is_empty():
+		return
+	GameSession.set_overworld_path(scene_file_path)
 
 
 func _apply_start_position() -> void:

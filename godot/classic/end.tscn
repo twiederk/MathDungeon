@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="9_nx2op"]
 [ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="10_7tdwu"]
 [ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://quests/achievement_popup.tscn" id="11_lnqdw"]
+[ext_resource type="PackedScene" uid="uid://b8fireworks1" path="res://gui/fireworks_effect.tscn" id="14_fireworks"]
 [ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://quests/achievement_badges.tscn" id="12_fa5nh"]
 [ext_resource type="PackedScene" uid="uid://cq8nvt3xr7kql" path="res://quests/quest_log_gui.tscn" id="13_questlog"]
 [ext_resource type="PackedScene" uid="uid://b5i3hqfqrjnem" path="res://gui/character_sheet_gui.tscn" id="14_charsheet"]
@@ -59,6 +60,8 @@ grow_horizontal = 0
 grow_vertical = 1
 
 [node name="AchievementPopup" parent="UI" unique_id=414617971 instance=ExtResource("11_lnqdw")]
+
+[node name="FireworksEffect" parent="UI" instance=ExtResource("14_fireworks")]
 
 [node name="AchievementBadges" parent="UI" unique_id=286961769 instance=ExtResource("12_fa5nh")]
 offset_left = 455.0
