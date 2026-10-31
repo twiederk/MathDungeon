@@ -3,6 +3,8 @@ extends GutTest
 func after_each():
 	GameSession.difficulty_level = GameSession.DifficultyLevel.NORMAL
 	GameSession.display_state = GameSession.DisplayState.NONE
+	GameSession.overworld_path = GameSession.DEFAULT_OVERWORLD_PATH
+	GameSession.world_seed = GameSession.NO_SEED
 
 
 func test_reset():
@@ -44,6 +46,73 @@ func test_reset_keeps_difficulty_level():
 	
 	# assert
 	assert_eq(GameSession.difficulty_level, GameSession.DifficultyLevel.HARD)
+
+
+func test_reset_restores_the_default_overworld_path():
+	# arrange
+	GameSession.overworld_path = "res://procedural/proc_gen_world.tscn"
+	
+	# act
+	GameSession.reset()
+	
+	# assert
+	assert_eq(GameSession.overworld_path, GameSession.DEFAULT_OVERWORLD_PATH)
+
+
+func test_set_overworld_path():
+	# arrange
+	var path = "res://procedural/proc_gen_world.tscn"
+	
+	# act
+	GameSession.set_overworld_path(path)
+	
+	# assert
+	assert_eq(GameSession.overworld_path, path)
+
+
+func test_reset_clears_the_world_seed():
+	# arrange
+	GameSession.world_seed = 4711
+	
+	# act
+	GameSession.reset()
+	
+	# assert
+	assert_eq(GameSession.world_seed, GameSession.NO_SEED)
+
+
+func test_get_or_create_world_seed_creates_a_seed():
+	# arrange
+	GameSession.world_seed = GameSession.NO_SEED
+	
+	# act
+	var world_seed = GameSession.get_or_create_world_seed()
+	
+	# assert
+	assert_ne(world_seed, GameSession.NO_SEED)
+
+
+func test_get_or_create_world_seed_returns_the_same_seed_twice():
+	# arrange
+	GameSession.world_seed = GameSession.NO_SEED
+	var first_seed = GameSession.get_or_create_world_seed()
+	
+	# act
+	var second_seed = GameSession.get_or_create_world_seed()
+	
+	# assert
+	assert_eq(second_seed, first_seed)
+
+
+func test_get_or_create_world_seed_keeps_an_existing_seed():
+	# arrange
+	GameSession.world_seed = 4711
+	
+	# act
+	var world_seed = GameSession.get_or_create_world_seed()
+	
+	# assert
+	assert_eq(world_seed, 4711)
 
 
 func test_simulation_running_when_display_state_is_none():

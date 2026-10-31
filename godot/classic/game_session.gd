@@ -19,6 +19,9 @@ enum SpawnPoint {
 	NETHER_PORTAL
 }
 
+const DEFAULT_OVERWORLD_PATH := "res://classic/overworld.tscn"
+const NO_SEED := 0
+
 
 signal score_changed
 signal display_state_changed(state: int)
@@ -28,6 +31,8 @@ signal entered_highscores
 
 var difficulty_level: DifficultyLevel = DifficultyLevel.NORMAL
 var spawn_point: SpawnPoint = SpawnPoint.START
+var overworld_path: String = DEFAULT_OVERWORLD_PATH
+var world_seed: int = NO_SEED
 var has_entered_highscores: bool = false
 var display_state: int = DisplayState.NONE:
 	set(value):
@@ -57,6 +62,18 @@ func reset() -> void:
 	has_entered_highscores = false
 	display_state = DisplayState.NONE
 	spawn_point = SpawnPoint.START
+	overworld_path = DEFAULT_OVERWORLD_PATH
+	world_seed = NO_SEED
+
+
+func set_overworld_path(path: String) -> void:
+	overworld_path = path
+
+
+func get_or_create_world_seed() -> int:
+	while world_seed == NO_SEED:
+		world_seed = randi()
+	return world_seed
 
 
 func is_hard() -> bool:
