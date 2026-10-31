@@ -16,8 +16,14 @@ var dungeon_generator: DungeonGenerator = DungeonGenerator.new()
 
 
 func _ready() -> void:
-	generate_world(seed_value)
+	generate_world(_resolve_seed())
 	super._ready()
+
+
+func _resolve_seed() -> int:
+	if seed_value != GameSession.NO_SEED:
+		return seed_value
+	return GameSession.get_or_create_world_seed()
 
 
 func generate_world(new_seed: int) -> void:
