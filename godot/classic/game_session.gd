@@ -35,7 +35,6 @@ signal simulation_running_changed(running: bool)
 signal entered_highscores
 signal run_time_changed(seconds_left: float)
 signal run_time_expired
-signal game_mode_changed(mode: GameMode)
 
 
 var difficulty_level: DifficultyLevel = DifficultyLevel.NORMAL
@@ -133,7 +132,6 @@ func toggle_game_mode() -> void:
 		game_mode = GameMode.TIMED_RUN
 	else:
 		game_mode = GameMode.NORMAL
-	game_mode_changed.emit(game_mode)
 
 
 func start_run() -> void:

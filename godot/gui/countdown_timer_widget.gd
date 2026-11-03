@@ -11,21 +11,11 @@ const NORMAL_COLOR := Color(1, 1, 1)
 
 func _ready() -> void:
 	GameSession.run_time_changed.connect(_on_run_time_changed)
-	GameSession.game_mode_changed.connect(_on_game_mode_changed)
-	_update_visibility()
 	update_time()
 
 
 func _on_run_time_changed(_seconds_left: float) -> void:
 	update_time()
-
-
-func _on_game_mode_changed(_mode: GameSession.GameMode) -> void:
-	_update_visibility()
-
-
-func _update_visibility() -> void:
-	visible = GameSession.is_timed_run()
 
 
 func update_time() -> void:

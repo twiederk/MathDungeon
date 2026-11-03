@@ -37,25 +37,3 @@ func test_format_time_for_zero_seconds():
 	
 	# assert
 	assert_eq(text, "0:00")
-
-
-func test_widget_is_hidden_in_normal_mode():
-	# arrange
-	GameSession.game_mode = GameSession.GameMode.NORMAL
-	
-	# act
-	widget._update_visibility()
-	
-	# assert
-	assert_false(widget.visible)
-
-
-func test_widget_is_visible_in_timed_run_mode():
-	# arrange
-	GameSession.game_mode = GameSession.GameMode.TIMED_RUN
-	
-	# act
-	widget._update_visibility()
-	
-	# assert
-	assert_true(widget.visible)

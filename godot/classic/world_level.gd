@@ -17,6 +17,7 @@ var loot_droper: LootDropper = LootDropper.new()
 
 @onready var quiz: Control = $UI/QuizDialog
 @onready var player_stats_sheet: StatsSheet = $UI/PlayerStatsSheet
+@onready var countdown_timer_widget: CountdownTimerWidget = $UI/CountdownTimerWidget
 
 
 func _ready() -> void:
@@ -29,6 +30,7 @@ func _ready() -> void:
 	_setup_player_portrait()
 	CompanionSetup.new(companions_root, player).setup()
 	_on_simulation_running_changed(GameSession.is_simulation_running())
+	countdown_timer_widget.visible = GameSession.is_timed_run()
 	GameSession.run_time_expired.connect(_on_run_time_expired)
 
 
