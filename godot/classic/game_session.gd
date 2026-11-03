@@ -19,14 +19,23 @@ enum SpawnPoint {
 	NETHER_PORTAL
 }
 
+enum GameMode {
+	NORMAL,
+	TIMED_RUN
+}
+
 const DEFAULT_OVERWORLD_PATH := "res://classic/overworld.tscn"
 const NO_SEED := 0
+const RUN_DURATION_SECONDS := 600.0
 
 
 signal score_changed
 signal display_state_changed(state: int)
 signal simulation_running_changed(running: bool)
 signal entered_highscores
+signal run_time_changed(seconds_left: float)
+signal run_time_expired
+signal game_mode_changed(mode: GameMode)
 
 
 var difficulty_level: DifficultyLevel = DifficultyLevel.NORMAL
@@ -34,6 +43,10 @@ var spawn_point: SpawnPoint = SpawnPoint.START
 var overworld_path: String = DEFAULT_OVERWORLD_PATH
 var world_seed: int = NO_SEED
 var has_entered_highscores: bool = false
+var game_mode: GameMode = GameMode.NORMAL
+var run_duration_seconds: float = RUN_DURATION_SECONDS
+var run_time_left: float = 0.0
+var run_active: bool = false
 var display_state: int = DisplayState.NONE:
 	set(value):
 		if display_state == value:
@@ -56,6 +69,20 @@ func _ready() -> void:
 	AchievementManager.achievement_unlocked.connect(_on_achievement_unlocked)
 
 
+func _process(delta: float) -> void:
+	if not run_active:
+		return
+	if not is_timed_run():
+		return
+	if not is_simulation_running():
+		return
+	run_time_left = max(0.0, run_time_left - delta)
+	run_time_changed.emit(run_time_left)
+	if run_time_left == 0.0:
+		run_active = false
+		run_time_expired.emit()
+
+
 func reset() -> void:
 	score = 0
 	correct_answers = 0
@@ -64,6 +91,8 @@ func reset() -> void:
 	spawn_point = SpawnPoint.START
 	overworld_path = DEFAULT_OVERWORLD_PATH
 	world_seed = NO_SEED
+	run_time_left = 0.0
+	run_active = false
 
 
 func set_overworld_path(path: String) -> void:
@@ -93,6 +122,30 @@ func toggle_difficulty_level() -> void:
 		difficulty_level = DifficultyLevel.HARD
 	else:
 		difficulty_level = DifficultyLevel.NORMAL
+
+
+func is_timed_run() -> bool:
+	return game_mode == GameMode.TIMED_RUN
+
+
+func toggle_game_mode() -> void:
+	if game_mode == GameMode.NORMAL:
+		game_mode = GameMode.TIMED_RUN
+	else:
+		game_mode = GameMode.NORMAL
+	game_mode_changed.emit(game_mode)
+
+
+func start_run() -> void:
+	if not is_timed_run():
+		return
+	run_time_left = run_duration_seconds
+	run_active = true
+	run_time_changed.emit(run_time_left)
+
+
+func stop_run() -> void:
+	run_active = false
 
 
 func add_score(points: int) -> void:
