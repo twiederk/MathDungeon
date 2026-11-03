@@ -18,15 +18,16 @@ func _update_highscore_display():
 	for child in highscore_container.get_children():
 		child.queue_free()
 	
-	if HighscoreManager.highscores.is_empty():
+	var highscores := HighscoreManager.get_highscores()
+	if highscores.is_empty():
 		var no_scores_label = Label.new()
 		no_scores_label.text = "Noch keine Einträge"
 		no_scores_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		highscore_container.add_child(no_scores_label)
 		return
 	
-	for i in range(HighscoreManager.highscores.size()):
-		var entry = HighscoreManager.highscores[i]
+	for i in range(highscores.size()):
+		var entry = highscores[i]
 		var entry_row: HighscoreEntry = HighscoreEntryScene.instantiate()
 		highscore_container.add_child(entry_row)
 		var rank = i + 1

@@ -1,15 +1,15 @@
 extends GutTest
 
-var original_highscores: Array[Highscore]
+var original_highscores: Array = []
 
 
 func before_each():
-	original_highscores = HighscoreManager.highscores.duplicate()
-	HighscoreManager.highscores = []
+	original_highscores = HighscoreManager.highscores_by_mode[GameSession.GameMode.NORMAL].duplicate()
+	HighscoreManager.highscores_by_mode[GameSession.GameMode.NORMAL] = []
 
 
 func after_each():
-	HighscoreManager.highscores = original_highscores
+	HighscoreManager.highscores_by_mode[GameSession.GameMode.NORMAL] = original_highscores
 	GameSession.reset()
 
 
@@ -41,7 +41,7 @@ func test_add_score_does_not_emit_entered_highscores_when_score_does_not_qualify
 	var full_highscores: Array[Highscore] = []
 	for i in range(HighscoreManager.MAX_HIGHSCORES):
 		full_highscores.append(Highscore.new("Player%d" % i, 100 + i))
-	HighscoreManager.highscores = full_highscores
+	HighscoreManager.highscores_by_mode[GameSession.GameMode.NORMAL] = full_highscores
 	watch_signals(GameSession)
 
 	# act
