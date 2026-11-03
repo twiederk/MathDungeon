@@ -1,12 +1,13 @@
 extends Node
 
-const HIGHSCORE_PATHS := {
+const DEFAULT_HIGHSCORE_PATHS := {
 	GameSession.GameMode.NORMAL: "user://high_scores",
 	GameSession.GameMode.TIMED_RUN: "user://high_scores_10min"
 }
 const POINTS_PER_CORRECT_ANSWER: int = 10
 const MAX_HIGHSCORES: int = 10
 
+var highscore_paths: Dictionary = DEFAULT_HIGHSCORE_PATHS.duplicate()
 var highscores_by_mode: Dictionary = {
 	GameSession.GameMode.NORMAL: [],
 	GameSession.GameMode.TIMED_RUN: []
@@ -16,7 +17,7 @@ signal highscores_updated
 
 
 func _ready():
-	for mode in HIGHSCORE_PATHS.keys():
+	for mode in highscore_paths.keys():
 		_load_highscores(mode)
 
 
@@ -62,7 +63,7 @@ func is_highscore(score: int, mode: GameSession.GameMode = GameSession.game_mode
 
 
 func _save_highscores(mode: GameSession.GameMode) -> void:
-	var save_file = FileAccess.open(HIGHSCORE_PATHS[mode], FileAccess.WRITE)
+	var save_file = FileAccess.open(highscore_paths[mode], FileAccess.WRITE)
 	if save_file == null:
 		print("Error: Could not open highscore file for writing")
 		return
@@ -74,7 +75,7 @@ func _save_highscores(mode: GameSession.GameMode) -> void:
 
 
 func _load_highscores(mode: GameSession.GameMode) -> void:
-	var path: String = HIGHSCORE_PATHS[mode]
+	var path: String = highscore_paths[mode]
 	if not FileAccess.file_exists(path):
 		highscores_by_mode[mode] = []
 		return

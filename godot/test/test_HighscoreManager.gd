@@ -1,19 +1,32 @@
 extends GutTest
 
+const TEST_NORMAL_PATH := "user://test_high_scores"
+const TEST_TIMED_RUN_PATH := "user://test_high_scores_10min"
+
 var original_normal: Array = []
 var original_timed_run: Array = []
+var original_highscore_paths: Dictionary = {}
 
 
 func before_each():
 	original_normal = HighscoreManager.highscores_by_mode[GameSession.GameMode.NORMAL].duplicate()
 	original_timed_run = HighscoreManager.highscores_by_mode[GameSession.GameMode.TIMED_RUN].duplicate()
+	original_highscore_paths = HighscoreManager.highscore_paths.duplicate()
 	HighscoreManager.highscores_by_mode[GameSession.GameMode.NORMAL] = []
 	HighscoreManager.highscores_by_mode[GameSession.GameMode.TIMED_RUN] = []
+	HighscoreManager.highscore_paths = {
+		GameSession.GameMode.NORMAL: TEST_NORMAL_PATH,
+		GameSession.GameMode.TIMED_RUN: TEST_TIMED_RUN_PATH
+	}
 
 
 func after_each():
 	HighscoreManager.highscores_by_mode[GameSession.GameMode.NORMAL] = original_normal
 	HighscoreManager.highscores_by_mode[GameSession.GameMode.TIMED_RUN] = original_timed_run
+	HighscoreManager.highscore_paths = original_highscore_paths
+	for path in [TEST_NORMAL_PATH, TEST_TIMED_RUN_PATH]:
+		if FileAccess.file_exists(path):
+			DirAccess.remove_absolute(path)
 	GameSession.reset()
 
 

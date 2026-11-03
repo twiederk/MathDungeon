@@ -36,10 +36,9 @@ grow_vertical = 2
 layout_mode = 2
 alignment = 1
 
-[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=2063099675]
+[node name="ModeButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1823067148]
 layout_mode = 2
-text = "Bestenliste"
-horizontal_alignment = 1
+text = "Bestenliste: normal"
 
 [node name="HeaderRow" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1915303105]
 layout_mode = 2
@@ -97,4 +96,5 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Zurück"
 
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ModeButton" to="." method="_on_mode_button_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
