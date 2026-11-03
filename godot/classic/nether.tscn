@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://quests/achievement_popup.tscn" id="24_achievement"]
 [ext_resource type="PackedScene" uid="uid://b8fireworks1" path="res://gui/fireworks_effect.tscn" id="28_fireworks"]
 [ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://quests/achievement_badges.tscn" id="25_badges"]
+[ext_resource type="PackedScene" uid="uid://cta0k883xoke0" path="res://gui/countdown_timer_widget.tscn" id="27_countdown"]
 [ext_resource type="PackedScene" uid="uid://cq8nvt3xr7kql" path="res://quests/quest_log_gui.tscn" id="26_questlog"]
 [ext_resource type="PackedScene" uid="uid://b5i3hqfqrjnem" path="res://gui/character_sheet_gui.tscn" id="27_charsheet"]
 
@@ -345,6 +346,14 @@ offset_bottom = 3.0
 process_mode = 3
 
 [node name="ScoreWidget" parent="UI" unique_id=1906203428 instance=ExtResource("13_ua487")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -40.0
+grow_horizontal = 0
+grow_vertical = 1
+
+[node name="CountdownTimerWidget" parent="UI" instance=ExtResource("27_countdown")]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_bottom = 0.0
