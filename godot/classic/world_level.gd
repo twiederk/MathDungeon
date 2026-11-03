@@ -2,6 +2,9 @@ class_name WorldLevel
 extends Node2D
 
 
+const NAME_ENTRY_DIALOG_PATH := "res://gui/name_entry_dialog.tscn"
+const HIGHSCORE_GUI_PATH := "res://gui/highscore_gui.tscn"
+
 var loot_droper: LootDropper = LootDropper.new()
 
 @onready var enemies_root: Node = $Enemies
@@ -26,6 +29,7 @@ func _ready() -> void:
 	_setup_player_portrait()
 	CompanionSetup.new(companions_root, player).setup()
 	_on_simulation_running_changed(GameSession.is_simulation_running())
+	GameSession.run_time_expired.connect(_on_run_time_expired)
 
 
 func _register_return_path() -> void:
@@ -140,3 +144,15 @@ func _on_companion_picked_up(companion: Companion) -> void:
 func _on_player_stats_changed() -> void:
 	var character := CharacterManager.current
 	player_stats_sheet.update_stats(character.hit_points, character.max_hit_points, character.get_damage(), character.get_armor())
+
+
+func _on_run_time_expired() -> void:
+	GameSession.display_state = GameSession.DisplayState.NONE
+	GameSession.stop_run()
+	get_tree().change_scene_to_file(_resolve_run_end_scene())
+
+
+func _resolve_run_end_scene() -> String:
+	if HighscoreManager.is_highscore(GameSession.score):
+		return NAME_ENTRY_DIALOG_PATH
+	return HIGHSCORE_GUI_PATH

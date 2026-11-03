@@ -52,12 +52,14 @@ func _update_game_mode_button() -> void:
 func _on_start_game_button_pressed():
 	GameSession.reset()
 	AchievementManager.reset()
+	GameSession.start_run()
 	get_tree().change_scene_to_file("res://classic/overworld.tscn")
 
 
 func _on_start_generic_button_pressed():
 	GameSession.reset()
 	AchievementManager.reset()
+	GameSession.start_run()
 	get_tree().change_scene_to_file("res://procedural/proc_gen_world.tscn")
 
 
