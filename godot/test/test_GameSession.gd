@@ -5,6 +5,10 @@ func after_each():
 	GameSession.display_state = GameSession.DisplayState.NONE
 	GameSession.overworld_path = GameSession.DEFAULT_OVERWORLD_PATH
 	GameSession.world_seed = GameSession.NO_SEED
+	GameSession.game_mode = GameSession.GameMode.NORMAL
+	GameSession.run_duration_seconds = GameSession.RUN_DURATION_SECONDS
+	GameSession.run_active = false
+	GameSession.run_time_left = 0.0
 
 
 func test_reset():
@@ -203,3 +207,167 @@ func test_reset_leaves_the_simulation_running():
 	
 	# assert
 	assert_true(running)
+
+
+func test_toggle_game_mode_switches_to_timed_run():
+	# arrange
+	GameSession.game_mode = GameSession.GameMode.NORMAL
+	
+	# act
+	GameSession.toggle_game_mode()
+	
+	# assert
+	assert_eq(GameSession.game_mode, GameSession.GameMode.TIMED_RUN)
+
+
+func test_toggle_game_mode_switches_back_to_normal():
+	# arrange
+	GameSession.game_mode = GameSession.GameMode.TIMED_RUN
+	
+	# act
+	GameSession.toggle_game_mode()
+	
+	# assert
+	assert_eq(GameSession.game_mode, GameSession.GameMode.NORMAL)
+
+
+func test_is_timed_run_reflects_the_game_mode():
+	# arrange
+	GameSession.game_mode = GameSession.GameMode.TIMED_RUN
+	
+	# act
+	var timed_run = GameSession.is_timed_run()
+	
+	# assert
+	assert_true(timed_run)
+
+
+func test_is_timed_run_false_in_normal_mode():
+	# arrange
+	GameSession.game_mode = GameSession.GameMode.NORMAL
+	
+	# act
+	var timed_run = GameSession.is_timed_run()
+	
+	# assert
+	assert_false(timed_run)
+
+
+func test_start_run_sets_the_remaining_time():
+	# arrange
+	GameSession.game_mode = GameSession.GameMode.TIMED_RUN
+	GameSession.run_duration_seconds = 120.0
+	
+	# act
+	GameSession.start_run()
+	
+	# assert
+	assert_eq(GameSession.run_time_left, 120.0)
+
+
+func test_start_run_activates_the_run():
+	# arrange
+	GameSession.game_mode = GameSession.GameMode.TIMED_RUN
+	
+	# act
+	GameSession.start_run()
+	
+	# assert
+	assert_true(GameSession.run_active)
+
+
+func test_start_run_does_nothing_in_normal_mode():
+	# arrange
+	GameSession.game_mode = GameSession.GameMode.NORMAL
+	
+	# act
+	GameSession.start_run()
+	
+	# assert
+	assert_false(GameSession.run_active)
+
+
+func test_stop_run_deactivates_the_run():
+	# arrange
+	GameSession.game_mode = GameSession.GameMode.TIMED_RUN
+	GameSession.start_run()
+	
+	# act
+	GameSession.stop_run()
+	
+	# assert
+	assert_false(GameSession.run_active)
+
+
+func test_process_decreases_the_remaining_time():
+	# arrange
+	GameSession.game_mode = GameSession.GameMode.TIMED_RUN
+	GameSession.start_run()
+	
+	# act
+	GameSession._process(1.0)
+	
+	# assert
+	assert_eq(GameSession.run_time_left, GameSession.run_duration_seconds - 1.0)
+
+
+func test_process_does_not_decrease_while_a_dialog_is_shown():
+	# arrange
+	GameSession.game_mode = GameSession.GameMode.TIMED_RUN
+	GameSession.start_run()
+	GameSession.display_state = GameSession.DisplayState.QUIZ_DIALOG
+	
+	# act
+	GameSession._process(1.0)
+	
+	# assert
+	assert_eq(GameSession.run_time_left, GameSession.run_duration_seconds)
+
+
+func test_run_time_expired_is_emitted_once_when_time_reaches_zero():
+	# arrange
+	GameSession.game_mode = GameSession.GameMode.TIMED_RUN
+	GameSession.run_duration_seconds = 1.0
+	GameSession.start_run()
+	watch_signals(GameSession)
+	
+	# act
+	GameSession._process(1.0)
+	
+	# assert
+	assert_signal_emit_count(GameSession, "run_time_expired", 1)
+
+
+func test_reset_clears_the_run_time_left():
+	# arrange
+	GameSession.game_mode = GameSession.GameMode.TIMED_RUN
+	GameSession.start_run()
+	
+	# act
+	GameSession.reset()
+	
+	# assert
+	assert_eq(GameSession.run_time_left, 0.0)
+
+
+func test_reset_deactivates_the_run():
+	# arrange
+	GameSession.game_mode = GameSession.GameMode.TIMED_RUN
+	GameSession.start_run()
+	
+	# act
+	GameSession.reset()
+	
+	# assert
+	assert_false(GameSession.run_active)
+
+
+func test_reset_keeps_the_game_mode():
+	# arrange
+	GameSession.game_mode = GameSession.GameMode.TIMED_RUN
+	
+	# act
+	GameSession.reset()
+	
+	# assert
+	assert_eq(GameSession.game_mode, GameSession.GameMode.TIMED_RUN)

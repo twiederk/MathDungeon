@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://quests/achievement_badges.tscn" id="12_fa5nh"]
 [ext_resource type="PackedScene" uid="uid://cq8nvt3xr7kql" path="res://quests/quest_log_gui.tscn" id="13_questlog"]
 [ext_resource type="PackedScene" uid="uid://b5i3hqfqrjnem" path="res://gui/character_sheet_gui.tscn" id="14_charsheet"]
+[ext_resource type="PackedScene" uid="uid://cta0k883xoke0" path="res://gui/countdown_timer_widget.tscn" id="15_countdown"]
 
 [node name="End" type="Node2D" unique_id=1281862831]
 script = ExtResource("1_qa73l")
@@ -56,6 +57,16 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_bottom = 0.0
 offset_left = -40.0
+grow_horizontal = 0
+grow_vertical = 1
+
+[node name="CountdownTimerWidget" parent="UI" instance=ExtResource("15_countdown")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -160.0
+offset_right = -120.0
 grow_horizontal = 0
 grow_vertical = 1
 

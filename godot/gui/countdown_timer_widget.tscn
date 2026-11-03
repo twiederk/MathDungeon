@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cta0k883xoke0"]
+
+[ext_resource type="Script" uid="uid://w8mvcuytlc48" path="res://gui/countdown_timer_widget.gd" id="1_cdtw"]
+
+[node name="CountdownTimerWidget" type="Control" unique_id=1896090812]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cdtw")
+
+[node name="TimeLabel" type="Label" parent="." unique_id=182381615]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -89.0
+offset_right = -10.0
+offset_bottom = 23.0
+grow_horizontal = 0
+layout_direction = 1
+text = "Zeit: 10:00"

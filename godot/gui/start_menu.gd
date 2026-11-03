@@ -6,9 +6,15 @@ const DIFFICULTY_LABELS := {
 	GameSession.DifficultyLevel.HARD: "Schwierigkeitsgrad: schwer"
 }
 
+const GAME_MODE_LABELS := {
+	GameSession.GameMode.NORMAL: "Spielmodus: normal",
+	GameSession.GameMode.TIMED_RUN: "Spielmodus: 10 min Lauf"
+}
+
 @onready var start_button = $CenterContainer/VBoxContainer/StartButton
 @onready var switch_character_button = $CenterContainer/VBoxContainer/SwitchCharacterButton
 @onready var difficulty_button: Button = $CenterContainer/VBoxContainer/DifficultyButton
+@onready var game_mode_button: Button = $CenterContainer/VBoxContainer/GameModeButton
 @onready var character_widget: CharacterWidget = $CharacterWidget
 
 
@@ -17,6 +23,7 @@ func _ready():
 	_heal_current_character()
 	character_widget.update_stats()
 	_update_difficulty_button()
+	_update_game_mode_button()
 	start_button.grab_focus()
 
 
@@ -33,15 +40,26 @@ func _update_difficulty_button() -> void:
 	difficulty_button.text = DIFFICULTY_LABELS[GameSession.difficulty_level]
 
 
+func _on_game_mode_button_pressed() -> void:
+	GameSession.toggle_game_mode()
+	_update_game_mode_button()
+
+
+func _update_game_mode_button() -> void:
+	game_mode_button.text = GAME_MODE_LABELS[GameSession.game_mode]
+
+
 func _on_start_game_button_pressed():
 	GameSession.reset()
 	AchievementManager.reset()
+	GameSession.start_run()
 	get_tree().change_scene_to_file("res://classic/overworld.tscn")
 
 
 func _on_start_generic_button_pressed():
 	GameSession.reset()
 	AchievementManager.reset()
+	GameSession.start_run()
 	get_tree().change_scene_to_file("res://procedural/proc_gen_world.tscn")
 
 
