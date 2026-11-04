@@ -2,16 +2,18 @@
 
 [ext_resource type="Script" uid="uid://dvyc3oiy0b21s" path="res://characters/portrait_catalog.gd" id="1_script"]
 [ext_resource type="Script" uid="uid://df7gjeri8djth" path="res://characters/portrait.gd" id="2_portrait"]
-[ext_resource type="Texture2D" uid="uid://0rfglmwytctn" path="res://characters/portraits/000.png" id="3_000"]
 [ext_resource type="Texture2D" uid="uid://bxvt43d1iihg" path="res://characters/portraits/001.png" id="4_001"]
 [ext_resource type="Texture2D" uid="uid://bky1yrxl1yfeu" path="res://characters/portraits/002.png" id="5_002"]
 [ext_resource type="Texture2D" uid="uid://cmg6vs4th6ndt" path="res://characters/portraits/003.png" id="6_003"]
 [ext_resource type="Texture2D" uid="uid://bgqm62m8kq2pu" path="res://characters/portraits/004.png" id="7_004"]
 
+[sub_resource type="Resource" id="Resource_o51tv"]
+metadata/__load_path__ = "res://characters/portraits/000.png"
+
 [sub_resource type="Resource" id="Portrait000"]
 script = ExtResource("2_portrait")
 id = "000"
-texture = ExtResource("3_000")
+texture = SubResource("Resource_o51tv")
 
 [sub_resource type="Resource" id="Portrait001"]
 script = ExtResource("2_portrait")
