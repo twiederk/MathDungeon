@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("2_1170w")
+name = "Wächter"
 max_hit_points = 25
 damage = 4
 armor = 2

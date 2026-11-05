@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://dvmrh86sep7gd"]
+
+[ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_harqt"]
+[ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="2_bbgan"]
+
+[resource]
+script = ExtResource("2_bbgan")
+name = "Witherskelett"
+max_hit_points = 8
+arithmetic = Array[int]([0, 1, 2, 3])
+time_limit = 30
+metadata/_custom_type_script = "uid://b0c3oqfgm2626"
