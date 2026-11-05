@@ -2,6 +2,20 @@
 
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_ixv06"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="2_1170w"]
+[ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="2_w8ygw"]
+[ext_resource type="PackedScene" uid="uid://cecyxjivevnmn" path="res://items/helmet_iron.tscn" id="3_usbrv"]
+
+[sub_resource type="Resource" id="Resource_mp5b2"]
+script = ExtResource("1_ixv06")
+item_scene = ExtResource("2_w8ygw")
+probability = 0.1
+metadata/_custom_type_script = "uid://cyliqhblplc3q"
+
+[sub_resource type="Resource" id="Resource_2xmqh"]
+script = ExtResource("1_ixv06")
+item_scene = ExtResource("3_usbrv")
+probability = 0.1
+metadata/_custom_type_script = "uid://cyliqhblplc3q"
 
 [resource]
 script = ExtResource("2_1170w")
@@ -12,4 +26,5 @@ armor = 2
 arithmetic = Array[int]([0, 1, 2, 3])
 max_number = 1000
 time_limit = 9
+loot_drops = Array[ExtResource("1_ixv06")]([SubResource("Resource_mp5b2"), SubResource("Resource_2xmqh")])
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"
