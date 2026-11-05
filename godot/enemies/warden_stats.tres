@@ -4,6 +4,12 @@
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="2_1170w"]
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="2_w8ygw"]
 [ext_resource type="PackedScene" uid="uid://cecyxjivevnmn" path="res://items/helmet_iron.tscn" id="3_usbrv"]
+[ext_resource type="AudioStream" uid="uid://dwx8dnpj3qote" path="res://enemies/death_sounds/Warden_death1.ogg" id="death_1"]
+[ext_resource type="AudioStream" uid="uid://b0o3oeicwxy2v" path="res://enemies/death_sounds/Warden_death2.ogg" id="death_2"]
+[ext_resource type="AudioStream" uid="uid://1u3q6o6nxku4" path="res://enemies/hurt_sounds/Warden_hurt1.ogg" id="hurt_1"]
+[ext_resource type="AudioStream" uid="uid://byxihm86ip8mw" path="res://enemies/hurt_sounds/Warden_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://bm5yvl61ocf36" path="res://enemies/hurt_sounds/Warden_hurt3.ogg" id="hurt_3"]
+[ext_resource type="AudioStream" uid="uid://b3ti257nog4kh" path="res://enemies/hurt_sounds/Warden_hurt4.ogg" id="hurt_4"]
 
 [sub_resource type="Resource" id="Resource_mp5b2"]
 script = ExtResource("1_ixv06")
@@ -27,4 +33,6 @@ arithmetic = Array[int]([0, 1, 2, 3])
 max_number = 1000
 time_limit = 9
 loot_drops = Array[ExtResource("1_ixv06")]([SubResource("Resource_mp5b2"), SubResource("Resource_2xmqh")])
+hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3"), ExtResource("hurt_4")])
+death_sounds = Array[AudioStream]([ExtResource("death_1"), ExtResource("death_2")])
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"
