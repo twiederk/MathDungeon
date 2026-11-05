@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://ctnkp5gadorye"]
+
+[ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_ixv06"]
+[ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="2_1170w"]
+
+[resource]
+script = ExtResource("2_1170w")
+max_hit_points = 25
+damage = 4
+armor = 2
+arithmetic = Array[int]([0, 1, 2, 3])
+max_number = 1000
+time_limit = 9
+metadata/_custom_type_script = "uid://b0c3oqfgm2626"
