@@ -14,6 +14,7 @@ var loot_droper: LootDropper = LootDropper.new()
 @onready var map_borders = $MapBorders
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
 @onready var nether_portal: NetherPortal = get_node_or_null("Locations/NetherPortal")
+@onready var cave_entrance: CaveEntrance = get_node_or_null("Locations/CaveEntrance")
 
 @onready var quiz: Control = $UI/QuizDialog
 @onready var player_stats_sheet: StatsSheet = $UI/PlayerStatsSheet
@@ -50,6 +51,9 @@ func get_start_position() -> Vector2:
 	if GameSession.spawns_at_nether_portal():
 		if nether_portal:
 			return nether_portal.get_spawn_position()
+	if GameSession.spawns_at_cave_entrance():
+		if cave_entrance:
+			return cave_entrance.get_spawn_position()
 	return player.global_position
 
 

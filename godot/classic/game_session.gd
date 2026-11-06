@@ -16,7 +16,8 @@ enum DisplayState {
 
 enum SpawnPoint {
 	START,
-	NETHER_PORTAL
+	NETHER_PORTAL,
+	CAVE_ENTRANCE
 }
 
 enum GameMode {
@@ -114,6 +115,10 @@ func is_simulation_running() -> bool:
 
 func spawns_at_nether_portal() -> bool:
 	return spawn_point == SpawnPoint.NETHER_PORTAL
+
+
+func spawns_at_cave_entrance() -> bool:
+	return spawn_point == SpawnPoint.CAVE_ENTRANCE
 
 
 func toggle_difficulty_level() -> void:

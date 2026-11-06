@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://dvmrh86sep7gd"]
+
+[ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_harqt"]
+[ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="2_bbgan"]
+[ext_resource type="PackedScene" uid="uid://wjx4klpp85sw" path="res://items/sword_stone.tscn" id="2_cggrm"]
+[ext_resource type="PackedScene" uid="uid://dq5hvtr5p280m" path="res://items/helmet_stone.tscn" id="3_pain4"]
+[ext_resource type="AudioStream" uid="uid://bns0lgise06hp" path="res://enemies/death_sounds/Wither_skeleton_death1.ogg" id="death_1"]
+[ext_resource type="AudioStream" uid="uid://cqng8c0us41ug" path="res://enemies/death_sounds/Wither_skeleton_death2.ogg" id="death_2"]
+[ext_resource type="AudioStream" uid="uid://wuf3dpnmjj6c" path="res://enemies/hurt_sounds/Wither_skeleton_hurt1.ogg" id="hurt_1"]
+[ext_resource type="AudioStream" uid="uid://3cyg266e0o3k" path="res://enemies/hurt_sounds/Wither_skeleton_hurt2.ogg" id="hurt_2"]
+[ext_resource type="AudioStream" uid="uid://c6khka24mfvhk" path="res://enemies/hurt_sounds/Wither_skeleton_hurt3.ogg" id="hurt_3"]
+[ext_resource type="AudioStream" uid="uid://ceb2yxs2gb6js" path="res://enemies/hurt_sounds/Wither_skeleton_hurt4.ogg" id="hurt_4"]
+
+[sub_resource type="Resource" id="Resource_7m5oa"]
+script = ExtResource("1_harqt")
+item_scene = ExtResource("2_cggrm")
+probability = 0.1
+metadata/_custom_type_script = "uid://cyliqhblplc3q"
+
+[sub_resource type="Resource" id="Resource_6gtp2"]
+script = ExtResource("1_harqt")
+item_scene = ExtResource("3_pain4")
+probability = 0.1
+metadata/_custom_type_script = "uid://cyliqhblplc3q"
+
+[resource]
+script = ExtResource("2_bbgan")
+name = "Witherskelett"
+max_hit_points = 8
+arithmetic = Array[int]([0, 1, 2, 3])
+time_limit = 30
+loot_drops = Array[ExtResource("1_harqt")]([SubResource("Resource_7m5oa"), SubResource("Resource_6gtp2")])
+hurt_sounds = Array[AudioStream]([ExtResource("hurt_1"), ExtResource("hurt_2"), ExtResource("hurt_3"), ExtResource("hurt_4")])
+death_sounds = Array[AudioStream]([ExtResource("death_1"), ExtResource("death_2")])
+metadata/_custom_type_script = "uid://b0c3oqfgm2626"
