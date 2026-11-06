@@ -5,10 +5,12 @@ extends Control
 
 
 func _ready() -> void:
-	GameSession.entered_highscores.connect(_on_entered_highscores)
+	GameSession.highscore_rank_changed.connect(_on_highscore_rank_changed)
 
 
-func _on_entered_highscores() -> void:
+func _on_highscore_rank_changed(rank: int) -> void:
+	if rank == HighscoreManager.NO_RANK:
+		return
 	Sound.play(Sound.firework)
 	for burst: GPUParticles2D in bursts.get_children():
 		burst.emitting = true

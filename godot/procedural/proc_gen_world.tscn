@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="7_w7atm"]
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="8_ghex2"]
 [ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="9_0o1nv"]
+[ext_resource type="PackedScene" uid="uid://dnq4jx5hrw7b2" path="res://gui/highscore_rank_widget.tscn" id="9_hsrank"]
 [ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://quests/achievement_popup.tscn" id="10_gsqn5"]
 [ext_resource type="PackedScene" uid="uid://b8fireworks1" path="res://gui/fireworks_effect.tscn" id="12_fireworks"]
 [ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://quests/achievement_badges.tscn" id="11_nivld"]
@@ -72,6 +73,17 @@ offset_left = -40.0
 grow_horizontal = 0
 grow_vertical = 1
 
+[node name="HighscoreRankWidget" parent="UI" instance=ExtResource("9_hsrank")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -40.0
+offset_top = 25.0
+offset_bottom = 25.0
+grow_horizontal = 0
+grow_vertical = 1
+
 [node name="CountdownTimerWidget" parent="UI" instance=ExtResource("14_countdown")]
 anchors_preset = 1
 anchor_left = 1.0
@@ -88,9 +100,9 @@ grow_vertical = 1
 
 [node name="AchievementBadges" parent="UI" unique_id=1767910076 instance=ExtResource("11_nivld")]
 offset_left = 455.0
-offset_top = 25.0
+offset_top = 50.0
 offset_right = 625.0
-offset_bottom = 65.0
+offset_bottom = 90.0
 
 [node name="QuestLogGui" parent="UI" unique_id=802925845 instance=ExtResource("12_questlog")]
 
