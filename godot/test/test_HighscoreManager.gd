@@ -101,3 +101,73 @@ func test_timed_run_list_is_capped_at_max_highscores():
 	
 	# assert
 	assert_eq(entries.size(), HighscoreManager.MAX_HIGHSCORES)
+
+
+func test_get_rank_returns_first_rank_for_an_empty_list():
+	# act
+	var rank = HighscoreManager.get_rank(1, GameSession.GameMode.NORMAL)
+	
+	# assert
+	assert_eq(rank, 1)
+
+
+func test_get_rank_returns_first_rank_when_the_score_beats_all_entries():
+	# arrange
+	_fill_highscores(GameSession.GameMode.NORMAL, HighscoreManager.MAX_HIGHSCORES)
+	
+	# act
+	var rank = HighscoreManager.get_rank(1000, GameSession.GameMode.NORMAL)
+	
+	# assert
+	assert_eq(rank, 1)
+
+
+func test_get_rank_places_an_equal_score_below_the_existing_entry():
+	# arrange
+	_fill_highscores(GameSession.GameMode.NORMAL, HighscoreManager.MAX_HIGHSCORES)
+	
+	# act
+	var rank = HighscoreManager.get_rank(80, GameSession.GameMode.NORMAL)
+	
+	# assert
+	assert_eq(rank, 4)
+
+
+func test_get_rank_returns_no_rank_when_the_full_list_is_better():
+	# arrange
+	_fill_highscores(GameSession.GameMode.NORMAL, HighscoreManager.MAX_HIGHSCORES)
+	
+	# act
+	var rank = HighscoreManager.get_rank(1, GameSession.GameMode.NORMAL)
+	
+	# assert
+	assert_eq(rank, HighscoreManager.NO_RANK)
+
+
+func test_get_rank_returns_the_next_free_rank_in_a_partially_filled_list():
+	# arrange
+	_fill_highscores(GameSession.GameMode.NORMAL, 3)
+	
+	# act
+	var rank = HighscoreManager.get_rank(1, GameSession.GameMode.NORMAL)
+	
+	# assert
+	assert_eq(rank, 4)
+
+
+func test_get_rank_evaluates_against_the_given_mode():
+	# arrange
+	_fill_highscores(GameSession.GameMode.TIMED_RUN, HighscoreManager.MAX_HIGHSCORES)
+	
+	# act
+	var rank = HighscoreManager.get_rank(1, GameSession.GameMode.NORMAL)
+	
+	# assert
+	assert_eq(rank, 1)
+
+
+func _fill_highscores(mode: GameSession.GameMode, count: int, top_score: int = 100) -> void:
+	var entries: Array[Highscore] = []
+	for i in range(count):
+		entries.append(Highscore.new("Player%d" % i, top_score - i * 10))
+	HighscoreManager.highscores_by_mode[mode] = entries

@@ -6,6 +6,7 @@ const DEFAULT_HIGHSCORE_PATHS := {
 }
 const POINTS_PER_CORRECT_ANSWER: int = 10
 const MAX_HIGHSCORES: int = 10
+const NO_RANK: int = 0
 
 var highscore_paths: Dictionary = DEFAULT_HIGHSCORE_PATHS.duplicate()
 var highscores_by_mode: Dictionary = {
@@ -60,6 +61,18 @@ func is_highscore(score: int, mode: GameSession.GameMode = GameSession.game_mode
 	if highscores.size() < MAX_HIGHSCORES:
 		return true
 	return score > highscores[MAX_HIGHSCORES - 1].score
+
+
+func get_rank(score: int, mode: GameSession.GameMode = GameSession.game_mode) -> int:
+	var highscores: Array = highscores_by_mode[mode]
+	var rank: int = 1
+	for entry in highscores:
+		if score > entry.score:
+			break
+		rank += 1
+	if rank > MAX_HIGHSCORES:
+		return NO_RANK
+	return rank
 
 
 func _save_highscores(mode: GameSession.GameMode) -> void:
