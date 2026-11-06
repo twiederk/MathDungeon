@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://classic/world_level.gd" id="1_kx1po"]
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://classic/world_tiles.tres" id="2_8ro0j"]
+[ext_resource type="PackedScene" uid="uid://cfw8qlomgdshi" path="res://locations/cave_entrance.tscn" id="3_8ro0j"]
 [ext_resource type="PackedScene" uid="uid://dr0nd61x2rnrb" path="res://enemies/warden.tscn" id="3_kx1po"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://classic/player.tscn" id="4_j8w2a"]
 [ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://classic/map_borders.tscn" id="5_j03yu"]
@@ -24,6 +25,10 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAFAAIAAAAAAAEAAAAFAAIAAAAAAAIAAAAFAAI
 tile_set = ExtResource("2_8ro0j")
 
 [node name="Locations" type="Node2D" parent="." unique_id=841659348]
+
+[node name="CaveEntrance" parent="Locations" unique_id=2104679871 instance=ExtResource("3_8ro0j")]
+position = Vector2(206, 228)
+dungeon_path = "res://classic/overworld.tscn"
 
 [node name="Items" type="Node2D" parent="." unique_id=2037589893]
 
