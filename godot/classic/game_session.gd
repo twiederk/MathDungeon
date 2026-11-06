@@ -33,7 +33,7 @@ const RUN_DURATION_SECONDS := 600.0
 signal score_changed
 signal display_state_changed(state: int)
 signal simulation_running_changed(running: bool)
-signal entered_highscores
+signal highscore_rank_changed(rank: int)
 signal run_time_changed(seconds_left: float)
 signal run_time_expired
 
@@ -42,7 +42,7 @@ var difficulty_level: DifficultyLevel = DifficultyLevel.NORMAL
 var spawn_point: SpawnPoint = SpawnPoint.START
 var overworld_path: String = DEFAULT_OVERWORLD_PATH
 var world_seed: int = NO_SEED
-var has_entered_highscores: bool = false
+var highscore_rank: int = HighscoreManager.NO_RANK
 var game_mode: GameMode = GameMode.NORMAL
 var run_duration_seconds: float = RUN_DURATION_SECONDS
 var run_time_left: float = 0.0
@@ -86,7 +86,7 @@ func _process(delta: float) -> void:
 func reset() -> void:
 	score = 0
 	correct_answers = 0
-	has_entered_highscores = false
+	highscore_rank = HighscoreManager.NO_RANK
 	display_state = DisplayState.NONE
 	spawn_point = SpawnPoint.START
 	overworld_path = DEFAULT_OVERWORLD_PATH
@@ -153,9 +153,10 @@ func stop_run() -> void:
 
 func add_score(points: int) -> void:
 	score += points
-	if not has_entered_highscores and HighscoreManager.is_highscore(score):
-		has_entered_highscores = true
-		entered_highscores.emit()
+	var new_rank := HighscoreManager.get_rank(score)
+	if new_rank != highscore_rank:
+		highscore_rank = new_rank
+		highscore_rank_changed.emit(highscore_rank)
 	AchievementManager.track_score(score)
 
 
