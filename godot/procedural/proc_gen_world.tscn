@@ -38,7 +38,7 @@ dungeon_path = "res://classic/nether.tscn"
 [node name="Items" type="Node2D" parent="." unique_id=1926190904]
 
 [node name="Lighter" parent="Items" unique_id=586288920 instance=ExtResource("5_wh5hr")]
-position = Vector2(121, 866)
+position = Vector2(121, 433)
 
 [node name="Companions" type="Node2D" parent="." unique_id=1789589125]
 scale = Vector2(0.99999994, 0.99999994)
@@ -47,7 +47,7 @@ scale = Vector2(0.99999994, 0.99999994)
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="Player" parent="." unique_id=1715023786 instance=ExtResource("4_ldss0")]
-position = Vector2(48, 864)
+position = Vector2(48, 432)
 
 [node name="MapBorders" parent="." unique_id=1508724067 instance=ExtResource("5_4gbkj")]
 
