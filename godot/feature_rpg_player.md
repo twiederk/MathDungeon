@@ -67,7 +67,11 @@ specific sprite node type.
 ## Phase 2 - Add the Static RPGPlayer
 
 1. Add `procedural/rpg_player.gd` with `class_name RPGPlayer`, extending `Player`.
-2. Add an independent `procedural/rpg_player.tscn`:
+2. Copy `classic/player.tscn` to `procedural/rpg_player.tscn` as an independent scene,
+   rather than recreating its nodes or creating an inherited scene. Give the copy a new
+   scene UID; if copying the scene file manually, remove its original scene UID and let
+   Godot generate a new one. Rename the copied root to `RPGPlayer` and replace its
+   `ClassicPlayer` script with `procedural/rpg_player.gd`:
 
    ```text
    RPGPlayer (CharacterBody2D, RPGPlayer script)
@@ -76,9 +80,10 @@ specific sprite node type.
    `-- Camera2D
    ```
 
-3. Assign the RPG texture and a dedicated collision shape. Choose dimensions and offsets
-   against the actual artwork and 16-pixel world tiles. For a top-down character, place
-   the collider around the feet rather than the entire visible body where appropriate.
+3. Assign the RPG texture and ensure the copied collider uses a dedicated `Shape2D`
+   resource before modifying it (use Make Unique if necessary). Choose dimensions and
+   offsets against the actual artwork and 16-pixel world tiles. For a top-down character,
+   place the collider around the feet rather than the entire visible body where appropriate.
 4. Preserve the existing player's collision layers, masks, and relevant body settings.
    Keep speed unchanged unless a separate gameplay requirement calls for tuning it.
 5. Implement static facing in `RPGPlayer` using the visual hook. Inherit the no-op
