@@ -1,0 +1,23 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://items/helmet.gd" id="1_helmet"]
+[ext_resource type="Resource" path="res://items/helmet_wood.tres" id="2_armor"]
+[ext_resource type="Texture2D" path="res://procedural/items/rpg_items.png" id="3_items"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_helmet"]
+atlas = ExtResource("3_items")
+region = Rect2(16, 368, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_helmet"]
+size = Vector2(16, 16)
+
+[node name="WoodHelmet" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_helmet")
+armor_resource = ExtResource("2_armor")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_helmet")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_helmet")

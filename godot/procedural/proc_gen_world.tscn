@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://cq8nvt3xr7kql" path="res://quests/quest_log_gui.tscn" id="12_questlog"]
 [ext_resource type="PackedScene" uid="uid://b5i3hqfqrjnem" path="res://gui/character_sheet_gui.tscn" id="13_charsheet"]
 [ext_resource type="PackedScene" uid="uid://cta0k883xoke0" path="res://gui/countdown_timer_widget.tscn" id="14_countdown"]
+[ext_resource type="PackedScene" path="res://procedural/items/sword_wood.tscn" id="19_2lqfb"]
+[ext_resource type="PackedScene" path="res://procedural/items/helmet_wood.tscn" id="20_1iord"]
 
 [node name="ProcGenWorld" type="Node2D" unique_id=1396004494]
 script = ExtResource("1_4yoxp")
@@ -37,6 +39,12 @@ position = Vector2(2177, 1314)
 dungeon_path = "res://classic/nether.tscn"
 
 [node name="Items" type="Node2D" parent="." unique_id=1926190904]
+
+[node name="WoodSword" parent="Items" unique_id=928199068 instance=ExtResource("19_2lqfb")]
+position = Vector2(122, 437)
+
+[node name="WoodHelmet" parent="Items" unique_id=1349524693 instance=ExtResource("20_1iord")]
+position = Vector2(123, 470)
 
 [node name="HealingPotion" parent="Items" unique_id=29021829 instance=ExtResource("5_gsqn5")]
 position = Vector2(85, 471)
