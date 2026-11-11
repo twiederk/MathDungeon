@@ -5,7 +5,7 @@ const WOOD_HELMET_SCENE = preload("res://items/helmet_wood.tscn")
 const STONE_HELMET_SCENE = preload("res://items/helmet_stone.tscn")
 const IRON_HELMET_SCENE = preload("res://items/helmet_iron.tscn")
 
-const WOOD_SWORD_SCENE = preload("res://items/sword_wood.tscn")
+const WOOD_SWORD_SCENE = preload("res://procedural/items/sword_wood.tscn")
 const STONE_SWORD_SCENE = preload("res://items/sword_stone.tscn")
 const IRON_SWORD_SCENE = preload("res://items/sword_iron.tscn")
 
