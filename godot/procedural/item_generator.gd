@@ -9,7 +9,7 @@ const WOOD_SWORD_SCENE = preload("res://items/sword_wood.tscn")
 const STONE_SWORD_SCENE = preload("res://items/sword_stone.tscn")
 const IRON_SWORD_SCENE = preload("res://items/sword_iron.tscn")
 
-const HEALING_POTION_SCENE = preload("res://items/healing_potion.tscn")
+const HEALING_POTION_SCENE = preload("res://procedural/items/healing_potion.tscn")
 
 const SPAWN_CHANCE_ITEM_EASY = 20
 const SPAWN_CHANCE_ITEM_MEDIUM = 30

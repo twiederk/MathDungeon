@@ -1,0 +1,24 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://items/healing_potion.gd" id="1_potion"]
+[ext_resource type="Texture2D" path="res://procedural/items/rpg_items.png" id="2_items"]
+[ext_resource type="Resource" path="res://items/healing_potion_good.tres" id="3_good"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_potion"]
+atlas = ExtResource("2_items")
+region = Rect2(96, 592, 16, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_potion"]
+radius = 5.0
+height = 12.0
+
+[node name="HealingPotion" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_potion")
+good_resource = ExtResource("3_good")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_potion")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_potion")

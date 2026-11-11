@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://uov100t6ehma" path="res://procedural/proc_gen_world.gd" id="1_4yoxp"]
 [ext_resource type="TileSet" uid="uid://tdl62i5yuypb" path="res://procedural/world_rpg_tiles.tres" id="2_gsqn5"]
 [ext_resource type="PackedScene" uid="uid://bqy23htwiovfo" path="res://locations/end_portal.tscn" id="3_4gbkj"]
-[ext_resource type="PackedScene" path="res://procedural/rpg_player.tscn" id="4_ldss0"]
+[ext_resource type="PackedScene" uid="uid://cmqwqq8cp3i18" path="res://procedural/rpg_player.tscn" id="4_ldss0"]
 [ext_resource type="PackedScene" uid="uid://ch27vu5jqwd8g" path="res://locations/nether_portal.tscn" id="4_wh5hr"]
 [ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://classic/map_borders.tscn" id="5_4gbkj"]
-[ext_resource type="PackedScene" uid="uid://d4by6x3ww0foy" path="res://items/lighter.tscn" id="5_wh5hr"]
+[ext_resource type="PackedScene" path="res://procedural/items/healing_potion.tscn" id="5_gsqn5"]
 [ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz/quiz_dialog.tscn" id="6_wh5hr"]
 [ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="7_w7atm"]
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="8_ghex2"]
@@ -38,8 +38,8 @@ dungeon_path = "res://classic/nether.tscn"
 
 [node name="Items" type="Node2D" parent="." unique_id=1926190904]
 
-[node name="Lighter" parent="Items" unique_id=586288920 instance=ExtResource("5_wh5hr")]
-position = Vector2(121, 433)
+[node name="HealingPotion" parent="Items" unique_id=29021829 instance=ExtResource("5_gsqn5")]
+position = Vector2(85, 471)
 
 [node name="Companions" type="Node2D" parent="." unique_id=1789589125]
 scale = Vector2(0.99999994, 0.99999994)

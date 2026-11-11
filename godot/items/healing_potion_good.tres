@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="GoodResource" format=3]
+[gd_resource type="Resource" script_class="GoodResource" format=3 uid="uid://hwsc4v3ehijk"]
 
-[ext_resource type="Script" path="res://items/good_resource.gd" id="1_good"]
+[ext_resource type="Script" uid="uid://wpepsbr4eyp5" path="res://items/good_resource.gd" id="1_good"]
 [ext_resource type="Texture2D" uid="uid://c31gniut2rq2q" path="res://items/items.png" id="2_icon"]
 
 [resource]
