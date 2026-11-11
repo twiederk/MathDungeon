@@ -14,13 +14,16 @@ design for a sprite sheet, `AnimatedSprite2D`, `AnimationPlayer`, and `Animation
   visual node structures.
 - Use script inheritance to share behavior: `ClassicPlayer extends Player` and
   `RPGPlayer extends Player`.
+- Separate world responsibilities: `ClassicWorld extends WorldLevel` owns classic
+   portrait setup; `ProcGenWorld` continues extending `WorldLevel` directly.
 - Keep `Player` in `classic/player.gd` initially to avoid unrelated file moves.
-- Keep the world-facing interface compatible: `Player` type, `apply_portrait()`,
-  `set_camera_limits()`, and the world child named `Player`.
+- Keep the shared world-facing interface compatible: `Player` type, `set_camera_limits()`,
+   and the world child named `Player`. `apply_portrait()` belongs only to `ClassicPlayer`;
+   neither the shared `Player` nor `RPGPlayer` needs a no-op portrait method.
 - Shared code must not require `Sprite2D`, `AnimatedSprite2D`, `AnimationPlayer`, or
   `AnimationTree`. Each variant owns its visual nodes and visual behavior.
-- Classic players continue displaying the selected character portrait. RPG players use
-  their own artwork; applying a character portrait must not replace it.
+- `ClassicWorld` applies the selected character portrait to its `ClassicPlayer`.
+   Shared world initialization does not apply portraits, so RPG players retain their artwork.
 - Collision dimensions belong to each scene. Use a separate `Shape2D` resource for the
   RPG player, not a shared shape and not root scaling to adjust collision size.
 - Implement in independently usable phases. Animation nodes are not required for the
@@ -36,7 +39,7 @@ design for a sprite sheet, `AnimatedSprite2D`, `AnimationPlayer`, and `Animation
   of that type.
 - `ProcGenWorld` currently instances `classic/player.tscn`.
 
-## Phase 1 - Separate Shared Behavior from Classic Visuals
+## Phase 1 - Separate Shared Behavior from Classic Setup and Visuals
 
 1. Keep input, velocity calculation, `move_and_slide()`, potion usage, speed constants,
    and camera limits in `Player`.
@@ -44,27 +47,44 @@ design for a sprite sheet, `AnimatedSprite2D`, `AnimationPlayer`, and `Animation
    actual velocity after `move_and_slide()`. Call it from the shared physics loop.
    Passing both supports facing into a wall without playing a walking animation while
    blocked, and allows four-direction animation later.
-3. Give the base hook and `apply_portrait()` default no-op implementations. The base
-   class must not access any sprite node.
+3. Give the base visual hook a default no-op implementation. Remove `apply_portrait()`
+   from the base class; it must not access any sprite node or provide a portrait API.
 4. Add `classic/classic_player.gd` with `class_name ClassicPlayer`, extending `Player`.
    Move the `Sprite2D` binding, portrait assignment, and horizontal facing logic into it.
 5. Attach `ClassicPlayer` to `classic/player.tscn`. Keep its existing nodes, texture,
    collider, camera, and root name unchanged.
-6. Leave `WorldLevel` and companion APIs unchanged. Do not introduce checks for concrete
-   player variants in world code.
+6. Add `classic/classic_world.gd` with `class_name ClassicWorld`, extending `WorldLevel`.
+   Move `_setup_player_portrait()` and its call out of `WorldLevel`. In
+   `ClassicWorld._ready()`, call `super._ready()` first, then set up the portrait once.
+7. Keep `WorldLevel.player` typed as `Player`. Within `ClassicWorld` portrait setup, cast
+   that reference to `ClassicPlayer`. Report a clear configuration error and return if
+   the cast fails; do not silently accept an incompatible player scene.
+8. Change `classic/ancient_city.tscn`, `classic/overworld.tscn`, and `classic/end.tscn`
+   to use the `ClassicWorld` script instead of `WorldLevel`.
+9. Change `classic/nether.gd` to extend `ClassicWorld`. Preserve its existing world-specific
+   setup and any `_ready()` super-call chain so shared and classic setup each run once.
+   `classic/nether.tscn` continues using its existing Nether script.
+10. Leave `ProcGenWorld extends WorldLevel` and companion APIs unchanged. Concrete player
+    checks belong only in `ClassicWorld`, never in shared world or companion code.
 
 ### Validation
 
 - Reuse existing player tests where available; add focused cases for classic portrait
   assignment and facing, including retaining the previous facing on zero horizontal input.
 - Verify a base `Player` with a camera but no visual nodes does not require `Sprite2D`.
+- Verify `ClassicWorld` applies the selected portrait once during initialization and
+   reports a configuration error for a player that is not a `ClassicPlayer`.
+- Verify shared `WorldLevel` initialization works with a `Player` that has no
+   `apply_portrait()` method. Update existing world tests that expected shared portrait setup.
+- Verify all four classic worlds use the new inheritance chain, including Nether-specific
+   behavior, while `ProcGenWorld` remains outside `ClassicWorld`.
 - Verify classic movement, sprinting, potion use, and camera limits still work.
 - Import new script classes before running the focused GUT tests.
 
-**Done when:** classic gameplay is unchanged and shared behavior no longer depends on a
-specific sprite node type.
+**Done when:** classic gameplay is unchanged, `ClassicWorld` owns portrait setup, and
+shared player and world behavior no longer depends on classic visuals or portrait APIs.
 
-## Phase 2 - Add the Static RPGPlayer
+## Phase 2 - Add RPGPlayer with a Non-Animated Sprite
 
 1. Add `procedural/rpg_player.gd` with `class_name RPGPlayer`, extending `Player`.
 2. Copy `classic/player.tscn` to `procedural/rpg_player.tscn` as an independent scene,
@@ -86,8 +106,8 @@ specific sprite node type.
    place the collider around the feet rather than the entire visible body where appropriate.
 4. Preserve the existing player's collision layers, masks, and relevant body settings.
    Keep speed unchanged unless a separate gameplay requirement calls for tuning it.
-5. Implement static facing in `RPGPlayer` using the visual hook. Inherit the no-op
-   `apply_portrait()` so the RPG texture survives world initialization.
+5. Implement horizontal sprite facing in `RPGPlayer` using the visual hook. Do not add
+   `apply_portrait()`; `ProcGenWorld` inherits shared initialization without portrait setup.
 6. Replace only the player scene reference in `procedural/proc_gen_world.tscn`.
    Keep the instance named `Player` and preserve its world position.
 7. Leave all classic worlds using `classic/player.tscn`.
@@ -95,7 +115,8 @@ specific sprite node type.
 ### Validation
 
 - Instantiate both scenes and verify both roots are `Player` instances.
-- Verify applying a portrait changes the classic sprite but leaves the RPG sprite unchanged.
+- Verify `ClassicWorld` initialization applies the selected portrait to the classic sprite,
+  while `ProcGenWorld` initialization leaves the RPG texture unchanged without a portrait API.
 - Verify the collider resources are independent and changing one cannot change the other.
 - Smoke-test `ProcGenWorld`: wall collisions, narrow passages, camera limits, potion use,
   companions, encounters, pause, and resume.
