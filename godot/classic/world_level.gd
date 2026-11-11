@@ -28,7 +28,6 @@ func _ready() -> void:
 	_setup_locations()
 	_setup_limits_and_borders()
 	_setup_character_stats()
-	_setup_player_portrait()
 	CompanionSetup.new(companions_root, player).setup()
 	_on_simulation_running_changed(GameSession.is_simulation_running())
 	countdown_timer_widget.visible = GameSession.is_timed_run()
@@ -107,11 +106,6 @@ func _setup_character_stats() -> void:
 	character.damage_changed.connect(_on_player_stats_changed)
 	character.armor_changed.connect(_on_player_stats_changed)
 	player_stats_sheet.update_stats(character.hit_points, character.max_hit_points, character.get_damage(), character.get_armor())
-
-
-func _setup_player_portrait() -> void:
-	var portrait: Portrait = CharacterManager.current.portrait
-	player.apply_portrait(portrait.texture)
 
 
 func _on_enemy_encountered(enemy: StaticBody2D, attack_type: Enemy.AttackType) -> void:

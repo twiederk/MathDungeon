@@ -1,5 +1,5 @@
 class_name Nether
-extends WorldLevel
+extends ClassicWorld
 
 
 func _ready():

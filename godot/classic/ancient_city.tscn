@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://si7yr4b2ucn4"]
 
-[ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://classic/world_level.gd" id="1_kx1po"]
+[ext_resource type="Script" path="res://classic/classic_world.gd" id="1_kx1po"]
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://classic/world_tiles.tres" id="2_8ro0j"]
 [ext_resource type="PackedScene" uid="uid://cfw8qlomgdshi" path="res://locations/cave_entrance.tscn" id="3_8ro0j"]
 [ext_resource type="PackedScene" uid="uid://dr0nd61x2rnrb" path="res://enemies/warden.tscn" id="3_kx1po"]

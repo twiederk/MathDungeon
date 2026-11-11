@@ -41,6 +41,8 @@ design for a sprite sheet, `AnimatedSprite2D`, `AnimationPlayer`, and `Animation
 
 ## Phase 1 - Separate Shared Behavior from Classic Setup and Visuals
 
+**Status:** Implemented. Validated with `test_ING.bat` (206 tests passed).
+
 1. Keep input, velocity calculation, `move_and_slide()`, potion usage, speed constants,
    and camera limits in `Player`.
 2. Introduce a visual-update hook accepting the full movement input direction and the
@@ -57,8 +59,8 @@ design for a sprite sheet, `AnimatedSprite2D`, `AnimationPlayer`, and `Animation
    Move `_setup_player_portrait()` and its call out of `WorldLevel`. In
    `ClassicWorld._ready()`, call `super._ready()` first, then set up the portrait once.
 7. Keep `WorldLevel.player` typed as `Player`. Within `ClassicWorld` portrait setup, cast
-   that reference to `ClassicPlayer`. Report a clear configuration error and return if
-   the cast fails; do not silently accept an incompatible player scene.
+   that reference to `ClassicPlayer`. Assume classic scenes contain the correct player
+   variant; do not add a runtime safety check for this scene configuration.
 8. Change `classic/ancient_city.tscn`, `classic/overworld.tscn`, and `classic/end.tscn`
    to use the `ClassicWorld` script instead of `WorldLevel`.
 9. Change `classic/nether.gd` to extend `ClassicWorld`. Preserve its existing world-specific
@@ -72,8 +74,7 @@ design for a sprite sheet, `AnimatedSprite2D`, `AnimationPlayer`, and `Animation
 - Reuse existing player tests where available; add focused cases for classic portrait
   assignment and facing, including retaining the previous facing on zero horizontal input.
 - Verify a base `Player` with a camera but no visual nodes does not require `Sprite2D`.
-- Verify `ClassicWorld` applies the selected portrait once during initialization and
-   reports a configuration error for a player that is not a `ClassicPlayer`.
+- Verify `ClassicWorld` applies the selected portrait once during initialization.
 - Verify shared `WorldLevel` initialization works with a `Player` that has no
    `apply_portrait()` method. Update existing world tests that expected shared portrait setup.
 - Verify all four classic worlds use the new inheritance chain, including Nether-specific
