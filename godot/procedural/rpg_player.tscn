@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cmqwqq8cp3i18"]
+
+[ext_resource type="Script" uid="uid://bjyrwqrip0vpw" path="res://procedural/rpg_player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://cy6n8f2bgu16m" path="res://procedural/rpg_player.png" id="2_i3pqv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
+radius = 5.0
+height = 14.0
+
+[node name="RPGPlayer" type="CharacterBody2D" unique_id=1649447883]
+disable_mode = 2
+collision_mask = 2
+script = ExtResource("1_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1472839895]
+position = Vector2(0, -8)
+texture = ExtResource("2_i3pqv")
+hframes = 6
+vframes = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=459003781]
+shape = SubResource("CapsuleShape2D_onrkg")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1611590790]
+limit_left = -192
+limit_top = -192
+limit_right = 1856
+limit_bottom = 1664
