@@ -121,6 +121,8 @@ inventories retain their existing behavior.
 
 ## Phase 4 - Add RPG Resources and Potion Types
 
+**Status:** Implemented; manual validation pending.
+
 1. Create a separate `WeaponResource`, `ArmorResource`, and `GoodResource` for the
    procedural wood sword, wood helmet, and healing potion, respectively. Use unique IDs
    such as `rpg_sword_wood`, `rpg_helmet_wood`, and `rpg_healing_potion`; retain the

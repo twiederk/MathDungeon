@@ -89,4 +89,5 @@ func _create_good(id: String) -> GoodResource:
 	var resource := GoodResource.new()
 	resource.id = id
 	resource.name = id
+	resource.good_type = GoodResource.GoodType.HEALING_POTION
 	return resource

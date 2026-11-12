@@ -26,20 +26,21 @@ func test_execute_stores_a_potion_instead_of_healing():
 	assert_eq(4, CharacterManager.current.hit_points)
 
 
-func test_execute_is_rejected_once_potion_slot_is_full():
+func test_execute_stores_more_than_five_potions():
 	# arrange
-	for i in Inventory.MAX_POTIONS:
+	for i in 5:
 		CharacterManager.current.inventory.add_potion(_create_good("healing_potion"))
 
 	# act
 	healing_potion.execute()
 
 	# assert
-	assert_eq(Inventory.MAX_POTIONS, CharacterManager.current.inventory.get_potion_count())
+	assert_eq(6, CharacterManager.current.inventory.get_potion_count())
 
 
 func _create_good(id: String) -> GoodResource:
 	var resource := GoodResource.new()
 	resource.id = id
 	resource.name = id
+	resource.good_type = GoodResource.GoodType.HEALING_POTION
 	return resource

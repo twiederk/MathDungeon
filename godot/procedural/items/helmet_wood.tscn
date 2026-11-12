@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ctveblnwcs0n5"]
 
 [ext_resource type="Script" uid="uid://dy2ugvq1ya782" path="res://items/helmet.gd" id="1_helmet"]
-[ext_resource type="Resource" uid="uid://dk2wq5v8xbn7l" path="res://items/helmet_wood.tres" id="2_armor"]
+[ext_resource type="Resource" path="res://procedural/items/helmet_wood.tres" id="2_armor"]
 [ext_resource type="Texture2D" uid="uid://dbt64c72ahsj1" path="res://procedural/items/rpg_items.png" id="3_items"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_helmet"]

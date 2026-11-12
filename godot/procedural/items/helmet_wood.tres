@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ArmorResource" format=3]
+
+[ext_resource type="Script" uid="uid://cvvocs4krryds" path="res://items/armor_resource.gd" id="1_armor"]
+[ext_resource type="Texture2D" uid="uid://dbt64c72ahsj1" path="res://procedural/items/rpg_items.png" id="2_icon"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icon"]
+atlas = ExtResource("2_icon")
+region = Rect2(32, 368, 16, 16)
+
+[resource]
+script = ExtResource("1_armor")
+id = "rpg_helmet_wood"
+name = "Holzhelm"
+armor = 1
+icon_atlas = SubResource("AtlasTexture_icon")

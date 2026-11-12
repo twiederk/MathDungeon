@@ -70,8 +70,8 @@ func _refresh() -> void:
 	armor_points_label.text = "Rüstung: " + str(character.get_armor())
 	_update_item_row(weapon_row, weapon_icon, weapon_label, inventory.weapon_resource, inventory.get_weapon_name(), inventory.get_weapon_damage())
 	_update_item_row(armor_row, armor_icon, armor_label, inventory.armor_resource, inventory.get_armor_name(), inventory.get_armor_value())
-	potion_label.text = "Tränke (max. %d):" % Inventory.MAX_POTIONS
-	_update_good_icons(potion_row, potion_label, inventory, Inventory.HEALING_POTION_ID)
+	potion_label.text = "Tränke:"
+	_update_potion_icons(inventory)
 	lighter_label.text = "Feuerzeug:"
 	_update_good_icons(lighter_row, lighter_label, inventory, Character.LIGHTER_ID)
 	eyes_of_ender_label.text = "Enderaugen:"
@@ -93,6 +93,13 @@ func _update_item_row(row: HBoxContainer, icon_rect: TextureRect, label: Label, 
 	icon_rect.texture = resource.icon_atlas
 	label.text = _item_label(item_name, value)
 	row.visible = true
+
+
+func _update_potion_icons(inventory: Inventory) -> void:
+	_clear_good_icons(potion_row, potion_label)
+	for good in inventory.goods:
+		if good != null and good.good_type == GoodResource.GoodType.HEALING_POTION:
+			potion_row.add_child(_create_icon_rect(good.icon_atlas))
 
 
 func _update_good_icons(row: HBoxContainer, label: Label, inventory: Inventory, good_id: String) -> void:
