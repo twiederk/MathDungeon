@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://si7yr4b2ucn4"]
 
-[ext_resource type="Script" uid="uid://w7yvxsx4576m" path="res://classic/world_level.gd" id="1_kx1po"]
+[ext_resource type="Script" path="res://classic/classic_world.gd" id="1_kx1po"]
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://classic/world_tiles.tres" id="2_8ro0j"]
 [ext_resource type="PackedScene" uid="uid://cfw8qlomgdshi" path="res://locations/cave_entrance.tscn" id="3_8ro0j"]
 [ext_resource type="PackedScene" uid="uid://dr0nd61x2rnrb" path="res://enemies/warden.tscn" id="3_kx1po"]
@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz/quiz_dialog.tscn" id="6_dmd04"]
 [ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="7_e2skt"]
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="8_tfldy"]
-[ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="9_u830p"]
 [ext_resource type="PackedScene" uid="uid://dnq4jx5hrw7b2" path="res://gui/highscore_rank_widget.tscn" id="9_hsrank"]
+[ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="9_u830p"]
 [ext_resource type="PackedScene" uid="uid://cta0k883xoke0" path="res://gui/countdown_timer_widget.tscn" id="10_fidg4"]
 [ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://quests/achievement_popup.tscn" id="11_o2hjm"]
 [ext_resource type="PackedScene" uid="uid://b8fireworks1" path="res://gui/fireworks_effect.tscn" id="12_rif70"]
@@ -66,10 +66,9 @@ offset_left = -40.0
 grow_horizontal = 0
 grow_vertical = 1
 
-[node name="HighscoreRankWidget" parent="UI" instance=ExtResource("9_hsrank")]
+[node name="HighscoreRankWidget" parent="UI" unique_id=2094088850 instance=ExtResource("9_hsrank")]
 anchors_preset = 1
 anchor_left = 1.0
-anchor_right = 1.0
 anchor_bottom = 0.0
 offset_left = -40.0
 offset_top = 25.0

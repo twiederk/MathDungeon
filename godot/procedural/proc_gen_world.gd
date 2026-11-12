@@ -6,11 +6,11 @@ extends WorldLevel
 
 
 const WORLD_TILE_SET: int = 0
-const TILE_SIZE: int = 32
+const TILE_SIZE: int = 16
 @warning_ignore("integer_division")
 const TILE_SIZE_HALF: Vector2 = Vector2(TILE_SIZE / 2, TILE_SIZE / 2)
-const DUNGEON_GROUND_TILE: Vector2i = Vector2i(7, 0)
-const DUNGEON_WALL_TILE: Vector2i = Vector2i(6, 0)
+const DUNGEON_GROUND_TILE: Vector2i = Vector2i(2, 1)
+const DUNGEON_WALL_TILE: Vector2i = Vector2i(2, 9)
 
 var dungeon_generator: DungeonGenerator = DungeonGenerator.new()
 

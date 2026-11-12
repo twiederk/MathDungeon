@@ -4,21 +4,13 @@ const SPAWN_CHANCE_ENEMY_EASY = 80
 const SPAWN_CHANCE_ENEMY_MEDIUM = 70
 
 # Enemies
-const ZOMBIE_BABY_SCENE = preload("res://enemies/zombie_baby.tscn")
-const ZOMBIE_SCENE = preload("res://enemies/zombie.tscn")
-const DROWN_SCENE = preload("res://enemies/drown.tscn")
-const CREEPER_SCENE = preload("res://enemies/creeper.tscn")
-const SPIDER_SCENE = preload("res://enemies/spider.tscn")
-const SHOOTING_SKELETON_SCENE = preload("res://enemies/shooting_skeleton.tscn")
-const PIGLIN_SCENE = preload("res://enemies/piglin.tscn")
-const PIGLIN_ZOMBIE_SCENE = preload("res://enemies/piglin_zombie.tscn")
-const ENDERMAN_SCENE = preload("res://enemies/enderman.tscn")
+const SKELETON_SCENE = preload("res://procedural/enemies/skeleton.tscn")
 
 
 func generate_enemies(root_node: Branch)  -> Array[Enemy]:
 	var enemies: Array[Enemy] = []
-	var enemies_easy = [ZOMBIE_BABY_SCENE, ZOMBIE_SCENE, DROWN_SCENE]
-	var enemies_medium = [CREEPER_SCENE, SPIDER_SCENE, SHOOTING_SKELETON_SCENE, PIGLIN_ZOMBIE_SCENE]
+	var enemies_easy = [SKELETON_SCENE]
+	var enemies_medium = [SKELETON_SCENE]
 
 	var rooms = root_node.get_leaves()
 	var number_of_rooms = rooms.size()
@@ -43,9 +35,4 @@ func generate_enemies(root_node: Branch)  -> Array[Enemy]:
 		enemy.position = room.get_center()
 		enemies.append(enemy)
 
-	var last_room = rooms[-1]
-	var enderman = ENDERMAN_SCENE.instantiate() as Enemy
-	enderman.position = last_room.get_center()
-	enemies.append(enderman)
-	
 	return enemies
