@@ -90,7 +90,7 @@ func _update_item_row(row: HBoxContainer, icon_rect: TextureRect, label: Label, 
 	if resource == null:
 		row.visible = false
 		return
-	icon_rect.texture = resource.get_icon()
+	icon_rect.texture = resource.icon_atlas
 	label.text = _item_label(item_name, value)
 	row.visible = true
 
@@ -111,7 +111,7 @@ func _add_good_icons(row: HBoxContainer, inventory: Inventory, good_id: String) 
 	for good in inventory.goods:
 		if good.id != good_id:
 			continue
-		row.add_child(_create_icon_rect(good.get_icon()))
+		row.add_child(_create_icon_rect(good.icon_atlas))
 
 
 func _update_companion_icons(character: Character) -> void:

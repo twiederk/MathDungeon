@@ -12,5 +12,4 @@ script = ExtResource("1_armor")
 id = "helmet_wood"
 name = "Holzhelm"
 armor = 1
-icon_texture = ExtResource("2_icon")
 icon_atlas = SubResource("AtlasTexture_icon")

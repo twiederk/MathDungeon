@@ -77,6 +77,8 @@ sprites and pickup behavior remain unchanged.
 
 ## Phase 3 - Simplify Character Sheet and Remove Legacy Fields
 
+**Status:** Implemented; manual validation pending.
+
 1. Change weapon, armor, and good icon rendering in `CharacterSheetGui` to consume
    `icon_atlas` directly. Preserve null-icon behavior, empty equipment visibility, good
    counts, icon sizing, labels, and repeated refresh behavior. Leave companion icon

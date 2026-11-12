@@ -12,6 +12,4 @@ script = ExtResource("1_weapon")
 id = "sword_stone"
 name = "Steinschwert"
 damage = 2
-icon_texture = ExtResource("2_icon")
-icon_frame = 65
 icon_atlas = SubResource("AtlasTexture_icon")

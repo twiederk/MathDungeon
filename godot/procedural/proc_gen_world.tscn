@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cmqwqq8cp3i18" path="res://procedural/rpg_player.tscn" id="4_ldss0"]
 [ext_resource type="PackedScene" uid="uid://ch27vu5jqwd8g" path="res://locations/nether_portal.tscn" id="4_wh5hr"]
 [ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://classic/map_borders.tscn" id="5_4gbkj"]
-[ext_resource type="PackedScene" path="res://procedural/items/healing_potion.tscn" id="5_gsqn5"]
+[ext_resource type="PackedScene" uid="uid://4vggj7svrl5d" path="res://procedural/items/healing_potion.tscn" id="5_gsqn5"]
 [ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz/quiz_dialog.tscn" id="6_wh5hr"]
 [ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="7_w7atm"]
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="8_ghex2"]
@@ -18,8 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://cq8nvt3xr7kql" path="res://quests/quest_log_gui.tscn" id="12_questlog"]
 [ext_resource type="PackedScene" uid="uid://b5i3hqfqrjnem" path="res://gui/character_sheet_gui.tscn" id="13_charsheet"]
 [ext_resource type="PackedScene" uid="uid://cta0k883xoke0" path="res://gui/countdown_timer_widget.tscn" id="14_countdown"]
-[ext_resource type="PackedScene" path="res://procedural/items/sword_wood.tscn" id="19_2lqfb"]
-[ext_resource type="PackedScene" path="res://procedural/items/helmet_wood.tscn" id="20_1iord"]
+[ext_resource type="PackedScene" uid="uid://d0hxa3mfijqjk" path="res://procedural/items/sword_wood.tscn" id="19_2lqfb"]
+[ext_resource type="PackedScene" uid="uid://ctveblnwcs0n5" path="res://procedural/items/helmet_wood.tscn" id="20_1iord"]
 
 [node name="ProcGenWorld" type="Node2D" unique_id=1396004494]
 script = ExtResource("1_4yoxp")
@@ -46,8 +46,8 @@ position = Vector2(122, 437)
 [node name="WoodHelmet" parent="Items" unique_id=1349524693 instance=ExtResource("20_1iord")]
 position = Vector2(123, 470)
 
-[node name="HealingPotion" parent="Items" unique_id=29021829 instance=ExtResource("5_gsqn5")]
-position = Vector2(85, 471)
+[node name="HealingPotion" parent="Items" unique_id=87699996 instance=ExtResource("5_gsqn5")]
+position = Vector2(78, 478)
 
 [node name="Companions" type="Node2D" parent="." unique_id=1789589125]
 scale = Vector2(0.99999994, 0.99999994)
