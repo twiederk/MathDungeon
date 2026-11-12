@@ -157,6 +157,8 @@ variant works without an ID-specific check or quantity limit.
 
 ## Phase 5 - Display a Goods Bag
 
+**Status:** Implemented; manual validation pending.
+
 1. Replace the potion, lighter, and ender-eye rows and labels in the character sheet scene
    with one goods bag. Render every distinct good as its own atlas icon and quantity,
    counting instances in `Inventory.goods` without item-ID-based filtering or grouping.

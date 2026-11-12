@@ -18,12 +18,7 @@ const COMPANION_SPRITE_FRAMES := {
 @onready var armor_row: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/ArmorRow
 @onready var armor_icon: TextureRect = $PanelContainer/MarginContainer/VBoxContainer/ArmorRow/ArmorIcon
 @onready var armor_label: Label = $PanelContainer/MarginContainer/VBoxContainer/ArmorRow/ArmorLabel
-@onready var potion_row: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/PotionRow
-@onready var potion_label: Label = $PanelContainer/MarginContainer/VBoxContainer/PotionRow/PotionLabel
-@onready var lighter_row: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/LighterRow
-@onready var lighter_label: Label = $PanelContainer/MarginContainer/VBoxContainer/LighterRow/LighterLabel
-@onready var eyes_of_ender_row: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/EyesOfEnderRow
-@onready var eyes_of_ender_label: Label = $PanelContainer/MarginContainer/VBoxContainer/EyesOfEnderRow/EyesOfEnderLabel
+@onready var goods_bag: HFlowContainer = $PanelContainer/MarginContainer/VBoxContainer/GoodsScroll/GoodsBag
 @onready var companion_row: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/CompanionRow
 @onready var companion_label: Label = $PanelContainer/MarginContainer/VBoxContainer/CompanionRow/CompanionLabel
 
@@ -70,12 +65,7 @@ func _refresh() -> void:
 	armor_points_label.text = "Rüstung: " + str(character.get_armor())
 	_update_item_row(weapon_row, weapon_icon, weapon_label, inventory.weapon_resource, inventory.get_weapon_name(), inventory.get_weapon_damage())
 	_update_item_row(armor_row, armor_icon, armor_label, inventory.armor_resource, inventory.get_armor_name(), inventory.get_armor_value())
-	potion_label.text = "Tränke:"
-	_update_potion_icons(inventory)
-	lighter_label.text = "Feuerzeug:"
-	_update_good_icons(lighter_row, lighter_label, inventory, Character.LIGHTER_ID)
-	eyes_of_ender_label.text = "Enderaugen:"
-	_update_good_icons(eyes_of_ender_row, eyes_of_ender_label, inventory, Character.EYE_OF_ENDER_ID)
+	_update_goods_bag(inventory)
 	companion_label.text = "Begleiter:"
 	_update_companion_icons(character)
 
@@ -95,16 +85,22 @@ func _update_item_row(row: HBoxContainer, icon_rect: TextureRect, label: Label, 
 	row.visible = true
 
 
-func _update_potion_icons(inventory: Inventory) -> void:
-	_clear_good_icons(potion_row, potion_label)
+func _update_goods_bag(inventory: Inventory) -> void:
+	for child in goods_bag.get_children():
+		goods_bag.remove_child(child)
+		child.queue_free()
+	var quantities: Dictionary = {}
 	for good in inventory.goods:
-		if good != null and good.good_type == GoodResource.GoodType.HEALING_POTION:
-			potion_row.add_child(_create_icon_rect(good.icon_atlas))
-
-
-func _update_good_icons(row: HBoxContainer, label: Label, inventory: Inventory, good_id: String) -> void:
-	_clear_good_icons(row, label)
-	_add_good_icons(row, inventory, good_id)
+		if good != null:
+			quantities[good] = quantities.get(good, 0) + 1
+	for good in quantities:
+		var entry := HBoxContainer.new()
+		entry.tooltip_text = good.name
+		entry.add_child(_create_icon_rect(good.icon_atlas))
+		var quantity := Label.new()
+		quantity.text = "x" + str(quantities[good])
+		entry.add_child(quantity)
+		goods_bag.add_child(entry)
 
 
 func _clear_good_icons(row: HBoxContainer, label: Label) -> void:
@@ -112,13 +108,6 @@ func _clear_good_icons(row: HBoxContainer, label: Label) -> void:
 		if child != label:
 			child.queue_free()
 			row.remove_child(child)
-
-
-func _add_good_icons(row: HBoxContainer, inventory: Inventory, good_id: String) -> void:
-	for good in inventory.goods:
-		if good.id != good_id:
-			continue
-		row.add_child(_create_icon_rect(good.icon_atlas))
 
 
 func _update_companion_icons(character: Character) -> void:
