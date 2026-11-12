@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://cvvocs4krryds" path="res://items/armor_resource.gd" id="1_armor"]
 [ext_resource type="Texture2D" uid="uid://c31gniut2rq2q" path="res://items/items.png" id="2_icon"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_icon"]
+atlas = ExtResource("2_icon")
+region = Rect2(64, 0, 32, 32)
+
 [resource]
 script = ExtResource("1_armor")
 id = "helmet_iron"
@@ -10,3 +14,4 @@ name = "Eisenhelm"
 armor = 3
 icon_texture = ExtResource("2_icon")
 icon_frame = 2
+icon_atlas = SubResource("AtlasTexture_icon")

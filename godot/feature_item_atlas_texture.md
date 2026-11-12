@@ -23,6 +23,8 @@ Keep every implementation phase independently usable.
 
 ## Phase 1 - Introduce Atlas Icons
 
+**Status:** Implemented; manual validation pending.
+
 1. Add an exported `icon_atlas: AtlasTexture` to each of `WeaponResource`,
    `ArmorResource`, and `GoodResource`, alongside the existing fields.
 2. Make `get_icon()` return `icon_atlas` when present; otherwise retain the existing

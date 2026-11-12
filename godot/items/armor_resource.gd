@@ -8,9 +8,12 @@ const ICON_GRID_SIZE: int = 16
 @export var armor: int = 0
 @export var icon_texture: Texture2D
 @export var icon_frame: int = 0
+@export var icon_atlas: AtlasTexture
 
 
 func get_icon() -> Texture2D:
+	if icon_atlas != null:
+		return icon_atlas
 	if icon_texture == null:
 		return null
 	var atlas := AtlasTexture.new()
