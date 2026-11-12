@@ -4,6 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://c31gniut2rq2q" path="res://items/items.png" id="2_qfwhk"]
 [ext_resource type="Resource" path="res://items/eye_of_ender_good.tres" id="3_good"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_item"]
+atlas = ExtResource("2_qfwhk")
+region = Rect2(352, 288, 32, 32)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_wb1o8"]
 radius = 8.514693
 
@@ -14,10 +18,7 @@ good_resource = ExtResource("3_good")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1682134354]
 scale = Vector2(0.7, 0.7)
-texture = ExtResource("2_qfwhk")
-hframes = 16
-vframes = 16
-frame = 155
+texture = SubResource("AtlasTexture_item")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=552773401]
 scale = Vector2(0.8, 0.8)

@@ -50,6 +50,8 @@ work with either new or legacy resource data.
 
 ## Phase 2 - Migrate World Items and Item
 
+**Status:** Implemented; manual validation pending.
+
 1. Replace each classic item scene's `Sprite2D` texture and frame settings with an
    `AtlasTexture` subresource over `items.png`, using the corresponding original frame
    region. Remove `hframes`, `vframes`, and `frame` overrides, including the implicit

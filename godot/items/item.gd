@@ -13,5 +13,12 @@ func _on_body_entered(body: Node) -> void:
 		item_picked_up.emit(self)
 
 
+func get_item_texture() -> AtlasTexture:
+	var sprite := get_node_or_null("Sprite2D") as Sprite2D
+	if sprite == null:
+		return null
+	return sprite.texture as AtlasTexture
+
+
 func execute() -> void:
 	pass
