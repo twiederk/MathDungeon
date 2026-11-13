@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://cta0k883xoke0" path="res://gui/countdown_timer_widget.tscn" id="14_countdown"]
 [ext_resource type="PackedScene" uid="uid://d0hxa3mfijqjk" path="res://procedural/items/sword_wood.tscn" id="19_2lqfb"]
 [ext_resource type="PackedScene" uid="uid://ctveblnwcs0n5" path="res://procedural/items/helmet_wood.tscn" id="20_1iord"]
+[ext_resource type="PackedScene" uid="uid://cxsujo1wv250i" path="res://procedural/enemies/slime.tscn" id="25_thtxp"]
 
 [node name="ProcGenWorld" type="Node2D" unique_id=1396004494]
 script = ExtResource("1_4yoxp")
@@ -66,6 +67,9 @@ position = Vector2(183, 421)
 
 [node name="Skeleton" parent="Enemies" unique_id=783203891 instance=ExtResource("11_mauqy")]
 position = Vector2(185, 461)
+
+[node name="Slime" parent="Enemies" unique_id=301228214 instance=ExtResource("25_thtxp")]
+position = Vector2(185.00002, 509.00006)
 
 [node name="Player" parent="." unique_id=1715023786 instance=ExtResource("4_ldss0")]
 position = Vector2(48, 432)

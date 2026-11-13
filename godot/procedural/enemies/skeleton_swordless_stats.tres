@@ -7,7 +7,7 @@
 script = ExtResource("2_4gee3")
 name = "Skelett"
 max_hit_points = 4
-arithmetic = Array[int]([0, 1])
+arithmetic = Array[int]([0, 1, 2, 3])
 time_limit = 30
 hard_max_hit_points = 3
 hard_max_number = 40
