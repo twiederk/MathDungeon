@@ -15,7 +15,7 @@ signal health_changed
 signal defeated(enemy: Enemy)
 
 @onready var detection_area: Area2D = $DetectionArea
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: Node2D = $Sprite2D
 
 @onready var hit_points: int = 5:
 	set(value):
@@ -25,7 +25,10 @@ signal defeated(enemy: Enemy)
 
 func _ready() -> void:
 	hit_points = stats.get_max_hit_points()
-	sprite.flip_h = flip_sprite
+	if sprite is Sprite2D:
+		sprite.flip_h = flip_sprite
+	elif sprite is AnimatedSprite2D:
+		sprite.flip_h = flip_sprite
 	detection_area.body_entered.connect(_on_body_entered)
 
 

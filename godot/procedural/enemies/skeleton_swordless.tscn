@@ -4,6 +4,35 @@
 [ext_resource type="Resource" uid="uid://dwsjfnts5d6tn" path="res://procedural/enemies/skeleton_swordless_stats.tres" id="2_v4v0b"]
 [ext_resource type="Texture2D" uid="uid://drkaa4ixsjs4n" path="res://procedural/enemies/skeleton_swordless.png" id="3_v4v0b"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle_0"]
+atlas = ExtResource("3_v4v0b")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle_1"]
+atlas = ExtResource("3_v4v0b")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle_2"]
+atlas = ExtResource("3_v4v0b")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_idle"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle_2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c8iql"]
 radius = 7.0
 height = 16.0
@@ -16,11 +45,11 @@ collision_layer = 2
 script = ExtResource("1_v4v0b")
 stats = ExtResource("2_v4v0b")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=361050819]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=361050819]
 position = Vector2(0, -8)
-texture = ExtResource("3_v4v0b")
-hframes = 6
-vframes = 13
+sprite_frames = SubResource("SpriteFrames_idle")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1304195642]
 position = Vector2(0, -2)
