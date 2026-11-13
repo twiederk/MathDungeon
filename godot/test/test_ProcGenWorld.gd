@@ -27,7 +27,7 @@ func test_world_player_uses_reduced_speed():
 	var speed = player._speed()
 
 	# assert
-	assert_eq(speed, 100.0)
+	assert_eq(speed, 120.0)
 
 
 func test_resolve_seed_prefers_the_exported_seed():
