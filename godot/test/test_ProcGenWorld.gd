@@ -1,8 +1,33 @@
 extends GutTest
 
+const PROC_GEN_WORLD_SCENE = preload("res://procedural/proc_gen_world.tscn")
+
 
 func after_each():
 	GameSession.world_seed = GameSession.NO_SEED
+
+
+func test_player_default_speed_is_unchanged():
+	# arrange
+	var player = autofree(Player.new())
+
+	# act
+	var speed = player._speed()
+
+	# assert
+	assert_eq(speed, 200.0)
+
+
+func test_world_player_uses_reduced_speed():
+	# arrange
+	var world = autofree(PROC_GEN_WORLD_SCENE.instantiate())
+	var player = world.get_node("Player")
+
+	# act
+	var speed = player._speed()
+
+	# assert
+	assert_eq(speed, 100.0)
 
 
 func test_resolve_seed_prefers_the_exported_seed():
