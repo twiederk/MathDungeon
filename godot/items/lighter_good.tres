@@ -1,11 +1,14 @@
-[gd_resource type="Resource" script_class="GoodResource" format=3]
+[gd_resource type="Resource" script_class="GoodResource" format=3 uid="uid://dhxgkv126dvgr"]
 
-[ext_resource type="Script" path="res://items/good_resource.gd" id="1_good"]
+[ext_resource type="Script" uid="uid://wpepsbr4eyp5" path="res://items/good_resource.gd" id="1_good"]
 [ext_resource type="Texture2D" uid="uid://c31gniut2rq2q" path="res://items/items.png" id="2_icon"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icon"]
+atlas = ExtResource("2_icon")
+region = Rect2(160, 0, 32, 32)
 
 [resource]
 script = ExtResource("1_good")
 id = "lighter"
 name = "Feuerzeug"
-icon_texture = ExtResource("2_icon")
-icon_frame = 5
+icon_atlas = SubResource("AtlasTexture_icon")

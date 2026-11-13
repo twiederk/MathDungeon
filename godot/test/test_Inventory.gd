@@ -80,17 +80,38 @@ func test_empty_armor_slot_contributes_no_armor():
 	assert_eq("", inventory.get_armor_id())
 
 
-func test_add_potion_is_rejected_once_at_max():
+func test_add_potion_accepts_more_than_five():
 	# arrange
-	for i in Inventory.MAX_POTIONS:
-		inventory.add_potion(_create_good("healing_potion"))
+	for i in 5:
+		inventory.add_potion(_create_potion("healing_potion"))
 
 	# act
-	var result = inventory.add_potion(_create_good("healing_potion"))
+	var result = inventory.add_potion(_create_potion("rpg_healing_potion"))
+
+	# assert
+	assert_true(result)
+	assert_eq(6, inventory.get_potion_count())
+
+
+func test_add_potion_rejects_non_potion():
+	# arrange
+	var good := _create_good("lighter")
+
+	# act
+	var result = inventory.add_potion(good)
 
 	# assert
 	assert_false(result)
-	assert_eq(Inventory.MAX_POTIONS, inventory.get_potion_count())
+	assert_eq(0, inventory.goods.size())
+
+
+func test_add_potion_rejects_null():
+	# act
+	var result = inventory.add_potion(null)
+
+	# assert
+	assert_false(result)
+	assert_eq(0, inventory.goods.size())
 
 
 func test_add_potion_increments_count_and_emits_changed():
@@ -98,7 +119,7 @@ func test_add_potion_increments_count_and_emits_changed():
 	watch_signals(inventory)
 
 	# act
-	var result = inventory.add_potion(_create_good("healing_potion"))
+	var result = inventory.add_potion(_create_potion("healing_potion"))
 
 	# assert
 	assert_true(result)
@@ -117,7 +138,7 @@ func test_use_potion_is_rejected_when_empty():
 
 func test_use_potion_decrements_count_and_emits_changed():
 	# arrange
-	inventory.add_potion(_create_good("healing_potion"))
+	inventory.add_potion(_create_potion("healing_potion"))
 	watch_signals(inventory)
 
 	# act
@@ -141,6 +162,24 @@ func test_equip_good_appends_to_goods_and_emits_changed():
 	assert_signal_emitted(inventory, "changed")
 
 
+func test_use_potion_removes_first_matching_type():
+	# arrange
+	var lighter := _create_good("lighter")
+	var classic_potion := _create_potion("healing_potion")
+	var rpg_potion := _create_potion("rpg_healing_potion")
+	inventory.equip_good(lighter)
+	inventory.add_potion(classic_potion)
+	inventory.add_potion(rpg_potion)
+
+	# act
+	var result = inventory.use_potion()
+
+	# assert
+	assert_true(result)
+	assert_eq(1, inventory.get_potion_count())
+	assert_eq([lighter, rpg_potion], inventory.goods)
+
+
 func _weapon(id: String, damage: int) -> WeaponResource:
 	var resource := WeaponResource.new()
 	resource.id = id
@@ -161,4 +200,10 @@ func _create_good(id: String) -> GoodResource:
 	var resource := GoodResource.new()
 	resource.id = id
 	resource.name = id
+	return resource
+
+
+func _create_potion(id: String) -> GoodResource:
+	var resource := _create_good(id)
+	resource.good_type = GoodResource.GoodType.HEALING_POTION
 	return resource

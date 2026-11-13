@@ -10,13 +10,15 @@
 [ext_resource type="Resource" uid="uid://ces4ry1m8tqwv" path="res://items/helmet_stone.tres" id="7_helmet_stone"]
 [ext_resource type="Resource" uid="uid://b5b8u4rtx8qjo" path="res://items/sword_wood.tres" id="7_mpvfo"]
 [ext_resource type="Resource" uid="uid://bq7h3nxlvc0da" path="res://items/helmet_iron.tres" id="8_helmet_iron"]
-[ext_resource type="Resource" path="res://items/eye_of_ender_good.tres" id="9_eye_of_ender"]
-[ext_resource type="Resource" path="res://items/healing_potion_good.tres" id="10_healing_potion"]
-[ext_resource type="Resource" path="res://items/lighter_good.tres" id="11_lighter"]
+[ext_resource type="Resource" uid="uid://bgoukq6jj36p2" path="res://items/eye_of_ender_good.tres" id="9_eye_of_ender"]
+[ext_resource type="Resource" uid="uid://hwsc4v3ehijk" path="res://items/healing_potion_good.tres" id="10_healing_potion"]
+[ext_resource type="Resource" uid="uid://dhxgkv126dvgr" path="res://items/lighter_good.tres" id="11_lighter"]
+[ext_resource type="Resource" path="res://procedural/items/sword_wood.tres" id="12_rpg_sword"]
+[ext_resource type="Resource" path="res://procedural/items/helmet_wood.tres" id="13_rpg_helmet"]
+[ext_resource type="Resource" path="res://procedural/items/healing_potion_good.tres" id="14_rpg_potion"]
 
 [resource]
 script = ExtResource("1_catalog")
-weapons = Array[ExtResource("2_weapon")]([ExtResource("7_mpvfo"), ExtResource("4_sword_stone"), ExtResource("5_sword_iron")])
-armors = Array[ExtResource("3_armor")]([ExtResource("6_helmet_wood"), ExtResource("7_helmet_stone"), ExtResource("8_helmet_iron")])
-goods = Array[ExtResource("4_good")]([ExtResource("9_eye_of_ender"), ExtResource("10_healing_potion"), ExtResource("11_lighter")])
-
+weapons = Array[ExtResource("2_weapon")]([ExtResource("7_mpvfo"), ExtResource("4_sword_stone"), ExtResource("5_sword_iron"), ExtResource("12_rpg_sword")])
+armors = Array[ExtResource("3_armor")]([ExtResource("6_helmet_wood"), ExtResource("7_helmet_stone"), ExtResource("8_helmet_iron"), ExtResource("13_rpg_helmet")])
+goods = Array[ExtResource("4_good")]([ExtResource("9_eye_of_ender"), ExtResource("10_healing_potion"), ExtResource("11_lighter"), ExtResource("14_rpg_potion")])

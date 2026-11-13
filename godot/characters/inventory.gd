@@ -3,9 +3,6 @@ class_name Inventory
 
 enum SlotType { WEAPON, ARMOR, CONSUMABLE_POTION }
 
-const MAX_POTIONS: int = 5
-const HEALING_POTION_ID: String = "healing_potion"
-
 signal changed
 
 var weapon_resource: WeaponResource = null
@@ -66,7 +63,7 @@ func get_armor_name() -> String:
 
 
 func add_potion(resource: GoodResource) -> bool:
-	if get_potion_count() >= MAX_POTIONS:
+	if resource == null or resource.good_type != GoodResource.GoodType.HEALING_POTION:
 		return false
 	goods.append(resource)
 	changed.emit()
@@ -75,7 +72,7 @@ func add_potion(resource: GoodResource) -> bool:
 
 func use_potion() -> bool:
 	for i in goods.size():
-		if goods[i].id == HEALING_POTION_ID:
+		if goods[i] != null and goods[i].good_type == GoodResource.GoodType.HEALING_POTION:
 			goods.remove_at(i)
 			changed.emit()
 			return true
@@ -85,7 +82,7 @@ func use_potion() -> bool:
 func get_potion_count() -> int:
 	var count := 0
 	for good in goods:
-		if good.id == HEALING_POTION_ID:
+		if good != null and good.good_type == GoodResource.GoodType.HEALING_POTION:
 			count += 1
 	return count
 

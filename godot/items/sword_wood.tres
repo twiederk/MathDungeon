@@ -3,10 +3,13 @@
 [ext_resource type="Script" uid="uid://cga2gx46clmmh" path="res://items/weapon_resource.gd" id="1_fuqk8"]
 [ext_resource type="Texture2D" uid="uid://c31gniut2rq2q" path="res://items/items.png" id="2_icon"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lqfb"]
+atlas = ExtResource("2_icon")
+region = Rect2(0, 128, 32, 32)
+
 [resource]
 script = ExtResource("1_fuqk8")
 id = "sword_wood"
 name = "Holzschwert"
 damage = 1
-icon_texture = ExtResource("2_icon")
-icon_frame = 64
+icon_atlas = SubResource("AtlasTexture_2lqfb")

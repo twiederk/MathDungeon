@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="GoodResource" format=3 uid="uid://c42h82wid2d55"]
+
+[ext_resource type="Script" uid="uid://wpepsbr4eyp5" path="res://items/good_resource.gd" id="1_good"]
+[ext_resource type="Texture2D" uid="uid://dbt64c72ahsj1" path="res://procedural/items/rpg_items.png" id="2_icon"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icon"]
+atlas = ExtResource("2_icon")
+region = Rect2(224, 576, 16, 16)
+
+[resource]
+script = ExtResource("1_good")
+id = "rpg_healing_potion"
+name = "Heiltrank"
+good_type = 1
+icon_atlas = SubResource("AtlasTexture_icon")

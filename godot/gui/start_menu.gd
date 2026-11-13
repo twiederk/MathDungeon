@@ -59,6 +59,7 @@ func _on_start_game_button_pressed():
 func _on_start_generic_button_pressed():
 	GameSession.reset()
 	AchievementManager.reset()
+	CharacterManager.start_rpg_character()
 	GameSession.start_run()
 	get_tree().change_scene_to_file("res://procedural/proc_gen_world.tscn")
 

@@ -4,6 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://c31gniut2rq2q" path="res://items/items.png" id="2_g31u4"]
 [ext_resource type="Resource" uid="uid://bq7h3nxlvc0da" path="res://items/helmet_iron.tres" id="3_armor"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_item"]
+atlas = ExtResource("2_g31u4")
+region = Rect2(64, 0, 32, 32)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e4ynd"]
 size = Vector2(20, 18)
 
@@ -13,10 +17,7 @@ script = ExtResource("1_rq4g6")
 armor_resource = ExtResource("3_armor")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1260212953]
-texture = ExtResource("2_g31u4")
-hframes = 16
-vframes = 16
-frame = 2
+texture = SubResource("AtlasTexture_item")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2136329053]
 position = Vector2(0, -1)
