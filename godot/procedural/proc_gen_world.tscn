@@ -44,7 +44,7 @@ scale = Vector2(0.99999994, 0.99999994)
 
 [node name="Player" parent="." unique_id=1715023786 instance=ExtResource("4_ldss0")]
 position = Vector2(48, 432)
-SPEED = 100.0
+SPEED = 120.0
 
 [node name="MapBorders" parent="." unique_id=1508724067 instance=ExtResource("5_4gbkj")]
 
