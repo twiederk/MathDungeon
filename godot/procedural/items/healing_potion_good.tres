@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GoodResource" format=3]
+[gd_resource type="Resource" script_class="GoodResource" format=3 uid="uid://c42h82wid2d55"]
 
 [ext_resource type="Script" uid="uid://wpepsbr4eyp5" path="res://items/good_resource.gd" id="1_good"]
 [ext_resource type="Texture2D" uid="uid://dbt64c72ahsj1" path="res://procedural/items/rpg_items.png" id="2_icon"]

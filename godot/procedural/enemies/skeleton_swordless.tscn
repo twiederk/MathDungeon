@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://r8ojbojfrock"]
+
+[ext_resource type="Script" uid="uid://b7x46e8sw1gka" path="res://enemies/enemy.gd" id="1_v4v0b"]
+[ext_resource type="Resource" uid="uid://dwsjfnts5d6tn" path="res://procedural/enemies/skeleton_swordless_stats.tres" id="2_v4v0b"]
+[ext_resource type="Texture2D" uid="uid://drkaa4ixsjs4n" path="res://procedural/enemies/skeleton_swordless.png" id="3_v4v0b"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c8iql"]
+radius = 7.0
+height = 16.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(20.625, 23.5)
+
+[node name="SkeletonSwordless" type="StaticBody2D" unique_id=374506967]
+collision_layer = 2
+script = ExtResource("1_v4v0b")
+stats = ExtResource("2_v4v0b")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=361050819]
+position = Vector2(0, -8)
+texture = ExtResource("3_v4v0b")
+hframes = 6
+vframes = 13
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1304195642]
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_c8iql")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=311467353]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=636656693]
+position = Vector2(-0.6875, -1.25)
+shape = SubResource("RectangleShape2D_h2yge")

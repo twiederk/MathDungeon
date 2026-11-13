@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://dwsjfnts5d6tn"]
+
+[ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_lv2ge"]
+[ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="2_4gee3"]
+
+[resource]
+script = ExtResource("2_4gee3")
+name = "Skelett"
+max_hit_points = 4
+arithmetic = Array[int]([0, 1])
+time_limit = 30
+hard_max_hit_points = 3
+hard_max_number = 40
+hard_time_limit = 30
+metadata/_custom_type_script = "uid://b0c3oqfgm2626"

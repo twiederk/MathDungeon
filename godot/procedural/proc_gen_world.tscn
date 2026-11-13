@@ -8,11 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://classic/map_borders.tscn" id="5_4gbkj"]
 [ext_resource type="PackedScene" uid="uid://4vggj7svrl5d" path="res://procedural/items/healing_potion.tscn" id="5_gsqn5"]
 [ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz/quiz_dialog.tscn" id="6_wh5hr"]
+[ext_resource type="Resource" uid="uid://dk2wq5v8xbn7l" path="res://items/helmet_wood.tres" id="7_iolhr"]
 [ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="7_w7atm"]
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="8_ghex2"]
 [ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="9_0o1nv"]
 [ext_resource type="PackedScene" uid="uid://dnq4jx5hrw7b2" path="res://gui/highscore_rank_widget.tscn" id="9_hsrank"]
+[ext_resource type="Resource" uid="uid://hwsc4v3ehijk" path="res://items/healing_potion_good.tres" id="9_thtxp"]
 [ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://quests/achievement_popup.tscn" id="10_gsqn5"]
+[ext_resource type="PackedScene" uid="uid://r8ojbojfrock" path="res://procedural/enemies/skeleton_swordless.tscn" id="10_smb68"]
+[ext_resource type="PackedScene" uid="uid://ck0o6u61c4lsw" path="res://procedural/enemies/skeleton.tscn" id="11_mauqy"]
 [ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://quests/achievement_badges.tscn" id="11_nivld"]
 [ext_resource type="PackedScene" uid="uid://b8fireworks1" path="res://gui/fireworks_effect.tscn" id="12_fireworks"]
 [ext_resource type="PackedScene" uid="uid://cq8nvt3xr7kql" path="res://quests/quest_log_gui.tscn" id="12_questlog"]
@@ -45,15 +49,23 @@ position = Vector2(122, 437)
 
 [node name="WoodHelmet" parent="Items" unique_id=1349524693 instance=ExtResource("20_1iord")]
 position = Vector2(123, 470)
+armor_resource = ExtResource("7_iolhr")
 
 [node name="HealingPotion" parent="Items" unique_id=87699996 instance=ExtResource("5_gsqn5")]
 position = Vector2(78, 478)
+good_resource = ExtResource("9_thtxp")
 
 [node name="Companions" type="Node2D" parent="." unique_id=1789589125]
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1957011003]
 scale = Vector2(0.99999994, 0.99999994)
+
+[node name="SkeletonSwordless" parent="Enemies" unique_id=374506967 instance=ExtResource("10_smb68")]
+position = Vector2(183, 421)
+
+[node name="Skeleton" parent="Enemies" unique_id=783203891 instance=ExtResource("11_mauqy")]
+position = Vector2(185, 461)
 
 [node name="Player" parent="." unique_id=1715023786 instance=ExtResource("4_ldss0")]
 position = Vector2(48, 432)
