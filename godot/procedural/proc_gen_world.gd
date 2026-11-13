@@ -30,8 +30,17 @@ func generate_world(new_seed: int) -> void:
 	_generate_seed(new_seed)
 	var dungeon = dungeon_generator.generate_dungeon(Vector2i(80, 80), 5)
 	_place_dungeon(dungeon, Vector2i.ZERO)
+	_place_player(dungeon, Vector2i.ZERO)
 	_place_enemies(dungeon, Vector2i.ZERO)
 	_place_items(dungeon, Vector2i.ZERO)
+
+
+func get_start_position() -> Vector2:
+	return player.global_position
+
+
+func _place_player(dungeon: Dungeon, offset: Vector2i) -> void:
+	player.global_position = tile_map_layer.to_global(tile_map_layer.map_to_local(dungeon.start_position + offset))
 
 
 func _place_dungeon(dungeon: Dungeon, offset: Vector2i) -> void:
