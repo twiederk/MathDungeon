@@ -28,7 +28,7 @@ func _resolve_seed() -> int:
 
 func generate_world(new_seed: int) -> void:
 	_generate_seed(new_seed)
-	var dungeon = dungeon_generator.generate_dungeon(Vector2i(80, 80), 5)
+	var dungeon = dungeon_generator.generate_dungeon(Vector2i(100, 100), 6)
 	_place_dungeon(dungeon, Vector2i.ZERO)
 	_place_player(dungeon, Vector2i.ZERO)
 	_place_enemies(dungeon, Vector2i.ZERO)
