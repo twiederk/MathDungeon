@@ -28,14 +28,10 @@ func _resolve_seed() -> int:
 
 func generate_world(new_seed: int) -> void:
 	_generate_seed(new_seed)
-	var offsets = [Vector2i(5, 5), Vector2i(35, 5), Vector2i(5, 35), Vector2i(35, 35)]
-	for index in offsets.size():
-		var offset = offsets[index]
-		var dungeon = dungeon_generator.generate_dungeon(Vector2i(20, 20))
-		dungeon.id = "dungeon_%d" % index
-		_place_dungeon(dungeon, offset)
-		_place_enemies(dungeon, offset)
-		_place_items(dungeon, offset)
+	var dungeon = dungeon_generator.generate_dungeon(Vector2i(80, 80), 5)
+	_place_dungeon(dungeon, Vector2i.ZERO)
+	_place_enemies(dungeon, Vector2i.ZERO)
+	_place_items(dungeon, Vector2i.ZERO)
 
 
 func _place_dungeon(dungeon: Dungeon, offset: Vector2i) -> void:

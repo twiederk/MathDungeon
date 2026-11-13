@@ -7,10 +7,10 @@ var enemy_generator = EnemyGenerator.new()
 var item_generator = ItemGenerator.new()
 
 
-func generate_dungeon(size: Vector2i) -> Dungeon:
+func generate_dungeon(size: Vector2i, splits: int) -> Dungeon:
 	var root_node  = Branch.new(Vector2i.ZERO, size)
 	var paths: Array[Dictionary] = []
-	root_node.split(3, paths)
+	root_node.split(splits, paths)
 	var floor_arr = _place_rooms(root_node)
 	_place_paths(paths, floor_arr)
 	var enemies = _place_enemies(root_node)
