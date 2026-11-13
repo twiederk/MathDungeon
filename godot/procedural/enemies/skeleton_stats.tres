@@ -1,7 +1,14 @@
 [gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://l3mxuunesq8"]
 
 [ext_resource type="Script" uid="uid://cyliqhblplc3q" path="res://items/loot_drop_definition.gd" id="1_32ulf"]
+[ext_resource type="PackedScene" uid="uid://d0hxa3mfijqjk" path="res://procedural/items/sword_wood.tscn" id="2_hk3lm"]
 [ext_resource type="Script" uid="uid://b0c3oqfgm2626" path="res://enemies/enemy_stats.gd" id="2_i17nh"]
+
+[sub_resource type="Resource" id="Resource_m3ecw"]
+script = ExtResource("1_32ulf")
+item_scene = ExtResource("2_hk3lm")
+probability = 0.5
+metadata/_custom_type_script = "uid://cyliqhblplc3q"
 
 [resource]
 script = ExtResource("2_i17nh")
@@ -11,6 +18,7 @@ damage = 2
 arithmetic = Array[int]([0, 1, 2, 3])
 max_number = 1000
 time_limit = 20
+loot_drops = Array[ExtResource("1_32ulf")]([SubResource("Resource_m3ecw")])
 hard_max_hit_points = 3
 hard_max_number = 40
 hard_time_limit = 30
