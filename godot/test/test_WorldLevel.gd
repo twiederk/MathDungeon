@@ -25,6 +25,25 @@ func test_register_return_path_stores_the_scene_path():
 	assert_eq(GameSession.overworld_path, "res://procedural/proc_gen_world.tscn")
 
 
+func test_register_return_path_keeps_the_current_character():
+	# arrange
+	var original_character = CharacterManager.current
+	var character = Character.new()
+	character.companions.append("Wolf")
+	CharacterManager.current = character
+	var portal = autofree(NetherPortal.new())
+	portal.dungeon_path = "res://classic/nether.tscn"
+	var level = _build_level("res://procedural/proc_gen_world.tscn", portal)
+
+	# act
+	level._register_return_path()
+
+	# assert
+	assert_eq(CharacterManager.current, character)
+	assert_eq(CharacterManager.current.companions.size(), 1)
+	CharacterManager.current = original_character
+
+
 func test_register_return_path_ignores_levels_without_a_nether_portal():
 	# arrange
 	var level = _build_level("res://classic/nether.tscn", null)

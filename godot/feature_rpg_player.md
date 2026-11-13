@@ -21,7 +21,7 @@ Starting a new procedural game creates and activates a fresh RPG character with 
 
 ## Implementation
 
-1. Add a reserved RPG character ID and a preloaded RPG sword resource in `characters/character_manager.gd`. Provide a dedicated operation that constructs a new `Character`, sets its ID, name and portrait, equips the RPG sword, saves it, and assigns it to `CharacterManager.current`. Ensure character initialization cannot write a partially initialized record: inventory changes emit a save signal, so initialize identity before equipping and make the final save explicit.
+1. Add a reserved RPG character ID and a preloaded RPG sword resource in `characters/character_manager.gd`. Provide a dedicated operation that constructs a new `Character`, sets its name and portrait, equips the RPG sword, assigns its ID, saves it, and assigns it to `CharacterManager.current`. Inventory changes emit a save signal, so assign the ID only after equipping to prevent a partially initialized record from being saved.
 2. Call that operation from `_on_start_generic_button_pressed()` in `gui/start_menu.gd` before entering the procedural world. Keep the existing session and achievement resets and timed-run setup. Do not call it from world initialization, portal transitions, menu initialization, or the classic start handler.
 3. Keep the reserved ID outside the numeric IDs produced by `CharacterCreateDialog`, and verify generated IDs cannot collide with it. Do not alter the classic default character or change the persistence policy for goods.
 4. Confirm the selected character and character widget remain coherent when returning to the start menu, and that saving/loading the RPG sword resolves through the existing catalog.

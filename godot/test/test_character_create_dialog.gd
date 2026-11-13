@@ -43,3 +43,12 @@ func test_create_character_sets_default_values():
 	assert_eq(expected_base_armor, character.base_armor, "Should set base_armor to 0")
 	assert_eq(expected_companions_size, character.companions.size(), "Should initialize companion_types as empty array")
 	assert_ne("", character.id, "Character ID should not be empty")
+
+
+func test_generated_character_id_is_not_reserved_for_rpg():
+	# act
+	var character_id = character_create_dialog._generate_unique_id()
+
+	# assert
+	assert_ne(character_id, CharacterManager.RPG_CHARACTER_ID)
+	assert_true(character_id.is_valid_int())

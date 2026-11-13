@@ -3,6 +3,8 @@ extends Node
 
 const DEFAULT_CHARACTER_ID: String = "000"
 const DEFAULT_CHARACTER_NAME: String = "Steve"
+const RPG_CHARACTER_ID: String = "rpg_default"
+const RPG_STARTING_WEAPON: WeaponResource = preload("res://procedural/items/sword_wood.tres")
 
 signal eyes_of_ender_changed
 signal has_lighter_changed
@@ -32,6 +34,16 @@ func _ensure_default_character() -> void:
 	character.display_name = DEFAULT_CHARACTER_NAME
 	character.portrait_id = DEFAULT_CHARACTER_ID
 	SaveManager.save_character(character)
+
+
+func start_rpg_character() -> void:
+	var character := Character.new()
+	character.display_name = DEFAULT_CHARACTER_NAME
+	character.portrait_id = DEFAULT_CHARACTER_ID
+	character.inventory.equip_weapon(RPG_STARTING_WEAPON)
+	character.id = RPG_CHARACTER_ID
+	SaveManager.save_character(character)
+	current = character
 
 
 func _on_eyes_of_ender_changed() -> void:
