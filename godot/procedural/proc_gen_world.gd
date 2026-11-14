@@ -43,7 +43,7 @@ func _resolve_seed() -> int:
 
 func generate_world(level_config: Dictionary) -> void:
 	seed_value = level_config["seed"]
-	dungeon = dungeon_generator.generate_dungeon(level_config["size"], 3, seed_value)
+	dungeon = dungeon_generator.generate_dungeon(level_config["size"], level_config["splits"], seed_value)
 	_place_dungeon(dungeon)
 	_place_stairs(dungeon)
 	_place_player(dungeon)

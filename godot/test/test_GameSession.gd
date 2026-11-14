@@ -132,6 +132,7 @@ func test_start_procedural_run_creates_the_first_level_configuration():
 	assert_eq(GameSession.procedural_level_index, GameSession.FIRST_PROCEDURAL_LEVEL)
 	assert_eq(GameSession.procedural_level_configs.size(), 1)
 	assert_eq(level_config["size"], GameSession.FIRST_PROCEDURAL_LEVEL_SIZE)
+	assert_eq(level_config["splits"], GameSession.FIRST_PROCEDURAL_LEVEL_SPLITS)
 	assert_ne(level_config["seed"], GameSession.NO_SEED)
 
 
@@ -145,6 +146,7 @@ func test_procedural_level_configuration_is_stable_when_requested_again():
 	# assert
 	assert_eq(second_config["seed"], first_config["seed"])
 	assert_eq(second_config["size"], first_config["size"])
+	assert_eq(second_config["splits"], first_config["splits"])
 	assert_eq(GameSession.procedural_level_configs.size(), 1)
 
 
@@ -158,6 +160,7 @@ func test_procedural_level_size_increases_with_depth():
 	# assert
 	assert_gt(second_config["size"].x, first_config["size"].x)
 	assert_gt(second_config["size"].y, first_config["size"].y)
+	assert_gt(second_config["splits"], first_config["splits"])
 
 
 func test_reset_clears_procedural_level_configurations():

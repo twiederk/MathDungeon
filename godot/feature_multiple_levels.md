@@ -19,11 +19,11 @@ This feature applies only to procedural mode. Classic mode and its world transit
 
 ## Current implementation context
 
-- `procedural/proc_gen_world.gd` creates one fixed `Vector2i(100, 100)` dungeon and resolves its seed from `GameSession.world_seed`.
-- `procedural/dungeon_generator.gd` builds a BSP tree and uses its leaf rooms, but exposes only a start position; it does not identify a last room or stair positions.
-- `procedural/dungeon.gd` is the generated dungeon data container.
-- `classic/game_session.gd` currently stores one world seed and is shared by both game modes.
-- Procedural art files `procedural/stairs_up.png` and `procedural/stairs_down.png` exist; there are no corresponding procedural stair scenes yet.
+- `procedural/proc_gen_world.gd` generates the current level from its stored size, split count, and seed, and places stairs at the generated endpoints.
+- `procedural/dungeon_generator.gd` builds a seeded BSP tree and returns first/last room positions with generated content.
+- `procedural/dungeon.gd` stores the generated dungeon data and endpoint positions.
+- `classic/game_session.gd` retains the classic world seed and separately stores procedural per-level configuration.
+- Procedural stairs scenes use the existing `procedural/stairs_up.png` and `procedural/stairs_down.png` art.
 
 ## Proposed session model
 
@@ -31,6 +31,7 @@ Add procedural-level state to `GameSession`, separate from the existing classic 
 
 - `seed`: the seed used to generate that level.
 - `size`: the `Vector2i` dimensions passed to dungeon generation.
+- `splits`: the BSP split count passed to dungeon generation.
 
 Track the current procedural level index as well. Provide small session methods to initialize/reset procedural progression, get-or-create a level's configuration, and move to an adjacent level. Avoid using the classic `world_seed` as the per-level seed store.
 
@@ -40,8 +41,8 @@ Create the first level's configuration when a procedural run starts. Create each
 
 ### Phase 1: Session-level configuration (implemented)
 
-- `GameSession` tracks the current procedural level and stores each level's seed and size independently from the classic world seed.
-- A new procedural run starts at level 1 with an 80x80 dungeon. Each deeper level grows by 20 tiles in each dimension.
+- `GameSession` tracks the current procedural level and stores each level's seed, size, and split count independently from the classic world seed.
+- A new procedural run starts at level 1 with a 20x20 dungeon and 3 splits. Each deeper level grows by 20 tiles in each dimension and adds one split.
 - Level configurations are created lazily and remain stable during the session; invalid indices and `Vector2i` dimension overflow are rejected.
 - `GameSession.reset()` clears procedural progression, and the procedural start-menu action initializes a new level-one configuration.
 - Focused `GameSession` tests cover initialization, stable repeated access, size growth, and reset behavior; existing world-seed tests continue to pass.
@@ -50,7 +51,7 @@ Create the first level's configuration when a procedural run starts. Create each
 
 - `Dungeon` now exposes start and end room positions, selected from the first and last BSP leaves in traversal order; coincident endpoints fall back to another distinct leaf center when available.
 - `DungeonGenerator` accepts a level seed and seeds generation before BSP splitting, enemy selection, and item selection.
-- `ProcGenWorld` resolves the current level's stored configuration and passes its size and seed into generation instead of using a fixed world size.
+- `ProcGenWorld` resolves the current level's stored configuration and passes its size, split count, and seed into generation instead of using fixed generation parameters.
 - Generator and world tests verify distinct endpoints are floor cells, the stored size is used, and identical seeds reproduce floor/wall layouts and enemy/item scenes and positions.
 
 ### Phase 3: Procedural stair scenes and transitions (implemented)

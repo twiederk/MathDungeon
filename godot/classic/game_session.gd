@@ -31,6 +31,8 @@ const RUN_DURATION_SECONDS := 600.0
 const FIRST_PROCEDURAL_LEVEL := 1
 const FIRST_PROCEDURAL_LEVEL_SIZE := Vector2i(20, 20)
 const PROCEDURAL_LEVEL_SIZE_INCREMENT := Vector2i(20, 20)
+const FIRST_PROCEDURAL_LEVEL_SPLITS := 3
+const PROCEDURAL_LEVEL_SPLIT_INCREMENT := 1
 const MAX_VECTOR2I_COMPONENT := 2_147_483_647
 
 
@@ -144,9 +146,11 @@ func get_or_create_procedural_level_config(level_index: int) -> Dictionary:
 	while level_seed == NO_SEED:
 		level_seed = randi()
 	var level_size := FIRST_PROCEDURAL_LEVEL_SIZE + PROCEDURAL_LEVEL_SIZE_INCREMENT * growth_steps
+	var level_splits := FIRST_PROCEDURAL_LEVEL_SPLITS + PROCEDURAL_LEVEL_SPLIT_INCREMENT * growth_steps
 	var level_config := {
 		"seed": level_seed,
-		"size": level_size
+		"size": level_size,
+		"splits": level_splits
 	}
 	procedural_level_configs[level_index] = level_config
 	return level_config.duplicate()

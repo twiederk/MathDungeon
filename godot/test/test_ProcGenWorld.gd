@@ -48,7 +48,7 @@ func test_resolve_seed_uses_the_session_seed():
 	# arrange
 	var world = autofree(ProcGenWorld.new())
 	world.seed_value = GameSession.NO_SEED
-	GameSession.procedural_level_configs[1] = {"seed": 1234, "size": Vector2i(80, 80)}
+	GameSession.procedural_level_configs[1] = {"seed": 1234, "size": Vector2i(80, 80), "splits": 3}
 	
 	# act
 	var resolved_seed = world._resolve_seed()
@@ -61,7 +61,7 @@ func test_resolve_level_config_uses_the_session_level_size():
 	# arrange
 	var world = autofree(ProcGenWorld.new())
 	var size := Vector2i(60, 60)
-	GameSession.procedural_level_configs[1] = {"seed": 1234, "size": size}
+	GameSession.procedural_level_configs[1] = {"seed": 1234, "size": size, "splits": 3}
 
 	# act
 	var level_config = world._resolve_level_config()
@@ -69,6 +69,7 @@ func test_resolve_level_config_uses_the_session_level_size():
 	# assert
 	assert_eq(level_config["size"], size)
 	assert_eq(level_config["seed"], 1234)
+	assert_eq(level_config["splits"], 3)
 
 
 func test_resolve_seed_is_stable_across_worlds():
@@ -87,18 +88,19 @@ func test_resolve_seed_is_stable_across_worlds():
 func test_world_generation_uses_the_session_level_size():
 	# arrange
 	var size := Vector2i(60, 60)
-	GameSession.procedural_level_configs[1] = {"seed": 1234, "size": size}
+	GameSession.procedural_level_configs[1] = {"seed": 1234, "size": size, "splits": 4}
 
 	# act
 	var world = add_child_autofree(PROC_GEN_WORLD_SCENE.instantiate())
 
 	# assert
 	assert_eq(world.dungeon.root_node.size, size)
+	assert_eq(_branch_depth(world.dungeon.root_node), 5)
 
 
 func test_world_places_stairs_at_dungeon_endpoints():
 	# arrange
-	GameSession.procedural_level_configs[1] = {"seed": 1234, "size": Vector2i(60, 60)}
+	GameSession.procedural_level_configs[1] = {"seed": 1234, "size": Vector2i(60, 60), "splits": 3}
 
 	# act
 	var world = add_child_autofree(PROC_GEN_WORLD_SCENE.instantiate())
@@ -144,7 +146,7 @@ func test_ascending_returns_to_previous_level_at_down_stairs():
 func test_arriving_from_below_spawns_at_last_room():
 	# arrange
 	GameSession.procedural_spawn_at_end = true
-	GameSession.procedural_level_configs[1] = {"seed": 1234, "size": Vector2i(60, 60)}
+	GameSession.procedural_level_configs[1] = {"seed": 1234, "size": Vector2i(60, 60), "splits": 3}
 
 	# act
 	var world = add_child_autofree(PROC_GEN_WORLD_SCENE.instantiate())
@@ -158,7 +160,7 @@ func test_arriving_from_below_spawns_at_last_room():
 func test_arriving_from_above_spawns_at_first_room():
 	# arrange
 	GameSession.procedural_spawn_at_end = false
-	GameSession.procedural_level_configs[1] = {"seed": 1234, "size": Vector2i(60, 60)}
+	GameSession.procedural_level_configs[1] = {"seed": 1234, "size": Vector2i(60, 60), "splits": 3}
 
 	# act
 	var world = add_child_autofree(PROC_GEN_WORLD_SCENE.instantiate())
@@ -172,7 +174,7 @@ func test_arriving_from_above_spawns_at_first_room():
 func test_arrival_stairs_arm_after_player_exits():
 	# arrange
 	GameSession.procedural_spawn_at_end = true
-	GameSession.procedural_level_configs[1] = {"seed": 1234, "size": Vector2i(60, 60)}
+	GameSession.procedural_level_configs[1] = {"seed": 1234, "size": Vector2i(60, 60), "splits": 3}
 	var world = add_child_autofree(PROC_GEN_WORLD_SCENE.instantiate())
 	var stairs_down = world.get_node("Locations/StairsDown")
 
@@ -212,3 +214,9 @@ func _get_run_end_destinations(world: ProcGenWorld) -> Dictionary:
 		"highscore": world._resolve_procedural_run_end_scene(true),
 		"menu": world._resolve_procedural_run_end_scene(false)
 	}
+
+
+func _branch_depth(branch: Branch) -> int:
+	if branch.is_leaf():
+		return 0
+	return 1 + max(_branch_depth(branch.left_child), _branch_depth(branch.right_child))
