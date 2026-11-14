@@ -3,7 +3,9 @@ class_name ItemGenerator
 
 const WOOD_HELMET_SCENE = preload("res://procedural/items/helmet_wood.tscn")
 
-const WOOD_SWORD_SCENE = preload("res://procedural/items/sword_wood.tscn")
+const WEAPON_KNIFE_SCENE = preload("res://procedural/items/weapon_knife.tscn")
+const WEAPON_DAGGER_SCENE = preload("res://procedural/items/weapon_dagger.tscn")
+const WEAPON_SWORD_SCENE = preload("res://procedural/items/weapon_sword.tscn")
 
 const HEALING_POTION_SCENE = preload("res://procedural/items/healing_potion.tscn")
 
@@ -13,8 +15,8 @@ const SPAWN_CHANCE_ITEM_MEDIUM = 30
 
 func generate_items(root_node: Branch) -> Array[Item]:
 	var items: Array[Item] = []
-	var items_easy = [WOOD_HELMET_SCENE, WOOD_SWORD_SCENE]
-	var items_medium = [WOOD_HELMET_SCENE, WOOD_SWORD_SCENE, HEALING_POTION_SCENE]
+	var items_easy = [WOOD_HELMET_SCENE, WEAPON_KNIFE_SCENE, WEAPON_DAGGER_SCENE]
+	var items_medium = [WOOD_HELMET_SCENE, WEAPON_SWORD_SCENE, HEALING_POTION_SCENE]
 
 	var rooms = root_node.get_leaves()
 	var number_of_rooms = rooms.size()

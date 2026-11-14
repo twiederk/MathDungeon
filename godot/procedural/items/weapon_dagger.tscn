@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dopb35cvbingt"]
+
+[ext_resource type="Script" uid="uid://5nfmr5l4hlxx" path="res://items/sword.gd" id="1_drxhq"]
+[ext_resource type="Resource" uid="uid://5lbg6pl8khn" path="res://procedural/items/weapon_dagger.tres" id="2_drxhq"]
+[ext_resource type="Texture2D" uid="uid://dbt64c72ahsj1" path="res://procedural/items/rpg_items.png" id="3_bfn8n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sword"]
+atlas = ExtResource("3_bfn8n")
+region = Rect2(176, 1552, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sword"]
+size = Vector2(8, 8)
+
+[node name="Dagger" type="Area2D" unique_id=470283251]
+collision_layer = 2
+script = ExtResource("1_drxhq")
+weapon_resource = ExtResource("2_drxhq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1026113691]
+texture = SubResource("AtlasTexture_sword")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=629092419]
+shape = SubResource("RectangleShape2D_sword")

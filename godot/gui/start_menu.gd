@@ -58,6 +58,7 @@ func _on_start_game_button_pressed():
 
 func _on_start_generic_button_pressed():
 	GameSession.reset()
+	GameSession.start_procedural_run()
 	AchievementManager.reset()
 	CharacterManager.start_rpg_character()
 	GameSession.start_run()

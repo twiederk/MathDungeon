@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponResource" format=3 uid="uid://bajcvdtmx1271"]
+
+[ext_resource type="Texture2D" uid="uid://dbt64c72ahsj1" path="res://procedural/items/rpg_items.png" id="1_rxi6j"]
+[ext_resource type="Script" uid="uid://cga2gx46clmmh" path="res://items/weapon_resource.gd" id="2_hexni"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icon"]
+atlas = ExtResource("1_rxi6j")
+region = Rect2(240, 1536, 16, 16)
+
+[resource]
+script = ExtResource("2_hexni")
+id = "rpg_weapon_knife"
+name = "Messer"
+damage = 1
+icon_atlas = SubResource("AtlasTexture_icon")
