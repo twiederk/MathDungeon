@@ -7,18 +7,27 @@ var enemy_generator = EnemyGenerator.new()
 var item_generator = ItemGenerator.new()
 
 
-func generate_dungeon(size: Vector2i, splits: int = 3) -> Dungeon:
+func generate_dungeon(size: Vector2i, splits: int = 3, seed_value: int = 0) -> Dungeon:
+	if seed_value != 0:
+		seed(seed_value)
 	var root_node  = Branch.new(Vector2i.ZERO, size)
 	var paths: Array[Dictionary] = []
 	root_node.split(splits, paths)
-	var start_position := root_node.get_leaves()[0].get_center()
+	var rooms := root_node.get_leaves()
+	var start_position := rooms[0].get_center()
+	var end_position := rooms[rooms.size() - 1].get_center()
+	if rooms.size() > 1 and end_position == start_position:
+		for room in rooms:
+			var room_position := room.get_center()
+			if room_position != start_position:
+				end_position = room_position
 	var floor_arr = _place_rooms(root_node)
 	_place_paths(paths, floor_arr)
 	var enemies = _place_enemies(root_node)
 	var items = _place_items(root_node)
 	var entrance = _place_entrance(floor_arr)
 	var wall_arr = _place_walls(size, floor_arr)
-	return Dungeon.new(root_node, entrance, start_position, floor_arr, wall_arr, enemies, items)
+	return Dungeon.new(root_node, entrance, start_position, end_position, floor_arr, wall_arr, enemies, items)
 
 
 func _place_rooms(root_node: Branch) -> Array[Vector2i]:

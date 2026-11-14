@@ -46,13 +46,12 @@ Create the first level's configuration when a procedural run starts. Create each
 - `GameSession.reset()` clears procedural progression, and the procedural start-menu action initializes a new level-one configuration.
 - Focused `GameSession` tests cover initialization, stable repeated access, size growth, and reset behavior; existing world-seed tests continue to pass.
 
-### Phase 2: Room endpoints and deterministic generation
+### Phase 2: Room endpoints and deterministic generation (implemented)
 
-- Extend `Dungeon` with explicit start-room and end-room positions for stair placement.
-- Have `DungeonGenerator` choose those positions from generated leaf rooms using a stable rule (for example, first and last leaves in a documented traversal order); ensure they are distinct when the dungeon has multiple rooms.
-- Pass the stored level size and seed through `ProcGenWorld` into `DungeonGenerator` instead of hard-coding the size.
-- Keep all random dungeon generation reproducible from the level seed, including enemies and items where the generation flow uses randomness.
-- Add generator/world tests proving endpoint validity, dimensions are honored, and identical level configurations produce identical room/floor layouts.
+- `Dungeon` now exposes start and end room positions, selected from the first and last BSP leaves in traversal order; coincident endpoints fall back to another distinct leaf center when available.
+- `DungeonGenerator` accepts a level seed and seeds generation before BSP splitting, enemy selection, and item selection.
+- `ProcGenWorld` resolves the current level's stored configuration and passes its size and seed into generation instead of using a fixed world size.
+- Generator and world tests verify distinct endpoints are floor cells, the stored size is used, and identical seeds reproduce floor/wall layouts and enemy/item scenes and positions.
 
 ### Phase 3: Procedural stair scenes and transitions
 

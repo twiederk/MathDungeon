@@ -13,22 +13,30 @@ const TILE_SIZE: int = 16
 const TILE_SIZE_HALF: Vector2 = Vector2(TILE_SIZE / 2, TILE_SIZE / 2)
 
 var dungeon_generator: DungeonGenerator = DungeonGenerator.new()
+var dungeon: Dungeon
 
 
 func _ready() -> void:
-	generate_world(_resolve_seed())
+	generate_world(_resolve_level_config())
 	super._ready()
+
+
+func _resolve_level_config() -> Dictionary:
+	var level_config := GameSession.get_or_create_procedural_level_config(GameSession.procedural_level_index)
+	if seed_value != GameSession.NO_SEED:
+		level_config["seed"] = seed_value
+	return level_config
 
 
 func _resolve_seed() -> int:
 	if seed_value != GameSession.NO_SEED:
 		return seed_value
-	return GameSession.get_or_create_world_seed()
+	return GameSession.get_or_create_procedural_level_config(GameSession.procedural_level_index)["seed"]
 
 
-func generate_world(new_seed: int) -> void:
-	_generate_seed(new_seed)
-	var dungeon = dungeon_generator.generate_dungeon(Vector2i(100, 100), 6)
+func generate_world(level_config: Dictionary) -> void:
+	seed_value = level_config["seed"]
+	dungeon = dungeon_generator.generate_dungeon(level_config["size"], 6, seed_value)
 	_place_dungeon(dungeon)
 	_place_player(dungeon)
 	_place_enemies(dungeon)
@@ -62,10 +70,3 @@ func _place_items(dungeon: Dungeon) -> void:
 
 func _world_position(local_position: Vector2) -> Vector2:
 	return (local_position) * TILE_SIZE + TILE_SIZE_HALF
-
-
-func _generate_seed(new_seed: int) -> void:
-	if new_seed == 0:
-		new_seed = randi()
-	seed_value = new_seed
-	seed(seed_value)
