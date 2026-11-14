@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponResource" format=3 uid="uid://5lbg6pl8khn"]
+
+[ext_resource type="Texture2D" uid="uid://dbt64c72ahsj1" path="res://procedural/items/rpg_items.png" id="1_k3wee"]
+[ext_resource type="Script" uid="uid://cga2gx46clmmh" path="res://items/weapon_resource.gd" id="2_m2sc4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icon"]
+atlas = ExtResource("1_k3wee")
+region = Rect2(176, 1552, 16, 16)
+
+[resource]
+script = ExtResource("2_m2sc4")
+id = "rpg_weapon_dagger"
+name = "Dolch"
+damage = 2
+icon_atlas = SubResource("AtlasTexture_icon")

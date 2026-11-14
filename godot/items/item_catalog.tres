@@ -13,9 +13,10 @@
 [ext_resource type="Resource" uid="uid://bgoukq6jj36p2" path="res://items/eye_of_ender_good.tres" id="9_eye_of_ender"]
 [ext_resource type="Resource" uid="uid://hwsc4v3ehijk" path="res://items/healing_potion_good.tres" id="10_healing_potion"]
 [ext_resource type="Resource" uid="uid://dhxgkv126dvgr" path="res://items/lighter_good.tres" id="11_lighter"]
-[ext_resource type="Resource" path="res://procedural/items/sword_wood.tres" id="12_rpg_sword"]
-[ext_resource type="Resource" path="res://procedural/items/helmet_wood.tres" id="13_rpg_helmet"]
-[ext_resource type="Resource" path="res://procedural/items/healing_potion_good.tres" id="14_rpg_potion"]
+[ext_resource type="Resource" uid="uid://cx025r6y1hh1f" path="res://procedural/items/weapon_sword.tres" id="12_rpg_sword"]
+[ext_resource type="Resource" uid="uid://wc2hidw03vkp" path="res://procedural/items/helmet_wood.tres" id="13_rpg_helmet"]
+[ext_resource type="Resource" uid="uid://c42h82wid2d55" path="res://procedural/items/healing_potion_good.tres" id="14_rpg_potion"]
+
 
 [resource]
 script = ExtResource("1_catalog")

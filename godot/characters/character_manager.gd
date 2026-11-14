@@ -4,7 +4,7 @@ extends Node
 const DEFAULT_CHARACTER_ID: String = "000"
 const DEFAULT_CHARACTER_NAME: String = "Steve"
 const RPG_CHARACTER_ID: String = "rpg_default"
-const RPG_STARTING_WEAPON: WeaponResource = preload("res://procedural/items/sword_wood.tres")
+const RPG_STARTING_WEAPON: WeaponResource = preload("res://procedural/items/weapon_knife.tres")
 
 signal eyes_of_ender_changed
 signal has_lighter_changed
