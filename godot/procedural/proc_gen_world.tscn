@@ -2,9 +2,7 @@
 
 [ext_resource type="Script" uid="uid://uov100t6ehma" path="res://procedural/proc_gen_world.gd" id="1_4yoxp"]
 [ext_resource type="TileSet" uid="uid://tdl62i5yuypb" path="res://procedural/world_rpg_tiles.tres" id="2_gsqn5"]
-[ext_resource type="PackedScene" uid="uid://bqy23htwiovfo" path="res://locations/end_portal.tscn" id="3_4gbkj"]
 [ext_resource type="PackedScene" uid="uid://cmqwqq8cp3i18" path="res://procedural/rpg_player.tscn" id="4_ldss0"]
-[ext_resource type="PackedScene" uid="uid://ch27vu5jqwd8g" path="res://locations/nether_portal.tscn" id="4_wh5hr"]
 [ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://classic/map_borders.tscn" id="5_4gbkj"]
 [ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz/quiz_dialog.tscn" id="6_wh5hr"]
 [ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="7_w7atm"]
@@ -26,14 +24,6 @@ tile_set = ExtResource("2_gsqn5")
 
 [node name="Locations" type="Node2D" parent="." unique_id=622720925]
 
-[node name="EndPortal" parent="Locations" unique_id=21762782 instance=ExtResource("3_4gbkj")]
-position = Vector2(2185, 902)
-dungeon_path = "res://classic/end.tscn"
-
-[node name="NetherPortal" parent="Locations" unique_id=1711631109 instance=ExtResource("4_wh5hr")]
-position = Vector2(2177, 1314)
-dungeon_path = "res://classic/nether.tscn"
-
 [node name="Items" type="Node2D" parent="." unique_id=1926190904]
 
 [node name="Companions" type="Node2D" parent="." unique_id=1789589125]
@@ -43,7 +33,6 @@ scale = Vector2(0.99999994, 0.99999994)
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="Player" parent="." unique_id=1715023786 instance=ExtResource("4_ldss0")]
-position = Vector2(48, 432)
 SPEED = 120.0
 
 [node name="MapBorders" parent="." unique_id=1508724067 instance=ExtResource("5_4gbkj")]

@@ -7,6 +7,7 @@ extends WorldLevel
 
 const ATLAS_ID: int = 1
 const TERRAIN_ID: int = 0
+const WALL_TILE: Vector2i = Vector2i(2, 9)
 const TILE_SIZE: int = 16
 @warning_ignore("integer_division")
 const TILE_SIZE_HALF: Vector2 = Vector2(TILE_SIZE / 2, TILE_SIZE / 2)
@@ -43,6 +44,8 @@ func _place_player(dungeon: Dungeon) -> void:
 
 
 func _place_dungeon(dungeon: Dungeon) -> void:
+	#for wall in dungeon.wall_arr:
+		#tile_map_layer.set_cell(wall, 0, WALL_TILE)
 	tile_map_layer.set_cells_terrain_connect(dungeon.floor_arr, ATLAS_ID, TERRAIN_ID)
 
 
