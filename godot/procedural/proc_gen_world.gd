@@ -5,9 +5,9 @@ extends WorldLevel
 @export var seed_value: int = 0
 
 
-const ATLAS_ID: int = 1
-const TERRAIN_ID: int = 0
-const WALL_TILE: Vector2i = Vector2i(2, 9)
+const DUNGEON_ATLAS_ID: int = 1
+const STONE_TERRAIN_ID: int = 0
+const SAND_TERRAIN_ID: int = 1
 const TILE_SIZE: int = 16
 @warning_ignore("integer_division")
 const TILE_SIZE_HALF: Vector2 = Vector2(TILE_SIZE / 2, TILE_SIZE / 2)
@@ -44,9 +44,8 @@ func _place_player(dungeon: Dungeon) -> void:
 
 
 func _place_dungeon(dungeon: Dungeon) -> void:
-	#for wall in dungeon.wall_arr:
-		#tile_map_layer.set_cell(wall, 0, WALL_TILE)
-	tile_map_layer.set_cells_terrain_connect(dungeon.wall_arr, ATLAS_ID, TERRAIN_ID)
+	tile_map_layer.set_cells_terrain_connect(dungeon.wall_arr, DUNGEON_ATLAS_ID, STONE_TERRAIN_ID)
+	tile_map_layer.set_cells_terrain_connect(dungeon.floor_arr, DUNGEON_ATLAS_ID, SAND_TERRAIN_ID)
 
 
 func _place_enemies(dungeon: Dungeon) -> void:
