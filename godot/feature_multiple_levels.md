@@ -38,13 +38,13 @@ Create the first level's configuration when a procedural run starts. Create each
 
 ## Implementation phases
 
-### Phase 1: Session-level configuration
+### Phase 1: Session-level configuration (implemented)
 
-- Add current procedural level index and a per-level configuration collection to `GameSession`.
-- Add initialization/reset and get-or-create APIs for level seed and size.
-- Define the initial dimensions and a centralized size-growth rule, including safeguards against invalid or impractically large dimensions.
-- Ensure starting a new procedural run clears old progression and creates the first level's configuration, while entering/revisiting deeper levels preserves or lazily creates their configurations.
-- Add `GameSession` tests for initialization, stable configurations on repeated access, increasing dimensions by depth, and reset behavior. Verify classic world-seed behavior remains intact.
+- `GameSession` tracks the current procedural level and stores each level's seed and size independently from the classic world seed.
+- A new procedural run starts at level 1 with an 80x80 dungeon. Each deeper level grows by 20 tiles in each dimension.
+- Level configurations are created lazily and remain stable during the session; invalid indices and `Vector2i` dimension overflow are rejected.
+- `GameSession.reset()` clears procedural progression, and the procedural start-menu action initializes a new level-one configuration.
+- Focused `GameSession` tests cover initialization, stable repeated access, size growth, and reset behavior; existing world-seed tests continue to pass.
 
 ### Phase 2: Room endpoints and deterministic generation
 
