@@ -29,7 +29,7 @@ const DEFAULT_OVERWORLD_PATH := "res://classic/overworld.tscn"
 const NO_SEED := 0
 const RUN_DURATION_SECONDS := 600.0
 const FIRST_PROCEDURAL_LEVEL := 1
-const FIRST_PROCEDURAL_LEVEL_SIZE := Vector2i(80, 80)
+const FIRST_PROCEDURAL_LEVEL_SIZE := Vector2i(20, 20)
 const PROCEDURAL_LEVEL_SIZE_INCREMENT := Vector2i(20, 20)
 const MAX_VECTOR2I_COMPONENT := 2_147_483_647
 
@@ -48,6 +48,7 @@ var overworld_path: String = DEFAULT_OVERWORLD_PATH
 var world_seed: int = NO_SEED
 var procedural_level_index: int = FIRST_PROCEDURAL_LEVEL
 var procedural_level_configs: Dictionary = {}
+var procedural_spawn_at_end: bool = false
 var highscore_rank: int = HighscoreManager.NO_RANK
 var game_mode: GameMode = GameMode.NORMAL
 var run_duration_seconds: float = RUN_DURATION_SECONDS
@@ -120,6 +121,7 @@ func start_procedural_run() -> Dictionary:
 func reset_procedural_progression() -> void:
 	procedural_level_index = FIRST_PROCEDURAL_LEVEL
 	procedural_level_configs.clear()
+	procedural_spawn_at_end = false
 
 
 func get_or_create_procedural_level_config(level_index: int) -> Dictionary:

@@ -53,13 +53,13 @@ Create the first level's configuration when a procedural run starts. Create each
 - `ProcGenWorld` resolves the current level's stored configuration and passes its size and seed into generation instead of using a fixed world size.
 - Generator and world tests verify distinct endpoints are floor cells, the stored size is used, and identical seeds reproduce floor/wall layouts and enemy/item scenes and positions.
 
-### Phase 3: Procedural stair scenes and transitions
+### Phase 3: Procedural stair scenes and transitions (implemented)
 
-- Create reusable procedural stairs-up and stairs-down scenes using the existing stair art and a clear interaction/collision area consistent with the project's other location scenes.
-- Place stairs up at the first-room position and stairs down at the last-room position when `ProcGenWorld` builds the level.
-- Connect stair activation to procedural level navigation. Deeper progression increments the level index; stairs up below level one decrements it. Set the destination spawn to the paired stair position and change scenes without resetting the session or character.
-- On level one, stairs up ends the run: stop active run state, send qualifying scores to the existing name-entry flow, and send non-qualifying scores directly to the main menu.
-- Add focused tests for stair destinations, level index changes, retained per-level configurations, spawn positions on downward travel and backtracking, and both run-ending score outcomes.
+- Reusable stairs-up and stairs-down Area2D scenes use the existing art and a shared player-entry script.
+- `ProcGenWorld` places stairs at the generated first- and last-room positions. Destination stairs remain disarmed until the player exits, preventing an immediate reverse transition on arrival.
+- Descending increments the level and lazily creates its configuration; ascending below level one decrements the level and spawns at that level's down stairs. Transitions preserve `GameSession` and character state.
+- Ascending from level one stops the run, sending qualifying scores to name entry and other scores directly to the main menu.
+- Focused procedural-world tests cover stair placement, depth changes, both arrival positions, arrival-trigger behavior, and both run-ending routes.
 
 ### Phase 4: Integration and regression checks
 
