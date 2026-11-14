@@ -6,7 +6,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sword"]
 atlas = ExtResource("3_vskc0")
-region = Rect2(16, 1712, 16, 16)
+region = Rect2(240, 1536, 16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sword"]
 size = Vector2(8, 8)
