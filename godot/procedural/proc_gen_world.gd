@@ -46,7 +46,7 @@ func _place_player(dungeon: Dungeon) -> void:
 func _place_dungeon(dungeon: Dungeon) -> void:
 	#for wall in dungeon.wall_arr:
 		#tile_map_layer.set_cell(wall, 0, WALL_TILE)
-	tile_map_layer.set_cells_terrain_connect(dungeon.floor_arr, ATLAS_ID, TERRAIN_ID)
+	tile_map_layer.set_cells_terrain_connect(dungeon.wall_arr, ATLAS_ID, TERRAIN_ID)
 
 
 func _place_enemies(dungeon: Dungeon) -> void:
