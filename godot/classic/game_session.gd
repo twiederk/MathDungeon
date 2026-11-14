@@ -130,7 +130,9 @@ func get_or_create_procedural_level_config(level_index: int) -> Dictionary:
 		return procedural_level_configs[level_index].duplicate()
 
 	var growth_steps := level_index - FIRST_PROCEDURAL_LEVEL
+	@warning_ignore("integer_division")
 	var max_growth_steps_x := (MAX_VECTOR2I_COMPONENT - FIRST_PROCEDURAL_LEVEL_SIZE.x) / PROCEDURAL_LEVEL_SIZE_INCREMENT.x
+	@warning_ignore("integer_division")
 	var max_growth_steps_y := (MAX_VECTOR2I_COMPONENT - FIRST_PROCEDURAL_LEVEL_SIZE.y) / PROCEDURAL_LEVEL_SIZE_INCREMENT.y
 	if growth_steps > min(max_growth_steps_x, max_growth_steps_y):
 		push_error("Procedural level size exceeds Vector2i limits.")

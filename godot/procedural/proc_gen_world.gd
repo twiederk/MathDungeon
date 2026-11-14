@@ -47,23 +47,23 @@ func get_start_position() -> Vector2:
 	return player.global_position
 
 
-func _place_player(dungeon: Dungeon) -> void:
-	player.global_position = tile_map_layer.to_global(tile_map_layer.map_to_local(dungeon.start_position))
+func _place_player(generated_dungeon: Dungeon) -> void:
+	player.global_position = tile_map_layer.to_global(tile_map_layer.map_to_local(generated_dungeon.start_position))
 
 
-func _place_dungeon(dungeon: Dungeon) -> void:
-	tile_map_layer.set_cells_terrain_connect(dungeon.wall_arr, DUNGEON_ATLAS_ID, STONE_TERRAIN_ID)
-	tile_map_layer.set_cells_terrain_connect(dungeon.floor_arr, DUNGEON_ATLAS_ID, SAND_TERRAIN_ID)
+func _place_dungeon(generated_dungeon: Dungeon) -> void:
+	tile_map_layer.set_cells_terrain_connect(generated_dungeon.wall_arr, DUNGEON_ATLAS_ID, STONE_TERRAIN_ID)
+	tile_map_layer.set_cells_terrain_connect(generated_dungeon.floor_arr, DUNGEON_ATLAS_ID, SAND_TERRAIN_ID)
 
 
-func _place_enemies(dungeon: Dungeon) -> void:
-	for enemy in dungeon.enemies:
-		enemy.location = dungeon.id
+func _place_enemies(generated_dungeon: Dungeon) -> void:
+	for enemy in generated_dungeon.enemies:
+		enemy.location = generated_dungeon.id
 		enemy.position = _world_position(enemy.position)
 		enemies_root.add_child(enemy)
 
-func _place_items(dungeon: Dungeon) -> void:
-	for item in dungeon.items:
+func _place_items(generated_dungeon: Dungeon) -> void:
+	for item in generated_dungeon.items:
 		item.position = _world_position(item.position)
 		items_root.add_child(item)
 

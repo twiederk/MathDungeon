@@ -16,11 +16,6 @@ func generate_dungeon(size: Vector2i, splits: int = 3, seed_value: int = 0) -> D
 	var rooms := root_node.get_leaves()
 	var start_position := rooms[0].get_center()
 	var end_position := rooms[rooms.size() - 1].get_center()
-	if rooms.size() > 1 and end_position == start_position:
-		for room in rooms:
-			var room_position := room.get_center()
-			if room_position != start_position:
-				end_position = room_position
 	var floor_arr = _place_rooms(root_node)
 	_place_paths(paths, floor_arr)
 	var enemies = _place_enemies(root_node)
