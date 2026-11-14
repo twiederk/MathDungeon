@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 radius = 5.0
-height = 14.0
+height = 12.0
 
 [node name="RPGPlayer" type="CharacterBody2D" unique_id=1649447883]
 disable_mode = 2
