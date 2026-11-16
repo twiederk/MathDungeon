@@ -30,22 +30,22 @@ func _ready() -> void:
 	super._ready()
 
 
-func _resolve_level_config() -> Dictionary:
+func _resolve_level_config() -> LevelConfig:
 	var level_config := GameSession.get_or_create_procedural_level_config(GameSession.procedural_level_index)
 	if seed_value != GameSession.NO_SEED:
-		level_config["seed"] = seed_value
+		level_config.seed_value = seed_value
 	return level_config
 
 
 func _resolve_seed() -> int:
 	if seed_value != GameSession.NO_SEED:
 		return seed_value
-	return GameSession.get_or_create_procedural_level_config(GameSession.procedural_level_index)["seed"]
+	return GameSession.get_or_create_procedural_level_config(GameSession.procedural_level_index).seed_value
 
 
-func generate_world(level_config: Dictionary) -> void:
-	seed_value = level_config["seed"]
-	dungeon = dungeon_generator.generate_dungeon(level_config["size"], level_config["splits"], seed_value)
+func generate_world(level_config: LevelConfig) -> void:
+	seed_value = level_config.seed_value
+	dungeon = dungeon_generator.generate_dungeon(level_config.size, level_config.splits, seed_value)
 	_place_dungeon(dungeon)
 	_place_stairs(dungeon)
 	_place_player(dungeon)
@@ -93,7 +93,7 @@ func _handle_stair_transition(goes_down: bool) -> bool:
 	if goes_down:
 		var next_level_index := GameSession.procedural_level_index + 1
 		var next_level_config := GameSession.get_or_create_procedural_level_config(next_level_index)
-		if next_level_config.is_empty():
+		if next_level_config == null:
 			return false
 		GameSession.procedural_level_index = next_level_index
 		GameSession.procedural_spawn_at_end = false

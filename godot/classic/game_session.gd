@@ -49,7 +49,7 @@ var spawn_point: SpawnPoint = SpawnPoint.START
 var overworld_path: String = DEFAULT_OVERWORLD_PATH
 var world_seed: int = NO_SEED
 var procedural_level_index: int = FIRST_PROCEDURAL_LEVEL
-var procedural_level_configs: Dictionary = {}
+var procedural_level_configs: Dictionary[int, LevelConfig] = {}
 var procedural_spawn_at_end: bool = false
 var highscore_rank: int = HighscoreManager.NO_RANK
 var game_mode: GameMode = GameMode.NORMAL
@@ -115,7 +115,7 @@ func get_or_create_world_seed() -> int:
 	return world_seed
 
 
-func start_procedural_run() -> Dictionary:
+func start_procedural_run() -> LevelConfig:
 	reset_procedural_progression()
 	return get_or_create_procedural_level_config(FIRST_PROCEDURAL_LEVEL)
 
@@ -126,10 +126,10 @@ func reset_procedural_progression() -> void:
 	procedural_spawn_at_end = false
 
 
-func get_or_create_procedural_level_config(level_index: int) -> Dictionary:
+func get_or_create_procedural_level_config(level_index: int) -> LevelConfig:
 	if level_index < FIRST_PROCEDURAL_LEVEL:
 		push_error("Procedural level index must be at least one.")
-		return {}
+		return null
 	if procedural_level_configs.has(level_index):
 		return procedural_level_configs[level_index].duplicate()
 
@@ -140,18 +140,14 @@ func get_or_create_procedural_level_config(level_index: int) -> Dictionary:
 	var max_growth_steps_y := (MAX_VECTOR2I_COMPONENT - FIRST_PROCEDURAL_LEVEL_SIZE.y) / PROCEDURAL_LEVEL_SIZE_INCREMENT.y
 	if growth_steps > min(max_growth_steps_x, max_growth_steps_y):
 		push_error("Procedural level size exceeds Vector2i limits.")
-		return {}
+		return null
 
 	var level_seed := randi()
 	while level_seed == NO_SEED:
 		level_seed = randi()
 	var level_size := FIRST_PROCEDURAL_LEVEL_SIZE + PROCEDURAL_LEVEL_SIZE_INCREMENT * growth_steps
 	var level_splits := FIRST_PROCEDURAL_LEVEL_SPLITS + PROCEDURAL_LEVEL_SPLIT_INCREMENT * growth_steps
-	var level_config := {
-		"seed": level_seed,
-		"size": level_size,
-		"splits": level_splits
-	}
+	var level_config := LevelConfig.new(level_seed, level_size, level_splits)
 	procedural_level_configs[level_index] = level_config
 	return level_config.duplicate()
 
