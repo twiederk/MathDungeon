@@ -1,12 +1,8 @@
 [gd_scene format=3 uid="uid://cinn45uh8snch"]
 
 [ext_resource type="Script" uid="uid://dn7kamtch0e63" path="res://items/healing_potion.gd" id="1_raxl3"]
-[ext_resource type="Texture2D" uid="uid://c31gniut2rq2q" path="res://items/items.png" id="2_raxl3"]
+[ext_resource type="Texture2D" path="res://items/healing_potion_atlas_texture.tres" id="2_raxl3"]
 [ext_resource type="Resource" path="res://items/healing_potion_good.tres" id="3_good"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_item"]
-atlas = ExtResource("2_raxl3")
-region = Rect2(256, 288, 32, 32)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yrmpi"]
 radius = 7.5
@@ -18,7 +14,7 @@ script = ExtResource("1_raxl3")
 good_resource = ExtResource("3_good")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1161501913]
-texture = SubResource("AtlasTexture_item")
+texture = ExtResource("2_raxl3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1960658841]
 position = Vector2(-0.5, 0.5)

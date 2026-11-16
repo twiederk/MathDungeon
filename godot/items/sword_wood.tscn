@@ -2,11 +2,7 @@
 
 [ext_resource type="Script" uid="uid://5nfmr5l4hlxx" path="res://items/sword.gd" id="1_1orkt"]
 [ext_resource type="Resource" uid="uid://b5b8u4rtx8qjo" path="res://items/sword_wood.tres" id="2_1orkt"]
-[ext_resource type="Texture2D" uid="uid://c31gniut2rq2q" path="res://items/items.png" id="3_h61xc"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_item"]
-atlas = ExtResource("3_h61xc")
-region = Rect2(0, 128, 32, 32)
+[ext_resource type="Texture2D" path="res://items/sword_wood_atlas_texture.tres" id="3_h61xc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e4ynd"]
 
@@ -16,7 +12,7 @@ script = ExtResource("1_1orkt")
 weapon_resource = ExtResource("2_1orkt")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=319731519]
-texture = SubResource("AtlasTexture_item")
+texture = ExtResource("3_h61xc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=232010829]
 shape = SubResource("RectangleShape2D_e4ynd")

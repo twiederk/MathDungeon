@@ -1,12 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://byl4j4ap7dkhk"]
 
 [ext_resource type="Script" uid="uid://dy2ugvq1ya782" path="res://items/helmet.gd" id="1_gaqaq"]
-[ext_resource type="Texture2D" uid="uid://c31gniut2rq2q" path="res://items/items.png" id="2_n26nq"]
+[ext_resource type="Texture2D" path="res://items/helmet_wood_atlas_texture.tres" id="2_n26nq"]
 [ext_resource type="Resource" uid="uid://dk2wq5v8xbn7l" path="res://items/helmet_wood.tres" id="3_armor"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_item"]
-atlas = ExtResource("2_n26nq")
-region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e4ynd"]
 size = Vector2(20, 18)
@@ -17,7 +13,7 @@ script = ExtResource("1_gaqaq")
 armor_resource = ExtResource("3_armor")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_item")
+texture = ExtResource("2_n26nq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
