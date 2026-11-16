@@ -9,9 +9,11 @@ const PROCEDURAL_WORLD_SCENE_PATH := "res://procedural/proc_gen_world.tscn"
 const START_MENU_SCENE_PATH := "res://gui/start_gui.tscn"
 const STAIRS_UP_SCENE: PackedScene = preload("res://procedural/stairs_up.tscn")
 const STAIRS_DOWN_SCENE: PackedScene = preload("res://procedural/stairs_down.tscn")
+
 const DUNGEON_ATLAS_ID: int = 1
 const STONE_TERRAIN_ID: int = 0
 const SAND_TERRAIN_ID: int = 1
+const DIRT_TERRAIN_ID: int = 2
 const TILE_SIZE: int = 16
 @warning_ignore("integer_division")
 const TILE_SIZE_HALF: Vector2 = Vector2(TILE_SIZE / 2, TILE_SIZE / 2)
@@ -121,7 +123,7 @@ func _resolve_procedural_run_end_scene(has_highscore: bool) -> String:
 
 func _place_dungeon(generated_dungeon: Dungeon) -> void:
 	tile_map_layer.set_cells_terrain_connect(generated_dungeon.wall_arr, DUNGEON_ATLAS_ID, STONE_TERRAIN_ID)
-	tile_map_layer.set_cells_terrain_connect(generated_dungeon.floor_arr, DUNGEON_ATLAS_ID, SAND_TERRAIN_ID)
+	tile_map_layer.set_cells_terrain_connect(generated_dungeon.floor_arr, DUNGEON_ATLAS_ID, DIRT_TERRAIN_ID)
 
 
 func _place_enemies(generated_dungeon: Dungeon) -> void:
