@@ -9,7 +9,7 @@ region = Rect2(32, 368, 16, 16)
 
 [resource]
 script = ExtResource("1_armor")
-id = "rpg_helmet_wood"
-name = "Holzhelm"
+id = "rpg_helmet_cap"
+name = "Kappe"
 armor = 1
 icon_atlas = SubResource("AtlasTexture_icon")
