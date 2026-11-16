@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://br88si2kak15q"]
 
 [ext_resource type="Script" uid="uid://uov100t6ehma" path="res://procedural/proc_gen_world.gd" id="1_4yoxp"]
-[ext_resource type="TileSet" uid="uid://tdl62i5yuypb" path="res://procedural/world_rpg_tiles.tres" id="2_gsqn5"]
+[ext_resource type="TileSet" uid="uid://tdl62i5yuypb" path="res://procedural/dungeon_tiles.tres" id="2_gsqn5"]
 [ext_resource type="PackedScene" uid="uid://cmqwqq8cp3i18" path="res://procedural/rpg_player.tscn" id="4_ldss0"]
 [ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://classic/map_borders.tscn" id="5_4gbkj"]
 [ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz/quiz_dialog.tscn" id="6_wh5hr"]
