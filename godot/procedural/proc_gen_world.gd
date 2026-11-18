@@ -106,7 +106,7 @@ func _on_stairs_activated(goes_down: bool) -> void:
 		return
 	if _handle_stair_transition(goes_down):
 		transition_started = true
-		_finish_procedural_run()
+		_leave_dungeon()
 		return
 	transition_started = true
 	get_tree().call_deferred("change_scene_to_file", PROCEDURAL_WORLD_SCENE_PATH)
@@ -130,7 +130,7 @@ func _handle_stair_transition(goes_down: bool) -> bool:
 	return false
 
 
-func _finish_procedural_run() -> void:
+func _leave_dungeon() -> void:
 	GameSession.display_state = GameSession.DisplayState.NONE
 	GameSession.stop_run()
 	var has_highscore := HighscoreManager.is_highscore(GameSession.score)
