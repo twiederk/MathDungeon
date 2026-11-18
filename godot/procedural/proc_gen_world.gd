@@ -21,8 +21,8 @@ const TILE_SIZE_HALF: Vector2 = Vector2(TILE_SIZE / 2, TILE_SIZE / 2)
 var dungeon_generator: DungeonGenerator = DungeonGenerator.new()
 var dungeon: Dungeon
 var transition_started: bool = false
-var stairs_up: Area2D
-var stairs_down: Area2D
+var stairs_up: ProceduralStairs
+var stairs_down: ProceduralStairs
 
 @onready var locations_root: Node2D = $Locations
 
@@ -39,12 +39,6 @@ func _resolve_level_config() -> LevelConfig:
 	return level_config
 
 
-func _resolve_seed() -> int:
-	if seed_value != GameSession.NO_SEED:
-		return seed_value
-	return GameSession.get_or_create_procedural_level_config(GameSession.get_procedural_level_index()).seed_value
-
-
 func generate_world(level_config: LevelConfig) -> void:
 	seed_value = level_config.seed_value
 	dungeon = dungeon_generator.generate_dungeon(level_config.size, level_config.splits, seed_value)
@@ -55,15 +49,9 @@ func generate_world(level_config: LevelConfig) -> void:
 	_place_items(dungeon)
 
 
-func get_start_position() -> Vector2:
-	return player.global_position
-
-
-func _place_player() -> void:
-	var spawn_stairs := stairs_up
-	if GameSession.is_procedural_spawn_at_end():
-		spawn_stairs = stairs_down
-	player.global_position = spawn_stairs.get_node("SpawnPoint").global_position
+func _place_dungeon(generated_dungeon: Dungeon) -> void:
+	tile_map_layer.set_cells_terrain_connect(generated_dungeon.wall_arr, DUNGEON_ATLAS_ID, STONE_TERRAIN_ID)
+	tile_map_layer.set_cells_terrain_connect(generated_dungeon.floor_arr, DUNGEON_ATLAS_ID, DIRT_TERRAIN_ID)
 
 
 func _place_stairs(generated_dungeon: Dungeon) -> void:
@@ -71,12 +59,46 @@ func _place_stairs(generated_dungeon: Dungeon) -> void:
 	stairs_down = _add_stairs(STAIRS_DOWN_SCENE, generated_dungeon.stairs_down_position)
 
 
-func _add_stairs(stairs_scene: PackedScene, tile_position: Vector2i) -> Area2D:
-	var stairs = stairs_scene.instantiate()
+func _add_stairs(stairs_scene: PackedScene, tile_position: Vector2i) -> ProceduralStairs:
+	var stairs := stairs_scene.instantiate() as ProceduralStairs
 	stairs.position = locations_root.to_local(tile_map_layer.to_global(tile_map_layer.map_to_local(tile_position)))
 	stairs.activated.connect(_on_stairs_activated)
 	locations_root.add_child(stairs)
 	return stairs
+
+
+func _place_player() -> void:
+	var spawn_stairs := stairs_up
+	if GameSession.is_procedural_spawn_at_end():
+		spawn_stairs = stairs_down
+	player.global_position = spawn_stairs.get_spawn_point()
+
+
+func _place_enemies(generated_dungeon: Dungeon) -> void:
+	for enemy in generated_dungeon.enemies:
+		enemy.location = generated_dungeon.id
+		enemy.position = _world_position(enemy.position)
+		enemies_root.add_child(enemy)
+
+
+func _place_items(generated_dungeon: Dungeon) -> void:
+	for item in generated_dungeon.items:
+		item.position = _world_position(item.position)
+		items_root.add_child(item)
+
+
+func _world_position(local_position: Vector2) -> Vector2:
+	return local_position * TILE_SIZE + TILE_SIZE_HALF
+
+
+func _resolve_seed() -> int:
+	if seed_value != GameSession.NO_SEED:
+		return seed_value
+	return GameSession.get_or_create_procedural_level_config(GameSession.get_procedural_level_index()).seed_value
+
+
+func get_start_position() -> Vector2:
+	return player.global_position
 
 
 func _on_stairs_activated(goes_down: bool) -> void:
@@ -120,24 +142,3 @@ func _resolve_procedural_run_end_scene(has_highscore: bool) -> String:
 	if has_highscore:
 		return NAME_ENTRY_DIALOG_PATH
 	return START_MENU_SCENE_PATH
-
-
-func _place_dungeon(generated_dungeon: Dungeon) -> void:
-	tile_map_layer.set_cells_terrain_connect(generated_dungeon.wall_arr, DUNGEON_ATLAS_ID, STONE_TERRAIN_ID)
-	tile_map_layer.set_cells_terrain_connect(generated_dungeon.floor_arr, DUNGEON_ATLAS_ID, DIRT_TERRAIN_ID)
-
-
-func _place_enemies(generated_dungeon: Dungeon) -> void:
-	for enemy in generated_dungeon.enemies:
-		enemy.location = generated_dungeon.id
-		enemy.position = _world_position(enemy.position)
-		enemies_root.add_child(enemy)
-
-func _place_items(generated_dungeon: Dungeon) -> void:
-	for item in generated_dungeon.items:
-		item.position = _world_position(item.position)
-		items_root.add_child(item)
-
-
-func _world_position(local_position: Vector2) -> Vector2:
-	return (local_position) * TILE_SIZE + TILE_SIZE_HALF
