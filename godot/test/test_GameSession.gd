@@ -3,7 +3,6 @@ extends GutTest
 func after_each():
 	GameSession.difficulty_level = GameSession.DifficultyLevel.NORMAL
 	GameSession.display_state = GameSession.DisplayState.NONE
-	GameSession.overworld_path = GameSession.DEFAULT_OVERWORLD_PATH
 	GameSession.world_seed = GameSession.NO_SEED
 	GameSession.game_mode = GameSession.GameMode.NORMAL
 	GameSession.run_duration_seconds = GameSession.RUN_DURATION_SECONDS
@@ -51,28 +50,6 @@ func test_reset_keeps_difficulty_level():
 	
 	# assert
 	assert_eq(GameSession.difficulty_level, GameSession.DifficultyLevel.HARD)
-
-
-func test_reset_restores_the_default_overworld_path():
-	# arrange
-	GameSession.overworld_path = "res://procedural/proc_gen_world.tscn"
-	
-	# act
-	GameSession.reset()
-	
-	# assert
-	assert_eq(GameSession.overworld_path, GameSession.DEFAULT_OVERWORLD_PATH)
-
-
-func test_set_overworld_path():
-	# arrange
-	var path = "res://procedural/proc_gen_world.tscn"
-	
-	# act
-	GameSession.set_overworld_path(path)
-	
-	# assert
-	assert_eq(GameSession.overworld_path, path)
 
 
 func test_reset_clears_the_world_seed():

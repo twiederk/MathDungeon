@@ -25,7 +25,6 @@ enum GameMode {
 	TIMED_RUN
 }
 
-const DEFAULT_OVERWORLD_PATH := "res://classic/overworld.tscn"
 const NO_SEED := 0
 const RUN_DURATION_SECONDS := 600.0
 
@@ -40,7 +39,6 @@ signal run_time_expired
 
 var difficulty_level: DifficultyLevel = DifficultyLevel.NORMAL
 var spawn_point: SpawnPoint = SpawnPoint.START
-var overworld_path: String = DEFAULT_OVERWORLD_PATH
 var world_seed: int = NO_SEED
 var procedural_game_session := ProceduralGameSession.new()
 var highscore_rank: int = HighscoreManager.NO_RANK
@@ -90,15 +88,10 @@ func reset() -> void:
 	highscore_rank = HighscoreManager.NO_RANK
 	display_state = DisplayState.NONE
 	spawn_point = SpawnPoint.START
-	overworld_path = DEFAULT_OVERWORLD_PATH
 	world_seed = NO_SEED
 	procedural_game_session.reset_procedural_progression()
 	run_time_left = 0.0
 	run_active = false
-
-
-func set_overworld_path(path: String) -> void:
-	overworld_path = path
 
 
 func get_or_create_world_seed() -> int:
