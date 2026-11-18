@@ -4,13 +4,13 @@
 
 Start procedural dungeons at approximately one logical screen, grow them gradually every second level, and cap their dimensions at a practical maximum. Keep BSP split depth reasonable through a small lookup table in the session progression code.
 
-This document is an implementation plan. No gameplay changes are implemented as part of creating it.
+Phase 1 is implemented. The remaining phases below are an implementation plan.
 
 ## Scope and decisions
 
 - Apply only to procedural mode; classic mode remains unchanged.
-- Read the logical viewport dimensions from the project settings, not the physical window size or runtime window resizing.
-- Use `ProcGenWorld.TILE_SIZE` as the tile-size source of truth.
+- Use a fixed `FIRST_PROCEDURAL_LEVEL_SIZE = Vector2i(40, 23)`, based on the unchanged 640x360 logical viewport and 16-pixel tiles.
+- Do not read viewport settings or calculate the starting size at runtime. Window resizing and window overrides do not affect dungeon dimensions.
 - Levels 1 and 2 have the starting dimensions. Grow by `Vector2i(5, 5)` on levels 3, 5, 7, and so on.
 - Clamp each dimension independently to `Vector2i(120, 120)`.
 - Continue creating new levels and seeds after reaching the cap; only dimensions and split depth stop growing.
@@ -19,7 +19,7 @@ This document is an implementation plan. No gameplay changes are implemented as 
 
 ## Current implementation
 
-- `classic/procedural_game_session.gd` owns procedural configuration creation and caching. It currently starts at 20x20 tiles with 3 splits, adds 20x20 tiles and one split per level, and guards against `Vector2i` overflow using `MAX_VECTOR2I_COMPONENT`.
+- `classic/procedural_game_session.gd` owns procedural configuration creation and caching. It starts at a constant 40x23 tiles with 3 splits. Until phases 2 and 3, it still adds 20x20 tiles and one split per level and guards against `Vector2i` overflow using `MAX_VECTOR2I_COMPONENT`.
 - `project.godot` defines a 640x360 logical viewport and a 1280x720 window override. The override scales presentation; it must not double dungeon dimensions.
 - `procedural/proc_gen_world.gd` defines `TILE_SIZE = 16` and passes a level configuration's size, splits, and seed to generation.
 - The player camera currently uses the default unit zoom. This feature does not change camera settings or reserve space for HUD elements.
@@ -29,13 +29,11 @@ This document is an implementation plan. No gameplay changes are implemented as 
 
 ### Starting dimensions
 
-Read `display/window/size/viewport_width` and `display/window/size/viewport_height` through `ProjectSettings`. Divide each by `ProcGenWorld.TILE_SIZE`, rounding up to whole tiles. The current settings produce `Vector2i(40, 23)`.
+Use `FIRST_PROCEDURAL_LEVEL_SIZE = Vector2i(40, 23)`. This matches the fixed 640x360 logical viewport divided by the 16-pixel tile size, rounded up to whole tiles. These settings are assumed not to change, so no runtime calculation or per-run snapshot is needed.
 
 The dimensions describe the generator's nominal size, not guaranteed walkable area. Existing boundary-wall generation and camera following remain unchanged. At the current settings, rounding the height up covers 368 rather than 360 pixels.
 
-Clamp the starting dimensions to the maximum as well. If a future configured viewport exceeds that maximum, the maximum takes precedence. Assume valid positive project viewport dimensions and tile size.
-
-Resolve and retain the starting dimensions once per procedural run, including lazy initialization when a configuration is requested before an explicit start. Reset that snapshot with procedural progression. Existing configurations must not change when viewport settings change during a run.
+The starting dimensions are below the planned maximum. If the viewport or tile size is intentionally changed in the future, update the constant explicitly.
 
 ### Growth and cap
 
@@ -80,13 +78,14 @@ This is the proposed initial tuning. It changes splits only when size changes, g
 
 ## Implementation phases
 
-### Phase 1: Viewport-derived starting size
+### Phase 1: Fixed screen-sized starting dimensions (implemented)
 
-- Replace the fixed first-level size with a small session-owned calculation using project viewport settings and `ProcGenWorld.TILE_SIZE`.
-- Retain the computed starting size for the run and clear it on reset, alongside existing progression state.
-- Ensure referencing the tile-size constant does not introduce a script-loading dependency cycle. If necessary, pass the value at initialization without duplicating the constant or changing the generator.
-- Add focused tests in `test/test_GameSession.gd` for 40x23 at current settings, upward rounding, independence from window overrides, snapshot stability, and reset/recalculation.
-- Restore any modified project settings after tests.
+- Set `FIRST_PROCEDURAL_LEVEL_SIZE` to `Vector2i(40, 23)`.
+- Use the constant for level-size calculations and retain existing session caching and reset behavior.
+- Avoid runtime project-settings reads, per-run sizing state, and a dependency on `ProcGenWorld`.
+- Validate with the existing focused session tests; no project-settings mutation tests are needed.
+
+The initial dynamic-sizing implementation was simplified to a constant by request. Growth and maximum-size clamping remain part of phase 2.
 
 ### Phase 2: Every-second-level growth and bounded size
 
@@ -94,7 +93,7 @@ This is the proposed initial tuning. It changes splits only when size changes, g
 - Introduce the configurable maximum `Vector2i(120, 120)` and clamp each axis independently.
 - Bound arithmetic before multiplying growth steps; remove `MAX_VECTOR2I_COMPONENT`, its overflow calculations, and the obsolete overflow error path.
 - Preserve invalid-index handling, nonzero random seeds, independent returned copies, lazy configuration creation, and per-run caching.
-- Update session tests for paired levels, the first increase on level 3, partial-axis clamping, full clamping, a starting viewport above the cap, and very large valid indices.
+- Update session tests for paired levels, the first increase on level 3, partial-axis clamping, full clamping, and very large valid indices.
 - Replace any old overflow-rejection test with capped-size assertions.
 
 ### Phase 3: Size-based split lookup
@@ -116,8 +115,8 @@ This is the proposed initial tuning. It changes splits only when size changes, g
 ## Acceptance criteria
 
 - With the current project settings, levels 1-2 use 40x23 tiles and levels 3-4 use 45x28 tiles.
-- The starting size follows logical viewport settings and the shared tile-size constant, not the window override or runtime window dimensions.
-- Starting dimensions remain stable for the run and are recalculated for a new run.
+- The starting size is a fixed `Vector2i(40, 23)`, matching the assumed unchanged logical viewport and tile size.
+- No runtime viewport calculation or per-run size snapshot is required; window overrides and resizing do not affect progression.
 - Growth happens only on levels 3, 5, 7, and so on, with independent axis clamping and no dimension above 120 tiles.
 - At current settings, width reaches 120 on level 33 and both dimensions reach 120 on level 41. Later levels remain valid and capped, including very large valid indices.
 - Split depth follows the bounded size lookup table, with a maximum of 5, rather than increasing on every deeper level.
