@@ -130,30 +130,95 @@ func test_procedural_level_configuration_is_stable_when_requested_again():
 
 
 func test_returned_procedural_level_configuration_does_not_change_the_cached_configuration():
+	# arrange
 	var first_config = GameSession.procedural_game_session.get_or_create_procedural_level_config(1)
 	var original_seed = first_config.seed_value
 	first_config.seed_value = GameSession.NO_SEED
 	first_config.size = Vector2i.ONE
 	first_config.splits = 0
 
+	# act
 	var second_config = GameSession.procedural_game_session.get_or_create_procedural_level_config(1)
 
+	# assert
 	assert_eq(second_config.seed_value, original_seed)
 	assert_eq(second_config.size, ProceduralGameSession.FIRST_PROCEDURAL_LEVEL_SIZE)
 	assert_eq(second_config.splits, ProceduralGameSession.FIRST_PROCEDURAL_LEVEL_SPLITS)
 
 
-func test_procedural_level_size_increases_with_depth():
+func test_procedural_level_progression(parameters = use_parameters([
+	[1, Vector2i(40, 23), 3],
+	[2, Vector2i(40, 23), 3],
+	[3, Vector2i(45, 28), 3],
+	[4, Vector2i(45, 28), 3],
+	[7, Vector2i(55, 38), 3],
+	[8, Vector2i(55, 38), 3],
+	[9, Vector2i(60, 43), 4],
+	[10, Vector2i(60, 43), 4],
+	[23, Vector2i(95, 78), 4],
+	[24, Vector2i(95, 78), 4],
+	[25, Vector2i(100, 83), 5],
+	[26, Vector2i(100, 83), 5],
+	[31, Vector2i(115, 98), 5],
+	[32, Vector2i(115, 98), 5],
+	[33, Vector2i(120, 103), 5],
+	[34, Vector2i(120, 103), 5],
+	[39, Vector2i(120, 118), 5],
+	[40, Vector2i(120, 118), 5],
+	[41, Vector2i(120, 120), 5],
+	[42, Vector2i(120, 120), 5],
+	[1000, Vector2i(120, 120), 5],
+	[9223372036854775807, Vector2i(120, 120), 5]
+])):
 	# arrange
-	var first_config = GameSession.procedural_game_session.get_or_create_procedural_level_config(1)
+	var level_index = parameters[0]
+	var expected_size = parameters[1]
+	var expected_splits = parameters[2]
 
 	# act
-	var second_config = GameSession.procedural_game_session.get_or_create_procedural_level_config(2)
+	var level_config = GameSession.get_or_create_procedural_level_config(level_index)
 
 	# assert
-	assert_gt(second_config.size.x, first_config.size.x)
-	assert_gt(second_config.size.y, first_config.size.y)
-	assert_gt(second_config.splits, first_config.splits)
+	assert_eq(level_config.size, expected_size)
+	assert_eq(level_config.splits, expected_splits)
+	assert_ne(level_config.seed_value, GameSession.NO_SEED)
+
+
+func test_procedural_split_thresholds_require_both_dimensions(parameters = use_parameters([
+	[Vector2i(40, 23), 3],
+	[Vector2i(59, 40), 3],
+	[Vector2i(60, 39), 3],
+	[Vector2i(60, 40), 4],
+	[Vector2i(99, 80), 4],
+	[Vector2i(100, 79), 4],
+	[Vector2i(100, 80), 5],
+	[Vector2i(120, 120), 5]
+])):
+	# arrange
+	var level_size = parameters[0]
+	var expected_splits = parameters[1]
+
+	# act
+	var splits = GameSession.procedural_game_session._get_splits_for_size(level_size)
+
+	# assert
+	assert_eq(splits, expected_splits)
+
+
+func test_capped_procedural_levels_keep_separate_cached_configurations():
+	# arrange
+	var first_config = GameSession.get_or_create_procedural_level_config(41)
+	var deeper_config = GameSession.get_or_create_procedural_level_config(43)
+
+	# act
+	var revisited_config = GameSession.get_or_create_procedural_level_config(41)
+
+	# assert
+	assert_eq(deeper_config.size, first_config.size)
+	assert_eq(deeper_config.splits, first_config.splits)
+	assert_eq(revisited_config.seed_value, first_config.seed_value)
+	assert_ne(deeper_config, first_config)
+	assert_eq(GameSession.procedural_game_session.procedural_level_configs.size(), 2)
 
 
 func test_reset_clears_procedural_level_configurations():

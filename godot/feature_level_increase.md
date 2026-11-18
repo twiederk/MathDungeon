@@ -4,7 +4,7 @@
 
 Start procedural dungeons at approximately one logical screen, grow them gradually every second level, and cap their dimensions at a practical maximum. Keep BSP split depth reasonable through a small lookup table in the session progression code.
 
-Phase 1 is implemented. The remaining phases below are an implementation plan.
+Phases 1-3 and the automated integration work in phase 4 are implemented. Manual gameplay and visual checks remain pending.
 
 ## Scope and decisions
 
@@ -19,7 +19,7 @@ Phase 1 is implemented. The remaining phases below are an implementation plan.
 
 ## Current implementation
 
-- `classic/procedural_game_session.gd` owns procedural configuration creation and caching. It starts at a constant 40x23 tiles with 3 splits. Until phases 2 and 3, it still adds 20x20 tiles and one split per level and guards against `Vector2i` overflow using `MAX_VECTOR2I_COMPONENT`.
+- `classic/procedural_game_session.gd` owns procedural configuration creation and caching. It starts at a constant 40x23 tiles with 3 splits, grows by 5x5 every second level, clamps each axis at 120, and selects bounded split depth from the size lookup table. Growth is bounded before multiplication; the former `MAX_VECTOR2I_COMPONENT` guard is removed.
 - `project.godot` defines a 640x360 logical viewport and a 1280x720 window override. The override scales presentation; it must not double dungeon dimensions.
 - `procedural/proc_gen_world.gd` defines `TILE_SIZE = 16` and passes a level configuration's size, splits, and seed to generation.
 - The player camera currently uses the default unit zoom. This feature does not change camera settings or reserve space for HUD elements.
@@ -33,7 +33,7 @@ Use `FIRST_PROCEDURAL_LEVEL_SIZE = Vector2i(40, 23)`. This matches the fixed 640
 
 The dimensions describe the generator's nominal size, not guaranteed walkable area. Existing boundary-wall generation and camera following remain unchanged. At the current settings, rounding the height up covers 368 rather than 360 pixels.
 
-The starting dimensions are below the planned maximum. If the viewport or tile size is intentionally changed in the future, update the constant explicitly.
+The starting dimensions are below the maximum. If the viewport or tile size is intentionally changed in the future, update the constant explicitly.
 
 ### Growth and cap
 
@@ -60,7 +60,7 @@ Select the last matching row using the final, clamped dungeon dimensions. Both d
 | 60x40 tiles | 4 | 32 |
 | 100x80 tiles | 5 | 64 |
 
-This is the proposed initial tuning. It changes splits only when size changes, grows split depth more slowly than dimensions, and caps it at 5. Validate these thresholds with representative seeds before accepting the feature. The table limits recursion but does not guarantee minimum room dimensions with the existing BSP algorithm. If generation checks expose a problem, adjust the table within this feature; algorithm changes require separate approval.
+This initial tuning passed the representative-seed checks below. It changes splits only when size changes, grows split depth more slowly than dimensions, and caps it at 5. The table limits recursion but does not guarantee minimum room dimensions with the existing BSP algorithm. If further checks expose a problem, adjust the table within this feature; algorithm changes require separate approval.
 
 ### Examples with current project settings
 
@@ -85,9 +85,9 @@ This is the proposed initial tuning. It changes splits only when size changes, g
 - Avoid runtime project-settings reads, per-run sizing state, and a dependency on `ProcGenWorld`.
 - Validate with the existing focused session tests; no project-settings mutation tests are needed.
 
-The initial dynamic-sizing implementation was simplified to a constant by request. Growth and maximum-size clamping remain part of phase 2.
+The initial dynamic-sizing implementation was simplified to a constant by request.
 
-### Phase 2: Every-second-level growth and bounded size
+### Phase 2: Every-second-level growth and bounded size (implemented)
 
 - Set the size increment to `Vector2i(5, 5)` and the growth interval to two levels.
 - Introduce the configurable maximum `Vector2i(120, 120)` and clamp each axis independently.
@@ -96,21 +96,45 @@ The initial dynamic-sizing implementation was simplified to a constant by reques
 - Update session tests for paired levels, the first increase on level 3, partial-axis clamping, full clamping, and very large valid indices.
 - Replace any old overflow-rejection test with capped-size assertions.
 
-### Phase 3: Size-based split lookup
+### Phase 3: Size-based split lookup (implemented)
 
 - Replace the per-level split increment with the centralized table above, selected from final dungeon dimensions.
 - Test both sides of each threshold, requiring both dimensions, plus saturation at the final row.
 - Check the examples above, stable revisits, and reset behavior through the existing session API.
 - Leave `DungeonGenerator`, `Branch`, and BSP subdivision behavior unchanged.
 
-### Phase 4: Integration and tuning
+### Phase 4: Integration and tuning (automated checks complete)
 
 - Update existing expectations in `test/test_ProcGenWorld.gd` that assume the previous size or split progression.
 - Run focused session and procedural-world GUT tests, then the full suite using `test_ING.bat`.
 - Exercise the existing generator through tests with representative fixed seeds at the starting size, both split thresholds, and maximum size. Check successful generation and usable distinct stair endpoints without modifying generation code.
 - Manually play levels 1-3 and backtrack; check initial framing, stairs, and unchanged character/session state. Inspect representative threshold and capped dungeons without requiring a 41-level playthrough.
 - Record generation time and room usability at the proposed lookup thresholds and cap. Tune only the table if necessary; do not claim a performance guarantee without measurements.
-- Update the growth and acceptance statements in `feature_multiple_levels.md` to reference this feature and remove the superseded claim that every deeper level must be larger.
+- The older `feature_multiple_levels.md` is absent from the current workspace and has not been recreated. This document defines the current progression and supersedes the earlier requirement for every deeper level to be larger.
+
+## Verification results
+
+- The focused session suite passes 37 test methods, including parameterized checks for 22 level indices and eight split-threshold cases. Coverage includes paired levels, independent axis clamping, the partial final height increment, capped-level caching, and the maximum signed 64-bit level index.
+- Routine scene-level checks cover levels 1 and 3, verifying actual generated dimensions, recursive depth, distinct stairs on floor cells, and player arrival. Larger-level progression is covered by inexpensive session tests and direct generator tests rather than redundant full scene instantiation. A separate transition test travels 1 -> 2 -> 3 -> 2 -> 1 and verifies configuration reuse and unchanged character/session state.
+- Routine generator checks use seed 4711 once at each size below and verify distinct stair endpoints on floor cells. A single small-dungeon regeneration check reproduces floor/wall layouts, stair positions, and enemy/item scenes and positions. These progression checks generate six dungeons instead of 24, without timing instrumentation or custom print output.
+- The full suite, run with `test_ING.bat`, passes all 214 test methods across 34 scripts. Parameterized cases are counted within their test methods. Existing shutdown resource warnings remain; no generation algorithm changes were made.
+
+Historical generator-only measurements from the initial four-seed tuning run on this machine (seeds 1, 42, 1234, and 4711). All 16 cases generated distinct stair endpoints on floor cells. This benchmark sweep is no longer part of routine tests:
+
+| Size | Splits | Time across four seeds | Smallest leaf axis observed |
+| --- | --- | --- | --- |
+| 40x23 | 3 | 2.76-3.47 ms | 2 tiles |
+| 60x40 | 4 | 14.01-15.64 ms | 2 tiles |
+| 100x80 | 5 | 134.40-153.86 ms | 3 tiles |
+| 120x120 | 5 | 402.74-440.51 ms | 4 tiles |
+
+These are observations, not performance guarantees; scene instantiation and rendering add cost. The table remains unchanged because the sampled endpoint and determinism checks passed. Thin early leaves remain a known limitation of the unchanged BSP algorithm, and arbitrary seeds are not guaranteed to produce comfortably sized rooms.
+
+### Remaining manual checks
+
+- Play levels 1-3 and backtrack using the stairs, checking initial framing, physical traversal, and unchanged character/session state.
+- Visually inspect representative split-threshold and capped dungeons for room usability and perceived transition time.
+- Automated scene and transition tests do not replace these manual checks; they were not performed during this implementation.
 
 ## Acceptance criteria
 

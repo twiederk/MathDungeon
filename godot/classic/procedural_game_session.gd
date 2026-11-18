@@ -3,10 +3,14 @@ class_name ProceduralGameSession
 
 const FIRST_PROCEDURAL_LEVEL := 1
 const FIRST_PROCEDURAL_LEVEL_SIZE := Vector2i(40, 23)
-const PROCEDURAL_LEVEL_SIZE_INCREMENT := Vector2i(20, 20)
+const PROCEDURAL_LEVEL_SIZE_INCREMENT := Vector2i(5, 5)
+const PROCEDURAL_LEVEL_GROWTH_INTERVAL := 2
+const MAX_PROCEDURAL_LEVEL_SIZE := Vector2i(120, 120)
 const FIRST_PROCEDURAL_LEVEL_SPLITS := 3
-const PROCEDURAL_LEVEL_SPLIT_INCREMENT := 1
-const MAX_VECTOR2I_COMPONENT := 2_147_483_647
+const PROCEDURAL_LEVEL_SPLIT_THRESHOLDS := [
+	{"size": Vector2i(60, 40), "splits": 4},
+	{"size": Vector2i(100, 80), "splits": 5}
+]
 const NO_SEED := 0
 
 
@@ -33,20 +37,27 @@ func get_or_create_procedural_level_config(level_index: int) -> LevelConfig:
 	if procedural_level_configs.has(level_index):
 		return procedural_level_configs[level_index].duplicate()
 
-	var growth_steps := level_index - FIRST_PROCEDURAL_LEVEL
 	@warning_ignore("integer_division")
-	var max_growth_steps_x := (MAX_VECTOR2I_COMPONENT - FIRST_PROCEDURAL_LEVEL_SIZE.x) / PROCEDURAL_LEVEL_SIZE_INCREMENT.x
-	@warning_ignore("integer_division")
-	var max_growth_steps_y := (MAX_VECTOR2I_COMPONENT - FIRST_PROCEDURAL_LEVEL_SIZE.y) / PROCEDURAL_LEVEL_SIZE_INCREMENT.y
-	if growth_steps > min(max_growth_steps_x, max_growth_steps_y):
-		push_error("Procedural level size exceeds Vector2i limits.")
-		return null
+	var growth_steps := (level_index - FIRST_PROCEDURAL_LEVEL) / PROCEDURAL_LEVEL_GROWTH_INTERVAL
+	var max_growth_steps_x := ceili(float(MAX_PROCEDURAL_LEVEL_SIZE.x - FIRST_PROCEDURAL_LEVEL_SIZE.x) / PROCEDURAL_LEVEL_SIZE_INCREMENT.x)
+	var max_growth_steps_y := ceili(float(MAX_PROCEDURAL_LEVEL_SIZE.y - FIRST_PROCEDURAL_LEVEL_SIZE.y) / PROCEDURAL_LEVEL_SIZE_INCREMENT.y)
+	var level_size := Vector2i(
+		mini(MAX_PROCEDURAL_LEVEL_SIZE.x, FIRST_PROCEDURAL_LEVEL_SIZE.x + PROCEDURAL_LEVEL_SIZE_INCREMENT.x * mini(growth_steps, max_growth_steps_x)),
+		mini(MAX_PROCEDURAL_LEVEL_SIZE.y, FIRST_PROCEDURAL_LEVEL_SIZE.y + PROCEDURAL_LEVEL_SIZE_INCREMENT.y * mini(growth_steps, max_growth_steps_y))
+	)
 
 	var level_seed := randi()
 	while level_seed == NO_SEED:
 		level_seed = randi()
-	var level_size := FIRST_PROCEDURAL_LEVEL_SIZE + PROCEDURAL_LEVEL_SIZE_INCREMENT * growth_steps
-	var level_splits := FIRST_PROCEDURAL_LEVEL_SPLITS + PROCEDURAL_LEVEL_SPLIT_INCREMENT * growth_steps
+	var level_splits := _get_splits_for_size(level_size)
 	var level_config := LevelConfig.new(level_seed, level_size, level_splits)
 	procedural_level_configs[level_index] = level_config
 	return level_config.duplicate()
+
+
+func _get_splits_for_size(level_size: Vector2i) -> int:
+	var splits := FIRST_PROCEDURAL_LEVEL_SPLITS
+	for threshold in PROCEDURAL_LEVEL_SPLIT_THRESHOLDS:
+		if level_size.x >= threshold.size.x and level_size.y >= threshold.size.y:
+			splits = threshold.splits
+	return splits
