@@ -31,7 +31,7 @@ func _ready() -> void:
 
 
 func _resolve_level_config() -> LevelConfig:
-	var level_config := GameSession.get_or_create_procedural_level_config(GameSession.procedural_level_index)
+	var level_config := GameSession.get_or_create_procedural_level_config(GameSession.get_procedural_level_index())
 	if seed_value != GameSession.NO_SEED:
 		level_config.seed_value = seed_value
 	return level_config
@@ -40,7 +40,7 @@ func _resolve_level_config() -> LevelConfig:
 func _resolve_seed() -> int:
 	if seed_value != GameSession.NO_SEED:
 		return seed_value
-	return GameSession.get_or_create_procedural_level_config(GameSession.procedural_level_index).seed_value
+	return GameSession.get_or_create_procedural_level_config(GameSession.get_procedural_level_index()).seed_value
 
 
 func generate_world(level_config: LevelConfig) -> void:
@@ -59,15 +59,15 @@ func get_start_position() -> Vector2:
 
 func _place_player(generated_dungeon: Dungeon) -> void:
 	var spawn_position := generated_dungeon.start_position
-	if GameSession.procedural_spawn_at_end:
+	if GameSession.is_procedural_spawn_at_end():
 		spawn_position = generated_dungeon.end_position
 	player.global_position = tile_map_layer.to_global(tile_map_layer.map_to_local(spawn_position))
 
 
 func _place_stairs(generated_dungeon: Dungeon) -> void:
-	var spawn_at_up_stairs := not GameSession.procedural_spawn_at_end
+	var spawn_at_up_stairs := not GameSession.is_procedural_spawn_at_end()
 	_add_stairs(STAIRS_UP_SCENE, generated_dungeon.start_position, spawn_at_up_stairs)
-	_add_stairs(STAIRS_DOWN_SCENE, generated_dungeon.end_position, GameSession.procedural_spawn_at_end)
+	_add_stairs(STAIRS_DOWN_SCENE, generated_dungeon.end_position, GameSession.is_procedural_spawn_at_end())
 
 
 func _add_stairs(stairs_scene: PackedScene, tile_position: Vector2i, starts_disarmed: bool) -> void:
@@ -91,19 +91,19 @@ func _on_stairs_activated(goes_down: bool) -> void:
 
 func _handle_stair_transition(goes_down: bool) -> bool:
 	if goes_down:
-		var next_level_index := GameSession.procedural_level_index + 1
+		var next_level_index := GameSession.get_procedural_level_index() + 1
 		var next_level_config := GameSession.get_or_create_procedural_level_config(next_level_index)
 		if next_level_config == null:
 			return false
-		GameSession.procedural_level_index = next_level_index
-		GameSession.procedural_spawn_at_end = false
+		GameSession.set_procedural_level_index(next_level_index)
+		GameSession.set_procedural_spawn_at_end(false)
 		return false
 
-	if GameSession.procedural_level_index == GameSession.FIRST_PROCEDURAL_LEVEL:
+	if GameSession.get_procedural_level_index() == ProceduralGameSession.FIRST_PROCEDURAL_LEVEL:
 		return true
 
-	GameSession.procedural_level_index -= 1
-	GameSession.procedural_spawn_at_end = true
+	GameSession.set_procedural_level_index(GameSession.get_procedural_level_index() - 1)
+	GameSession.set_procedural_spawn_at_end(true)
 	return false
 
 

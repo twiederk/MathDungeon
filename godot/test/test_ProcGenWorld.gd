@@ -5,7 +5,7 @@ const PROC_GEN_WORLD_SCENE = preload("res://procedural/proc_gen_world.tscn")
 
 func after_each():
 	GameSession.world_seed = GameSession.NO_SEED
-	GameSession.reset_procedural_progression()
+	GameSession.procedural_game_session.reset_procedural_progression()
 
 
 func test_player_default_speed_is_unchanged():
@@ -48,7 +48,7 @@ func test_resolve_seed_uses_the_session_seed():
 	# arrange
 	var world = autofree(ProcGenWorld.new())
 	world.seed_value = GameSession.NO_SEED
-	GameSession.procedural_level_configs[1] = LevelConfig.new(1234, Vector2i(80, 80), 3)
+	GameSession.procedural_game_session.procedural_level_configs[1] = LevelConfig.new(1234, Vector2i(80, 80), 3)
 	
 	# act
 	var resolved_seed = world._resolve_seed()
@@ -61,7 +61,7 @@ func test_resolve_level_config_uses_the_session_level_size():
 	# arrange
 	var world = autofree(ProcGenWorld.new())
 	var size := Vector2i(60, 60)
-	GameSession.procedural_level_configs[1] = LevelConfig.new(1234, size, 3)
+	GameSession.procedural_game_session.procedural_level_configs[1] = LevelConfig.new(1234, size, 3)
 
 	# act
 	var level_config = world._resolve_level_config()
@@ -75,12 +75,12 @@ func test_resolve_level_config_uses_the_session_level_size():
 func test_resolve_level_config_seed_override_does_not_change_the_session_configuration():
 	var world = autofree(ProcGenWorld.new())
 	world.seed_value = 4711
-	GameSession.procedural_level_configs[1] = LevelConfig.new(1234, Vector2i(60, 60), 3)
+	GameSession.procedural_game_session.procedural_level_configs[1] = LevelConfig.new(1234, Vector2i(60, 60), 3)
 
 	var level_config = world._resolve_level_config()
 
 	assert_eq(level_config.seed_value, 4711)
-	assert_eq(GameSession.procedural_level_configs[1].seed_value, 1234)
+	assert_eq(GameSession.procedural_game_session.procedural_level_configs[1].seed_value, 1234)
 
 
 func test_resolve_seed_is_stable_across_worlds():
@@ -99,7 +99,7 @@ func test_resolve_seed_is_stable_across_worlds():
 func test_world_generation_uses_the_session_level_size():
 	# arrange
 	var size := Vector2i(60, 60)
-	GameSession.procedural_level_configs[1] = LevelConfig.new(1234, size, 4)
+	GameSession.procedural_game_session.procedural_level_configs[1] = LevelConfig.new(1234, size, 4)
 
 	# act
 	var world = add_child_autofree(PROC_GEN_WORLD_SCENE.instantiate())
@@ -111,7 +111,7 @@ func test_world_generation_uses_the_session_level_size():
 
 func test_world_places_stairs_at_dungeon_endpoints():
 	# arrange
-	GameSession.procedural_level_configs[1] = LevelConfig.new(1234, Vector2i(60, 60), 3)
+	GameSession.procedural_game_session.procedural_level_configs[1] = LevelConfig.new(1234, Vector2i(60, 60), 3)
 
 	# act
 	var world = add_child_autofree(PROC_GEN_WORLD_SCENE.instantiate())
@@ -134,30 +134,30 @@ func test_descending_creates_and_enters_next_level():
 
 	# assert
 	assert_false(should_end_run)
-	assert_eq(GameSession.procedural_level_index, 2)
-	assert_false(GameSession.procedural_spawn_at_end)
-	assert_true(GameSession.procedural_level_configs.has(2))
+	assert_eq(GameSession.procedural_game_session.procedural_level_index, 2)
+	assert_false(GameSession.procedural_game_session.procedural_spawn_at_end)
+	assert_true(GameSession.procedural_game_session.procedural_level_configs.has(2))
 
 
 func test_ascending_returns_to_previous_level_at_down_stairs():
 	# arrange
 	var world = autofree(ProcGenWorld.new())
-	GameSession.procedural_level_index = 2
-	GameSession.get_or_create_procedural_level_config(2)
+	GameSession.procedural_game_session.procedural_level_index = 2
+	GameSession.procedural_game_session.get_or_create_procedural_level_config(2)
 
 	# act
 	var should_end_run = world._handle_stair_transition(false)
 
 	# assert
 	assert_false(should_end_run)
-	assert_eq(GameSession.procedural_level_index, 1)
-	assert_true(GameSession.procedural_spawn_at_end)
+	assert_eq(GameSession.procedural_game_session.procedural_level_index, 1)
+	assert_true(GameSession.procedural_game_session.procedural_spawn_at_end)
 
 
 func test_arriving_from_below_spawns_at_last_room():
 	# arrange
-	GameSession.procedural_spawn_at_end = true
-	GameSession.procedural_level_configs[1] = LevelConfig.new(1234, Vector2i(60, 60), 3)
+	GameSession.procedural_game_session.procedural_spawn_at_end = true
+	GameSession.procedural_game_session.procedural_level_configs[1] = LevelConfig.new(1234, Vector2i(60, 60), 3)
 
 	# act
 	var world = add_child_autofree(PROC_GEN_WORLD_SCENE.instantiate())
@@ -170,8 +170,8 @@ func test_arriving_from_below_spawns_at_last_room():
 
 func test_arriving_from_above_spawns_at_first_room():
 	# arrange
-	GameSession.procedural_spawn_at_end = false
-	GameSession.procedural_level_configs[1] = LevelConfig.new(1234, Vector2i(60, 60), 3)
+	GameSession.procedural_game_session.procedural_spawn_at_end = false
+	GameSession.procedural_game_session.procedural_level_configs[1] = LevelConfig.new(1234, Vector2i(60, 60), 3)
 
 	# act
 	var world = add_child_autofree(PROC_GEN_WORLD_SCENE.instantiate())
@@ -184,8 +184,8 @@ func test_arriving_from_above_spawns_at_first_room():
 
 func test_arrival_stairs_arm_after_player_exits():
 	# arrange
-	GameSession.procedural_spawn_at_end = true
-	GameSession.procedural_level_configs[1] = LevelConfig.new(1234, Vector2i(60, 60), 3)
+	GameSession.procedural_game_session.procedural_spawn_at_end = true
+	GameSession.procedural_game_session.procedural_level_configs[1] = LevelConfig.new(1234, Vector2i(60, 60), 3)
 	var world = add_child_autofree(PROC_GEN_WORLD_SCENE.instantiate())
 	var stairs_down = world.get_node("Locations/StairsDown")
 
@@ -205,7 +205,7 @@ func test_first_level_up_stairs_end_the_run():
 
 	# assert
 	assert_true(should_end_run)
-	assert_eq(GameSession.procedural_level_index, GameSession.FIRST_PROCEDURAL_LEVEL)
+	assert_eq(GameSession.procedural_game_session.procedural_level_index, ProceduralGameSession.FIRST_PROCEDURAL_LEVEL)
 
 
 func test_procedural_run_end_routes_by_highscore_eligibility():
