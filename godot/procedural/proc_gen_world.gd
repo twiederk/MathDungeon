@@ -20,7 +20,6 @@ const TILE_SIZE_HALF: Vector2 = Vector2(TILE_SIZE / 2, TILE_SIZE / 2)
 
 var dungeon_generator: DungeonGenerator = DungeonGenerator.new()
 var dungeon: Dungeon
-var transition_started: bool = false
 var stairs_up: ProceduralStairs
 var stairs_down: ProceduralStairs
 
@@ -102,13 +101,9 @@ func get_start_position() -> Vector2:
 
 
 func _on_stairs_activated(goes_down: bool) -> void:
-	if transition_started:
-		return
 	if _handle_stair_transition(goes_down):
-		transition_started = true
 		_leave_dungeon()
 		return
-	transition_started = true
 	get_tree().call_deferred("change_scene_to_file", PROCEDURAL_WORLD_SCENE_PATH)
 
 
