@@ -1,28 +1,19 @@
+class_name ProceduralStairs
 extends Area2D
 
 
 signal activated(goes_down: bool)
 
 @export var goes_down: bool = false
-@export var starts_disarmed: bool = false
 
-var _armed: bool = true
-
-
-func _ready() -> void:
-	_armed = not starts_disarmed
+@onready var spawn_point: Marker2D = $SpawnPoint
 
 
-func is_armed() -> bool:
-	return _armed
+func get_spawn_point() -> Vector2:
+	return spawn_point.global_position
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.name != "Player" or not _armed:
+	if body.name != "Player":
 		return
 	activated.emit(goes_down)
-
-
-func _on_body_exited(body: Node2D) -> void:
-	if body.name == "Player":
-		_armed = true

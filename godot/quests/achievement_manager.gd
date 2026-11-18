@@ -73,7 +73,15 @@ func register_locations(enemies: Array) -> void:
 	for enemy in enemies:
 		if enemy is not Enemy or enemy.location == "":
 			continue
-		_locations[enemy.location] = _locations.get(enemy.location, 0) + 1
+		if not _locations.has(enemy.location):
+			_locations[enemy.location] = {"remaining_enemies": {}, "bonus": -1}
+		var remaining: Dictionary = _locations[enemy.location].remaining_enemies
+		remaining[enemy.get_instance_id()] = true
+
+
+func register_location_bonus(location: String, bonus: int) -> void:
+	if _locations.has(location):
+		_locations[location].bonus = bonus
 
 
 func track_score(new_score: int) -> void:
@@ -82,7 +90,7 @@ func track_score(new_score: int) -> void:
 
 func track_enemy_defeat(enemy: Enemy) -> void:
 	_track_enemy_type_defeat(enemy.stats.name)
-	_track_location_defeat(enemy.location)
+	_track_location_defeat(enemy)
 
 
 func _track_enemy_type_defeat(enemy_name: String) -> void:
@@ -91,16 +99,21 @@ func _track_enemy_type_defeat(enemy_name: String) -> void:
 		_check_progress_achievements("enderdragon")
 
 
-func _track_location_defeat(location: String) -> void:
+func _track_location_defeat(enemy: Enemy) -> void:
+	var location := enemy.location
 	if not _locations.has(location):
 		return
-	_locations[location] -= 1
-	if _locations[location] > 0:
+	var location_data: Dictionary = _locations[location]
+	var remaining: Dictionary = location_data.remaining_enemies
+	if not remaining.erase(enemy.get_instance_id()):
 		return
+	if not remaining.is_empty():
+		return
+	var bonus: int = location_data.bonus
 	_locations.erase(location)
 	var type = _location_to_type(location)
 	progress[type] = progress.get(type, 0) + 1
-	_check_progress_achievements(type)
+	_check_progress_achievements(type, {"dungeon": bonus})
 
 
 # Enemies are counted per dungeon, but all dungeons share one achievement.
@@ -118,7 +131,7 @@ func _set_progress(type: String, value: int) -> void:
 	_check_progress_achievements(type)
 
 
-func _check_progress_achievements(type: String) -> void:
+func _check_progress_achievements(type: String, bonus_overrides: Dictionary = {}) -> void:
 	var current = progress.get(type, 0)
 	var to_unlock: Array[String] = []
 	
@@ -130,14 +143,14 @@ func _check_progress_achievements(type: String) -> void:
 	
 	# unlocking may re-enter this function via score bonuses, so collect first
 	for achievement_id in to_unlock:
-		_unlock_achievement(achievement_id)
+		_unlock_achievement(achievement_id, bonus_overrides.get(achievement_id, -1))
 
 
 func _can_unlock(achievement_id: String) -> bool:
 	return achievement_id not in unlocked_achievements or ACHIEVEMENTS[achievement_id].repeatable
 
 
-func _unlock_achievement(achievement_id: String) -> void:
+func _unlock_achievement(achievement_id: String, bonus_override: int = -1) -> void:
 	if not _can_unlock(achievement_id):
 		return
 	
@@ -148,6 +161,8 @@ func _unlock_achievement(achievement_id: String) -> void:
 		recent_unlocks.pop_front()
 	
 	var achievement = ACHIEVEMENTS[achievement_id]
+	if bonus_override >= 0:
+		achievement = Achievement.new(achievement.title, achievement.desc, achievement.target, achievement.type, achievement.badge_graphic, bonus_override, achievement.repeatable)
 	achievement_unlocked.emit(achievement)
 
 
@@ -159,4 +174,4 @@ func reset() -> void:
 	unlocked_achievements.clear()
 	progress = {"score": 0, "eyes_of_ender": 0, "lighter": 0, "enderdragon": 0, "nether": 0, "dungeon": 0}
 	recent_unlocks.clear()
-	_locations.clear()
+	clear_locations()

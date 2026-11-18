@@ -5,6 +5,8 @@ var root_node: Branch
 var entrance: Vector2i
 var start_position: Vector2i
 var end_position: Vector2i
+var stairs_up_position: Vector2i
+var stairs_down_position: Vector2i
 var floor_arr: Array[Vector2i] = []
 var wall_arr: Array[Vector2i] = []
 var enemies: Array[Enemy] = []

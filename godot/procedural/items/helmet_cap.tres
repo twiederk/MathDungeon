@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArmorResource" format=3 uid="uid://wc2hidw03vkp"]
+
+[ext_resource type="Script" uid="uid://cvvocs4krryds" path="res://items/armor_resource.gd" id="1_armor"]
+[ext_resource type="Texture2D" path="res://procedural/items/helmet_cap_atlas_texture.tres" id="2_icon"]
+
+[resource]
+script = ExtResource("1_armor")
+id = "rpg_helmet_cap"
+name = "Kappe"
+armor = 1
+icon_atlas = ExtResource("2_icon")

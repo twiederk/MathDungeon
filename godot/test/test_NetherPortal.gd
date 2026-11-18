@@ -1,30 +1,13 @@
 extends GutTest
 
 
-func after_each():
-	GameSession.overworld_path = GameSession.DEFAULT_OVERWORLD_PATH
+const NETHER_SCENE := preload("res://classic/nether.tscn")
 
 
-func test_target_path_uses_the_exported_dungeon_path():
+func test_nether_portal_targets_the_overworld():
 	# arrange
-	var portal = autofree(NetherPortal.new())
-	portal.dungeon_path = "res://classic/nether.tscn"
-	
-	# act
-	var target_path = portal.get_target_path()
+	var nether_scene = autofree(NETHER_SCENE.instantiate())
+	var portal = nether_scene.get_node("Locations/NetherPortal")
 	
 	# assert
-	assert_eq(target_path, "res://classic/nether.tscn")
-
-
-func test_target_path_falls_back_to_the_session_overworld_path():
-	# arrange
-	var portal = autofree(NetherPortal.new())
-	portal.dungeon_path = ""
-	GameSession.overworld_path = "res://procedural/proc_gen_world.tscn"
-	
-	# act
-	var target_path = portal.get_target_path()
-	
-	# assert
-	assert_eq(target_path, "res://procedural/proc_gen_world.tscn")
+	assert_eq(portal.dungeon_path, "res://classic/overworld.tscn")

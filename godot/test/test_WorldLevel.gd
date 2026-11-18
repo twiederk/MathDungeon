@@ -2,7 +2,7 @@ extends GutTest
 
 
 func after_each():
-	GameSession.overworld_path = GameSession.DEFAULT_OVERWORLD_PATH
+	GameSession.spawn_point = GameSession.SpawnPoint.START
 
 
 func _build_level(scene_path: String, portal: NetherPortal) -> WorldLevel:
@@ -12,38 +12,17 @@ func _build_level(scene_path: String, portal: NetherPortal) -> WorldLevel:
 	return level
 
 
-func test_register_return_path_stores_the_scene_path():
+func test_get_start_position_uses_the_nether_portal_marker():
 	# arrange
 	var portal = autofree(NetherPortal.new())
-	portal.dungeon_path = "res://classic/nether.tscn"
+	var spawn_marker = autofree(Marker2D.new())
+	spawn_marker.position = Vector2(12, 34)
+	portal.spawn_point = spawn_marker
 	var level = _build_level("res://procedural/proc_gen_world.tscn", portal)
-	
+	GameSession.spawn_point = GameSession.SpawnPoint.NETHER_PORTAL
+
 	# act
-	level._register_return_path()
-	
+	var start_position = level.get_start_position()
+
 	# assert
-	assert_eq(GameSession.overworld_path, "res://procedural/proc_gen_world.tscn")
-
-
-func test_register_return_path_ignores_levels_without_a_nether_portal():
-	# arrange
-	var level = _build_level("res://classic/nether.tscn", null)
-	
-	# act
-	level._register_return_path()
-	
-	# assert
-	assert_eq(GameSession.overworld_path, GameSession.DEFAULT_OVERWORLD_PATH)
-
-
-func test_register_return_path_ignores_portals_without_a_dungeon_path():
-	# arrange
-	var portal = autofree(NetherPortal.new())
-	portal.dungeon_path = ""
-	var level = _build_level("res://classic/nether.tscn", portal)
-	
-	# act
-	level._register_return_path()
-	
-	# assert
-	assert_eq(GameSession.overworld_path, GameSession.DEFAULT_OVERWORLD_PATH)
+	assert_eq(start_position, spawn_marker.global_position)

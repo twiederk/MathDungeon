@@ -1,7 +1,7 @@
 class_name ItemGenerator
 
 
-const WOOD_HELMET_SCENE = preload("res://procedural/items/helmet_wood.tscn")
+const WOOD_HELMET_SCENE = preload("res://procedural/items/helmet_cap.tscn")
 
 const WEAPON_KNIFE_SCENE = preload("res://procedural/items/weapon_knife.tscn")
 const WEAPON_DAGGER_SCENE = preload("res://procedural/items/weapon_dagger.tscn")

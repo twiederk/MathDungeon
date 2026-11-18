@@ -3,13 +3,12 @@ extends GutTest
 func after_each():
 	GameSession.difficulty_level = GameSession.DifficultyLevel.NORMAL
 	GameSession.display_state = GameSession.DisplayState.NONE
-	GameSession.overworld_path = GameSession.DEFAULT_OVERWORLD_PATH
 	GameSession.world_seed = GameSession.NO_SEED
 	GameSession.game_mode = GameSession.GameMode.NORMAL
 	GameSession.run_duration_seconds = GameSession.RUN_DURATION_SECONDS
 	GameSession.run_active = false
 	GameSession.run_time_left = 0.0
-	GameSession.reset_procedural_progression()
+	GameSession.procedural_game_session.reset_procedural_progression()
 
 
 func test_reset():
@@ -51,28 +50,6 @@ func test_reset_keeps_difficulty_level():
 	
 	# assert
 	assert_eq(GameSession.difficulty_level, GameSession.DifficultyLevel.HARD)
-
-
-func test_reset_restores_the_default_overworld_path():
-	# arrange
-	GameSession.overworld_path = "res://procedural/proc_gen_world.tscn"
-	
-	# act
-	GameSession.reset()
-	
-	# assert
-	assert_eq(GameSession.overworld_path, GameSession.DEFAULT_OVERWORLD_PATH)
-
-
-func test_set_overworld_path():
-	# arrange
-	var path = "res://procedural/proc_gen_world.tscn"
-	
-	# act
-	GameSession.set_overworld_path(path)
-	
-	# assert
-	assert_eq(GameSession.overworld_path, path)
 
 
 func test_reset_clears_the_world_seed():
@@ -122,59 +99,158 @@ func test_get_or_create_world_seed_keeps_an_existing_seed():
 
 func test_start_procedural_run_creates_the_first_level_configuration():
 	# arrange
-	GameSession.get_or_create_procedural_level_config(3)
-	GameSession.procedural_level_index = 3
+	GameSession.procedural_game_session.get_or_create_procedural_level_config(3)
+	GameSession.procedural_game_session.procedural_level_index = 3
 
 	# act
 	var level_config = GameSession.start_procedural_run()
 
 	# assert
-	assert_eq(GameSession.procedural_level_index, GameSession.FIRST_PROCEDURAL_LEVEL)
-	assert_eq(GameSession.procedural_level_configs.size(), 1)
-	assert_eq(level_config["size"], GameSession.FIRST_PROCEDURAL_LEVEL_SIZE)
-	assert_eq(level_config["splits"], GameSession.FIRST_PROCEDURAL_LEVEL_SPLITS)
-	assert_ne(level_config["seed"], GameSession.NO_SEED)
+	assert_eq(GameSession.procedural_game_session.procedural_level_index, ProceduralGameSession.FIRST_PROCEDURAL_LEVEL)
+	assert_eq(GameSession.procedural_game_session.procedural_level_configs.size(), 1)
+	assert_true(level_config is LevelConfig)
+	assert_eq(level_config.size, ProceduralGameSession.FIRST_PROCEDURAL_LEVEL_SIZE)
+	assert_eq(level_config.splits, ProceduralGameSession.FIRST_PROCEDURAL_LEVEL_SPLITS)
+	assert_ne(level_config.seed_value, GameSession.NO_SEED)
 
 
 func test_procedural_level_configuration_is_stable_when_requested_again():
 	# arrange
-	var first_config = GameSession.get_or_create_procedural_level_config(2)
+	var first_config = GameSession.procedural_game_session.get_or_create_procedural_level_config(2)
 
 	# act
-	var second_config = GameSession.get_or_create_procedural_level_config(2)
+	var second_config = GameSession.procedural_game_session.get_or_create_procedural_level_config(2)
 
 	# assert
-	assert_eq(second_config["seed"], first_config["seed"])
-	assert_eq(second_config["size"], first_config["size"])
-	assert_eq(second_config["splits"], first_config["splits"])
-	assert_eq(GameSession.procedural_level_configs.size(), 1)
+	assert_eq(second_config.seed_value, first_config.seed_value)
+	assert_eq(second_config.size, first_config.size)
+	assert_eq(second_config.splits, first_config.splits)
+	assert_ne(second_config, first_config)
+	assert_eq(GameSession.procedural_game_session.procedural_level_configs.size(), 1)
 
 
-func test_procedural_level_size_increases_with_depth():
+func test_returned_procedural_level_configuration_does_not_change_the_cached_configuration():
 	# arrange
-	var first_config = GameSession.get_or_create_procedural_level_config(1)
+	var first_config = GameSession.procedural_game_session.get_or_create_procedural_level_config(1)
+	var original_seed = first_config.seed_value
+	first_config.seed_value = GameSession.NO_SEED
+	first_config.size = Vector2i.ONE
+	first_config.splits = 0
 
 	# act
-	var second_config = GameSession.get_or_create_procedural_level_config(2)
+	var second_config = GameSession.procedural_game_session.get_or_create_procedural_level_config(1)
 
 	# assert
-	assert_gt(second_config["size"].x, first_config["size"].x)
-	assert_gt(second_config["size"].y, first_config["size"].y)
-	assert_gt(second_config["splits"], first_config["splits"])
+	assert_eq(second_config.seed_value, original_seed)
+	assert_eq(second_config.size, ProceduralGameSession.FIRST_PROCEDURAL_LEVEL_SIZE)
+	assert_eq(second_config.splits, ProceduralGameSession.FIRST_PROCEDURAL_LEVEL_SPLITS)
+
+
+func test_procedural_level_progression(parameters = use_parameters([
+	[1, Vector2i(40, 23), 3],
+	[2, Vector2i(40, 23), 3],
+	[3, Vector2i(45, 28), 3],
+	[4, Vector2i(45, 28), 3],
+	[7, Vector2i(55, 38), 3],
+	[8, Vector2i(55, 38), 3],
+	[9, Vector2i(60, 43), 4],
+	[10, Vector2i(60, 43), 4],
+	[23, Vector2i(95, 78), 4],
+	[24, Vector2i(95, 78), 4],
+	[25, Vector2i(100, 83), 5],
+	[26, Vector2i(100, 83), 5],
+	[31, Vector2i(115, 98), 5],
+	[32, Vector2i(115, 98), 5],
+	[33, Vector2i(120, 103), 5],
+	[34, Vector2i(120, 103), 5],
+	[39, Vector2i(120, 118), 5],
+	[40, Vector2i(120, 118), 5],
+	[41, Vector2i(120, 120), 5],
+	[42, Vector2i(120, 120), 5],
+	[1000, Vector2i(120, 120), 5],
+	[9223372036854775807, Vector2i(120, 120), 5]
+])):
+	# arrange
+	var level_index = parameters[0]
+	var expected_size = parameters[1]
+	var expected_splits = parameters[2]
+
+	# act
+	var level_config = GameSession.get_or_create_procedural_level_config(level_index)
+
+	# assert
+	assert_eq(level_config.size, expected_size)
+	assert_eq(level_config.splits, expected_splits)
+	assert_ne(level_config.seed_value, GameSession.NO_SEED)
+
+
+func test_procedural_split_thresholds_require_both_dimensions(parameters = use_parameters([
+	[Vector2i(40, 23), 3],
+	[Vector2i(59, 40), 3],
+	[Vector2i(60, 39), 3],
+	[Vector2i(60, 40), 4],
+	[Vector2i(99, 80), 4],
+	[Vector2i(100, 79), 4],
+	[Vector2i(100, 80), 5],
+	[Vector2i(120, 120), 5]
+])):
+	# arrange
+	var level_size = parameters[0]
+	var expected_splits = parameters[1]
+
+	# act
+	var splits = GameSession.procedural_game_session._get_splits_for_size(level_size)
+
+	# assert
+	assert_eq(splits, expected_splits)
+
+
+func test_capped_procedural_levels_keep_separate_cached_configurations():
+	# arrange
+	var first_config = GameSession.get_or_create_procedural_level_config(41)
+	var deeper_config = GameSession.get_or_create_procedural_level_config(43)
+
+	# act
+	var revisited_config = GameSession.get_or_create_procedural_level_config(41)
+
+	# assert
+	assert_eq(deeper_config.size, first_config.size)
+	assert_eq(deeper_config.splits, first_config.splits)
+	assert_eq(revisited_config.seed_value, first_config.seed_value)
+	assert_ne(deeper_config, first_config)
+	assert_eq(GameSession.procedural_game_session.procedural_level_configs.size(), 2)
+
+
+func test_procedural_clear_bonus_uses_bounded_split_tiers(parameters = use_parameters([
+	[-1, 500],
+	[3, 500],
+	[4, 1000],
+	[5, 2000],
+	[9223372036854775807, 2000]
+])):
+	# arrange
+	var splits: int = parameters[0]
+	var expected_bonus: int = parameters[1]
+
+	# act
+	var bonus = GameSession.get_procedural_clear_bonus(splits)
+
+	# assert
+	assert_eq(bonus, expected_bonus)
 
 
 func test_reset_clears_procedural_level_configurations():
 	# arrange
-	GameSession.start_procedural_run()
-	GameSession.get_or_create_procedural_level_config(2)
-	GameSession.procedural_level_index = 2
+	GameSession.procedural_game_session.start_procedural_run()
+	GameSession.procedural_game_session.get_or_create_procedural_level_config(2)
+	GameSession.procedural_game_session.procedural_level_index = 2
 
 	# act
 	GameSession.reset()
 
 	# assert
-	assert_eq(GameSession.procedural_level_index, GameSession.FIRST_PROCEDURAL_LEVEL)
-	assert_true(GameSession.procedural_level_configs.is_empty())
+	assert_eq(GameSession.procedural_game_session.procedural_level_index, ProceduralGameSession.FIRST_PROCEDURAL_LEVEL)
+	assert_true(GameSession.procedural_game_session.procedural_level_configs.is_empty())
 
 
 func test_simulation_running_when_display_state_is_none():

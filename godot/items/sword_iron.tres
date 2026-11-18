@@ -1,15 +1,11 @@
 [gd_resource type="Resource" script_class="WeaponResource" format=3 uid="uid://cn6y8wfxkq3mr"]
 
 [ext_resource type="Script" uid="uid://cga2gx46clmmh" path="res://items/weapon_resource.gd" id="1_weapon"]
-[ext_resource type="Texture2D" uid="uid://c31gniut2rq2q" path="res://items/items.png" id="2_icon"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_icon"]
-atlas = ExtResource("2_icon")
-region = Rect2(64, 128, 32, 32)
+[ext_resource type="Texture2D" path="res://items/sword_iron_atlas_texture.tres" id="2_icon"]
 
 [resource]
 script = ExtResource("1_weapon")
 id = "sword_iron"
 name = "Eisenschwert"
 damage = 3
-icon_atlas = SubResource("AtlasTexture_icon")
+icon_atlas = ExtResource("2_icon")

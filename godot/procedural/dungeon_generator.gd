@@ -22,7 +22,14 @@ func generate_dungeon(size: Vector2i, splits: int = 3, seed_value: int = 0) -> D
 	var items = _place_items(root_node)
 	var entrance = _place_entrance(floor_arr)
 	var wall_arr = _place_walls(size, floor_arr)
-	return Dungeon.new(root_node, entrance, start_position, end_position, floor_arr, wall_arr, enemies, items)
+	var dungeon := Dungeon.new(root_node, entrance, start_position, end_position, floor_arr, wall_arr, enemies, items)
+	_configure_stairs(dungeon)
+	return dungeon
+
+
+func _configure_stairs(dungeon: Dungeon) -> void:
+	dungeon.stairs_up_position = dungeon.start_position
+	dungeon.stairs_down_position = dungeon.end_position
 
 
 func _place_rooms(root_node: Branch) -> Array[Vector2i]:
