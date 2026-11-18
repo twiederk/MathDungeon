@@ -163,9 +163,7 @@ func test_arriving_from_below_spawns_at_last_room():
 	var world = add_child_autofree(PROC_GEN_WORLD_SCENE.instantiate())
 
 	# assert
-	var expected_position = world.tile_map_layer.to_global(world.tile_map_layer.map_to_local(world.dungeon.end_position))
-	assert_eq(world.player.global_position, expected_position)
-	assert_false(world.get_node("Locations/StairsDown").is_armed())
+	assert_eq(world.player.global_position, world.get_node("Locations/StairsDown/SpawnPoint").global_position)
 
 
 func test_arriving_from_above_spawns_at_first_room():
@@ -177,23 +175,7 @@ func test_arriving_from_above_spawns_at_first_room():
 	var world = add_child_autofree(PROC_GEN_WORLD_SCENE.instantiate())
 
 	# assert
-	var expected_position = world.tile_map_layer.to_global(world.tile_map_layer.map_to_local(world.dungeon.start_position))
-	assert_eq(world.player.global_position, expected_position)
-	assert_false(world.get_node("Locations/StairsUp").is_armed())
-
-
-func test_arrival_stairs_arm_after_player_exits():
-	# arrange
-	GameSession.procedural_game_session.procedural_spawn_at_end = true
-	GameSession.procedural_game_session.procedural_level_configs[1] = LevelConfig.new(1234, Vector2i(60, 60), 3)
-	var world = add_child_autofree(PROC_GEN_WORLD_SCENE.instantiate())
-	var stairs_down = world.get_node("Locations/StairsDown")
-
-	# act
-	stairs_down._on_body_exited(world.player)
-
-	# assert
-	assert_true(stairs_down.is_armed())
+	assert_eq(world.player.global_position, world.get_node("Locations/StairsUp/SpawnPoint").global_position)
 
 
 func test_first_level_up_stairs_end_the_run():

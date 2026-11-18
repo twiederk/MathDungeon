@@ -24,6 +24,21 @@ func test_generate():
 		enemy.free()
 
 
+func test_generate_configures_stairs_at_dungeon_endpoints():
+	# act
+	var generated_dungeon = dungeon_generator.generate_dungeon(Vector2i(20, 20))
+
+	# assert
+	assert_eq(generated_dungeon.stairs_up_position, generated_dungeon.start_position)
+	assert_eq(generated_dungeon.stairs_down_position, generated_dungeon.end_position)
+
+	# tear down
+	for item in generated_dungeon.items:
+		item.free()
+	for enemy in generated_dungeon.enemies:
+		enemy.free()
+
+
 func test_place_entrance():
 	# arrange
 	var floor_arr: Array[Vector2i] = []

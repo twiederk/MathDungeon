@@ -21,6 +21,8 @@ const TILE_SIZE_HALF: Vector2 = Vector2(TILE_SIZE / 2, TILE_SIZE / 2)
 var dungeon_generator: DungeonGenerator = DungeonGenerator.new()
 var dungeon: Dungeon
 var transition_started: bool = false
+var stairs_up: Area2D
+var stairs_down: Area2D
 
 @onready var locations_root: Node2D = $Locations
 
@@ -48,7 +50,7 @@ func generate_world(level_config: LevelConfig) -> void:
 	dungeon = dungeon_generator.generate_dungeon(level_config.size, level_config.splits, seed_value)
 	_place_dungeon(dungeon)
 	_place_stairs(dungeon)
-	_place_player(dungeon)
+	_place_player()
 	_place_enemies(dungeon)
 	_place_items(dungeon)
 
@@ -57,25 +59,24 @@ func get_start_position() -> Vector2:
 	return player.global_position
 
 
-func _place_player(generated_dungeon: Dungeon) -> void:
-	var spawn_position := generated_dungeon.start_position
+func _place_player() -> void:
+	var spawn_stairs := stairs_up
 	if GameSession.is_procedural_spawn_at_end():
-		spawn_position = generated_dungeon.end_position
-	player.global_position = tile_map_layer.to_global(tile_map_layer.map_to_local(spawn_position))
+		spawn_stairs = stairs_down
+	player.global_position = spawn_stairs.get_node("SpawnPoint").global_position
 
 
 func _place_stairs(generated_dungeon: Dungeon) -> void:
-	var spawn_at_up_stairs := not GameSession.is_procedural_spawn_at_end()
-	_add_stairs(STAIRS_UP_SCENE, generated_dungeon.start_position, spawn_at_up_stairs)
-	_add_stairs(STAIRS_DOWN_SCENE, generated_dungeon.end_position, GameSession.is_procedural_spawn_at_end())
+	stairs_up = _add_stairs(STAIRS_UP_SCENE, generated_dungeon.stairs_up_position)
+	stairs_down = _add_stairs(STAIRS_DOWN_SCENE, generated_dungeon.stairs_down_position)
 
 
-func _add_stairs(stairs_scene: PackedScene, tile_position: Vector2i, starts_disarmed: bool) -> void:
+func _add_stairs(stairs_scene: PackedScene, tile_position: Vector2i) -> Area2D:
 	var stairs = stairs_scene.instantiate()
 	stairs.position = locations_root.to_local(tile_map_layer.to_global(tile_map_layer.map_to_local(tile_position)))
-	stairs.set("starts_disarmed", starts_disarmed)
 	stairs.activated.connect(_on_stairs_activated)
 	locations_root.add_child(stairs)
+	return stairs
 
 
 func _on_stairs_activated(goes_down: bool) -> void:
