@@ -13,6 +13,7 @@ class WorldWithoutAutoGeneration:
 func after_each():
 	GameSession.world_seed = GameSession.NO_SEED
 	GameSession.procedural_game_session.reset_procedural_progression()
+	AchievementManager.clear_locations()
 
 
 func test_player_default_speed_is_unchanged():
@@ -158,6 +159,26 @@ func test_world_uses_progression_size_and_splits(parameters = use_parameters([
 	assert_eq(world.player.global_position, world.stairs_up.get_spawn_point())
 	assert_has(world.dungeon.floor_arr, world.dungeon.stairs_up_position)
 	assert_has(world.dungeon.floor_arr, world.dungeon.stairs_down_position)
+	assert_eq(world.dungeon.id, "dungeon_procedural")
+	assert_gt(world.dungeon.enemies.size(), 0)
+	for enemy in world.dungeon.enemies:
+		assert_eq(enemy.location, world.dungeon.id)
+
+
+func test_location_setup_uses_the_generated_visit_bonus():
+	# arrange
+	var world = _create_world_for_generation()
+	var level_config = LevelConfig.new(4711, Vector2i(40, 23), 4)
+	world.generate_world(level_config)
+	GameSession.set_procedural_level_index(41)
+
+	# act
+	world._setup_locations()
+
+	# assert
+	assert_eq(world.dungeon.id, "dungeon_procedural")
+	assert_eq(AchievementManager._locations[world.dungeon.id].remaining_enemies.size(), world.dungeon.enemies.size())
+	assert_eq(AchievementManager._locations[world.dungeon.id].bonus, 1000)
 
 
 func _create_world_for_generation() -> ProcGenWorld:

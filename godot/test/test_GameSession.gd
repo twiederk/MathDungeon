@@ -221,6 +221,24 @@ func test_capped_procedural_levels_keep_separate_cached_configurations():
 	assert_eq(GameSession.procedural_game_session.procedural_level_configs.size(), 2)
 
 
+func test_procedural_clear_bonus_uses_bounded_split_tiers(parameters = use_parameters([
+	[-1, 500],
+	[3, 500],
+	[4, 1000],
+	[5, 2000],
+	[9223372036854775807, 2000]
+])):
+	# arrange
+	var splits: int = parameters[0]
+	var expected_bonus: int = parameters[1]
+
+	# act
+	var bonus = GameSession.get_procedural_clear_bonus(splits)
+
+	# assert
+	assert_eq(bonus, expected_bonus)
+
+
 func test_reset_clears_procedural_level_configurations():
 	# arrange
 	GameSession.procedural_game_session.start_procedural_run()

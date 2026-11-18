@@ -11,6 +11,7 @@ const PROCEDURAL_LEVEL_SPLIT_THRESHOLDS := [
 	{"size": Vector2i(60, 40), "splits": 4},
 	{"size": Vector2i(100, 80), "splits": 5}
 ]
+const PROCEDURAL_CLEAR_BONUSES := {3: 500, 4: 1000, 5: 2000}
 const NO_SEED := 0
 
 
@@ -53,6 +54,10 @@ func get_or_create_procedural_level_config(level_index: int) -> LevelConfig:
 	var level_config := LevelConfig.new(level_seed, level_size, level_splits)
 	procedural_level_configs[level_index] = level_config
 	return level_config.duplicate()
+
+
+func get_procedural_clear_bonus(splits: int) -> int:
+	return PROCEDURAL_CLEAR_BONUSES[clampi(splits, 3, 5)]
 
 
 func _get_splits_for_size(level_size: Vector2i) -> int:

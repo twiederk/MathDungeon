@@ -108,6 +108,10 @@ func get_or_create_procedural_level_config(level_index: int) -> LevelConfig:
 	return procedural_game_session.get_or_create_procedural_level_config(level_index)
 
 
+func get_procedural_clear_bonus(splits: int) -> int:
+	return procedural_game_session.get_procedural_clear_bonus(splits)
+
+
 func get_procedural_level_index() -> int:
 	return procedural_game_session.procedural_level_index
 

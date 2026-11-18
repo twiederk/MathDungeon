@@ -22,6 +22,7 @@ var dungeon_generator: DungeonGenerator = DungeonGenerator.new()
 var dungeon: Dungeon
 var stairs_up: ProceduralStairs
 var stairs_down: ProceduralStairs
+var _clear_bonus: int = 0
 
 @onready var locations_root: Node2D = $Locations
 
@@ -40,12 +41,19 @@ func _resolve_level_config() -> LevelConfig:
 
 func generate_world(level_config: LevelConfig) -> void:
 	seed_value = level_config.seed_value
+	_clear_bonus = GameSession.get_procedural_clear_bonus(level_config.splits)
 	dungeon = dungeon_generator.generate_dungeon(level_config.size, level_config.splits, seed_value)
+	dungeon.id = "dungeon_procedural"
 	_place_dungeon(dungeon)
 	_place_stairs(dungeon)
 	_place_player()
 	_place_enemies(dungeon)
 	_place_items(dungeon)
+
+
+func _setup_locations() -> void:
+	super._setup_locations()
+	AchievementManager.register_location_bonus(dungeon.id, _clear_bonus)
 
 
 func _place_dungeon(generated_dungeon: Dungeon) -> void:
