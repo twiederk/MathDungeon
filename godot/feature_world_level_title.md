@@ -1,0 +1,102 @@
+# Feature: World Level Entry Title
+
+## Goal
+
+Display the current world's name briefly when a world level loads, similar to the location-name reveal in Zelda games. Fade the title in, hold it for a few seconds, then fade it out automatically while gameplay continues.
+
+Status: Planning only. None of the implementation phases below are complete.
+
+## Scope and proposed behavior
+
+- Apply to classic worlds and procedural dungeon levels, not menus or other non-world scenes.
+- Show the title once per scene load, including returning through portals, descending stairs, and ascending to a previously visited level.
+- Start the reveal after world setup completes. Procedural generation, player placement, and UI initialization must finish first.
+- Use a screen-space overlay, independent of player position, camera movement, and camera zoom.
+- Proposed timing: 0.4-second fade-in, 2.5-second hold, and 0.6-second fade-out. Keep these durations configurable on the title component.
+- Do not pause gameplay, block input, change simulation state, or delay transitions. The title must not take keyboard focus or intercept mouse input.
+- Let the animation follow normal scene-tree pause behavior. Do not introduce an always-processing node or change existing pause rules.
+- Remove all visible title content after the animation. Leaving a level early must dispose of its overlay and animation without affecting the next scene.
+- Use existing fonts, colors, and label styling. Position the title near the lower center with safe margins, clear of the HUD, and below modal dialogs such as the quiz.
+- Keep text readable over both sand and dirt using the existing theme's outline or shadow treatment. Do not add a full-screen dimmer or a decorative panel.
+- Respect the 640x360 logical viewport and window scaling. Constrain the label width, allow wrapping, and verify longer titles do not overlap other UI.
+
+## Existing implementation anchors
+
+- `classic/world_level.gd`: `WorldLevel._ready()` performs shared world initialization and is the intended entry-title trigger.
+- `classic/classic_world.gd`: `ClassicWorld._ready()` calls the base implementation before applying the player portrait. Check this ordering when selecting the final trigger point.
+- `procedural/proc_gen_world.gd`: `ProcGenWorld._ready()` generates the dungeon before calling `super._ready()`, so the shared hook can show a title after generation.
+- Classic world scenes and `procedural/proc_gen_world.tscn` already contain a `UI` CanvasLayer suitable for a reusable overlay.
+- `classic/dungeon_title.gd` and its scene already display area-triggered location titles through an AnimationPlayer. Leave that scene and script unchanged. The world-entry title will use a new, independent scene and script, not an instance of or an inherited version of `classic/dungeon_title.tscn`.
+- Existing GUT coverage lives in `test/test_WorldLevel.gd` and `test/test_ProcGenWorld.gd`.
+
+## Title ownership
+
+- Add an exported `world_title: String` to `WorldLevel` for authored world names.
+- Add a `get_world_title() -> String` method that returns that value. An empty or whitespace-only title skips the reveal without an error or placeholder.
+- Override the method in `ProcGenWorld` to derive a title from `GameSession.get_procedural_level_index()`. Do not cache a separate title in `LevelConfig` or progression state.
+- Proposed classic titles, matching the game's existing German location labels: `Oberwelt`, `Nether`, `Das Ende`, and `Antike Stadt`.
+- Proposed procedural format: `Ebene %d`, producing `Ebene 1`, `Ebene 2`, and so on. Resolve the index on arrival so backtracking displays the correct level.
+- Treat these names as initial content choices, editable without changing overlay behavior. Do not derive player-facing names from scene filenames or dungeon IDs.
+
+## Implementation phases
+
+### Phase 1: Title data and resolution
+
+- Add the exported title property and resolver to `WorldLevel`.
+- Assign explicit titles in `classic/overworld.tscn`, `classic/nether.tscn`, `classic/end.tscn`, and `classic/ancient_city.tscn`.
+- Add the procedural resolver override using the current one-based session index.
+- Extend the existing world tests to cover authored titles, empty titles, and procedural titles for levels 1, 2, and a return to level 1.
+- Exit criterion: each world resolves the intended display text without changing progression, terrain, or scene transitions.
+
+### Phase 2: Reusable animated overlay
+
+- Create a new, independent reusable Control scene at `gui/world_level_title.tscn` with its own script at `gui/world_level_title.gd`.
+- Give the new scene its own anchored, width-constrained Label and AnimationPlayer for fade-in, hold, and fade-out. Match the game's existing typography and colors, but do not share or modify the existing dungeon-title scene, script, or animations. Keep the title initially hidden to avoid an editor-text flash.
+- Do not add an Area2D, CollisionShape2D, or body-entered trigger. World-load integration will start the reveal explicitly through the component's presentation method.
+- Expose one presentation method, such as `show_title(text: String)`, that assigns the text, resets opacity and animation state, and starts the reveal.
+- Skip empty text. If called again while visible, replace the text and restart one animation rather than stacking overlays or timers.
+- Hide the component on completion. Ensure both the root Control and label ignore mouse input and cannot take focus.
+- Add focused component tests for initial invisibility, supplied text, restarting, empty input, and hidden state after completion. Prefer advancing the animation directly over waiting several seconds in tests.
+- Exit criterion: the component can be exercised independently and reliably disappears after its configured sequence.
+
+### Phase 3: World-load integration
+
+- Instantiate the component under each world's existing `UI` CanvasLayer, using the same node name and layout everywhere.
+- Add one shared presentation hook at the end of `WorldLevel._ready()` after its existing setup. Confirm derived-class setup does not require deferring the reveal until the next frame.
+- Resolve the title once per arrival and pass it to the overlay. Do not trigger it from `generate_world()`, `_process()`, or player collision events.
+- Preserve tests that construct `WorldLevel.new()` without a full scene: resolve an optional overlay safely and skip presentation when no UI exists.
+- Preserve procedural tests that deliberately suppress `_ready()` and invoke `generate_world()` explicitly; generation alone should not start a reveal.
+- Keep the overlay below modal UI and clear of stats and countdown widgets. Retain existing area-triggered `DungeonTitle` behavior, and explicitly check for competing text at spawn points.
+- If a spawn immediately activates an existing area title, let the local-location title take priority by dismissing the world-entry title through world-level coordination with the existing trigger signal. Leave the existing dungeon-title scene and script unchanged; do not introduce a global title queue.
+- Exit criterion: every real world scene shows exactly one entry reveal after setup, including portal returns and procedural backtracking, without blocking play.
+
+### Phase 4: Verification and visual tuning
+
+- Extend existing world tests to verify the load hook supplies the resolved title once and that scenes without a title remain silent.
+- Verify procedural generation still produces the same layouts and uses sand on odd levels and dirt on even levels. This feature must not modify generation or terrain selection.
+- Add one scene-level integration check for the shared hook and reuse existing procedural scene tests for dynamic title coverage. Avoid duplicating expensive full-world generation solely to test text formatting.
+- Verify restarting a reveal cancels the previous sequence and that unloading a scene mid-animation causes no callbacks into freed nodes.
+- Run focused GUT checks for the title component, WorldLevel, and ProcGenWorld, then the full suite with `test_ING.bat`.
+- Manually enter each classic world; travel procedural levels 1 -> 2 -> 3 -> 2 -> 1; verify the correct title appears on every arrival and fully disappears.
+- Check the logical 640x360 viewport and a scaled window, long titles, both floor terrains, camera movement, quiz dialogs, countdown visibility, and any area-title trigger near an arrival point.
+- Record automated results separately from manual checks. Do not mark visual verification complete based only on passing tests.
+- Exit criterion: acceptance criteria pass and remaining visual or timing concerns are documented.
+
+## Acceptance criteria
+
+- Loading any configured world displays its intended title automatically after setup.
+- Procedural arrivals display the current level index correctly, including revisits.
+- The title fades in, remains readable for a few seconds, fades out, and leaves no visible content behind.
+- Empty titles produce no placeholder or animation.
+- The overlay is screen-fixed, readable at the supported viewport sizes, and does not obstruct critical HUD or modal UI.
+- Player controls, combat, quizzes, timers, simulation state, and level transitions retain their current behavior.
+- Repeated presentation does not stack animations, and scene changes safely discard an active reveal.
+- Existing area-triggered location titles continue to work and do not compete with entry titles at arrival points.
+- Focused and full automated tests pass, with manual visual checks recorded before declaring the feature complete.
+
+## Out of scope
+
+- New location discovery rules, title history, map UI, subtitles, or generated location names.
+- Audio cues, cinematics, camera movement, gameplay freezes, and transition loading screens.
+- Changes to dungeon generation, floor alternation, save data, or session progression.
+- Refactoring all existing local-location title triggers into a new notification framework.
