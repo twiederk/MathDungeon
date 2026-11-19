@@ -57,8 +57,11 @@ func _setup_locations() -> void:
 
 
 func _place_dungeon(generated_dungeon: Dungeon) -> void:
+	var floor_terrain_id := SAND_TERRAIN_ID
+	if GameSession.get_procedural_level_index() % 2 == 0:
+		floor_terrain_id = DIRT_TERRAIN_ID
 	tile_map_layer.set_cells_terrain_connect(generated_dungeon.wall_arr, DUNGEON_ATLAS_ID, STONE_TERRAIN_ID)
-	tile_map_layer.set_cells_terrain_connect(generated_dungeon.floor_arr, DUNGEON_ATLAS_ID, DIRT_TERRAIN_ID)
+	tile_map_layer.set_cells_terrain_connect(generated_dungeon.floor_arr, DUNGEON_ATLAS_ID, floor_terrain_id)
 
 
 func _place_stairs(generated_dungeon: Dungeon) -> void:

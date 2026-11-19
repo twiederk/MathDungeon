@@ -138,8 +138,9 @@ func test_world_places_stairs_at_dungeon_endpoints():
 
 
 func test_world_uses_progression_size_and_splits(parameters = use_parameters([
-	[1, Vector2i(40, 23), 3],
-	[3, Vector2i(45, 28), 3]
+	[1, Vector2i(40, 23), 3, ProcGenWorld.SAND_TERRAIN_ID],
+	[2, Vector2i(40, 23), 3, ProcGenWorld.DIRT_TERRAIN_ID],
+	[3, Vector2i(45, 28), 3, ProcGenWorld.SAND_TERRAIN_ID]
 ])):
 	# arrange
 	var expected_size = parameters[1]
@@ -159,6 +160,10 @@ func test_world_uses_progression_size_and_splits(parameters = use_parameters([
 	assert_eq(world.player.global_position, world.stairs_up.get_spawn_point())
 	assert_has(world.dungeon.floor_arr, world.dungeon.stairs_up_position)
 	assert_has(world.dungeon.floor_arr, world.dungeon.stairs_down_position)
+	var floor_tile_data = world.tile_map_layer.get_cell_tile_data(world.dungeon.stairs_up_position)
+	assert_not_null(floor_tile_data)
+	if floor_tile_data != null:
+		assert_eq(floor_tile_data.terrain, parameters[3])
 	assert_eq(world.dungeon.id, "dungeon_procedural")
 	assert_gt(world.dungeon.enemies.size(), 0)
 	for enemy in world.dungeon.enemies:
