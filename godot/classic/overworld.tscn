@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://b53sfmxk4rjq2"]
 
 [ext_resource type="Script" path="res://classic/classic_world.gd" id="1_u7shu"]
+[ext_resource type="PackedScene" path="res://gui/world_level_title.tscn" id="world_title"]
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://classic/world_tiles.tres" id="2_f2t5r"]
 [ext_resource type="PackedScene" uid="uid://ch27vu5jqwd8g" path="res://locations/nether_portal.tscn" id="3_hgg77"]
 [ext_resource type="PackedScene" uid="uid://bqy23htwiovfo" path="res://locations/end_portal.tscn" id="4_iywah"]
@@ -799,6 +800,8 @@ shape = SubResource("RectangleShape2D_xpjed")
 [node name="MapBorders" parent="." unique_id=1093876332 instance=ExtResource("42_nbqs7")]
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=40578067]
+
+[node name="WorldLevelTitle" parent="UI" instance=ExtResource("world_title")]
 
 [node name="QuizDialog" parent="UI" unique_id=1144699420 instance=ExtResource("43_n36de")]
 

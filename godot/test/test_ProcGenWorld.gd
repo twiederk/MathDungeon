@@ -26,7 +26,7 @@ func test_get_world_title_uses_current_level(parameters = use_parameters([
 	GameSession.set_procedural_level_index(parameters[0])
 
 	# act
-	var title = world.get_world_title()
+	var title = world._get_world_title()
 
 	# assert
 	assert_eq(title, parameters[1])
@@ -39,7 +39,7 @@ func test_get_world_title_updates_when_returning_to_first_level():
 	GameSession.set_procedural_level_index(1)
 
 	# act
-	var title = world.get_world_title()
+	var title = world._get_world_title()
 
 	# assert
 	assert_eq(title, "Ebene 1")

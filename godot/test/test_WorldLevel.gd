@@ -23,7 +23,7 @@ func test_classic_world_scene_titles(parameters = use_parameters([
 	var level = autofree(scene.instantiate())
 
 	# act
-	var title = level.get_world_title()
+	var title = level._get_world_title()
 
 	# assert
 	assert_eq(title, parameters[1])

@@ -4,7 +4,7 @@
 
 Display the current world's name briefly when a world level loads, similar to the location-name reveal in Zelda games. Fade the title in, hold it for a few seconds, then fade it out automatically while gameplay continues.
 
-Status: Phases 1 and 2 are implemented with focused automated verification. Phases 3-4 remain pending; the standalone title component is not yet connected to world loading.
+Status: Phases 1-3 are implemented with focused automated verification. Titles are connected to world loading. Phase 4 full-suite and manual visual checks remain pending.
 
 ## Scope and proposed behavior
 
@@ -64,9 +64,9 @@ Verification: The focused WorldLevel and ProcGenWorld suites passed all 22 test 
 
 Implementation: `WorldLevelTitle` uses its own Control scene, a centered 560x48 logical-pixel Label with no wrapping, 24-pixel text with a black outline, and fixed scene-authored opacity and visibility tracks. `show_title(text)` only assigns the supplied text and plays `reveal`. Fade-in, hold, and fade-out take 0.4, 2.5, and 0.6 seconds. There are no guards, explicit resets, duration variables, or runtime track changes. The scene connects animation completion to a handler that calls `queue_free()`. Text clipping prevents overflow from resizing the label. The existing dungeon-title scene and script are unchanged.
 
-Verification: All eight component test methods pass (42 assertions), covering initial invisibility, input/focus settings, supplied text, empty input, text updates during playback, intermediate fade values, final hiding, queued and actual deletion after completion, fixed scene-authored key timing, and fixed-width centering at 640x360 and 1280x720. Godot import completed. World-load integration, modal layering, full-suite validation, and manual visual checks remain for phases 3-4.
+Historical verification: All eight component test methods passed (42 assertions), covering initial invisibility, input/focus settings, supplied text, empty input, text updates during playback, intermediate fade values, final hiding, queued and actual deletion after completion, fixed scene-authored key timing, and fixed-width centering at 640x360 and 1280x720. Godot import completed. The component test script and its UID companion were subsequently deleted by request; they have not been recreated. Current integration coverage is in the existing WorldLevel and ProcGenWorld test scripts.
 
-### Phase 3: World-load integration
+### Phase 3: World-load integration (implemented)
 
 - Instantiate the component under each world's existing `UI` CanvasLayer, using the same node name and layout everywhere.
 - Add one shared presentation hook at the end of `WorldLevel._ready()` after its existing setup. Confirm derived-class setup does not require deferring the reveal until the next frame.
@@ -78,13 +78,17 @@ Verification: All eight component test methods pass (42 assertions), covering in
 - If a spawn immediately activates an existing area title, let the local-location title take priority by dismissing the world-entry title through world-level coordination with the existing trigger signal. Leave the existing dungeon-title scene and script unchanged; do not introduce a global title queue.
 - Exit criterion: every real world scene shows exactly one entry reveal after setup, including portal returns and procedural backtracking, without blocking play.
 
+Implementation: All four classic worlds and the procedural world instance `UI/WorldLevelTitle` before the quiz and other UI siblings. `WorldLevel._ready()` calls `_show_world_title()` once after shared setup, using the existing title resolver. Empty titles or missing overlays skip presentation. Procedural generation finishes before the base setup; classic portrait and Nether visit setup finish synchronously before the next frame draws, so no deferred reveal is needed. Existing local-title `animation_started` signals dismiss the entry title through world-level coordination, with a fresh node lookup that remains safe after its completion callback frees it. The local-title scene/script and the two-statement `show_title()` method are unchanged.
+
+Verification: All 24 focused WorldLevel and ProcGenWorld test methods pass (125 assertions). Coverage includes authored classic scene metadata and modal sibling order, title presentation and empty titles, missing UI, local-title priority before and after entry-title deletion, procedural arrivals at levels 1 and 2, returning from below, and silent direct generation with automatic setup suppressed. Existing progression, terrain alternation, player placement, and stair-transition checks also pass. Existing shutdown resource warnings remain. Manual portal and stair playthroughs, visual HUD/modal checks, and full-suite validation are pending in phase 4.
+
 ### Phase 4: Verification and visual tuning
 
 - Extend existing world tests to verify the load hook supplies the resolved title once and that scenes without a title remain silent.
 - Verify procedural generation still produces the same layouts and uses sand on odd levels and dirt on even levels. This feature must not modify generation or terrain selection.
 - Add one scene-level integration check for the shared hook and reuse existing procedural scene tests for dynamic title coverage. Avoid duplicating expensive full-world generation solely to test text formatting.
 - Verify repeated calls during playback update the text without stacking playback, completion frees the one-shot title instance, and unloading a scene mid-animation safely disposes of the component.
-- Run focused GUT checks for the title component, WorldLevel, and ProcGenWorld, then the full suite with `test_ING.bat`.
+- Run focused GUT checks in the existing WorldLevel and ProcGenWorld scripts, then the full suite with `test_ING.bat`. Do not recreate the deleted standalone title test script.
 - Manually enter each classic world; travel procedural levels 1 -> 2 -> 3 -> 2 -> 1; verify the correct title appears on every arrival and fully disappears.
 - Check the logical 640x360 viewport and a scaled window, long titles, both floor terrains, camera movement, quiz dialogs, countdown visibility, and any area-title trigger near an arrival point.
 - Record automated results separately from manual checks. Do not mark visual verification complete based only on passing tests.

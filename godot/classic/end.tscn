@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://ba6r3bpkv1mjw"]
 
 [ext_resource type="Script" path="res://classic/classic_world.gd" id="1_qa73l"]
+[ext_resource type="PackedScene" path="res://gui/world_level_title.tscn" id="world_title"]
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://classic/world_tiles.tres" id="2_5ea5w"]
 [ext_resource type="PackedScene" uid="uid://d0we0mbuvkkcc" path="res://enemies/enderdragon.tscn" id="4_lv68h"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://classic/player.tscn" id="5_gtkjg"]
@@ -42,6 +43,8 @@ position = Vector2(320, 277)
 [node name="MapBorders" parent="." unique_id=1652677699 instance=ExtResource("6_w51g6")]
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1512359696]
+
+[node name="WorldLevelTitle" parent="UI" instance=ExtResource("world_title")]
 
 [node name="QuizDialog" parent="UI" unique_id=916981838 instance=ExtResource("7_qgl2j")]
 

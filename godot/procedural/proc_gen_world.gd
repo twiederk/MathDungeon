@@ -32,7 +32,7 @@ func _ready() -> void:
 	super._ready()
 
 
-func get_world_title() -> String:
+func _get_world_title() -> String:
 	return "Ebene %d" % GameSession.get_procedural_level_index()
 
 
