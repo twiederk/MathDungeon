@@ -186,7 +186,7 @@ func test_world_uses_progression_size_and_splits(parameters = use_parameters([
 	assert_eq(world.dungeon.root_node.size, expected_size)
 	assert_eq(_branch_depth(world.dungeon.root_node), expected_depth)
 	assert_ne(world.stairs_up.global_position, world.stairs_down.global_position)
-	assert_eq(world.player.global_position, world.stairs_up.get_spawn_point())
+	assert_eq(world.player.global_position, world.stairs_up.global_position)
 	assert_has(world.dungeon.floor_arr, world.dungeon.stairs_up_position)
 	assert_has(world.dungeon.floor_arr, world.dungeon.stairs_down_position)
 	var floor_tile_data = world.tile_map_layer.get_cell_tile_data(world.dungeon.stairs_up_position)
@@ -261,7 +261,7 @@ func test_arriving_from_below_spawns_at_last_room():
 	world._place_player()
 
 	# assert
-	assert_eq(world.player.global_position, world.get_node("Locations/StairsDown/SpawnPoint").global_position)
+	assert_eq(world.player.global_position, world.stairs_down.global_position)
 
 
 func test_arriving_from_above_spawns_at_first_room():
@@ -275,7 +275,39 @@ func test_arriving_from_above_spawns_at_first_room():
 	world._place_player()
 
 	# assert
-	assert_eq(world.player.global_position, world.get_node("Locations/StairsUp/SpawnPoint").global_position)
+	assert_eq(world.player.global_position, world.stairs_up.global_position)
+
+
+func test_spawn_stair_ignores_initial_player_entry():
+	# arrange
+	var stairs = autofree(ProceduralStairs.new())
+	var player = autofree(Player.new())
+	player.name = "Player"
+	stairs.place_player(player)
+	watch_signals(stairs)
+
+	# act
+	stairs._on_body_entered(player)
+
+	# assert
+	assert_signal_not_emitted(stairs, "activated")
+	assert_eq(player.global_position, stairs.global_position)
+
+
+func test_spawn_stair_activates_after_player_leaves_and_reenters():
+	# arrange
+	var stairs = autofree(ProceduralStairs.new())
+	var player = autofree(Player.new())
+	player.name = "Player"
+	stairs.place_player(player)
+	stairs._on_body_exited(player)
+	watch_signals(stairs)
+
+	# act
+	stairs._on_body_entered(player)
+
+	# assert
+	assert_signal_emitted_with_parameters(stairs, "activated", [false])
 
 
 func test_first_level_up_stairs_end_the_run():

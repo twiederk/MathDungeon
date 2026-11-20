@@ -85,7 +85,7 @@ func _place_player() -> void:
 	var spawn_stairs := stairs_up
 	if GameSession.is_procedural_spawn_at_end():
 		spawn_stairs = stairs_down
-	player.global_position = spawn_stairs.get_spawn_point()
+	spawn_stairs.place_player(player)
 
 
 func _place_enemies(generated_dungeon: Dungeon) -> void:
