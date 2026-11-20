@@ -1,10 +1,89 @@
 [gd_scene format=3 uid="uid://d2dlkmrjxfx0v"]
 
 [ext_resource type="Script" path="res://classic/classic_player.gd" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://0rfglmwytctn" path="res://characters/portraits/000.png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://bfq02ofvyhrqp" path="res://characters/portraits/000_idle.png" id="2_i3pqv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 height = 24.0
+
+[sub_resource type="Animation" id="Animation_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_idle"]
+resource_name = "idle"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.24, 0.36, 1.0, 1.15, 1.3, 1.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_move"]
+resource_name = "move"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_classic"]
+_data = {
+&"RESET": SubResource("Animation_reset"),
+&"idle": SubResource("Animation_idle"),
+&"move": SubResource("Animation_move")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_idle"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_move"]
+animation = &"move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="Transition_start_idle"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="Transition_idle_move"]
+advance_mode = 2
+advance_condition = &"is_moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="Transition_move_idle"]
+advance_mode = 2
+advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_classic"]
+states/idle/node = SubResource("AnimationNodeAnimation_idle")
+states/idle/position = Vector2(350, 100)
+states/move/node = SubResource("AnimationNodeAnimation_move")
+states/move/position = Vector2(550, 100)
+transitions = ["Start", "idle", SubResource("Transition_start_idle"), "idle", "move", SubResource("Transition_idle_move"), "move", "idle", SubResource("Transition_move_idle")]
 
 [node name="Player" type="CharacterBody2D" unique_id=1649447883]
 collision_mask = 2
@@ -13,6 +92,7 @@ script = ExtResource("1_onrkg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1472839895]
 texture = ExtResource("2_i3pqv")
+hframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=459003781]
 position = Vector2(2, 2)
@@ -23,3 +103,13 @@ limit_left = -192
 limit_top = -192
 limit_right = 1856
 limit_bottom = 1664
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1536680498]
+libraries/ = SubResource("AnimationLibrary_classic")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1775429427]
+active = true
+tree_root = SubResource("AnimationNodeStateMachine_classic")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_idle = true
+parameters/conditions/is_moving = false

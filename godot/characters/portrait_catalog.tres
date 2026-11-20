@@ -7,31 +7,41 @@
 [ext_resource type="Texture2D" uid="uid://bky1yrxl1yfeu" path="res://characters/portraits/002.png" id="5_002"]
 [ext_resource type="Texture2D" uid="uid://cmg6vs4th6ndt" path="res://characters/portraits/003.png" id="6_003"]
 [ext_resource type="Texture2D" uid="uid://bgqm62m8kq2pu" path="res://characters/portraits/004.png" id="7_004"]
+[ext_resource type="Texture2D" uid="uid://bfq02ofvyhrqp" path="res://characters/portraits/000_idle.png" id="8_000_idle"]
+[ext_resource type="Texture2D" uid="uid://dixegg7fgrevv" path="res://characters/portraits/001_idle.png" id="9_001_idle"]
+[ext_resource type="Texture2D" uid="uid://c2u0kpyhohkh4" path="res://characters/portraits/002_idle.png" id="10_002_idle"]
+[ext_resource type="Texture2D" uid="uid://dxm860rhmcen7" path="res://characters/portraits/003_idle.png" id="11_003_idle"]
+[ext_resource type="Texture2D" uid="uid://ce2tjt6r5ndv" path="res://characters/portraits/004_idle.png" id="12_004_idle"]
 
 [sub_resource type="Resource" id="Portrait000"]
 script = ExtResource("2_portrait")
 id = "000"
 texture = ExtResource("3_000")
+idle_texture = ExtResource("8_000_idle")
 
 [sub_resource type="Resource" id="Portrait001"]
 script = ExtResource("2_portrait")
 id = "001"
 texture = ExtResource("4_001")
+idle_texture = ExtResource("9_001_idle")
 
 [sub_resource type="Resource" id="Portrait002"]
 script = ExtResource("2_portrait")
 id = "002"
 texture = ExtResource("5_002")
+idle_texture = ExtResource("10_002_idle")
 
 [sub_resource type="Resource" id="Portrait003"]
 script = ExtResource("2_portrait")
 id = "003"
 texture = ExtResource("6_003")
+idle_texture = ExtResource("11_003_idle")
 
 [sub_resource type="Resource" id="Portrait004"]
 script = ExtResource("2_portrait")
 id = "004"
 texture = ExtResource("7_004")
+idle_texture = ExtResource("12_004_idle")
 
 [resource]
 script = ExtResource("1_script")
