@@ -27,6 +27,8 @@ func generate_items(root_node: Branch) -> Array[Item]:
 	var number_of_rooms = rooms.size()
 	@warning_ignore("integer_division")
 	var half_number_of_rooms: int = number_of_rooms / 2
+	@warning_ignore("integer_division")
+	var three_quarter_number_of_rooms: int = (number_of_rooms * 3 + 3) / 4
 
 	for room_index in range(1, half_number_of_rooms + 1):
 		if randi_range(0, 100) > SPAWN_CHANCE_ITEM_EASY:
@@ -37,11 +39,20 @@ func generate_items(root_node: Branch) -> Array[Item]:
 		item.position = room.get_center()
 		items.append(item)
 
-	for room_index in range(half_number_of_rooms + 1, number_of_rooms - 1):
+	for room_index in range(half_number_of_rooms + 1, three_quarter_number_of_rooms):
 		if randi_range(0, 100) > SPAWN_CHANCE_ITEM_MEDIUM:
 			continue
 		var room = rooms[room_index]
 		var item_scene = items_medium.pick_random()
+		var item = item_scene.instantiate() as Item
+		item.position = room.get_center()
+		items.append(item)
+
+	for room_index in range(three_quarter_number_of_rooms, number_of_rooms - 1):
+		if randi_range(0, 100) > SPAWN_CHANCE_ITEM_MEDIUM:
+			continue
+		var room = rooms[room_index]
+		var item_scene = items_hard.pick_random()
 		var item = item_scene.instantiate() as Item
 		item.position = room.get_center()
 		items.append(item)
