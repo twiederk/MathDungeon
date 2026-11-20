@@ -1,8 +1,6 @@
 class_name DungeonGenerator
 
 
-const ENTRANCE = Vector2i(0, 1)
-
 var enemy_generator = EnemyGenerator.new()
 var item_generator = ItemGenerator.new()
 
@@ -20,9 +18,8 @@ func generate_dungeon(size: Vector2i, splits: int = 3, seed_value: int = 0) -> D
 	_place_paths(paths, floor_arr)
 	var enemies = _place_enemies(root_node)
 	var items = _place_items(root_node)
-	var entrance = _place_entrance(floor_arr)
 	var wall_arr = _place_walls(size, floor_arr)
-	var dungeon := Dungeon.new(root_node, entrance, start_position, end_position, floor_arr, wall_arr, enemies, items)
+	var dungeon := Dungeon.new(root_node, start_position, end_position, floor_arr, wall_arr, enemies, items)
 	_configure_stairs(dungeon)
 	return dungeon
 
@@ -54,11 +51,6 @@ func _place_paths(paths: Array[Dictionary], floor_arr: Array[Vector2i]) -> void:
 			for i in range(path['right'].y - path['left'].y):
 				var curr_pos = Vector2i(path['left'].x,path['left'].y+i)
 				floor_arr.append(curr_pos)
-
-
-func _place_entrance(floor_arr: Array[Vector2i]) -> Vector2i:
-		floor_arr.append(ENTRANCE)
-		return ENTRANCE
 
 
 func _place_walls(size: Vector2i, floor_arr: Array[Vector2i]) -> Array[Vector2i]:
