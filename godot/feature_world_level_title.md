@@ -4,7 +4,7 @@
 
 Display the current world's name briefly when a world level loads, similar to the location-name reveal in Zelda games. Fade the title in, hold it for a few seconds, then fade it out automatically while gameplay continues.
 
-Status: Planning only. None of the implementation phases below are complete.
+Status: Phase 1 is implemented and its focused automated tests pass. Phases 2-4 remain pending; titles are not displayed yet.
 
 ## Scope and proposed behavior
 
@@ -16,9 +16,9 @@ Status: Planning only. None of the implementation phases below are complete.
 - Do not pause gameplay, block input, change simulation state, or delay transitions. The title must not take keyboard focus or intercept mouse input.
 - Let the animation follow normal scene-tree pause behavior. Do not introduce an always-processing node or change existing pause rules.
 - Remove all visible title content after the animation. Leaving a level early must dispose of its overlay and animation without affecting the next scene.
-- Use existing fonts, colors, and label styling. Position the title near the lower center with safe margins, clear of the HUD, and below modal dialogs such as the quiz.
+- Use existing fonts, colors, and label styling. Center the title horizontally and vertically in the screen, with safe margins and clear of the HUD. Render it behind modal dialogs such as the quiz; this refers to draw order, not screen position.
 - Keep text readable over both sand and dirt using the existing theme's outline or shadow treatment. Do not add a full-screen dimmer or a decorative panel.
-- Respect the 640x360 logical viewport and window scaling. Constrain the label width, allow wrapping, and verify longer titles do not overlap other UI.
+- Respect the 640x360 logical viewport and window scaling. Use a fixed label width in logical pixels and disable wrapping so titles stay on one line. Keep the width unchanged when the title text changes, and verify the longest configured title fits without overlapping other UI.
 
 ## Existing implementation anchors
 
@@ -32,7 +32,7 @@ Status: Planning only. None of the implementation phases below are complete.
 ## Title ownership
 
 - Add an exported `world_title: String` to `WorldLevel` for authored world names.
-- Add a `get_world_title() -> String` method that returns that value. An empty or whitespace-only title skips the reveal without an error or placeholder.
+- Add a `get_world_title() -> String` method that returns the authored value unchanged, including whitespace. Empty titles are skipped by presentation without an error or placeholder.
 - Override the method in `ProcGenWorld` to derive a title from `GameSession.get_procedural_level_index()`. Do not cache a separate title in `LevelConfig` or progression state.
 - Proposed classic titles, matching the game's existing German location labels: `Oberwelt`, `Nether`, `Das Ende`, and `Antike Stadt`.
 - Proposed procedural format: `Ebene %d`, producing `Ebene 1`, `Ebene 2`, and so on. Resolve the index on arrival so backtracking displays the correct level.
@@ -40,7 +40,7 @@ Status: Planning only. None of the implementation phases below are complete.
 
 ## Implementation phases
 
-### Phase 1: Title data and resolution
+### Phase 1: Title data and resolution (implemented)
 
 - Add the exported title property and resolver to `WorldLevel`.
 - Assign explicit titles in `classic/overworld.tscn`, `classic/nether.tscn`, `classic/end.tscn`, and `classic/ancient_city.tscn`.
@@ -48,10 +48,12 @@ Status: Planning only. None of the implementation phases below are complete.
 - Extend the existing world tests to cover authored titles, empty titles, and procedural titles for levels 1, 2, and a return to level 1.
 - Exit criterion: each world resolves the intended display text without changing progression, terrain, or scene transitions.
 
+Verification: The focused WorldLevel and ProcGenWorld suites passed all 22 test methods (106 assertions) during phase 1 implementation, including authored scene titles, procedural levels 1 and 2, and returning to level 1. Existing floor alternation and transition tests also passed. The resolver now preserves whitespace, with updated expectations for whitespace-only and padded titles. Existing shutdown resource warnings remain. Full-suite and visual checks are deferred to phase 4.
+
 ### Phase 2: Reusable animated overlay
 
 - Create a new, independent reusable Control scene at `gui/world_level_title.tscn` with its own script at `gui/world_level_title.gd`.
-- Give the new scene its own anchored, width-constrained Label and AnimationPlayer for fade-in, hold, and fade-out. Match the game's existing typography and colors, but do not share or modify the existing dungeon-title scene, script, or animations. Keep the title initially hidden to avoid an editor-text flash.
+- Give the new scene its own screen-centered, fixed-width Label with wrapping disabled and an AnimationPlayer for fade-in, hold, and fade-out. Match the game's existing typography and colors, but do not share or modify the existing dungeon-title scene, script, or animations. Keep the title initially hidden to avoid an editor-text flash.
 - Do not add an Area2D, CollisionShape2D, or body-entered trigger. World-load integration will start the reveal explicitly through the component's presentation method.
 - Expose one presentation method, such as `show_title(text: String)`, that assigns the text, resets opacity and animation state, and starts the reveal.
 - Skip empty text. If called again while visible, replace the text and restart one animation rather than stacking overlays or timers.
@@ -88,7 +90,7 @@ Status: Planning only. None of the implementation phases below are complete.
 - Procedural arrivals display the current level index correctly, including revisits.
 - The title fades in, remains readable for a few seconds, fades out, and leaves no visible content behind.
 - Empty titles produce no placeholder or animation.
-- The overlay is screen-fixed, readable at the supported viewport sizes, and does not obstruct critical HUD or modal UI.
+- The overlay is screen-centered, uses a fixed label width with no wrapping, is readable at the supported viewport sizes, and does not obstruct critical HUD or modal UI. The longest configured title fits on one line without changing the label width.
 - Player controls, combat, quizzes, timers, simulation state, and level transitions retain their current behavior.
 - Repeated presentation does not stack animations, and scene changes safely discard an active reveal.
 - Existing area-triggered location titles continue to work and do not compete with entry titles at arrival points.

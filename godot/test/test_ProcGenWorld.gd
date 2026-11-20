@@ -16,6 +16,35 @@ func after_each():
 	AchievementManager.clear_locations()
 
 
+func test_get_world_title_uses_current_level(parameters = use_parameters([
+	[1, "Ebene 1"],
+	[2, "Ebene 2"]
+])):
+	# arrange
+	var world = autofree(ProcGenWorld.new())
+	world.world_title = "Ignored authored title"
+	GameSession.set_procedural_level_index(parameters[0])
+
+	# act
+	var title = world.get_world_title()
+
+	# assert
+	assert_eq(title, parameters[1])
+
+
+func test_get_world_title_updates_when_returning_to_first_level():
+	# arrange
+	var world = autofree(ProcGenWorld.new())
+	GameSession.set_procedural_level_index(2)
+	GameSession.set_procedural_level_index(1)
+
+	# act
+	var title = world.get_world_title()
+
+	# assert
+	assert_eq(title, "Ebene 1")
+
+
 func test_player_default_speed_is_unchanged():
 	# arrange
 	var player = autofree(Player.new())

@@ -32,6 +32,10 @@ func _ready() -> void:
 	super._ready()
 
 
+func get_world_title() -> String:
+	return "Ebene %d" % GameSession.get_procedural_level_index()
+
+
 func _resolve_level_config() -> LevelConfig:
 	var level_config := GameSession.get_or_create_procedural_level_config(GameSession.get_procedural_level_index())
 	if seed_value != GameSession.NO_SEED:

@@ -2,6 +2,9 @@ class_name WorldLevel
 extends Node2D
 
 
+@export var world_title: String = ""
+
+
 const NAME_ENTRY_DIALOG_PATH := "res://gui/name_entry_dialog.tscn"
 const HIGHSCORE_GUI_PATH := "res://gui/highscore_gui.tscn"
 
@@ -31,6 +34,10 @@ func _ready() -> void:
 	_on_simulation_running_changed(GameSession.is_simulation_running())
 	countdown_timer_widget.visible = GameSession.is_timed_run()
 	GameSession.run_time_expired.connect(_on_run_time_expired)
+
+
+func get_world_title() -> String:
+	return world_title
 
 
 func _apply_start_position() -> void:
