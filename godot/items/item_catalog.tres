@@ -16,11 +16,16 @@
 [ext_resource type="Resource" uid="uid://cx025r6y1hh1f" path="res://procedural/items/weapon_sword.tres" id="12_rpg_sword"]
 [ext_resource type="Resource" uid="uid://wc2hidw03vkp" path="res://procedural/items/helmet_cap.tres" id="13_rpg_helmet"]
 [ext_resource type="Resource" uid="uid://c42h82wid2d55" path="res://procedural/items/healing_potion_good.tres" id="14_rpg_potion"]
+[ext_resource type="Resource" path="res://procedural/items/armor_leather.tres" id="15_rpg_leather"]
+[ext_resource type="Resource" path="res://procedural/items/armor_padded.tres" id="16_rpg_padded"]
+[ext_resource type="Resource" path="res://procedural/items/armor_chain.tres" id="17_rpg_chain"]
+[ext_resource type="Resource" path="res://procedural/items/armor_scale.tres" id="18_rpg_scale"]
+[ext_resource type="Resource" path="res://procedural/items/armor_plate.tres" id="19_rpg_plate"]
 
 
 
 [resource]
 script = ExtResource("1_catalog")
 weapons = Array[ExtResource("2_weapon")]([ExtResource("7_mpvfo"), ExtResource("4_sword_stone"), ExtResource("5_sword_iron"), ExtResource("12_rpg_sword")])
-armors = Array[ExtResource("3_armor")]([ExtResource("6_helmet_wood"), ExtResource("7_helmet_stone"), ExtResource("8_helmet_iron"), ExtResource("13_rpg_helmet")])
+armors = Array[ExtResource("3_armor")]([ExtResource("6_helmet_wood"), ExtResource("7_helmet_stone"), ExtResource("8_helmet_iron"), ExtResource("13_rpg_helmet"), ExtResource("15_rpg_leather"), ExtResource("16_rpg_padded"), ExtResource("17_rpg_chain"), ExtResource("18_rpg_scale"), ExtResource("19_rpg_plate")])
 goods = Array[ExtResource("4_good")]([ExtResource("9_eye_of_ender"), ExtResource("10_healing_potion"), ExtResource("11_lighter"), ExtResource("14_rpg_potion")])
