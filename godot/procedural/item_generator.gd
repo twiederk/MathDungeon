@@ -1,7 +1,11 @@
 class_name ItemGenerator
 
 
-const WOOD_HELMET_SCENE = preload("res://procedural/items/helmet_cap.tscn")
+const ARMOR_LEATHER_SCENE = preload("res://procedural/items/armor_leather.tscn")
+const ARMOR_PADDED_SCENE = preload("res://procedural/items/armor_padded.tscn")
+const ARMOR_CHAIN_SCENE = preload("res://procedural/items/armor_chain.tscn")
+const ARMOR_SCALE_SCENE = preload("res://procedural/items/armor_scale.tscn")
+const ARMOR_PLATE_SCENE = preload("res://procedural/items/armor_plate.tscn")
 
 const WEAPON_KNIFE_SCENE = preload("res://procedural/items/weapon_knife.tscn")
 const WEAPON_DAGGER_SCENE = preload("res://procedural/items/weapon_dagger.tscn")
@@ -15,30 +19,34 @@ const SPAWN_CHANCE_ITEM_MEDIUM = 30
 
 func generate_items(root_node: Branch) -> Array[Item]:
 	var items: Array[Item] = []
-	var items_easy = [WOOD_HELMET_SCENE, WEAPON_KNIFE_SCENE, WEAPON_DAGGER_SCENE]
-	var items_medium = [WOOD_HELMET_SCENE, WEAPON_SWORD_SCENE, HEALING_POTION_SCENE]
+	var items_easy = [ARMOR_LEATHER_SCENE, ARMOR_PADDED_SCENE, WEAPON_KNIFE_SCENE, WEAPON_DAGGER_SCENE]
+	var items_medium = [ARMOR_CHAIN_SCENE, ARMOR_SCALE_SCENE, WEAPON_SWORD_SCENE, HEALING_POTION_SCENE]
+	var items_hard = [ARMOR_PLATE_SCENE]
+	var item_pools = [items_easy, items_medium, items_hard]
+	var spawn_chances = [SPAWN_CHANCE_ITEM_EASY, SPAWN_CHANCE_ITEM_MEDIUM, SPAWN_CHANCE_ITEM_MEDIUM]
 
 	var rooms = root_node.get_leaves()
 	var number_of_rooms = rooms.size()
-	@warning_ignore("integer_division")
-	var half_number_of_rooms: int = number_of_rooms / 2
+	for room_index in range(1, number_of_rooms - 1):
+		var room_progress = float(room_index) / number_of_rooms
+		var item_tier = _get_item_tier(room_progress)
+		var item_scenes: Array = item_pools[item_tier]
+		var spawn_chance: int = spawn_chances[item_tier]
 
-	for room_index in range(1, half_number_of_rooms + 1):
-		if randi_range(0, 100) > SPAWN_CHANCE_ITEM_EASY:
+		if randi_range(0, 100) > spawn_chance:
 			continue
 		var room = rooms[room_index]
-		var item_scene = items_easy.pick_random()
-		var item = item_scene.instantiate() as Item
-		item.position = room.get_center()
-		items.append(item)
-
-	for room_index in range(half_number_of_rooms + 1, number_of_rooms - 1):
-		if randi_range(0, 100) > SPAWN_CHANCE_ITEM_MEDIUM:
-			continue
-		var room = rooms[room_index]
-		var item_scene = items_medium.pick_random()
+		var item_scene = item_scenes.pick_random()
 		var item = item_scene.instantiate() as Item
 		item.position = room.get_center()
 		items.append(item)
 
 	return items
+
+
+func _get_item_tier(room_progress: float) -> int:
+	if room_progress <= 0.5:
+		return 0
+	if room_progress < 0.75:
+		return 1
+	return 2

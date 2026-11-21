@@ -32,6 +32,10 @@ func _ready() -> void:
 	super._ready()
 
 
+func _get_world_title() -> String:
+	return "Ebene %d" % GameSession.get_procedural_level_index()
+
+
 func _resolve_level_config() -> LevelConfig:
 	var level_config := GameSession.get_or_create_procedural_level_config(GameSession.get_procedural_level_index())
 	if seed_value != GameSession.NO_SEED:
@@ -57,8 +61,11 @@ func _setup_locations() -> void:
 
 
 func _place_dungeon(generated_dungeon: Dungeon) -> void:
+	var floor_terrain_id := SAND_TERRAIN_ID
+	if GameSession.get_procedural_level_index() % 2 == 0:
+		floor_terrain_id = DIRT_TERRAIN_ID
 	tile_map_layer.set_cells_terrain_connect(generated_dungeon.wall_arr, DUNGEON_ATLAS_ID, STONE_TERRAIN_ID)
-	tile_map_layer.set_cells_terrain_connect(generated_dungeon.floor_arr, DUNGEON_ATLAS_ID, DIRT_TERRAIN_ID)
+	tile_map_layer.set_cells_terrain_connect(generated_dungeon.floor_arr, DUNGEON_ATLAS_ID, floor_terrain_id)
 
 
 func _place_stairs(generated_dungeon: Dungeon) -> void:
@@ -78,7 +85,7 @@ func _place_player() -> void:
 	var spawn_stairs := stairs_up
 	if GameSession.is_procedural_spawn_at_end():
 		spawn_stairs = stairs_down
-	player.global_position = spawn_stairs.get_spawn_point()
+	spawn_stairs.place_player(player)
 
 
 func _place_enemies(generated_dungeon: Dungeon) -> void:

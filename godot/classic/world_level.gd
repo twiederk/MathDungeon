@@ -2,6 +2,9 @@ class_name WorldLevel
 extends Node2D
 
 
+@export var world_title: String = ""
+
+
 const NAME_ENTRY_DIALOG_PATH := "res://gui/name_entry_dialog.tscn"
 const HIGHSCORE_GUI_PATH := "res://gui/highscore_gui.tscn"
 
@@ -19,6 +22,7 @@ var loot_droper: LootDropper = LootDropper.new()
 @onready var quiz: Control = $UI/QuizDialog
 @onready var player_stats_sheet: StatsSheet = $UI/PlayerStatsSheet
 @onready var countdown_timer_widget: CountdownTimerWidget = $UI/CountdownTimerWidget
+@onready var world_level_title: WorldLevelTitle = $UI/WorldLevelTitle
 
 
 func _ready() -> void:
@@ -31,6 +35,11 @@ func _ready() -> void:
 	_on_simulation_running_changed(GameSession.is_simulation_running())
 	countdown_timer_widget.visible = GameSession.is_timed_run()
 	GameSession.run_time_expired.connect(_on_run_time_expired)
+	world_level_title.show_title(_get_world_title())
+
+
+func _get_world_title() -> String:
+	return world_title
 
 
 func _apply_start_position() -> void:

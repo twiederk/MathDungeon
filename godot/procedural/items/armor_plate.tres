@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArmorResource" format=3]
+
+[ext_resource type="Script" path="res://items/armor_resource.gd" id="1_armor"]
+[ext_resource type="Texture2D" path="res://procedural/items/armor_plate_atlas_texture.tres" id="2_icon"]
+
+[resource]
+script = ExtResource("1_armor")
+id = "rpg_armor_plate"
+name = "Plattenruestung"
+armor = 5
+icon_atlas = ExtResource("2_icon")

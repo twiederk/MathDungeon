@@ -12,6 +12,23 @@ func _build_level(scene_path: String, portal: NetherPortal) -> WorldLevel:
 	return level
 
 
+func test_classic_world_scene_titles(parameters = use_parameters([
+	["res://classic/overworld.tscn", "Oberwelt"],
+	["res://classic/nether.tscn", "Nether"],
+	["res://classic/end.tscn", "Das Ende"],
+	["res://classic/ancient_city.tscn", "Antike Stadt"]
+])):
+	# arrange
+	var scene = load(parameters[0]) as PackedScene
+	var level = autofree(scene.instantiate())
+
+	# act
+	var title = level._get_world_title()
+
+	# assert
+	assert_eq(title, parameters[1])
+
+
 func test_get_start_position_uses_the_nether_portal_marker():
 	# arrange
 	var portal = autofree(NetherPortal.new())

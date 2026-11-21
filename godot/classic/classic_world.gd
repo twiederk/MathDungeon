@@ -10,4 +10,4 @@ func _ready() -> void:
 func _setup_player_portrait() -> void:
 	var classic_player := player as ClassicPlayer
 	var portrait: Portrait = CharacterManager.current.portrait
-	classic_player.apply_portrait(portrait.texture)
+	classic_player.apply_portrait(portrait)

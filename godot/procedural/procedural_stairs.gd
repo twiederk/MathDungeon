@@ -6,14 +6,22 @@ signal activated(goes_down: bool)
 
 @export var goes_down: bool = false
 
-@onready var spawn_point: Marker2D = $SpawnPoint
+var _ignore_player_until_exit := false
 
-
-func get_spawn_point() -> Vector2:
-	return spawn_point.global_position
+func place_player(player: Player) -> void:
+	_ignore_player_until_exit = true
+	player.global_position = global_position
 
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name != "Player":
 		return
+	if _ignore_player_until_exit:
+		return
 	activated.emit(goes_down)
+
+
+func _on_body_exited(body: Node2D) -> void:
+	if body.name != "Player":
+		return
+	_ignore_player_until_exit = false

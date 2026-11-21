@@ -31,23 +31,14 @@ func test_generate_configures_stairs_at_dungeon_endpoints():
 	# assert
 	assert_eq(generated_dungeon.stairs_up_position, generated_dungeon.start_position)
 	assert_eq(generated_dungeon.stairs_down_position, generated_dungeon.end_position)
+	assert_does_not_have(generated_dungeon.floor_arr, Vector2i(0, 1))
+	assert_has(generated_dungeon.wall_arr, Vector2i(0, 1))
 
 	# tear down
 	for item in generated_dungeon.items:
 		item.free()
 	for enemy in generated_dungeon.enemies:
 		enemy.free()
-
-
-func test_place_entrance():
-	# arrange
-	var floor_arr: Array[Vector2i] = []
-	
-	# act
-	var entrance = dungeon_generator._place_entrance(floor_arr)
-	
-	# assert
-	assert_true(entrance == Vector2i(0, 1), "Entrance should be placed at (0, 1)")
 
 
 func test_progression_sizes_generate_usable_stairs(parameters = use_parameters([

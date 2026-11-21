@@ -13,6 +13,13 @@ func test_portrait_id_resolves_to_portrait_and_texture():
 	# assert
 	assert_eq(portrait.id, portrait_id, "Should return proper portrait")
 	assert_not_null(portrait.texture, "Should contain portrait as texture")
+	assert_not_null(portrait.idle_texture, "Should contain idle animation texture")
+
+
+func test_every_portrait_has_an_idle_animation_sheet():
+	# assert
+	for portrait in PORTRAIT_CATALOG.portraits:
+		assert_not_null(portrait.idle_texture, "Portrait %s should have an idle animation texture" % portrait.id)
 
 
 func test_unknown_id_does_not_resolve():
