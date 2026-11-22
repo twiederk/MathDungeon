@@ -34,7 +34,21 @@ Within each pool, select each listed enemy with equal probability. Keep the exis
 ## Proposed Balance Decisions
 
 - Levels 7 and deeper: reuse level 6's pools so existing unlimited progression continues. Confirm this fallback before implementation.
-- Suggested slime progression: normal maximum hit points of 1, 2, 3, 4, 5, 6 and hard maximum hit points of 2, 3, 4, 5, 6, 7, in the requested color order. Leave damage, armor, arithmetic, number limits, and time limits unchanged. This means stronger slimes require more correct answers and also changes their calculated score. Confirm these values before implementation.
+- Each successive slime color gains 2 maximum hit points and 1 damage. Its maximum number increases, and available exercise types accumulate. Red has addition, subtraction, multiplication, and division, with a maximum number of 100.
+- Suggested normal-mode values and exercise sets, to confirm before implementation:
+
+| Slime | Max hit points | Damage | Max number | Exercises |
+| --- | ---: | ---: | ---: | --- |
+| Yellow | 2 | 1 | 20 | Addition |
+| Cyan | 4 | 2 | 30 | Addition, subtraction |
+| Magenta | 6 | 3 | 40 | Addition, subtraction |
+| Green | 8 | 4 | 60 | Addition, subtraction, multiplication |
+| Blue | 10 | 5 | 80 | Addition, subtraction, multiplication |
+| Red | 12 | 6 | 100 | Addition, subtraction, multiplication, division |
+
+- Suggested hard-mode maximum hit points are 3, 5, 7, 9, 11, and 13, with maximum numbers of 40, 50, 60, 70, 80, and 100. Use the same damage and exercise sets as normal mode unless different hard-mode values are agreed. Keep armor and time limits unchanged.
+- Exercise sets cannot increase strictly at every color when there are six colors and only four specified types; the proposal increases them in stages without removing earlier types. `QuizDialog` currently uses its default multiplication limit rather than `EnemyStats.max_number`; this plan leaves that existing behavior unchanged.
+- More hit points, damage, and exercise types also affect the calculated score.
 
 ## Implementation Phases
 
@@ -52,7 +66,7 @@ Within each pool, select each listed enemy with equal probability. Keep the exis
 
 ### Phase 3: Slime Difficulty
 
-- Apply the agreed normal and hard stats to the yellow, cyan, magenta, green, blue, and red slime resources in ascending difficulty order.
+- Apply the agreed normal and hard stats to the yellow, cyan, magenta, green, blue, and red slime resources, including the requested hit-point and damage increments and cumulative exercises.
 - Keep each color's separate stats resource and verify unrelated stats and the skeleton resources remain unchanged.
 
 ### Phase 4: Verification
@@ -64,5 +78,6 @@ Within each pool, select each listed enemy with equal probability. Keep the exis
 ## Acceptance Criteria
 
 - Levels 1 through 6 use exactly the easy and medium pools in the table; deeper levels follow the agreed fallback.
-- Every slime color has its own stats resource and is strictly harder than the preceding color in both difficulty modes.
+- Every slime color has its own stats resource. Each successive color has 2 more maximum hit points and 1 more damage, a higher maximum number, and no fewer exercise types, in both difficulty modes.
+- Red slimes have addition, subtraction, multiplication, and division exercises and a maximum number of 100.
 - Spawn rules and entrance-based placement remain unchanged, and revisiting a level reproduces its configured seeded dungeon.
