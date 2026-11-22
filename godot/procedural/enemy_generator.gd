@@ -7,11 +7,20 @@ const SPAWN_CHANCE_ENEMY_MEDIUM = 70
 const SKELETON_SCENE = preload("res://procedural/enemies/skeleton.tscn")
 const SKELETON_SWORDLESS_SCENE = preload("res://procedural/enemies/skeleton_swordless.tscn")
 const SLIME_SCENE = preload("res://procedural/enemies/slime.tscn")
+const SLIME_GREEN_SCENE = preload("res://procedural/enemies/slime_green.tscn")
+const SLIME_YELLOW_SCENE = preload("res://procedural/enemies/slime_yellow.tscn")
+const SLIME_MAGENTA_SCENE = preload("res://procedural/enemies/slime_magenta.tscn")
+const SLIME_CYAN_SCENE = preload("res://procedural/enemies/slime_cyan.tscn")
+const SLIME_RED_SCENE = preload("res://procedural/enemies/slime_red.tscn")
 
 
 func generate_enemies(root_node: Branch) -> Array[Enemy]:
 	var enemies: Array[Enemy] = []
-	var enemies_easy = [SLIME_SCENE, SKELETON_SWORDLESS_SCENE]
+	var enemies_easy = [
+		SLIME_SCENE, SLIME_GREEN_SCENE, SLIME_YELLOW_SCENE,
+		SLIME_MAGENTA_SCENE, SLIME_CYAN_SCENE, SLIME_RED_SCENE,
+		SKELETON_SWORDLESS_SCENE,
+	]
 	var enemies_medium = [SKELETON_SCENE]
 
 	var rooms = root_node.get_leaves()
