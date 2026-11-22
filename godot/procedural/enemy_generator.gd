@@ -9,7 +9,7 @@ const SKELETON_SWORDLESS_SCENE = preload("res://procedural/enemies/skeleton_swor
 const SLIME_SCENE = preload("res://procedural/enemies/slime.tscn")
 
 
-func generate_enemies(root_node: Branch)  -> Array[Enemy]:
+func generate_enemies(root_node: Branch) -> Array[Enemy]:
 	var enemies: Array[Enemy] = []
 	var enemies_easy = [SLIME_SCENE, SKELETON_SWORDLESS_SCENE]
 	var enemies_medium = [SKELETON_SCENE]
@@ -24,8 +24,11 @@ func generate_enemies(root_node: Branch)  -> Array[Enemy]:
 			continue
 		var room = rooms[room_index]
 		var enemy_scene = enemies_easy.pick_random()
+		var spawn_position = _find_spawn_position(room)
+		if spawn_position == null:
+			continue
 		var enemy = enemy_scene.instantiate() as Enemy
-		enemy.position = room.get_center()
+		enemy.position = spawn_position
 		enemies.append(enemy)
 
 	for room_index in range(half_number_of_rooms + 1, number_of_rooms - 1):
@@ -33,8 +36,18 @@ func generate_enemies(root_node: Branch)  -> Array[Enemy]:
 			continue
 		var room = rooms[room_index]
 		var enemy_scene = enemies_medium.pick_random()
+		var spawn_position = _find_spawn_position(room)
+		if spawn_position == null:
+			continue
 		var enemy = enemy_scene.instantiate() as Enemy
-		enemy.position = room.get_center()
+		enemy.position = spawn_position
 		enemies.append(enemy)
 
 	return enemies
+
+
+func _find_spawn_position(room: Room) -> Variant:
+	var entrances := room.get_entrances()
+	if not entrances.is_empty():
+		return entrances[0]
+	return room.get_center()

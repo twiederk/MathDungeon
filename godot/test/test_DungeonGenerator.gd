@@ -59,6 +59,8 @@ func test_progression_sizes_generate_usable_stairs(parameters = use_parameters([
 	var leaves = generated_dungeon.root_node.get_leaves()
 	assert_eq(generated_dungeon.root_node.size, level_size)
 	assert_eq(leaves.size(), expected_leaf_count)
+	for room in leaves:
+		assert_true(room is Room)
 	assert_ne(generated_dungeon.stairs_up_position, generated_dungeon.stairs_down_position)
 	assert_has(generated_dungeon.floor_arr, generated_dungeon.stairs_up_position)
 	assert_has(generated_dungeon.floor_arr, generated_dungeon.stairs_down_position)
@@ -101,17 +103,98 @@ func _free_generated_content(generated_dungeon: Dungeon) -> void:
 		enemy.free()
 
 
+func test_room_footprint_matches_carved_floors():
+	# arrange
+	var room = Room.new(Vector2i(3, 5), Vector2i(3, 3))
+	var expected: Array[Vector2i] = [Vector2i(4, 6), Vector2i(4, 7), Vector2i(5, 6), Vector2i(5, 7)]
+
+	# act
+	var floors = dungeon_generator._place_rooms(room)
+
+	# assert
+	assert_eq(floors, expected)
+	assert_eq(room.get_room_rect(), Rect2i(4, 6, 2, 2))
+
+
+func test_entrance_spawn_on_each_side(parameters = use_parameters([
+	[Vector2i(10, 12), Vector2i(11, 12)],
+	[Vector2i(14, 12), Vector2i(13, 12)],
+	[Vector2i(12, 10), Vector2i(12, 11)],
+	[Vector2i(12, 14), Vector2i(12, 13)]
+])):
+	# arrange
+	var room = Room.new(Vector2i(10, 10), Vector2i(4, 4))
+	var floors = dungeon_generator._place_rooms(room)
+	floors.append(parameters[0])
+
+	# act
+	dungeon_generator._configure_room_entrances([room], floors)
+
+	# assert
+	var entrances = room.get_entrances()
+	assert_eq(entrances.size(), 1)
+	assert_eq(entrances[0], parameters[1])
+
+
+func test_room_returns_multiple_distinct_entrances():
+	# arrange
+	var room = Room.new(Vector2i(10, 10), Vector2i(4, 4))
+	var floors = dungeon_generator._place_rooms(room)
+	floors.append(Vector2i(10, 11))
+	floors.append(Vector2i(11, 10))
+	floors.append(Vector2i(14, 12))
+	var expected: Array[Vector2i] = [Vector2i(11, 11), Vector2i(13, 12)]
+
+	# act
+	dungeon_generator._configure_room_entrances([room], floors)
+
+	# assert
+	var entrances = room.get_entrances()
+	assert_eq(entrances, expected)
+
+
+func test_spawn_falls_back_to_room_center():
+	# arrange
+	var room = Room.new(Vector2i(10, 10), Vector2i(4, 4))
+
+	# act
+	var spawn_position = dungeon_generator.enemy_generator._find_spawn_position(room)
+
+	# assert
+	assert_eq(spawn_position, Vector2i(12, 12))
+
+
 func test_place_enemies():
 	# arrange
 	var root_node = Branch.new(Vector2i.ZERO, Vector2i(20, 20))
 	var paths: Array[Dictionary] = []
+	seed(4711)
 	root_node.split(3, paths)
+	var floors = dungeon_generator._place_rooms(root_node)
+	dungeon_generator._place_paths(paths, floors)
+	dungeon_generator._configure_room_entrances(root_node.get_leaves(), floors)
 	
 	# act
 	var enemies = dungeon_generator._place_enemies(root_node)
 	
 	# assert
 	assert_true(enemies.size() > 0, "Enemies should be placed in the dungeon")
+	for enemy in enemies:
+		var tile = Vector2i(enemy.position)
+		assert_has(floors, tile)
+		var room_found = false
+		for room in root_node.get_leaves():
+			var room_rect: Rect2i = room.get_room_rect()
+			if not room_rect.has_point(tile):
+				continue
+			room_found = true
+			var next_to_entrance = false
+			for direction in [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]:
+				var neighbor: Vector2i = tile + direction
+				if not room_rect.has_point(neighbor) and neighbor in floors:
+					next_to_entrance = true
+			assert_true(next_to_entrance, "Enemy should be next to a room entrance")
+		assert_true(room_found, "Enemy should be inside a room")
 
 	# tear down
 	for enemy in enemies:
