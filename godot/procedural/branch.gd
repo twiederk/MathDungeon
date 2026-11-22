@@ -14,9 +14,9 @@ func _init(a_position, a_size) -> void:
 	self.size = a_size
 
 
-func get_leaves() -> Array[Branch]:
+func get_leaves() -> Array[Room]:
 	if is_leaf():
-		return [self]
+		return [self as Room]
 	else:
 		return left_child.get_leaves() + right_child.get_leaves()
 
@@ -32,20 +32,23 @@ func get_center() -> Vector2i:
 
 func split(remaining: int, paths: Array[Dictionary]):
 	var split_percent = randf_range(SPLIT_PERCENT_MIN, SPLIT_PERCENT_MAX)
+	var child_type = Branch
+	if remaining <= 0:
+		child_type = Room
 
 	if (_should_split_horizontal()):
 		# horizontal
 		var left_height = int(size.y * split_percent)
-		left_child = Branch.new(position, Vector2i(size.x, left_height))
-		right_child = Branch.new(
+		left_child = child_type.new(position, Vector2i(size.x, left_height))
+		right_child = child_type.new(
 			Vector2i(position.x, position.y + left_height), 
 			Vector2i(size.x, size.y - left_height)
 		)
 	else:
 		# vertical
 		var left_width = int(size.x * split_percent)
-		left_child = Branch.new(position, Vector2i(left_width, size.y))
-		right_child = Branch.new(
+		left_child = child_type.new(position, Vector2i(left_width, size.y))
+		right_child = child_type.new(
 			Vector2i(position.x + left_width, position.y), 
 			Vector2i(size.x - left_width, size.y)
 		)

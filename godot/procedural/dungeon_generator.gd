@@ -16,6 +16,7 @@ func generate_dungeon(size: Vector2i, splits: int = 3, seed_value: int = 0) -> D
 	var end_position := rooms[rooms.size() - 1].get_center()
 	var floor_arr = _place_rooms(root_node)
 	_place_paths(paths, floor_arr)
+	_configure_room_entrances(rooms, floor_arr)
 	var enemies = _place_enemies(root_node)
 	var items = _place_items(root_node)
 	var wall_arr = _place_walls(size, floor_arr)
@@ -29,15 +30,29 @@ func _configure_stairs(dungeon: Dungeon) -> void:
 	dungeon.stairs_down_position = dungeon.end_position
 
 
+func _configure_room_entrances(rooms: Array[Room], floor_arr: Array[Vector2i]) -> void:
+	var floors: Dictionary = {}
+	for floor_position in floor_arr:
+		floors[floor_position] = true
+	var directions: Array[Vector2i] = [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
+	for room in rooms:
+		room.entrances.clear()
+		var room_rect := room.get_room_rect()
+		for tile in room.get_floor_tiles():
+			for direction in directions:
+				var neighbor := tile + direction
+				if not room_rect.has_point(neighbor) and floors.has(neighbor):
+					room.entrances.append(tile)
+					break
+
+
 func _place_rooms(root_node: Branch) -> Array[Vector2i]:
 	var floor_arr: Array[Vector2i] = []
 	for leaf in root_node.get_leaves():
-		var padding = Vector4i.ZERO
-		for x in range(leaf.size.x):
-			for y in range(leaf.size.y):
-				if not is_inside_padding(x, y, leaf, padding):
-					var curr_pos = Vector2i(x + leaf.position.x, y + leaf.position.y)
-					floor_arr.append(curr_pos)
+		var room_rect := leaf.get_room_rect()
+		for x in range(room_rect.position.x, room_rect.end.x):
+			for y in range(room_rect.position.y, room_rect.end.y):
+				floor_arr.append(Vector2i(x, y))
 	return floor_arr
 
 
