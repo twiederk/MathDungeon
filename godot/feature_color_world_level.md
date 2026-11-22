@@ -13,14 +13,14 @@ Display the Nether world title in red while keeping the existing appearance and 
 ## Proposed Approach
 
 - Add an exported `Color` property to `WorldLevelTitle`, defaulting to white, so it can be configured on each scene instance in the inspector.
-- In `show_title()`, apply the configured RGB channels to the label's `self_modulate` while preserving its current alpha, before starting `reveal`. The animation remains responsible for alpha; the color property's alpha is not used.
+- In `show_title()`, assign the configured color to the label's `self_modulate` before starting `reveal`. The animation controls alpha during playback, overriding the color property's alpha.
 - Set the Nether's `UI/WorldLevelTitle` instance to opaque red. Leave the other instances at the default white tint and keep the existing outline, text, animation timings, and cleanup unchanged.
 
 ## Implementation Phases
 
 ### Phase 1: Configurable Title Color
 
-- Export the color in `gui/world_level_title.gd` and apply its RGB channels when showing a title, without changing `show_title()`'s existing text argument or animation tracks.
+- Export the color in `gui/world_level_title.gd` and apply it when showing a title, without changing `show_title()`'s existing text argument or animation tracks.
 - Check manually that the default white tint and a custom color display correctly throughout the reveal and fade-out.
 
 ### Phase 2: Nether Configuration
