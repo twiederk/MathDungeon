@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArmorResource" format=3 uid="uid://dk2wq5v8xbn7l"]
+
+[ext_resource type="Texture2D" path="res://items/helmet_leather_atlas_texture.tres" id="1_3absq"]
+[ext_resource type="Script" uid="uid://cvvocs4krryds" path="res://items/armor_resource.gd" id="2_lu7xa"]
+
+[resource]
+script = ExtResource("2_lu7xa")
+id = "helmet_leather"
+name = "Lederhelm"
+armor = 1
+icon_atlas = ExtResource("1_3absq")

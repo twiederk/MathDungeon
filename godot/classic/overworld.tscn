@@ -1,14 +1,13 @@
 [gd_scene format=4 uid="uid://b53sfmxk4rjq2"]
 
-[ext_resource type="Script" path="res://classic/classic_world.gd" id="1_u7shu"]
-[ext_resource type="PackedScene" path="res://gui/world_level_title.tscn" id="world_title"]
+[ext_resource type="Script" uid="uid://0qhcihin2htk" path="res://classic/classic_world.gd" id="1_u7shu"]
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://classic/world_tiles.tres" id="2_f2t5r"]
 [ext_resource type="PackedScene" uid="uid://ch27vu5jqwd8g" path="res://locations/nether_portal.tscn" id="3_hgg77"]
 [ext_resource type="PackedScene" uid="uid://bqy23htwiovfo" path="res://locations/end_portal.tscn" id="4_iywah"]
 [ext_resource type="PackedScene" uid="uid://cfw8qlomgdshi" path="res://locations/cave_entrance.tscn" id="5_fbmp2"]
 [ext_resource type="PackedScene" uid="uid://cinn45uh8snch" path="res://items/healing_potion.tscn" id="6_yukv7"]
 [ext_resource type="PackedScene" uid="uid://wjx4klpp85sw" path="res://items/sword_stone.tscn" id="7_gqxsy"]
-[ext_resource type="PackedScene" uid="uid://byl4j4ap7dkhk" path="res://items/helmet_wood.tscn" id="8_rbxem"]
+[ext_resource type="PackedScene" uid="uid://byl4j4ap7dkhk" path="res://items/helmet_leather.tscn" id="8_rbxem"]
 [ext_resource type="PackedScene" uid="uid://cecyxjivevnmn" path="res://items/helmet_iron.tscn" id="9_68880"]
 [ext_resource type="PackedScene" uid="uid://dq5hvtr5p280m" path="res://items/helmet_stone.tscn" id="10_uh2o5"]
 [ext_resource type="PackedScene" uid="uid://d2gt14lcnmv0c" path="res://items/sword_iron.tscn" id="11_xpjed"]
@@ -46,14 +45,15 @@
 [ext_resource type="PackedScene" uid="uid://ctlnlkhh85kv5" path="res://quiz/quiz_dialog.tscn" id="43_n36de"]
 [ext_resource type="PackedScene" uid="uid://bw8qf5x2y7k1m" path="res://gui/stats_sheet.tscn" id="44_ie4wd"]
 [ext_resource type="PackedScene" uid="uid://blvui88dhp2s6" path="res://gui/pause_gui.tscn" id="45_0doom"]
-[ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="46_s05jy"]
 [ext_resource type="PackedScene" uid="uid://dnq4jx5hrw7b2" path="res://gui/highscore_rank_widget.tscn" id="46_hsrank"]
+[ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="46_s05jy"]
 [ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://quests/achievement_popup.tscn" id="47_fym2a"]
 [ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://quests/achievement_badges.tscn" id="48_bewqi"]
 [ext_resource type="PackedScene" uid="uid://cq8nvt3xr7kql" path="res://quests/quest_log_gui.tscn" id="49_questlog"]
 [ext_resource type="PackedScene" uid="uid://b5i3hqfqrjnem" path="res://gui/character_sheet_gui.tscn" id="50_charsheet"]
 [ext_resource type="PackedScene" uid="uid://b8fireworks1" path="res://gui/fireworks_effect.tscn" id="51_fireworks"]
 [ext_resource type="PackedScene" uid="uid://cta0k883xoke0" path="res://gui/countdown_timer_widget.tscn" id="52_countdown"]
+[ext_resource type="PackedScene" uid="uid://c31qii77p2dbe" path="res://gui/world_level_title.tscn" id="world_title"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8e4i"]
 size = Vector2(380, 182)
@@ -91,31 +91,31 @@ size = Vector2(399, 331)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnost"]
 size = Vector2(459, 59)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fbmp2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqxsy"]
 resource_local_to_scene = true
 size = Vector2(41, 384)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yukv7"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbxem"]
 resource_local_to_scene = true
 size = Vector2(31, 61)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqxsy"]
-resource_local_to_scene = true
-size = Vector2(59, 61)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbxem"]
-resource_local_to_scene = true
-size = Vector2(92, 88)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_68880"]
 resource_local_to_scene = true
-size = Vector2(92, 88)
+size = Vector2(59, 61)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uh2o5"]
 resource_local_to_scene = true
 size = Vector2(92, 88)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xpjed"]
+resource_local_to_scene = true
+size = Vector2(92, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7bwf"]
+resource_local_to_scene = true
+size = Vector2(92, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yikc1"]
 resource_local_to_scene = true
 size = Vector2(124, 131)
 
@@ -747,7 +747,7 @@ title_text = "Die verlassene Burg"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle/TriggerArea2D" index="0"]
 position = Vector2(21.5, -76)
-shape = SubResource("RectangleShape2D_fbmp2")
+shape = SubResource("RectangleShape2D_gqxsy")
 
 [node name="DungeonTitle2" parent="Titles" unique_id=1265780115 instance=ExtResource("41_egkod")]
 position = Vector2(114, 1121)
@@ -755,7 +755,7 @@ title_text = "Das Tierlabyrinth"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle2/TriggerArea2D" index="0"]
 position = Vector2(-1.5, -1.5)
-shape = SubResource("RectangleShape2D_yukv7")
+shape = SubResource("RectangleShape2D_rbxem")
 
 [node name="DungeonTitle3" parent="Titles" unique_id=1065713930 instance=ExtResource("41_egkod")]
 position = Vector2(913, 670)
@@ -763,7 +763,7 @@ title_text = "Der unterirdische Teich"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle3/TriggerArea2D" index="0"]
 position = Vector2(-16.5, 1.5)
-shape = SubResource("RectangleShape2D_gqxsy")
+shape = SubResource("RectangleShape2D_68880")
 
 [node name="DungeonTitle4" parent="Titles" unique_id=1103847014 instance=ExtResource("41_egkod")]
 position = Vector2(1041, 1122)
@@ -771,7 +771,7 @@ title_text = "Die Villa"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle4/TriggerArea2D" index="0"]
 position = Vector2(-1.5, -2.5)
-shape = SubResource("RectangleShape2D_rbxem")
+shape = SubResource("RectangleShape2D_uh2o5")
 
 [node name="DungeonTitle5" parent="Titles" unique_id=395435328 instance=ExtResource("41_egkod")]
 position = Vector2(865, 1505)
@@ -779,7 +779,7 @@ title_text = "Das Waldanwesen "
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle5/TriggerArea2D" index="0"]
 position = Vector2(14, -16)
-shape = SubResource("RectangleShape2D_68880")
+shape = SubResource("RectangleShape2D_xpjed")
 
 [node name="DungeonTitle6" parent="Titles" unique_id=1333793762 instance=ExtResource("41_egkod")]
 position = Vector2(31, 1560)
@@ -787,7 +787,7 @@ title_text = "Das Dorf"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle6/TriggerArea2D" index="0"]
 position = Vector2(14, -16)
-shape = SubResource("RectangleShape2D_uh2o5")
+shape = SubResource("RectangleShape2D_q7bwf")
 
 [node name="DungeonTitle7" parent="Titles" unique_id=511827281 instance=ExtResource("41_egkod")]
 position = Vector2(1537, 1468)
@@ -795,13 +795,13 @@ title_text = "Das verlassene Dorf"
 
 [node name="CollisionShape2D" parent="Titles/DungeonTitle7/TriggerArea2D" index="0"]
 position = Vector2(-3, 16)
-shape = SubResource("RectangleShape2D_xpjed")
+shape = SubResource("RectangleShape2D_yikc1")
 
 [node name="MapBorders" parent="." unique_id=1093876332 instance=ExtResource("42_nbqs7")]
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=40578067]
 
-[node name="WorldLevelTitle" parent="UI" instance=ExtResource("world_title")]
+[node name="WorldLevelTitle" parent="UI" unique_id=551323330 instance=ExtResource("world_title")]
 
 [node name="QuizDialog" parent="UI" unique_id=1144699420 instance=ExtResource("43_n36de")]
 
@@ -822,10 +822,9 @@ offset_left = -40.0
 grow_horizontal = 0
 grow_vertical = 1
 
-[node name="HighscoreRankWidget" parent="UI" instance=ExtResource("46_hsrank")]
+[node name="HighscoreRankWidget" parent="UI" unique_id=498198719 instance=ExtResource("46_hsrank")]
 anchors_preset = 1
 anchor_left = 1.0
-anchor_right = 1.0
 anchor_bottom = 0.0
 offset_left = -40.0
 offset_top = 25.0

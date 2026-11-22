@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://wpepsbr4eyp5" path="res://items/good_resource.gd" id="4_good"]
 [ext_resource type="Resource" uid="uid://b4qxn7wsvgkd2" path="res://items/sword_stone.tres" id="4_sword_stone"]
 [ext_resource type="Resource" uid="uid://cn6y8wfxkq3mr" path="res://items/sword_iron.tres" id="5_sword_iron"]
-[ext_resource type="Resource" uid="uid://dk2wq5v8xbn7l" path="res://items/helmet_wood.tres" id="6_helmet_wood"]
+[ext_resource type="Resource" uid="uid://dk2wq5v8xbn7l" path="res://items/helmet_leather.tres" id="6_helmet_wood"]
 [ext_resource type="Resource" uid="uid://ces4ry1m8tqwv" path="res://items/helmet_stone.tres" id="7_helmet_stone"]
 [ext_resource type="Resource" uid="uid://b5b8u4rtx8qjo" path="res://items/sword_wood.tres" id="7_mpvfo"]
 [ext_resource type="Resource" uid="uid://bq7h3nxlvc0da" path="res://items/helmet_iron.tres" id="8_helmet_iron"]
@@ -21,6 +21,7 @@
 [ext_resource type="Resource" path="res://procedural/items/armor_chain.tres" id="17_rpg_chain"]
 [ext_resource type="Resource" path="res://procedural/items/armor_scale.tres" id="18_rpg_scale"]
 [ext_resource type="Resource" path="res://procedural/items/armor_plate.tres" id="19_rpg_plate"]
+
 
 
 
