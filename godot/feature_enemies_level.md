@@ -26,14 +26,14 @@ Within each pool, select each listed enemy with equal probability. Keep the exis
 
 ## Proposed Approach
 
-1. Define the table in `ProceduralGameSession` using the existing enemy scenes. Store each level's easy and medium `PackedScene` arrays in its `LevelConfig`, and copy the arrays when duplicating the configuration so callers cannot mutate the cached pools.
+1. Define the table in `EnemyGenerator` using the existing enemy scenes. `ProceduralGameSession` obtains each level's pools and stores the easy and medium `PackedScene` arrays in its `LevelConfig`, copying the arrays when duplicating the configuration so callers cannot mutate the cached pools.
 2. Pass the configured pools from `ProcGenWorld.generate_world()` through `DungeonGenerator.generate_dungeon()` and `_place_enemies()` to `EnemyGenerator.generate_enemies()`. Remove the hard-coded pools from the generator. Update direct callers to supply explicit valid pools, and handle empty pools without calling `pick_random()` on an empty array.
 3. Preserve seeded regeneration: a given level configuration and seed must reproduce its enemy types and positions on revisit. Pool changes may change the generated content, including later random-dependent item selection, compared with the old implementation; identical results across the old and new implementations are not required.
 4. Update the six slime stats resources to follow the requested difficulty order in both normal and hard modes. Keep unrelated enemy stats, loot, and behavior unchanged.
 
 ## Proposed Balance Decisions
 
-- Levels 7 and deeper: reuse level 6's pools so existing unlimited progression continues. Confirm this fallback before implementation.
+- Levels 7 and deeper reuse level 6's pools so existing unlimited progression continues.
 - Each successive slime color gains 2 maximum hit points and 1 damage. Its maximum number increases, and available exercise types accumulate. Red has addition, subtraction, multiplication, and division, with a maximum number of 100.
 - Suggested normal-mode values and exercise sets, to confirm before implementation:
 
@@ -54,7 +54,7 @@ Within each pool, select each listed enemy with equal probability. Keep the exis
 
 ### Phase 1: Level Pool Configuration
 
-- Define all six pool pairs in `ProceduralGameSession`, including the agreed deeper-level fallback.
+- Define all six pool pairs in `EnemyGenerator`, including the agreed deeper-level fallback.
 - Extend `LevelConfig` and its `duplicate()` method to carry independent easy and medium arrays without duplicating the shared scene resources themselves.
 - Update configuration construction and direct callers. Preserve invalid-index handling, cached seeds, size growth, and split thresholds.
 

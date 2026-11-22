@@ -136,6 +136,8 @@ func test_returned_procedural_level_configuration_does_not_change_the_cached_con
 	first_config.seed_value = GameSession.NO_SEED
 	first_config.size = Vector2i.ONE
 	first_config.splits = 0
+	first_config.easy_enemies.clear()
+	first_config.medium_enemies.clear()
 
 	# act
 	var second_config = GameSession.procedural_game_session.get_or_create_procedural_level_config(1)
@@ -144,6 +146,37 @@ func test_returned_procedural_level_configuration_does_not_change_the_cached_con
 	assert_eq(second_config.seed_value, original_seed)
 	assert_eq(second_config.size, ProceduralGameSession.FIRST_PROCEDURAL_LEVEL_SIZE)
 	assert_eq(second_config.splits, ProceduralGameSession.FIRST_PROCEDURAL_LEVEL_SPLITS)
+	assert_eq(second_config.easy_enemies, [EnemyGenerator.SLIME_YELLOW_SCENE])
+	assert_eq(second_config.medium_enemies, [EnemyGenerator.SLIME_YELLOW_SCENE, EnemyGenerator.SLIME_CYAN_SCENE, EnemyGenerator.SKELETON_SWORDLESS_SCENE])
+
+
+func test_procedural_level_enemy_pools(parameters = use_parameters([
+	[1, ["slime_yellow"], ["slime_yellow", "slime_cyan", "skeleton_swordless"]],
+	[2, ["slime_cyan"], ["slime_cyan", "slime_magenta", "skeleton_swordless"]],
+	[3, ["slime_magenta"], ["slime_magenta", "slime_green", "skeleton_swordless"]],
+	[4, ["slime_green", "skeleton_swordless"], ["slime_green", "slime", "skeleton"]],
+	[5, ["slime", "skeleton_swordless"], ["slime", "slime_red", "skeleton"]],
+	[6, ["slime_red", "skeleton_swordless"], ["slime_red", "skeleton"]],
+	[7, ["slime_red", "skeleton_swordless"], ["slime_red", "skeleton"]],
+	[1000, ["slime_red", "skeleton_swordless"], ["slime_red", "skeleton"]],
+])):
+	# arrange
+	var level_index = parameters[0]
+	var expected_easy = parameters[1]
+	var expected_medium = parameters[2]
+
+	# act
+	var level_config = GameSession.get_or_create_procedural_level_config(level_index)
+
+	# assert
+	var actual_easy: Array[String] = []
+	var actual_medium: Array[String] = []
+	for enemy_scene in level_config.easy_enemies:
+		actual_easy.append(enemy_scene.resource_path.get_file().get_basename())
+	for enemy_scene in level_config.medium_enemies:
+		actual_medium.append(enemy_scene.resource_path.get_file().get_basename())
+	assert_eq(actual_easy, expected_easy)
+	assert_eq(actual_medium, expected_medium)
 
 
 func test_procedural_level_progression(parameters = use_parameters([

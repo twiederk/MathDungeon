@@ -52,6 +52,9 @@ func get_or_create_procedural_level_config(level_index: int) -> LevelConfig:
 		level_seed = randi()
 	var level_splits := _get_splits_for_size(level_size)
 	var level_config := LevelConfig.new(level_seed, level_size, level_splits)
+	var enemy_pools := EnemyGenerator.get_enemy_pools(level_index)
+	level_config.easy_enemies.assign(enemy_pools.easy)
+	level_config.medium_enemies.assign(enemy_pools.medium)
 	procedural_level_configs[level_index] = level_config
 	return level_config.duplicate()
 

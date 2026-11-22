@@ -12,6 +12,18 @@ const SLIME_YELLOW_SCENE = preload("res://procedural/enemies/slime_yellow.tscn")
 const SLIME_MAGENTA_SCENE = preload("res://procedural/enemies/slime_magenta.tscn")
 const SLIME_CYAN_SCENE = preload("res://procedural/enemies/slime_cyan.tscn")
 const SLIME_RED_SCENE = preload("res://procedural/enemies/slime_red.tscn")
+const LEVEL_ENEMY_POOLS := [
+	{"easy": [SLIME_YELLOW_SCENE], "medium": [SLIME_YELLOW_SCENE, SLIME_CYAN_SCENE, SKELETON_SWORDLESS_SCENE]},
+	{"easy": [SLIME_CYAN_SCENE], "medium": [SLIME_CYAN_SCENE, SLIME_MAGENTA_SCENE, SKELETON_SWORDLESS_SCENE]},
+	{"easy": [SLIME_MAGENTA_SCENE], "medium": [SLIME_MAGENTA_SCENE, SLIME_GREEN_SCENE, SKELETON_SWORDLESS_SCENE]},
+	{"easy": [SLIME_GREEN_SCENE, SKELETON_SWORDLESS_SCENE], "medium": [SLIME_GREEN_SCENE, SLIME_SCENE, SKELETON_SCENE]},
+	{"easy": [SLIME_SCENE, SKELETON_SWORDLESS_SCENE], "medium": [SLIME_SCENE, SLIME_RED_SCENE, SKELETON_SCENE]},
+	{"easy": [SLIME_RED_SCENE, SKELETON_SWORDLESS_SCENE], "medium": [SLIME_RED_SCENE, SKELETON_SCENE]},
+]
+
+
+static func get_enemy_pools(level_index: int) -> Dictionary:
+	return LEVEL_ENEMY_POOLS[mini(level_index, LEVEL_ENEMY_POOLS.size()) - 1]
 
 
 func generate_enemies(root_node: Branch) -> Array[Enemy]:
