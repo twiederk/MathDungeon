@@ -13,17 +13,18 @@ const WEAPON_SWORD_SCENE = preload("res://procedural/items/weapon_sword.tscn")
 
 const HEALING_POTION_SCENE = preload("res://procedural/items/healing_potion.tscn")
 
-const SPAWN_CHANCE_ITEM_EASY = 20
-const SPAWN_CHANCE_ITEM_MEDIUM = 30
+const SPAWN_CHANCE_ITEM_EASY = 30
+const SPAWN_CHANCE_ITEM_MEDIUM = 25
+const SPAWN_CHANCE_ITEM_HARD = 20
 
 
 func generate_items(root_node: Branch) -> Array[Item]:
 	var items: Array[Item] = []
-	var items_easy = [ARMOR_LEATHER_SCENE, ARMOR_PADDED_SCENE, WEAPON_KNIFE_SCENE, WEAPON_DAGGER_SCENE]
-	var items_medium = [ARMOR_CHAIN_SCENE, ARMOR_SCALE_SCENE, WEAPON_SWORD_SCENE, HEALING_POTION_SCENE]
-	var items_hard = [ARMOR_PLATE_SCENE]
+	var items_easy = [ARMOR_LEATHER_SCENE, ARMOR_PADDED_SCENE, WEAPON_KNIFE_SCENE, WEAPON_DAGGER_SCENE, HEALING_POTION_SCENE, HEALING_POTION_SCENE, HEALING_POTION_SCENE]
+	var items_medium = [ARMOR_CHAIN_SCENE, ARMOR_SCALE_SCENE, WEAPON_SWORD_SCENE, HEALING_POTION_SCENE, HEALING_POTION_SCENE]
+	var items_hard = [ARMOR_PLATE_SCENE, HEALING_POTION_SCENE]
 	var item_pools = [items_easy, items_medium, items_hard]
-	var spawn_chances = [SPAWN_CHANCE_ITEM_EASY, SPAWN_CHANCE_ITEM_MEDIUM, SPAWN_CHANCE_ITEM_MEDIUM]
+	var spawn_chances = [SPAWN_CHANCE_ITEM_EASY, SPAWN_CHANCE_ITEM_MEDIUM, SPAWN_CHANCE_ITEM_HARD]
 
 	var rooms = root_node.get_leaves()
 	var number_of_rooms = rooms.size()
