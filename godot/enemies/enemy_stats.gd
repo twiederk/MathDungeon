@@ -20,6 +20,7 @@ enum ArithmeticType {
 const NOT_SET: int = -1
 
 @export var name: String = "Enemie"
+@export var level: int = 1
 @export var max_hit_points: int = 1
 @export var damage: int = 1
 @export var armor: int = 0

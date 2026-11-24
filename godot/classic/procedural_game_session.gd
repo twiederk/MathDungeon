@@ -15,7 +15,7 @@ const PROCEDURAL_CLEAR_BONUSES := {3: 500, 4: 1000, 5: 2000}
 const NO_SEED := 0
 
 
-var procedural_level_index: int = FIRST_PROCEDURAL_LEVEL
+var procedural_level: int = FIRST_PROCEDURAL_LEVEL
 var procedural_level_configs: Dictionary[int, LevelConfig] = {}
 var procedural_spawn_at_end: bool = false
 
@@ -26,7 +26,7 @@ func start_procedural_run() -> LevelConfig:
 
 
 func reset_procedural_progression() -> void:
-	procedural_level_index = FIRST_PROCEDURAL_LEVEL
+	procedural_level = FIRST_PROCEDURAL_LEVEL
 	procedural_level_configs.clear()
 	procedural_spawn_at_end = false
 
@@ -51,7 +51,7 @@ func get_or_create_procedural_level_config(level_index: int) -> LevelConfig:
 	while level_seed == NO_SEED:
 		level_seed = randi()
 	var level_splits := _get_splits_for_size(level_size)
-	var level_config := LevelConfig.new(level_seed, level_size, level_splits)
+	var level_config := LevelConfig.new(level_seed, level_size, level_splits, level_index)
 	procedural_level_configs[level_index] = level_config
 	return level_config.duplicate()
 

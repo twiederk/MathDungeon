@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3]
+
+[ext_resource type="Script" path="res://enemies/enemy_stats.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+name = "Grüner Schleim"
+level = 4
+max_hit_points = 8
+damage = 4
+arithmetic = Array[int]([0, 1, 2])
+max_number = 60
+time_limit = 30
+hard_max_hit_points = 9
+hard_max_number = 70
+hard_time_limit = 30

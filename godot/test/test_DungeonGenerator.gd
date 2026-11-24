@@ -11,7 +11,7 @@ func before_each():
 func test_generate():
 	
 	# act
-	dungeon = dungeon_generator.generate_dungeon(Vector2i(20, 20))
+	dungeon = dungeon_generator.generate_dungeon(_make_level_config(Vector2i(20, 20), 3, 0))
 	
 	# assert
 	assert_not_null(dungeon.root_node, "Dungeon root node should not be null")
@@ -26,7 +26,7 @@ func test_generate():
 
 func test_generate_configures_stairs_at_dungeon_endpoints():
 	# act
-	var generated_dungeon = dungeon_generator.generate_dungeon(Vector2i(20, 20))
+	var generated_dungeon = dungeon_generator.generate_dungeon(_make_level_config(Vector2i(20, 20), 3, 0))
 
 	# assert
 	assert_eq(generated_dungeon.stairs_up_position, generated_dungeon.start_position)
@@ -53,7 +53,7 @@ func test_progression_sizes_generate_usable_stairs(parameters = use_parameters([
 	var expected_leaf_count = int(pow(2, splits + 1))
 
 	# act
-	var generated_dungeon = dungeon_generator.generate_dungeon(level_size, splits, 4711)
+	var generated_dungeon = dungeon_generator.generate_dungeon(_make_level_config(level_size, splits, 4711))
 
 	# assert
 	var leaves = generated_dungeon.root_node.get_leaves()
@@ -71,10 +71,10 @@ func test_progression_sizes_generate_usable_stairs(parameters = use_parameters([
 
 func test_progression_regeneration_is_deterministic():
 	# arrange
-	var first_dungeon = dungeon_generator.generate_dungeon(Vector2i(40, 23), 3, 4711)
+	var first_dungeon = dungeon_generator.generate_dungeon(_make_level_config(Vector2i(40, 23), 3, 4711))
 
 	# act
-	var revisited_dungeon = dungeon_generator.generate_dungeon(Vector2i(40, 23), 3, 4711)
+	var revisited_dungeon = dungeon_generator.generate_dungeon(_make_level_config(Vector2i(40, 23), 3, 4711))
 
 	# assert
 	assert_eq(revisited_dungeon.floor_arr, first_dungeon.floor_arr)
@@ -94,6 +94,10 @@ func _content_signature(nodes: Array) -> Array:
 	for node in nodes:
 		signature.append([node.scene_file_path, node.position])
 	return signature
+
+
+func _make_level_config(size: Vector2i, splits: int, seed_value: int) -> LevelConfig:
+	return LevelConfig.new(seed_value, size, splits)
 
 
 func _free_generated_content(generated_dungeon: Dungeon) -> void:
@@ -164,6 +168,78 @@ func test_spawn_falls_back_to_room_center():
 	assert_eq(spawn_position, Vector2i(12, 12))
 
 
+func test_room_tier_boundaries(parameters = use_parameters([
+	[0.0, Generator.Tier.EASY],
+	[Generator.EASY_TIER_END_PROGRESS, Generator.Tier.EASY],
+	[0.5001, Generator.Tier.MEDIUM],
+	[0.7499, Generator.Tier.MEDIUM],
+	[Generator.HARD_TIER_START_PROGRESS, Generator.Tier.HARD],
+	[1.0, Generator.Tier.HARD]
+])):
+	# arrange
+	var generator := Generator.new()
+	var room_progress = parameters[0]
+	var expected_tier = parameters[1]
+
+	# act
+	var tier = generator._get_room_tier(room_progress)
+
+	# assert
+	assert_eq(tier, expected_tier)
+
+
+func test_enemy_pools_follow_level_and_room_tier(parameters = use_parameters([
+	[1, Generator.Tier.EASY, ["slime_yellow"]],
+	[1, Generator.Tier.MEDIUM, ["slime_yellow"]],
+	[1, Generator.Tier.HARD, ["slime_yellow", "slime_cyan"]],
+	[5, Generator.Tier.EASY, ["slime_green", "slime", "skeleton"]],
+	[5, Generator.Tier.MEDIUM, ["slime", "skeleton"]],
+	[5, Generator.Tier.HARD, ["slime", "skeleton", "slime_red"]],
+	[6, Generator.Tier.EASY, ["slime", "skeleton", "slime_red"]],
+	[6, Generator.Tier.MEDIUM, ["slime_red"]],
+	[6, Generator.Tier.HARD, ["slime_red"]],
+	[1000, Generator.Tier.HARD, ["slime_red"]]
+])):
+	# arrange
+	var dungeon_level = parameters[0]
+	var tier = parameters[1]
+	var expected_scenes = parameters[2]
+
+	# act
+	var actual_scenes = _scene_names(dungeon_generator.enemy_generator._get_enemy_pool(dungeon_level, tier))
+
+	# assert
+	assert_eq(actual_scenes, expected_scenes)
+
+
+func test_item_pools_follow_level_and_room_tier(parameters = use_parameters([
+	[1, Generator.Tier.EASY, ["armor_leather", "weapon_knife", "healing_potion"]],
+	[1, Generator.Tier.MEDIUM, ["armor_leather", "weapon_knife", "healing_potion"]],
+	[1, Generator.Tier.HARD, ["armor_leather", "armor_padded", "weapon_knife", "weapon_dagger", "healing_potion"]],
+	[5, Generator.Tier.EASY, ["armor_scale", "armor_plate", "healing_potion"]],
+	[5, Generator.Tier.MEDIUM, ["armor_plate", "healing_potion"]],
+	[5, Generator.Tier.HARD, ["armor_plate", "healing_potion"]],
+	[1000, Generator.Tier.HARD, ["armor_plate", "healing_potion"]]
+])):
+	# arrange
+	var dungeon_level = parameters[0]
+	var tier = parameters[1]
+	var expected_scenes = parameters[2]
+
+	# act
+	var actual_scenes = _scene_names(dungeon_generator.item_generator._get_item_pool(dungeon_level, tier))
+
+	# assert
+	assert_eq(actual_scenes, expected_scenes)
+
+
+func _scene_names(scenes: Array[PackedScene]) -> Array[String]:
+	var names: Array[String] = []
+	for scene in scenes:
+		names.append(scene.resource_path.get_file().get_basename())
+	return names
+
+
 func test_place_enemies():
 	# arrange
 	var root_node = Branch.new(Vector2i.ZERO, Vector2i(20, 20))
@@ -172,10 +248,11 @@ func test_place_enemies():
 	root_node.split(3, paths)
 	var floors = dungeon_generator._place_rooms(root_node)
 	dungeon_generator._place_paths(paths, floors)
-	dungeon_generator._configure_room_entrances(root_node.get_leaves(), floors)
+	var rooms := root_node.get_leaves()
+	dungeon_generator._configure_room_entrances(rooms, floors)
 	
 	# act
-	var enemies = dungeon_generator._place_enemies(root_node)
+	var enemies = dungeon_generator._place_enemies(root_node, 1)
 	
 	# assert
 	assert_true(enemies.size() > 0, "Enemies should be placed in the dungeon")
@@ -183,11 +260,14 @@ func test_place_enemies():
 		var tile = Vector2i(enemy.position)
 		assert_has(floors, tile)
 		var room_found = false
-		for room in root_node.get_leaves():
+		var enemy_room_index := -1
+		for room_index in range(rooms.size()):
+			var room = rooms[room_index]
 			var room_rect: Rect2i = room.get_room_rect()
 			if not room_rect.has_point(tile):
 				continue
 			room_found = true
+			enemy_room_index = room_index
 			var next_to_entrance = false
 			for direction in [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]:
 				var neighbor: Vector2i = tile + direction
@@ -195,6 +275,10 @@ func test_place_enemies():
 					next_to_entrance = true
 			assert_true(next_to_entrance, "Enemy should be next to a room entrance")
 		assert_true(room_found, "Enemy should be inside a room")
+		if room_found:
+			var tier := dungeon_generator.enemy_generator._get_room_tier(float(enemy_room_index) / rooms.size())
+			var allowed_scenes := _scene_names(dungeon_generator.enemy_generator._get_enemy_pool(1, tier))
+			assert_has(allowed_scenes, enemy.scene_file_path.get_file().get_basename())
 
 	# tear down
 	for enemy in enemies:
@@ -203,15 +287,29 @@ func test_place_enemies():
 
 func test_place_items():
 	# arrange
+	seed(4711)
 	var root_node = Branch.new(Vector2i.ZERO, Vector2i(20, 20))
 	var paths: Array[Dictionary] = []
 	root_node.split(3, paths)
+	var rooms := root_node.get_leaves()
 	
 	# act
-	var items = dungeon_generator._place_items(root_node)
+	var items = dungeon_generator._place_items(root_node, 1)
 	
 	# assert
 	assert_true(items.size() > 0, "Items should be placed in the dungeon")
+	for item in items:
+		var item_tile := Vector2i(item.position)
+		var room_found := false
+		for room_index in range(rooms.size()):
+			if not rooms[room_index].get_room_rect().has_point(item_tile):
+				continue
+			room_found = true
+			var tier := dungeon_generator.item_generator._get_room_tier(float(room_index) / rooms.size())
+			var allowed_scenes := _scene_names(dungeon_generator.item_generator._get_item_pool(1, tier))
+			assert_has(allowed_scenes, item.scene_file_path.get_file().get_basename())
+			break
+		assert_true(room_found, "Item should be inside a room")
 	
 	# tear down
 	for item in items:

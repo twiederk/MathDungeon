@@ -33,11 +33,11 @@ func _ready() -> void:
 
 
 func _get_world_title() -> String:
-	return "Ebene %d" % GameSession.get_procedural_level_index()
+	return "Ebene %d" % GameSession.get_procedural_level()
 
 
 func _resolve_level_config() -> LevelConfig:
-	var level_config := GameSession.get_or_create_procedural_level_config(GameSession.get_procedural_level_index())
+	var level_config := GameSession.get_or_create_procedural_level_config(GameSession.get_procedural_level())
 	if seed_value != GameSession.NO_SEED:
 		level_config.seed_value = seed_value
 	return level_config
@@ -46,7 +46,7 @@ func _resolve_level_config() -> LevelConfig:
 func generate_world(level_config: LevelConfig) -> void:
 	seed_value = level_config.seed_value
 	_clear_bonus = GameSession.get_procedural_clear_bonus(level_config.splits)
-	dungeon = dungeon_generator.generate_dungeon(level_config.size, level_config.splits, seed_value)
+	dungeon = dungeon_generator.generate_dungeon(level_config)
 	dungeon.id = "dungeon_procedural"
 	_place_dungeon(dungeon)
 	_place_stairs(dungeon)
@@ -62,7 +62,7 @@ func _setup_locations() -> void:
 
 func _place_dungeon(generated_dungeon: Dungeon) -> void:
 	var floor_terrain_id := SAND_TERRAIN_ID
-	if GameSession.get_procedural_level_index() % 2 == 0:
+	if GameSession.get_procedural_level() % 2 == 0:
 		floor_terrain_id = DIRT_TERRAIN_ID
 	tile_map_layer.set_cells_terrain_connect(generated_dungeon.wall_arr, DUNGEON_ATLAS_ID, STONE_TERRAIN_ID)
 	tile_map_layer.set_cells_terrain_connect(generated_dungeon.floor_arr, DUNGEON_ATLAS_ID, floor_terrain_id)
@@ -108,7 +108,7 @@ func _world_position(local_position: Vector2) -> Vector2:
 func _resolve_seed() -> int:
 	if seed_value != GameSession.NO_SEED:
 		return seed_value
-	return GameSession.get_or_create_procedural_level_config(GameSession.get_procedural_level_index()).seed_value
+	return GameSession.get_or_create_procedural_level_config(GameSession.get_procedural_level()).seed_value
 
 
 func get_start_position() -> Vector2:
@@ -124,18 +124,18 @@ func _on_stairs_activated(goes_down: bool) -> void:
 
 func _handle_stair_transition(goes_down: bool) -> bool:
 	if goes_down:
-		var next_level_index := GameSession.get_procedural_level_index() + 1
+		var next_level_index := GameSession.get_procedural_level() + 1
 		var next_level_config := GameSession.get_or_create_procedural_level_config(next_level_index)
 		if next_level_config == null:
 			return false
-		GameSession.set_procedural_level_index(next_level_index)
+		GameSession.set_procedural_level(next_level_index)
 		GameSession.set_procedural_spawn_at_end(false)
 		return false
 
-	if GameSession.get_procedural_level_index() == ProceduralGameSession.FIRST_PROCEDURAL_LEVEL:
+	if GameSession.get_procedural_level() == ProceduralGameSession.FIRST_PROCEDURAL_LEVEL:
 		return true
 
-	GameSession.set_procedural_level_index(GameSession.get_procedural_level_index() - 1)
+	GameSession.set_procedural_level(GameSession.get_procedural_level() - 1)
 	GameSession.set_procedural_spawn_at_end(true)
 	return false
 

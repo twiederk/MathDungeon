@@ -5,21 +5,21 @@ var enemy_generator = EnemyGenerator.new()
 var item_generator = ItemGenerator.new()
 
 
-func generate_dungeon(size: Vector2i, splits: int = 3, seed_value: int = 0) -> Dungeon:
-	if seed_value != 0:
-		seed(seed_value)
-	var root_node  = Branch.new(Vector2i.ZERO, size)
+func generate_dungeon(level_config: LevelConfig) -> Dungeon:
+	if level_config.seed_value != 0:
+		seed(level_config.seed_value)
+	var root_node  = Branch.new(Vector2i.ZERO, level_config.size)
 	var paths: Array[Dictionary] = []
-	root_node.split(splits, paths)
+	root_node.split(level_config.splits, paths)
 	var rooms := root_node.get_leaves()
 	var start_position := rooms[0].get_center()
 	var end_position := rooms[rooms.size() - 1].get_center()
 	var floor_arr = _place_rooms(root_node)
 	_place_paths(paths, floor_arr)
 	_configure_room_entrances(rooms, floor_arr)
-	var enemies = _place_enemies(root_node)
-	var items = _place_items(root_node)
-	var wall_arr = _place_walls(size, floor_arr)
+	var enemies = _place_enemies(root_node, level_config.level)
+	var items = _place_items(root_node, level_config.level)
+	var wall_arr = _place_walls(level_config.size, floor_arr)
 	var dungeon := Dungeon.new(root_node, start_position, end_position, floor_arr, wall_arr, enemies, items)
 	_configure_stairs(dungeon)
 	return dungeon
@@ -82,9 +82,9 @@ func is_inside_padding(x, y, leaf, padding) -> bool:
 	return x <= padding.x or y <= padding.y or x >= leaf.size.x - padding.z or y >= leaf.size.y - padding.w
 
 
-func _place_enemies(root_node: Branch) -> Array[Enemy]:
-	return enemy_generator.generate_enemies(root_node)
+func _place_enemies(root_node: Branch, dungeon_level: int) -> Array[Enemy]:
+	return enemy_generator.generate_enemies(root_node, dungeon_level)
 
 
-func _place_items(root_node: Branch) -> Array[Item]:
-	return item_generator.generate_items(root_node)
+func _place_items(root_node: Branch, dungeon_level: int) -> Array[Item]:
+	return item_generator.generate_items(root_node, dungeon_level)

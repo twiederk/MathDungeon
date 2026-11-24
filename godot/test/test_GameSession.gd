@@ -100,13 +100,13 @@ func test_get_or_create_world_seed_keeps_an_existing_seed():
 func test_start_procedural_run_creates_the_first_level_configuration():
 	# arrange
 	GameSession.procedural_game_session.get_or_create_procedural_level_config(3)
-	GameSession.procedural_game_session.procedural_level_index = 3
+	GameSession.procedural_game_session.procedural_level = 3
 
 	# act
 	var level_config = GameSession.start_procedural_run()
 
 	# assert
-	assert_eq(GameSession.procedural_game_session.procedural_level_index, ProceduralGameSession.FIRST_PROCEDURAL_LEVEL)
+	assert_eq(GameSession.procedural_game_session.procedural_level, ProceduralGameSession.FIRST_PROCEDURAL_LEVEL)
 	assert_eq(GameSession.procedural_game_session.procedural_level_configs.size(), 1)
 	assert_true(level_config is LevelConfig)
 	assert_eq(level_config.size, ProceduralGameSession.FIRST_PROCEDURAL_LEVEL_SIZE)
@@ -125,6 +125,7 @@ func test_procedural_level_configuration_is_stable_when_requested_again():
 	assert_eq(second_config.seed_value, first_config.seed_value)
 	assert_eq(second_config.size, first_config.size)
 	assert_eq(second_config.splits, first_config.splits)
+	assert_eq(second_config.level, 2)
 	assert_ne(second_config, first_config)
 	assert_eq(GameSession.procedural_game_session.procedural_level_configs.size(), 1)
 
@@ -136,6 +137,7 @@ func test_returned_procedural_level_configuration_does_not_change_the_cached_con
 	first_config.seed_value = GameSession.NO_SEED
 	first_config.size = Vector2i.ONE
 	first_config.splits = 0
+	first_config.level = 99
 
 	# act
 	var second_config = GameSession.procedural_game_session.get_or_create_procedural_level_config(1)
@@ -144,6 +146,26 @@ func test_returned_procedural_level_configuration_does_not_change_the_cached_con
 	assert_eq(second_config.seed_value, original_seed)
 	assert_eq(second_config.size, ProceduralGameSession.FIRST_PROCEDURAL_LEVEL_SIZE)
 	assert_eq(second_config.splits, ProceduralGameSession.FIRST_PROCEDURAL_LEVEL_SPLITS)
+	assert_eq(second_config.level, 1)
+
+
+func test_procedural_level_configuration_stores_requested_level_index(parameters = use_parameters([
+	[1],
+	[2],
+	[3],
+	[4],
+	[5],
+	[6],
+	[7],
+	[1000],
+])):
+	var level_index = parameters[0]
+
+	# act
+	var level_config = GameSession.get_or_create_procedural_level_config(level_index)
+
+	# assert
+	assert_eq(level_config.level, level_index)
 
 
 func test_procedural_level_progression(parameters = use_parameters([
@@ -181,6 +203,7 @@ func test_procedural_level_progression(parameters = use_parameters([
 	# assert
 	assert_eq(level_config.size, expected_size)
 	assert_eq(level_config.splits, expected_splits)
+	assert_eq(level_config.level, level_index)
 	assert_ne(level_config.seed_value, GameSession.NO_SEED)
 
 
@@ -243,13 +266,13 @@ func test_reset_clears_procedural_level_configurations():
 	# arrange
 	GameSession.procedural_game_session.start_procedural_run()
 	GameSession.procedural_game_session.get_or_create_procedural_level_config(2)
-	GameSession.procedural_game_session.procedural_level_index = 2
+	GameSession.procedural_game_session.procedural_level = 2
 
 	# act
 	GameSession.reset()
 
 	# assert
-	assert_eq(GameSession.procedural_game_session.procedural_level_index, ProceduralGameSession.FIRST_PROCEDURAL_LEVEL)
+	assert_eq(GameSession.procedural_game_session.procedural_level, ProceduralGameSession.FIRST_PROCEDURAL_LEVEL)
 	assert_true(GameSession.procedural_game_session.procedural_level_configs.is_empty())
 
 

@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://procedural/enemies/slime.tscn" id="1"]
+[ext_resource type="Resource" path="res://procedural/enemies/slime_red_stats.tres" id="2"]
+[ext_resource type="Shader" path="res://procedural/enemies/slime_color.gdshader" id="3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_red"]
+shader = ExtResource("3")
+shader_parameter/hue_shift = -0.66666667
+
+[node name="RedSlime" instance=ExtResource("1")]
+stats = ExtResource("2")
+
+[node name="Sprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_red")

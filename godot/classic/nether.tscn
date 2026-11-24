@@ -362,6 +362,7 @@ position = Vector2(869, 708)
 [node name="UI" type="CanvasLayer" parent="." unique_id=1211325360]
 
 [node name="WorldLevelTitle" parent="UI" instance=ExtResource("world_title")]
+title_color = Color(1, 0, 0, 1)
 
 [node name="QuizDialog" parent="UI" unique_id=1563509121 instance=ExtResource("21_pigpc")]
 
