@@ -6,7 +6,8 @@
 script = ExtResource("1")
 name = "Gelber Schleim"
 max_hit_points = 2
-arithmetic = Array[int]([0, 1])
+damage = 1
+arithmetic = Array[int]([0])
 max_number = 20
 time_limit = 30
 hard_max_hit_points = 3

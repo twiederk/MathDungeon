@@ -6,11 +6,12 @@
 [resource]
 script = ExtResource("2_8rnv2")
 name = "Schleim"
-max_hit_points = 2
-arithmetic = Array[int]([0, 1])
-max_number = 20
+max_hit_points = 10
+damage = 5
+arithmetic = Array[int]([0, 1, 2])
+max_number = 80
 time_limit = 30
-hard_max_hit_points = 3
-hard_max_number = 40
+hard_max_hit_points = 11
+hard_max_number = 80
 hard_time_limit = 30
 metadata/_custom_type_script = "uid://b0c3oqfgm2626"

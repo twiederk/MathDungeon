@@ -67,6 +67,65 @@ func test_enderman_stats_score():
 	assert_eq(actual_score, 212)
 
 
+func test_procedural_slime_normal_difficulty_progression(parameters = use_parameters([
+	["slime_yellow_stats", 2, 1, 20, [0]],
+	["slime_cyan_stats", 4, 2, 30, [0, 1]],
+	["slime_magenta_stats", 6, 3, 40, [0, 1]],
+	["slime_green_stats", 8, 4, 60, [0, 1, 2]],
+	["slime_stats", 10, 5, 80, [0, 1, 2]],
+	["slime_red_stats", 12, 6, 100, [0, 1, 2, 3]],
+])):
+	# arrange
+	GameSession.difficulty_level = GameSession.DifficultyLevel.NORMAL
+	var stats: EnemyStats = load("res://procedural/enemies/%s.tres" % parameters[0])
+
+	# act
+	var actual = _get_slime_stats_snapshot(stats)
+
+	# assert
+	assert_eq(actual.max_hit_points, parameters[1])
+	assert_eq(actual.damage, parameters[2])
+	assert_eq(actual.max_number, parameters[3])
+	assert_eq(actual.arithmetic, parameters[4])
+	assert_eq(actual.time_limit, 30)
+	assert_eq(actual.armor, 0)
+
+
+func test_procedural_slime_hard_difficulty_progression(parameters = use_parameters([
+	["slime_yellow_stats", 3, 1, 40, [0]],
+	["slime_cyan_stats", 5, 2, 50, [0, 1]],
+	["slime_magenta_stats", 7, 3, 60, [0, 1]],
+	["slime_green_stats", 9, 4, 70, [0, 1, 2]],
+	["slime_stats", 11, 5, 80, [0, 1, 2]],
+	["slime_red_stats", 13, 6, 100, [0, 1, 2, 3]],
+])):
+	# arrange
+	GameSession.difficulty_level = GameSession.DifficultyLevel.HARD
+	var stats: EnemyStats = load("res://procedural/enemies/%s.tres" % parameters[0])
+
+	# act
+	var actual = _get_slime_stats_snapshot(stats)
+
+	# assert
+	assert_eq(actual.max_hit_points, parameters[1])
+	assert_eq(actual.damage, parameters[2])
+	assert_eq(actual.max_number, parameters[3])
+	assert_eq(actual.arithmetic, parameters[4])
+	assert_eq(actual.time_limit, 30)
+	assert_eq(actual.armor, 0)
+
+
+func _get_slime_stats_snapshot(stats: EnemyStats) -> Dictionary:
+	return {
+		"max_hit_points": stats.get_max_hit_points(),
+		"damage": stats.get_damage(),
+		"max_number": stats.get_max_number(),
+		"arithmetic": stats.get_arithmetic(),
+		"time_limit": stats.get_time_limit(),
+		"armor": stats.get_armor()
+	}
+
+
 func test_enderdragon_stats_score():
 	# act
 	var actual_score = enderdragon_stats.get_score()
