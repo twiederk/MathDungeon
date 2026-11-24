@@ -47,7 +47,7 @@ For a procedural dungeon at level `N`, build each tier's eligible pool using the
 | Medium | `N` |
 | Hard | `N` and `N + 1` |
 
-Use the enemy level field for enemy pools, and the resource-derived level for item pools. A level-zero good is a special all-level candidate and is included in every item tier. Keep the catalogs in `EnemyGenerator` and `ItemGenerator`, respectively. Build eligible pools from reusable scene/resource catalogs and their levels rather than duplicating filtering rules at each call site. Preserve current item weighting, including the repeated potion entries, unless balancing is intentionally changed. Keep the current spawnable item set; `helmet_cap` is not currently in a spawn pool and should remain excluded unless separately requested.
+Use the enemy level field for enemy pools, and the resource-derived level for item pools. A level-zero good is a special all-level candidate and is included in every item tier. Keep the catalogs in `EnemyGenerator` and `ItemGenerator`, respectively. Build eligible pools from reusable scene/resource catalogs and their levels rather than duplicating filtering rules at each call site. Each catalog candidate appears once; item weighting is intentionally ignored. Keep the current spawnable item set; `helmet_cap` is not currently in a spawn pool and should remain excluded unless separately requested.
 
 Clamp the effective procedural level to the maximum supported level in each generator's catalog. The current enemy catalog supports level 6; the current non-sentinel item resources reach level 5. This keeps later levels supplied with the highest supported content without changing the level stored by the session.
 
@@ -70,7 +70,7 @@ Clamp the effective procedural level to the maximum supported level in each gene
 
 ### Phase 3: Level-Based Pools
 
-- Keep an enemy scene catalog in `EnemyGenerator` and an item scene/resource catalog in `ItemGenerator`; retain existing item candidates and duplicate entries used for weighting.
+- Keep an enemy scene catalog in `EnemyGenerator` and a flat item scene/resource catalog in `ItemGenerator`; retain each existing item candidate once.
 - Determine the effective level by clamping `LevelConfig.level` to the highest non-sentinel content level in that generator's catalog.
 - For each dungeon tier, filter catalog entries using the eligibility table above. Always include all-level goods in every item tier.
 - Select uniformly from each eligible pool, preserving current spawn probabilities and placement behavior. Skip the spawn when a tier's pool is empty.

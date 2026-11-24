@@ -27,26 +27,15 @@ const SPAWN_CHANCE_ITEM_EASY = 30
 const SPAWN_CHANCE_ITEM_MEDIUM = 25
 const SPAWN_CHANCE_ITEM_HARD = 20
 const ITEM_CATALOG := [
-	[
-		{"scene": ARMOR_LEATHER_SCENE, "resource": ARMOR_LEATHER_RESOURCE},
-		{"scene": ARMOR_PADDED_SCENE, "resource": ARMOR_PADDED_RESOURCE},
-		{"scene": WEAPON_KNIFE_SCENE, "resource": WEAPON_KNIFE_RESOURCE},
-		{"scene": WEAPON_DAGGER_SCENE, "resource": WEAPON_DAGGER_RESOURCE},
-		{"scene": HEALING_POTION_SCENE, "resource": HEALING_POTION_RESOURCE},
-		{"scene": HEALING_POTION_SCENE, "resource": HEALING_POTION_RESOURCE},
-		{"scene": HEALING_POTION_SCENE, "resource": HEALING_POTION_RESOURCE},
-	],
-	[
-		{"scene": ARMOR_CHAIN_SCENE, "resource": ARMOR_CHAIN_RESOURCE},
-		{"scene": ARMOR_SCALE_SCENE, "resource": ARMOR_SCALE_RESOURCE},
-		{"scene": WEAPON_SWORD_SCENE, "resource": WEAPON_SWORD_RESOURCE},
-		{"scene": HEALING_POTION_SCENE, "resource": HEALING_POTION_RESOURCE},
-		{"scene": HEALING_POTION_SCENE, "resource": HEALING_POTION_RESOURCE},
-	],
-	[
-		{"scene": ARMOR_PLATE_SCENE, "resource": ARMOR_PLATE_RESOURCE},
-		{"scene": HEALING_POTION_SCENE, "resource": HEALING_POTION_RESOURCE},
-	]
+	{"scene": ARMOR_LEATHER_SCENE, "resource": ARMOR_LEATHER_RESOURCE},
+	{"scene": ARMOR_PADDED_SCENE, "resource": ARMOR_PADDED_RESOURCE},
+	{"scene": ARMOR_CHAIN_SCENE, "resource": ARMOR_CHAIN_RESOURCE},
+	{"scene": ARMOR_SCALE_SCENE, "resource": ARMOR_SCALE_RESOURCE},
+	{"scene": ARMOR_PLATE_SCENE, "resource": ARMOR_PLATE_RESOURCE},
+	{"scene": WEAPON_KNIFE_SCENE, "resource": WEAPON_KNIFE_RESOURCE},
+	{"scene": WEAPON_DAGGER_SCENE, "resource": WEAPON_DAGGER_RESOURCE},
+	{"scene": WEAPON_SWORD_SCENE, "resource": WEAPON_SWORD_RESOURCE},
+	{"scene": HEALING_POTION_SCENE, "resource": HEALING_POTION_RESOURCE},
 ]
 
 
@@ -89,11 +78,11 @@ func _get_item_pool_for_level(effective_level: int, tier: int) -> Array[PackedSc
 	if tier < Generator.Tier.EASY or tier > Generator.Tier.HARD:
 		return item_pool
 	var eligible_levels := _get_eligible_content_levels(effective_level, tier)
-	for definition in ITEM_CATALOG[tier]:
-		var item_resource: Resource = definition.resource
+	for item_definition in ITEM_CATALOG:
+		var item_resource: Resource = item_definition.resource
 		var item_level := _get_item_level(item_resource)
 		if item_level == GoodResource.LEVEL_ALL_DUNGEON_LEVELS or eligible_levels.has(item_level):
-			var item_scene: PackedScene = definition.scene
+			var item_scene: PackedScene = item_definition.scene
 			item_pool.append(item_scene)
 	return item_pool
 
@@ -110,10 +99,9 @@ func _get_item_level(item_resource: Resource) -> int:
 
 func _get_max_item_level() -> int:
 	var max_level := 1
-	for tier_catalog in ITEM_CATALOG:
-		for definition in tier_catalog:
-			var item_resource: Resource = definition.resource
-			var item_level := _get_item_level(item_resource)
-			if item_level != GoodResource.LEVEL_ALL_DUNGEON_LEVELS:
-				max_level = maxi(max_level, item_level)
+	for item_definition in ITEM_CATALOG:
+		var item_resource: Resource = item_definition.resource
+		var item_level := _get_item_level(item_resource)
+		if item_level != GoodResource.LEVEL_ALL_DUNGEON_LEVELS:
+			max_level = maxi(max_level, item_level)
 	return max_level

@@ -70,18 +70,18 @@ func _get_enemy_pool(dungeon_level: int, tier: int) -> Array[PackedScene]:
 	var effective_level := clampi(dungeon_level, 1, max_level)
 	var eligible_levels := _get_eligible_content_levels(effective_level, tier)
 	var enemy_pool: Array[PackedScene] = []
-	for definition in ENEMY_CATALOG:
-		var stats: EnemyStats = definition.stats
+	for enemy_definition in ENEMY_CATALOG:
+		var stats: EnemyStats = enemy_definition.stats
 		if eligible_levels.has(stats.level):
-			var enemy_scene: PackedScene = definition.scene
+			var enemy_scene: PackedScene = enemy_definition.scene
 			enemy_pool.append(enemy_scene)
 	return enemy_pool
 
 
 func _get_max_enemy_level() -> int:
 	var max_level := 1
-	for definition in ENEMY_CATALOG:
-		var stats: EnemyStats = definition.stats
+	for enemy_definition in ENEMY_CATALOG:
+		var stats: EnemyStats = enemy_definition.stats
 		max_level = maxi(max_level, stats.level)
 	return max_level
 
