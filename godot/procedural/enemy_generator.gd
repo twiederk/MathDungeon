@@ -1,7 +1,9 @@
 class_name EnemyGenerator
+extends Generator
 
 const SPAWN_CHANCE_ENEMY_EASY = 80
 const SPAWN_CHANCE_ENEMY_MEDIUM = 70
+const SPAWN_CHANCE_ENEMY_HARD = 70
 
 # Enemies
 const SKELETON_SCENE = preload("res://procedural/enemies/skeleton.tscn")
@@ -26,39 +28,38 @@ static func get_enemy_pools(level_index: int) -> Dictionary:
 	return LEVEL_ENEMY_POOLS[mini(level_index, LEVEL_ENEMY_POOLS.size()) - 1]
 
 
-func generate_enemies(root_node: Branch, easy_enemies: Array[PackedScene], medium_enemies: Array[PackedScene]) -> Array[Enemy]:
+func generate_enemies(root_node: Branch, easy_enemies: Array[PackedScene], medium_enemies: Array[PackedScene], hard_enemies: Array[PackedScene]) -> Array[Enemy]:
 	var enemies: Array[Enemy] = []
 
 	var rooms = root_node.get_leaves()
 	var number_of_rooms = rooms.size()
-	@warning_ignore("integer_division")
-	var half_number_of_rooms: int = number_of_rooms / 2
 
-	if not easy_enemies.is_empty():
-		for room_index in range(1, half_number_of_rooms + 1):
-			if randi_range(0, 100) > SPAWN_CHANCE_ENEMY_EASY:
-				continue
-			var room = rooms[room_index]
-			var enemy_scene = easy_enemies.pick_random()
-			var spawn_position = _find_spawn_position(room)
-			if spawn_position == null:
-				continue
-			var enemy = enemy_scene.instantiate() as Enemy
-			enemy.position = spawn_position
-			enemies.append(enemy)
+	for room_index in range(1, number_of_rooms - 1):
+		var room_progress: float = float(room_index) / number_of_rooms
+		var tier := _get_room_tier(room_progress)
+		var enemy_pool: Array[PackedScene] = []
+		var spawn_chance: int = 0
+		match tier:
+			Generator.Tier.EASY:
+				enemy_pool = easy_enemies
+				spawn_chance = SPAWN_CHANCE_ENEMY_EASY
+			Generator.Tier.MEDIUM:
+				enemy_pool = medium_enemies
+				spawn_chance = SPAWN_CHANCE_ENEMY_MEDIUM
+			Generator.Tier.HARD:
+				enemy_pool = hard_enemies
+				spawn_chance = SPAWN_CHANCE_ENEMY_HARD
 
-	if not medium_enemies.is_empty():
-		for room_index in range(half_number_of_rooms + 1, number_of_rooms - 1):
-			if randi_range(0, 100) > SPAWN_CHANCE_ENEMY_MEDIUM:
-				continue
-			var room = rooms[room_index]
-			var enemy_scene = medium_enemies.pick_random()
-			var spawn_position = _find_spawn_position(room)
-			if spawn_position == null:
-				continue
-			var enemy = enemy_scene.instantiate() as Enemy
-			enemy.position = spawn_position
-			enemies.append(enemy)
+		if enemy_pool.is_empty() or randi_range(0, 100) > spawn_chance:
+			continue
+		var room = rooms[room_index]
+		var enemy_scene = enemy_pool.pick_random()
+		var spawn_position = _find_spawn_position(room)
+		if spawn_position == null:
+			continue
+		var enemy = enemy_scene.instantiate() as Enemy
+		enemy.position = spawn_position
+		enemies.append(enemy)
 
 	return enemies
 

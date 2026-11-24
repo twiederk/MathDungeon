@@ -67,6 +67,7 @@ Clamp the effective procedural level to the maximum supported level in each gene
 - Use one shared tier-calculation convention in both generators: normalized room index divided by leaf count; easy at or below `0.5`, medium above `0.5` and below `0.75`, hard at or above `0.75`.
 - Preserve the current room ordering and skip the first and last rooms for both enemy and item placement.
 - Add an enemy hard-tier spawn chance of 70%; keep easy/medium enemy chances at 80%/70% and item chances at 30%/25%/20%.
+- Until phase 3 builds level-filtered hard pools, use the existing medium enemy pool for hard-tier rooms.
 
 ### Phase 3: Level-Based Pools
 

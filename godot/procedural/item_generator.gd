@@ -1,4 +1,5 @@
 class_name ItemGenerator
+extends Generator
 
 
 const ARMOR_LEATHER_SCENE = preload("res://procedural/items/armor_leather.tscn")
@@ -30,7 +31,7 @@ func generate_items(root_node: Branch) -> Array[Item]:
 	var number_of_rooms = rooms.size()
 	for room_index in range(1, number_of_rooms - 1):
 		var room_progress = float(room_index) / number_of_rooms
-		var item_tier = _get_item_tier(room_progress)
+		var item_tier = _get_room_tier(room_progress)
 		var item_scenes: Array = item_pools[item_tier]
 		var spawn_chance: int = spawn_chances[item_tier]
 
@@ -43,11 +44,3 @@ func generate_items(root_node: Branch) -> Array[Item]:
 		items.append(item)
 
 	return items
-
-
-func _get_item_tier(room_progress: float) -> int:
-	if room_progress <= 0.5:
-		return 0
-	if room_progress < 0.75:
-		return 1
-	return 2

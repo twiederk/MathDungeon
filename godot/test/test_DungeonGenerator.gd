@@ -173,6 +173,26 @@ func test_spawn_falls_back_to_room_center():
 	assert_eq(spawn_position, Vector2i(12, 12))
 
 
+func test_room_tier_boundaries(parameters = use_parameters([
+	[0.0, Generator.Tier.EASY],
+	[Generator.EASY_TIER_END_PROGRESS, Generator.Tier.EASY],
+	[0.5001, Generator.Tier.MEDIUM],
+	[0.7499, Generator.Tier.MEDIUM],
+	[Generator.HARD_TIER_START_PROGRESS, Generator.Tier.HARD],
+	[1.0, Generator.Tier.HARD]
+])):
+	# arrange
+	var generator := Generator.new()
+	var room_progress = parameters[0]
+	var expected_tier = parameters[1]
+
+	# act
+	var tier = generator._get_room_tier(room_progress)
+
+	# assert
+	assert_eq(tier, expected_tier)
+
+
 func test_place_enemies():
 	# arrange
 	var root_node = Branch.new(Vector2i.ZERO, Vector2i(20, 20))
@@ -184,7 +204,7 @@ func test_place_enemies():
 	dungeon_generator._configure_room_entrances(root_node.get_leaves(), floors)
 	
 	# act
-	var enemies = dungeon_generator._place_enemies(root_node, easy_enemies, medium_enemies)
+	var enemies = dungeon_generator._place_enemies(root_node, easy_enemies, medium_enemies, medium_enemies)
 	
 	# assert
 	assert_true(enemies.size() > 0, "Enemies should be placed in the dungeon")
@@ -219,7 +239,7 @@ func test_empty_enemy_pools_skip_spawns_safely():
 	seed(4711)
 
 	# act
-	var enemies = dungeon_generator._place_enemies(root_node, empty_pool, empty_pool)
+	var enemies = dungeon_generator._place_enemies(root_node, empty_pool, empty_pool, empty_pool)
 
 	# assert
 	assert_true(enemies.is_empty())
