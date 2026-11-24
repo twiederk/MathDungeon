@@ -2,16 +2,21 @@ extends GutTest
 
 var dungeon_generator: DungeonGenerator = null
 var dungeon = null
+var easy_enemies: Array[PackedScene] = []
+var medium_enemies: Array[PackedScene] = []
 
 
 func before_each():
 	dungeon_generator = DungeonGenerator.new()
+	var level_one_pools := EnemyGenerator.get_enemy_pools(1)
+	easy_enemies.assign(level_one_pools.easy)
+	medium_enemies.assign(level_one_pools.medium)
 
 
 func test_generate():
 	
 	# act
-	dungeon = dungeon_generator.generate_dungeon(Vector2i(20, 20))
+	dungeon = dungeon_generator.generate_dungeon(Vector2i(20, 20), 3, 0, easy_enemies, medium_enemies)
 	
 	# assert
 	assert_not_null(dungeon.root_node, "Dungeon root node should not be null")
@@ -26,7 +31,7 @@ func test_generate():
 
 func test_generate_configures_stairs_at_dungeon_endpoints():
 	# act
-	var generated_dungeon = dungeon_generator.generate_dungeon(Vector2i(20, 20))
+	var generated_dungeon = dungeon_generator.generate_dungeon(Vector2i(20, 20), 3, 0, easy_enemies, medium_enemies)
 
 	# assert
 	assert_eq(generated_dungeon.stairs_up_position, generated_dungeon.start_position)
@@ -53,7 +58,7 @@ func test_progression_sizes_generate_usable_stairs(parameters = use_parameters([
 	var expected_leaf_count = int(pow(2, splits + 1))
 
 	# act
-	var generated_dungeon = dungeon_generator.generate_dungeon(level_size, splits, 4711)
+	var generated_dungeon = dungeon_generator.generate_dungeon(level_size, splits, 4711, easy_enemies, medium_enemies)
 
 	# assert
 	var leaves = generated_dungeon.root_node.get_leaves()
@@ -71,10 +76,10 @@ func test_progression_sizes_generate_usable_stairs(parameters = use_parameters([
 
 func test_progression_regeneration_is_deterministic():
 	# arrange
-	var first_dungeon = dungeon_generator.generate_dungeon(Vector2i(40, 23), 3, 4711)
+	var first_dungeon = dungeon_generator.generate_dungeon(Vector2i(40, 23), 3, 4711, easy_enemies, medium_enemies)
 
 	# act
-	var revisited_dungeon = dungeon_generator.generate_dungeon(Vector2i(40, 23), 3, 4711)
+	var revisited_dungeon = dungeon_generator.generate_dungeon(Vector2i(40, 23), 3, 4711, easy_enemies, medium_enemies)
 
 	# assert
 	assert_eq(revisited_dungeon.floor_arr, first_dungeon.floor_arr)
@@ -175,7 +180,7 @@ func test_place_enemies():
 	dungeon_generator._configure_room_entrances(root_node.get_leaves(), floors)
 	
 	# act
-	var enemies = dungeon_generator._place_enemies(root_node)
+	var enemies = dungeon_generator._place_enemies(root_node, easy_enemies, medium_enemies)
 	
 	# assert
 	assert_true(enemies.size() > 0, "Enemies should be placed in the dungeon")
@@ -199,6 +204,21 @@ func test_place_enemies():
 	# tear down
 	for enemy in enemies:
 		enemy.free()
+
+
+func test_empty_enemy_pools_skip_spawns_safely():
+	# arrange
+	var empty_pool: Array[PackedScene] = []
+	var root_node = Branch.new(Vector2i.ZERO, Vector2i(20, 20))
+	var paths: Array[Dictionary] = []
+	root_node.split(3, paths)
+	seed(4711)
+
+	# act
+	var enemies = dungeon_generator._place_enemies(root_node, empty_pool, empty_pool)
+
+	# assert
+	assert_true(enemies.is_empty())
 
 
 func test_place_items():

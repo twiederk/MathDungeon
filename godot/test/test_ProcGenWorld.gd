@@ -197,12 +197,23 @@ func test_world_uses_progression_size_and_splits(parameters = use_parameters([
 	assert_gt(world.dungeon.enemies.size(), 0)
 	for enemy in world.dungeon.enemies:
 		assert_eq(enemy.location, world.dungeon.id)
+		assert_true(enemy.scene_file_path in _enemy_pool_paths(level_config))
+
+
+func _enemy_pool_paths(level_config: LevelConfig) -> Array[String]:
+	var paths: Array[String] = []
+	for enemy_scene in level_config.easy_enemies + level_config.medium_enemies:
+		paths.append(enemy_scene.resource_path)
+	return paths
 
 
 func test_location_setup_uses_the_generated_visit_bonus():
 	# arrange
 	var world = _create_world_for_generation()
 	var level_config = LevelConfig.new(4711, Vector2i(40, 23), 4)
+	var level_one_pools := EnemyGenerator.get_enemy_pools(1)
+	level_config.easy_enemies.assign(level_one_pools.easy)
+	level_config.medium_enemies.assign(level_one_pools.medium)
 	world.generate_world(level_config)
 	GameSession.set_procedural_level_index(41)
 

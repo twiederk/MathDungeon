@@ -46,7 +46,13 @@ func _resolve_level_config() -> LevelConfig:
 func generate_world(level_config: LevelConfig) -> void:
 	seed_value = level_config.seed_value
 	_clear_bonus = GameSession.get_procedural_clear_bonus(level_config.splits)
-	dungeon = dungeon_generator.generate_dungeon(level_config.size, level_config.splits, seed_value)
+	dungeon = dungeon_generator.generate_dungeon(
+		level_config.size,
+		level_config.splits,
+		seed_value,
+		level_config.easy_enemies,
+		level_config.medium_enemies
+	)
 	dungeon.id = "dungeon_procedural"
 	_place_dungeon(dungeon)
 	_place_stairs(dungeon)

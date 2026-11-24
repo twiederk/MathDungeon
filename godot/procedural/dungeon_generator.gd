@@ -5,7 +5,7 @@ var enemy_generator = EnemyGenerator.new()
 var item_generator = ItemGenerator.new()
 
 
-func generate_dungeon(size: Vector2i, splits: int = 3, seed_value: int = 0) -> Dungeon:
+func generate_dungeon(size: Vector2i, splits: int, seed_value: int, easy_enemies: Array[PackedScene], medium_enemies: Array[PackedScene]) -> Dungeon:
 	if seed_value != 0:
 		seed(seed_value)
 	var root_node  = Branch.new(Vector2i.ZERO, size)
@@ -17,7 +17,7 @@ func generate_dungeon(size: Vector2i, splits: int = 3, seed_value: int = 0) -> D
 	var floor_arr = _place_rooms(root_node)
 	_place_paths(paths, floor_arr)
 	_configure_room_entrances(rooms, floor_arr)
-	var enemies = _place_enemies(root_node)
+	var enemies = _place_enemies(root_node, easy_enemies, medium_enemies)
 	var items = _place_items(root_node)
 	var wall_arr = _place_walls(size, floor_arr)
 	var dungeon := Dungeon.new(root_node, start_position, end_position, floor_arr, wall_arr, enemies, items)
@@ -82,8 +82,8 @@ func is_inside_padding(x, y, leaf, padding) -> bool:
 	return x <= padding.x or y <= padding.y or x >= leaf.size.x - padding.z or y >= leaf.size.y - padding.w
 
 
-func _place_enemies(root_node: Branch) -> Array[Enemy]:
-	return enemy_generator.generate_enemies(root_node)
+func _place_enemies(root_node: Branch, easy_enemies: Array[PackedScene], medium_enemies: Array[PackedScene]) -> Array[Enemy]:
+	return enemy_generator.generate_enemies(root_node, easy_enemies, medium_enemies)
 
 
 func _place_items(root_node: Branch) -> Array[Item]:
