@@ -17,6 +17,59 @@ func before_each():
 	enderdragon_stats = load("res://enemies/enderdragon_stats.tres")
 
 
+func test_enemy_level_defaults_to_one():
+	# arrange
+	var stats := EnemyStats.new()
+
+	# act
+	var actual_level = stats.level
+
+	# assert
+	assert_eq(actual_level, 1)
+
+
+func test_good_level_defaults_to_one():
+	# arrange
+	var good := GoodResource.new()
+
+	# act
+	var actual_level = good.level
+
+	# assert
+	assert_eq(actual_level, 1)
+
+
+func test_procedural_enemy_levels(parameters = use_parameters([
+	["slime_yellow_stats", 1],
+	["slime_cyan_stats", 2],
+	["slime_magenta_stats", 3],
+	["slime_green_stats", 4],
+	["slime_stats", 5],
+	["slime_red_stats", 6],
+	["skeleton_swordless_stats", 3],
+	["skeleton_stats", 5],
+])):
+	# arrange
+	var stats: EnemyStats = load("res://procedural/enemies/%s.tres" % parameters[0])
+
+	# act
+	var actual_level = stats.level
+
+	# assert
+	assert_eq(actual_level, parameters[1])
+
+
+func test_healing_potion_uses_all_levels_sentinel():
+	# arrange
+	var good: GoodResource = load("res://procedural/items/healing_potion_good.tres")
+
+	# act
+	var actual_level = good.level
+
+	# assert
+	assert_eq(actual_level, GoodResource.LEVEL_ALL_DUNGEON_LEVELS)
+
+
 func after_each():
 	GameSession.difficulty_level = GameSession.DifficultyLevel.NORMAL
 	zombie_stats = null

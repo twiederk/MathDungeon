@@ -23,7 +23,7 @@ func test_get_world_title_uses_current_level(parameters = use_parameters([
 	# arrange
 	var world = autofree(ProcGenWorld.new())
 	world.world_title = "Ignored authored title"
-	GameSession.set_procedural_level_index(parameters[0])
+	GameSession.set_procedural_level(parameters[0])
 
 	# act
 	var title = world._get_world_title()
@@ -35,8 +35,8 @@ func test_get_world_title_uses_current_level(parameters = use_parameters([
 func test_get_world_title_updates_when_returning_to_first_level():
 	# arrange
 	var world = autofree(ProcGenWorld.new())
-	GameSession.set_procedural_level_index(2)
-	GameSession.set_procedural_level_index(1)
+	GameSession.set_procedural_level(2)
+	GameSession.set_procedural_level(1)
 
 	# act
 	var title = world._get_world_title()
@@ -174,7 +174,7 @@ func test_world_uses_progression_size_and_splits(parameters = use_parameters([
 	# arrange
 	var expected_size = parameters[1]
 	var expected_depth = parameters[2] + 1
-	GameSession.set_procedural_level_index(parameters[0])
+	GameSession.set_procedural_level(parameters[0])
 	var world = _create_world_for_generation()
 	world.seed_value = 4711
 	var level_config = world._resolve_level_config()
@@ -202,7 +202,8 @@ func test_world_uses_progression_size_and_splits(parameters = use_parameters([
 
 func _enemy_pool_paths(level_config: LevelConfig) -> Array[String]:
 	var paths: Array[String] = []
-	for enemy_scene in level_config.easy_enemies + level_config.medium_enemies:
+	var enemy_pools := EnemyGenerator.get_enemy_pools(level_config.level)
+	for enemy_scene in enemy_pools.easy + enemy_pools.medium:
 		paths.append(enemy_scene.resource_path)
 	return paths
 
@@ -211,11 +212,8 @@ func test_location_setup_uses_the_generated_visit_bonus():
 	# arrange
 	var world = _create_world_for_generation()
 	var level_config = LevelConfig.new(4711, Vector2i(40, 23), 4)
-	var level_one_pools := EnemyGenerator.get_enemy_pools(1)
-	level_config.easy_enemies.assign(level_one_pools.easy)
-	level_config.medium_enemies.assign(level_one_pools.medium)
 	world.generate_world(level_config)
-	GameSession.set_procedural_level_index(41)
+	GameSession.set_procedural_level(41)
 
 	# act
 	world._setup_locations()
@@ -241,7 +239,7 @@ func test_descending_creates_and_enters_next_level():
 
 	# assert
 	assert_false(should_end_run)
-	assert_eq(GameSession.procedural_game_session.procedural_level_index, 2)
+	assert_eq(GameSession.procedural_game_session.procedural_level, 2)
 	assert_false(GameSession.procedural_game_session.procedural_spawn_at_end)
 	assert_true(GameSession.procedural_game_session.procedural_level_configs.has(2))
 
@@ -249,7 +247,7 @@ func test_descending_creates_and_enters_next_level():
 func test_ascending_returns_to_previous_level_at_down_stairs():
 	# arrange
 	var world = autofree(ProcGenWorld.new())
-	GameSession.procedural_game_session.procedural_level_index = 2
+	GameSession.procedural_game_session.procedural_level = 2
 	GameSession.procedural_game_session.get_or_create_procedural_level_config(2)
 
 	# act
@@ -257,7 +255,7 @@ func test_ascending_returns_to_previous_level_at_down_stairs():
 
 	# assert
 	assert_false(should_end_run)
-	assert_eq(GameSession.procedural_game_session.procedural_level_index, 1)
+	assert_eq(GameSession.procedural_game_session.procedural_level, 1)
 	assert_true(GameSession.procedural_game_session.procedural_spawn_at_end)
 
 
@@ -330,7 +328,7 @@ func test_first_level_up_stairs_end_the_run():
 
 	# assert
 	assert_true(should_end_run)
-	assert_eq(GameSession.procedural_game_session.procedural_level_index, ProceduralGameSession.FIRST_PROCEDURAL_LEVEL)
+	assert_eq(GameSession.procedural_game_session.procedural_level, ProceduralGameSession.FIRST_PROCEDURAL_LEVEL)
 
 
 func test_procedural_run_end_routes_by_highscore_eligibility():

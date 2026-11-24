@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1")
 name = "Cyan Schleim"
+level = 2
 max_hit_points = 4
 damage = 2
 arithmetic = Array[int]([0, 1])

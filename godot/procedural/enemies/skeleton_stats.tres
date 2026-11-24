@@ -13,6 +13,7 @@ metadata/_custom_type_script = "uid://cyliqhblplc3q"
 [resource]
 script = ExtResource("2_i17nh")
 name = "Skelett"
+level = 5
 max_hit_points = 4
 damage = 2
 arithmetic = Array[int]([0, 1, 2, 3])

@@ -112,12 +112,12 @@ func get_procedural_clear_bonus(splits: int) -> int:
 	return procedural_game_session.get_procedural_clear_bonus(splits)
 
 
-func get_procedural_level_index() -> int:
-	return procedural_game_session.procedural_level_index
+func get_procedural_level() -> int:
+	return procedural_game_session.procedural_level
 
 
-func set_procedural_level_index(level_index: int) -> void:
-	procedural_game_session.procedural_level_index = level_index
+func set_procedural_level(level_index: int) -> void:
+	procedural_game_session.procedural_level = level_index
 
 
 func is_procedural_spawn_at_end() -> bool:

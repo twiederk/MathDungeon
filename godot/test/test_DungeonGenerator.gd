@@ -102,10 +102,7 @@ func _content_signature(nodes: Array) -> Array:
 
 
 func _make_level_config(size: Vector2i, splits: int, seed_value: int) -> LevelConfig:
-	var level_config := LevelConfig.new(seed_value, size, splits)
-	level_config.easy_enemies.assign(easy_enemies)
-	level_config.medium_enemies.assign(medium_enemies)
-	return level_config
+	return LevelConfig.new(seed_value, size, splits)
 
 
 func _free_generated_content(generated_dungeon: Dungeon) -> void:

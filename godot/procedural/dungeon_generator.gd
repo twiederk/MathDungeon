@@ -17,7 +17,12 @@ func generate_dungeon(level_config: LevelConfig) -> Dungeon:
 	var floor_arr = _place_rooms(root_node)
 	_place_paths(paths, floor_arr)
 	_configure_room_entrances(rooms, floor_arr)
-	var enemies = _place_enemies(root_node, level_config.easy_enemies, level_config.medium_enemies)
+	var enemy_pools := EnemyGenerator.get_enemy_pools(level_config.level)
+	var easy_enemies: Array[PackedScene] = []
+	easy_enemies.assign(enemy_pools.easy)
+	var medium_enemies: Array[PackedScene] = []
+	medium_enemies.assign(enemy_pools.medium)
+	var enemies = _place_enemies(root_node, easy_enemies, medium_enemies)
 	var items = _place_items(root_node)
 	var wall_arr = _place_walls(level_config.size, floor_arr)
 	var dungeon := Dungeon.new(root_node, start_position, end_position, floor_arr, wall_arr, enemies, items)

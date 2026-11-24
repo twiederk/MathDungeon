@@ -2,7 +2,7 @@
 
 ## Goal
 
-Use `ProceduralGameSession.procedural_level_index` to control which enemies, weapons, armor, and goods can spawn in a procedural dungeon. Divide the dungeon into easy, medium, and hard room tiers, and select eligible content using the content's level value.
+Use `ProceduralGameSession.procedural_level` to control which enemies, weapons, armor, and goods can spawn in a procedural dungeon. Divide the dungeon into easy, medium, and hard room tiers, and select eligible content using the content's level value.
 
 ## Current Behavior
 
