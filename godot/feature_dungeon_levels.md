@@ -6,7 +6,7 @@ Use `ProceduralGameSession.procedural_level` to control which enemies, weapons, 
 
 ## Current Behavior
 
-- `ProcGenWorld` generates a `Dungeon` from a `LevelConfig`; the current level index is owned by `ProceduralGameSession` and is not stored in `LevelConfig`.
+- `ProcGenWorld` generates a `Dungeon` from a `LevelConfig`; `ProceduralGameSession` owns the current level and stores it in `LevelConfig.level`.
 - `EnemyGenerator` has easy and medium room ranges, level-specific fixed enemy pools, and no hard tier. Enemy spawn chances are 80% and 70%.
 - `ItemGenerator` has easy, medium, and hard scene lists with spawn chances of 30%, 25%, and 20%. It assigns tiers using normalized room progress and hard-coded boundaries `0.5` and `0.75`.
 - `EnemyStats` has no level field. Weapon level can use `WeaponResource.damage`; armor level can use `ArmorResource.armor`. `GoodResource.damage` is not used by game code.
@@ -59,7 +59,7 @@ Clamp the effective procedural level to the maximum supported level in each gene
 - Add a named `GoodResource` constant for level 0 meaning eligible at every dungeon level; assign the healing potion this value.
 - Remove unused `GoodResource.damage` after confirming there are no code references.
 - Set the requested levels on procedural slime and skeleton stats. Continue using weapon damage and armor rating as item levels.
-- Extend `LevelConfig` with the procedural level index and copy it in `duplicate()`. Set it when `ProceduralGameSession` creates each cached configuration. Remove the old fixed easy/medium enemy-pool configuration from `LevelConfig`; generator catalogs will now build pools from resource levels.
+- Extend `LevelConfig` with `level` and copy it in `duplicate()`. Set it when `ProceduralGameSession` creates each cached configuration. Remove the old fixed easy/medium enemy-pool configuration from `LevelConfig`; generator catalogs will now build pools from resource levels.
 
 ### Phase 2: Shared Room Tiers
 
@@ -67,12 +67,11 @@ Clamp the effective procedural level to the maximum supported level in each gene
 - Use one shared tier-calculation convention in both generators: normalized room index divided by leaf count; easy at or below `0.5`, medium above `0.5` and below `0.75`, hard at or above `0.75`.
 - Preserve the current room ordering and skip the first and last rooms for both enemy and item placement.
 - Add an enemy hard-tier spawn chance of 70%; keep easy/medium enemy chances at 80%/70% and item chances at 30%/25%/20%.
-- Until phase 3 builds level-filtered hard pools, use the existing medium enemy pool for hard-tier rooms.
 
 ### Phase 3: Level-Based Pools
 
 - Keep an enemy scene catalog in `EnemyGenerator` and an item scene/resource catalog in `ItemGenerator`; retain existing item candidates and duplicate entries used for weighting.
-- Determine the effective level by clamping the `LevelConfig` level index to the highest non-sentinel content level in that generator's catalog.
+- Determine the effective level by clamping `LevelConfig.level` to the highest non-sentinel content level in that generator's catalog.
 - For each dungeon tier, filter catalog entries using the eligibility table above. Always include all-level goods in every item tier.
 - Select uniformly from each eligible pool, preserving current spawn probabilities and placement behavior. Skip the spawn when a tier's pool is empty.
 - Update `DungeonGenerator` and its callers as needed to pass the enriched `LevelConfig` through to both generators.

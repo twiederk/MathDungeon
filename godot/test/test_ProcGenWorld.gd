@@ -202,9 +202,10 @@ func test_world_uses_progression_size_and_splits(parameters = use_parameters([
 
 func _enemy_pool_paths(level_config: LevelConfig) -> Array[String]:
 	var paths: Array[String] = []
-	var enemy_pools := EnemyGenerator.get_enemy_pools(level_config.level)
-	for enemy_scene in enemy_pools.easy + enemy_pools.medium:
-		paths.append(enemy_scene.resource_path)
+	var generator := EnemyGenerator.new()
+	for tier in [Generator.Tier.EASY, Generator.Tier.MEDIUM, Generator.Tier.HARD]:
+		for enemy_scene in generator._get_enemy_pool(level_config.level, tier):
+			paths.append(enemy_scene.resource_path)
 	return paths
 
 

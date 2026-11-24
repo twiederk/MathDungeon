@@ -14,22 +14,23 @@ const SLIME_YELLOW_SCENE = preload("res://procedural/enemies/slime_yellow.tscn")
 const SLIME_MAGENTA_SCENE = preload("res://procedural/enemies/slime_magenta.tscn")
 const SLIME_CYAN_SCENE = preload("res://procedural/enemies/slime_cyan.tscn")
 const SLIME_RED_SCENE = preload("res://procedural/enemies/slime_red.tscn")
-const LEVEL_ENEMY_POOLS := [
-	{"easy": [SLIME_YELLOW_SCENE], "medium": [SLIME_YELLOW_SCENE, SLIME_CYAN_SCENE, SKELETON_SWORDLESS_SCENE]},
-	{"easy": [SLIME_CYAN_SCENE], "medium": [SLIME_CYAN_SCENE, SLIME_MAGENTA_SCENE, SKELETON_SWORDLESS_SCENE]},
-	{"easy": [SLIME_MAGENTA_SCENE], "medium": [SLIME_MAGENTA_SCENE, SLIME_GREEN_SCENE, SKELETON_SWORDLESS_SCENE]},
-	{"easy": [SLIME_GREEN_SCENE, SKELETON_SWORDLESS_SCENE], "medium": [SLIME_GREEN_SCENE, SLIME_SCENE, SKELETON_SCENE]},
-	{"easy": [SLIME_SCENE, SKELETON_SWORDLESS_SCENE], "medium": [SLIME_SCENE, SLIME_RED_SCENE, SKELETON_SCENE]},
-	{"easy": [SLIME_RED_SCENE, SKELETON_SWORDLESS_SCENE], "medium": [SLIME_RED_SCENE, SKELETON_SCENE]},
+const ENEMY_CATALOG := [
+	{"scene": SLIME_YELLOW_SCENE, "stats": preload("res://procedural/enemies/slime_yellow_stats.tres")},
+	{"scene": SLIME_CYAN_SCENE, "stats": preload("res://procedural/enemies/slime_cyan_stats.tres")},
+	{"scene": SLIME_MAGENTA_SCENE, "stats": preload("res://procedural/enemies/slime_magenta_stats.tres")},
+	{"scene": SKELETON_SWORDLESS_SCENE, "stats": preload("res://procedural/enemies/skeleton_swordless_stats.tres")},
+	{"scene": SLIME_GREEN_SCENE, "stats": preload("res://procedural/enemies/slime_green_stats.tres")},
+	{"scene": SLIME_SCENE, "stats": preload("res://procedural/enemies/slime_stats.tres")},
+	{"scene": SKELETON_SCENE, "stats": preload("res://procedural/enemies/skeleton_stats.tres")},
+	{"scene": SLIME_RED_SCENE, "stats": preload("res://procedural/enemies/slime_red_stats.tres")},
 ]
 
 
-static func get_enemy_pools(level_index: int) -> Dictionary:
-	return LEVEL_ENEMY_POOLS[mini(level_index, LEVEL_ENEMY_POOLS.size()) - 1]
-
-
-func generate_enemies(root_node: Branch, easy_enemies: Array[PackedScene], medium_enemies: Array[PackedScene], hard_enemies: Array[PackedScene]) -> Array[Enemy]:
+func generate_enemies(root_node: Branch, dungeon_level: int) -> Array[Enemy]:
 	var enemies: Array[Enemy] = []
+	var easy_enemies := _get_enemy_pool(dungeon_level, Generator.Tier.EASY)
+	var medium_enemies := _get_enemy_pool(dungeon_level, Generator.Tier.MEDIUM)
+	var hard_enemies := _get_enemy_pool(dungeon_level, Generator.Tier.HARD)
 
 	var rooms = root_node.get_leaves()
 	var number_of_rooms = rooms.size()
@@ -62,6 +63,27 @@ func generate_enemies(root_node: Branch, easy_enemies: Array[PackedScene], mediu
 		enemies.append(enemy)
 
 	return enemies
+
+
+func _get_enemy_pool(dungeon_level: int, tier: int) -> Array[PackedScene]:
+	var max_level := _get_max_enemy_level()
+	var effective_level := clampi(dungeon_level, 1, max_level)
+	var eligible_levels := _get_eligible_content_levels(effective_level, tier)
+	var enemy_pool: Array[PackedScene] = []
+	for definition in ENEMY_CATALOG:
+		var stats: EnemyStats = definition.stats
+		if eligible_levels.has(stats.level):
+			var enemy_scene: PackedScene = definition.scene
+			enemy_pool.append(enemy_scene)
+	return enemy_pool
+
+
+func _get_max_enemy_level() -> int:
+	var max_level := 1
+	for definition in ENEMY_CATALOG:
+		var stats: EnemyStats = definition.stats
+		max_level = maxi(max_level, stats.level)
+	return max_level
 
 
 func _find_spawn_position(room: Room) -> Variant:
