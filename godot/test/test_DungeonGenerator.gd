@@ -16,7 +16,7 @@ func before_each():
 func test_generate():
 	
 	# act
-	dungeon = dungeon_generator.generate_dungeon(Vector2i(20, 20), 3, 0, easy_enemies, medium_enemies)
+	dungeon = dungeon_generator.generate_dungeon(_make_level_config(Vector2i(20, 20), 3, 0))
 	
 	# assert
 	assert_not_null(dungeon.root_node, "Dungeon root node should not be null")
@@ -31,7 +31,7 @@ func test_generate():
 
 func test_generate_configures_stairs_at_dungeon_endpoints():
 	# act
-	var generated_dungeon = dungeon_generator.generate_dungeon(Vector2i(20, 20), 3, 0, easy_enemies, medium_enemies)
+	var generated_dungeon = dungeon_generator.generate_dungeon(_make_level_config(Vector2i(20, 20), 3, 0))
 
 	# assert
 	assert_eq(generated_dungeon.stairs_up_position, generated_dungeon.start_position)
@@ -58,7 +58,7 @@ func test_progression_sizes_generate_usable_stairs(parameters = use_parameters([
 	var expected_leaf_count = int(pow(2, splits + 1))
 
 	# act
-	var generated_dungeon = dungeon_generator.generate_dungeon(level_size, splits, 4711, easy_enemies, medium_enemies)
+	var generated_dungeon = dungeon_generator.generate_dungeon(_make_level_config(level_size, splits, 4711))
 
 	# assert
 	var leaves = generated_dungeon.root_node.get_leaves()
@@ -76,10 +76,10 @@ func test_progression_sizes_generate_usable_stairs(parameters = use_parameters([
 
 func test_progression_regeneration_is_deterministic():
 	# arrange
-	var first_dungeon = dungeon_generator.generate_dungeon(Vector2i(40, 23), 3, 4711, easy_enemies, medium_enemies)
+	var first_dungeon = dungeon_generator.generate_dungeon(_make_level_config(Vector2i(40, 23), 3, 4711))
 
 	# act
-	var revisited_dungeon = dungeon_generator.generate_dungeon(Vector2i(40, 23), 3, 4711, easy_enemies, medium_enemies)
+	var revisited_dungeon = dungeon_generator.generate_dungeon(_make_level_config(Vector2i(40, 23), 3, 4711))
 
 	# assert
 	assert_eq(revisited_dungeon.floor_arr, first_dungeon.floor_arr)
@@ -99,6 +99,13 @@ func _content_signature(nodes: Array) -> Array:
 	for node in nodes:
 		signature.append([node.scene_file_path, node.position])
 	return signature
+
+
+func _make_level_config(size: Vector2i, splits: int, seed_value: int) -> LevelConfig:
+	var level_config := LevelConfig.new(seed_value, size, splits)
+	level_config.easy_enemies.assign(easy_enemies)
+	level_config.medium_enemies.assign(medium_enemies)
+	return level_config
 
 
 func _free_generated_content(generated_dungeon: Dungeon) -> void:

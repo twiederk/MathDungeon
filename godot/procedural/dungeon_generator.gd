@@ -5,21 +5,21 @@ var enemy_generator = EnemyGenerator.new()
 var item_generator = ItemGenerator.new()
 
 
-func generate_dungeon(size: Vector2i, splits: int, seed_value: int, easy_enemies: Array[PackedScene], medium_enemies: Array[PackedScene]) -> Dungeon:
-	if seed_value != 0:
-		seed(seed_value)
-	var root_node  = Branch.new(Vector2i.ZERO, size)
+func generate_dungeon(level_config: LevelConfig) -> Dungeon:
+	if level_config.seed_value != 0:
+		seed(level_config.seed_value)
+	var root_node  = Branch.new(Vector2i.ZERO, level_config.size)
 	var paths: Array[Dictionary] = []
-	root_node.split(splits, paths)
+	root_node.split(level_config.splits, paths)
 	var rooms := root_node.get_leaves()
 	var start_position := rooms[0].get_center()
 	var end_position := rooms[rooms.size() - 1].get_center()
 	var floor_arr = _place_rooms(root_node)
 	_place_paths(paths, floor_arr)
 	_configure_room_entrances(rooms, floor_arr)
-	var enemies = _place_enemies(root_node, easy_enemies, medium_enemies)
+	var enemies = _place_enemies(root_node, level_config.easy_enemies, level_config.medium_enemies)
 	var items = _place_items(root_node)
-	var wall_arr = _place_walls(size, floor_arr)
+	var wall_arr = _place_walls(level_config.size, floor_arr)
 	var dungeon := Dungeon.new(root_node, start_position, end_position, floor_arr, wall_arr, enemies, items)
 	_configure_stairs(dungeon)
 	return dungeon
