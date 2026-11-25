@@ -23,9 +23,9 @@ const WEAPON_DAGGER_RESOURCE = preload("res://procedural/items/weapon_dagger.tre
 const WEAPON_SWORD_RESOURCE = preload("res://procedural/items/weapon_sword.tres")
 const HEALING_POTION_RESOURCE = preload("res://procedural/items/healing_potion_good.tres")
 
-const SPAWN_CHANCE_ITEM_EASY = 30
-const SPAWN_CHANCE_ITEM_MEDIUM = 25
-const SPAWN_CHANCE_ITEM_HARD = 20
+const SPAWN_CHANCE_ITEM_EASY = 35
+const SPAWN_CHANCE_ITEM_MEDIUM = 30
+const SPAWN_CHANCE_ITEM_HARD = 25
 const ITEM_CATALOG := [
 	{"scene": ARMOR_LEATHER_SCENE, "resource": ARMOR_LEATHER_RESOURCE},
 	{"scene": ARMOR_PADDED_SCENE, "resource": ARMOR_PADDED_RESOURCE},
