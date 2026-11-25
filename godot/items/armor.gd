@@ -1,4 +1,4 @@
-class_name Helmet
+class_name Armor
 extends Item
 
 @export var armor_resource: ArmorResource

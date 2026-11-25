@@ -1,10 +1,10 @@
 extends GutTest
 
-var helmet: Helmet = null
+var helmet: Armor = null
 
 
 func before_each():
-	helmet = Helmet.new()
+	helmet = Armor.new()
 	CharacterManager.current = Character.new()
 
 

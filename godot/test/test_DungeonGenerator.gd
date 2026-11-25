@@ -213,13 +213,13 @@ func test_enemy_pools_follow_level_and_room_tier(parameters = use_parameters([
 
 
 func test_item_pools_follow_level_and_room_tier(parameters = use_parameters([
-	[1, Generator.Tier.EASY, ["armor_leather", "weapon_knife", "healing_potion"]],
-	[1, Generator.Tier.MEDIUM, ["armor_leather", "weapon_knife", "healing_potion"]],
-	[1, Generator.Tier.HARD, ["armor_leather", "armor_padded", "weapon_knife", "weapon_dagger", "healing_potion"]],
-	[5, Generator.Tier.EASY, ["armor_scale", "armor_plate", "healing_potion"]],
-	[5, Generator.Tier.MEDIUM, ["armor_plate", "healing_potion"]],
-	[5, Generator.Tier.HARD, ["armor_plate", "healing_potion"]],
-	[1000, Generator.Tier.HARD, ["armor_plate", "healing_potion"]]
+	[1, Generator.Tier.EASY, ["weapon_knife", "healing_potion"]],
+	[1, Generator.Tier.MEDIUM, ["weapon_knife", "healing_potion"]],
+	[1, Generator.Tier.HARD, ["armor_leather", "weapon_knife", "weapon_dagger", "healing_potion"]],
+	[5, Generator.Tier.EASY, ["armor_padded", "weapon_knife", "weapon_sword", "healing_potion"]],
+	[5, Generator.Tier.MEDIUM, ["weapon_knife", "healing_potion"]],
+	[5, Generator.Tier.HARD, ["armor_chain", "weapon_knife", "healing_potion"]],
+	[1000, Generator.Tier.HARD, ["armor_plate", "weapon_knife", "healing_potion"]]
 ])):
 	# arrange
 	var dungeon_level = parameters[0]

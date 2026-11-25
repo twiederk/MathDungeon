@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cq432t8tirlip"]
 
-[ext_resource type="Script" uid="uid://dy2ugvq1ya782" path="res://items/helmet.gd" id="1_armor"]
+[ext_resource type="Script" uid="uid://dy2ugvq1ya782" path="res://items/armor.gd" id="1_armor"]
 [ext_resource type="Resource" path="res://procedural/items/armor_scale.tres" id="2_stats"]
 [ext_resource type="Texture2D" uid="uid://b7yranleu56gn" path="res://procedural/items/armor_scale_atlas_texture.tres" id="3_items"]
 
