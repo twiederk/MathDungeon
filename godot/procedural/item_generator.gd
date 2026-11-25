@@ -89,9 +89,9 @@ func _get_item_pool_for_level(effective_level: int, tier: int) -> Array[PackedSc
 
 func _get_item_level(item_resource: Resource) -> int:
 	if item_resource is ArmorResource:
-		return (item_resource as ArmorResource).armor
+		return (item_resource as ArmorResource).armor * 2
 	if item_resource is WeaponResource:
-		return (item_resource as WeaponResource).damage
+		return (item_resource as WeaponResource).damage * 2
 	if item_resource is GoodResource:
 		return (item_resource as GoodResource).level
 	return -1
