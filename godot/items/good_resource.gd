@@ -10,3 +10,7 @@ const LEVEL_ALL_DUNGEON_LEVELS: int = 0
 @export var level: int = 1
 @export var good_type: GoodType = GoodType.OTHER
 @export var icon_atlas: AtlasTexture
+
+
+func get_level() -> int:
+	return level

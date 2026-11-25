@@ -79,29 +79,17 @@ func _get_item_pool_for_level(effective_level: int, tier: int) -> Array[PackedSc
 		return item_pool
 	var eligible_levels := _get_eligible_content_levels(effective_level, tier)
 	for item_definition in ITEM_CATALOG:
-		var item_resource: Resource = item_definition.resource
-		var item_level := _get_item_level(item_resource)
+		var item_level: int = item_definition.resource.get_level()
 		if item_level == GoodResource.LEVEL_ALL_DUNGEON_LEVELS or eligible_levels.has(item_level):
 			var item_scene: PackedScene = item_definition.scene
 			item_pool.append(item_scene)
 	return item_pool
 
 
-func _get_item_level(item_resource: Resource) -> int:
-	if item_resource is ArmorResource:
-		return (item_resource as ArmorResource).armor * 2
-	if item_resource is WeaponResource:
-		return (item_resource as WeaponResource).damage * 2 - 2
-	if item_resource is GoodResource:
-		return (item_resource as GoodResource).level
-	return -1
-
-
 func _get_max_item_level() -> int:
 	var max_level := 1
 	for item_definition in ITEM_CATALOG:
-		var item_resource: Resource = item_definition.resource
-		var item_level := _get_item_level(item_resource)
+		var item_level: int = item_definition.resource.get_level()
 		if item_level != GoodResource.LEVEL_ALL_DUNGEON_LEVELS:
 			max_level = maxi(max_level, item_level)
 	return max_level

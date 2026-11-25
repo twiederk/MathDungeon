@@ -5,3 +5,7 @@ extends Resource
 @export var name: String = ""
 @export var armor: int = 0
 @export var icon_atlas: AtlasTexture
+
+
+func get_level() -> int:
+	return armor * 2
