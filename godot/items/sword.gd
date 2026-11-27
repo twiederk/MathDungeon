@@ -1,7 +1,15 @@
 class_name Sword
-extends Item
+extends ItemScene
 
 @export var weapon_resource: WeaponResource
+
+
+func get_item_resource() -> WeaponResource:
+	return weapon_resource
+
+
+func get_level() -> int:
+	return weapon_resource.get_level()
 
 
 func execute() -> void:

@@ -9,10 +9,10 @@ var stairs_down_position: Vector2i
 var floor_arr: Array[Vector2i] = []
 var wall_arr: Array[Vector2i] = []
 var enemies: Array[Enemy] = []
-var items: Array[Item] = []
+var items: Array[ItemScene] = []
 
 
-func _init(a_root_node: Branch, a_start_position: Vector2i, a_end_position: Vector2i, a_floor_arr: Array[Vector2i], a_wall_arr: Array[Vector2i], a_enemies: Array[Enemy], a_items: Array[Item]):
+func _init(a_root_node: Branch, a_start_position: Vector2i, a_end_position: Vector2i, a_floor_arr: Array[Vector2i], a_wall_arr: Array[Vector2i], a_enemies: Array[Enemy], a_items: Array[ItemScene]):
 	root_node = a_root_node
 	start_position = a_start_position
 	end_position = a_end_position

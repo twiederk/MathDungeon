@@ -1,6 +1,5 @@
 extends GutTest
 
-const ITEM_CATALOG: ItemCatalog = preload("res://items/item_catalog.tres")
 const HEALING_POTION: GoodResource = preload("res://procedural/items/healing_potion_good.tres")
 
 

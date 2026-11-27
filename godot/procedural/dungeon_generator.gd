@@ -86,5 +86,5 @@ func _place_enemies(root_node: Branch, dungeon_level: int) -> Array[Enemy]:
 	return enemy_generator.generate_enemies(root_node, dungeon_level)
 
 
-func _place_items(root_node: Branch, dungeon_level: int) -> Array[Item]:
+func _place_items(root_node: Branch, dungeon_level: int) -> Array[ItemScene]:
 	return item_generator.generate_items(root_node, dungeon_level)

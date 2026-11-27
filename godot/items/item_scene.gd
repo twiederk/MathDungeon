@@ -1,7 +1,7 @@
-class_name Item
+class_name ItemScene
 extends Area2D
 
-signal item_picked_up(item: Item)
+signal item_picked_up(item: ItemScene)
 
 
 func _ready() -> void:
@@ -18,6 +18,14 @@ func get_item_texture() -> AtlasTexture:
 	if sprite == null:
 		return null
 	return sprite.texture as AtlasTexture
+
+
+func get_item_resource() -> ItemResource:
+	return null
+
+
+func get_level() -> int:
+	return ItemResource.INVALID_LEVEL
 
 
 func execute() -> void:

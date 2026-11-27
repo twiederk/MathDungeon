@@ -1,14 +1,14 @@
 class_name LootDropper
 
 
-func drop_items(enemy: Enemy, items_root: Node) -> Array[Item]:
-	var dropped_items: Array[Item] = []
+func drop_items(enemy: Enemy, items_root: Node) -> Array[ItemScene]:
+	var dropped_items: Array[ItemScene] = []
 	for drop_definition in enemy.stats.loot_drops:
 		if drop_definition == null or drop_definition.item_scene == null:
 			continue
 
 		if _drop_roll(drop_definition.probability):
-			var item := drop_definition.item_scene.instantiate() as Item
+			var item := drop_definition.item_scene.instantiate() as ItemScene
 			items_root.add_child(item)
 			item.global_position = enemy.global_position
 			dropped_items.append(item)

@@ -39,8 +39,8 @@ const ITEM_CATALOG := [
 ]
 
 
-func generate_items(root_node: Branch, dungeon_level: int) -> Array[Item]:
-	var items: Array[Item] = []
+func generate_items(root_node: Branch, dungeon_level: int) -> Array[ItemScene]:
+	var items: Array[ItemScene] = []
 	var effective_level := clampi(dungeon_level, 1, _get_max_item_level())
 	var item_pools: Array = [
 		_get_item_pool_for_level(effective_level, Generator.Tier.EASY),
@@ -61,7 +61,7 @@ func generate_items(root_node: Branch, dungeon_level: int) -> Array[Item]:
 			continue
 		var room = rooms[room_index]
 		var item_scene = item_scenes.pick_random()
-		var item = item_scene.instantiate() as Item
+		var item = item_scene.instantiate() as ItemScene
 		item.position = room.get_center()
 		items.append(item)
 
