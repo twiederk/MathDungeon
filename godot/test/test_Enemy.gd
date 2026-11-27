@@ -15,6 +15,30 @@ func after_each():
 	enemy = null
 
 
+func test_get_level_returns_attached_stats_level():
+	# arrange
+	var expected_level: int = enemy.stats.level
+
+	# act
+	var actual_level = enemy.get_level()
+
+	# assert
+	assert_eq(actual_level, expected_level)
+
+
+func test_get_level_reflects_reassigned_stats():
+	# arrange
+	var updated_stats: EnemyStats = enemy.stats.duplicate()
+	updated_stats.level = 7
+	enemy.stats = updated_stats
+
+	# act
+	var actual_level = enemy.get_level()
+
+	# assert
+	assert_eq(actual_level, 7)
+
+
 func test_nonlethal_damage_does_not_emit_defeated():
 	# arrange
 	enemy.hit_points = enemy.stats.get_max_hit_points()
