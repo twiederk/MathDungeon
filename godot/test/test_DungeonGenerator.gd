@@ -299,6 +299,7 @@ func test_place_items():
 	# assert
 	assert_true(items.size() > 0, "Items should be placed in the dungeon")
 	for item in items:
+		assert_true(item is ItemScene, "Generated item should be an ItemScene")
 		var item_tile := Vector2i(item.position)
 		var room_found := false
 		for room_index in range(rooms.size()):
@@ -308,6 +309,9 @@ func test_place_items():
 			var tier := dungeon_generator.item_generator._get_room_tier(float(room_index) / rooms.size())
 			var allowed_scenes := _scene_names(dungeon_generator.item_generator._get_item_pool(1, tier))
 			assert_has(allowed_scenes, item.scene_file_path.get_file().get_basename())
+			var eligible_levels := dungeon_generator.item_generator._get_eligible_content_levels(1, tier)
+			var is_level_eligible := item.get_level() == GoodResource.LEVEL_ALL_DUNGEON_LEVELS or eligible_levels.has(item.get_level())
+			assert_true(is_level_eligible, "Generated item level should be eligible for its room tier")
 			break
 		assert_true(room_found, "Item should be inside a room")
 	
