@@ -1,0 +1,19 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://5nfmr5l4hlxx" path="res://items/sword.gd" id="1_sword"]
+[ext_resource type="Resource" path="res://procedural/items/weapon_fire_sword.tres" id="2_weapon"]
+[ext_resource type="Texture2D" uid="uid://cwxs3uwlbxdwj" path="res://procedural/items/weapon_fire_sword_atlas_texture.tres" id="3_icon"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sword"]
+size = Vector2(8, 8)
+
+[node name="FireSword" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_sword")
+weapon_resource = ExtResource("2_weapon")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_icon")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sword")

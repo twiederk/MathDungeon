@@ -218,7 +218,12 @@ func test_item_pools_follow_level_and_room_tier(parameters = use_parameters([
 	[1, Generator.Tier.HARD, ["armor_leather", "weapon_knife", "weapon_dagger", "healing_potion"]],
 	[5, Generator.Tier.EASY, ["armor_padded", "weapon_knife", "weapon_sword", "healing_potion"]],
 	[5, Generator.Tier.MEDIUM, ["weapon_knife", "healing_potion"]],
-	[5, Generator.Tier.HARD, ["armor_chain", "weapon_knife", "healing_potion"]],
+	[5, Generator.Tier.HARD, ["armor_chain", "weapon_knife", "weapon_ice_sword", "healing_potion"]],
+	[6, Generator.Tier.EASY, ["armor_chain", "weapon_knife", "weapon_ice_sword", "healing_potion"]],
+	[6, Generator.Tier.MEDIUM, ["armor_chain", "weapon_knife", "weapon_ice_sword", "healing_potion"]],
+	[6, Generator.Tier.HARD, ["armor_chain", "weapon_knife", "weapon_ice_sword", "healing_potion"]],
+	[7, Generator.Tier.HARD, ["armor_scale", "weapon_knife", "weapon_fire_sword", "healing_potion"]],
+	[8, Generator.Tier.MEDIUM, ["armor_scale", "weapon_knife", "weapon_fire_sword", "healing_potion"]],
 	[1000, Generator.Tier.HARD, ["armor_plate", "weapon_knife", "healing_potion"]]
 ])):
 	# arrange

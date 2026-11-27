@@ -11,6 +11,8 @@ const ARMOR_PLATE_SCENE = preload("res://procedural/items/armor_plate.tscn")
 const WEAPON_KNIFE_SCENE = preload("res://procedural/items/weapon_knife.tscn")
 const WEAPON_DAGGER_SCENE = preload("res://procedural/items/weapon_dagger.tscn")
 const WEAPON_SWORD_SCENE = preload("res://procedural/items/weapon_sword.tscn")
+const WEAPON_ICE_SWORD_SCENE = preload("res://procedural/items/weapon_ice_sword.tscn")
+const WEAPON_FIRE_SWORD_SCENE = preload("res://procedural/items/weapon_fire_sword.tscn")
 
 const HEALING_POTION_SCENE = preload("res://procedural/items/healing_potion.tscn")
 
@@ -26,6 +28,8 @@ const ITEM_CATALOG: Array[PackedScene] = [
 	WEAPON_KNIFE_SCENE,
 	WEAPON_DAGGER_SCENE,
 	WEAPON_SWORD_SCENE,
+	WEAPON_ICE_SWORD_SCENE,
+	WEAPON_FIRE_SWORD_SCENE,
 	HEALING_POTION_SCENE,
 ]
 
