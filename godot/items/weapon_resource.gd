@@ -1,10 +1,7 @@
 class_name WeaponResource
-extends Resource
+extends ItemResource
 
-@export var id: String = ""
-@export var name: String = ""
 @export var damage: int = 0
-@export var icon_atlas: AtlasTexture
 
 
 func get_level() -> int:

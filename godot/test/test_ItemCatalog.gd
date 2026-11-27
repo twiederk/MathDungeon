@@ -49,3 +49,15 @@ func test_unknown_armor_id_does_not_resolve():
 
 	# assert
 	assert_null(armor, "Should return null, when no armor is found")
+
+
+func test_good_id_resolves_to_good_resource():
+	# arrange
+	var good_id: String = "eye_of_ender"
+
+	# act
+	var good: GoodResource = ITEM_CATALOG.get_good(good_id)
+
+	# assert
+	assert_eq(good.id, good_id, "Should return proper good")
+	assert_eq(good.name, "Enderauge", "Should contain the display name")
