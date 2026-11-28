@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://ba6r3bpkv1mjw"]
 
-[ext_resource type="Script" path="res://classic/classic_world.gd" id="1_qa73l"]
-[ext_resource type="PackedScene" path="res://gui/world_level_title.tscn" id="world_title"]
+[ext_resource type="Script" uid="uid://0qhcihin2htk" path="res://classic/classic_world.gd" id="1_qa73l"]
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://classic/world_tiles.tres" id="2_5ea5w"]
 [ext_resource type="PackedScene" uid="uid://d0we0mbuvkkcc" path="res://enemies/enderdragon.tscn" id="4_lv68h"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://classic/player.tscn" id="5_gtkjg"]
@@ -12,11 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="10_7tdwu"]
 [ext_resource type="PackedScene" uid="uid://dnq4jx5hrw7b2" path="res://gui/highscore_rank_widget.tscn" id="10_hsrank"]
 [ext_resource type="PackedScene" uid="uid://cc3xq7ydpbf8j" path="res://quests/achievement_popup.tscn" id="11_lnqdw"]
-[ext_resource type="PackedScene" uid="uid://b8fireworks1" path="res://gui/fireworks_effect.tscn" id="14_fireworks"]
 [ext_resource type="PackedScene" uid="uid://bwxq8ydpbgak" path="res://quests/achievement_badges.tscn" id="12_fa5nh"]
 [ext_resource type="PackedScene" uid="uid://cq8nvt3xr7kql" path="res://quests/quest_log_gui.tscn" id="13_questlog"]
 [ext_resource type="PackedScene" uid="uid://b5i3hqfqrjnem" path="res://gui/character_sheet_gui.tscn" id="14_charsheet"]
+[ext_resource type="PackedScene" uid="uid://b8fireworks1" path="res://gui/fireworks_effect.tscn" id="14_fireworks"]
 [ext_resource type="PackedScene" uid="uid://cta0k883xoke0" path="res://gui/countdown_timer_widget.tscn" id="15_countdown"]
+[ext_resource type="PackedScene" uid="uid://c31qii77p2dbe" path="res://gui/world_level_title.tscn" id="world_title"]
 
 [node name="End" type="Node2D" unique_id=1281862831]
 script = ExtResource("1_qa73l")
@@ -44,7 +44,8 @@ position = Vector2(320, 277)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1512359696]
 
-[node name="WorldLevelTitle" parent="UI" instance=ExtResource("world_title")]
+[node name="WorldLevelTitle" parent="UI" unique_id=2057381002 instance=ExtResource("world_title")]
+title_color = Color(0.4862745, 0.23529412, 0.58431375, 1)
 
 [node name="QuizDialog" parent="UI" unique_id=916981838 instance=ExtResource("7_qgl2j")]
 
@@ -65,10 +66,9 @@ offset_left = -40.0
 grow_horizontal = 0
 grow_vertical = 1
 
-[node name="HighscoreRankWidget" parent="UI" instance=ExtResource("10_hsrank")]
+[node name="HighscoreRankWidget" parent="UI" unique_id=1299609663 instance=ExtResource("10_hsrank")]
 anchors_preset = 1
 anchor_left = 1.0
-anchor_right = 1.0
 anchor_bottom = 0.0
 offset_left = -40.0
 offset_top = 25.0
@@ -76,10 +76,9 @@ offset_bottom = 25.0
 grow_horizontal = 0
 grow_vertical = 1
 
-[node name="CountdownTimerWidget" parent="UI" instance=ExtResource("15_countdown")]
+[node name="CountdownTimerWidget" parent="UI" unique_id=545679788 instance=ExtResource("15_countdown")]
 anchors_preset = 1
 anchor_left = 1.0
-anchor_right = 1.0
 anchor_bottom = 0.0
 offset_left = -160.0
 offset_right = -120.0
@@ -88,7 +87,7 @@ grow_vertical = 1
 
 [node name="AchievementPopup" parent="UI" unique_id=414617971 instance=ExtResource("11_lnqdw")]
 
-[node name="FireworksEffect" parent="UI" instance=ExtResource("14_fireworks")]
+[node name="FireworksEffect" parent="UI" unique_id=1205643680 instance=ExtResource("14_fireworks")]
 
 [node name="AchievementBadges" parent="UI" unique_id=286961769 instance=ExtResource("12_fa5nh")]
 offset_left = 455.0

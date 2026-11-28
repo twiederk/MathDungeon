@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://byl4j4ap7dkhk"]
 
-[ext_resource type="Script" uid="uid://dy2ugvq1ya782" path="res://items/helmet.gd" id="1_gaqaq"]
+[ext_resource type="Script" uid="uid://dy2ugvq1ya782" path="res://items/armor.gd" id="1_gaqaq"]
 [ext_resource type="Texture2D" path="res://items/helmet_leather_atlas_texture.tres" id="2_n26nq"]
 [ext_resource type="Resource" uid="uid://dk2wq5v8xbn7l" path="res://items/helmet_leather.tres" id="3_armor"]
+
 
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e4ynd"]

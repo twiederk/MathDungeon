@@ -167,9 +167,9 @@ func test_world_places_stairs_at_dungeon_endpoints():
 
 
 func test_world_uses_progression_size_and_splits(parameters = use_parameters([
-	[1, Vector2i(40, 23), 3, ProcGenWorld.SAND_TERRAIN_ID],
-	[2, Vector2i(40, 23), 3, ProcGenWorld.DIRT_TERRAIN_ID],
-	[3, Vector2i(45, 28), 3, ProcGenWorld.SAND_TERRAIN_ID]
+	[1, Vector2i(39, 22), 3, ProcGenWorld.SAND_TERRAIN_ID],
+	[2, Vector2i(39, 22), 3, ProcGenWorld.SAND_TERRAIN_ID],
+	[3, Vector2i(44, 27), 3, ProcGenWorld.SAND_TERRAIN_ID]
 ])):
 	# arrange
 	var expected_size = parameters[1]

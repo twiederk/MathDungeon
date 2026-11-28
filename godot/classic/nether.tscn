@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://cgr3ur2xra4jo"]
 
 [ext_resource type="Script" uid="uid://bmdr15hyae3dh" path="res://classic/nether.gd" id="1_rh6vo"]
-[ext_resource type="PackedScene" path="res://gui/world_level_title.tscn" id="world_title"]
 [ext_resource type="TileSet" uid="uid://v5a3weqc176k" path="res://classic/world_tiles.tres" id="2_friib"]
 [ext_resource type="PackedScene" uid="uid://d2dlkmrjxfx0v" path="res://classic/player.tscn" id="3_ylnya"]
 [ext_resource type="PackedScene" uid="uid://ch27vu5jqwd8g" path="res://locations/nether_portal.tscn" id="4_orhj5"]
@@ -11,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://c6luw4aoh1qpi" path="res://enemies/enderman.tscn" id="9_muida"]
 [ext_resource type="PackedScene" uid="uid://6wusnt285r11" path="res://enemies/piglin_zombie.tscn" id="10_pts44"]
 [ext_resource type="PackedScene" uid="uid://c61d4chxry8io" path="res://enemies/wither_skeleton.tscn" id="10_vw2q1"]
-[ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="13_ua487"]
 [ext_resource type="PackedScene" uid="uid://dnq4jx5hrw7b2" path="res://gui/highscore_rank_widget.tscn" id="13_hsrank"]
+[ext_resource type="PackedScene" uid="uid://dkns5qy10dkc6" path="res://gui/score_widget.tscn" id="13_ua487"]
 [ext_resource type="PackedScene" uid="uid://cwox4f8n83s0j" path="res://classic/dungeon_title.tscn" id="19_hvrnb"]
 [ext_resource type="PackedScene" uid="uid://dknfts4omoqf2" path="res://enemies/blaze.tscn" id="19_wat66"]
 [ext_resource type="PackedScene" uid="uid://dse25h8h1bw3n" path="res://classic/map_borders.tscn" id="20_rmetm"]
@@ -25,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://b5i3hqfqrjnem" path="res://gui/character_sheet_gui.tscn" id="27_charsheet"]
 [ext_resource type="PackedScene" uid="uid://cta0k883xoke0" path="res://gui/countdown_timer_widget.tscn" id="27_countdown"]
 [ext_resource type="PackedScene" uid="uid://b8fireworks1" path="res://gui/fireworks_effect.tscn" id="28_fireworks"]
+[ext_resource type="PackedScene" uid="uid://c31qii77p2dbe" path="res://gui/world_level_title.tscn" id="world_title"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bcl7h"]
 radius = 79.0
@@ -44,15 +44,15 @@ size = Vector2(287, 88)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ej081"]
 size = Vector2(293, 88)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_sch02"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_lkakx"]
 resource_local_to_scene = true
 radius = 107.298645
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_lkakx"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_hx26v"]
 resource_local_to_scene = true
 radius = 101.12369
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hx26v"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ld4j"]
 resource_local_to_scene = true
 radius = 111.01801
 
@@ -63,7 +63,7 @@ size = Vector2(230, 90)
 radius = 84.804596
 height = 350.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ld4j"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rx6tn"]
 resource_local_to_scene = true
 size = Vector2(126, 126)
 
@@ -277,7 +277,7 @@ flip_sprite = true
 position = Vector2(52, 90)
 
 [node name="CollisionShape2D" parent="Enemies/Blaze3/ShootingArea" index="0" unique_id=1003688871]
-shape = SubResource("CircleShape2D_sch02")
+shape = SubResource("CircleShape2D_lkakx")
 
 [node name="Blaze4" parent="Enemies" unique_id=636626386 instance=ExtResource("19_wat66")]
 position = Vector2(66, 302)
@@ -286,7 +286,7 @@ flip_sprite = true
 
 [node name="CollisionShape2D" parent="Enemies/Blaze4/ShootingArea" parent_id_path=PackedInt32Array(636626386, 1951971501) index="0" unique_id=1003688871]
 position = Vector2(39, -60)
-shape = SubResource("CircleShape2D_lkakx")
+shape = SubResource("CircleShape2D_hx26v")
 
 [node name="Blaze5" parent="Enemies" unique_id=244087369 instance=ExtResource("19_wat66")]
 position = Vector2(134, 161)
@@ -295,7 +295,7 @@ flip_sprite = true
 
 [node name="CollisionShape2D" parent="Enemies/Blaze5/ShootingArea" parent_id_path=PackedInt32Array(244087369, 1951971501) index="0" unique_id=1003688871]
 position = Vector2(-31, 83)
-shape = SubResource("CircleShape2D_hx26v")
+shape = SubResource("CircleShape2D_7ld4j")
 
 [node name="Blaze6" parent="Enemies" unique_id=1761431005 instance=ExtResource("19_wat66")]
 position = Vector2(102, 246)
@@ -361,7 +361,7 @@ position = Vector2(869, 708)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1211325360]
 
-[node name="WorldLevelTitle" parent="UI" instance=ExtResource("world_title")]
+[node name="WorldLevelTitle" parent="UI" unique_id=320397829 instance=ExtResource("world_title")]
 title_color = Color(1, 0, 0, 1)
 
 [node name="QuizDialog" parent="UI" unique_id=1563509121 instance=ExtResource("21_pigpc")]
@@ -383,10 +383,9 @@ offset_left = -40.0
 grow_horizontal = 0
 grow_vertical = 1
 
-[node name="HighscoreRankWidget" parent="UI" instance=ExtResource("13_hsrank")]
+[node name="HighscoreRankWidget" parent="UI" unique_id=334113452 instance=ExtResource("13_hsrank")]
 anchors_preset = 1
 anchor_left = 1.0
-anchor_right = 1.0
 anchor_bottom = 0.0
 offset_left = -40.0
 offset_top = 25.0
@@ -424,7 +423,7 @@ title_text = "Die Nether Festung"
 
 [node name="CollisionShape2D" parent="DungeonTitle/TriggerArea2D" index="0"]
 position = Vector2(13, 13)
-shape = SubResource("RectangleShape2D_7ld4j")
+shape = SubResource("RectangleShape2D_rx6tn")
 
 [editable path="Enemies/ShootingGhast"]
 [editable path="Enemies/ShootingGhast2"]

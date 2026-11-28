@@ -14,6 +14,29 @@ func after_each():
 	healing_potion = null
 
 
+func test_get_item_resource_returns_assigned_resource():
+	# arrange
+	var resource := _create_good("healing_potion")
+	healing_potion.good_resource = resource
+
+	# act
+	var actual_resource: GoodResource = healing_potion.get_item_resource()
+
+	# assert
+	assert_eq(actual_resource, resource)
+
+
+func test_get_level_delegates_to_good_resource():
+	# arrange
+	healing_potion.good_resource.level = 5
+
+	# act
+	var actual_level = healing_potion.get_level()
+
+	# assert
+	assert_eq(actual_level, 5)
+
+
 func test_execute_stores_a_potion_instead_of_healing():
 	# arrange
 	CharacterManager.current.hit_points = 4

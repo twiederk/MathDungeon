@@ -1,8 +1,9 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://items/helmet.gd" id="1_armor"]
+[ext_resource type="Script" uid="uid://dy2ugvq1ya782" path="res://items/armor.gd" id="1_armor"]
 [ext_resource type="Resource" path="res://procedural/items/armor_leather.tres" id="2_stats"]
-[ext_resource type="Texture2D" path="res://procedural/items/armor_leather_atlas_texture.tres" id="3_items"]
+[ext_resource type="Texture2D" uid="uid://ccbuh0oabetbb" path="res://procedural/items/armor_leather_atlas_texture.tres" id="3_items"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_armor"]
 size = Vector2(8, 8)

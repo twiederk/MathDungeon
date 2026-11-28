@@ -1,7 +1,8 @@
 class_name ArmorResource
-extends Resource
+extends ItemResource
 
-@export var id: String = ""
-@export var name: String = ""
 @export var armor: int = 0
-@export var icon_atlas: AtlasTexture
+
+
+func get_level() -> int:
+	return armor * 2

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dq5hvtr5p280m"]
+[gd_scene format=3 uid="uid://dq5hvtr5p280m"]
 
-[ext_resource type="Script" uid="uid://dy2ugvq1ya782" path="res://items/helmet.gd" id="1_3jv1w"]
+[ext_resource type="Script" uid="uid://dy2ugvq1ya782" path="res://items/armor.gd" id="1_3jv1w"]
 [ext_resource type="Texture2D" path="res://items/helmet_stone_atlas_texture.tres" id="2_3hs1i"]
 [ext_resource type="Resource" uid="uid://ces4ry1m8tqwv" path="res://items/helmet_stone.tres" id="3_armor"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e4ynd"]
 size = Vector2(20, 18)

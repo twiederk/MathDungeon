@@ -13,6 +13,29 @@ func after_each():
 	sword = null
 
 
+func test_get_item_resource_returns_assigned_resource():
+	# arrange
+	var resource := _weapon("sword_iron", 3)
+	sword.weapon_resource = resource
+
+	# act
+	var actual_resource: WeaponResource = sword.get_item_resource()
+
+	# assert
+	assert_eq(actual_resource, resource)
+
+
+func test_get_level_delegates_to_weapon_resource():
+	# arrange
+	sword.weapon_resource = _weapon("sword_iron", 3)
+
+	# act
+	var actual_level = sword.get_level()
+
+	# assert
+	assert_eq(actual_level, 4)
+
+
 func test_execute_equips_a_stronger_sword():
 	# arrange
 	sword.weapon_resource = _weapon("sword_iron", 3)

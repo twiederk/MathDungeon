@@ -14,15 +14,15 @@ const SLIME_YELLOW_SCENE = preload("res://procedural/enemies/slime_yellow.tscn")
 const SLIME_MAGENTA_SCENE = preload("res://procedural/enemies/slime_magenta.tscn")
 const SLIME_CYAN_SCENE = preload("res://procedural/enemies/slime_cyan.tscn")
 const SLIME_RED_SCENE = preload("res://procedural/enemies/slime_red.tscn")
-const ENEMY_CATALOG := [
-	{"scene": SLIME_YELLOW_SCENE, "stats": preload("res://procedural/enemies/slime_yellow_stats.tres")},
-	{"scene": SLIME_CYAN_SCENE, "stats": preload("res://procedural/enemies/slime_cyan_stats.tres")},
-	{"scene": SLIME_MAGENTA_SCENE, "stats": preload("res://procedural/enemies/slime_magenta_stats.tres")},
-	{"scene": SKELETON_SWORDLESS_SCENE, "stats": preload("res://procedural/enemies/skeleton_swordless_stats.tres")},
-	{"scene": SLIME_GREEN_SCENE, "stats": preload("res://procedural/enemies/slime_green_stats.tres")},
-	{"scene": SLIME_SCENE, "stats": preload("res://procedural/enemies/slime_stats.tres")},
-	{"scene": SKELETON_SCENE, "stats": preload("res://procedural/enemies/skeleton_stats.tres")},
-	{"scene": SLIME_RED_SCENE, "stats": preload("res://procedural/enemies/slime_red_stats.tres")},
+const ENEMY_CATALOG: Array[PackedScene] = [
+	SLIME_YELLOW_SCENE,
+	SLIME_CYAN_SCENE,
+	SLIME_MAGENTA_SCENE,
+	SKELETON_SWORDLESS_SCENE,
+	SLIME_GREEN_SCENE,
+	SLIME_SCENE,
+	SKELETON_SCENE,
+	SLIME_RED_SCENE,
 ]
 
 
@@ -70,19 +70,22 @@ func _get_enemy_pool(dungeon_level: int, tier: int) -> Array[PackedScene]:
 	var effective_level := clampi(dungeon_level, 1, max_level)
 	var eligible_levels := _get_eligible_content_levels(effective_level, tier)
 	var enemy_pool: Array[PackedScene] = []
-	for enemy_definition in ENEMY_CATALOG:
-		var stats: EnemyStats = enemy_definition.stats
-		if eligible_levels.has(stats.level):
-			var enemy_scene: PackedScene = enemy_definition.scene
+	for enemy_scene in ENEMY_CATALOG:
+		var enemy := enemy_scene.instantiate() as Enemy
+		var enemy_level := enemy.get_level()
+		enemy.free()
+		if eligible_levels.has(enemy_level):
 			enemy_pool.append(enemy_scene)
 	return enemy_pool
 
 
 func _get_max_enemy_level() -> int:
 	var max_level := 1
-	for enemy_definition in ENEMY_CATALOG:
-		var stats: EnemyStats = enemy_definition.stats
-		max_level = maxi(max_level, stats.level)
+	for enemy_scene in ENEMY_CATALOG:
+		var enemy := enemy_scene.instantiate() as Enemy
+		var enemy_level := enemy.get_level()
+		enemy.free()
+		max_level = maxi(max_level, enemy_level)
 	return max_level
 
 

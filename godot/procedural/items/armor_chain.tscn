@@ -1,19 +1,19 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://d1e8u8l2l7bym"]
 
-[ext_resource type="Script" path="res://items/helmet.gd" id="1_armor"]
+[ext_resource type="Script" uid="uid://dy2ugvq1ya782" path="res://items/armor.gd" id="1_armor"]
 [ext_resource type="Resource" path="res://procedural/items/armor_chain.tres" id="2_stats"]
-[ext_resource type="Texture2D" path="res://procedural/items/armor_chain_atlas_texture.tres" id="3_items"]
+[ext_resource type="Texture2D" uid="uid://bw26ipuhqj133" path="res://procedural/items/armor_chain_atlas_texture.tres" id="3_items"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_armor"]
 size = Vector2(8, 8)
 
-[node name="ChainArmor" type="Area2D"]
+[node name="ChainArmor" type="Area2D" unique_id=445124181]
 collision_layer = 2
 script = ExtResource("1_armor")
 armor_resource = ExtResource("2_stats")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=879163632]
 texture = ExtResource("3_items")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=561430418]
 shape = SubResource("RectangleShape2D_armor")

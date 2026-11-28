@@ -58,6 +58,10 @@ func has_time_limit() -> bool:
 	return stats.has_time_limit()
 
 
+func get_level() -> int:
+	return stats.level
+
+
 func hurt(damage: int) -> int:
 	hit_points -= max(1, damage - stats.get_armor())
 	if is_inside_tree():

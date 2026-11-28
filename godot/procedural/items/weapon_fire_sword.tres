@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WeaponResource" format=3]
+
+[ext_resource type="Texture2D" uid="uid://cwxs3uwlbxdwj" path="res://procedural/items/weapon_fire_sword_atlas_texture.tres" id="1_icon"]
+[ext_resource type="Script" uid="uid://cga2gx46clmmh" path="res://items/weapon_resource.gd" id="2_weapon"]
+
+[resource]
+script = ExtResource("2_weapon")
+id = "rpg_weapon_fire_sword"
+name = "Feuerschwert"
+damage = 5
+icon_atlas = ExtResource("1_icon")

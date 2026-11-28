@@ -213,13 +213,18 @@ func test_enemy_pools_follow_level_and_room_tier(parameters = use_parameters([
 
 
 func test_item_pools_follow_level_and_room_tier(parameters = use_parameters([
-	[1, Generator.Tier.EASY, ["armor_leather", "weapon_knife", "healing_potion"]],
-	[1, Generator.Tier.MEDIUM, ["armor_leather", "weapon_knife", "healing_potion"]],
-	[1, Generator.Tier.HARD, ["armor_leather", "armor_padded", "weapon_knife", "weapon_dagger", "healing_potion"]],
-	[5, Generator.Tier.EASY, ["armor_scale", "armor_plate", "healing_potion"]],
-	[5, Generator.Tier.MEDIUM, ["armor_plate", "healing_potion"]],
-	[5, Generator.Tier.HARD, ["armor_plate", "healing_potion"]],
-	[1000, Generator.Tier.HARD, ["armor_plate", "healing_potion"]]
+	[1, Generator.Tier.EASY, ["weapon_knife", "healing_potion"]],
+	[1, Generator.Tier.MEDIUM, ["weapon_knife", "healing_potion"]],
+	[1, Generator.Tier.HARD, ["armor_leather", "weapon_knife", "weapon_dagger", "healing_potion"]],
+	[5, Generator.Tier.EASY, ["armor_padded", "weapon_knife", "weapon_sword", "healing_potion"]],
+	[5, Generator.Tier.MEDIUM, ["weapon_knife", "healing_potion"]],
+	[5, Generator.Tier.HARD, ["armor_chain", "weapon_knife", "weapon_ice_sword", "healing_potion"]],
+	[6, Generator.Tier.EASY, ["armor_chain", "weapon_knife", "weapon_ice_sword", "healing_potion"]],
+	[6, Generator.Tier.MEDIUM, ["armor_chain", "weapon_knife", "weapon_ice_sword", "healing_potion"]],
+	[6, Generator.Tier.HARD, ["armor_chain", "weapon_knife", "weapon_ice_sword", "healing_potion"]],
+	[7, Generator.Tier.HARD, ["armor_scale", "weapon_knife", "weapon_fire_sword", "healing_potion"]],
+	[8, Generator.Tier.MEDIUM, ["armor_scale", "weapon_knife", "weapon_fire_sword", "healing_potion"]],
+	[1000, Generator.Tier.HARD, ["armor_plate", "weapon_knife", "healing_potion"]]
 ])):
 	# arrange
 	var dungeon_level = parameters[0]
@@ -299,6 +304,7 @@ func test_place_items():
 	# assert
 	assert_true(items.size() > 0, "Items should be placed in the dungeon")
 	for item in items:
+		assert_true(item is ItemScene, "Generated item should be an ItemScene")
 		var item_tile := Vector2i(item.position)
 		var room_found := false
 		for room_index in range(rooms.size()):
@@ -308,6 +314,9 @@ func test_place_items():
 			var tier := dungeon_generator.item_generator._get_room_tier(float(room_index) / rooms.size())
 			var allowed_scenes := _scene_names(dungeon_generator.item_generator._get_item_pool(1, tier))
 			assert_has(allowed_scenes, item.scene_file_path.get_file().get_basename())
+			var eligible_levels := dungeon_generator.item_generator._get_eligible_content_levels(1, tier)
+			var is_level_eligible := item.get_level() == GoodResource.LEVEL_ALL_DUNGEON_LEVELS or eligible_levels.has(item.get_level())
+			assert_true(is_level_eligible, "Generated item level should be eligible for its room tier")
 			break
 		assert_true(room_found, "Item should be inside a room")
 	

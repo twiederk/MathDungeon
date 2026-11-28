@@ -72,7 +72,7 @@ func _setup_signals() -> void:
 
 	for child in items_root.get_children():
 		if child.has_signal("item_picked_up"):
-			_register_item(child as Item)
+			_register_item(child as ItemScene)
 
 	for child in companions_root.get_children():
 		if child.has_signal("companion_picked_up"):
@@ -125,12 +125,12 @@ func _enrage_iron_golems(villager_position: Vector2) -> void:
 			child.on_villager_defeated(villager_position, player)
 
 
-func _register_item(item: Item) -> void:
+func _register_item(item: ItemScene) -> void:
 	if not item.item_picked_up.is_connected(_on_item_picked_up):
 		item.item_picked_up.connect(_on_item_picked_up)
 
 
-func _on_item_picked_up(item: Item) -> void:
+func _on_item_picked_up(item: ItemScene) -> void:
 	item.execute()
 
 
