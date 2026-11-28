@@ -14,6 +14,7 @@ const DUNGEON_ATLAS_ID: int = 1
 const STONE_TERRAIN_ID: int = 0
 const SAND_TERRAIN_ID: int = 1
 const DIRT_TERRAIN_ID: int = 2
+const HARDER_DUNGEON_START_LEVEL: int = 4
 const TILE_SIZE: int = 16
 @warning_ignore("integer_division")
 const TILE_SIZE_HALF: Vector2 = Vector2(TILE_SIZE / 2, TILE_SIZE / 2)
@@ -62,7 +63,7 @@ func _setup_locations() -> void:
 
 func _place_dungeon(generated_dungeon: Dungeon) -> void:
 	var floor_terrain_id := SAND_TERRAIN_ID
-	if GameSession.get_procedural_level() % 2 == 0:
+	if GameSession.get_procedural_level() >= HARDER_DUNGEON_START_LEVEL:
 		floor_terrain_id = DIRT_TERRAIN_ID
 	tile_map_layer.set_cells_terrain_connect(generated_dungeon.wall_arr, DUNGEON_ATLAS_ID, STONE_TERRAIN_ID)
 	tile_map_layer.set_cells_terrain_connect(generated_dungeon.floor_arr, DUNGEON_ATLAS_ID, floor_terrain_id)
