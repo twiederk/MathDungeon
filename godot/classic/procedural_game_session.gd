@@ -8,7 +8,7 @@ const PROCEDURAL_LEVEL_GROWTH_INTERVAL := 2
 const MAX_PROCEDURAL_LEVEL_SIZE := Vector2i(120, 120)
 const FIRST_PROCEDURAL_LEVEL_SPLITS := 3
 const PROCEDURAL_LEVEL_SPLIT_THRESHOLDS := [
-	{"size": Vector2i(60, 40), "splits": 4},
+	{"size": Vector2i(49, 32), "splits": 4},
 	{"size": Vector2i(100, 80), "splits": 5}
 ]
 const PROCEDURAL_CLEAR_BONUSES := {3: 500, 4: 1000, 5: 2000}
